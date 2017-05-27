@@ -1,4 +1,4 @@
-# fortran-linter README
+# Modern Fortran language support for VSCode
 
 This is the README for your extension "fortran-linter". After writing up a brief description, we recommend including the following sections.
 
@@ -14,7 +14,7 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+gfortran on your path, or wherever you configure it to be.
 
 ## Extension Settings
 
