@@ -2,8 +2,8 @@
     "name": "linter-gfortran",
     "displayName": "fortran-linter",
     "description": "A linter for fortran code based on gfortran.",
-    "version": "0.0.1",
-    "publisher": "krvajal",
+    "version": "0.1.0",
+    "publisher": "krvajalm",
     "engines": {
         "vscode": "^1.12.0"
     },
@@ -12,22 +12,31 @@
         "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
     },
     "categories": [
-       "Languages",
+        "Languages",
         "Snippets"
-    ],  
+    ],
     "activationEvents": [
         "onLanguage:fortran90"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "languages": [{
-            "id": "fortran90",
-            "aliases": ["Fortran90", "fortran90"],
-            "extensions": [".f90",".F90",".f95",".F95"],
-            "configuration": "./language-configuration.json"
-
-        }],
-         "grammars": [
+        "languages": [
+            {
+                "id": "fortran90",
+                "aliases": [
+                    "Fortran90",
+                    "fortran90"
+                ],
+                "extensions": [
+                    ".f90",
+                    ".F90",
+                    ".f95",
+                    ".F95"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
             {
                 "language": "fortran90",
                 "scopeName": "source.fortran.modern",
