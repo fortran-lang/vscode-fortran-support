@@ -7,19 +7,33 @@
     "engines": {
         "vscode": "^1.12.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
+    },
     "categories": [
-        "Other"
-    ],
+       "Languages",
+        "Snippets"
+    ],  
     "activationEvents": [
-        "onLanguage:Fortran"
+        "onLanguage:fortran90"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "languages": [{
-            "id": "Fortran",
-            "aliases": ["Fortran", "fortran"],
-            "extensions": [".f90"]
-        }]
+            "id": "fortran90",
+            "aliases": ["Fortran90", "fortran90"],
+            "extensions": [".f90",".F90",".f95",".F95"],
+            "configuration": "./language-configuration.json"
+
+        }],
+         "grammars": [
+            {
+                "language": "fortran90",
+                "scopeName": "source.fortran.modern",
+                "path": "./syntaxes/fortran90.tmLanguage"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

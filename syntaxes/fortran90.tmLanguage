@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>Specificities of Fortran &gt;= 90</string>
+	<key>fileTypes</key>
+	<array>
+		<string>f90</string>
+		<string>F90</string>
+		<string>f95</string>
+		<string>F95</string>
+		<string>f03</string>
+		<string>F03</string>
+		<string>f08</string>
+		<string>F08</string>
+	</array>
+	<key>firstLineMatch</key>
+	<string>(?i)-[*]- mode: f90 -[*]-</string>
+	<key>keyEquivalent</key>
+	<string>^~F</string>
+	<key>name</key>
+	<string>Fortran - Modern</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>include</key>
+			<string>source.fortran</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?x:					# extended mode
+					^
+					\s*					# start of line and possibly some space
+					(?i:(interface))		# 1: word interface
+					\s+					# some space
+					(?i:(operator|assignment))		# 2: the words operator or assignment
+					\(					# opening parenthesis
+					((\.[a-zA-Z0-9_]+\.)|[\+\-\=\/\*]+)	# 3: an operator
+					
+					\)					# closing parenthesis
+					)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.fortran</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fortran</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.fortran</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Interface declaration of operator/assignments</string>
+			<key>end</key>
+			<string>(?x:
+					((?i:end))			# 1: the word end
+					\s*					# possibly some space
+					((?i:interface)?) 		# 2: possibly interface
+					)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.fortran</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.fortran</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function.interface.operator.fortran.modern</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?x:					# extended mode
+					^
+					\s*					# start of line and possibly some space
+					(?i:(interface))		# 1: word interface
+					\s+					# some space
+					([A-Za-z_][A-Za-z0-9_]*)	# 1: name
+					)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.fortran</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.fortran</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Interface declaration of function/subroutines</string>
+			<key>end</key>
+			<string>(?x:				# extended mode
+					((?i:end))		# 1: the word end
+					\s*				# possibly some space
+					((?i:interface)?) 	# 2: possibly interface
+					)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.fortran</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.fortran</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function.interface.fortran.modern</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?x:			# extended mode
+					^\s*			# begining of line and some space
+					(?i:(type))	# 1: word type
+					\s+			# some space
+					([a-zA-Z_][a-zA-Z0-9_]*)	# 2: type name
+					)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fortran.modern</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.fortran.modern</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Type definition</string>
+			<key>end</key>
+			<string>(?x:
+					((?i:end))			# 1: the word end
+					\s*					# possibly some space
+					(?i:(type))? 			# 2: possibly the word type
+					(\s+[A-Za-z_][A-Za-z0-9_]*)?	# 3: possibly the name
+					)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.fortran</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fortran.modern</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.end.fortran.modern</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.type-definition.fortran.modern</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^[ \t]+)?(?=!-)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.whitespace.comment.leading.ruby</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?!\G)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>!-</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.fortran</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\n</string>
+					<key>name</key>
+					<string>comment.line.exclamation.mark.fortran.modern</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>\\\s*\n</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^[ \t]+)?(?=!)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.whitespace.comment.leading.ruby</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?!\G)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>!</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.fortran</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\n</string>
+					<key>name</key>
+					<string>comment.line.exclamation.fortran.modern</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>\\\s*\n</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>statements controling the flow of the program</string>
+			<key>match</key>
+			<string>\b(?i:(select\s+case|case(\s+default)?|end\s+select|use|(end\s+)?forall))\b</string>
+			<key>name</key>
+			<string>keyword.control.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>input/output instrinsics</string>
+			<key>match</key>
+			<string>\b(?i:(access|action|advance|append|apostrophe|asis|blank|delete|delim|direct|end|eor|err|exist|file|fmt|form|formatted|iolength|iostat|keep|name|named|nextrec|new|nml|no|null|number|old|opened|pad|position|quote|read|readwrite|rec|recl|replace|scratch|sequential|size|status|undefined|unformatted|unit|unknown|write|yes|zero|namelist)(?=\())</string>
+			<key>name</key>
+			<string>keyword.control.io.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>logical operators in symbolic format</string>
+			<key>match</key>
+			<string>\b(\=\=|\/\=|\&gt;\=|\&gt;|\&lt;|\&lt;\=)\b</string>
+			<key>name</key>
+			<string>keyword.operator.logical.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>operators</string>
+			<key>match</key>
+			<string>(\%|\=\&gt;)</string>
+			<key>name</key>
+			<string>keyword.operator.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>numeric instrinsics</string>
+			<key>match</key>
+			<string>\b(?i:(ceiling|floor|modulo)(?=\())</string>
+			<key>name</key>
+			<string>keyword.other.instrinsic.numeric.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>matrix/vector/array instrinsics</string>
+			<key>match</key>
+			<string>\b(?i:(allocate|allocated|deallocate)(?=\())</string>
+			<key>name</key>
+			<string>keyword.other.instrinsic.array.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>pointer instrinsics</string>
+			<key>match</key>
+			<string>\b(?i:(associated)(?=\())</string>
+			<key>name</key>
+			<string>keyword.other.instrinsic.pointer.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>programming units</string>
+			<key>match</key>
+			<string>\b(?i:((end\s*)?(interface|procedure|module)))\b</string>
+			<key>name</key>
+			<string>keyword.other.programming-units.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\b(?i:(type(?=\s*\()))\b(?=.*::)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fortran.modern</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Line of type specification</string>
+			<key>end</key>
+			<string>(?=!)|$</string>
+			<key>name</key>
+			<string>meta.specification.fortran.modern</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(type(?=\s*\()))\b</string>
+			<key>name</key>
+			<string>storage.type.fortran.modern</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(optional|recursive|pointer|allocatable|target|private|public))\b</string>
+			<key>name</key>
+			<string>storage.modifier.fortran.modern</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.fortran.modern</string>
+	<key>uuid</key>
+	<string>016CA1B6-8351-4B17-9215-29C275D5D973</string>
+</dict>
+</plist>

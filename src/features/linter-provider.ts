@@ -19,7 +19,7 @@ export default class FortranLintingProvider {
 	private doModernFortranLint(textDocument: vscode.TextDocument) {
 		let errorRegex:RegExp = /^([^:]*):([0-9]+):([0-9]+):\n\s(.*)\n.*\n(Error|Warning):\s(.*)$/gm;
 		console.log(textDocument.languageId);
-		if (textDocument.languageId !== 'Fortran') {
+		if (textDocument.languageId !== 'fortran90') {
 			return;
 		}
 		let decoded = '';
@@ -37,7 +37,7 @@ export default class FortranLintingProvider {
 			});
 			childProcess.stdout.on('end', () => {
 				let decodedOriginal =  decoded;
-				console.log(decoded);
+				
 				let myArray;
 				while ((myArray = errorRegex.exec(decoded)) !== null) {
   					let elements: string[] = myArray.slice(1);
