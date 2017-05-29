@@ -9,3 +9,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.4.0] - 2017-05-29
 ### Added 
 - Show docs for intrinsic functions on hover
+### Changed
+-  Updated icon for the extension 
