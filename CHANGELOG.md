@@ -10,4 +10,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added 
 - Show docs for intrinsic functions on hover
 ### Changed
--  Updated icon for the extension 
+- Updated icon for the extension 
+- Fix bug on linter not working
