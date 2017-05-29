@@ -7,7 +7,6 @@ import ChildProcess = cp.ChildProcess;
 import * as vscode from 'vscode';
 
 export default class FortranLintingProvider {
-
         
 	constructor(){
 		// filename:line:col: is common for multiline and single line warnings
@@ -17,7 +16,7 @@ export default class FortranLintingProvider {
 
 	private diagnosticCollection: vscode.DiagnosticCollection;
 	private doModernFortranLint(textDocument: vscode.TextDocument) {
-		let errorRegex:RegExp = /^([^:]*):([0-9]+):([0-9]+):\n\s(.*)\n.*\n(Error|Warning):\s(.*)$/gm;
+		let errorRegex:RegExp = /^([^:]*):([0-9]+):([0-9]+):\n\s(.*)\n.*\n(Error|Warning|Fatal Error):\s(.*)$/gm;
 		console.log(textDocument.languageId);
 		if (textDocument.languageId !== 'fortran90') {
 			return;
@@ -35,12 +34,12 @@ export default class FortranLintingProvider {
 			childProcess.stderr.on('data', (data) => {
 				decoded += data;
 			});
-			childProcess.stdout.on('end', () => {
+			childProcess.stderr.on('end', () => {
 				let decodedOriginal =  decoded;
 				
-				let myArray;
-				while ((myArray = errorRegex.exec(decoded)) !== null) {
-  					let elements: string[] = myArray.slice(1);
+				let matchesArray:string[];
+				while ((matchesArray = errorRegex.exec(decoded)) !== null) {
+  					let elements: string[] = matchesArray.slice(1); // get captured expressions
 					let startLine =  parseInt(elements[1]);
 					let startColumn = parseInt(elements[2])
 					let type = elements[4]; //error or warning
@@ -71,27 +70,11 @@ export default class FortranLintingProvider {
 		}];
 	}
 
-	private runCodeAction(document: vscode.TextDocument, range: vscode.Range, message: string): any {
-		let fromRegex: RegExp = /.*Replace:(.*)==>.*/g
-		let fromMatch: RegExpExecArray = fromRegex.exec(message.replace(/\s/g, ''));
-		let from = fromMatch[1];
-		let to: string = document.getText(range).replace(/\s/g, '')
-		if (from === to) {
-			let newText = /.*==>\s(.*)/g.exec(message)[1]
-			let edit = new vscode.WorkspaceEdit();
-			edit.replace(document.uri, range, newText);
-			return vscode.workspace.applyEdit(edit);
-		} else {
-			vscode.window.showErrorMessage("The suggestion was not applied because it is out of date. You might have tried to apply the same edit twice.");
-		}
-	}
-
 	private command: vscode.Disposable;
 
 	public activate(subscriptions: vscode.Disposable[]) {
 
-		this.command = vscode.commands.registerCommand(FortranLintingProvider.commandId, this.runCodeAction, this);
-		subscriptions.push(this);
+
 		this.diagnosticCollection = vscode.languages.createDiagnosticCollection();
 
 		vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
@@ -101,7 +84,7 @@ export default class FortranLintingProvider {
 
 		vscode.workspace.onDidSaveTextDocument(this.doModernFortranLint, this);
 
-		// Hlint all open haskell documents
+		// Run gfortran in all open fortran files
 		vscode.workspace.textDocuments.forEach(this.doModernFortranLint, this);
 	}
 
