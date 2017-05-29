@@ -44,7 +44,13 @@
                 "scopeName": "source.fortran.modern",
                 "path": "./syntaxes/fortran90.tmLanguage"
             }
-        ]
+        ],
+        "snippets": [
+        {
+            "language": "fortran90",
+            "path": "./snippets/fortran90.json"
+        }
+    ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

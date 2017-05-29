@@ -1,0 +1,34 @@
+{
+    "Program Skeleton": {
+        "prefix": "program",
+        "body": [
+            "program ${1:name}",
+            "implicit none",
+            "",
+            "end program ${1:name}"
+        ],
+        "description": "Program Skeleton"
+    },
+    "Module Skeleton": {
+        "prefix": "module",
+        "body": [
+            "module ${1:name}",
+            "implicit none",
+            "",
+            "contains",
+            "end module ${1:name}"
+        ],
+        "description": "Create a new module"
+    },
+    "Do Loop": {
+        "prefix": "do",
+        "body": [
+            "do ${1:index} = ${2:start},${3:end}",
+            "    !TODO_statement",
+            "    ${4}",
+            "enddo"
+        ],
+        "description": "Create a do loop"
+    }
+
+}
