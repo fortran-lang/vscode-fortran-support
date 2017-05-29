@@ -1,7 +1,8 @@
 # Change Log
-All notable changes to the "fortran-linter" extension will be documented in this file.
+All notable changes to this extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - Initial release
