@@ -14,7 +14,7 @@
         "body": [
             "module ${1:name}",
             "implicit none",
-            "",
+            "${2}",
             "contains",
             "end module ${1:name}"
         ],
@@ -29,6 +29,52 @@
             "enddo"
         ],
         "description": "Create a do loop"
+    },
+    "Function": {
+        "prefix": "fun",
+        "body": [
+            "function ${1:func}(${2:arg}) result(${3:retval})",
+            "${4:type} :: ${2:arg}",
+            "${4:type} :: ${3:retval}",
+            "    !TODO_add_body",
+            "    ${5}",
+            "end function ${1:func}"
+        ],
+        "description": "Create a function"
+    },
+    "Subroutine": {
+        "prefix": "sub",
+        "body": [
+            "subroutine ${1:routine}(${2:arg1}, ${3: arg2})",
+            "${4:type1},intent(in)  :: ${2:arg1}",
+            "${5:type2},intent(out) :: ${3:arg2}",
+            "    !TODO_add_body",
+            "    ${6}",
+            "end subroutine ${1:routine}"
+        ],
+        "description": "Create a function"
+    },
+    "Module documentation header": {
+        "prefix": "modoc" ,
+        "body": [ "!------------------------------------------------------------------------------",
+                  "! ${1:Institution}, ${2:Affiliation}",
+                  "!------------------------------------------------------------------------------",
+                  "!",
+                  "! MODULE: ${3: Module name}",
+                  "!",
+                  "!> @author",
+                  "!> ${4:Author Name}}",
+                  "!",
+                  "! DESCRIPTION: ",
+                  "!> ${5: Short module description}",
+                  "!",
+                  "! REVISION HISTORY:",
+                  "! dd Mmm yyyy - Initial Version",
+                  "! TODO_dd_mmm_yyyy - TODO_describe_appropriate_changes - TODO_name",
+                  "!------------------------------------------------------------------------------"
+        ],
+        "description": "Add module documentation header"
     }
+
 
 }

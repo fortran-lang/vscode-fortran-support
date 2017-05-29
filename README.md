@@ -8,7 +8,15 @@ This extension provides support for the Fortran programming language. It include
 * Code Snippets
 * Documentation on hover for intrisic functions
 * Code linting based on `gfortran` to show errors swiggles in your code
+## Snippets
+This are some of the snippets included 
 
+#### Program skeleton
+
+![program snippet](https://media.giphy.com/media/OYdq9BKYMOOdy/giphy.gif )
+
+#### Module skeleton
+![module snippet](https://media.giphy.com/media/3ohzdUNRuio5FfyF1u/giphy.gif )
 ## Requirements
 For the linter to work you need to have `gfortran` on your path, or wherever you configure it to be.
 ## Issues
