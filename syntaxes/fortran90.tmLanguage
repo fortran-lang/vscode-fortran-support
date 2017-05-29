@@ -316,7 +316,7 @@
 			<key>comment</key>
 			<string>numeric instrinsics</string>
 			<key>match</key>
-			<string>\b(?i:(ceiling|floor|modulo)(?=\())</string>
+			<string>\b(?i:(ceiling|floor|modulo|abs|sin)(?=\())</string>
 			<key>name</key>
 			<string>keyword.other.instrinsic.numeric.fortran.modern</string>
 		</dict>
