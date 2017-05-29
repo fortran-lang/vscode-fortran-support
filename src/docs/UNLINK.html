@@ -1,0 +1,42 @@
+<code>UNLINK</code> — Remove a file from the file system
+
+<h3>Description</h3>
+Unlinks the file <var>PATH</var>. A null character (<code>CHAR(0)</code>) can be
+used to mark the end of the name in <var>PATH</var>; otherwise, trailing
+blanks in the file name are ignored.  If the <var>STATUS</var> argument is
+supplied, it contains 0 on success or a nonzero error code upon return;
+see <code>unlink(2)</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms;
+however, only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL UNLINK(PATH [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = UNLINK(PATH)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>PATH</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) Shall be of default <code>INTEGER</code> type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="LINK.html#LINK">LINK</a>, <a href="SYMLNK.html#SYMLNK">SYMLNK</a>

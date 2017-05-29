@@ -1,0 +1,44 @@
+<code>MATMUL</code> — matrix multiplication
+
+<h3>Description</h3>
+Performs a matrix multiplication on numeric or logical arguments.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MATMUL(MATRIX_A, MATRIX_B)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>MATRIX_A</var> </td><td valign="top" width="70%">An array of <code>INTEGER</code>,
+<code>REAL</code>, <code>COMPLEX</code>, or <code>LOGICAL</code> type, with a rank of
+one or two. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MATRIX_B</var> </td><td valign="top" width="70%">An array of <code>INTEGER</code>,
+<code>REAL</code>, or <code>COMPLEX</code> type if <var>MATRIX_A</var> is of a numeric
+type; otherwise, an array of <code>LOGICAL</code> type. The rank shall be one
+or two, and the first (or only) dimension of <var>MATRIX_B</var> shall be
+equal to the last (or only) dimension of <var>MATRIX_A</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The matrix product of <var>MATRIX_A</var> and <var>MATRIX_B</var>.  The type and
+kind of the result follow the usual type and kind promotion rules, as
+for the <code>*</code> or <code>.AND.</code> operators.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>

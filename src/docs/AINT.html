@@ -1,0 +1,62 @@
+<code>AINT</code> — Truncate to a whole number
+
+<h3>Description</h3>
+<code>AINT(A [, KIND])</code> truncates its argument to a whole number.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = AINT(A [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>    </td><td valign="top" width="70%">The type of the argument shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> with the kind type parameter of the
+argument if the optional <var>KIND</var> is absent; otherwise, the kind
+type parameter will be given by <var>KIND</var>.  If the magnitude of
+<var>X</var> is less than one, <code>AINT(X)</code> returns zero.  If the
+magnitude is equal to or greater than one then it returns the largest
+whole number that does not exceed its magnitude.  The sign is the same
+as the sign of <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_aint
+<br>  real(4) x4
+<br>  real(8) x8
+<br>  x4 = 1.234E0_4
+<br>  x8 = 4.321_8
+<br>  print *, aint(x4), dint(x8)
+<br>  x8 = aint(x4,8)
+<br>end program test_aint</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name           </td><td valign="top" width="20%">Argument         </td><td valign="top" width="20%">Return type      </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AINT(A)</code> </td><td valign="top" width="20%"><code>REAL(4) A</code> </td><td valign="top" width="20%"><code>REAL(4)</code>   </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DINT(A)</code> </td><td valign="top" width="20%"><code>REAL(8) A</code> </td><td valign="top" width="20%"><code>REAL(8)</code>   </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

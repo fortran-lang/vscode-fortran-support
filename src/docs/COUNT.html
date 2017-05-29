@@ -1,0 +1,71 @@
+<code>COUNT</code> — Count function
+
+<h3>Description</h3>
+
+Counts the number of <code>.TRUE.</code> elements in a logical <var>MASK</var>,
+or, if the <var>DIM</var> argument is supplied, counts the number of
+elements along each row of the array in the <var>DIM</var> direction. 
+If the array has zero size, or all of the elements of <var>MASK</var> are
+<code>.FALSE.</code>, then the result is <code>0</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = COUNT(MASK [, DIM, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>MASK</var> </td><td valign="top" width="70%">The type shall be <code>LOGICAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>  </td><td valign="top" width="70%">(Optional) The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of kind <var>KIND</var>. If
+<var>KIND</var> is absent, the return value is of default integer kind. 
+If <var>DIM</var> is present, the result is an array with a rank one less
+than the rank of <var>ARRAY</var>, and a size corresponding to the shape
+of <var>ARRAY</var> with the <var>DIM</var> dimension removed.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_count
+<br>    integer, dimension(2,3) :: a, b
+<br>    logical, dimension(2,3) :: mask
+<br>    a = reshape( (/ 1, 2, 3, 4, 5, 6 /), (/ 2, 3 /))
+<br>    b = reshape( (/ 0, 7, 3, 4, 5, 8 /), (/ 2, 3 /))
+<br>    print '(3i3)', a(1,:)
+<br>    print '(3i3)', a(2,:)
+<br>    print *
+<br>    print '(3i3)', b(1,:)
+<br>    print '(3i3)', b(2,:)
+<br>    print *
+<br>    mask = a.ne.b
+<br>    print '(3l3)', mask(1,:)
+<br>    print '(3l3)', mask(2,:)
+<br>    print *
+<br>    print '(3i3)', count(mask)
+<br>    print *
+<br>    print '(3i3)', count(mask, 1)
+<br>    print *
+<br>    print '(3i3)', count(mask, 2)
+<br>end program test_count</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later, with <var>KIND</var> argument Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

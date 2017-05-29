@@ -1,0 +1,46 @@
+<code>EXPONENT</code> — Exponent function
+
+<h3>Description</h3>
+<code>EXPONENT(X)</code> returns the value of the exponent part of <var>X</var>. If <var>X</var>
+is zero the value returned is zero.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = EXPONENT(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type default <code>INTEGER</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_exponent
+<br>  real :: x = 1.0
+<br>  integer :: i
+<br>  i = exponent(x)
+<br>  print *, i
+<br>  print *, exponent(0.0)
+<br>end program test_exponent</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

@@ -1,0 +1,54 @@
+<code>ATOMIC_FETCH_OR</code> — Atomic bitwise OR operation with prior fetch
+
+<h3>Description</h3>
+<code>ATOMIC_OR(ATOM, VALUE)</code> atomically stores the value of <var>ATOM</var> in
+<var>OLD</var> and defines <var>ATOM</var> with the bitwise OR between the values of
+<var>ATOM</var> and <var>VALUE</var>. When <var>STAT</var> is present and the invokation was
+successful, it is assigned the value 0. If it is present and the invokation has
+failed, it is assigned a positive value; in particular, for a coindexed
+<var>ATOM</var>, if the remote image has stopped, it is assigned the value of
+<code>ISO_FORTRAN_ENV</code>'s <code>STAT_STOPPED_IMAGE</code> and if the remote image has
+failed, the value <code>STAT_FAILED_IMAGE</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL ATOMIC_FETCH_OR (ATOM, VALUE, OLD [, STAT])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ATOM</var>   </td><td valign="top" width="70%">Scalar coarray or coindexed variable of integer
+type with <code>ATOMIC_INT_KIND</code> kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUE</var>  </td><td valign="top" width="70%">Scalar of the same type as <var>ATOM</var>. If the kind
+is different, the value is converted to the kind of <var>ATOM</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>OLD</var>    </td><td valign="top" width="70%">Scalar of the same type and kind as <var>ATOM</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STAT</var>   </td><td valign="top" width="70%">(optional) Scalar default-kind integer variable.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program atomic
+<br>  use iso_fortran_env
+<br>  integer(atomic_int_kind) :: atom[*], old
+<br>  call atomic_fetch_or (atom[1], int(b'10100011101'), old)
+<br>end program atomic</code>
+     <br>
+
+<h3>Standard</h3>
+TS 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+Atomic subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="ATOMIC_005fDEFINE.html#ATOMIC_005fDEFINE">ATOMIC_DEFINE</a>, <a href="ATOMIC_005fOR.html#ATOMIC_005fOR">ATOMIC_OR</a>, <a href="ISO_005fFORTRAN_005fENV.html#ISO_005fFORTRAN_005fENV">ISO_FORTRAN_ENV</a>,
+<a href="ATOMIC_005fFETCH_005fADD.html#ATOMIC_005fFETCH_005fADD">ATOMIC_FETCH_ADD</a>, <a href="ATOMIC_005fFETCH_005fAND.html#ATOMIC_005fFETCH_005fAND">ATOMIC_FETCH_AND</a>, <a href="ATOMIC_005fFETCH_005fXOR.html#ATOMIC_005fFETCH_005fXOR">ATOMIC_FETCH_XOR</a>

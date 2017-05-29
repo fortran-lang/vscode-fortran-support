@@ -1,0 +1,51 @@
+<code>C_LOC</code> — Obtain the C address of an object
+
+<h3>Description</h3>
+<code>C_LOC(X)</code> determines the C address of the argument.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = C_LOC(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="10%"><var>X</var> </td><td valign="top" width="75%">Shall have either the POINTER or TARGET attribute. It shall not be a coindexed object. It shall either be a variable with interoperable type and kind type parameters, or be a scalar, nonpolymorphic variable with no length type parameters.
+
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>C_PTR</code> and contains the C address
+of the argument.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>subroutine association_test(a,b)
+<br>  use iso_c_binding, only: c_associated, c_loc, c_ptr
+<br>  implicit none
+<br>  real, pointer :: a
+<br>  type(c_ptr) :: b
+<br>  if(c_associated(b, c_loc(a))) &amp;
+<br>     stop 'b and a do not point to same target'
+<br>end subroutine association_test</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="C_005fASSOCIATED.html#C_005fASSOCIATED">C_ASSOCIATED</a>, <a href="C_005fFUNLOC.html#C_005fFUNLOC">C_FUNLOC</a>, <a href="C_005fF_005fPOINTER.html#C_005fF_005fPOINTER">C_F_POINTER</a>, <a href="C_005fF_005fPROCPOINTER.html#C_005fF_005fPROCPOINTER">C_F_PROCPOINTER</a>

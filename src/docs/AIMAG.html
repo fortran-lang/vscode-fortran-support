@@ -1,0 +1,59 @@
+<code>AIMAG</code> — Imaginary part of complex number
+
+<h3>Description</h3>
+<code>AIMAG(Z)</code> yields the imaginary part of complex argument <code>Z</code>. 
+The <code>IMAG(Z)</code> and <code>IMAGPART(Z)</code> intrinsic functions are provided
+for compatibility with <samp><span class="command">g77</span></samp>, and their use in new code is
+strongly discouraged.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = AIMAG(Z)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>Z</var> </td><td valign="top" width="70%">The type of the argument shall be <code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> with the
+kind type parameter of the argument.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_aimag
+<br>  complex(4) z4
+<br>  complex(8) z8
+<br>  z4 = cmplx(1.e0_4, 0.e0_4)
+<br>  z8 = cmplx(0.e0_8, 1.e0_8)
+<br>  print *, aimag(z4), dimag(z8)
+<br>end program test_aimag</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name               </td><td valign="top" width="20%">Argument            </td><td valign="top" width="20%">Return type     </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AIMAG(Z)</code>    </td><td valign="top" width="20%"><code>COMPLEX Z</code>    </td><td valign="top" width="20%"><code>REAL</code>     </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DIMAG(Z)</code>    </td><td valign="top" width="20%"><code>COMPLEX(8) Z</code> </td><td valign="top" width="20%"><code>REAL(8)</code>  </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IMAG(Z)</code>     </td><td valign="top" width="20%"><code>COMPLEX Z</code>    </td><td valign="top" width="20%"><code>REAL</code>     </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IMAGPART(Z)</code> </td><td valign="top" width="20%"><code>COMPLEX Z</code>    </td><td valign="top" width="20%"><code>REAL</code>     </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later, has overloads that are GNU extensions
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

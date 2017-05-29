@@ -1,0 +1,63 @@
+<code>CTIME</code> — Convert a time into a string
+
+<h3>Description</h3>
+<code>CTIME</code> converts a system time value, such as returned by
+<code>TIME8</code>, to a string. The output will be of the form ‘<samp><span class="samp">Sat
+Aug 19 18:13:14 1995</span></samp>’.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL CTIME(TIME, RESULT)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = CTIME(TIME)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>TIME</var>    </td><td valign="top" width="70%">The type shall be of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>RESULT</var>  </td><td valign="top" width="70%">The type shall be of type <code>CHARACTER</code> and
+of default kind. It is an <code>INTENT(OUT)</code> argument. If the length
+of this variable is too short for the time and date string to fit
+completely, it will be blank on procedure return.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The converted date and time as a string.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_ctime
+<br>    integer(8) :: i
+<br>    character(len=30) :: date
+<br>    i = time8()
+<br>
+<br>    ! Do something, main part of the program
+<br>
+<br>    call ctime(i,date)
+<br>    print *, 'Program was started on ', date
+<br>end program test_ctime</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>, <a href="GMTIME.html#GMTIME">GMTIME</a>, <a href="LTIME.html#LTIME">LTIME</a>, <a href="TIME.html#TIME">TIME</a>, <a href="TIME8.html#TIME8">TIME8</a>

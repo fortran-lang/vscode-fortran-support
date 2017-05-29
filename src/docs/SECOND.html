@@ -1,0 +1,48 @@
+<code>SECOND</code> — CPU time function
+
+<h3>Description</h3>
+Returns a <code>REAL(4)</code> value representing the elapsed CPU time in
+seconds.  This provides the same functionality as the standard
+<code>CPU_TIME</code> intrinsic, and is only included for backwards
+compatibility.
+
+     <p>This intrinsic is provided in both subroutine and function forms;
+however, only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL SECOND(TIME)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>TIME = SECOND()</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>TIME</var>  </td><td valign="top" width="70%">Shall be of type <code>REAL(4)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+In either syntax, <var>TIME</var> is set to the process's current runtime in
+seconds.
+
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="CPU_005fTIME.html#CPU_005fTIME">CPU_TIME</a>
+
+   

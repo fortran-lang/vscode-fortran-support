@@ -1,0 +1,57 @@
+<code>LGE</code> — Lexical greater than or equal
+
+<h3>Description</h3>
+Determines whether one string is lexically greater than or equal to
+another string, where the two strings are interpreted as containing
+ASCII character codes.  If the String A and String B are not the same
+length, the shorter is compared as if spaces were appended to it to form
+a value that has the same length as the longer.
+
+     <p>In general, the lexical comparison intrinsics <code>LGE</code>, <code>LGT</code>,
+<code>LLE</code>, and <code>LLT</code> differ from the corresponding intrinsic
+operators <code>.GE.</code>, <code>.GT.</code>, <code>.LE.</code>, and <code>.LT.</code>, in
+that the latter use the processor's character ordering (which is not
+ASCII on some targets), whereas the former always use the ASCII
+ordering.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = LGE(STRING_A, STRING_B)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STRING_A</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STRING_B</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns <code>.TRUE.</code> if <code>STRING_A &gt;= STRING_B</code>, and <code>.FALSE.</code>
+otherwise, based on the ASCII ordering.
+
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name                           </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>LGE(STRING_A, STRING_B)</code> </td><td valign="top" width="20%"><code>CHARACTER</code>  </td><td valign="top" width="20%"><code>LOGICAL</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="LGT.html#LGT">LGT</a>, <a href="LLE.html#LLE">LLE</a>, <a href="LLT.html#LLT">LLT</a>

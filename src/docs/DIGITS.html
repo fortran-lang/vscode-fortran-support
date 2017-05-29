@@ -1,0 +1,48 @@
+<code>DIGITS</code> — Significant binary digits function
+
+<h3>Description</h3>
+<code>DIGITS(X)</code> returns the number of significant binary digits of the internal
+model representation of <var>X</var>.  For example, on a system using a 32-bit
+floating point representation, a default real number would likely return 24.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DIGITS(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type may be <code>INTEGER</code> or <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_digits
+<br>    integer :: i = 12345
+<br>    real :: x = 3.143
+<br>    real(8) :: y = 2.33
+<br>    print *, digits(i)
+<br>    print *, digits(x)
+<br>    print *, digits(y)
+<br>end program test_digits</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

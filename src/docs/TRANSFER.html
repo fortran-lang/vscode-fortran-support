@@ -1,0 +1,67 @@
+<code>TRANSFER</code> — Transfer bit patterns
+
+<h3>Description</h3>
+Interprets the bitwise representation of <var>SOURCE</var> in memory as if it
+is the representation of a variable or array of the same type and type
+parameters as <var>MOLD</var>.
+
+     <p>This is approximately equivalent to the C concept of <em>casting</em> one
+type to another.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = TRANSFER(SOURCE, MOLD[, SIZE])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SOURCE</var> </td><td valign="top" width="70%">Shall be a scalar or an array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MOLD</var>   </td><td valign="top" width="70%">Shall be a scalar or an array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SIZE</var>   </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result has the same type as <var>MOLD</var>, with the bit level
+representation of <var>SOURCE</var>.  If <var>SIZE</var> is present, the result is
+a one-dimensional array of length <var>SIZE</var>.  If <var>SIZE</var> is absent
+but <var>MOLD</var> is an array (of any size or shape), the result is a one-
+dimensional array of the minimum length needed to contain the entirety
+of the bitwise representation of <var>SOURCE</var>.   If <var>SIZE</var> is absent
+and <var>MOLD</var> is a scalar, the result is a scalar.
+
+     <p>If the bitwise representation of the result is longer than that of
+<var>SOURCE</var>, then the leading bits of the result correspond to those of
+<var>SOURCE</var> and any trailing bits are filled arbitrarily.
+
+     </p><p>When the resulting bit representation does not correspond to a valid
+representation of a variable of the same type as <var>MOLD</var>, the results
+are undefined, and subsequent operations on the result cannot be
+guaranteed to produce sensible behavior.  For example, it is possible to
+create <code>LOGICAL</code> variables for which <var>VAR</var> and
+<code>.NOT.</code><var>VAR</var> both appear to be true.
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_transfer
+<br>  integer :: x = 2143289344
+<br>  print *, transfer(x, 1.0)    ! prints "NaN" on i686
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

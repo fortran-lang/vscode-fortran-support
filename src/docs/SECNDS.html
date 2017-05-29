@@ -1,0 +1,52 @@
+<code>SECNDS</code> — Time function
+
+<h3>Description</h3>
+<code>SECNDS(X)</code> gets the time in seconds from the real-time system clock. 
+<var>X</var> is a reference time, also in seconds. If this is zero, the time in
+seconds from midnight is returned. This function is non-standard and its
+use is discouraged.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SECNDS (X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>T</var>     </td><td valign="top" width="70%">Shall be of type <code>REAL(4)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>X</var>     </td><td valign="top" width="70%">Shall be of type <code>REAL(4)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+None
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_secnds
+<br>    integer :: i
+<br>    real(4) :: t1, t2
+<br>    print *, secnds (0.0)   ! seconds since midnight
+<br>    t1 = secnds (0.0)       ! reference time
+<br>    do i = 1, 10000000      ! do something
+<br>    end do
+<br>    t2 = secnds (t1)        ! elapsed time
+<br>    print *, "Something took ", t2, " seconds."
+<br>end program test_secnds</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Function
+
+     <br>

@@ -1,0 +1,42 @@
+<code>GERROR</code> — Get last system error message
+
+<h3>Description</h3>
+Returns the system error message corresponding to the last system error. 
+This resembles the functionality of <code>strerror(3)</code> in C.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL GERROR(RESULT)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>RESULT</var>  </td><td valign="top" width="70%">Shall of type <code>CHARACTER</code> and of default
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_gerror
+<br>  CHARACTER(len=100) :: msg
+<br>  CALL gerror(msg)
+<br>  WRITE(*,*) msg
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="IERRNO.html#IERRNO">IERRNO</a>, <a href="PERROR.html#PERROR">PERROR</a>

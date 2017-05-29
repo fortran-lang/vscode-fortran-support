@@ -1,0 +1,55 @@
+<code>CONJG</code> — Complex conjugate function
+
+<h3>Description</h3>
+<code>CONJG(Z)</code> returns the conjugate of <var>Z</var>.  If <var>Z</var> is <code>(x, y)</code>
+then the result is <code>(x, -y)</code>
+
+     <br>
+
+<h3>Syntax</h3>
+<code>Z = CONJG(Z)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>Z</var> </td><td valign="top" width="70%">The type shall be <code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>COMPLEX</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_conjg
+<br>    complex :: z = (2.0, 3.0)
+<br>    complex(8) :: dz = (2.71_8, -3.14_8)
+<br>    z= conjg(z)
+<br>    print *, z
+<br>    dz = dconjg(dz)
+<br>    print *, dz
+<br>end program test_conjg</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument             </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CONJG(Z)</code>  </td><td valign="top" width="20%"><code>COMPLEX Z</code>     </td><td valign="top" width="20%"><code>COMPLEX</code>    </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DCONJG(Z)</code> </td><td valign="top" width="20%"><code>COMPLEX(8) Z</code>  </td><td valign="top" width="20%"><code>COMPLEX(8)</code> </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later, has overloads that are GNU extensions
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

@@ -1,0 +1,55 @@
+<code>MAX</code> — Maximum value of an argument list
+
+<h3>Description</h3>
+Returns the argument with the largest (most positive) value.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MAX(A1, A2 [, A3 [, ...]])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A1</var>          </td><td valign="top" width="70%">The type shall be <code>INTEGER</code> or
+<code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>A2</var>, <var>A3</var>, ... </td><td valign="top" width="70%">An expression of the same type and kind
+as <var>A1</var>.  (As a GNU extension, arguments of different kinds are
+permitted.)
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value corresponds to the maximum value among the arguments,
+and has the same type and kind as the first argument.
+
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument             </td><td valign="top" width="20%">Return type         </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>MAX0(A1)</code>  </td><td valign="top" width="20%"><code>INTEGER(4) A1</code> </td><td valign="top" width="20%"><code>INTEGER(4)</code>   </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AMAX0(A1)</code> </td><td valign="top" width="20%"><code>INTEGER(4) A1</code> </td><td valign="top" width="20%"><code>REAL(MAX(X))</code> </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>MAX1(A1)</code>  </td><td valign="top" width="20%"><code>REAL A1</code>       </td><td valign="top" width="20%"><code>INT(MAX(X))</code>  </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AMAX1(A1)</code> </td><td valign="top" width="20%"><code>REAL(4) A1</code>    </td><td valign="top" width="20%"><code>REAL(4)</code>      </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DMAX1(A1)</code> </td><td valign="top" width="20%"><code>REAL(8) A1</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>      </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MAXLOC.html#MAXLOC">MAXLOC</a> <a href="MAXVAL.html#MAXVAL">MAXVAL</a>, <a href="MIN.html#MIN">MIN</a>
+
+   

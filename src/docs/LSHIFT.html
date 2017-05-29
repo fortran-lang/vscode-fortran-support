@@ -1,0 +1,49 @@
+<code>LSHIFT</code> — Left shift bits
+
+<h3>Description</h3>
+<code>LSHIFT</code> returns a value corresponding to <var>I</var> with all of the
+bits shifted left by <var>SHIFT</var> places.  If the absolute value of
+<var>SHIFT</var> is greater than <code>BIT_SIZE(I)</code>, the value is undefined. 
+Bits shifted out from the left end are lost; zeros are shifted in from
+the opposite end.
+
+     <p>This function has been superseded by the <code>ISHFT</code> intrinsic, which
+is standard in Fortran 95 and later, and the <code>SHIFTL</code> intrinsic,
+which is standard in Fortran 2008 and later.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = LSHIFT(I, SHIFT)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SHIFT</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of the same kind as
+<var>I</var>.
+
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ISHFT.html#ISHFT">ISHFT</a>, <a href="ISHFTC.html#ISHFTC">ISHFTC</a>, <a href="RSHIFT.html#RSHIFT">RSHIFT</a>, <a href="SHIFTA.html#SHIFTA">SHIFTA</a>, <a href="SHIFTL.html#SHIFTL">SHIFTL</a>,
+<a href="SHIFTR.html#SHIFTR">SHIFTR</a>
+
+   

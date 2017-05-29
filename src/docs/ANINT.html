@@ -1,0 +1,60 @@
+<code>ANINT</code> — Nearest whole number
+
+<h3>Description</h3>
+<code>ANINT(A [, KIND])</code> rounds its argument to the nearest whole number.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ANINT(A [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>    </td><td valign="top" width="70%">The type of the argument shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type real with the kind type parameter of the
+argument if the optional <var>KIND</var> is absent; otherwise, the kind
+type parameter will be given by <var>KIND</var>.  If <var>A</var> is greater than
+zero, <code>ANINT(A)</code> returns <code>AINT(X+0.5)</code>.  If <var>A</var> is
+less than or equal to zero then it returns <code>AINT(X-0.5)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_anint
+<br>  real(4) x4
+<br>  real(8) x8
+<br>  x4 = 1.234E0_4
+<br>  x8 = 4.321_8
+<br>  print *, anint(x4), dnint(x8)
+<br>  x8 = anint(x4,8)
+<br>end program test_anint</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name            </td><td valign="top" width="20%">Argument         </td><td valign="top" width="20%">Return type      </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AINT(A)</code>  </td><td valign="top" width="20%"><code>REAL(4) A</code> </td><td valign="top" width="20%"><code>REAL(4)</code>   </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DNINT(A)</code> </td><td valign="top" width="20%"><code>REAL(8) A</code> </td><td valign="top" width="20%"><code>REAL(8)</code>   </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

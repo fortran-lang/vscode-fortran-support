@@ -1,0 +1,63 @@
+<code>MINLOC</code> — Location of the minimum value within an array
+
+<h3>Description</h3>
+Determines the location of the element in the array with the minimum
+value, or, if the <var>DIM</var> argument is supplied, determines the
+locations of the minimum element along each row of the array in the
+<var>DIM</var> direction.  If <var>MASK</var> is present, only the elements for
+which <var>MASK</var> is <code>.TRUE.</code> are considered.  If more than one
+element in the array has the minimum value, the location returned is
+that of the first such element in array element order.  If the array has
+zero size, or all of the elements of <var>MASK</var> are <code>.FALSE.</code>, then
+the result is an array of zeroes.  Similarly, if <var>DIM</var> is supplied
+and all of the elements of <var>MASK</var> along a given row are zero, the
+result value for that row is zero.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = MINLOC(ARRAY, DIM [, MASK])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = MINLOC(ARRAY [, MASK])</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var> </td><td valign="top" width="70%">Shall be an array of type <code>INTEGER</code> or
+<code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>   </td><td valign="top" width="70%">(Optional) Shall be a scalar of type
+<code>INTEGER</code>, with a value between one and the rank of <var>ARRAY</var>,
+inclusive.  It may not be an optional dummy argument. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>  </td><td valign="top" width="70%">Shall be an array of type <code>LOGICAL</code>,
+and conformable with <var>ARRAY</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If <var>DIM</var> is absent, the result is a rank-one array with a length
+equal to the rank of <var>ARRAY</var>.  If <var>DIM</var> is present, the result
+is an array with a rank one less than the rank of <var>ARRAY</var>, and a
+size corresponding to the size of <var>ARRAY</var> with the <var>DIM</var>
+dimension removed.  If <var>DIM</var> is present and <var>ARRAY</var> has a rank
+of one, the result is a scalar.  In all cases, the result is of default
+<code>INTEGER</code> type.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MIN.html#MIN">MIN</a>, <a href="MINVAL.html#MINVAL">MINVAL</a>
+
+   

@@ -1,0 +1,55 @@
+<code>GET_COMMAND</code> — Get the entire command line
+
+<h3>Description</h3>
+Retrieve the entire command line that was used to invoke the program.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL GET_COMMAND([COMMAND, LENGTH, STATUS])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>COMMAND</var> </td><td valign="top" width="70%">(Optional) shall be of type <code>CHARACTER</code> and
+of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>LENGTH</var> </td><td valign="top" width="70%">(Optional) Shall be of type <code>INTEGER</code> and of
+default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) Shall be of type <code>INTEGER</code> and of
+default kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If <var>COMMAND</var> is present, stores the entire command line that was used
+to invoke the program in <var>COMMAND</var>. If <var>LENGTH</var> is present, it is
+assigned the length of the command line. If <var>STATUS</var> is present, it
+is assigned 0 upon success of the command, -1 if <var>COMMAND</var> is too
+short to store the command line, or a positive value in case of an error.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_get_command
+<br>  CHARACTER(len=255) :: cmd
+<br>  CALL get_command(cmd)
+<br>  WRITE (*,*) TRIM(cmd)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="GET_005fCOMMAND_005fARGUMENT.html#GET_005fCOMMAND_005fARGUMENT">GET_COMMAND_ARGUMENT</a>, <a href="COMMAND_005fARGUMENT_005fCOUNT.html#COMMAND_005fARGUMENT_005fCOUNT">COMMAND_ARGUMENT_COUNT</a>

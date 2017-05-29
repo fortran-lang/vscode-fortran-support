@@ -1,0 +1,63 @@
+<code>SIGNAL</code> — Signal handling subroutine (or function)
+
+<h3>Description</h3>
+<code>SIGNAL(NUMBER, HANDLER [, STATUS])</code> causes external subroutine
+<var>HANDLER</var> to be executed with a single integer argument when signal
+<var>NUMBER</var> occurs.  If <var>HANDLER</var> is an integer, it can be used to
+turn off handling of signal <var>NUMBER</var> or revert to its default
+action.  See <code>signal(2)</code>.
+
+     <p>If <code>SIGNAL</code> is called as a subroutine and the <var>STATUS</var> argument
+is supplied, it is set to the value returned by <code>signal(2)</code>.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL SIGNAL(NUMBER, HANDLER [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = SIGNAL(NUMBER, HANDLER)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>NUMBER</var> </td><td valign="top" width="70%">Shall be a scalar integer, with <code>INTENT(IN)</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>HANDLER</var></td><td valign="top" width="70%">Signal handler (<code>INTEGER FUNCTION</code> or
+<code>SUBROUTINE</code>) or dummy/global <code>INTEGER</code> scalar. 
+<code>INTEGER</code>. It is <code>INTENT(IN)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) <var>STATUS</var> shall be a scalar
+integer. It has <code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+<!-- TODO: What should the interface of the handler be?  Does it take arguments? -->
+
+     <br></p>
+
+<h3>Return value</h3>
+The <code>SIGNAL</code> function returns the value returned by <code>signal(2)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_signal
+<br>  intrinsic signal
+<br>  external handler_print
+<br>
+<br>  call signal (12, handler_print)
+<br>  call signal (10, 1)
+<br>
+<br>  call sleep (30)
+<br>end program test_signal</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>

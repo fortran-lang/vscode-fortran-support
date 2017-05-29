@@ -1,0 +1,57 @@
+<code>SQRT</code> — Square-root function
+
+<h3>Description</h3>
+<code>SQRT(X)</code> computes the square root of <var>X</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SQRT(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code> or
+<code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> or <code>COMPLEX</code>. 
+The kind type parameter is the same as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_sqrt
+<br>  real(8) :: x = 2.0_8
+<br>  complex :: z = (1.0, 2.0)
+<br>  x = sqrt(x)
+<br>  z = sqrt(z)
+<br>end program test_sqrt</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument             </td><td valign="top" width="20%">Return type          </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>SQRT(X)</code>   </td><td valign="top" width="20%"><code>REAL(4) X</code>     </td><td valign="top" width="20%"><code>REAL(4)</code>       </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DSQRT(X)</code>  </td><td valign="top" width="20%"><code>REAL(8) X</code>     </td><td valign="top" width="20%"><code>REAL(8)</code>       </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CSQRT(X)</code>  </td><td valign="top" width="20%"><code>COMPLEX(4) X</code>  </td><td valign="top" width="20%"><code>COMPLEX(4)</code>    </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ZSQRT(X)</code>  </td><td valign="top" width="20%"><code>COMPLEX(8) X</code>  </td><td valign="top" width="20%"><code>COMPLEX(8)</code>    </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CDSQRT(X)</code> </td><td valign="top" width="20%"><code>COMPLEX(8) X</code>  </td><td valign="top" width="20%"><code>COMPLEX(8)</code>    </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

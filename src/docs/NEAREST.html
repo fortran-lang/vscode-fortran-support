@@ -1,0 +1,51 @@
+<code>NEAREST</code> — Nearest representable number
+
+<h3>Description</h3>
+<code>NEAREST(X, S)</code> returns the processor-representable number nearest
+to <code>X</code> in the direction indicated by the sign of <code>S</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = NEAREST(X, S)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Shall be of type <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>S</var> </td><td valign="top" width="70%">Shall be of type <code>REAL</code> and
+not equal to zero.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type as <code>X</code>. If <code>S</code> is
+positive, <code>NEAREST</code> returns the processor-representable number
+greater than <code>X</code> and nearest to it. If <code>S</code> is negative,
+<code>NEAREST</code> returns the processor-representable number smaller than
+<code>X</code> and nearest to it.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_nearest
+<br>  real :: x, y
+<br>  x = nearest(42.0, 1.0)
+<br>  y = nearest(42.0, -1.0)
+<br>  write (*,"(3(G20.15))") x, y, x - y
+<br>end program test_nearest</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

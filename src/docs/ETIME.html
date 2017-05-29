@@ -1,0 +1,82 @@
+<code>ETIME</code> — Execution time subroutine (or function)
+
+<h3>Description</h3>
+<code>ETIME(VALUES, TIME)</code> returns the number of seconds of runtime
+since the start of the process's execution in <var>TIME</var>.  <var>VALUES</var>
+returns the user and system components of this time in <code>VALUES(1)</code> and
+<code>VALUES(2)</code> respectively. <var>TIME</var> is equal to <code>VALUES(1) + VALUES(2)</code>.
+
+     <p>On some systems, the underlying timings are represented using types with
+sufficiently small limits that overflows (wrap around) are possible, such as
+32-bit types. Therefore, the values returned by this intrinsic might be, or
+become, negative, or numerically less than previous values, during a single
+run of the compiled program.
+
+     </p><p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     </p><p><var>VALUES</var> and <var>TIME</var> are <code>INTENT(OUT)</code> and provide the following:
+
+     </p><p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUES(1)</code>: </td><td valign="top" width="60%">User time in seconds. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUES(2)</code>: </td><td valign="top" width="60%">System time in seconds. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>TIME</code>: </td><td valign="top" width="60%">Run time since start in seconds.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL ETIME(VALUES, TIME)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>TIME = ETIME(VALUES)</code>, (not recommended).
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>VALUES</var></td><td valign="top" width="70%">The type shall be <code>REAL(4), DIMENSION(2)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TIME</var></td><td valign="top" width="70%">The type shall be <code>REAL(4)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Elapsed time in seconds since the start of program execution.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_etime
+<br>    integer(8) :: i, j
+<br>    real, dimension(2) :: tarray
+<br>    real :: result
+<br>    call ETIME(tarray, result)
+<br>    print *, result
+<br>    print *, tarray(1)
+<br>    print *, tarray(2)
+<br>    do i=1,100000000    ! Just a delay
+<br>        j = i * i - i
+<br>    end do
+<br>    call ETIME(tarray, result)
+<br>    print *, result
+<br>    print *, tarray(1)
+<br>    print *, tarray(2)
+<br>end program test_etime</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="CPU_005fTIME.html#CPU_005fTIME">CPU_TIME</a>
+
+   

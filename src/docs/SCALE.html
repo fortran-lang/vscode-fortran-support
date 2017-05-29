@@ -1,0 +1,45 @@
+<code>SCALE</code> — Scale a real value
+
+<h3>Description</h3>
+<code>SCALE(X,I)</code> returns <code>X * RADIX(X)**I</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SCALE(X, I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type of the argument shall be a <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type of the argument shall be a <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type and kind as <var>X</var>. 
+Its value is <code>X * RADIX(X)**I</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_scale
+<br>  real :: x = 178.1387e-4
+<br>  integer :: i = 5
+<br>  print *, scale(x,i), x*radix(x)**i
+<br>end program test_scale</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

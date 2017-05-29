@@ -1,0 +1,61 @@
+<code>ABS</code> — Absolute value
+
+<h3>Description</h3>
+<code>ABS(A)</code> computes the absolute value of <code>A</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ABS(A)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">The type of the argument shall be an <code>INTEGER</code>,
+<code>REAL</code>, or <code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type and
+kind as the argument except the return value is <code>REAL</code> for a
+<code>COMPLEX</code> argument.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_abs
+<br>  integer :: i = -1
+<br>  real :: x = -1.e0
+<br>  complex :: z = (-1.e0,0.e0)
+<br>  i = abs(i)
+<br>  x = abs(x)
+<br>  x = abs(z)
+<br>end program test_abs</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name            </td><td valign="top" width="20%">Argument            </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ABS(A)</code>   </td><td valign="top" width="20%"><code>REAL(4) A</code>    </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CABS(A)</code>  </td><td valign="top" width="20%"><code>COMPLEX(4) A</code> </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DABS(A)</code>  </td><td valign="top" width="20%"><code>REAL(8) A</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IABS(A)</code>  </td><td valign="top" width="20%"><code>INTEGER(4) A</code> </td><td valign="top" width="20%"><code>INTEGER(4)</code> </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ZABS(A)</code>  </td><td valign="top" width="20%"><code>COMPLEX(8) A</code> </td><td valign="top" width="20%"><code>COMPLEX(8)</code> </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CDABS(A)</code> </td><td valign="top" width="20%"><code>COMPLEX(8) A</code> </td><td valign="top" width="20%"><code>COMPLEX(8)</code> </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later, has overloads that are GNU extensions
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

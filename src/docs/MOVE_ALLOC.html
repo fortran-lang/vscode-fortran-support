@@ -1,0 +1,51 @@
+<code>MOVE_ALLOC</code> — Move allocation from one object to another
+
+<h3>Description</h3>
+<code>MOVE_ALLOC(FROM, TO)</code> moves the allocation from <var>FROM</var> to
+<var>TO</var>.  <var>FROM</var> will become deallocated in the process.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL MOVE_ALLOC(FROM, TO)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>FROM</var>  </td><td valign="top" width="70%"><code>ALLOCATABLE</code>, <code>INTENT(INOUT)</code>, may be
+of any type and kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TO</var> </td><td valign="top" width="70%"><code>ALLOCATABLE</code>, <code>INTENT(OUT)</code>, shall be
+of the same type, kind and rank as <var>FROM</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+None
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_move_alloc
+<br>    integer, allocatable :: a(:), b(:)
+<br>
+<br>    allocate(a(3))
+<br>    a = [ 1, 2, 3 ]
+<br>    call move_alloc(a, b)
+<br>    print *, allocated(a), allocated(b)
+<br>    print *, b
+<br>end program test_move_alloc</code>
+     
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Pure subroutine
+
+     <br>

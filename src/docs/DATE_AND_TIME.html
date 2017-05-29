@@ -1,0 +1,77 @@
+<code>DATE_AND_TIME</code> — Date and time subroutine
+
+<h3>Description</h3>
+<code>DATE_AND_TIME(DATE, TIME, ZONE, VALUES)</code> gets the corresponding date and
+time information from the real-time system clock.  <var>DATE</var> is
+<code>INTENT(OUT)</code> and has form ccyymmdd.  <var>TIME</var> is <code>INTENT(OUT)</code> and
+has form hhmmss.sss.  <var>ZONE</var> is <code>INTENT(OUT)</code> and has form (+-)hhmm,
+representing the difference with respect to Coordinated Universal Time (UTC). 
+Unavailable time and date parameters return blanks.
+
+     <p><var>VALUES</var> is <code>INTENT(OUT)</code> and provides the following:
+
+     </p><p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(1)</code>: </td><td valign="top" width="40%">The year
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(2)</code>: </td><td valign="top" width="40%">The month
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(3)</code>: </td><td valign="top" width="40%">The day of the month
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(4)</code>: </td><td valign="top" width="40%">Time difference with UTC in minutes
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(5)</code>: </td><td valign="top" width="40%">The hour of the day
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(6)</code>: </td><td valign="top" width="40%">The minutes of the hour
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(7)</code>: </td><td valign="top" width="40%">The seconds of the minute
+<br></td></tr><tr align="left"><td valign="top" width="15%"></td><td valign="top" width="30%"><code>VALUE(8)</code>: </td><td valign="top" width="40%">The milliseconds of the second
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL DATE_AND_TIME([DATE, TIME, ZONE, VALUES])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>DATE</var>  </td><td valign="top" width="70%">(Optional) The type shall be <code>CHARACTER(LEN=8)</code>
+or larger, and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TIME</var>  </td><td valign="top" width="70%">(Optional) The type shall be <code>CHARACTER(LEN=10)</code>
+or larger, and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>ZONE</var>  </td><td valign="top" width="70%">(Optional) The type shall be <code>CHARACTER(LEN=5)</code>
+or larger, and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUES</var></td><td valign="top" width="70%">(Optional) The type shall be <code>INTEGER(8)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+None
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_time_and_date
+<br>    character(8)  :: date
+<br>    character(10) :: time
+<br>    character(5)  :: zone
+<br>    integer,dimension(8) :: values
+<br>    ! using keyword arguments
+<br>    call date_and_time(date,time,zone,values)
+<br>    call date_and_time(DATE=date,ZONE=zone)
+<br>    call date_and_time(TIME=time)
+<br>    call date_and_time(VALUES=values)
+<br>    print '(a,2x,a,2x,a)', date, time, zone
+<br>    print '(8i5)', values
+<br>end program test_time_and_date</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="CPU_005fTIME.html#CPU_005fTIME">CPU_TIME</a>, <a href="SYSTEM_005fCLOCK.html#SYSTEM_005fCLOCK">SYSTEM_CLOCK</a>

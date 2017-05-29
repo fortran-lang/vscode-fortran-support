@@ -1,0 +1,45 @@
+<code>EPSILON</code> — Epsilon function
+
+<h3>Description</h3>
+<code>EPSILON(X)</code> returns the smallest number <var>E</var> of the same kind
+as <var>X</var> such that 1 + E &gt; 1.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = EPSILON(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of same type as the argument.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_epsilon
+<br>    real :: x = 3.143
+<br>    real(8) :: y = 2.33
+<br>    print *, EPSILON(x)
+<br>    print *, EPSILON(y)
+<br>end program test_epsilon</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

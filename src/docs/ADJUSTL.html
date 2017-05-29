@@ -1,0 +1,49 @@
+<code>ADJUSTL</code> — Left adjust a string
+
+<h3>Description</h3>
+<code>ADJUSTL(STRING)</code> will left adjust a string by removing leading spaces. 
+Spaces are inserted at the end of the string as needed.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ADJUSTL(STRING)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STRING</var> </td><td valign="top" width="70%">The type shall be <code>CHARACTER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>CHARACTER</code> and of the same kind as
+<var>STRING</var> where leading spaces are removed and the same number of
+spaces are inserted on the end of <var>STRING</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_adjustl
+<br>  character(len=20) :: str = '   gfortran'
+<br>  str = adjustl(str)
+<br>  print *, str
+<br>end program test_adjustl</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 90 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ADJUSTR.html#ADJUSTR">ADJUSTR</a>, <a href="TRIM.html#TRIM">TRIM</a>

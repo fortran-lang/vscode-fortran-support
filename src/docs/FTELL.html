@@ -1,0 +1,55 @@
+<code>FTELL</code> — Current stream position
+
+<h3>Description</h3>
+Retrieves the current position within an open file.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL FTELL(UNIT, OFFSET)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>OFFSET = FTELL(UNIT)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>OFFSET</var>  </td><td valign="top" width="70%">Shall of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>UNIT</var>    </td><td valign="top" width="70%">Shall of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+In either syntax, <var>OFFSET</var> is set to the current offset of unit
+number <var>UNIT</var>, or to -1 if the unit is not currently open.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_ftell
+<br>  INTEGER :: i
+<br>  OPEN(10, FILE="temp.dat")
+<br>  CALL ftell(10,i)
+<br>  WRITE(*,*) i
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="FSEEK.html#FSEEK">FSEEK</a>

@@ -1,0 +1,48 @@
+<code>FSTAT</code> — Get file status
+
+<h3>Description</h3>
+<code>FSTAT</code> is identical to <a href="STAT.html#STAT">STAT</a>, except that information about an
+already opened file is obtained.
+
+     <p>The elements in <code>VALUES</code> are the same as described by <a href="STAT.html#STAT">STAT</a>.
+
+     </p><p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL FSTAT(UNIT, VALUES [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = FSTAT(UNIT, VALUES)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>UNIT</var>   </td><td valign="top" width="70%">An open I/O unit number of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUES</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER(4), DIMENSION(13)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) status flag of type <code>INTEGER(4)</code>. Returns 0
+on success and a system specific error code otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+See <a href="STAT.html#STAT">STAT</a> for an example.
+
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+To stat a link: <a href="LSTAT.html#LSTAT">LSTAT</a>, to stat a file: <a href="STAT.html#STAT">STAT</a>

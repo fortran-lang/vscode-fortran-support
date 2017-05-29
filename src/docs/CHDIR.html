@@ -1,0 +1,54 @@
+<code>CHDIR</code> — Change working directory
+
+<h3>Description</h3>
+Change current working directory to a specified path.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL CHDIR(NAME [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = CHDIR(NAME)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>NAME</var>   </td><td valign="top" width="70%">The type shall be <code>CHARACTER</code> of default
+kind and shall specify a valid path within the file system. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) <code>INTEGER</code> status flag of the default
+kind.  Returns 0 on success, and a system specific and nonzero error code
+otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_chdir
+<br>  CHARACTER(len=255) :: path
+<br>  CALL getcwd(path)
+<br>  WRITE(*,*) TRIM(path)
+<br>  CALL chdir("/tmp")
+<br>  CALL getcwd(path)
+<br>  WRITE(*,*) TRIM(path)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="GETCWD.html#GETCWD">GETCWD</a>

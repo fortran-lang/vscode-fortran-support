@@ -1,0 +1,54 @@
+<code>ALARM</code> — Execute a routine after a given delay
+
+<h3>Description</h3>
+<code>ALARM(SECONDS, HANDLER [, STATUS])</code> causes external subroutine <var>HANDLER</var>
+to be executed after a delay of <var>SECONDS</var> by using <code>alarm(2)</code> to
+set up a signal and <code>signal(2)</code> to catch it. If <var>STATUS</var> is
+supplied, it will be returned with the number of seconds remaining until
+any previously scheduled alarm was due to be delivered, or zero if there
+was no previously scheduled alarm.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL ALARM(SECONDS, HANDLER [, STATUS])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SECONDS</var> </td><td valign="top" width="70%">The type of the argument shall be a scalar
+<code>INTEGER</code>. It is <code>INTENT(IN)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>HANDLER</var> </td><td valign="top" width="70%">Signal handler (<code>INTEGER FUNCTION</code> or
+<code>SUBROUTINE</code>) or dummy/global <code>INTEGER</code> scalar. The scalar
+values may be either <code>SIG_IGN=1</code> to ignore the alarm generated
+or <code>SIG_DFL=0</code> to set the default action. It is <code>INTENT(IN)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var>  </td><td valign="top" width="70%">(Optional) <var>STATUS</var> shall be a scalar
+variable of the default <code>INTEGER</code> kind. It is <code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_alarm
+<br>  external handler_print
+<br>  integer i
+<br>  call alarm (3, handler_print, i)
+<br>  print *, i
+<br>  call sleep(10)
+<br>end program test_alarm</code>
+     <p>This will cause the external routine <var>handler_print</var> to be called
+after 3 seconds. 
+</p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>

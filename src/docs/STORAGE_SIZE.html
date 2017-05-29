@@ -1,0 +1,37 @@
+<code>STORAGE_SIZE</code> — Storage size in bits
+
+<h3>Description</h3>
+Returns the storage size of argument <var>A</var> in bits. 
+<br>
+
+<h3>Syntax</h3>
+<code>RESULT = STORAGE_SIZE(A [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">Shall be a scalar or array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) shall be a scalar integer constant expression.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is a scalar integer with the kind type parameter specified by KIND
+(or default integer type if KIND is missing). The result value is the size
+expressed in bits for an element of an array that has the dynamic type and type
+parameters of A.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+<br>
+
+<h3>Class</h3>
+Inquiry function
+<br>
+
+<h3>See also</h3>
+<a href="C_005fSIZEOF.html#C_005fSIZEOF">C_SIZEOF</a>, <a href="SIZEOF.html#SIZEOF">SIZEOF</a>

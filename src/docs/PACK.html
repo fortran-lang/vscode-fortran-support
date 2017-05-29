@@ -1,0 +1,68 @@
+<code>PACK</code> — Pack an array into an array of rank one
+
+<h3>Description</h3>
+Stores the elements of <var>ARRAY</var> in an array of rank one.
+
+     <p>The beginning of the resulting array is made up of elements whose <var>MASK</var>
+equals <code>TRUE</code>. Afterwards, positions are filled with elements taken from
+<var>VECTOR</var>.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = PACK(ARRAY, MASK[,VECTOR])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var>  </td><td valign="top" width="70%">Shall be an array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>   </td><td valign="top" width="70%">Shall be an array of type <code>LOGICAL</code> and
+of the same size as <var>ARRAY</var>. Alternatively, it may be a <code>LOGICAL</code>
+scalar. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VECTOR</var> </td><td valign="top" width="70%">(Optional) shall be an array of the same type
+as <var>ARRAY</var> and of rank one. If present, the number of elements in
+<var>VECTOR</var> shall be equal to or greater than the number of true elements
+in <var>MASK</var>. If <var>MASK</var> is scalar, the number of elements in
+<var>VECTOR</var> shall be equal to or greater than the number of elements in
+<var>ARRAY</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is an array of rank one and the same type as that of <var>ARRAY</var>. 
+If <var>VECTOR</var> is present, the result size is that of <var>VECTOR</var>, the
+number of <code>TRUE</code> values in <var>MASK</var> otherwise.
+
+     <br>
+
+<h3>Example</h3>
+Gathering nonzero elements from an array:
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_pack_1
+<br>  INTEGER :: m(6)
+<br>  m = (/ 1, 0, 0, 0, 5, 0 /)
+<br>  WRITE(*, FMT="(6(I0, ' '))") pack(m, m /= 0)  ! "1 5"
+<br>END PROGRAM</code>
+     <p>Gathering nonzero elements from an array and appending elements from <var>VECTOR</var>:
+     </p><pre class="smallexample">          PROGRAM test_pack_2
+            INTEGER :: m(4)
+            m = (/ 1, 0, 0, 2 /)
+            WRITE(*, FMT="(4(I0, ' '))") pack(m, m /= 0, (/ 0, 0, 3, 4 /))  ! "1 2 3 4"
+          END PROGRAM
+</pre>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="UNPACK.html#UNPACK">UNPACK</a>

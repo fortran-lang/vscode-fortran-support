@@ -1,0 +1,57 @@
+<code>GMTIME</code> — Convert time to GMT info
+
+<h3>Description</h3>
+Given a system time value <var>TIME</var> (as provided by the <code>TIME8</code>
+intrinsic), fills <var>VALUES</var> with values extracted from it appropriate
+to the UTC time zone (Universal Coordinated Time, also known in some
+countries as GMT, Greenwich Mean Time), using <code>gmtime(3)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL GMTIME(TIME, VALUES)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>TIME</var>   </td><td valign="top" width="70%">An <code>INTEGER</code> scalar expression
+corresponding to a system time, with <code>INTENT(IN)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUES</var> </td><td valign="top" width="70%">A default <code>INTEGER</code> array with 9 elements,
+with <code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The elements of <var>VALUES</var> are assigned as follows:
+          <ol start="1" type="1">
+<li>Seconds after the minute, range 0–59 or 0–61 to allow for leap
+seconds
+</li><li>Minutes after the hour, range 0–59
+</li><li>Hours past midnight, range 0–23
+</li><li>Day of month, range 0–31
+</li><li>Number of months since January, range 0–12
+</li><li>Years since 1900
+</li><li>Number of days since Sunday, range 0–6
+</li><li>Days since January 1
+</li><li>Daylight savings indicator: positive if daylight savings is in
+effect, zero if not, and negative if the information is not available.
+          </li></ol>
+
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="CTIME.html#CTIME">CTIME</a>, <a href="LTIME.html#LTIME">LTIME</a>, <a href="TIME.html#TIME">TIME</a>, <a href="TIME8.html#TIME8">TIME8</a>
+
+   

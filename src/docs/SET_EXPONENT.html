@@ -1,0 +1,48 @@
+<code>SET_EXPONENT</code> — Set the exponent of the model
+
+<h3>Description</h3>
+<code>SET_EXPONENT(X, I)</code> returns the real number whose fractional part
+is that that of <var>X</var> and whose exponent part is <var>I</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SET_EXPONENT(X, I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Shall be of type <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type and kind as <var>X</var>. 
+The real number whose fractional part
+is that that of <var>X</var> and whose exponent part if <var>I</var> is returned;
+it is <code>FRACTION(X) * RADIX(X)**I</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_setexp
+<br>  REAL :: x = 178.1387e-4
+<br>  INTEGER :: i = 17
+<br>  PRINT *, SET_EXPONENT(x, i), FRACTION(x) * RADIX(x)**i
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

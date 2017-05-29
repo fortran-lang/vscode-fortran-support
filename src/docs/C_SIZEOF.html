@@ -1,0 +1,56 @@
+<code>C_SIZEOF</code> — Size in bytes of an expression
+
+<h3>Description</h3>
+<code>C_SIZEOF(X)</code> calculates the number of bytes of storage the
+expression <code>X</code> occupies.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>N = C_SIZEOF(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The argument shall be an interoperable data entity.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type integer and of the system-dependent kind
+<code>C_SIZE_T</code> (from the <code>ISO_C_BINDING</code> module). Its value is the
+number of bytes occupied by the argument.  If the argument has the
+<code>POINTER</code> attribute, the number of bytes of the storage area pointed
+to is returned.  If the argument is of a derived type with <code>POINTER</code>
+or <code>ALLOCATABLE</code> components, the return value does not account for
+the sizes of the data pointed to by these components.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>use iso_c_binding
+<br>integer(c_int) :: i
+<br>real(c_float) :: r, s(5)
+<br>print *, (c_sizeof(s)/c_sizeof(r) == 5)
+<br>end</code>
+     <p>The example will print <code>.TRUE.</code> unless you are using a platform
+where default <code>REAL</code> variables are unusually padded.
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 2008
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function of the module <code>ISO_C_BINDING</code>
+
+     <br>
+
+<h3>See also</h3>
+<a href="SIZEOF.html#SIZEOF">SIZEOF</a>, <a href="STORAGE_005fSIZE.html#STORAGE_005fSIZE">STORAGE_SIZE</a>

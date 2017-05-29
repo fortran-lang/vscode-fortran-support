@@ -1,0 +1,47 @@
+<code>ISNAN</code> — Test for a NaN
+
+<h3>Description</h3>
+<code>ISNAN</code> tests whether a floating-point value is an IEEE
+Not-a-Number (NaN). 
+<br>
+
+<h3>Syntax</h3>
+<code>ISNAN(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Variable of the type <code>REAL</code>.
+
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns a default-kind <code>LOGICAL</code>. The returned value is <code>TRUE</code>
+if <var>X</var> is a NaN and <code>FALSE</code> otherwise.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_nan
+<br>  implicit none
+<br>  real :: x
+<br>  x = -1.0
+<br>  x = sqrt(x)
+<br>  if (isnan(x)) stop '"x" is a NaN'
+<br>end program test_nan</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

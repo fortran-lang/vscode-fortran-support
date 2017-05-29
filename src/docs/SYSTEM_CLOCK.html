@@ -1,0 +1,79 @@
+<code>SYSTEM_CLOCK</code> — Time function
+
+<h3>Description</h3>
+Determines the <var>COUNT</var> of a processor clock since an unspecified
+time in the past modulo <var>COUNT_MAX</var>, <var>COUNT_RATE</var> determines
+the number of clock ticks per second.  If the platform supports a
+monotonic clock, that clock is used and can, depending on the platform
+clock implementation, provide up to nanosecond resolution.  If a
+monotonic clock is not available, the implementation falls back to a
+realtime clock.
+
+     <p><var>COUNT_RATE</var> is system dependent and can vary depending on the kind of
+the arguments. For <var>kind=4</var> arguments (and smaller integer kinds),
+<var>COUNT</var> represents milliseconds, while for <var>kind=8</var> arguments (and
+larger integer kinds), <var>COUNT</var> typically represents micro- or
+nanoseconds depending on resolution of the underlying platform clock. 
+<var>COUNT_MAX</var> usually equals <code>HUGE(COUNT_MAX)</code>. Note that the
+millisecond resolution of the <var>kind=4</var> version implies that the
+<var>COUNT</var> will wrap around in roughly 25 days. In order to avoid issues
+with the wrap around and for more precise timing, please use the
+<var>kind=8</var> version.
+
+     </p><p>If there is no clock, or querying the clock fails, <var>COUNT</var> is set
+to <code>-HUGE(COUNT)</code>, and <var>COUNT_RATE</var> and <var>COUNT_MAX</var> are
+set to zero.
+
+     </p><p>When running on a platform using the GNU C library (glibc) version
+2.16 or older, or a derivative thereof, the high resolution monotonic
+clock is available only when linking with the <var>rt</var> library.  This
+can be done explicitly by adding the <code>-lrt</code> flag when linking the
+application, but is also done implicitly when using OpenMP.
+
+     </p><p>On the Windows platform, the version with <var>kind=4</var> arguments uses
+the <code>GetTickCount</code> function, whereas the <var>kind=8</var> version
+uses <code>QueryPerformanceCounter</code> and
+<code>QueryPerformanceCounterFrequency</code>. For more information, and
+potential caveats, please see the platform documentation.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL SYSTEM_CLOCK([COUNT, COUNT_RATE, COUNT_MAX])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>COUNT</var>      </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code> with <code>INTENT(OUT)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>COUNT_RATE</var> </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code> or <code>REAL</code>, with <code>INTENT(OUT)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>COUNT_MAX</var>  </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code> with <code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_system_clock
+<br>  INTEGER :: count, count_rate, count_max
+<br>  CALL SYSTEM_CLOCK(count, count_rate, count_max)
+<br>  WRITE(*,*) count, count_rate, count_max
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>, <a href="CPU_005fTIME.html#CPU_005fTIME">CPU_TIME</a>

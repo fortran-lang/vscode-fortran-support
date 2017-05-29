@@ -1,0 +1,56 @@
+<code>CO_BROADCAST</code> — Copy a value to all images the current set of images
+
+<h3>Description</h3>
+<code>CO_BROADCAST</code> copies the value of argument <var>A</var> on the image with
+image index <code>SOURCE_IMAGE</code> to all images in the current team.  <var>A</var>
+becomes defined as if by intrinsic assignment.  If the execution was
+successful and <var>STAT</var> is present, it is assigned the value zero.  If the
+execution failed, <var>STAT</var> gets assigned a nonzero value and, if present,
+<var>ERRMSG</var> gets assigned a value describing the occurred error.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL CO_BROADCAST(A, SOURCE_IMAGE [, STAT, ERRMSG])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>            </td><td valign="top" width="70%">INTENT(INOUT) argument; shall have the same
+dynamic type and type paramters on all images of the current team. If it
+is an array, it shall have the same shape on all images. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SOURCE_IMAGE</var> </td><td valign="top" width="70%">a scalar integer expression. 
+It shall have the same the same value on all images and refer to an
+image of the current team. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STAT</var>         </td><td valign="top" width="70%">(optional) a scalar integer variable
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>ERRMSG</var>       </td><td valign="top" width="70%">(optional) a scalar character variable
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test
+<br>  integer :: val(3)
+<br>  if (this_image() == 1) then
+<br>    val = [1, 5, 3]
+<br>  end if
+<br>  call co_broadcast (val, source_image=1)
+<br>  print *, this_image, ":", val
+<br>end program test</code>
+     <br>
+
+<h3>Standard</h3>
+Technical Specification (TS) 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+Collective subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="CO_005fMAX.html#CO_005fMAX">CO_MAX</a>, <a href="CO_005fMIN.html#CO_005fMIN">CO_MIN</a>, <a href="CO_005fSUM.html#CO_005fSUM">CO_SUM</a>, <a href="CO_005fREDUCE.html#CO_005fREDUCE">CO_REDUCE</a>

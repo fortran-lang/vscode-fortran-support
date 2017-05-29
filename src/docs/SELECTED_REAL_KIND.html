@@ -1,0 +1,76 @@
+<code>SELECTED_REAL_KIND</code> — Choose real kind
+
+<h3>Description</h3>
+<code>SELECTED_REAL_KIND(P,R)</code> returns the kind value of a real data type
+with decimal precision of at least <code>P</code> digits, exponent range of
+at least <code>R</code>, and with a radix of <code>RADIX</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SELECTED_REAL_KIND([P, R, RADIX])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>P</var> </td><td valign="top" width="70%">(Optional) shall be a scalar and of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>R</var> </td><td valign="top" width="70%">(Optional) shall be a scalar and of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>RADIX</var> </td><td valign="top" width="70%">(Optional) shall be a scalar and of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+Before Fortran 2008, at least one of the arguments <var>R</var> or <var>P</var> shall
+be present; since Fortran 2008, they are assumed to be zero if absent.
+
+     <br></p>
+
+<h3>Return value</h3>
+
+<code>SELECTED_REAL_KIND</code> returns the value of the kind type parameter of
+a real data type with decimal precision of at least <code>P</code> digits, a
+decimal exponent range of at least <code>R</code>, and with the requested
+<code>RADIX</code>. If the <code>RADIX</code> parameter is absent, real kinds with
+any radix can be returned. If more than one real data type meet the
+criteria, the kind of the data type with the smallest decimal precision
+is returned. If no real data type matches the criteria, the result is
+          <dl>
+<dt>-1 if the processor does not support a real data type with a</dt><dd>precision greater than or equal to <code>P</code>, but the <code>R</code> and
+<code>RADIX</code> requirements can be fulfilled
+<br></dd><dt>-2 if the processor does not support a real type with an exponent</dt><dd>range greater than or equal to <code>R</code>, but <code>P</code> and <code>RADIX</code>
+are fulfillable
+<br></dd><dt>-3 if <code>RADIX</code> but not <code>P</code> and <code>R</code> requirements</dt><dd>are fulfillable
+<br></dd><dt>-4 if <code>RADIX</code> and either <code>P</code> or <code>R</code> requirements</dt><dd>are fulfillable
+<br></dd><dt>-5 if there is no real type with the given <code>RADIX</code></dt><dd></dd></dl>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program real_kinds
+<br>  integer,parameter :: p6 = selected_real_kind(6)
+<br>  integer,parameter :: p10r100 = selected_real_kind(10,100)
+<br>  integer,parameter :: r400 = selected_real_kind(r=400)
+<br>  real(kind=p6) :: x
+<br>  real(kind=p10r100) :: y
+<br>  real(kind=r400) :: z
+<br>
+<br>  print *, precision(x), range(x)
+<br>  print *, precision(y), range(y)
+<br>  print *, precision(z), range(z)
+<br>end program real_kinds</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later, with <code>RADIX</code> Fortran 2008 or later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="PRECISION.html#PRECISION">PRECISION</a>, <a href="RANGE.html#RANGE">RANGE</a>, <a href="RADIX.html#RADIX">RADIX</a>
+
+     <br>

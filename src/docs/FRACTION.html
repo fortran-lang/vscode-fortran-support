@@ -1,0 +1,46 @@
+<code>FRACTION</code> — Fractional part of the model representation
+
+<h3>Description</h3>
+<code>FRACTION(X)</code> returns the fractional part of the model
+representation of <code>X</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>Y = FRACTION(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type of the argument shall be a <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type and kind as the argument. 
+The fractional part of the model representation of <code>X</code> is returned;
+it is <code>X * RADIX(X)**(-EXPONENT(X))</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_fraction
+<br>  real :: x
+<br>  x = 178.1387e-4
+<br>  print *, fraction(x), x * radix(x)**(-exponent(x))
+<br>end program test_fraction</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

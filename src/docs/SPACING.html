@@ -1,0 +1,49 @@
+<code>SPACING</code> — Smallest distance between two numbers of a given type
+
+<h3>Description</h3>
+Determines the distance between the argument <var>X</var> and the nearest
+adjacent number of the same type.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SPACING(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Shall be of type <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is of the same type as the input argument <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_spacing
+<br>  INTEGER, PARAMETER :: SGL = SELECTED_REAL_KIND(p=6, r=37)
+<br>  INTEGER, PARAMETER :: DBL = SELECTED_REAL_KIND(p=13, r=200)
+<br>
+<br>  WRITE(*,*) spacing(1.0_SGL)      ! "1.1920929E-07"          on i686
+<br>  WRITE(*,*) spacing(1.0_DBL)      ! "2.220446049250313E-016" on i686
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="RRSPACING.html#RRSPACING">RRSPACING</a>

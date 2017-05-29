@@ -1,0 +1,105 @@
+<code>RANDOM_SEED</code> — Initialize a pseudo-random number sequence
+
+<h3>Description</h3>
+Restarts or queries the state of the pseudorandom number generator used by
+<code>RANDOM_NUMBER</code>.
+
+     <p>If <code>RANDOM_SEED</code> is called without arguments, it is initialized
+to a default state. The example below shows how to initialize the
+random seed with a varying seed in order to ensure a different random
+number sequence for each invocation of the program. Note that setting
+any of the seed values to zero should be avoided as it can result in
+poor quality random numbers being generated.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL RANDOM_SEED([SIZE, PUT, GET])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SIZE</var> </td><td valign="top" width="70%">(Optional) Shall be a scalar and of type default
+<code>INTEGER</code>, with <code>INTENT(OUT)</code>. It specifies the minimum size
+of the arrays used with the <var>PUT</var> and <var>GET</var> arguments. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>PUT</var>  </td><td valign="top" width="70%">(Optional) Shall be an array of type default
+<code>INTEGER</code> and rank one. It is <code>INTENT(IN)</code> and the size of
+the array must be larger than or equal to the number returned by the
+<var>SIZE</var> argument. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>GET</var>  </td><td valign="top" width="70%">(Optional) Shall be an array of type default
+<code>INTEGER</code> and rank one. It is <code>INTENT(OUT)</code> and the size
+of the array must be larger than or equal to the number returned by
+the <var>SIZE</var> argument.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>subroutine init_random_seed()
+<br>  use iso_fortran_env, only: int64
+<br>  implicit none
+<br>  integer, allocatable :: seed(:)
+<br>  integer :: i, n, un, istat, dt(8), pid
+<br>  integer(int64) :: t
+<br>
+<br>  call random_seed(size = n)
+<br>  allocate(seed(n))
+<br>  ! First try if the OS provides a random number generator
+<br>  open(newunit=un, file="/dev/urandom", access="stream", &amp;
+<br>       form="unformatted", action="read", status="old", iostat=istat)
+<br>  if (istat == 0) then
+<br>     read(un) seed
+<br>     close(un)
+<br>  else
+<br>     ! Fallback to XOR:ing the current time and pid. The PID is
+<br>     ! useful in case one launches multiple instances of the same
+<br>     ! program in parallel.
+<br>     call system_clock(t)
+<br>     if (t == 0) then
+<br>        call date_and_time(values=dt)
+<br>        t = (dt(1) - 1970) * 365_int64 * 24 * 60 * 60 * 1000 &amp;
+<br>             + dt(2) * 31_int64 * 24 * 60 * 60 * 1000 &amp;
+<br>             + dt(3) * 24_int64 * 60 * 60 * 1000 &amp;
+<br>             + dt(5) * 60 * 60 * 1000 &amp;
+<br>             + dt(6) * 60 * 1000 + dt(7) * 1000 &amp;
+<br>             + dt(8)
+<br>     end if
+<br>     pid = getpid()
+<br>     t = ieor(t, int(pid, kind(t)))
+<br>     do i = 1, n
+<br>        seed(i) = lcg(t)
+<br>     end do
+<br>  end if
+<br>  call random_seed(put=seed)
+<br>contains
+<br>  ! This simple PRNG might not be good enough for real work, but is
+<br>  ! sufficient for seeding a better PRNG.
+<br>  function lcg(s)
+<br>    integer :: lcg
+<br>    integer(int64) :: s
+<br>    if (s == 0) then
+<br>       s = 104729
+<br>    else
+<br>       s = mod(s, 4294967296_int64)
+<br>    end if
+<br>    s = mod(s * 279470273_int64, 4294967291_int64)
+<br>    lcg = int(mod(s, int(huge(0), int64)), kind(0))
+<br>  end function lcg
+<br>end subroutine init_random_seed</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="RANDOM_005fNUMBER.html#RANDOM_005fNUMBER">RANDOM_NUMBER</a>

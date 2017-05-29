@@ -1,0 +1,54 @@
+<code>UNPACK</code> — Unpack an array of rank one into an array
+
+<h3>Description</h3>
+Store the elements of <var>VECTOR</var> in an array of higher rank.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = UNPACK(VECTOR, MASK, FIELD)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>VECTOR</var> </td><td valign="top" width="70%">Shall be an array of any type and rank one. It
+shall have at least as many elements as <var>MASK</var> has <code>TRUE</code> values. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>   </td><td valign="top" width="70%">Shall be an array of type <code>LOGICAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>FIELD</var>  </td><td valign="top" width="70%">Shall be of the same type as <var>VECTOR</var> and have
+the same shape as <var>MASK</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The resulting array corresponds to <var>FIELD</var> with <code>TRUE</code> elements
+of <var>MASK</var> replaced by values from <var>VECTOR</var> in array element order.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_unpack
+<br>  integer :: vector(2)  = (/1,1/)
+<br>  logical :: mask(4)  = (/ .TRUE., .FALSE., .FALSE., .TRUE. /)
+<br>  integer :: field(2,2) = 0, unity(2,2)
+<br>
+<br>  ! result: unity matrix
+<br>  unity = unpack(vector, reshape(mask, (/2,2/)), field)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="PACK.html#PACK">PACK</a>, <a href="SPREAD.html#SPREAD">SPREAD</a>

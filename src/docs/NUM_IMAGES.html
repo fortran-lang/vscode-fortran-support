@@ -1,0 +1,60 @@
+<code>NUM_IMAGES</code> — Function that returns the number of images
+
+<h3>Description</h3>
+Returns the number of images.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = NUM_IMAGES(DISTANCE, FAILED)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>DISTANCE</var> </td><td valign="top" width="70%">(optional, intent(in)) Nonnegative scalar integer
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>FAILED</var>   </td><td valign="top" width="70%">(optional, intent(in)) Scalar logical expression
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Scalar default-kind integer.  If <var>DISTANCE</var> is not present or has value 0,
+the number of images in the current team is returned. For values smaller or
+equal distance to the initial team, it returns the number of images index
+on the ancestor team which has a distance of <var>DISTANCE</var> from the invoking
+team. If <var>DISTANCE</var> is larger than the distance to the initial team, the
+number of images of the initial team is returned. If <var>FAILED</var> is not present
+the total number of images is returned; if it has the value <code>.TRUE.</code>,
+the number of failed images is returned, otherwise, the number of images which
+do have not the failed status.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>INTEGER :: value[*]
+<br>INTEGER :: i
+<br>value = THIS_IMAGE()
+<br>SYNC ALL
+<br>IF (THIS_IMAGE() == 1) THEN
+<br>  DO i = 1, NUM_IMAGES()
+<br>    WRITE(*,'(2(a,i0))') 'value[', i, '] is ', value[i]
+<br>  END DO
+<br>END IF</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later. With <var>DISTANCE</var> or <var>FAILED</var> argument,
+Technical Specification (TS) 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="THIS_005fIMAGE.html#THIS_005fIMAGE">THIS_IMAGE</a>, <a href="IMAGE_005fINDEX.html#IMAGE_005fINDEX">IMAGE_INDEX</a>

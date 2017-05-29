@@ -1,0 +1,45 @@
+<code>HYPOT</code> — Euclidean distance function
+
+<h3>Description</h3>
+<code>HYPOT(X,Y)</code> is the Euclidean distance function. It is equal to
+\sqrtX^2 + Y^2, without undue underflow or overflow.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = HYPOT(X, Y)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">The type and kind type parameter shall be the same as
+<var>X</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value has the same type and kind type parameter as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_hypot
+<br>  real(4) :: x = 1.e0_4, y = 0.5e0_4
+<br>  x = hypot(x,y)
+<br>end program test_hypot</code>
+     
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

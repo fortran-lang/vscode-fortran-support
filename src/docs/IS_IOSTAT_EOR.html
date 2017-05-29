@@ -1,0 +1,50 @@
+<code>IS_IOSTAT_EOR</code> — Test for end-of-record value
+
+<h3>Description</h3>
+<code>IS_IOSTAT_EOR</code> tests whether an variable has the value of the I/O
+status “end of record”. The function is equivalent to comparing the
+variable with the <code>IOSTAT_EOR</code> parameter of the intrinsic module
+<code>ISO_FORTRAN_ENV</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = IS_IOSTAT_EOR(I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be of the type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns a <code>LOGICAL</code> of the default kind, which <code>.TRUE.</code> if
+<var>I</var> has the value which indicates an end of file condition for
+<code>IOSTAT=</code> specifiers, and is <code>.FALSE.</code> otherwise.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM iostat
+<br>  IMPLICIT NONE
+<br>  INTEGER :: stat, i(50)
+<br>  OPEN(88, FILE='test.dat', FORM='UNFORMATTED')
+<br>  READ(88, IOSTAT=stat) i
+<br>  IF(IS_IOSTAT_EOR(stat)) STOP 'END OF RECORD'
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

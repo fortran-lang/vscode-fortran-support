@@ -1,0 +1,45 @@
+<code>RANK</code> — Rank of a data object
+
+<h3>Description</h3>
+<code>RANK(A)</code> returns the rank of a scalar or array data object.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = RANK(A)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">can be of any type
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of the default integer
+kind. For arrays, their rank is returned; for scalars zero is returned.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_rank
+<br>  integer :: a
+<br>  real, allocatable :: b(:,:)
+<br>
+<br>  print *, rank(a), rank(b) ! Prints:  0  2
+<br>end program test_rank</code>
+     
+
+<h3>Standard</h3>
+Technical Specification (TS) 29113
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

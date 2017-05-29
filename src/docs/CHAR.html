@@ -1,0 +1,65 @@
+<code>CHAR</code> — Character conversion function
+
+<h3>Description</h3>
+<code>CHAR(I [, KIND])</code> returns the character represented by the integer <var>I</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = CHAR(I [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>CHARACTER(1)</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_char
+<br>    integer :: i = 74
+<br>    character(1) :: c
+<br>    c = char(i)
+<br>    print *, i, c ! returns 'J'
+<br>end program test_char</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name           </td><td valign="top" width="20%">Argument         </td><td valign="top" width="20%">Return type             </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>CHAR(I)</code> </td><td valign="top" width="20%"><code>INTEGER I</code> </td><td valign="top" width="20%"><code>CHARACTER(LEN=1)</code> </td><td valign="top" width="25%">F77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Notes</h3>
+See <a href="ICHAR.html#ICHAR">ICHAR</a> for a discussion of converting between numerical values
+and formatted string representations.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ACHAR.html#ACHAR">ACHAR</a>, <a href="IACHAR.html#IACHAR">IACHAR</a>, <a href="ICHAR.html#ICHAR">ICHAR</a>
+
+   

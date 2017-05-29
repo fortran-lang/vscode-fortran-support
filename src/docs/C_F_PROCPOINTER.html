@@ -1,0 +1,61 @@
+<code>C_F_PROCPOINTER</code> — Convert C into Fortran procedure pointer
+
+<h3>Description</h3>
+<code>C_F_PROCPOINTER(CPTR, FPTR)</code> Assign the target of the C function pointer
+<var>CPTR</var> to the Fortran procedure pointer <var>FPTR</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL C_F_PROCPOINTER(cptr, fptr)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>CPTR</var>  </td><td valign="top" width="70%">scalar of the type <code>C_FUNPTR</code>. It is
+<code>INTENT(IN)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>FPTR</var>  </td><td valign="top" width="70%">procedure pointer interoperable with <var>cptr</var>. It is
+<code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program main
+<br>  use iso_c_binding
+<br>  implicit none
+<br>  abstract interface
+<br>    function func(a)
+<br>      import :: c_float
+<br>      real(c_float), intent(in) :: a
+<br>      real(c_float) :: func
+<br>    end function
+<br>  end interface
+<br>  interface
+<br>     function getIterFunc() bind(c,name="getIterFunc")
+<br>       import :: c_funptr
+<br>       type(c_funptr) :: getIterFunc
+<br>     end function
+<br>  end interface
+<br>  type(c_funptr) :: cfunptr
+<br>  procedure(func), pointer :: myFunc
+<br>  cfunptr = getIterFunc()
+<br>  call c_f_procpointer(cfunptr, myFunc)
+<br>end program main</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="C_005fLOC.html#C_005fLOC">C_LOC</a>, <a href="C_005fF_005fPOINTER.html#C_005fF_005fPOINTER">C_F_POINTER</a>

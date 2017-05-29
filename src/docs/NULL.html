@@ -1,0 +1,49 @@
+<code>NULL</code> — Function that returns an disassociated pointer
+
+<h3>Description</h3>
+Returns a disassociated pointer.
+
+     <p>If <var>MOLD</var> is present, a disassociated pointer of the same type is
+returned, otherwise the type is determined by context.
+
+     </p><p>In Fortran 95, <var>MOLD</var> is optional. Please note that Fortran 2003
+includes cases where it is required.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>PTR =&gt; NULL([MOLD])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>MOLD</var> </td><td valign="top" width="70%">(Optional) shall be a pointer of any association
+status and of any type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+A disassociated pointer.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>REAL, POINTER, DIMENSION(:) :: VEC =&gt; NULL ()</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ASSOCIATED.html#ASSOCIATED">ASSOCIATED</a>

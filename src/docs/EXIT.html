@@ -1,0 +1,48 @@
+<code>EXIT</code> — Exit the program with status.
+
+<h3>Description</h3>
+<code>EXIT</code> causes immediate termination of the program with status.  If status
+is omitted it returns the canonical <em>success</em> for the system.  All Fortran
+I/O units are closed.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL EXIT([STATUS])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">Shall be an <code>INTEGER</code> of the default kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+<code>STATUS</code> is passed to the parent process on exit.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_exit
+<br>  integer :: STATUS = 0
+<br>  print *, 'This program is going to exit.'
+<br>  call EXIT(STATUS)
+<br>end program test_exit</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="ABORT.html#ABORT">ABORT</a>, <a href="KILL.html#KILL">KILL</a>

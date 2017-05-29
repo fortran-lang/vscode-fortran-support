@@ -1,0 +1,59 @@
+<code>CSHIFT</code> — Circular shift elements of an array
+
+<h3>Description</h3>
+<code>CSHIFT(ARRAY, SHIFT [, DIM])</code> performs a circular shift on elements of
+<var>ARRAY</var> along the dimension of <var>DIM</var>.  If <var>DIM</var> is omitted it is
+taken to be <code>1</code>.  <var>DIM</var> is a scalar of type <code>INTEGER</code> in the
+range of 1 \leq DIM \leq n) where n is the rank of <var>ARRAY</var>. 
+If the rank of <var>ARRAY</var> is one, then all elements of <var>ARRAY</var> are shifted
+by <var>SHIFT</var> places.  If rank is greater than one, then all complete rank one
+sections of <var>ARRAY</var> along the given dimension are shifted.  Elements
+shifted out one end of each rank one section are shifted back in the other end.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = CSHIFT(ARRAY, SHIFT [, DIM])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var>  </td><td valign="top" width="70%">Shall be an array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SHIFT</var>  </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>    </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns an array of same type and rank as the <var>ARRAY</var> argument.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_cshift
+<br>    integer, dimension(3,3) :: a
+<br>    a = reshape( (/ 1, 2, 3, 4, 5, 6, 7, 8, 9 /), (/ 3, 3 /))
+<br>    print '(3i3)', a(1,:)
+<br>    print '(3i3)', a(2,:)
+<br>    print '(3i3)', a(3,:)
+<br>    a = cshift(a, SHIFT=(/1, 2, -1/), DIM=2)
+<br>    print *
+<br>    print '(3i3)', a(1,:)
+<br>    print '(3i3)', a(2,:)
+<br>    print '(3i3)', a(3,:)
+<br>end program test_cshift</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

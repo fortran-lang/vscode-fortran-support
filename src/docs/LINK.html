@@ -1,0 +1,44 @@
+<code>LINK</code> — Create a hard link
+
+<h3>Description</h3>
+Makes a (hard) link from file <var>PATH1</var> to <var>PATH2</var>. A null
+character (<code>CHAR(0)</code>) can be used to mark the end of the names in
+<var>PATH1</var> and <var>PATH2</var>; otherwise, trailing blanks in the file
+names are ignored.  If the <var>STATUS</var> argument is supplied, it
+contains 0 on success or a nonzero error code upon return; see
+<code>link(2)</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms;
+however, only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL LINK(PATH1, PATH2 [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = LINK(PATH1, PATH2)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>PATH1</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>PATH2</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) Shall be of default <code>INTEGER</code> type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="SYMLNK.html#SYMLNK">SYMLNK</a>, <a href="UNLINK.html#UNLINK">UNLINK</a>

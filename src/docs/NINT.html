@@ -1,0 +1,63 @@
+<code>NINT</code> — Nearest whole number
+
+<h3>Description</h3>
+<code>NINT(A)</code> rounds its argument to the nearest whole number.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = NINT(A [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>    </td><td valign="top" width="70%">The type of the argument shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns <var>A</var> with the fractional portion of its magnitude eliminated by
+rounding to the nearest whole number and with its sign preserved,
+converted to an <code>INTEGER</code> of the default kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_nint
+<br>  real(4) x4
+<br>  real(8) x8
+<br>  x4 = 1.234E0_4
+<br>  x8 = 4.321_8
+<br>  print *, nint(x4), idnint(x8)
+<br>end program test_nint</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument           </td><td valign="top" width="20%">Return Type     </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>NINT(A)</code>   </td><td valign="top" width="20%"><code>REAL(4) A</code>   </td><td valign="top" width="20%"><code>INTEGER</code> </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IDNINT(A)</code> </td><td valign="top" width="20%"><code>REAL(8) A</code>   </td><td valign="top" width="20%"><code>INTEGER</code> </td><td valign="top" width="25%">Fortran 95 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later, with <var>KIND</var> argument Fortran 90 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="CEILING.html#CEILING">CEILING</a>, <a href="FLOOR.html#FLOOR">FLOOR</a>
+
+   

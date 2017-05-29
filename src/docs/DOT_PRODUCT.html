@@ -1,0 +1,57 @@
+<code>DOT_PRODUCT</code> — Dot product function
+
+<h3>Description</h3>
+<code>DOT_PRODUCT(VECTOR_A, VECTOR_B)</code> computes the dot product multiplication
+of two vectors <var>VECTOR_A</var> and <var>VECTOR_B</var>.  The two vectors may be
+either numeric or logical and must be arrays of rank one and of equal size. If
+the vectors are <code>INTEGER</code> or <code>REAL</code>, the result is
+<code>SUM(VECTOR_A*VECTOR_B)</code>. If the vectors are <code>COMPLEX</code>, the result
+is <code>SUM(CONJG(VECTOR_A)*VECTOR_B)</code>. If the vectors are <code>LOGICAL</code>,
+the result is <code>ANY(VECTOR_A .AND. VECTOR_B)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DOT_PRODUCT(VECTOR_A, VECTOR_B)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>VECTOR_A</var> </td><td valign="top" width="70%">The type shall be numeric or <code>LOGICAL</code>, rank 1. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VECTOR_B</var> </td><td valign="top" width="70%">The type shall be numeric if <var>VECTOR_A</var> is of numeric type or <code>LOGICAL</code> if <var>VECTOR_A</var> is of type <code>LOGICAL</code>. <var>VECTOR_B</var> shall be a rank-one array.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If the arguments are numeric, the return value is a scalar of numeric type,
+<code>INTEGER</code>, <code>REAL</code>, or <code>COMPLEX</code>.  If the arguments are
+<code>LOGICAL</code>, the return value is <code>.TRUE.</code> or <code>.FALSE.</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_dot_prod
+<br>    integer, dimension(3) :: a, b
+<br>    a = (/ 1, 2, 3 /)
+<br>    b = (/ 4, 5, 6 /)
+<br>    print '(3i3)', a
+<br>    print *
+<br>    print '(3i3)', b
+<br>    print *
+<br>    print *, dot_product(a,b)
+<br>end program test_dot_prod</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

@@ -1,0 +1,63 @@
+<code>MODULO</code> — Modulo function
+
+<h3>Description</h3>
+<code>MODULO(A,P)</code> computes the <var>A</var> modulo <var>P</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MODULO(A, P)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code> or <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>P</var> </td><td valign="top" width="70%">Shall be a scalar of the same type and kind as <var>A</var>. 
+It shall not be zero.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The type and kind of the result are those of the arguments.
+          <dl>
+<dt>If <var>A</var> and <var>P</var> are of type <code>INTEGER</code>:</dt><dd><code>MODULO(A,P)</code> has the value <var>R</var> such that <code>A=Q*P+R</code>, where
+<var>Q</var> is an integer and <var>R</var> is between 0 (inclusive) and <var>P</var>
+(exclusive). 
+<br></dd><dt>If <var>A</var> and <var>P</var> are of type <code>REAL</code>:</dt><dd><code>MODULO(A,P)</code> has the value of <code>A - FLOOR (A / P) * P</code>. 
+</dd></dl>
+     The returned value has the same sign as P and a magnitude less than
+the magnitude of P.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_modulo
+<br>  print *, modulo(17,3)
+<br>  print *, modulo(17.5,5.5)
+<br>
+<br>  print *, modulo(-17,3)
+<br>  print *, modulo(-17.5,5.5)
+<br>
+<br>  print *, modulo(17,-3)
+<br>  print *, modulo(17.5,-5.5)
+<br>end program</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MOD.html#MOD">MOD</a>
+
+   

@@ -1,0 +1,49 @@
+<code>GETCWD</code> — Get current working directory
+
+<h3>Description</h3>
+Get current working directory.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL GETCWD(C [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = GETCWD(C)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>C</var> </td><td valign="top" width="70%">The type shall be <code>CHARACTER</code> and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) status flag. Returns 0 on success,
+a system specific and nonzero error code otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_getcwd
+<br>  CHARACTER(len=255) :: cwd
+<br>  CALL getcwd(cwd)
+<br>  WRITE(*,*) TRIM(cwd)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="CHDIR.html#CHDIR">CHDIR</a>

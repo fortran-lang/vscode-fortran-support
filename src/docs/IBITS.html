@@ -1,0 +1,43 @@
+<code>IBITS</code> — Bit extraction
+
+<h3>Description</h3>
+<code>IBITS</code> extracts a field of length <var>LEN</var> from <var>I</var>,
+starting from bit position <var>POS</var> and extending left for <var>LEN</var>
+bits.  The result is right-justified and the remaining bits are
+zeroed.  The value of <code>POS+LEN</code> must be less than or equal to the
+value <code>BIT_SIZE(I)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = IBITS(I, POS, LEN)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var>   </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>POS</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>LEN</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of the same kind as
+<var>I</var>.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="BIT_005fSIZE.html#BIT_005fSIZE">BIT_SIZE</a>, <a href="IBCLR.html#IBCLR">IBCLR</a>, <a href="IBSET.html#IBSET">IBSET</a>, <a href="IAND.html#IAND">IAND</a>, <a href="IOR.html#IOR">IOR</a>, <a href="IEOR.html#IEOR">IEOR</a>

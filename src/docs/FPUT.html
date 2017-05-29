@@ -1,0 +1,60 @@
+<code>FPUT</code> — Write a single character in stream mode to stdout
+
+<h3>Description</h3>
+Write a single character in stream mode to stdout by bypassing normal
+formatted output. Stream I/O should not be mixed with normal record-oriented
+(formatted or unformatted) I/O on the same unit; the results are unpredictable.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     </p><p>Note that the <code>FGET</code> intrinsic is provided for backwards compatibility with
+<samp><span class="command">g77</span></samp>.  GNU Fortran provides the Fortran 2003 Stream facility. 
+Programmers should consider the use of new stream IO feature in new code
+for future portability. See also <a href="Fortran-2003-status.html#Fortran-2003-status">Fortran 2003 status</a>.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL FPUT(C [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = FPUT(C)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>C</var>      </td><td valign="top" width="70%">The type shall be <code>CHARACTER</code> and of default
+kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) status flag of type <code>INTEGER</code>. 
+Returns 0 on success, -1 on end-of-file and a system specific positive
+error code otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_fput
+<br>  CHARACTER(len=10) :: str = "gfortran"
+<br>  INTEGER :: i
+<br>  DO i = 1, len_trim(str)
+<br>    CALL fput(str(i:i))
+<br>  END DO
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="FPUTC.html#FPUTC">FPUTC</a>, <a href="FGET.html#FGET">FGET</a>, <a href="FGETC.html#FGETC">FGETC</a>

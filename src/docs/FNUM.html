@@ -1,0 +1,46 @@
+<code>FNUM</code> — File number function
+
+<h3>Description</h3>
+<code>FNUM(UNIT)</code> returns the POSIX file descriptor number corresponding to the
+open Fortran I/O unit <code>UNIT</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = FNUM(UNIT)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>UNIT</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_fnum
+<br>  integer :: i
+<br>  open (unit=10, status = "scratch")
+<br>  i = fnum(10)
+<br>  print *, i
+<br>  close (10)
+<br>end program test_fnum</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Function
+
+     <br>

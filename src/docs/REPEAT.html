@@ -1,0 +1,43 @@
+<code>REPEAT</code> — Repeated string concatenation
+
+<h3>Description</h3>
+Concatenates <var>NCOPIES</var> copies of a string.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = REPEAT(STRING, NCOPIES)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STRING</var>  </td><td valign="top" width="70%">Shall be scalar and of type <code>CHARACTER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>NCOPIES</var> </td><td valign="top" width="70%">Shall be scalar and of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+A new scalar of type <code>CHARACTER</code> built up from <var>NCOPIES</var> copies
+of <var>STRING</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_repeat
+<br>  write(*,*) repeat("x", 5)   ! "xxxxx"
+<br>end program</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

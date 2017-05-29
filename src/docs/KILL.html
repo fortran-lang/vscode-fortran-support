@@ -1,0 +1,48 @@
+<code>KILL</code> — Send a signal to a process
+
+<h3>Description</h3>
+Sends the signal specified by <var>SIGNAL</var> to the process <var>PID</var>. 
+See <code>kill(2)</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL KILL(C, VALUE [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = KILL(C, VALUE)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>C</var> </td><td valign="top" width="70%">Shall be a scalar <code>INTEGER</code>, with
+<code>INTENT(IN)</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUE</var> </td><td valign="top" width="70%">Shall be a scalar <code>INTEGER</code>, with
+<code>INTENT(IN)</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) status flag of type <code>INTEGER(4)</code> or
+<code>INTEGER(8)</code>. Returns 0 on success, or a system-specific error code
+otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Sends the signal specified by <var>SIGNAL</var> to the process <var>PID</var>. 
+See <code>kill(2)</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ABORT.html#ABORT">ABORT</a>, <a href="EXIT.html#EXIT">EXIT</a>

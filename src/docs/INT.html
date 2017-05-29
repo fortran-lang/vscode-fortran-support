@@ -1,0 +1,67 @@
+<code>INT</code> — Convert to integer type
+
+<h3>Description</h3>
+Convert to integer type
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = INT(A [, KIND))</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>    </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>,
+<code>REAL</code>, or <code>COMPLEX</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+These functions return a <code>INTEGER</code> variable or array under
+the following rules:
+
+          <dl>
+<dt>(A)</dt><dd>If <var>A</var> is of type <code>INTEGER</code>, <code>INT(A) = A</code>
+<br></dd><dt>(B)</dt><dd>If <var>A</var> is of type <code>REAL</code> and |A| &lt; 1, <code>INT(A)</code>
+equals <code>0</code>. If |A| \geq 1, then <code>INT(A)</code> is the integer
+whose magnitude is the largest integer that does not exceed the magnitude
+of <var>A</var> and whose sign is the same as the sign of <var>A</var>. 
+<br></dd><dt>(C)</dt><dd>If <var>A</var> is of type <code>COMPLEX</code>, rule B is applied to the real part of <var>A</var>. 
+</dd></dl>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_int
+<br>  integer :: i = 42
+<br>  complex :: z = (-3.7, 1.0)
+<br>  print *, int(i)
+<br>  print *, int(z), int(z,8)
+<br>end program</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name            </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>INT(A)</code>   </td><td valign="top" width="20%"><code>REAL(4) A</code>  </td><td valign="top" width="20%"><code>INTEGER</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IFIX(A)</code>  </td><td valign="top" width="20%"><code>REAL(4) A</code>  </td><td valign="top" width="20%"><code>INTEGER</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IDINT(A)</code> </td><td valign="top" width="20%"><code>REAL(8) A</code>  </td><td valign="top" width="20%"><code>INTEGER</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+   </p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

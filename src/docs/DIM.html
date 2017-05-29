@@ -1,0 +1,57 @@
+<code>DIM</code> — Positive difference
+
+<h3>Description</h3>
+<code>DIM(X,Y)</code> returns the difference <code>X-Y</code> if the result is positive;
+otherwise returns zero.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DIM(X, Y)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code> or <code>REAL</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">The type shall be the same type and kind as <var>X</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> or <code>REAL</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_dim
+<br>    integer :: i
+<br>    real(8) :: x
+<br>    i = dim(4, 15)
+<br>    x = dim(4.345_8, 2.111_8)
+<br>    print *, i
+<br>    print *, x
+<br>end program test_dim</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument               </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DIM(X,Y)</code>  </td><td valign="top" width="20%"><code>REAL(4) X, Y</code>    </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>IDIM(X,Y)</code> </td><td valign="top" width="20%"><code>INTEGER(4) X, Y</code> </td><td valign="top" width="20%"><code>INTEGER(4)</code> </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DDIM(X,Y)</code> </td><td valign="top" width="20%"><code>REAL(8) X, Y</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

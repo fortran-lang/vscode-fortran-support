@@ -1,0 +1,52 @@
+<code>CEILING</code> — Integer ceiling function
+
+<h3>Description</h3>
+<code>CEILING(A)</code> returns the least integer greater than or equal to <var>A</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = CEILING(A [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER(KIND)</code> if <var>KIND</var> is present
+and a default-kind <code>INTEGER</code> otherwise.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_ceiling
+<br>    real :: x = 63.29
+<br>    real :: y = -63.59
+<br>    print *, ceiling(x) ! returns 64
+<br>    print *, ceiling(y) ! returns -63
+<br>end program test_ceiling</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="FLOOR.html#FLOOR">FLOOR</a>, <a href="NINT.html#NINT">NINT</a>
+
+   

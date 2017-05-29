@@ -1,0 +1,67 @@
+<code>GET_ENVIRONMENT_VARIABLE</code> — Get an environmental variable
+
+<h3>Description</h3>
+Get the <var>VALUE</var> of the environmental variable <var>NAME</var>.
+
+     <p>Note that <code>GET_ENVIRONMENT_VARIABLE</code> need not be thread-safe. It
+is the responsibility of the user to ensure that the environment is
+not being updated concurrently with a call to the
+<code>GET_ENVIRONMENT_VARIABLE</code> intrinsic.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL GET_ENVIRONMENT_VARIABLE(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>NAME</var>      </td><td valign="top" width="70%">Shall be a scalar of type <code>CHARACTER</code>
+and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>VALUE</var>     </td><td valign="top" width="70%">(Optional) Shall be a scalar of type <code>CHARACTER</code>
+and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>LENGTH</var>    </td><td valign="top" width="70%">(Optional) Shall be a scalar of type <code>INTEGER</code>
+and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var>    </td><td valign="top" width="70%">(Optional) Shall be a scalar of type <code>INTEGER</code>
+and of default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TRIM_NAME</var> </td><td valign="top" width="70%">(Optional) Shall be a scalar of type <code>LOGICAL</code>
+and of default kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Stores the value of <var>NAME</var> in <var>VALUE</var>. If <var>VALUE</var> is
+not large enough to hold the data, it is truncated. If <var>NAME</var>
+is not set, <var>VALUE</var> will be filled with blanks. Argument <var>LENGTH</var>
+contains the length needed for storing the environment variable <var>NAME</var>
+or zero if it is not present. <var>STATUS</var> is -1 if <var>VALUE</var> is present
+but too short for the environment variable; it is 1 if the environment
+variable does not exist and 2 if the processor does not support environment
+variables; in all other cases <var>STATUS</var> is zero. If <var>TRIM_NAME</var> is
+present with the value <code>.FALSE.</code>, the trailing blanks in <var>NAME</var>
+are significant; otherwise they are not part of the environment variable
+name.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_getenv
+<br>  CHARACTER(len=255) :: homedir
+<br>  CALL get_environment_variable("HOME", homedir)
+<br>  WRITE (*,*) TRIM(homedir)
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>

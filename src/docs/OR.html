@@ -1,0 +1,58 @@
+<code>OR</code> — Bitwise logical OR
+
+<h3>Description</h3>
+Bitwise logical <code>OR</code>.
+
+     <p>This intrinsic routine is provided for backwards compatibility with
+GNU Fortran 77.  For integer arguments, programmers should consider
+the use of the <a href="IOR.html#IOR">IOR</a> intrinsic defined by the Fortran standard.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = OR(I, J)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be either a scalar <code>INTEGER</code>
+type or a scalar <code>LOGICAL</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>J</var> </td><td valign="top" width="70%">The type shall be the same as the type of <var>J</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return type is either a scalar <code>INTEGER</code> or a scalar
+<code>LOGICAL</code>.  If the kind type parameters differ, then the
+smaller kind type is implicitly converted to larger kind, and the
+return has the larger kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_or
+<br>  LOGICAL :: T = .TRUE., F = .FALSE.
+<br>  INTEGER :: a, b
+<br>  DATA a / Z'F' /, b / Z'3' /
+<br>
+<br>  WRITE (*,*) OR(T, T), OR(T, F), OR(F, T), OR(F, F)
+<br>  WRITE (*,*) OR(a, b)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Function
+
+     <br>
+
+<h3>See also</h3>
+Fortran 95 elemental function: <a href="IOR.html#IOR">IOR</a>

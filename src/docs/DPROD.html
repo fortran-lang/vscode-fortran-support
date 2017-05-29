@@ -1,0 +1,54 @@
+<code>DPROD</code> — Double product function
+
+<h3>Description</h3>
+<code>DPROD(X,Y)</code> returns the product <code>X*Y</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DPROD(X, Y)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL(8)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_dprod
+<br>    real :: x = 5.2
+<br>    real :: y = 2.3
+<br>    real(8) :: d
+<br>    d = dprod(x,y)
+<br>    print *, d
+<br>end program test_dprod</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name              </td><td valign="top" width="20%">Argument               </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DPROD(X,Y)</code> </td><td valign="top" width="20%"><code>REAL(4) X, Y</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+   </p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

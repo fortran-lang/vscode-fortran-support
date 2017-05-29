@@ -1,0 +1,46 @@
+<code>BIT_SIZE</code> — Bit size inquiry function
+
+<h3>Description</h3>
+<code>BIT_SIZE(I)</code> returns the number of bits (integer precision plus sign bit)
+represented by the type of <var>I</var>.  The result of <code>BIT_SIZE(I)</code> is
+independent of the actual value of <var>I</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = BIT_SIZE(I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_bit_size
+<br>    integer :: i = 123
+<br>    integer :: size
+<br>    size = bit_size(i)
+<br>    print *, size
+<br>end program test_bit_size</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

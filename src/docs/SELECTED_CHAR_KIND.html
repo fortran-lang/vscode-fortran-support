@@ -1,0 +1,57 @@
+<code>SELECTED_CHAR_KIND</code> — Choose character kind
+
+<h3>Description</h3>
+
+<code>SELECTED_CHAR_KIND(NAME)</code> returns the kind value for the character
+set named <var>NAME</var>, if a character set with such a name is supported,
+or -1 otherwise. Currently, supported character sets include
+“ASCII” and “DEFAULT”, which are equivalent, and “ISO_10646”
+(Universal Character Set, UCS-4) which is commonly known as Unicode.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SELECTED_CHAR_KIND(NAME)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>NAME</var> </td><td valign="top" width="70%">Shall be a scalar and of the default character type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program character_kind
+<br>  use iso_fortran_env
+<br>  implicit none
+<br>  integer, parameter :: ascii = selected_char_kind ("ascii")
+<br>  integer, parameter :: ucs4  = selected_char_kind ('ISO_10646')
+<br>
+<br>  character(kind=ascii, len=26) :: alphabet
+<br>  character(kind=ucs4,  len=30) :: hello_world
+<br>
+<br>  alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
+<br>  hello_world = ucs4_'Hello World and Ni Hao -- ' &amp;
+<br>                // char (int (z'4F60'), ucs4)     &amp;
+<br>                // char (int (z'597D'), ucs4)
+<br>
+<br>  write (*,*) alphabet
+<br>
+<br>  open (output_unit, encoding='UTF-8')
+<br>  write (*,*) trim (hello_world)
+<br>end program character_kind</code>
+     
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

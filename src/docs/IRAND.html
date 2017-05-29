@@ -1,0 +1,55 @@
+<code>IRAND</code> — Integer pseudo-random number
+
+<h3>Description</h3>
+<code>IRAND(FLAG)</code> returns a pseudo-random number from a uniform
+distribution between 0 and a system-dependent limit (which is in most
+cases 2147483647). If <var>FLAG</var> is 0, the next number
+in the current sequence is returned; if <var>FLAG</var> is 1, the generator
+is restarted by <code>CALL SRAND(0)</code>; if <var>FLAG</var> has any other value,
+it is used as a new seed with <code>SRAND</code>.
+
+     <p>This intrinsic routine is provided for backwards compatibility with
+GNU Fortran 77. It implements a simple modulo generator as provided
+by <samp><span class="command">g77</span></samp>. For new code, one should consider the use of
+<a href="RANDOM_005fNUMBER.html#RANDOM_005fNUMBER">RANDOM_NUMBER</a> as it implements a superior algorithm.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = IRAND(I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be a scalar <code>INTEGER</code> of kind 4.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of <code>INTEGER(kind=4)</code> type.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_irand
+<br>  integer,parameter :: seed = 86456
+<br>
+<br>  call srand(seed)
+<br>  print *, irand(), irand(), irand(), irand()
+<br>  print *, irand(seed), irand(), irand(), irand()
+<br>end program test_irand</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Function
+
+     <br>

@@ -1,0 +1,55 @@
+<code>ATANH</code> — Inverse hyperbolic tangent function
+
+<h3>Description</h3>
+<code>ATANH(X)</code> computes the inverse hyperbolic tangent of <var>X</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ATANH(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code> or <code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value has same type and kind as <var>X</var>. If <var>X</var> is
+complex, the imaginary part of the result is in radians and lies between
+-\pi/2 \leq \Im \atanh(x) \leq \pi/2.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_atanh
+<br>  REAL, DIMENSION(3) :: x = (/ -1.0, 0.0, 1.0 /)
+<br>  WRITE (*,*) ATANH(x)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DATANH(X)</code> </td><td valign="top" width="20%"><code>REAL(8) X</code>  </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+Inverse function: <a href="TANH.html#TANH">TANH</a>

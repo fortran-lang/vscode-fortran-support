@@ -1,0 +1,59 @@
+<code>CPU_TIME</code> — CPU elapsed time in seconds
+
+<h3>Description</h3>
+Returns a <code>REAL</code> value representing the elapsed CPU time in
+seconds.  This is useful for testing segments of code to determine
+execution time.
+
+     <p>If a time source is available, time will be reported with microsecond
+resolution. If no time source is available, <var>TIME</var> is set to
+<code>-1.0</code>.
+
+     </p><p>Note that <var>TIME</var> may contain a, system dependent, arbitrary offset
+and may not start with <code>0.0</code>. For <code>CPU_TIME</code>, the absolute
+value is meaningless, only differences between subsequent calls to
+this subroutine, as shown in the example below, should be used.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL CPU_TIME(TIME)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>TIME</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code> with <code>INTENT(OUT)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+None
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_cpu_time
+<br>    real :: start, finish
+<br>    call cpu_time(start)
+<br>        ! put code to test here
+<br>    call cpu_time(finish)
+<br>    print '("Time = ",f6.3," seconds.")',finish-start
+<br>end program test_cpu_time</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="SYSTEM_005fCLOCK.html#SYSTEM_005fCLOCK">SYSTEM_CLOCK</a>, <a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>

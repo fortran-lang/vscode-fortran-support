@@ -1,0 +1,54 @@
+<code>SINH</code> — Hyperbolic sine function
+
+<h3>Description</h3>
+<code>SINH(X)</code> computes the hyperbolic sine of <var>X</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SINH(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code> or <code>COMPLEX</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value has same type and kind as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_sinh
+<br>  real(8) :: x = - 1.0_8
+<br>  x = sinh(x)
+<br>end program test_sinh</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name            </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>SINH(X)</code>  </td><td valign="top" width="20%"><code>REAL(4) X</code>  </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DSINH(X)</code> </td><td valign="top" width="20%"><code>REAL(8) X</code>  </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">Fortran 95 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 95 and later, for a complex argument Fortran 2008 or later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ASINH.html#ASINH">ASINH</a>

@@ -1,0 +1,55 @@
+<code>PARITY</code> — Reduction with exclusive OR
+
+<h3>Description</h3>
+Calculates the parity, i.e. the reduction using <code>.XOR.</code>,
+of <var>MASK</var> along dimension <var>DIM</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = PARITY(MASK[, DIM])</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>LOGICAL</var> </td><td valign="top" width="70%">Shall be an array of type <code>LOGICAL</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>   </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code> with a value in the range from 1 to n, where n
+equals the rank of <var>MASK</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is of the same type as <var>MASK</var>.
+
+     <p>If <var>DIM</var> is absent, a scalar with the parity of all elements in
+<var>MASK</var> is returned, i.e. true if an odd number of elements is
+<code>.true.</code> and false otherwise.  If <var>DIM</var> is present, an array
+of rank n-1, where n equals the rank of <var>ARRAY</var>,
+and a shape similar to that of <var>MASK</var> with dimension <var>DIM</var>
+dropped is returned.
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_sum
+<br>  LOGICAL :: x(2) = [ .true., .false. ]
+<br>  print *, PARITY(x) ! prints "T" (true).
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

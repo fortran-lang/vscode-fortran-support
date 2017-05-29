@@ -1,0 +1,49 @@
+<code>DSHIFTR</code> — Combined right shift
+
+<h3>Description</h3>
+<code>DSHIFTR(I, J, SHIFT)</code> combines bits of <var>I</var> and <var>J</var>. The
+leftmost <var>SHIFT</var> bits of the result are the rightmost <var>SHIFT</var>
+bits of <var>I</var>, and the remaining bits are the leftmost bits of
+<var>J</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DSHIFTR(I, J, SHIFT)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> or a BOZ constant. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>J</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> or a BOZ constant. 
+If both <var>I</var> and <var>J</var> have integer type, then they shall have
+the same kind type parameter. <var>I</var> and <var>J</var> shall not both be
+BOZ constants. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SHIFT</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>. It shall
+be nonnegative.  If <var>I</var> is not a BOZ constant, then <var>SHIFT</var>
+shall be less than or equal to <code>BIT_SIZE(I)</code>; otherwise,
+<var>SHIFT</var> shall be less than or equal to <code>BIT_SIZE(J)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If either <var>I</var> or <var>J</var> is a BOZ constant, it is first converted
+as if by the intrinsic function <code>INT</code> to an integer type with the
+kind type parameter of the other.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="DSHIFTL.html#DSHIFTL">DSHIFTL</a>

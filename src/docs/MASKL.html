@@ -1,0 +1,41 @@
+<code>MASKL</code> — Left justified mask
+
+<h3>Description</h3>
+<code>MASKL(I[, KIND])</code> has its leftmost <var>I</var> bits set to 1, and the
+remaining bits set to 0.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MASKL(I[, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">Shall be a scalar constant expression of type
+<code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code>. If <var>KIND</var> is present, it
+specifies the kind value of the return type; otherwise, it is of the
+default integer kind.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MASKR.html#MASKR">MASKR</a>

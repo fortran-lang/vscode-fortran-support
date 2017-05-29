@@ -1,0 +1,47 @@
+<code>DREAL</code> — Double real part function
+
+<h3>Description</h3>
+<code>DREAL(Z)</code> returns the real part of complex variable <var>Z</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DREAL(A)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">The type shall be <code>COMPLEX(8)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL(8)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_dreal
+<br>    complex(8) :: z = (1.3_8,7.2_8)
+<br>    print *, dreal(z)
+<br>end program test_dreal</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="AIMAG.html#AIMAG">AIMAG</a>
+
+   

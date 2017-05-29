@@ -1,0 +1,36 @@
+<code>SLEEP</code> — Sleep for the specified number of seconds
+
+<h3>Description</h3>
+Calling this subroutine causes the process to pause for <var>SECONDS</var> seconds.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL SLEEP(SECONDS)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SECONDS</var> </td><td valign="top" width="70%">The type shall be of default <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_sleep
+<br>  call sleep(5)
+<br>end</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>

@@ -1,0 +1,84 @@
+<code>ICHAR</code> — Character-to-integer conversion function
+
+<h3>Description</h3>
+<code>ICHAR(C)</code> returns the code for the character in the first character
+position of <code>C</code> in the system's native character set. 
+The correspondence between characters and their codes is not necessarily
+the same across different GNU Fortran implementations.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ICHAR(C [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>C</var>    </td><td valign="top" width="70%">Shall be a scalar <code>CHARACTER</code>, with <code>INTENT(IN)</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of kind <var>KIND</var>. If
+<var>KIND</var> is absent, the return value is of default integer kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_ichar
+<br>  integer i
+<br>  i = ichar(' ')
+<br>end program test_ichar</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument             </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ICHAR(C)</code>  </td><td valign="top" width="20%"><code>CHARACTER C</code>   </td><td valign="top" width="20%"><code>INTEGER(4)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Notes</h3>
+No intrinsic exists to convert between a numeric value and a formatted
+character string representation – for instance, given the
+<code>CHARACTER</code> value <code>'154'</code>, obtaining an <code>INTEGER</code> or
+<code>REAL</code> value with the value 154, or vice versa. Instead, this
+functionality is provided by internal-file I/O, as in the following
+example:
+     <pre class="smallexample">          program read_val
+            integer value
+            character(len=10) string, string2
+            string = '154'
+          
+            ! Convert a string to a numeric value
+            read (string,'(I10)') value
+            print *, value
+          
+            ! Convert a value to a formatted string
+            write (string2,'(I10)') value
+            print *, string2
+          end program read_val
+</pre>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later, with <var>KIND</var> argument Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ACHAR.html#ACHAR">ACHAR</a>, <a href="CHAR.html#CHAR">CHAR</a>, <a href="IACHAR.html#IACHAR">IACHAR</a>
+
+   

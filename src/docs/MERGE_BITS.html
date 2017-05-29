@@ -1,0 +1,40 @@
+<code>MERGE_BITS</code> — Merge of bits under mask
+
+<h3>Description</h3>
+<code>MERGE_BITS(I, J, MASK)</code> merges the bits of <var>I</var> and <var>J</var>
+as determined by the mask.  The i-th bit of the result is equal to the
+i-th bit of <var>I</var> if the i-th bit of <var>MASK</var> is 1; it is equal to
+the i-th bit of <var>J</var> otherwise.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MERGE_BITS(I, J, MASK)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var>    </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>J</var>    </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> and of the same
+kind as <var>I</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> and of the same
+kind as <var>I</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is of the same type and kind as <var>I</var>.
+
+   
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

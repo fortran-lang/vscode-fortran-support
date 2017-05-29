@@ -1,0 +1,49 @@
+<code>ADJUSTR</code> — Right adjust a string
+
+<h3>Description</h3>
+<code>ADJUSTR(STRING)</code> will right adjust a string by removing trailing spaces. 
+Spaces are inserted at the start of the string as needed.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ADJUSTR(STRING)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STR</var> </td><td valign="top" width="70%">The type shall be <code>CHARACTER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>CHARACTER</code> and of the same kind as
+<var>STRING</var> where trailing spaces are removed and the same number of
+spaces are inserted at the start of <var>STRING</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_adjustr
+<br>  character(len=20) :: str = 'gfortran'
+<br>  str = adjustr(str)
+<br>  print *, str
+<br>end program test_adjustr</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ADJUSTL.html#ADJUSTL">ADJUSTL</a>, <a href="TRIM.html#TRIM">TRIM</a>

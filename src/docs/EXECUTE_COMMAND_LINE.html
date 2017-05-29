@@ -1,0 +1,82 @@
+<code>EXECUTE_COMMAND_LINE</code> — Execute a shell command
+
+<h3>Description</h3>
+<code>EXECUTE_COMMAND_LINE</code> runs a shell command, synchronously or
+asynchronously.
+
+     <p>The <code>COMMAND</code> argument is passed to the shell and executed, using
+the C library's <code>system</code> call.  (The shell is <code>sh</code> on Unix
+systems, and <code>cmd.exe</code> on Windows.)  If <code>WAIT</code> is present
+and has the value false, the execution of the command is asynchronous
+if the system supports it; otherwise, the command is executed
+synchronously.
+
+     </p><p>The three last arguments allow the user to get status information.  After
+synchronous execution, <code>EXITSTAT</code> contains the integer exit code of
+the command, as returned by <code>system</code>.  <code>CMDSTAT</code> is set to zero
+if the command line was executed (whatever its exit status was). 
+<code>CMDMSG</code> is assigned an error message if an error has occurred.
+
+     </p><p>Note that the <code>system</code> function need not be thread-safe. It is
+the responsibility of the user to ensure that <code>system</code> is not
+called concurrently.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL EXECUTE_COMMAND_LINE(COMMAND [, WAIT, EXITSTAT, CMDSTAT, CMDMSG ])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>COMMAND</var> </td><td valign="top" width="70%">Shall be a default <code>CHARACTER</code> scalar. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>WAIT</var> </td><td valign="top" width="70%">(Optional) Shall be a default <code>LOGICAL</code> scalar. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>EXITSTAT</var> </td><td valign="top" width="70%">(Optional) Shall be an <code>INTEGER</code> of the
+default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>CMDSTAT</var> </td><td valign="top" width="70%">(Optional) Shall be an <code>INTEGER</code> of the
+default kind. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>CMDMSG</var> </td><td valign="top" width="70%">(Optional) Shall be an <code>CHARACTER</code> scalar of the
+default kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_exec
+<br>  integer :: i
+<br>
+<br>  call execute_command_line ("external_prog.exe", exitstat=i)
+<br>  print *, "Exit status of external_prog.exe was ", i
+<br>
+<br>  call execute_command_line ("reindex_files.exe", wait=.false.)
+<br>  print *, "Now reindexing files in the background"
+<br>
+<br>end program test_exec</code>
+     <br>
+
+<h3>Notes</h3>
+
+Because this intrinsic is implemented in terms of the <code>system</code>
+function call, its behavior with respect to signaling is processor
+dependent. In particular, on POSIX-compliant systems, the SIGINT and
+SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
+such, if the parent process is terminated, the child process might not be
+terminated alongside.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="SYSTEM.html#SYSTEM">SYSTEM</a>

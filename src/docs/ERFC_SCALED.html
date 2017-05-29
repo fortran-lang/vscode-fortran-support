@@ -1,0 +1,43 @@
+<code>ERFC_SCALED</code> — Error function
+
+<h3>Description</h3>
+<code>ERFC_SCALED(X)</code> computes the exponentially-scaled complementary
+error function of <var>X</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ERFC_SCALED(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> and of the same kind as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_erfc_scaled
+<br>  real(8) :: x = 0.17_8
+<br>  x = erfc_scaled(x)
+<br>end program test_erfc_scaled</code>
+     
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

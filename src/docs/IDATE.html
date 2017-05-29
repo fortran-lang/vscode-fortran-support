@@ -1,0 +1,49 @@
+<code>IDATE</code> — Get current local time subroutine (day/month/year)
+
+<h3>Description</h3>
+<code>IDATE(VALUES)</code> Fills <var>VALUES</var> with the numerical values at the
+current local time. The day (in the range 1-31), month (in the range 1-12),
+and year appear in elements 1, 2, and 3 of <var>VALUES</var>, respectively. 
+The year has four significant digits.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL IDATE(VALUES)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>VALUES</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER, DIMENSION(3)</code> and
+the kind shall be the default integer kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Does not return anything.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_idate
+<br>  integer, dimension(3) :: tarray
+<br>  call idate(tarray)
+<br>  print *, tarray(1)
+<br>  print *, tarray(2)
+<br>  print *, tarray(3)
+<br>end program test_idate</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>

@@ -1,0 +1,46 @@
+<code>TRIM</code> — Remove trailing blank characters of a string
+
+<h3>Description</h3>
+Removes trailing blank characters of a string.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = TRIM(STRING)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STRING</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>CHARACTER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+A scalar of type <code>CHARACTER</code> which length is that of <var>STRING</var>
+less the number of trailing blanks.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_trim
+<br>  CHARACTER(len=10), PARAMETER :: s = "GFORTRAN  "
+<br>  WRITE(*,*) LEN(s), LEN(TRIM(s))  ! "10 8", with/without trailing blanks
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ADJUSTL.html#ADJUSTL">ADJUSTL</a>, <a href="ADJUSTR.html#ADJUSTR">ADJUSTR</a>

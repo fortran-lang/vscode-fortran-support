@@ -1,0 +1,56 @@
+<code>MAXVAL</code> — Maximum value of an array
+
+<h3>Description</h3>
+Determines the maximum value of the elements in an array value, or, if
+the <var>DIM</var> argument is supplied, determines the maximum value along
+each row of the array in the <var>DIM</var> direction.  If <var>MASK</var> is
+present, only the elements for which <var>MASK</var> is <code>.TRUE.</code> are
+considered.  If the array has zero size, or all of the elements of
+<var>MASK</var> are <code>.FALSE.</code>, then the result is <code>-HUGE(ARRAY)</code>
+if <var>ARRAY</var> is numeric, or a string of nulls if <var>ARRAY</var> is of character
+type.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = MAXVAL(ARRAY, DIM [, MASK])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = MAXVAL(ARRAY [, MASK])</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var> </td><td valign="top" width="70%">Shall be an array of type <code>INTEGER</code> or
+<code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>   </td><td valign="top" width="70%">(Optional) Shall be a scalar of type
+<code>INTEGER</code>, with a value between one and the rank of <var>ARRAY</var>,
+inclusive.  It may not be an optional dummy argument. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>  </td><td valign="top" width="70%">Shall be an array of type <code>LOGICAL</code>,
+and conformable with <var>ARRAY</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If <var>DIM</var> is absent, or if <var>ARRAY</var> has a rank of one, the result
+is a scalar.  If <var>DIM</var> is present, the result is an array with a
+rank one less than the rank of <var>ARRAY</var>, and a size corresponding to
+the size of <var>ARRAY</var> with the <var>DIM</var> dimension removed.  In all
+cases, the result is of the same type and kind as <var>ARRAY</var>.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MAX.html#MAX">MAX</a>, <a href="MAXLOC.html#MAXLOC">MAXLOC</a>

@@ -1,0 +1,58 @@
+<code>SRAND</code> — Reinitialize the random number generator
+
+<h3>Description</h3>
+<code>SRAND</code> reinitializes the pseudo-random number generator
+called by <code>RAND</code> and <code>IRAND</code>. The new seed used by the
+generator is specified by the required argument <var>SEED</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL SRAND(SEED)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SEED</var> </td><td valign="top" width="70%">Shall be a scalar <code>INTEGER(kind=4)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Does not return anything.
+
+     <br>
+
+<h3>Example</h3>
+See <code>RAND</code> and <code>IRAND</code> for examples.
+
+     <br>
+
+<h3>Notes</h3>
+The Fortran standard specifies the intrinsic subroutines
+<code>RANDOM_SEED</code> to initialize the pseudo-random number
+generator and <code>RANDOM_NUMBER</code> to generate pseudo-random numbers. 
+These subroutines should be used in new codes.
+
+     <p>Please note that in GNU Fortran, these two sets of intrinsics (<code>RAND</code>,
+<code>IRAND</code> and <code>SRAND</code> on the one hand, <code>RANDOM_NUMBER</code> and
+<code>RANDOM_SEED</code> on the other hand) access two independent
+pseudo-random number generators.
+
+     <br></p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="RAND.html#RAND">RAND</a>, <a href="RANDOM_005fSEED.html#RANDOM_005fSEED">RANDOM_SEED</a>, <a href="RANDOM_005fNUMBER.html#RANDOM_005fNUMBER">RANDOM_NUMBER</a>
+
+   

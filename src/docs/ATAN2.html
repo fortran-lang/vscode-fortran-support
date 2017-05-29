@@ -1,0 +1,63 @@
+<code>ATAN2</code> — Arctangent function
+
+<h3>Description</h3>
+<code>ATAN2(Y, X)</code> computes the principal value of the argument
+function of the complex number X + i Y. This function can
+be used to transform from Cartesian into polar coordinates and
+allows to determine the angle in the correct quadrant.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ATAN2(Y, X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type and kind type parameter shall be the same as <var>Y</var>. 
+If <var>Y</var> is zero, then <var>X</var> must be nonzero.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value has the same type and kind type parameter as <var>Y</var>. It
+is the principal value of the complex number X + i Y.  If <var>X</var>
+is nonzero, then it lies in the range -\pi \le \atan (x) \leq \pi. 
+The sign is positive if <var>Y</var> is positive.  If <var>Y</var> is zero, then
+the return value is zero if <var>X</var> is strictly positive, \pi if
+<var>X</var> is negative and <var>Y</var> is positive zero (or the processor does
+not handle signed zeros), and -\pi if <var>X</var> is negative and
+<var>Y</var> is negative zero.  Finally, if <var>X</var> is zero, then the
+magnitude of the result is \pi/2.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_atan2
+<br>  real(4) :: x = 1.e0_4, y = 0.5e0_4
+<br>  x = atan2(y,x)
+<br>end program test_atan2</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name                </td><td valign="top" width="20%">Argument            </td><td valign="top" width="20%">Return type    </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ATAN2(X, Y)</code>  </td><td valign="top" width="20%"><code>REAL(4) X, Y</code> </td><td valign="top" width="20%"><code>REAL(4)</code> </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DATAN2(X, Y)</code> </td><td valign="top" width="20%"><code>REAL(8) X, Y</code> </td><td valign="top" width="20%"><code>REAL(8)</code> </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

@@ -1,0 +1,66 @@
+<code>ATAN</code> — Arctangent function
+
+<h3>Description</h3>
+<code>ATAN(X)</code> computes the arctangent of <var>X</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = ATAN(X)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = ATAN(Y, X)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code> or <code>COMPLEX</code>;
+if <var>Y</var> is present, <var>X</var> shall be REAL. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> shall be of the same type and kind as <var>X</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of the same type and kind as <var>X</var>. 
+If <var>Y</var> is present, the result is identical to <code>ATAN2(Y,X)</code>. 
+Otherwise, it the arcus tangent of <var>X</var>, where the real part of
+the result is in radians and lies in the range
+-\pi/2 \leq \Re \atan(x) \leq \pi/2.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_atan
+<br>  real(8) :: x = 2.866_8
+<br>  x = atan(x)
+<br>end program test_atan</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name            </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ATAN(X)</code>  </td><td valign="top" width="20%"><code>REAL(4) X</code>  </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DATAN(X)</code> </td><td valign="top" width="20%"><code>REAL(8) X</code>  </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later, for a complex argument and for two arguments
+Fortran 2008 or later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+Inverse function: <a href="TAN.html#TAN">TAN</a>
+
+   

@@ -1,0 +1,47 @@
+<code>COMPILER_OPTIONS</code> — Options passed to the compiler
+
+<h3>Description</h3>
+<code>COMPILER_OPTIONS</code> returns a string with the options used for
+compiling.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>STR = COMPILER_OPTIONS()</code>
+
+     <br>
+
+<h3>Arguments</h3>
+None.
+
+     <br>
+
+<h3>Return value</h3>
+The return value is a default-kind string with system-dependent length. 
+It contains the compiler flags used to compile the file, which called
+the <code>COMPILER_OPTIONS</code> intrinsic.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>use iso_fortran_env
+<br>print '(4a)', 'This file was compiled by ', &amp;
+<br>              compiler_version(), ' using the options ', &amp;
+<br>              compiler_options()
+<br>end</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function of the module <code>ISO_FORTRAN_ENV</code>
+
+     <br>
+
+<h3>See also</h3>
+<a href="COMPILER_005fVERSION.html#COMPILER_005fVERSION">COMPILER_VERSION</a>, <a href="ISO_005fFORTRAN_005fENV.html#ISO_005fFORTRAN_005fENV">ISO_FORTRAN_ENV</a>

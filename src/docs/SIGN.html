@@ -1,0 +1,59 @@
+<code>SIGN</code> — Sign copying function
+
+<h3>Description</h3>
+<code>SIGN(A,B)</code> returns the value of <var>A</var> with the sign of <var>B</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SIGN(A, B)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> or <code>REAL</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>B</var> </td><td valign="top" width="70%">Shall be of the same type and kind as <var>A</var>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The kind of the return value is that of <var>A</var> and <var>B</var>. 
+If B\ge 0 then the result is <code>ABS(A)</code>, else
+it is <code>-ABS(A)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_sign
+<br>  print *, sign(-12,1)
+<br>  print *, sign(-12,0)
+<br>  print *, sign(-12,-1)
+<br>
+<br>  print *, sign(-12.,1.)
+<br>  print *, sign(-12.,0.)
+<br>  print *, sign(-12.,-1.)
+<br>end program test_sign</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name              </td><td valign="top" width="20%">Arguments              </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>SIGN(A,B)</code>  </td><td valign="top" width="20%"><code>REAL(4) A, B</code>    </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">f77, gnu
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>ISIGN(A,B)</code> </td><td valign="top" width="20%"><code>INTEGER(4) A, B</code> </td><td valign="top" width="20%"><code>INTEGER(4)</code> </td><td valign="top" width="25%">f77, gnu
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DSIGN(A,B)</code> </td><td valign="top" width="20%"><code>REAL(8) A, B</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">f77, gnu
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

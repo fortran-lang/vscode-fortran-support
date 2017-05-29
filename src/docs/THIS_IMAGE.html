@@ -1,0 +1,74 @@
+<code>THIS_IMAGE</code> — Function that returns the cosubscript index of this image
+
+<h3>Description</h3>
+Returns the cosubscript for this image.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = THIS_IMAGE()</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = THIS_IMAGE(DISTANCE)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = THIS_IMAGE(COARRAY [, DIM])</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>DISTANCE</var> </td><td valign="top" width="70%">(optional, intent(in)) Nonnegative scalar integer
+(not permitted together with <var>COARRAY</var>). 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>COARRAY</var> </td><td valign="top" width="70%">Coarray of any type  (optional; if <var>DIM</var>
+present, required). 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>     </td><td valign="top" width="70%">default integer scalar (optional). If present,
+<var>DIM</var> shall be between one and the corank of <var>COARRAY</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Default integer. If <var>COARRAY</var> is not present, it is scalar; if
+<var>DISTANCE</var> is not present or has value 0, its value is the image index on
+the invoking image for the current team, for values smaller or equal
+distance to the initial team, it returns the image index on the ancestor team
+which has a distance of <var>DISTANCE</var> from the invoking team. If
+<var>DISTANCE</var> is larger than the distance to the initial team, the image
+index of the initial team is returned. Otherwise when the <var>COARRAY</var> is
+present, if <var>DIM</var> is not present, a rank-1 array with corank elements is
+returned, containing the cosubscripts for <var>COARRAY</var> specifying the invoking
+image. If <var>DIM</var> is present, a scalar is returned, with the value of
+the <var>DIM</var> element of <code>THIS_IMAGE(COARRAY)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>INTEGER :: value[*]
+<br>INTEGER :: i
+<br>value = THIS_IMAGE()
+<br>SYNC ALL
+<br>IF (THIS_IMAGE() == 1) THEN
+<br>  DO i = 1, NUM_IMAGES()
+<br>    WRITE(*,'(2(a,i0))') 'value[', i, '] is ', value[i]
+<br>  END DO
+<br>END IF
+<br>
+<br>! Check whether the current image is the initial image
+<br>IF (THIS_IMAGE(HUGE(1)) /= THIS_IMAGE())
+<br>  error stop "something is rotten here"</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later. With <var>DISTANCE</var> argument,
+Technical Specification (TS) 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="NUM_005fIMAGES.html#NUM_005fIMAGES">NUM_IMAGES</a>, <a href="IMAGE_005fINDEX.html#IMAGE_005fINDEX">IMAGE_INDEX</a>

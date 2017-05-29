@@ -1,0 +1,76 @@
+<code>REAL</code> — Convert to real type
+
+<h3>Description</h3>
+<code>REAL(A [, KIND])</code> converts its argument <var>A</var> to a real type.  The
+<code>REALPART</code> function is provided for compatibility with <samp><span class="command">g77</span></samp>,
+and its use is strongly discouraged.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = REAL(A [, KIND])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = REALPART(Z)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>    </td><td valign="top" width="70%">Shall be <code>INTEGER</code>, <code>REAL</code>, or
+<code>COMPLEX</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+These functions return a <code>REAL</code> variable or array under
+the following rules:
+
+          <dl>
+<dt>(A)</dt><dd><code>REAL(A)</code> is converted to a default real type if <var>A</var> is an
+integer or real variable. 
+<br></dd><dt>(B)</dt><dd><code>REAL(A)</code> is converted to a real type with the kind type parameter
+of <var>A</var> if <var>A</var> is a complex variable. 
+<br></dd><dt>(C)</dt><dd><code>REAL(A, KIND)</code> is converted to a real type with kind type
+parameter <var>KIND</var> if <var>A</var> is a complex, integer, or real
+variable. 
+</dd></dl>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_real
+<br>  complex :: x = (1.0, 2.0)
+<br>  print *, real(x), real(x,8), realpart(x)
+<br>end program test_real</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument           </td><td valign="top" width="20%">Return type     </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>FLOAT(A)</code>  </td><td valign="top" width="20%"><code>INTEGER(4)</code>  </td><td valign="top" width="20%"><code>REAL(4)</code>  </td><td valign="top" width="25%">Fortran 77 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DFLOAT(A)</code> </td><td valign="top" width="20%"><code>INTEGER(4)</code>  </td><td valign="top" width="20%"><code>REAL(8)</code>  </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>SNGL(A)</code>   </td><td valign="top" width="20%"><code>INTEGER(8)</code>  </td><td valign="top" width="20%"><code>REAL(4)</code>  </td><td valign="top" width="25%">Fortran 77 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="DBLE.html#DBLE">DBLE</a>
+
+   

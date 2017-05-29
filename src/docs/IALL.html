@@ -1,0 +1,64 @@
+<code>IALL</code> — Bitwise AND of array elements
+
+<h3>Description</h3>
+Reduces with bitwise AND the elements of <var>ARRAY</var> along dimension <var>DIM</var>
+if the corresponding element in <var>MASK</var> is <code>TRUE</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = IALL(ARRAY[, MASK])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = IALL(ARRAY, DIM[, MASK])</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var> </td><td valign="top" width="70%">Shall be an array of type <code>INTEGER</code>
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>   </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER</code> with a value in the range from 1 to n, where n
+equals the rank of <var>ARRAY</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>  </td><td valign="top" width="70%">(Optional) shall be of type <code>LOGICAL</code>
+and either be a scalar or an array of the same shape as <var>ARRAY</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is of the same type as <var>ARRAY</var>.
+
+     <p>If <var>DIM</var> is absent, a scalar with the bitwise ALL of all elements in
+<var>ARRAY</var> is returned. Otherwise, an array of rank n-1, where n equals
+the rank of <var>ARRAY</var>, and a shape similar to that of <var>ARRAY</var> with
+dimension <var>DIM</var> dropped is returned.
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_iall
+<br>  INTEGER(1) :: a(2)
+<br>
+<br>  a(1) = b'00100100'
+<br>  a(2) = b'01101010'
+<br>
+<br>  ! prints 00100000
+<br>  PRINT '(b8.8)', IALL(a)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="IANY.html#IANY">IANY</a>, <a href="IPARITY.html#IPARITY">IPARITY</a>, <a href="IAND.html#IAND">IAND</a>

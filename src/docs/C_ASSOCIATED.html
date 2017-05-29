@@ -1,0 +1,53 @@
+<code>C_ASSOCIATED</code> — Status of a C pointer
+
+<h3>Description</h3>
+<code>C_ASSOCIATED(c_ptr_1[, c_ptr_2])</code> determines the status of the C pointer
+<var>c_ptr_1</var> or if <var>c_ptr_1</var> is associated with the target <var>c_ptr_2</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = C_ASSOCIATED(c_ptr_1[, c_ptr_2])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>c_ptr_1</var> </td><td valign="top" width="70%">Scalar of the type <code>C_PTR</code> or <code>C_FUNPTR</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>c_ptr_2</var> </td><td valign="top" width="70%">(Optional) Scalar of the same type as <var>c_ptr_1</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>LOGICAL</code>; it is <code>.false.</code> if either
+<var>c_ptr_1</var> is a C NULL pointer or if <var>c_ptr1</var> and <var>c_ptr_2</var>
+point to different addresses.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>subroutine association_test(a,b)
+<br>  use iso_c_binding, only: c_associated, c_loc, c_ptr
+<br>  implicit none
+<br>  real, pointer :: a
+<br>  type(c_ptr) :: b
+<br>  if(c_associated(b, c_loc(a))) &amp;
+<br>     stop 'b and a do not point to same target'
+<br>end subroutine association_test</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="C_005fLOC.html#C_005fLOC">C_LOC</a>, <a href="C_005fFUNLOC.html#C_005fFUNLOC">C_FUNLOC</a>

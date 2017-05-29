@@ -1,0 +1,48 @@
+<code>ISHFTC</code> — Shift bits circularly
+
+<h3>Description</h3>
+<code>ISHFTC</code> returns a value corresponding to <var>I</var> with the
+rightmost <var>SIZE</var> bits shifted circularly <var>SHIFT</var> places; that
+is, bits shifted out one end are shifted into the opposite end.  A value
+of <var>SHIFT</var> greater than zero corresponds to a left shift, a value of
+zero corresponds to no shift, and a value less than zero corresponds to
+a right shift.  The absolute value of <var>SHIFT</var> must be less than
+<var>SIZE</var>.  If the <var>SIZE</var> argument is omitted, it is taken to be
+equivalent to <code>BIT_SIZE(I)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ISHFTC(I, SHIFT [, SIZE])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SHIFT</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SIZE</var> </td><td valign="top" width="70%">(Optional) The type shall be <code>INTEGER</code>;
+the value must be greater than zero and less than or equal to
+<code>BIT_SIZE(I)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of the same kind as
+<var>I</var>.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ISHFT.html#ISHFT">ISHFT</a>

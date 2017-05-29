@@ -1,0 +1,53 @@
+<code>BESSEL_J1</code> — Bessel function of the first kind of order 1
+
+<h3>Description</h3>
+<code>BESSEL_J1(X)</code> computes the Bessel function of the first kind of
+order 1 of <var>X</var>. This function is available under the name
+<code>BESJ1</code> as a GNU extension.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = BESSEL_J1(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type shall be <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> and lies in the
+range  - 0.5818... \leq Bessel (0,x) \leq 0.5818 . It has the same
+kind as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_besj1
+<br>  real(8) :: x = 1.0_8
+<br>  x = bessel_j1(x)
+<br>end program test_besj1</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument          </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DBESJ1(X)</code> </td><td valign="top" width="20%"><code>REAL(8) X</code>  </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">GNU extension
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Standard</h3>
+Fortran 2008
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

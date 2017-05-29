@@ -1,0 +1,69 @@
+<code>ANY</code> — Any value in <var>MASK</var> along <var>DIM</var> is true
+
+<h3>Description</h3>
+<code>ANY(MASK [, DIM])</code> determines if any of the values in the logical array
+<var>MASK</var> along dimension <var>DIM</var> are <code>.TRUE.</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ANY(MASK [, DIM])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>MASK</var> </td><td valign="top" width="70%">The type of the argument shall be <code>LOGICAL</code> and
+it shall not be scalar. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>  </td><td valign="top" width="70%">(Optional) <var>DIM</var> shall be a scalar integer
+with a value that lies between one and the rank of <var>MASK</var>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+<code>ANY(MASK)</code> returns a scalar value of type <code>LOGICAL</code> where
+the kind type parameter is the same as the kind type parameter of
+<var>MASK</var>.  If <var>DIM</var> is present, then <code>ANY(MASK, DIM)</code> returns
+an array with the rank of <var>MASK</var> minus 1.  The shape is determined from
+the shape of <var>MASK</var> where the <var>DIM</var> dimension is elided.
+
+          <dl>
+<dt>(A)</dt><dd><code>ANY(MASK)</code> is true if any element of <var>MASK</var> is true;
+otherwise, it is false.  It also is false if <var>MASK</var> has zero size. 
+<br></dd><dt>(B)</dt><dd>If the rank of <var>MASK</var> is one, then <code>ANY(MASK,DIM)</code> is equivalent
+to <code>ANY(MASK)</code>.  If the rank is greater than one, then <code>ANY(MASK,DIM)</code>
+is determined by applying <code>ANY</code> to the array sections. 
+</dd></dl>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_any
+<br>  logical l
+<br>  l = any((/.true., .true., .true./))
+<br>  print *, l
+<br>  call section
+<br>  contains
+<br>    subroutine section
+<br>      integer a(2,3), b(2,3)
+<br>      a = 1
+<br>      b = 1
+<br>      b(2,2) = 2
+<br>      print *, any(a .eq. b, 1)
+<br>      print *, any(a .eq. b, 2)
+<br>    end subroutine section
+<br>end program test_any</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

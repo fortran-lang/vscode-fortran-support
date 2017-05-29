@@ -1,0 +1,43 @@
+<code>LCOBOUND</code> — Lower codimension bounds of an array
+
+<h3>Description</h3>
+Returns the lower bounds of a coarray, or a single lower cobound
+along the <var>DIM</var> codimension. 
+<br>
+
+<h3>Syntax</h3>
+<code>RESULT = LCOBOUND(COARRAY [, DIM [, KIND]])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var> </td><td valign="top" width="70%">Shall be an coarray, of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var> </td><td valign="top" width="70%">(Optional) Shall be a scalar <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of kind <var>KIND</var>. If
+<var>KIND</var> is absent, the return value is of default integer kind. 
+If <var>DIM</var> is absent, the result is an array of the lower cobounds of
+<var>COARRAY</var>.  If <var>DIM</var> is present, the result is a scalar
+corresponding to the lower cobound of the array along that codimension.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="UCOBOUND.html#UCOBOUND">UCOBOUND</a>, <a href="LBOUND.html#LBOUND">LBOUND</a>

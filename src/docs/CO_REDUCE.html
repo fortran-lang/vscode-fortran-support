@@ -1,0 +1,85 @@
+<code>CO_REDUCE</code> — Reduction of values on the current set of images
+
+<h3>Description</h3>
+<code>CO_REDUCE</code> determines element-wise the reduction of the value of <var>A</var>
+on all images of the current team.  The pure function passed as <var>OPERATOR</var>
+is used to pairwise reduce the values of <var>A</var> by passing either the value
+of <var>A</var> of different images or the result values of such a reduction as
+argument.  If <var>A</var> is an array, the deduction is done element wise. If
+<var>RESULT_IMAGE</var> is present, the result values are returned in <var>A</var> on
+the specified image only and the value of <var>A</var> on the other images become
+undefined.  If <var>RESULT_IMAGE</var> is not present, the value is returned on all
+images.  If the execution was successful and <var>STAT</var> is present, it is
+assigned the value zero.  If the execution failed, <var>STAT</var> gets assigned
+a nonzero value and, if present, <var>ERRMSG</var> gets assigned a value describing
+the occurred error.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL CO_REDUCE(A, OPERATOR, [, RESULT_IMAGE, STAT, ERRMSG])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var>            </td><td valign="top" width="70%">is an <code>INTENT(INOUT)</code> argument and shall be
+nonpolymorphic. If it is allocatable, it shall be allocated; if it is a pointer,
+it shall be associated.  <var>A</var> shall have the same type and type parameters on
+all images of the team; if it is an array, it shall have the same shape on all
+images. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>OPERATOR</var>     </td><td valign="top" width="70%">pure function with two scalar nonallocatable
+arguments, which shall be nonpolymorphic and have the same type and type
+parameters as <var>A</var>.  The function shall return a nonallocatable scalar of
+the same type and type parameters as <var>A</var>.  The function shall be the same on
+all images and with regards to the arguments mathematically commutative and
+associative.  Note that <var>OPERATOR</var> may not be an elemental function, unless
+it is an intrisic function. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>RESULT_IMAGE</var> </td><td valign="top" width="70%">(optional) a scalar integer expression; if
+present, it shall have the same the same value on all images and refer to an
+image of the current team. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STAT</var>         </td><td valign="top" width="70%">(optional) a scalar integer variable
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>ERRMSG</var>       </td><td valign="top" width="70%">(optional) a scalar character variable
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test
+<br>  integer :: val
+<br>  val = this_image ()
+<br>  call co_reduce (val, result_image=1, operator=myprod)
+<br>  if (this_image() == 1) then
+<br>    write(*,*) "Product value", val  ! prints num_images() factorial
+<br>  end if
+<br>contains
+<br>  pure function myprod(a, b)
+<br>    integer, value :: a, b
+<br>    integer :: myprod
+<br>    myprod = a * b
+<br>  end function myprod
+<br>end program test</code>
+     <br>
+
+<h3>Notes</h3>
+While the rules permit in principle an intrinsic function, none of the
+intrinsics in the standard fulfill the criteria of having a specific
+function, which takes two arguments of the same type and returning that
+type as result.
+
+     <br>
+
+<h3>Standard</h3>
+Technical Specification (TS) 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+Collective subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="CO_005fMIN.html#CO_005fMIN">CO_MIN</a>, <a href="CO_005fMAX.html#CO_005fMAX">CO_MAX</a>, <a href="CO_005fSUM.html#CO_005fSUM">CO_SUM</a>, <a href="CO_005fBROADCAST.html#CO_005fBROADCAST">CO_BROADCAST</a>

@@ -1,0 +1,35 @@
+<code>UMASK</code> — Set the file creation mask
+
+<h3>Description</h3>
+Sets the file creation mask to <var>MASK</var>. If called as a function, it
+returns the old value. If called as a subroutine and argument <var>OLD</var>
+if it is supplied, it is set to the old value. See <code>umask(2)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL UMASK(MASK [, OLD])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>OLD = UMASK(MASK)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>MASK</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>OLD</var> </td><td valign="top" width="70%">(Optional) Shall be a scalar of type
+<code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+   </p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>

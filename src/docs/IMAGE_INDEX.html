@@ -1,0 +1,38 @@
+<code>IMAGE_INDEX</code> — Function that converts a cosubscript to an image index
+
+<h3>Description</h3>
+Returns the image index belonging to a cosubscript.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = IMAGE_INDEX(COARRAY, SUB)</code>
+
+     <br>
+
+<h3>Return value</h3>
+Scalar default integer with the value of the image index which corresponds
+to the cosubscripts. For invalid cosubscripts the result is zero.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>INTEGER :: array[2,-1:4,8,*]
+<br>! Writes  28 (or 0 if there are fewer than 28 images)
+<br>WRITE (*,*) IMAGE_INDEX (array, [2,0,3,1])</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function.
+
+     <br>
+
+<h3>See also</h3>
+<a href="THIS_005fIMAGE.html#THIS_005fIMAGE">THIS_IMAGE</a>, <a href="NUM_005fIMAGES.html#NUM_005fIMAGES">NUM_IMAGES</a>

@@ -1,0 +1,48 @@
+<code>SELECTED_INT_KIND</code> — Choose integer kind
+
+<h3>Description</h3>
+<code>SELECTED_INT_KIND(R)</code> return the kind value of the smallest integer
+type that can represent all values ranging from -10^R (exclusive)
+to 10^R (exclusive). If there is no integer kind that accommodates
+this range, <code>SELECTED_INT_KIND</code> returns -1.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SELECTED_INT_KIND(R)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>R</var> </td><td valign="top" width="70%">Shall be a scalar and of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program large_integers
+<br>  integer,parameter :: k5 = selected_int_kind(5)
+<br>  integer,parameter :: k15 = selected_int_kind(15)
+<br>  integer(kind=k5) :: i5
+<br>  integer(kind=k15) :: i15
+<br>
+<br>  print *, huge(i5), huge(i15)
+<br>
+<br>  ! The following inequalities are always true
+<br>  print *, huge(i5) &gt;= 10_k5**5-1
+<br>  print *, huge(i15) &gt;= 10_k15**15-1
+<br>end program large_integers</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>

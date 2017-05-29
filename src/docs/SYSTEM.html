@@ -1,0 +1,47 @@
+<code>SYSTEM</code> — Execute a shell command
+
+<h3>Description</h3>
+Passes the command <var>COMMAND</var> to a shell (see <code>system(3)</code>). If
+argument <var>STATUS</var> is present, it contains the value returned by
+<code>system(3)</code>, which is presumably 0 if the shell command succeeded. 
+Note that which shell is used to invoke the command is system-dependent
+and environment-dependent.
+
+     <p>This intrinsic is provided in both subroutine and function forms;
+however, only one form can be used in any given program unit.
+
+     </p><p>Note that the <code>system</code> function need not be thread-safe. It is
+the responsibility of the user to ensure that <code>system</code> is not
+called concurrently.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL SYSTEM(COMMAND [, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = SYSTEM(COMMAND)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>COMMAND</var> </td><td valign="top" width="70%">Shall be of default <code>CHARACTER</code> type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var>  </td><td valign="top" width="70%">(Optional) Shall be of default <code>INTEGER</code> type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="EXECUTE_005fCOMMAND_005fLINE.html#EXECUTE_005fCOMMAND_005fLINE">EXECUTE_COMMAND_LINE</a>, which is part of the Fortran 2008 standard
+and should considered in new code for future portability. 

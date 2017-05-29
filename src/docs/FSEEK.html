@@ -1,0 +1,80 @@
+<code>FSEEK</code> — Low level file positioning subroutine
+
+<h3>Description</h3>
+Moves <var>UNIT</var> to the specified <var>OFFSET</var>. If <var>WHENCE</var>
+is set to 0, the <var>OFFSET</var> is taken as an absolute value <code>SEEK_SET</code>,
+if set to 1, <var>OFFSET</var> is taken to be relative to the current position
+<code>SEEK_CUR</code>, and if set to 2 relative to the end of the file <code>SEEK_END</code>. 
+On error, <var>STATUS</var> is set to a nonzero value. If <var>STATUS</var> the seek
+fails silently.
+
+     <p>This intrinsic routine is not fully backwards compatible with <samp><span class="command">g77</span></samp>. 
+In <samp><span class="command">g77</span></samp>, the <code>FSEEK</code> takes a statement label instead of a
+<var>STATUS</var> variable. If FSEEK is used in old code, change
+     </p><pre class="smallexample">            CALL FSEEK(UNIT, OFFSET, WHENCE, *label)
+</pre>
+     <p>to
+     </p><pre class="smallexample">            INTEGER :: status
+            CALL FSEEK(UNIT, OFFSET, WHENCE, status)
+            IF (status /= 0) GOTO label
+</pre>
+     <p>Please note that GNU Fortran provides the Fortran 2003 Stream facility. 
+Programmers should consider the use of new stream IO feature in new code
+for future portability. See also <a href="Fortran-2003-status.html#Fortran-2003-status">Fortran 2003 status</a>.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>CALL FSEEK(UNIT, OFFSET, WHENCE[, STATUS])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>UNIT</var>   </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>OFFSET</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>WHENCE</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code>. 
+Its value shall be either 0, 1 or 2. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(Optional) shall be a scalar of type
+<code>INTEGER(4)</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_fseek
+<br>  INTEGER, PARAMETER :: SEEK_SET = 0, SEEK_CUR = 1, SEEK_END = 2
+<br>  INTEGER :: fd, offset, ierr
+<br>
+<br>  ierr   = 0
+<br>  offset = 5
+<br>  fd     = 10
+<br>
+<br>  OPEN(UNIT=fd, FILE="fseek.test")
+<br>  CALL FSEEK(fd, offset, SEEK_SET, ierr)  ! move to OFFSET
+<br>  print *, FTELL(fd), ierr
+<br>
+<br>  CALL FSEEK(fd, 0, SEEK_END, ierr)       ! move to end
+<br>  print *, FTELL(fd), ierr
+<br>
+<br>  CALL FSEEK(fd, 0, SEEK_SET, ierr)       ! move to beginning
+<br>  print *, FTELL(fd), ierr
+<br>
+<br>  CLOSE(UNIT=fd)
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="FTELL.html#FTELL">FTELL</a>

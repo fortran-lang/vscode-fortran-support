@@ -1,0 +1,59 @@
+<code>GAMMA</code> — Gamma function
+
+<h3>Description</h3>
+<code>GAMMA(X)</code> computes Gamma (\Gamma) of <var>X</var>. For positive,
+integer values of <var>X</var> the Gamma function simplifies to the factorial
+function \Gamma(x)=(x-1)!.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>X = GAMMA(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Shall be of type <code>REAL</code> and neither zero
+nor a negative integer.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>REAL</code> of the same kind as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_gamma
+<br>  real :: x = 1.0
+<br>  x = gamma(x) ! returns 1.0
+<br>end program test_gamma</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Argument         </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>GAMMA(X)</code>  </td><td valign="top" width="20%"><code>REAL(4) X</code> </td><td valign="top" width="20%"><code>REAL(4)</code>    </td><td valign="top" width="25%">GNU Extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DGAMMA(X)</code> </td><td valign="top" width="20%"><code>REAL(8) X</code> </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">GNU Extension
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+Logarithm of the Gamma function: <a href="LOG_005fGAMMA.html#LOG_005fGAMMA">LOG_GAMMA</a>
+
+   

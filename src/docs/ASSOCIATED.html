@@ -1,0 +1,76 @@
+<code>ASSOCIATED</code> — Status of a pointer or pointer/target pair
+
+<h3>Description</h3>
+<code>ASSOCIATED(POINTER [, TARGET])</code> determines the status of the pointer
+<var>POINTER</var> or if <var>POINTER</var> is associated with the target <var>TARGET</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ASSOCIATED(POINTER [, TARGET])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>POINTER</var> </td><td valign="top" width="70%"><var>POINTER</var> shall have the <code>POINTER</code> attribute
+and it can be of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TARGET</var> </td><td valign="top" width="70%">(Optional) <var>TARGET</var> shall be a pointer or
+a target.  It must have the same type, kind type parameter, and
+array rank as <var>POINTER</var>.
+     <br></td></tr></tbody></table>
+The association status of neither <var>POINTER</var> nor <var>TARGET</var> shall be
+undefined.
+
+     <br></p>
+
+<h3>Return value</h3>
+<code>ASSOCIATED(POINTER)</code> returns a scalar value of type <code>LOGICAL(4)</code>. 
+There are several cases:
+          <dl>
+<dt>(A) When the optional <var>TARGET</var> is not present then</dt><dd><code>ASSOCIATED(POINTER)</code> is true if <var>POINTER</var> is associated with a target; otherwise, it returns false. 
+<br></dd><dt>(B) If <var>TARGET</var> is present and a scalar target, the result is true if</dt><dd><var>TARGET</var> is not a zero-sized storage sequence and the target associated with <var>POINTER</var> occupies the same storage units.  If <var>POINTER</var> is
+disassociated, the result is false. 
+<br></dd><dt>(C) If <var>TARGET</var> is present and an array target, the result is true if</dt><dd><var>TARGET</var> and <var>POINTER</var> have the same shape, are not zero-sized arrays,
+are arrays whose elements are not zero-sized storage sequences, and
+<var>TARGET</var> and <var>POINTER</var> occupy the same storage units in array element
+order. 
+As in case(B), the result is false, if <var>POINTER</var> is disassociated. 
+<br></dd><dt>(D) If <var>TARGET</var> is present and an scalar pointer, the result is true</dt><dd>if <var>TARGET</var> is associated with <var>POINTER</var>, the target associated with
+<var>TARGET</var> are not zero-sized storage sequences and occupy the same storage
+units. 
+The result is false, if either <var>TARGET</var> or <var>POINTER</var> is disassociated. 
+<br></dd><dt>(E) If <var>TARGET</var> is present and an array pointer, the result is true if</dt><dd>target associated with <var>POINTER</var> and the target associated with <var>TARGET</var>
+have the same shape, are not zero-sized arrays, are arrays whose elements are
+not zero-sized storage sequences, and <var>TARGET</var> and <var>POINTER</var> occupy
+the same storage units in array element order. 
+The result is false, if either <var>TARGET</var> or <var>POINTER</var> is disassociated. 
+</dd></dl>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_associated
+<br>   implicit none
+<br>   real, target  :: tgt(2) = (/1., 2./)
+<br>   real, pointer :: ptr(:)
+<br>   ptr =&gt; tgt
+<br>   if (associated(ptr)     .eqv. .false.) call abort
+<br>   if (associated(ptr,tgt) .eqv. .false.) call abort
+<br>end program test_associated</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="NULL.html#NULL">NULL</a>

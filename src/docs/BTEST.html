@@ -1,0 +1,49 @@
+<code>BTEST</code> — Bit test function
+
+<h3>Description</h3>
+<code>BTEST(I,POS)</code> returns logical <code>.TRUE.</code> if the bit at <var>POS</var>
+in <var>I</var> is set.  The counting of the bits starts at 0.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = BTEST(I, POS)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>POS</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>LOGICAL</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_btest
+<br>    integer :: i = 32768 + 1024 + 64
+<br>    integer :: pos
+<br>    logical :: bool
+<br>    do pos=0,16
+<br>        bool = btest(i, pos)
+<br>        print *, pos, bool
+<br>    end do
+<br>end program test_btest</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

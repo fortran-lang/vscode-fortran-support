@@ -1,0 +1,52 @@
+<code>SIZE</code> — Determine the size of an array
+
+<h3>Description</h3>
+Determine the extent of <var>ARRAY</var> along a specified dimension <var>DIM</var>,
+or the total number of elements in <var>ARRAY</var> if <var>DIM</var> is absent.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = SIZE(ARRAY[, DIM [, KIND]])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var> </td><td valign="top" width="70%">Shall be an array of any type. If <var>ARRAY</var> is
+a pointer it must be associated and allocatable arrays must be allocated. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>DIM</var>   </td><td valign="top" width="70%">(Optional) shall be a scalar of type <code>INTEGER</code>
+and its value shall be in the range from 1 to n, where n equals the rank
+of <var>ARRAY</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of kind <var>KIND</var>. If
+<var>KIND</var> is absent, the return value is of default integer kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_size
+<br>  WRITE(*,*) SIZE((/ 1, 2 /))    ! 2
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later, with <var>KIND</var> argument Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="SHAPE.html#SHAPE">SHAPE</a>, <a href="RESHAPE.html#RESHAPE">RESHAPE</a>

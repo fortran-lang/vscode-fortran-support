@@ -1,0 +1,68 @@
+<code>ACCESS</code> — Checks file access modes
+
+<h3>Description</h3>
+<code>ACCESS(NAME, MODE)</code> checks whether the file <var>NAME</var>
+exists, is readable, writable or executable. Except for the
+executable check, <code>ACCESS</code> can be replaced by
+Fortran 95's <code>INQUIRE</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = ACCESS(NAME, MODE)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>NAME</var> </td><td valign="top" width="70%">Scalar <code>CHARACTER</code> of default kind with the
+file name. Tailing blank are ignored unless the character <code>achar(0)</code>
+is present, then all characters up to and excluding <code>achar(0)</code> are
+used as file name. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MODE</var> </td><td valign="top" width="70%">Scalar <code>CHARACTER</code> of default kind with the
+file access mode, may be any concatenation of <code>"r"</code> (readable),
+<code>"w"</code> (writable) and <code>"x"</code> (executable), or <code>" "</code> to check
+for existence.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns a scalar <code>INTEGER</code>, which is <code>0</code> if the file is
+accessible in the given mode; otherwise or if an invalid argument
+has been given for <code>MODE</code> the value <code>1</code> is returned.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program access_test
+<br>  implicit none
+<br>  character(len=*), parameter :: file  = 'test.dat'
+<br>  character(len=*), parameter :: file2 = 'test.dat  '//achar(0)
+<br>  if(access(file,' ') == 0) print *, trim(file),' is exists'
+<br>  if(access(file,'r') == 0) print *, trim(file),' is readable'
+<br>  if(access(file,'w') == 0) print *, trim(file),' is writable'
+<br>  if(access(file,'x') == 0) print *, trim(file),' is executable'
+<br>  if(access(file2,'rwx') == 0) &amp;
+<br>    print *, trim(file2),' is readable, writable and executable'
+<br>end program access_test</code>
+     <br>
+
+<h3>Specific names</h3>
+
+
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+

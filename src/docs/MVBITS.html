@@ -1,0 +1,41 @@
+<code>MVBITS</code> — Move bits from one integer to another
+
+<h3>Description</h3>
+Moves <var>LEN</var> bits from positions <var>FROMPOS</var> through
+<code>FROMPOS+LEN-1</code> of <var>FROM</var> to positions <var>TOPOS</var> through
+<code>TOPOS+LEN-1</code> of <var>TO</var>. The portion of argument <var>TO</var> not
+affected by the movement of bits is unchanged. The values of
+<code>FROMPOS+LEN-1</code> and <code>TOPOS+LEN-1</code> must be less than
+<code>BIT_SIZE(FROM)</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL MVBITS(FROM, FROMPOS, LEN, TO, TOPOS)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>FROM</var>    </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>FROMPOS</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>LEN</var>     </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TO</var>      </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>, of the
+same kind as <var>FROM</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>TOPOS</var>   </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="IBCLR.html#IBCLR">IBCLR</a>, <a href="IBSET.html#IBSET">IBSET</a>, <a href="IBITS.html#IBITS">IBITS</a>, <a href="IAND.html#IAND">IAND</a>, <a href="IOR.html#IOR">IOR</a>, <a href="IEOR.html#IEOR">IEOR</a>

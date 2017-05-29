@@ -1,0 +1,38 @@
+<code>MERGE</code> — Merge variables
+
+<h3>Description</h3>
+Select values from two arrays according to a logical mask.  The result
+is equal to <var>TSOURCE</var> if <var>MASK</var> is <code>.TRUE.</code>, or equal to
+<var>FSOURCE</var> if it is <code>.FALSE.</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MERGE(TSOURCE, FSOURCE, MASK)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>TSOURCE</var> </td><td valign="top" width="70%">May be of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>FSOURCE</var> </td><td valign="top" width="70%">Shall be of the same type and type parameters
+as <var>TSOURCE</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>MASK</var>    </td><td valign="top" width="70%">Shall be of type <code>LOGICAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is of the same type and type parameters as <var>TSOURCE</var>.
+
+   
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

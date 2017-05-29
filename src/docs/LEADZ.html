@@ -1,0 +1,46 @@
+<code>LEADZ</code> — Number of leading zero bits of an integer
+
+<h3>Description</h3>
+<code>LEADZ</code> returns the number of leading zero bits of an integer.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = LEADZ(I)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>I</var> </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The type of the return value is the default <code>INTEGER</code>. 
+If all the bits of <code>I</code> are zero, the result value is <code>BIT_SIZE(I)</code>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_leadz
+<br>  WRITE (*,*) BIT_SIZE(1)  ! prints 32
+<br>  WRITE (*,*) LEADZ(1)     ! prints 31
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="BIT_005fSIZE.html#BIT_005fSIZE">BIT_SIZE</a>, <a href="TRAILZ.html#TRAILZ">TRAILZ</a>, <a href="POPCNT.html#POPCNT">POPCNT</a>, <a href="POPPAR.html#POPPAR">POPPAR</a>

@@ -1,0 +1,63 @@
+<code>FDATE</code> — Get the current time as a string
+
+<h3>Description</h3>
+<code>FDATE(DATE)</code> returns the current date (using the same format as
+<code>CTIME</code>) in <var>DATE</var>. It is equivalent to <code>CALL CTIME(DATE,
+TIME())</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL FDATE(DATE)</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>DATE = FDATE()</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>DATE</var></td><td valign="top" width="70%">The type shall be of type <code>CHARACTER</code> of the
+default kind. It is an <code>INTENT(OUT)</code> argument.  If the length of
+this variable is too short for the date and time string to fit
+completely, it will be blank on procedure return.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The current date and time as a string.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_fdate
+<br>    integer(8) :: i, j
+<br>    character(len=30) :: date
+<br>    call fdate(date)
+<br>    print *, 'Program started on ', date
+<br>    do i = 1, 100000000 ! Just a delay
+<br>        j = i * i - i
+<br>    end do
+<br>    call fdate(date)
+<br>    print *, 'Program ended on ', date
+<br>end program test_fdate</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>, <a href="CTIME.html#CTIME">CTIME</a>

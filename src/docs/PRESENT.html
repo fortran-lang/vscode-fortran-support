@@ -1,0 +1,49 @@
+<code>PRESENT</code> — Determine whether an optional dummy argument is specified
+
+<h3>Description</h3>
+Determines whether an optional dummy argument is present.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = PRESENT(A)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">May be of any type and may be a pointer, scalar or array
+value, or a dummy procedure. It shall be the name of an optional dummy argument
+accessible within the current subroutine or function.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Returns either <code>TRUE</code> if the optional argument <var>A</var> is present, or
+<code>FALSE</code> otherwise.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_present
+<br>  WRITE(*,*) f(), f(42)      ! "F T"
+<br>CONTAINS
+<br>  LOGICAL FUNCTION f(x)
+<br>    INTEGER, INTENT(IN), OPTIONAL :: x
+<br>    f = PRESENT(x)
+<br>  END FUNCTION
+<br>END PROGRAM</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

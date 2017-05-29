@@ -1,0 +1,40 @@
+<code>LOGICAL</code> — Convert to logical type
+
+<h3>Description</h3>
+Converts one kind of <code>LOGICAL</code> variable to another.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = LOGICAL(L [, KIND])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>L</var>    </td><td valign="top" width="70%">The type shall be <code>LOGICAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is a <code>LOGICAL</code> value equal to <var>L</var>, with a
+kind corresponding to <var>KIND</var>, or of the default logical kind if
+<var>KIND</var> is not given.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="INT.html#INT">INT</a>, <a href="REAL.html#REAL">REAL</a>, <a href="CMPLX.html#CMPLX">CMPLX</a>

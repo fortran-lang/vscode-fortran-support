@@ -1,0 +1,49 @@
+<code>GETLOG</code> — Get login name
+
+<h3>Description</h3>
+Gets the username under which the program is running.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL GETLOG(C)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>C</var> </td><td valign="top" width="70%">Shall be of type <code>CHARACTER</code> and of default kind.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+Stores the current user name in <var>LOGIN</var>.  (On systems where POSIX
+functions <code>geteuid</code> and <code>getpwuid</code> are not available, and
+the <code>getlogin</code> function is not implemented either, this will
+return a blank string.)
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM TEST_GETLOG
+<br>  CHARACTER(32) :: login
+<br>  CALL GETLOG(login)
+<br>  WRITE(*,*) login
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="GETUID.html#GETUID">GETUID</a>

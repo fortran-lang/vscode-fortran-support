@@ -1,0 +1,47 @@
+<code>COMMAND_ARGUMENT_COUNT</code> — Get number of command line arguments
+
+<h3>Description</h3>
+<code>COMMAND_ARGUMENT_COUNT</code> returns the number of arguments passed on the
+command line when the containing program was invoked.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = COMMAND_ARGUMENT_COUNT()</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%">None
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is an <code>INTEGER</code> of default kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_command_argument_count
+<br>    integer :: count
+<br>    count = command_argument_count()
+<br>    print *, count
+<br>end program test_command_argument_count</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>
+
+<h3>See also</h3>
+<a href="GET_005fCOMMAND.html#GET_005fCOMMAND">GET_COMMAND</a>, <a href="GET_005fCOMMAND_005fARGUMENT.html#GET_005fCOMMAND_005fARGUMENT">GET_COMMAND_ARGUMENT</a>

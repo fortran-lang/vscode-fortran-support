@@ -1,0 +1,46 @@
+<code>LOC</code> — Returns the address of a variable
+
+<h3>Description</h3>
+<code>LOC(X)</code> returns the address of <var>X</var> as an integer.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = LOC(X)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Variable of any type.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code>, with a <code>KIND</code>
+corresponding to the size (in bytes) of a memory address on the target
+machine.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_loc
+<br>  integer :: i
+<br>  real :: r
+<br>  i = loc(r)
+<br>  print *, i
+<br>end program test_loc</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

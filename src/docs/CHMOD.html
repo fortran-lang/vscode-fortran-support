@@ -1,0 +1,71 @@
+<code>CHMOD</code> — Change access permissions of files
+
+<h3>Description</h3>
+<code>CHMOD</code> changes the permissions of a file.
+
+     <p>This intrinsic is provided in both subroutine and function forms; however,
+only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL CHMOD(NAME, MODE[, STATUS])</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>STATUS = CHMOD(NAME, MODE)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary="">
+<tbody><tr align="left"><td valign="top" width="15%"><var>NAME</var> </td><td valign="top" width="70%">Scalar <code>CHARACTER</code> of default kind with the
+file name. Trailing blanks are ignored unless the character
+<code>achar(0)</code> is present, then all characters up to and excluding
+<code>achar(0)</code> are used as the file name.
+
+     <p><br></p></td></tr><tr align="left"><td valign="top" width="15%"><var>MODE</var> </td><td valign="top" width="70%">Scalar <code>CHARACTER</code> of default kind giving the
+file permission. <var>MODE</var> uses the same syntax as the <code>chmod</code> utility
+as defined by the POSIX standard. The argument shall either be a string of
+a nonnegative octal number or a symbolic mode.
+
+     <p><br></p></td></tr><tr align="left"><td valign="top" width="15%"><var>STATUS</var> </td><td valign="top" width="70%">(optional) scalar <code>INTEGER</code>, which is
+<code>0</code> on success and nonzero otherwise.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+In either syntax, <var>STATUS</var> is set to <code>0</code> on success and nonzero
+otherwise.
+
+     <br>
+
+<h3>Example</h3>
+<code>CHMOD</code> as subroutine
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program chmod_test
+<br>  implicit none
+<br>  integer :: status
+<br>  call chmod('test.dat','u+x',status)
+<br>  print *, 'Status: ', status
+<br>end program chmod_test</code>
+     <p><code>CHMOD</code> as function:
+     </p><pre class="smallexample">          program chmod_test
+            implicit none
+            integer :: status
+            status = chmod('test.dat','u+x')
+            print *, 'Status: ', status
+          end program chmod_test
+</pre>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>

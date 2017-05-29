@@ -1,0 +1,53 @@
+<code>EVENT_QUERY</code> — Query whether a coarray event has occurred
+
+<h3>Description</h3>
+<code>EVENT_QUERY</code> assignes the number of events to <var>COUNT</var> which have been
+posted to the <var>EVENT</var> variable and not yet been removed by calling
+<code>EVENT WAIT</code>. When <var>STAT</var> is present and the invokation was successful,
+it is assigned the value 0. If it is present and the invokation has failed,
+it is assigned a positive value and <var>COUNT</var> is assigned the value -1.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL EVENT_QUERY (EVENT, COUNT [, STAT])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>EVENT</var>  </td><td valign="top" width="70%">(intent(IN)) Scalar of type <code>EVENT_TYPE</code>,
+defined in <code>ISO_FORTRAN_ENV</code>; shall not be coindexed. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>COUNT</var>  </td><td valign="top" width="70%">(intent(out))Scalar integer with at least the
+precision of default integer. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>STAT</var>   </td><td valign="top" width="70%">(optional) Scalar default-kind integer variable.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program atomic
+<br>  use iso_fortran_env
+<br>  implicit none
+<br>  type(event_type) :: event_value_has_been_set[*]
+<br>  integer :: cnt
+<br>  if (this_image() == 1) then
+<br>    call event_query (event_value_has_been_set, cnt)
+<br>    if (cnt &gt; 0) write(*,*) "Value has been set"
+<br>  elseif (this_image() == 2) then
+<br>    event post (event_value_has_been_set[1])
+<br>  end if
+<br>end program atomic</code>
+     
+
+<h3>Standard</h3>
+TS 18508 or later
+
+     <br>
+
+<h3>Class</h3>
+ subroutine
+
+     <br>

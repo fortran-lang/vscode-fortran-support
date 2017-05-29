@@ -1,0 +1,67 @@
+<code>MALLOC</code> — Allocate dynamic memory
+
+<h3>Description</h3>
+<code>MALLOC(SIZE)</code> allocates <var>SIZE</var> bytes of dynamic memory and
+returns the address of the allocated memory. The <code>MALLOC</code> intrinsic
+is an extension intended to be used with Cray pointers, and is provided
+in GNU Fortran to allow the user to compile legacy code. For new code
+using Fortran 95 pointers, the memory allocation intrinsic is
+<code>ALLOCATE</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>PTR = MALLOC(SIZE)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SIZE</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER(K)</code>, with <var>K</var> such that
+variables of type <code>INTEGER(K)</code> have the same size as
+C pointers (<code>sizeof(void *)</code>).
+
+     <br>
+
+<h3>Example</h3>
+The following example demonstrates the use of <code>MALLOC</code> and
+<code>FREE</code> with Cray pointers.
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_malloc
+<br>  implicit none
+<br>  integer i
+<br>  real*8 x(*), z
+<br>  pointer(ptr_x,x)
+<br>
+<br>  ptr_x = malloc(20*8)
+<br>  do i = 1, 20
+<br>    x(i) = sqrt(1.0d0 / i)
+<br>  end do
+<br>  z = 0
+<br>  do i = 1, 20
+<br>    z = z + x(i)
+<br>    print *, z
+<br>  end do
+<br>  call free(ptr_x)
+<br>end program test_malloc</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Function
+
+     <br>
+
+<h3>See also</h3>
+<a href="FREE.html#FREE">FREE</a>

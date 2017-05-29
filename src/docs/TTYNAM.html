@@ -1,0 +1,50 @@
+<code>TTYNAM</code> — Get the name of a terminal device.
+
+<h3>Description</h3>
+Get the name of a terminal device. For more information,
+see <code>ttyname(3)</code>.
+
+     <p>This intrinsic is provided in both subroutine and function forms;
+however, only one form can be used in any given program unit.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>CALL TTYNAM(UNIT, NAME)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>NAME = TTYNAM(UNIT)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>UNIT</var> </td><td valign="top" width="70%">Shall be a scalar <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>NAME</var> </td><td valign="top" width="70%">Shall be of type <code>CHARACTER</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_ttynam
+<br>  INTEGER :: unit
+<br>  DO unit = 1, 10
+<br>    IF (isatty(unit=unit)) write(*,*) ttynam(unit)
+<br>  END DO
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine, function
+
+     <br>
+
+<h3>See also</h3>
+<a href="ISATTY.html#ISATTY">ISATTY</a>

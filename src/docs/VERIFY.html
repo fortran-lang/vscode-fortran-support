@@ -1,0 +1,60 @@
+<code>VERIFY</code> — Scan a string for characters not a given set
+
+<h3>Description</h3>
+Verifies that all the characters in <var>STRING</var> belong to the set of
+characters in <var>SET</var>.
+
+     <p>If <var>BACK</var> is either absent or equals <code>FALSE</code>, this function
+returns the position of the leftmost character of <var>STRING</var> that is
+not in <var>SET</var>. If <var>BACK</var> equals <code>TRUE</code>, the rightmost
+position is returned. If all characters of <var>STRING</var> are found in
+<var>SET</var>, the result is zero.
+
+     <br></p>
+
+<h3>Syntax</h3>
+<code>RESULT = VERIFY(STRING, SET[, BACK [, KIND]])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>STRING</var> </td><td valign="top" width="70%">Shall be of type <code>CHARACTER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SET</var>    </td><td valign="top" width="70%">Shall be of type <code>CHARACTER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>BACK</var>   </td><td valign="top" width="70%">(Optional) shall be of type <code>LOGICAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var>   </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>INTEGER</code> and of kind <var>KIND</var>. If
+<var>KIND</var> is absent, the return value is of default integer kind.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_verify
+<br>  WRITE(*,*) VERIFY("FORTRAN", "AO")           ! 1, found 'F'
+<br>  WRITE(*,*) VERIFY("FORTRAN", "FOO")          ! 3, found 'R'
+<br>  WRITE(*,*) VERIFY("FORTRAN", "C++")          ! 1, found 'F'
+<br>  WRITE(*,*) VERIFY("FORTRAN", "C++", .TRUE.)  ! 7, found 'N'
+<br>  WRITE(*,*) VERIFY("FORTRAN", "FORTRAN")      ! 0' found none
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later, with <var>KIND</var> argument Fortran 2003 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="SCAN.html#SCAN">SCAN</a>, <a href="INDEX-intrinsic.html#INDEX-intrinsic">INDEX intrinsic</a>

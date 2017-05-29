@@ -1,0 +1,74 @@
+<code>MOD</code> — Remainder function
+
+<h3>Description</h3>
+<code>MOD(A,P)</code> computes the remainder of the division of A by P.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = MOD(A, P)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>A</var> </td><td valign="top" width="70%">Shall be a scalar of type <code>INTEGER</code> or <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>P</var> </td><td valign="top" width="70%">Shall be a scalar of the same type and kind as <var>A</var>
+and not equal to zero.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is the result of <code>A - (INT(A/P) * P)</code>. The type
+and kind of the return value is the same as that of the arguments. The
+returned value has the same sign as A and a magnitude less than the
+magnitude of P.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_mod
+<br>  print *, mod(17,3)
+<br>  print *, mod(17.5,5.5)
+<br>  print *, mod(17.5d0,5.5)
+<br>  print *, mod(17.5,5.5d0)
+<br>
+<br>  print *, mod(-17,3)
+<br>  print *, mod(-17.5,5.5)
+<br>  print *, mod(-17.5d0,5.5)
+<br>  print *, mod(-17.5,5.5d0)
+<br>
+<br>  print *, mod(17,-3)
+<br>  print *, mod(17.5,-5.5)
+<br>  print *, mod(17.5d0,-5.5)
+<br>  print *, mod(17.5,-5.5d0)
+<br>end program test_mod</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name             </td><td valign="top" width="20%">Arguments          </td><td valign="top" width="20%">Return type    </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>MOD(A,P)</code>  </td><td valign="top" width="20%"><code>INTEGER A,P</code> </td><td valign="top" width="20%"><code>INTEGER</code> </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>AMOD(A,P)</code> </td><td valign="top" width="20%"><code>REAL(4) A,P</code> </td><td valign="top" width="20%"><code>REAL(4)</code> </td><td valign="top" width="25%">Fortran 95 and later
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DMOD(A,P)</code> </td><td valign="top" width="20%"><code>REAL(8) A,P</code> </td><td valign="top" width="20%"><code>REAL(8)</code> </td><td valign="top" width="25%">Fortran 95 and later
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="MODULO.html#MODULO">MODULO</a>
+
+   

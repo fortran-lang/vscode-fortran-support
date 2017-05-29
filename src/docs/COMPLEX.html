@@ -1,0 +1,55 @@
+<code>COMPLEX</code> — Complex conversion function
+
+<h3>Description</h3>
+<code>COMPLEX(X, Y)</code> returns a complex number where <var>X</var> is converted
+to the real component and <var>Y</var> is converted to the imaginary
+component.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = COMPLEX(X, Y)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type may be <code>INTEGER</code> or <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">The type may be <code>INTEGER</code> or <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+If <var>X</var> and <var>Y</var> are both of <code>INTEGER</code> type, then the return
+value is of default <code>COMPLEX</code> type.
+
+     <p>If <var>X</var> and <var>Y</var> are of <code>REAL</code> type, or one is of <code>REAL</code>
+type and one is of <code>INTEGER</code> type, then the return value is of
+<code>COMPLEX</code> type with a kind equal to that of the <code>REAL</code>
+argument with the highest precision.
+
+     <br></p>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_complex
+<br>    integer :: i = 42
+<br>    real :: x = 3.14
+<br>    print *, complex(i, x)
+<br>end program test_complex</code>
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="CMPLX.html#CMPLX">CMPLX</a>

@@ -1,0 +1,46 @@
+<code>FREE</code> — Frees memory
+
+<h3>Description</h3>
+Frees memory previously allocated by <code>MALLOC</code>. The <code>FREE</code>
+intrinsic is an extension intended to be used with Cray pointers, and is
+provided in GNU Fortran to allow user to compile legacy code. For
+new code using Fortran 95 pointers, the memory de-allocation intrinsic is
+<code>DEALLOCATE</code>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>CALL FREE(PTR)</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>PTR</var> </td><td valign="top" width="70%">The type shall be <code>INTEGER</code>. It represents the
+location of the memory that should be de-allocated.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+None
+
+     <br>
+
+<h3>Example</h3>
+See <code>MALLOC</code> for an example.
+
+     <br>
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Subroutine
+
+     <br>
+
+<h3>See also</h3>
+<a href="MALLOC.html#MALLOC">MALLOC</a>

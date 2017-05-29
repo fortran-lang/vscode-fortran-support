@@ -1,0 +1,72 @@
+<code>BESSEL_JN</code> — Bessel function of the first kind
+
+<h3>Description</h3>
+<code>BESSEL_JN(N, X)</code> computes the Bessel function of the first kind of
+order <var>N</var> of <var>X</var>. This function is available under the name
+<code>BESJN</code> as a GNU extension.  If <var>N</var> and <var>X</var> are arrays,
+their ranks and shapes shall conform.
+
+     <p><code>BESSEL_JN(N1, N2, X)</code> returns an array with the Bessel functions
+of the first kind of the orders <var>N1</var> to <var>N2</var>.
+
+     <br></p>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = BESSEL_JN(N, X)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = BESSEL_JN(N1, N2, X)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>N</var> </td><td valign="top" width="70%">Shall be a scalar or an array of type  <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>N1</var> </td><td valign="top" width="70%">Shall be a non-negative scalar of type  <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>N2</var> </td><td valign="top" width="70%">Shall be a non-negative scalar of type  <code>INTEGER</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">Shall be a scalar or an array of type  <code>REAL</code>;
+for <code>BESSEL_JN(N1, N2, X)</code> it shall be scalar.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is a scalar of type <code>REAL</code>. It has the same
+kind as <var>X</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_besjn
+<br>  real(8) :: x = 1.0_8
+<br>  x = bessel_jn(5,x)
+<br>end program test_besjn</code>
+     <br>
+
+<h3>Specific names</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="20%">Name                </td><td valign="top" width="20%">Argument            </td><td valign="top" width="20%">Return type       </td><td valign="top" width="25%">Standard
+<br></td></tr><tr align="left"><td valign="top" width="20%"><code>DBESJN(N, X)</code> </td><td valign="top" width="20%"><code>INTEGER N</code>    </td><td valign="top" width="20%"><code>REAL(8)</code>    </td><td valign="top" width="25%">GNU extension
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="20%"><code>REAL(8) X</code>    </td><td valign="top" width="20%"></td><td valign="top" width="25%">
+     <br></td></tr></tbody></table>
+</p>
+
+<h3>Notes</h3>
+The transformational function uses a recurrence algorithm which might,
+for some values of <var>X</var>, lead to different results than calls to
+the elemental function.
+
+     <br>
+
+<h3>Standard</h3>
+Fortran 2008 and later, negative <var>N</var> is allowed as GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function, except for the transformational function
+<code>BESSEL_JN(N1, N2, X)</code>
+
+     <br>

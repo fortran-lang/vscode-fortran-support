@@ -1,0 +1,58 @@
+<code>RESHAPE</code> — Function to reshape an array
+
+<h3>Description</h3>
+Reshapes <var>SOURCE</var> to correspond to <var>SHAPE</var>. If necessary,
+the new array may be padded with elements from <var>PAD</var> or permuted
+as defined by <var>ORDER</var>.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = RESHAPE(SOURCE, SHAPE[, PAD, ORDER])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>SOURCE</var> </td><td valign="top" width="70%">Shall be an array of any type. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SHAPE</var>  </td><td valign="top" width="70%">Shall be of type <code>INTEGER</code> and an
+array of rank one. Its values must be positive or zero. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>PAD</var>    </td><td valign="top" width="70%">(Optional) shall be an array of the same
+type as <var>SOURCE</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>ORDER</var>  </td><td valign="top" width="70%">(Optional) shall be of type <code>INTEGER</code>
+and an array of the same shape as <var>SHAPE</var>. Its values shall
+be a permutation of the numbers from 1 to n, where n is the size of
+<var>SHAPE</var>. If <var>ORDER</var> is absent, the natural ordering shall
+be assumed.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The result is an array of shape <var>SHAPE</var> with the same type as
+<var>SOURCE</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>PROGRAM test_reshape
+<br>  INTEGER, DIMENSION(4) :: x
+<br>  WRITE(*,*) SHAPE(x)                       ! prints "4"
+<br>  WRITE(*,*) SHAPE(RESHAPE(x, (/2, 2/)))    ! prints "2 2"
+<br>END PROGRAM</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 95 and later
+
+     <br>
+
+<h3>Class</h3>
+Transformational function
+
+     <br>
+
+<h3>See also</h3>
+<a href="SHAPE.html#SHAPE">SHAPE</a>

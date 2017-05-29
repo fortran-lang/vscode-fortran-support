@@ -1,0 +1,54 @@
+<code>DCMPLX</code> — Double complex conversion function
+
+<h3>Description</h3>
+<code>DCMPLX(X [,Y])</code> returns a double complex number where <var>X</var> is
+converted to the real component.  If <var>Y</var> is present it is converted to the
+imaginary component.  If <var>Y</var> is not present then the imaginary component is
+set to 0.0.  If <var>X</var> is complex then <var>Y</var> must not be present.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = DCMPLX(X [, Y])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type may be <code>INTEGER</code>, <code>REAL</code>,
+or <code>COMPLEX</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">(Optional if <var>X</var> is not <code>COMPLEX</code>.) May be
+<code>INTEGER</code> or <code>REAL</code>.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of type <code>COMPLEX(8)</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_dcmplx
+<br>    integer :: i = 42
+<br>    real :: x = 3.14
+<br>    complex :: z
+<br>    z = cmplx(i, x)
+<br>    print *, dcmplx(i)
+<br>    print *, dcmplx(x)
+<br>    print *, dcmplx(z)
+<br>    print *, dcmplx(x,i)
+<br>end program test_dcmplx</code>
+     
+
+<h3>Standard</h3>
+GNU extension
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>

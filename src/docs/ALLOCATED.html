@@ -1,0 +1,51 @@
+<code>ALLOCATED</code> — Status of an allocatable entity
+
+<h3>Description</h3>
+<code>ALLOCATED(ARRAY)</code> and <code>ALLOCATED(SCALAR)</code> check the allocation
+status of <var>ARRAY</var> and <var>SCALAR</var>, respectively.
+
+     <br>
+
+<h3>Syntax</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="80%"><code>RESULT = ALLOCATED(ARRAY)</code>
+<br></td></tr><tr align="left"><td valign="top" width="80%"><code>RESULT = ALLOCATED(SCALAR)</code>
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>ARRAY</var>    </td><td valign="top" width="70%">The argument shall be an <code>ALLOCATABLE</code> array. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>SCALAR</var>   </td><td valign="top" width="70%">The argument shall be an <code>ALLOCATABLE</code> scalar.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is a scalar <code>LOGICAL</code> with the default logical
+kind type parameter.  If the argument is allocated, then the result is
+<code>.TRUE.</code>; otherwise, it returns <code>.FALSE.</code>
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_allocated
+<br>  integer :: i = 4
+<br>  real(4), allocatable :: x(:)
+<br>  if (.not. allocated(x)) allocate(x(i))
+<br>end program test_allocated</code>
+     
+
+<h3>Standard</h3>
+Fortran 95 and later.  Note, the <code>SCALAR=</code> keyword and allocatable
+scalar entities are available in Fortran 2003 and later.
+
+     <br>
+
+<h3>Class</h3>
+Inquiry function
+
+     <br>

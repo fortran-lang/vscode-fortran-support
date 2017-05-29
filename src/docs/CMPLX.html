@@ -1,0 +1,59 @@
+<code>CMPLX</code> — Complex conversion function
+
+<h3>Description</h3>
+<code>CMPLX(X [, Y [, KIND]])</code> returns a complex number where <var>X</var> is converted to
+the real component.  If <var>Y</var> is present it is converted to the imaginary
+component.  If <var>Y</var> is not present then the imaginary component is set to
+0.0.  If <var>X</var> is complex then <var>Y</var> must not be present.
+
+     <br>
+
+<h3>Syntax</h3>
+<code>RESULT = CMPLX(X [, Y [, KIND]])</code>
+
+     <br>
+
+<h3>Arguments</h3>
+
+     <p><table summary=""><tbody><tr align="left"><td valign="top" width="15%"><var>X</var> </td><td valign="top" width="70%">The type may be <code>INTEGER</code>, <code>REAL</code>,
+or <code>COMPLEX</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>Y</var> </td><td valign="top" width="70%">(Optional; only allowed if <var>X</var> is not
+<code>COMPLEX</code>.)  May be <code>INTEGER</code> or <code>REAL</code>. 
+<br></td></tr><tr align="left"><td valign="top" width="15%"><var>KIND</var> </td><td valign="top" width="70%">(Optional) An <code>INTEGER</code> initialization
+expression indicating the kind parameter of the result.
+     <br></td></tr></tbody></table>
+
+     <br></p>
+
+<h3>Return value</h3>
+The return value is of <code>COMPLEX</code> type, with a kind equal to
+<var>KIND</var> if it is specified.  If <var>KIND</var> is not specified, the
+result is of the default <code>COMPLEX</code> kind, regardless of the kinds of
+<var>X</var> and <var>Y</var>.
+
+     <br>
+
+<h3>Example</h3>
+
+     <code class="smallexample" syntax="Packages/Fortran/grammars/FortranModern.sublime-syntax">
+<br>program test_cmplx
+<br>    integer :: i = 42
+<br>    real :: x = 3.14
+<br>    complex :: z
+<br>    z = cmplx(i, x)
+<br>    print *, z, cmplx(x)
+<br>end program test_cmplx</code>
+     <br>
+
+<h3>Standard</h3>
+Fortran 77 and later
+
+     <br>
+
+<h3>Class</h3>
+Elemental function
+
+     <br>
+
+<h3>See also</h3>
+<a href="COMPLEX.html#COMPLEX">COMPLEX</a>
