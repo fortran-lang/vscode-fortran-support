@@ -29,10 +29,38 @@ export default class FortranHoverProvider {
         let hover = new Hover(this.loadDocumentation(intrinsics[pos]));
         return hover;
     }
-    private loadDocumentation(intrinsic: string):string{
-        
+    private loadDocumentation(intrinsic: string):vscode.MarkedString {
         let docStringBuffer = fs.readFileSync(__dirname + "/../../../src/docs/" + intrinsic + ".html")
-        return docStringBuffer.toString();
+        let docText = docStringBuffer.toString();
+        const codeRegex = /<code>(.+?)<\/code>\n?/g ;
+        const varRegex = /<var>(.+?)<\/var>/g;
+        const spanRegex = /<samp><span class="command">(\w+)<\/span><\/samp>/g;
+        const tableRegex = /<table\s*.*>([\s\w<>\/\W]+?)<\/table>/g;
+        const codeExampleRegex = /<code class="smallexample"[\s\W\w]*?>([\s\W\w<>]*?)<\/code>/g; 
+        const headerRegex = /^ *<h(\d)>(.+?)<\/h\1>\n?/gm;
+        const defListRegex = /<dt>([\w\W]+?)<\/dt><dd>([\w\W]+?)(<br>)?<\/dd>/g;
+
+        docText = docText.replace(varRegex, (match, code:string) => {
+            return "`" + code + "`"; 
+        }).replace(spanRegex, (match,code) => `*${code}*`)
+        .replace(defListRegex, (match,entry, def) => `**${entry}** ${def}\n`)
+        .replace(codeExampleRegex, (match,code) => "```\n" + code + "\n\n```\n")
+        .replace(/<td\s*.*?>([\s\w<>\/\W]+?)<\/td>/g, (match, code) => " | " + code)
+        .replace(/<tr\s*.*?>([\s\w<>\/\W]+?)<\/tr>/g, (match, code) => code + "\n")
+        .replace(/<tbody\s*.*?>([\s\w<>\/\W]+?)<\/tbody>/g, (match, code) => code)
+        .replace(tableRegex, (match, code) => code)
+        .replace(codeRegex, (match, code:string) => {
+            return "`" + code + "`"; 
+        }).replace(/<p>\s*?/g, "\n" )
+        .replace(/<\/p>\s*?/g, "\n" )
+        .replace(headerRegex, (match, h:string,code:string) => {
+            let headerLevel: number = parseInt(h);
+            let header = '#'.repeat(headerLevel);
+            return `${header} ${code}\n`; 
+        });
+        docText = docText.replace(/^ *<br>\n?/gm, '\n').replace(/<\?dl>/g,"");
+        console.log(docText);
+        return docText;
     }
     
 

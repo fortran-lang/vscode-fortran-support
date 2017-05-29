@@ -1,19 +1,18 @@
 # Modern Fortran language support for VSCode
 
-This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and 
-a linting based on gfortran.
-In the future will include autocompletion and documentation support...
+This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran.
+
 ## Features
-vsce publish minor
+
 * Syntax highlighting
 * Code Snippets
+* Documentation on hover for intrisic functions
 * Code linting based on `gfortran` to show errors swiggles in your code
 
 ## Requirements
-
 For the linter to work you need to have `gfortran` on your path, or wherever you configure it to be.
-
-
+## Issues
+Please report any issues and feature request on the github repo [here](https://github.com/krvajalmiguelangel/vscode-fortran-support/issues/new)
 ## Notice
 The syntax highlight support was imported from [TextMate bundle](https://github.com/textmate/fortran.tmbundle)
 
