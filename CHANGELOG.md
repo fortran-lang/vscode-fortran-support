@@ -13,3 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Updated icon for the extension 
 - Fix bug on linter not working
+
+
+## [0.4.4] - 2017-07-03
+### Added 
+- Add support for old fortran languague
+### Fixed 
+- Fix bug #1
