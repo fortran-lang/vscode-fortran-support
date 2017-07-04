@@ -8,9 +8,27 @@ This extension provides support for the Fortran programming language. It include
 * Code Snippets
 * Documentation on hover for intrisic functions
 * Code linting based on `gfortran` to show errors swiggles in your code
+## Settings
+
+You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
+```
+{
+    "fortran.includePath": [
+        "/usr/local/include",
+         "/usr/local"
+    ]
+}
+```
+By default the `gfortran` executable is assumed to be found in the path. In order to use a different one or if it can't be found in the path you can point the extension to use a custom one with the `fortran.gfortranExecutable` setting.
+```
+{
+    "fortran.gfortranExecutable": '/usr/local/bin/gfortran-4.7',
+}
+```
+
 
 ## Snippets
-This are some of the snippets included 
+This is a list of some of the snippets included, if you like to include some additionals snippets please let me know and I will add them.
 #### Program skeleton
 ![program snippet](https://media.giphy.com/media/OYdq9BKYMOOdy/giphy.gif )
 #### Module skeleton
