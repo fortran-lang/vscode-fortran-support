@@ -20,3 +20,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add support for old fortran languague
 ### Fixed 
 - Fix bug #1
+
+## [0.4.5] - 2017-07-04
+### Fixed
+- Fix intrinsic functions docs not loading
+
+
+
