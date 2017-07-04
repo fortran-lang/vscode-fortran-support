@@ -26,7 +26,12 @@ By default the `gfortran` executable is assumed to be found in the path. In orde
     "fortran.gfortranExecutable": '/usr/local/bin/gfortran-4.7',
 }
 ```
-
+If you want to pass extra options to the `gfortran` executable or override the default one, you can use the setting `fortran.linterExtraArgs`. By default `-Wall` is the only option.
+```
+{
+    "fortran.linterExtraArgs": ['-Wall'],
+}
+```
 
 ## Snippets
 This is a list of some of the snippets included, if you like to include some additionals snippets please let me know and I will add them.
