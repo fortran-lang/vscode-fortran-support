@@ -18,7 +18,7 @@ export default class FortranLintingProvider {
 	private diagnosticCollection: vscode.DiagnosticCollection;
 	private doModernFortranLint(textDocument: vscode.TextDocument) {
 		let errorRegex:RegExp = /^([^:]*):([0-9]+):([0-9]+):\n\s(.*)\n.*\n(Error|Warning|Fatal Error):\s(.*)$/gm;
-		console.log(textDocument.languageId);
+		
 		if (textDocument.languageId !== 'fortran90') {
 			return;
 		}
