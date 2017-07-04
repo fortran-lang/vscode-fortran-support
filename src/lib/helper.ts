@@ -19,6 +19,8 @@ export const intrinsics = [
     "SYSTEM_CLOCK", "TAN", "TANH", "THIS_IMAGE", "TIME", "TIME8", "TINY", "TRAILZ", "TRANSFER", "TRANSPOSE", "TRIM", "TTYNAM", "UBOUND", "UCOBOUND", "UMASK", "UNLINK", "UNPACK", "VERIFY", "XOR"];
 
 
+export const FORTRAN_KEYWORDS = ["FUNCTION", "MODULE",  "SUBROUTINE", "CONTAINS", "USE","KIND", "DO", "IF", "ELIF","END", "IMPLICIT"];
+
 export const isIntrinsic = (keyword) => {
     return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
 }
@@ -80,3 +82,15 @@ export const getIncludeParams =  (paths: string[]) => {
 }
 
 
+
+export function isPositionInString(document: vscode.TextDocument, position: vscode.Position): boolean {
+	let lineText = document.lineAt(position.line).text;
+	let lineTillCurrentPosition = lineText.substr(0, position.character);
+
+	// Count the number of double quotes in the line till current position. Ignore escaped double quotes
+	let doubleQuotesCnt = (lineTillCurrentPosition.match(/\"/g) || []).length;
+	let escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\\"/g) || []).length;
+
+	doubleQuotesCnt -= escapedDoubleQuotesCnt;
+	return doubleQuotesCnt % 2 === 1;
+}
