@@ -74,3 +74,9 @@ export const _loadDocString = (keyword:string) => {
     console.log(docText);
     return docText;
 }
+
+export const getIncludeParams =  (paths: string[]) => {
+    return paths.map(path => "-I " + path).join(" ");
+}
+
+

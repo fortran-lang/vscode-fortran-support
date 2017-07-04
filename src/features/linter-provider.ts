@@ -3,6 +3,7 @@
 import * as path from 'path';
 import * as cp from 'child_process';
 import ChildProcess = cp.ChildProcess;
+import { getIncludeParams } from '../lib/helper';
 
 import * as vscode from 'vscode';
 
@@ -25,8 +26,17 @@ export default class FortranLintingProvider {
 		let diagnostics: vscode.Diagnostic[] = [];
 		let options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
 		let args = ['', textDocument.fileName];
-		let childProcess = cp.spawn('gfortran', ['-cpp', '-fsyntax-only', '-Wall','-fdiagnostics-show-option', textDocument.fileName]);
-		// let childProcess = cp.spawn('ps', ['ax']);
+		let includePaths = this.getIncludePaths();
+		let command = this.getGfortranPath();
+
+		let childProcess = cp.spawn(command, [
+			'-cpp', 
+			'-fsyntax-only', 
+			'-Wall',
+			'-fdiagnostics-show-option',
+			getIncludeParams(includePaths), // include paths
+		 	textDocument.fileName]);
+			 
 		if (childProcess.pid) {
 			childProcess.stdout.on('data', (data: Buffer) => {
 				decoded += data;
@@ -55,6 +65,13 @@ export default class FortranLintingProvider {
 			});
 			childProcess.stdout.on('close', code => {
 				console.log(`child process exited with code ${code}`);
+			});
+		}else {
+			childProcess.on('error', (err: any) => {
+				if(err.code === "ENOENT"){
+					vscode.window.showErrorMessage("gfortran can't found on path, update your settings with a proper path or disable the linter.");
+				}
+				
 			});
 		}
 	}
@@ -93,6 +110,17 @@ export default class FortranLintingProvider {
 		this.diagnosticCollection.clear();
 		this.diagnosticCollection.dispose();
 		this.command.dispose();
+	}
+
+	private getIncludePaths():string[]{
+		let config = vscode.workspace.getConfiguration('fortran');
+		let includePaths:string[] = config.get("includePaths", []);
+		
+		return includePaths;
+	}
+	private getGfortranPath():string{
+		let config = vscode.workspace.getConfiguration('fortran');
+		return config.get("gfortranExecutable","gfortran");
 	}
 
 }
