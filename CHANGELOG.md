@@ -25,5 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Fix intrinsic functions docs not loading
 
+## [0.4.6] - 2017-07-04
+### Added
+- Add support for user configuration settings
+
 
 
