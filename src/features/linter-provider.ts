@@ -25,15 +25,12 @@ export default class FortranLintingProvider {
 		let decoded = '';
 		let diagnostics: vscode.Diagnostic[] = [];
 		let options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
-		let args = ['', textDocument.fileName];
+		let args = [...this.getLinterExtraArgs(), "-cpp", "-fsyntax-only", '-fdiagnostics-show-option'];
 		let includePaths = this.getIncludePaths();
 		let command = this.getGfortranPath();
 
 		let childProcess = cp.spawn(command, [
-			'-cpp', 
-			'-fsyntax-only', 
-			'-Wall',
-			'-fdiagnostics-show-option',
+			...args,
 			getIncludeParams(includePaths), // include paths
 		 	textDocument.fileName]);
 			 
@@ -79,12 +76,13 @@ export default class FortranLintingProvider {
 	private static commandId: string = 'fortran.lint.runCodeAction';
 
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range, context: vscode.CodeActionContext, token: vscode.CancellationToken): vscode.Command[] {
-		let diagnostic: vscode.Diagnostic = context.diagnostics[0];
-		return [{
-			title: "Accept gfortran suggestion",
-			command: FortranLintingProvider.commandId,
-			arguments: [document, diagnostic.range, diagnostic.message]
-		}];
+		return;
+		// let diagnostic: vscode.Diagnostic = context.diagnostics[0];
+		// return [{
+		// 	title: "Accept gfortran suggestion",
+		// 	command: FortranLintingProvider.commandId,
+		// 	arguments: [document, diagnostic.range, diagnostic.message]
+		// }];
 	}
 
 	private command: vscode.Disposable;
@@ -121,6 +119,10 @@ export default class FortranLintingProvider {
 	private getGfortranPath():string{
 		let config = vscode.workspace.getConfiguration('fortran');
 		return config.get("gfortranExecutable","gfortran");
+	}
+	private getLinterExtraArgs():string[]{
+		let config = vscode.workspace.getConfiguration('fortran');
+		return config.get("linterExtraArgs",["-Wall"]);
 	}
 
 }
