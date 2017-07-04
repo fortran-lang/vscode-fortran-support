@@ -1,5 +1,5 @@
 {
-    "name": "linter-gfortran",
+    "name": "fortran",
     "displayName": "Modern Fortran",
     "description": "Modern Fortran language support, including syntax highlighting and error detection.",
     "version": "0.4.5",
@@ -22,8 +22,7 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "languages": [
-            {
+        "languages": [{
                 "id": "fortran90",
                 "aliases": [
                     "Fortran90",
@@ -52,8 +51,7 @@
                 ]
             }
         ],
-        "grammars": [
-            {
+        "grammars": [{
                 "language": "fortran90",
                 "scopeName": "source.fortran.modern",
                 "path": "./syntaxes/fortran90.tmLanguage"
@@ -64,12 +62,34 @@
                 "path": "./syntaxes/fortran.tmLanguage"
             }
         ],
-        "snippets": [
-            {
-                "language": "fortran90",
-                "path": "./snippets/fortran90.json"
+        "snippets": [{
+            "language": "fortran90",
+            "path": "./snippets/fortran90.json"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "Fortran configuration",
+            "properties": {
+                "fortran.includePaths": {
+                   "type": ["array"],
+					"items": {
+						"type": "string"
+					},
+					"default": [],
+                    "description": "Specifies folder paths to be used as include path for the Fortran linter"
+                },
+                "fortran.gfortraExecutable": {
+                   "type": "string",
+                   "default": "gfortran",
+                    "description": "Specifies the complete path of the gfortran executable"
+                },
+                 "fortran.linterEnabled": {
+                   "type": "boolean",
+                   "default": true,
+                    "description": "Enables or disables the linter functionality"
+                }
             }
-        ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
