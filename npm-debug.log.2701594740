@@ -1,0 +1,57 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/carvajal/.nvm/versions/node/v6.11.0/bin/node',
+1 verbose cli   '/Users/carvajal/.nvm/versions/node/v6.11.0/bin/npm',
+1 verbose cli   'show',
+1 verbose cli   'vsce',
+1 verbose cli   'version' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 silly mapToRegistry name vsce
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry data Result {
+7 silly mapToRegistry   raw: 'vsce',
+7 silly mapToRegistry   scope: null,
+7 silly mapToRegistry   escapedName: 'vsce',
+7 silly mapToRegistry   name: 'vsce',
+7 silly mapToRegistry   rawSpec: '',
+7 silly mapToRegistry   spec: 'latest',
+7 silly mapToRegistry   type: 'tag' }
+8 silly mapToRegistry uri https://registry.npmjs.org/vsce
+9 verbose request uri https://registry.npmjs.org/vsce
+10 verbose request no auth needed
+11 info attempt registry request try #1 at 3:00:00 PM
+12 verbose request id 5c1010179e3d1515
+13 verbose etag W/"5914175d-13f79"
+14 verbose lastModified Thu, 11 May 2017 07:48:45 GMT
+15 http request GET https://registry.npmjs.org/vsce
+16 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 151.101.0.162:443
+17 info attempt registry request try #2 at 3:01:26 PM
+18 verbose etag W/"5914175d-13f79"
+19 verbose lastModified Thu, 11 May 2017 07:48:45 GMT
+20 http request GET https://registry.npmjs.org/vsce
+21 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 151.101.0.162:443
+22 info attempt registry request try #3 at 3:03:43 PM
+23 verbose etag W/"5914175d-13f79"
+24 verbose lastModified Thu, 11 May 2017 07:48:45 GMT
+25 http request GET https://registry.npmjs.org/vsce
+26 silly get cb [ 304, undefined ]
+27 verbose etag https://registry.npmjs.org/vsce from cache
+28 verbose get saving vsce to /Users/carvajal/.npm/registry.npmjs.org/vsce/.cache.json
+29 verbose correctMkdir /Users/carvajal/.npm correctMkdir not in flight; initializing
+30 verbose exit [ 0, true ]
+31 verbose stack Error: write EPIPE
+31 verbose stack     at exports._errnoException (util.js:1018:11)
+31 verbose stack     at WriteWrap.afterWrite (net.js:800:14)
+32 verbose cwd /Users/carvajal/dev/fortran-linter
+33 error Darwin 16.5.0
+34 error argv "/Users/carvajal/.nvm/versions/node/v6.11.0/bin/node" "/Users/carvajal/.nvm/versions/node/v6.11.0/bin/npm" "show" "vsce" "version"
+35 error node v6.11.0
+36 error npm  v3.10.10
+37 error code EPIPE
+38 error errno EPIPE
+39 error syscall write
+40 error write EPIPE
+41 error If you need help, you may report this error at:
+41 error     <https://github.com/npm/npm/issues>
+42 verbose exit [ 1, true ]
