@@ -6,46 +6,77 @@ export interface Variable {
     type?: string;
 }
 
-export interface Function {
+
+export interface Subroutine {
+
     name: string;
     args: Variable[];
-    return: Variable;
     docstr: string;
     lineNumber: number
 }
+
+export interface Function extends Subroutine {    
+
+    return: Variable; // function is a subroutine with return type
+}
+
+export enum MethodType {
+    Subroutine,
+    Function
+};
 
 
 
 export function getDeclaredFunctions(document: vscode.TextDocument): Function[] {
 
     let lines = document.lineCount;
-    let funs = [];
+    let funcs = [];
 
     for (let i = 0; i < lines; i++) {
         let line: vscode.TextLine = document.lineAt(i);
         if (line.isEmptyOrWhitespace) continue;
         let newFunc = parseFunction(line.text)
         if(newFunc){
-            funs.push({...newFunc, lineNumber: i });
+            funcs.push({...newFunc, lineNumber: i });
         }
     }
-    return funs;
+    return funcs;
 }
+
+export function getDeclaredSubroutines(document: vscode.TextDocument):Subroutine[]{
+
+    return [];
+}
+
+
 
 export const parseFunction = (line: string) => {
 
-    const functionRegEx = /function\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)/g
-    if (line.match(functionRegEx)) {
+    return _parse(line, MethodType.Function);
+}
 
+export const parseSubroutine = (line: string) => {
+
+    return _parse(line, MethodType.Subroutine);
+}
+export const _parse = (line: string, type: MethodType) => {
+
+    const functionRegEx = /([a-zA-Z]+(\([\w.=]+\))*)*\s*function\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)\s*(result\([a-zA-z_][\w]*\))*/g;
+    const subroutineRegEx = /subroutine\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)/g
+    const regEx = (type === MethodType.Subroutine)?subroutineRegEx: functionRegEx;
+    if (line.match(regEx)) {
         let [name, argsstr] = functionRegEx.exec(line).slice(1, 3);
         let args = (argsstr)? parseArgs(argsstr): [];
         return {
             name: name,
-            args: args,
-            return: null
+            args: args
         };
     }
+
 }
+
+
+
 
 export const parseArgs = (argsstr: string) => {
     let args = argsstr.trim().split(',');
