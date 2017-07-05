@@ -3,7 +3,6 @@ language: generic
 sudo: false
 
 os:
-  - osx
   - linux
 
 before_install:
