@@ -41,6 +41,9 @@ suite("function helper test", () => {
     test("parseArgs handle spaces well", () => {
         assert.equal(2, parseArgs(" a, b").length);
     });
+    test("parseArgs handle empty args", () => {
+        assert.equal(0, parseArgs("").length);
+    });
 });
 
 
