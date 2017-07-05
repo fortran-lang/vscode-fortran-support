@@ -33,12 +33,10 @@ export default class FortranLintingProvider {
 			...args,
 			getIncludeParams(includePaths), // include paths
 		 	textDocument.fileName
-			 ];
+			];
 
 		for (var i=argList.length-1; i>=0; i--) {
-    		if (argList[i] === "") {
-        		argList.splice(i, 1);
-    		}
+    		if (argList[i] === "") {argList.splice(i, 1);}
 		}
 
 		let childProcess = cp.spawn(command, argList);
@@ -51,8 +49,7 @@ export default class FortranLintingProvider {
 				decoded += data;
 			});
 			childProcess.stderr.on('end', () => {
-				let decodedOriginal =  decoded;
-				var matchesArray
+				let matchesArray:string[]
 				while ((matchesArray = errorRegex.exec(decoded)) !== null) {
   					let elements: string[] = matchesArray.slice(1); // get captured expressions
 					let startLine =  parseInt(elements[1]);
@@ -65,8 +62,8 @@ export default class FortranLintingProvider {
 					let diagnostic = new vscode.Diagnostic(range,message , severity);
 					diagnostics.push(diagnostic)
 				}
-			
-				 this.diagnosticCollection.set(textDocument.uri, diagnostics);
+
+				this.diagnosticCollection.set(textDocument.uri, diagnostics);
 			});
 			childProcess.stdout.on('close', code => {
 				console.log(`child process exited with code ${code}`);
