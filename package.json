@@ -78,7 +78,7 @@
 					"default": [],
                     "description": "Specifies folder paths to be used as include path for the Fortran linter"
                 },
-                "fortran.gfortraExecutable": {
+                "fortran.gfortranExecutable": {
                    "type": "string",
                    "default": "gfortran",
                     "description": "Specifies the complete path of the gfortran executable"
