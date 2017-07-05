@@ -1,5 +1,8 @@
 # Modern Fortran language support for VSCode
 
+[![Build Status](https://travis-ci.org/krvajal/vscode-fortran-support.svg?branch=master)](https://travis-ci.org/krvajal/vscode-fortran-support)
+
+
 This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran.
 
 ## Features
