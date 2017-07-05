@@ -28,11 +28,20 @@ export default class FortranLintingProvider {
 		let args = [...this.getLinterExtraArgs(), "-cpp", "-fsyntax-only", '-fdiagnostics-show-option'];
 		let includePaths = this.getIncludePaths();
 		let command = this.getGfortranPath();
-
-		let childProcess = cp.spawn(command, [
+		
+		let argList = [
 			...args,
 			getIncludeParams(includePaths), // include paths
-		 	textDocument.fileName]);
+		 	textDocument.fileName
+			 ];
+
+		for (var i=argList.length-1; i>=0; i--) {
+    		if (argList[i] === "") {
+        		argList.splice(i, 1);
+    		}
+		}
+
+		let childProcess = cp.spawn(command, argList);
 			 
 		if (childProcess.pid) {
 			childProcess.stdout.on('data', (data: Buffer) => {
@@ -43,8 +52,7 @@ export default class FortranLintingProvider {
 			});
 			childProcess.stderr.on('end', () => {
 				let decodedOriginal =  decoded;
-				
-				let matchesArray:string[];
+				var matchesArray
 				while ((matchesArray = errorRegex.exec(decoded)) !== null) {
   					let elements: string[] = matchesArray.slice(1); // get captured expressions
 					let startLine =  parseInt(elements[1]);
@@ -58,7 +66,7 @@ export default class FortranLintingProvider {
 					diagnostics.push(diagnostic)
 				}
 			
-				this.diagnosticCollection.set(textDocument.uri, diagnostics);
+				 this.diagnosticCollection.set(textDocument.uri, diagnostics);
 			});
 			childProcess.stdout.on('close', code => {
 				console.log(`child process exited with code ${code}`);
