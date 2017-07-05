@@ -105,6 +105,8 @@
         "lint": "node ./node_modules/tslint/bin/tslint ./src/*.ts ./src/debugAdapter/*.ts ./test/*.ts"
     },
     "devDependencies": {
+        "@types/fs-extra": "0.0.35",
+        "fs-extra": "^1.0.0",
         "typescript": "^2.0.3",
         "vscode": "^1.0.3",
         "mocha": "^2.3.3",
