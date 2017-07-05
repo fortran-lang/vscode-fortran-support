@@ -65,7 +65,7 @@ export const _parse = (line: string, type: MethodType) => {
     const subroutineRegEx = /subroutine\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)/g
     const regEx = (type === MethodType.Subroutine)?subroutineRegEx: functionRegEx;
     if (line.match(regEx)) {
-        let [name, argsstr] = functionRegEx.exec(line).slice(1, 3);
+        let [attr, kind_descriptor, name, argsstr, result] = functionRegEx.exec(line).slice(1, 5);
         let args = (argsstr)? parseArgs(argsstr): [];
         return {
             name: name,

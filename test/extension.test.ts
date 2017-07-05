@@ -22,18 +22,9 @@ suite("Extension Tests", () => {
         assert.equal(-1, [1, 2, 3].indexOf(0));
     });
 
-    let saveKeywordToJson = (keyword) => {
-        let doc =  _loadDocString(keyword);
-        let docObject = JSON.stringify({"keyword": keyword, "docstr": doc});
-        fs.appendFile( "src/docs/" + keyword + ".json", docObject, function (err) {
-            if (err) throw err;
-                console.log('Saved!');
-        });
-    };   
+    
 
-    test.skip("load doc files", () => {
-      intrinsics.map( keyword => saveKeywordToJson(keyword));
-    });
+   
 });
 
 

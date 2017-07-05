@@ -94,3 +94,13 @@ export function isPositionInString(document: vscode.TextDocument, position: vsco
 	doubleQuotesCnt -= escapedDoubleQuotesCnt;
 	return doubleQuotesCnt % 2 === 1;
 }
+
+
+let saveKeywordToJson = (keyword) => {
+        let doc =  _loadDocString(keyword);
+        let docObject = JSON.stringify({"keyword": keyword, "docstr": doc});
+        fs.appendFile( "src/docs/" + keyword + ".json", docObject, function (err) {
+            if (err) throw err;
+                console.log('Saved!');
+        });
+};   
