@@ -3,6 +3,9 @@ import * as fs from 'fs';
 import * as vscode from 'vscode';
 
 
+export const LANGUAGE_ID = 'fortran90';
+
+
 export const intrinsics = [
     "ABORT", "ABS", "ACCESS", "ACHAR", "ACOS", "ACOSH", "ADJUSTL", "ADJUSTR", "AIMAG", "AINT", "ALARM", "ALL", "ALLOCATED", "AND", "ANINT", "ANY", "ASIN", "ASINH", "ASSOCIATED", "ATAN", "ATAN2",
     "ATANH", "ATOMIC_ADD", "ATOMIC_AND", "ATOMIC_CAS", "ATOMIC_DEFINE", "ATOMIC_FETCH_ADD", "ATOMIC_FETCH_AND", "ATOMIC_FETCH_OR", "ATOMIC_FETCH_XOR", "ATOMIC_OR", "ATOMIC_REF", "ATOMIC_XOR", "BACKTRACE", "BESSEL_J0", "BESSEL_J1", "BESSEL_JN", "BESSEL_Y0", "BESSEL_Y1", "BESSEL_YN", "BGE", "BGT",
