@@ -16,7 +16,7 @@ export default class FortranLintingProvider {
 
     private diagnosticCollection: vscode.DiagnosticCollection;
     private doModernFortranLint(textDocument: vscode.TextDocument) {
-        const errorRegex: RegExp = /^([^:]*):([0-9]+):([0-9]+):\n\s(.*)\n.*\n(Error|Warning|Fatal Error):\s(.*)$/gm;
+        const errorRegex: RegExp = /^.{2}([^:]*):([0-9]+):([0-9]+):\r?\n\s*(.*)\r?\n.*\r?\n(Error|Warning|Fatal Error):\s(.*)$/gm;;
 
         if (textDocument.languageId !== LANGUAGE_ID) {
             return;
@@ -28,10 +28,15 @@ export default class FortranLintingProvider {
         let includePaths = this.getIncludePaths();
         let command = this.getGfortranPath();
 
-        let childProcess = cp.spawn(command, [
-            ...args,
-            getIncludeParams(includePaths), // include paths
-            textDocument.fileName]);
+        let argList = [
+			...args,
+			getIncludeParams(includePaths), // include paths
+		 	textDocument.fileName
+			];
+
+        argList = argList.map( arg => arg.trim()).filter(arg => arg !== "");
+
+        let childProcess = cp.spawn(command, argList)
 
         if (childProcess.pid) {
             childProcess.stdout.on('data', (data: Buffer) => {
@@ -41,8 +46,6 @@ export default class FortranLintingProvider {
                 decoded += data;
             });
             childProcess.stderr.on('end', () => {
-                let decodedOriginal = decoded;
-
                 let matchesArray: string[];
                 while ((matchesArray = errorRegex.exec(decoded)) !== null) {
                     let elements: string[] = matchesArray.slice(1); // get captured expressions
