@@ -31,7 +31,7 @@ suite("Extension Tests", () => {
         });
     };   
 
-    test("load doc files", () => {
+    test.skip("load doc files", () => {
       intrinsics.map( keyword => saveKeywordToJson(keyword));
     });
 });

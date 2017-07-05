@@ -4,6 +4,7 @@ import { CancellationToken, TextDocument, Position, Hover } from "vscode";
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { isPositionInString, intrinsics, FORTRAN_KEYWORDS } from "../lib/helper";
+import { getDeclaredFunctions } from "../lib/functions";
 
 
 export class FortranCompletionProvider implements vscode.CompletionItemProvider {
@@ -54,6 +55,13 @@ export class FortranCompletionProvider implements vscode.CompletionItemProvider 
                     }
                 });
             }
+            const functions = getDeclaredFunctions(document);
+            // check for available functions
+            functions.filter(fun => fun.name.startsWith(currentWord))
+            .forEach(fun =>{
+                suggestions.push(new vscode.CompletionItem(fun.name, vscode.CompletionItemKind.Function));   
+            });
+            
 
             return resolve(suggestions);
 
