@@ -29,5 +29,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add support for user configuration settings
 
+## [0.5.0] - 2017-07-06
+### Added
+- Add code autocompletion for intrinsic and in document declared functions
 
+## [0.5.1] - 2017-07-06
+### Added
+- Add  `Go -> Go to symbol in file` command support for functions 
 

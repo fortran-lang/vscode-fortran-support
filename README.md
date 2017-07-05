@@ -8,6 +8,10 @@ This extension provides support for the Fortran programming language. It include
 * Code Snippets
 * Documentation on hover for intrisic functions
 * Code linting based on `gfortran` to show errors swiggles in your code
+* Code autocompletion (beta)
+* Symbols provider (just functions for now)
+
+
 
 ## Settings
 
