@@ -22,14 +22,14 @@ export const intrinsics = [
     "SYSTEM_CLOCK", "TAN", "TANH", "THIS_IMAGE", "TIME", "TIME8", "TINY", "TRAILZ", "TRANSFER", "TRANSPOSE", "TRIM", "TTYNAM", "UBOUND", "UCOBOUND", "UMASK", "UNLINK", "UNPACK", "VERIFY", "XOR"];
 
 
-export const FORTRAN_KEYWORDS = ["FUNCTION", "MODULE",  "SUBROUTINE", "CONTAINS", "USE","KIND", "DO", "IF", "ELIF","END", "IMPLICIT"];
+export const FORTRAN_KEYWORDS = ["FUNCTION", "MODULE", "SUBROUTINE", "CONTAINS", "USE", "KIND", "DO", "IF", "ELIF", "END", "IMPLICIT"];
 
 export const isIntrinsic = (keyword) => {
     return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
 }
 
 
-interface Doc{
+interface Doc {
     keyword: string;
     docstr: string;
 }
@@ -37,13 +37,13 @@ interface Doc{
 
 export const loadDocString = (keyword) => {
     keyword = keyword.toUpperCase();
-    let filepath = __dirname +  "/../docs/" + keyword + ".json";
+    let filepath = __dirname + "/../docs/" + keyword + ".json";
     let docstr = fs.readFileSync(filepath).toString();
-    let doc:Doc = JSON.parse(docstr);
+    let doc: Doc = JSON.parse(docstr);
     return doc.docstr;
 
 }
-export const _loadDocString = (keyword:string) => {
+export const _loadDocString = (keyword: string) => {
 
     keyword = keyword.toUpperCase();
 
@@ -80,30 +80,30 @@ export const _loadDocString = (keyword:string) => {
     return docText;
 }
 
-export const getIncludeParams =  (paths: string[]) => {
-    return paths.map(path => "-I " + path).join(" ");
-}
+export const getIncludeParams = (paths: string[]) => {
+    return "-I " + paths.join(" ");
+};
 
 
 
 export function isPositionInString(document: vscode.TextDocument, position: vscode.Position): boolean {
-	let lineText = document.lineAt(position.line).text;
-	let lineTillCurrentPosition = lineText.substr(0, position.character);
+    let lineText = document.lineAt(position.line).text;
+    let lineTillCurrentPosition = lineText.substr(0, position.character);
 
-	// Count the number of double quotes in the line till current position. Ignore escaped double quotes
-	let doubleQuotesCnt = (lineTillCurrentPosition.match(/\"/g) || []).length;
-	let escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\\"/g) || []).length;
+    // Count the number of double quotes in the line till current position. Ignore escaped double quotes
+    let doubleQuotesCnt = (lineTillCurrentPosition.match(/\"/g) || []).length;
+    let escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\\"/g) || []).length;
 
-	doubleQuotesCnt -= escapedDoubleQuotesCnt;
-	return doubleQuotesCnt % 2 === 1;
+    doubleQuotesCnt -= escapedDoubleQuotesCnt;
+    return doubleQuotesCnt % 2 === 1;
 }
 
 
 let saveKeywordToJson = (keyword) => {
-        let doc =  _loadDocString(keyword);
-        let docObject = JSON.stringify({"keyword": keyword, "docstr": doc});
-        fs.appendFile( "src/docs/" + keyword + ".json", docObject, function (err) {
-            if (err) throw err;
-                console.log('Saved!');
-        });
+    let doc = _loadDocString(keyword);
+    let docObject = JSON.stringify({ "keyword": keyword, "docstr": doc });
+    fs.appendFile("src/docs/" + keyword + ".json", docObject, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
 };   
