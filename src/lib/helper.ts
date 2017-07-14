@@ -1,7 +1,8 @@
 
 import * as fs from 'fs';
 import * as vscode from 'vscode';
-
+let path = require('path');
+const fileSep = path.sep;
 
 export const LANGUAGE_ID = 'fortran90';
 
@@ -107,3 +108,9 @@ let saveKeywordToJson = (keyword) => {
         console.log('Saved!');
     });
 };   
+
+export const extract_path = (file: string) => {
+
+    let pos = file.lastIndexOf(fileSep);
+    return file.substring(0, pos);
+};
