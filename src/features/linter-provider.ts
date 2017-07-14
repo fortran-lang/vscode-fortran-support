@@ -3,7 +3,7 @@
 import * as path from 'path';
 import * as cp from 'child_process';
 import ChildProcess = cp.ChildProcess;
-import { getIncludeParams, LANGUAGE_ID, extract_path } from '../lib/helper';
+import { getIncludeParams, LANGUAGE_ID } from '../lib/helper';
 
 import * as vscode from 'vscode';
 
@@ -29,7 +29,7 @@ export default class FortranLintingProvider {
         let command = this.getGfortranPath();
         let argList = this.constructArgumentList(textDocument);
     
-        let filePath  = extract_path(textDocument.fileName);
+        let filePath  = path.parse(textDocument.fileName).dir;
         let childProcess = cp.spawn(command, argList, {cwd: filePath});
 
         if (childProcess.pid) {
