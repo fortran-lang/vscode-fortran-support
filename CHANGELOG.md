@@ -37,3 +37,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add  `Go -> Go to symbol in file` command support for functions 
 
+## [0.5.2] - 2017-07-14
+### Fixed 
+- A bug in the regex to parse output errors from gfortran
+- Now the spawn command uses the directory of the file `gfortran` is analyzing
+
