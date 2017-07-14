@@ -10,33 +10,26 @@ import * as vscode from 'vscode';
 export default class FortranLintingProvider {
 
     constructor() {
-        
+
 
     }
 
     private diagnosticCollection: vscode.DiagnosticCollection;
+
     private doModernFortranLint(textDocument: vscode.TextDocument) {
-        const errorRegex: RegExp = /^.{2}([^:]*):([0-9]+):([0-9]+):\r?\n\s*(.*)\r?\n.*\r?\n(Error|Warning|Fatal Error):\s(.*)$/gm;;
+
+
+        const errorRegex: RegExp = /^([A-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\n+(.*)\n.*\n(Error|Warning|Fatal Error):\s(.*)$/gm;
 
         if (textDocument.languageId !== LANGUAGE_ID) {
             return;
         }
         let decoded = '';
         let diagnostics: vscode.Diagnostic[] = [];
-        let options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
-        let args = [...this.getLinterExtraArgs(), "-cpp", "-fsyntax-only", '-fdiagnostics-show-option'];
-        let includePaths = this.getIncludePaths();
         let command = this.getGfortranPath();
+        let argList = this.constructArgumentList(textDocument);
 
-        let argList = [
-			...args,
-			getIncludeParams(includePaths), // include paths
-		 	textDocument.fileName
-			];
-
-        argList = argList.map( arg => arg.trim()).filter(arg => arg !== "");
-
-        let childProcess = cp.spawn(command, argList)
+        let childProcess = cp.spawn(command, argList);
 
         if (childProcess.pid) {
             childProcess.stdout.on('data', (data: Buffer) => {
@@ -48,16 +41,17 @@ export default class FortranLintingProvider {
             childProcess.stderr.on('end', () => {
                 let matchesArray: string[];
                 while ((matchesArray = errorRegex.exec(decoded)) !== null) {
+
                     let elements: string[] = matchesArray.slice(1); // get captured expressions
-                    let startLine = parseInt(elements[1]);
-                    let startColumn = parseInt(elements[2])
-                    let type = elements[4]; //error or warning
+                    let startLine = parseInt(elements[2]);
+                    let startColumn = parseInt(elements[3]);
+                    let type = elements[5]; // error or warning
                     let severity = type.toLowerCase() === "warning" ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Error;
-                    let message = elements[5];
+                    let message = elements[6];
                     let range = new vscode.Range(new vscode.Position(startLine - 1, startColumn),
                         new vscode.Position(startLine - 1, startColumn));
                     let diagnostic = new vscode.Diagnostic(range, message, severity);
-                    diagnostics.push(diagnostic)
+                    diagnostics.push(diagnostic);
                 }
 
                 this.diagnosticCollection.set(textDocument.uri, diagnostics);
@@ -73,6 +67,25 @@ export default class FortranLintingProvider {
 
             });
         }
+    }
+
+
+    private constructArgumentList(textDocument:vscode.TextDocument): string[] {
+
+        let options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
+        let args = [  "-fsyntax-only", "-cpp", '-fdiagnostics-show-option', ...this.getLinterExtraArgs()];
+        let includePaths = this.getIncludePaths();
+        
+        let extensionIndex = textDocument.fileName.lastIndexOf('.');
+        let fileNameWithoutExtension = textDocument.fileName.substring(0,extensionIndex);
+        let argList = [
+            ...args,
+            getIncludeParams(includePaths), // include paths
+            textDocument.fileName,
+            `-o ${fileNameWithoutExtension}.mod`
+        ];
+
+        return argList.map(arg => arg.trim()).filter(arg => arg !== "");
     }
 
     private static commandId: string = 'fortran.lint.runCodeAction';
