@@ -14,7 +14,7 @@ This extension provides support for the Fortran programming language. It include
 * Code autocompletion (beta)
 * Symbols provider (just functions for now)
 
-
+![symbol_nav](./doc/symbol_nav.png)
 
 ## Settings
 
