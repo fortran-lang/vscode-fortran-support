@@ -324,7 +324,7 @@
 			<key>comment</key>
 			<string>matrix/vector/array instrinsics</string>
 			<key>match</key>
-			<string>\b(?i:(allocate|allocated|deallocate)(?=\())</string>
+			<string>\b(?i:(allocate|allocated|deallocate|rank)(?=\())</string>
 			<key>name</key>
 			<string>keyword.other.instrinsic.array.fortran.modern</string>
 		</dict>

@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 export interface Variable {
     name: string;
     type?: string;
+    lineNumber?: number;
 }
 
 
@@ -45,7 +46,18 @@ export function getDeclaredFunctions(document: vscode.TextDocument): Function[] 
 
 export function getDeclaredSubroutines(document: vscode.TextDocument):Subroutine[]{
 
-    return [];
+    let lines = document.lineCount;
+    let subroutines = [];
+
+    for (let i = 0; i < lines; i++) {
+        let line: vscode.TextLine = document.lineAt(i);
+        if (line.isEmptyOrWhitespace) continue;
+        let newSubroutine = parseSubroutine(line.text)
+        if(newSubroutine){
+            subroutines.push({...newSubroutine, lineNumber: i });
+        }
+    }
+    return subroutines;
 }
 
 
@@ -61,17 +73,24 @@ export const parseSubroutine = (line: string) => {
 }
 export const _parse = (line: string, type: MethodType) => {
 
-    const functionRegEx = /([a-zA-Z]+(\([\w.=]+\))*)*\s*function\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)\s*(result\([a-zA-z_][\w]*\))*/g;
-    const subroutineRegEx = /subroutine\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\((\s*[a-zA-z][a-zA-z0-9_,\s]*)*\s*\)/g
-    const regEx = (type === MethodType.Subroutine)?subroutineRegEx: functionRegEx;
-    if (line.match(regEx)) {
-        let [attr, kind_descriptor, name, argsstr, result] = functionRegEx.exec(line).slice(1, 5);
-        let args = (argsstr)? parseArgs(argsstr): [];
+    const functionRegEx = /([a-zA-Z]+(\([\w.=]+\))*)*\s*function\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\((\s*[a-zA-Z_][a-zA-Z0-9_,\s]*)*\s*\)\s*(result\([a-zA-Z_][\w]*\))*/g;
+    const subroutineRegEx = /subroutine\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\((\s*[a-zA-Z][a-zA-z0-9_,\s]*)*\s*\)/g;
+    const regEx = (type === MethodType.Subroutine) ? subroutineRegEx : functionRegEx;
+    if (line.match(regEx) && type === MethodType.Function) {
+        let [attr, kind_descriptor, name, argsstr, result] = regEx.exec(line).slice(1, 5);
+        let args = (argsstr) ? parseArgs(argsstr) : [];
         return {
             name: name,
             args: args
         };
-    }
+    } else if (line.match(regEx) && type === MethodType.Subroutine) {
+        let [name, argsstr] = regEx.exec(line).slice(1);
+        let args = (argsstr) ? parseArgs(argsstr) : [];
+        return {
+            name: name,
+            args: args
+        };
+    } 
 
 }
 

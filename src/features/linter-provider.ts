@@ -28,7 +28,7 @@ export default class FortranLintingProvider {
         let diagnostics: vscode.Diagnostic[] = [];
         let command = this.getGfortranPath();
         let argList = this.constructArgumentList(textDocument);
-    
+
         let filePath  = path.parse(textDocument.fileName).dir;
         let childProcess = cp.spawn(command, argList, {cwd: filePath});
 
