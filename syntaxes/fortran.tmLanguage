@@ -192,7 +192,7 @@
 			<key>comment</key>
 			<string>statements controling the flow of the program</string>
 			<key>match</key>
-			<string>\b(?i:(go\s*to|assign|to|if|then|else|elseif|end\s*if|continue|stop|pause|do|end\s*do|while|cycle))\b</string>
+			<string>\b(?i:(go\s*to|assign|to|if|then|else|elseif|end\s*if|continue|stop|pause|do|end\s*do|while|cycle|exit))\b</string>
 			<key>name</key>
 			<string>keyword.control.fortran</string>
 		</dict>
