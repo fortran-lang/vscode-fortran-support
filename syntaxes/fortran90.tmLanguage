@@ -299,27 +299,43 @@
 		<dict>
 			<key>comment</key>
 			<string>logical operators in symbolic format</string>
-			<key>match</key>
-			<string>\b(\=\=|\/\=|\&gt;\=|\&gt;|\&lt;|\&lt;\=)\b</string>
+            <key>match</key>
+			<string>(?i:(\<\=|\>\=|\<|\>|\/\=|\=\=))</string>
 			<key>name</key>
-			<string>keyword.operator.logical.fortran.modern</string>
+			<string>keyword.logical.operator.fortran.modern</string>
 		</dict>
 		<dict>
 			<key>comment</key>
 			<string>operators</string>
 			<key>match</key>
-			<string>(\%|\=\&gt;)</string>
+			<string>(\%|\/\)|\(\/)</string>
 			<key>name</key>
-			<string>keyword.operator.fortran.modern</string>
+			<string>keyword.other.operator.fortran.modern</string>
 		</dict>
 		<dict>
 			<key>comment</key>
 			<string>numeric instrinsics</string>
 			<key>match</key>
-			<string>\b(?i:(ceiling|floor|modulo|abs|sin)(?=\())</string>
-			<key>name</key>
-			<string>keyword.other.instrinsic.numeric.fortran.modern</string>
+			<string>\b(?i:(ceiling|floor|modulo|isnan|idint|idnint|norm2|dsqrt)(?=\())</string>
+            <key>name</key>
+			<string>keyword.other.instrinsic.math.fortran.modern</string>
 		</dict>
+        <dict>
+            <key>comment</key>
+			<string>trigonometric instrinsics</string>
+            <key>match</key>
+			<string>\b(?i:(cabs|dabs|iabs|dcos|dcosd|dcosh|dacos|dacosd|dacosh|dsin|dsind|dsinh|dasin|dasind|dasinh|dtan|dtand|dtanh|datan|datan2|datan2d|datand|datanh)(?=\())</string>
+            <key>name</key>
+			<string>keyword.other.instrinsic.math.fortran.modern</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+			<string>memory instrinsic functions</string>
+            <key>match</key>
+			<string>\b(?i:(move_alloc|malloc)(?=\())</string>
+			<key>name</key>
+			<string>keyword.other.instrinsic.math.fortran.modern</string>
+        </dict>
 		<dict>
 			<key>comment</key>
 			<string>matrix/vector/array instrinsics</string>
