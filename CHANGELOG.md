@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * A bug in the regex to parse output errors from gfortran
 * Now the spawn command uses the directory of the file `gfortran` is analyzing
 
-## [0.6.1] - 2018-01-01
+## [0.6.2] - 2018-01-01
 
 ### Added
 
