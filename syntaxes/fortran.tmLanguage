@@ -47,6 +47,7 @@
 			<key>name</key>
 			<string>constant.numeric.fortran</string>
 		</dict>
+
 		<dict>
 			<key>begin</key>
 			<string>(?x:								# extended mode
@@ -165,7 +166,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(integer|real|double\sprecision|complex|logical|character))\b(?=.*::)</string>
+			<string>\b(?i:(integer|real|double\s+precision|complex|logical|character))\b(?=.*::)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -312,7 +313,7 @@
 			<key>comment</key>
 			<string>data specification</string>
 			<key>match</key>
-			<string>\b(?i:(integer|real|double\sprecision|complex|logical|character|block\sdata|operator|assignment))\b</string>
+			<string>\b(?i:(integer|real|double\s+precision|complex|logical|character|block\sdata|operator|assignment))\b</string>
 			<key>name</key>
 			<string>storage.type.fortran</string>
 		</dict>
@@ -320,7 +321,7 @@
 			<key>comment</key>
 			<string>data type attributes</string>
 			<key>match</key>
-			<string>\b(?i:(dimension|common|equivalence|parameter|external|intrinsic|save|data|implicit\s*none|implicit|intent|in|out|inout))\b</string>
+			<string>\b(?i:(dimension|common|allocatable|target|equivalence|parameter|external|intrinsic|save|data|implicit\s*none|implicit|intent|in|out|inout))\b</string>
 			<key>name</key>
 			<string>storage.modifier.fortran</string>
 		</dict>
@@ -792,6 +793,7 @@
 				</dict>
 			</array>
 		</dict>
+		
 	</dict>
 	<key>scopeName</key>
 	<string>source.fortran</string>

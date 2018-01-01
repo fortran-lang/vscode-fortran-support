@@ -22,7 +22,8 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "languages": [{
+        "languages": [
+            {
                 "id": "fortran90",
                 "aliases": [
                     "Fortran90",
@@ -51,7 +52,8 @@
                 ]
             }
         ],
-        "grammars": [{
+        "grammars": [
+            {
                 "language": "fortran90",
                 "scopeName": "source.fortran.modern",
                 "path": "./syntaxes/fortran90.tmLanguage"
@@ -62,36 +64,46 @@
                 "path": "./syntaxes/fortran.tmLanguage"
             }
         ],
-        "snippets": [{
-            "language": "fortran90",
-            "path": "./snippets/fortran90.json"
-        }],
+        "snippets": [
+            {
+                "language": "fortran90",
+                "path": "./snippets/fortran90.json"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "Fortran configuration",
             "properties": {
                 "fortran.includePaths": {
-                   "type": ["array"],
-					"items": {
-						"type": "string"
-					},
-					"default": [],
+                    "type": [
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [],
                     "description": "Specifies folder paths to be used as include path for the Fortran linter"
                 },
                 "fortran.gfortranExecutable": {
-                   "type": "string",
-                   "default": "gfortran",
+                    "type": "string",
+                    "default": "gfortran",
                     "description": "Specifies the complete path of the gfortran executable"
                 },
-                 "fortran.linterEnabled": {
-                   "type": "boolean",
-                   "default": true,
+                "fortran.linterEnabled": {
+                    "type": "boolean",
+                    "default": true,
                     "description": "Enables or disables the linter functionality"
                 },
-                 "fortran.linterExtraArgs": {
-                   "type": ["array"],
-                   "items": { "type":"string"},
-                   "default": ["-Wall"],
+                "fortran.linterExtraArgs": {
+                    "type": [
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "-Wall"
+                    ],
                     "description": "Specify additional options to use when calling the gfortran compiler"
                 }
             }
@@ -114,7 +126,7 @@
         "decache": "^4.1.0",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32",
-         "glob": "^7.1.1",
+        "glob": "^7.1.1",
         "istanbul": "^0.4.5",
         "remap-istanbul": "^0.8.4",
         "tslint": "^4.0.2"
