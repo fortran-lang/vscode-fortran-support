@@ -393,7 +393,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(?i:(optional|recursive|pointer|allocatable|target|private|public))\b</string>
+			<string>\b(?i:(optional|recursive|pointer|private|public))\b</string>
 			<key>name</key>
 			<string>storage.modifier.fortran.modern</string>
 		</dict>
