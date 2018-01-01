@@ -165,7 +165,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(integer|real|double\s+precision|complex|logical|character))\b(?=.*::)</string>
+			<string>\b(?i:(integer|real|double\sprecision|complex|logical|character))\b(?=.*::)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -216,7 +216,7 @@
 			<key>comment</key>
 			<string>operators</string>
 			<key>match</key>
-			<string>((?&lt;!\=)\=(?!\=)|\-|\+|\/\/|\/|(?!^)\*|::)</string>
+			<string>((?&lt;!\=)\=(?!\=)|\-|\+|\/\/|\/(?!\=|\))|(?!^)\*|::)</string>
 			<key>name</key>
 			<string>keyword.operator.fortran</string>
 		</dict>
@@ -226,7 +226,7 @@
 			<key>match</key>
 			<string>(?i:(\.and\.|\.or\.|\.eq\.|\.lt\.|\.le\.|\.gt\.|\.ge\.|\.ne\.|\.not\.|\.eqv\.|\.neqv\.))</string>
 			<key>name</key>
-			<string>keyword.operator.logical.fortran</string>
+			<string>keyword.logical.operator.fortran</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -256,7 +256,7 @@
 			<key>comment</key>
 			<string>mathematical intrisics</string>
 			<key>match</key>
-			<string>\b(?i:(((acos|asin|atan|atan2|cos|cosh|exp|log|log10|sin|sinh|sqrt|tan|tanh)(?=\())|(random_number|random_seed)))\b</string>
+			<string>\b(?i:(((acos|asin|atan|atan2|cos|cosh|exp|log|log10|sin|sinh|sqrt|tan|tanh|abs)(?=\())|(random_number|random_seed)))\b</string>
 			<key>name</key>
 			<string>keyword.other.instrisic.math.fortran</string>
 		</dict>
@@ -304,7 +304,7 @@
 			<key>comment</key>
 			<string>other intrisics</string>
 			<key>match</key>
-			<string>\b(?i:(((dtime)(?=\())|(date_and_time|system_clock)))\b</string>
+			<string>\b(?i:(((dtime)(?=\())|(date_and_time|system_clock|cpu_time)))\b</string>
 			<key>name</key>
 			<string>keyword.other.instrisic.fortran</string>
 		</dict>
@@ -312,7 +312,7 @@
 			<key>comment</key>
 			<string>data specification</string>
 			<key>match</key>
-			<string>\b(?i:(integer|real|double\s+precision|complex|logical|character|block\sdata|operator|assignment))\b</string>
+			<string>\b(?i:(integer|real|double\sprecision|complex|logical|character|block\sdata|operator|assignment))\b</string>
 			<key>name</key>
 			<string>storage.type.fortran</string>
 		</dict>
