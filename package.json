@@ -1,134 +1,110 @@
 {
-    "name": "linter-gfortran",
-    "displayName": "Modern Fortran",
-    "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-    "version": "0.6.0",
-    "publisher": "krvajalm",
-    "engines": {
-        "vscode": "^1.10.0"
-    },
-    "icon": "images/icon.png",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
-    },
-    "categories": [
-        "Languages",
-        "Snippets",
-        "Linters"
+  "name": "linter-gfortran",
+  "displayName": "Modern Fortran",
+  "description":
+    "Modern Fortran language support, including syntax highlighting and error detection.",
+  "version": "0.6.2",
+  "publisher": "krvajalm",
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
+  },
+  "categories": ["Languages", "Snippets", "Linters"],
+  "activationEvents": ["onLanguage:fortran90"],
+  "main": "./out/src/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "fortran90",
+        "aliases": ["Fortran90", "fortran90"],
+        "extensions": [".f90", ".F90", ".f95", ".F95", ".f08", ".F08"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "fortran",
+        "aliases": ["Fortran ", "fortran"],
+        "extensions": [".f", ".F", ".f77", ".F77", ".FPP"]
+      }
     ],
-    "activationEvents": [
-        "onLanguage:fortran90"
+    "grammars": [
+      {
+        "language": "fortran90",
+        "scopeName": "source.fortran.modern",
+        "path": "./syntaxes/fortran90.tmLanguage"
+      },
+      {
+        "language": "fortran",
+        "scopeName": "source.fortran",
+        "path": "./syntaxes/fortran.tmLanguage"
+      }
     ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "fortran90",
-                "aliases": [
-                    "Fortran90",
-                    "fortran90"
-                ],
-                "extensions": [
-                    ".f90",
-                    ".F90",
-                    ".f95",
-                    ".F95"
-                ],
-                "configuration": "./language-configuration.json"
-            },
-            {
-                "id": "fortran",
-                "aliases": [
-                    "Fortran ",
-                    "fortran"
-                ],
-                "extensions": [
-                    ".f",
-                    ".F",
-                    ".f77",
-                    ".F77",
-                    ".FPP"
-                ]
-            }
-        ],
-        "grammars": [
-            {
-                "language": "fortran90",
-                "scopeName": "source.fortran.modern",
-                "path": "./syntaxes/fortran90.tmLanguage"
-            },
-            {
-                "language": "fortran",
-                "scopeName": "source.fortran",
-                "path": "./syntaxes/fortran.tmLanguage"
-            }
-        ],
-        "snippets": [
-            {
-                "language": "fortran90",
-                "path": "./snippets/fortran90.json"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Fortran configuration",
-            "properties": {
-                "fortran.includePaths": {
-                    "type": [
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [],
-                    "description": "Specifies folder paths to be used as include path for the Fortran linter"
-                },
-                "fortran.gfortranExecutable": {
-                    "type": "string",
-                    "default": "gfortran",
-                    "description": "Specifies the complete path of the gfortran executable"
-                },
-                "fortran.linterEnabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Enables or disables the linter functionality"
-                },
-                "fortran.linterExtraArgs": {
-                    "type": [
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "-Wall"
-                    ],
-                    "description": "Specify additional options to use when calling the gfortran compiler"
-                }
-            }
+    "snippets": [
+      {
+        "language": "fortran90",
+        "path": "./snippets/fortran90.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Fortran configuration",
+      "properties": {
+        "fortran.includePaths": {
+          "type": ["array"],
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description":
+            "Specifies folder paths to be used as include path for the Fortran linter"
+        },
+        "fortran.gfortranExecutable": {
+          "type": "string",
+          "default": "gfortran",
+          "description":
+            "Specifies the complete path of the gfortran executable"
+        },
+        "fortran.linterEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enables or disables the linter functionality"
+        },
+        "fortran.linterExtraArgs": {
+          "type": ["array"],
+          "items": {
+            "type": "string"
+          },
+          "default": ["-Wall"],
+          "description":
+            "Specify additional options to use when calling the gfortran compiler"
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test",
-        "lint": "node ./node_modules/tslint/bin/tslint ./src/*.ts ./src/debugAdapter/*.ts ./test/*.ts"
-    },
-    "devDependencies": {
-        "@types/glob": "^5.0.30",
-        "@types/fs-extra": "0.0.35",
-        "fs-extra": "^1.0.0",
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.3",
-        "mocha": "^2.3.3",
-        "decache": "^4.1.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32",
-        "glob": "^7.1.1",
-        "istanbul": "^0.4.5",
-        "remap-istanbul": "^0.8.4",
-        "tslint": "^4.0.2"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test",
+    "lint":
+      "node ./node_modules/tslint/bin/tslint ./src/*.ts ./src/debugAdapter/*.ts ./test/*.ts"
+  },
+  "devDependencies": {
+    "@types/glob": "^5.0.30",
+    "@types/fs-extra": "0.0.35",
+    "fs-extra": "^1.0.0",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.3",
+    "mocha": "^2.3.3",
+    "decache": "^4.1.0",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32",
+    "glob": "^7.1.1",
+    "istanbul": "^0.4.5",
+    "remap-istanbul": "^0.8.4",
+    "tslint": "^4.0.2"
+  }
 }

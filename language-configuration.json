@@ -1,21 +1,55 @@
 {
-   "comments": {
-       "lineComment": "!"
-   },
-   "brackets": [
-       ["[", "]"],
-       ["(", ")"],
-       ["(/", "/)"]
-   ],
-   "autoClosingPairs": [
-       { "open": "[", "close": "]" },
-       { "open": "(", "close": ")" },
-       { "open": "(/", "close": "/)" }
-   ],
-   "surroundingPairs": [
-       ["[", "]"],
-       ["(", ")"],
-       ["'", "'"],
-       ["\"", "\""]
-   ]
+    "comments": {
+        "lineComment": "!"
+    },
+    "brackets": [
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "(/",
+            "/)"
+        ]
+    ],
+    "autoClosingPairs": [
+        {
+            "open": "[",
+            "close": "]"
+        },
+        {
+            "open": "(",
+            "close": ")"
+        },
+        {
+            "open": "(/",
+            "close": "/)"
+        }
+    ],
+    "surroundingPairs": [
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "'",
+            "'"
+        ],
+        [
+            "\"",
+            "\""
+        ]
+    ],
+    "indentationRules": {
+        "increaseIndentPattern": "^[^!]*(then\\s*(!.*)?$|\\s*(program|subroutine|function|module|do|block|associate)\\b.*|\\s*(else|else\\s*if|elsewhere)\\b.*)$",
+        "decreaseIndentPattern": "^\\s*end\\s*(if|do)\\s*|^\\s*else\\b.*$|^\\s*end\\s(function|subroutine|module|program)"
+    }
 }
