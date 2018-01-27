@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/krvajal/vscode-fortran-support.svg?branch=master)](https://travis-ci.org/krvajal/vscode-fortran-support)
 [![codecov](https://codecov.io/gh/krvajal/vscode-fortran-support/branch/master/graph/badge.svg)](https://codecov.io/gh/krvajal/vscode-fortran-support)
+[![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 
 This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran.
 
