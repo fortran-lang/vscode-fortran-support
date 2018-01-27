@@ -4,6 +4,8 @@ import * as vscode from "vscode";
 import { getDeclaredFunctions, getDeclaredSubroutines } from "../lib/functions";
 import { getDeclaredVars } from "../lib/variables";
 
+type SymbolType = "subroutine" | "function" | "variable";
+
 export class FortranDocumentSymbolProvider
   implements vscode.DocumentSymbolProvider {
   vars: Array<vscode.SymbolInformation>;
@@ -18,11 +20,32 @@ export class FortranDocumentSymbolProvider
       token.onCancellationRequested(e => {
         reject();
       });
-      this.updateFunctionDefinitions(document);
-      this.updateSubroutineDefinitions(document);
-      this.updateVariablesDefiniton(document);
-      resolve([...this.functions, ...this.subroutines, ...this.vars]);
+      const symbolTypes = this.getSymbolTypes();
+      const documentSymbols = symbolTypes.reduce<vscode.SymbolInformation[]>(
+        (symbols, type: SymbolType) => {
+          return [...symbols, ...this.getSymbolsOfType(type, document)];
+        },
+        []
+      );
+
+      resolve(documentSymbols);
     });
+  }
+  getSymbolsOfType(
+    type: "subroutine" | "function" | "variable",
+    document: TextDocument
+  ) {
+    switch (type) {
+      case "subroutine":
+        this.updateSubroutineDefinitions(document);
+        return this.subroutines;
+      case "function":
+        this.updateFunctionDefinitions(document);
+        return this.functions;
+      case "variable":
+        this.updateVariablesDefiniton(document);
+        return this.vars;
+    }
   }
 
   private updateFunctionDefinitions(document: TextDocument) {
@@ -60,5 +83,13 @@ export class FortranDocumentSymbolProvider
         range
       );
     });
+  }
+  getSymbolTypes() {
+    let config = vscode.workspace.getConfiguration("fortran");
+    const symbolTypes = config.get<SymbolType[]>("symbols", [
+      "subroutine",
+      "function"
+    ]);
+    return symbolTypes;
   }
 }

@@ -66,3 +66,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 * Fixed some highlighting issues by @pedro-ricardo
+
+## [0.6.3] - 2018-01-27
+
+### Added
+
+* Configuration option to set types of symbols shown
+
+  ### Fixed
+
+* Implementation of the symbol provider now returns a promise (Fixes #21)
+* Symbol provider now ignores case when searching for subroutines
