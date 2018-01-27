@@ -21,7 +21,7 @@ This extension provides support for the Fortran programming language. It include
 You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
 ```
 {
-    "fortran.includePath": [
+    "fortran.includePaths": [
         "/usr/local/include",
          "/usr/local"
     ]
