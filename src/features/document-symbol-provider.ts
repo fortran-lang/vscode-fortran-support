@@ -45,6 +45,8 @@ export class FortranDocumentSymbolProvider
       case "variable":
         this.updateVariablesDefiniton(document);
         return this.vars;
+      default:
+        return [];
     }
   }
 
