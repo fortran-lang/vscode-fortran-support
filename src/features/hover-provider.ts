@@ -16,7 +16,7 @@ export default class FortranHoverProvider {
       console.log(`showing hover for ${word}`);
       return loadDocString(word).then(docstr => {
         console.log(docstr);
-        debugger;
+
         return new Hover(docstr);
       });
     } else return Promise.reject("not a keyword");
