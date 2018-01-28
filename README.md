@@ -6,7 +6,7 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![GitHub release](https://img.shields.io/github/release/krvajal/vscode-fortran-support.svg)](https://GitHub.com/krvajal/vscode-fortran-support/releases/)
 
-> This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran.
+> This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran. You can download the Visual Estudio Code editor from [here](https://code.visualstudio.com/download).
 
 ## Features
 
