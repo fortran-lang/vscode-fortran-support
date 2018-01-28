@@ -1,10 +1,22 @@
-import { CancellationToken, TextDocument, Position, Hover } from "vscode";
+import {
+  CancellationToken,
+  TextDocument,
+  Position,
+  Hover,
+  TextLine,
+  SymbolInformation
+} from "vscode";
 
 import * as vscode from "vscode";
-import { getDeclaredFunctions, getDeclaredSubroutines } from "../lib/functions";
-import { getDeclaredVars } from "../lib/variables";
+import {
+  parseFunction as getDeclaredFunction,
+  parseSubroutine as getDeclaredSubroutine
+} from "../lib/functions";
+import { parseVars as getDeclaredVar } from "../lib/variables";
+import { error } from "util";
 
 type SymbolType = "subroutine" | "function" | "variable";
+type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
 
 export class FortranDocumentSymbolProvider
   implements vscode.DocumentSymbolProvider {
@@ -16,75 +28,88 @@ export class FortranDocumentSymbolProvider
     document: TextDocument,
     token: CancellationToken
   ): Thenable<vscode.SymbolInformation[]> {
-    return new Promise<vscode.SymbolInformation[]>((resolve, reject) => {
-      token.onCancellationRequested(e => {
-        reject();
-      });
-      const symbolTypes = this.getSymbolTypes();
-      const documentSymbols = symbolTypes.reduce<vscode.SymbolInformation[]>(
-        (symbols, type: SymbolType) => {
-          return [...symbols, ...this.getSymbolsOfType(type, document)];
-        },
-        []
-      );
-
-      resolve(documentSymbols);
-    });
+    const cancel = new Promise<vscode.SymbolInformation[]>(
+      (resolve, reject) => {
+        token.onCancellationRequested(evt => {
+          reject(error);
+        });
+      }
+    );
+    return Promise.race([this.parseDoc(document), cancel]);
   }
-  getSymbolsOfType(
-    type: "subroutine" | "function" | "variable",
-    document: TextDocument
-  ) {
+  parseDoc = async (document: TextDocument) => {
+    let lines = document.lineCount;
+    let symbols = [];
+    const symbolTypes = this.getSymbolTypes();
+
+    for (let i = 0; i < lines; i++) {
+      let line: vscode.TextLine = document.lineAt(i);
+      line = { ...line, text: line.text.trim() };
+      if (line.isEmptyOrWhitespace) continue;
+      let initialCharacter = line.text.trim().charAt(0);
+      if (initialCharacter === "!" || initialCharacter === "#") continue;
+      const symbolsInLine = symbolTypes
+        .map(type => this.getSymbolsOfType(type))
+        .map(fn => fn(line))
+        .filter(symb => symb != undefined);
+      if (symbolsInLine.length > 0) {
+        symbols = symbols.concat(symbolsInLine);
+      }
+    }
+    return symbols;
+  };
+  getSymbolsOfType(type: "subroutine" | "function" | "variable"): ParserFunc {
     switch (type) {
       case "subroutine":
-        this.updateSubroutineDefinitions(document);
-        return this.subroutines;
+        return this.parseSubroutineDefinition;
       case "function":
-        this.updateFunctionDefinitions(document);
-        return this.functions;
+        return this.parseFunctionDefinition;
+
       case "variable":
-        this.updateVariablesDefiniton(document);
-        return this.vars;
+        return this.parseVariableDefinition;
       default:
-        return [];
+        return () => undefined;
     }
   }
 
-  private updateFunctionDefinitions(document: TextDocument) {
-    this.functions = getDeclaredFunctions(document).map(fun => {
-      let range = new vscode.Range(fun.lineNumber, 0, fun.lineNumber, 100);
-      return new vscode.SymbolInformation(
-        fun.name,
-        vscode.SymbolKind.Function,
-        range
-      );
-    });
+  private parseSubroutineDefinition(line: TextLine) {
+    try {
+      const fun = getDeclaredSubroutine(line);
+      if (fun) {
+        let range = new vscode.Range(line.range.start, line.range.end);
+        return new vscode.SymbolInformation(
+          fun.name,
+          vscode.SymbolKind.Method,
+          range
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  private updateSubroutineDefinitions(document: TextDocument) {
-    this.subroutines = getDeclaredSubroutines(document).map(fun => {
-      let range = new vscode.Range(fun.lineNumber, 0, fun.lineNumber, 100);
+  private parseFunctionDefinition(line: TextLine) {
+    const subroutine = getDeclaredFunction(line);
+    if (subroutine) {
+      let range = new vscode.Range(line.range.start, line.range.end);
+
       return new vscode.SymbolInformation(
-        fun.name,
+        subroutine.name,
         vscode.SymbolKind.Function,
         range
       );
-    });
+    }
   }
-  private updateVariablesDefiniton(document: TextDocument) {
-    this.vars = getDeclaredVars(document).map(variable => {
-      let range = new vscode.Range(
-        variable.lineNumber,
-        0,
-        variable.lineNumber,
-        100
-      );
+  private parseVariableDefinition(line: TextLine) {
+    const variable = getDeclaredVar(line);
+    if (variable) {
+      let range = new vscode.Range(line.range.start, line.range.end);
       return new vscode.SymbolInformation(
         variable.name,
         vscode.SymbolKind.Variable,
         range
       );
-    });
+    }
   }
   getSymbolTypes() {
     let config = vscode.workspace.getConfiguration("fortran");
