@@ -91,7 +91,8 @@
             "Specify what kind of symbols should be shown by the symbols' provider"
         }
       }
-    }
+    },
+    "definitionProvider": "true"
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
