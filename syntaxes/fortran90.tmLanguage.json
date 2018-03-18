@@ -236,7 +236,7 @@
 			"end": "(?:\\)|(?=\\n))",
 			"patterns": [
 				{
-					"name": "entity.name.derived-type.fortran",
+					"name": "entity.name.type.fortran",
 					"match": "(?i)\\s*\\b([a-z]\\w*)\\b"
 				}
 			]
@@ -1196,6 +1196,32 @@
 					"end": "(?=[;!\\n])",
 					"patterns": [
 						{
+							"comment": "type-bound subroutines",
+							"begin": "(?ix)\\G\\s*([a-z]\\w*)(%)([a-z]\\w*)\\b\\s*(?=\\()",
+							"beginCaptures": {
+								"1": {
+									"name": "variable.other.fortran"
+								},
+								"2": {
+									"name": "punctuation.accessor.fortran"
+								},
+								"3": {
+									"name": "entity.name.function.subroutine.fortran"
+								}
+							},
+							"end": "(?<!\\G)",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.parentheses.right.fortran"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#parentheses-dummy-variables"
+								}
+							]
+						},
+						{
 							"include": "#intrinsic-subroutines"
 						},
 						{
@@ -1493,7 +1519,7 @@
 					"begin": "(?i)\\s*\\b([a-z]\\w*)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.struct"
+							"name": "entity.name.type.fortran"
 						}
 					},
 					"end": "(?i)(?:^|(?<=;))\\s*(end\\s*type)(?:\\s+(?:(\\1)|(\\w+)))?\\b",
@@ -1502,7 +1528,7 @@
 							"name": "keyword.control.endtype.fortran"
 						},
 						"2": {
-							"name": "entity.name.derived-type.fortran"
+							"name": "entity.name.type.fortran"
 						},
 						"3": {
 							"name": "invalid.error.fortran"
@@ -2749,7 +2775,7 @@
 				},
 				{
 					"comment": "Intrinsic functions introduced in the Fortran 1990 standard.",
-					"begin": "(?ix)\\b(achar|adjustl|adjustr|all|allocated|associated|any|bit_size| btest|ceiling|count|cshift|digits|dot_product|eoshift|epsilon|exponent| floor|fraction|huge|iachar|iand|ibclr|ibits|ibset|ieor|ior|ishftc?| kind|lbound|len_trim|logical|matmul|maxexponent|maxloc|maxval|merge| minexponent|minloc|minval|modulo|nearest|not|pack|precision|present| product|radix|range|repeat|reshape|rrspacing|scale|scan| selected_(int|real)_kind|set_exponent|shape|size|spacing|spread|sum| tiny|transfer|transpose|trim|ubound|unpack|verify)\\s*(?=\\()",
+					"begin": "(?ix)\\b(achar|adjustl|adjustr|all|allocated|associated|any|bit_size|btest|ceiling|count|cshift|digits|dot_product|eoshift|epsilon|exponent|floor|fraction|huge|iachar|iand|ibclr|ibits|ibset|ieor|ior|ishftc?| kind|lbound|len_trim|logical|matmul|maxexponent|maxloc|maxval|merge|minexponent|minloc|minval|modulo|nearest|not|pack|precision|present|product|radix|range|repeat|reshape|rrspacing|scale|scan|selected_(int|real)_kind|set_exponent|shape|size|spacing|spread|sum|tiny|transfer|transpose|trim|ubound|unpack|verify)\\s*(?=\\()",
 					"beginCaptures": {
 						"1": {
 							"name": "support.function.intrinsic.fortran"
@@ -3039,7 +3065,7 @@
 				{
 					"comment": "Introduced in the Fortran 1977 standard.",
 					"match": "(?ix)(\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
-					"name": "keyword.operator.logical.fortran"
+					"name": "keyword.fortran"
 				},
 				{
 					"comment": "Introduced in the Fortran 1990 standard.",
@@ -4058,7 +4084,7 @@
 					"begin": "(?i)\\s*\\b([a-z]\\w*)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.module.fortran"
+							"name": "entity.name.class.fortran"
 						}
 					},
 					"end": "(?=[;!\\n])",
@@ -4169,8 +4195,8 @@
 		"derived-type": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"name": "meta.specification.type.derived.fortran",
-			"begin": "(?i)\\b(?:(class)|(type))\\s*(?=\\()",
-			"beginCaptures": {
+			"match": "(?i)\\b(?:(class)|(type))\\s*(\\()\\s*([a-z]\\w*)(\\))",
+			"captures": {
 				"1": {
 					"name": "storage.type.class.fortran"
 				},
@@ -4179,20 +4205,14 @@
 				},
 				"3": {
 					"name": "punctuation.parentheses.left.fortran"
-				}
-			},
-			"end": "(?<!\\G)",
-			"endCaptures": {
-				"1": {
+				},
+				"4": {
+					"name": "entity.name.type.fortran"
+				},
+				"5": {
 					"name": "punctuation.parentheses.right.fortran"
 				}
-			},
-			"contentName": "meta.type-spec.fortran",
-			"patterns": [
-				{
-					"include": "#parentheses-dummy-variables"
-				}
-			]
+			}
 		},
 		"logical-type": {
 			"comment": "Introduced in the Fortran 1977 standard.",
