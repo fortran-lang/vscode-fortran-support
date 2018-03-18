@@ -34,12 +34,12 @@
       {
         "language": "fortran_free-form",
         "scopeName": "source.fortran.free",
-        "path": "./syntaxes/fortran90.tmLanguage.json"
+        "path": "./syntaxes/fortran_free-form.tmLanguage.json"
       },
       {
         "language": "fortran_fixed-form",
         "scopeName": "source.fortran.fixed",
-        "path": "./syntaxes/fortran.tmLanguage.json"
+        "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
       }
     ],
     "snippets": [
