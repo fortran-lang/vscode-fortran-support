@@ -19,6 +19,15 @@
 
 ![symbol_nav](./doc/symbol_nav.png)
 
+## Code navigation
+
+This fortran extension have several features that allows you to navigate through your codebase easily.
+You can access the symbols in the current document using the symbol provider (`Cmd + R` on macOS)
+
+![symbol provider](https://media.giphy.com/media/26wkGrieJeAiUStwY/giphy.gif)
+
+Another option is using the Go To Symbol command that allows you to navigate to the definition of a subroutine or function from the place it is been used.
+
 ## Settings
 
 You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
