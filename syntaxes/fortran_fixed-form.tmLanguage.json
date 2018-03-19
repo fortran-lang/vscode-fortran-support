@@ -1,0 +1,73 @@
+{
+        "comment": "Inherits rules from free form Fortran.",
+        "name": "Fortran - Fixed Form",
+        "scopeName": "source.fortran.fixed",
+        "fileTypes": [
+                "f",
+                "F",
+                "f77",
+                "F77",
+                "for",
+                "FOR",
+                "fpp",
+                "FPP"
+        ],
+        "injections": {
+                "source.fortran.fixed - ( string | comment )": {
+                        "patterns": [
+                                {
+                                        "include": "#line-header"
+                                },
+                                {
+                                        "include": "#line-end-comment"
+                                }
+                        ]
+                }
+        },
+        "patterns": [
+                {
+                        "include": "#comments"
+                },
+                {
+                        "include": "#line-header"
+                },
+                {
+                        "include": "source.fortran.free"
+                }
+        ],
+        "repository": {
+                "comments": {
+                        "patterns": [
+                                {
+                                        "name": "comment.line.fortran",
+                                        "begin": "^[cC\\*]",
+                                        "end": "\\n"
+                                },
+                                {
+                                        "name": "comment.line.fortran",
+                                        "begin": "^ *!",
+                                        "end": "\\n"
+                                }
+                        ]
+                },
+                "line-end-comment": {
+                        "name": "comment.line-end.fortran",
+                        "begin": "(?<=^.{72})(?!\\n)",
+                        "end": "(?=\\n)"
+                },
+                "line-header": {
+                        "match": "^(?!\\s*[!#])(?:([ \\d]{5} )|( {5}.)|(.{1,5}))",
+                        "captures": {
+                                "1": {
+                                        "name": "constant.numeric.fortran"
+                                },
+                                "2": {
+                                        "name": "keyword.line-continuation-operator.fortran"
+                                },
+                                "3": {
+                                        "name": "invalid.error.fortran"
+                                }
+                        }
+                }
+        }
+}

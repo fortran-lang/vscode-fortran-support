@@ -19,32 +19,32 @@
   "contributes": {
     "languages": [
       {
-        "id": "fortran90",
+        "id": "fortran_free-form",
         "aliases": ["Fortran90", "fortran90"],
         "extensions": [".f90", ".F90", ".f95", ".F95", ".f08", ".F08"],
         "configuration": "./language-configuration.json"
       },
       {
-        "id": "fortran",
-        "aliases": ["Fortran ", "fortran"],
+        "id": "fortran_fixed-form",
+        "aliases": ["Fortran ", "fortran", "FORTRAN77"],
         "extensions": [".f", ".F", ".f77", ".F77", ".FPP"]
       }
     ],
     "grammars": [
       {
-        "language": "fortran90",
-        "scopeName": "source.fortran.modern",
-        "path": "./syntaxes/fortran90.tmLanguage"
+        "language": "fortran_free-form",
+        "scopeName": "source.fortran.free",
+        "path": "./syntaxes/fortran_free-form.tmLanguage.json"
       },
       {
-        "language": "fortran",
-        "scopeName": "source.fortran",
-        "path": "./syntaxes/fortran.tmLanguage"
+        "language": "fortran_fixed-form",
+        "scopeName": "source.fortran.fixed",
+        "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
       }
     ],
     "snippets": [
       {
-        "language": "fortran90",
+        "language": "fortran_free-form",
         "path": "./snippets/fortran90.json"
       }
     ],
