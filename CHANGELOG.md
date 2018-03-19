@@ -73,7 +73,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 * Configuration option to set types of symbols shown
 
-  ### Fixed
+### Fixed
 
 * Implementation of the symbol provider now returns a promise (Fixes #21)
 * Symbol provider now ignores case when searching for subroutines
+
+## [1.0.1] - 2018-03-19
+
+### Fixed
+
+* Syntax highlighting issues (#32, #34, #36, #37, #38, #39, #41 )
