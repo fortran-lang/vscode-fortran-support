@@ -14,7 +14,7 @@
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
   "categories": ["Languages", "Snippets", "Linters"],
-  "activationEvents": ["onLanguage:fortran90"],
+  "activationEvents": ["onLanguage:fortran_free-form"],
   "main": "./out/src/extension",
   "contributes": {
     "languages": [
