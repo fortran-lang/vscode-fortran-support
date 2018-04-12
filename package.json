@@ -3,7 +3,7 @@
   "displayName": "Modern Fortran",
   "description":
     "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "krvajalm",
   "engines": {
     "vscode": "^1.19.0"
