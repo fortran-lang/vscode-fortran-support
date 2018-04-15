@@ -27,13 +27,13 @@ export const FORTRAN_KEYWORDS = ["FUNCTION", "MODULE", "SUBROUTINE", "CONTAINS",
 
 export const isIntrinsic = (keyword) => {
     return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
-}
+};
 
 
 interface Doc {
     keyword: string;
     docstr: string;
-}
+};
 
 
 export const loadDocString = (keyword) => {
@@ -43,12 +43,13 @@ export const loadDocString = (keyword) => {
     let doc: Doc = JSON.parse(docstr);
     return doc.docstr;
 
-}
+};
+
 export const _loadDocString = (keyword: string) => {
 
     keyword = keyword.toUpperCase();
 
-    let docStringBuffer = fs.readFileSync(__dirname + "/../../../src/docs/" + keyword + ".html")
+    let docStringBuffer = fs.readFileSync(__dirname + "/../../../src/docs/" + keyword + ".html");
     let docText = docStringBuffer.toString();
     const codeRegex = /<code>(.+?)<\/code>\n?/g;
     const varRegex = /<var>(.+?)<\/var>/g;
@@ -79,7 +80,7 @@ export const _loadDocString = (keyword: string) => {
     docText = docText.replace(/^ *<br>\n?/gm, '\n').replace(/<\?dl>/g, "");
     console.log(docText);
     return docText;
-}
+};
 
 export const getIncludeParams = (paths: string[]) => {
     if (paths.length === 0) {
@@ -110,5 +111,5 @@ let saveKeywordToJson = (keyword) => {
         if (err) throw err;
         console.log('Saved!');
     });
-};   
+};
 

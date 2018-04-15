@@ -51,13 +51,13 @@ export class FortranDocumentSymbolProvider
       const symbolsInLine = symbolTypes
         .map(type => this.getSymbolsOfType(type))
         .map(fn => fn(line))
-        .filter(symb => symb != undefined);
+        .filter(symb => symb !== undefined);
       if (symbolsInLine.length > 0) {
         symbols = symbols.concat(symbolsInLine);
       }
     }
     return symbols;
-  };
+  }
   getSymbolsOfType(type: "subroutine" | "function" | "variable"): ParserFunc {
     switch (type) {
       case "subroutine":

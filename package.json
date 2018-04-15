@@ -99,7 +99,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint":
-      "node ./node_modules/tslint/bin/tslint ./src/*.ts ./src/debugAdapter/*.ts ./test/*.ts"
+      "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
     "@types/glob": "^5.0.30",

@@ -33,7 +33,7 @@ export class Tokenizer {
   public add(regex, token) {
     this.tokenInfos.push({ pattern: regex, token: token });
   }
-  
+
   public tokenize(expression: string) {
     this.tokens = [];
     while (expression !== "") {
