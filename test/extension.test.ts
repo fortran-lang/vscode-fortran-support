@@ -15,19 +15,13 @@ import { FortranDocumentSymbolProvider } from "../src/features/document-symbol-p
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Extension Tests", () => {
-  test(
-    "symbol provider works as expected",
-    async () => {
-      const filePath = "/test/resources/sample.f90";
-      const openPath = vscode.Uri.file(
-        `${vscode.workspace.rootPath}${filePath}`
-      );
-      const doc = await vscode.workspace.openTextDocument(openPath);
-      vscode.window.showTextDocument(doc);
-      const symbolProvider = new FortranDocumentSymbolProvider();
-      const symbols = await symbolProvider.provideDocumentSymbols(doc, null);
-      assert.equal(symbols.length, 1);
-    },
-    20000
-  );
+  test("symbol provider works as expected", async () => {
+    const filePath = "/test/resources/sample.f90";
+    const openPath = vscode.Uri.file(`${vscode.workspace.rootPath}${filePath}`);
+    const doc = await vscode.workspace.openTextDocument(openPath);
+    vscode.window.showTextDocument(doc);
+    const symbolProvider = new FortranDocumentSymbolProvider();
+    const symbols = await symbolProvider.provideDocumentSymbols(doc, null);
+    assert.equal(symbols.length, 1);
+  });
 });
