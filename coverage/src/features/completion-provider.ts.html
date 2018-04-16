@@ -114,51 +114,42 @@
 69
 70
 71
-72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,16 +157,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,76 +171,192 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
-&nbsp;
-import { CancellationToken, TextDocument, Position, Hover } from "vscode";
-import * as fs from 'fs';
-<span class="cstat-no" title="statement not covered" >import * as vscode from 'vscode';</span>
-<span class="cstat-no" title="statement not covered" >import { isPositionInString, intrinsics, FORTRAN_KEYWORDS } from "../lib/helper";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { CancellationToken, TextDocument, Position, Hover } from "vscode";
+import * as fs from "fs";
+<span class="cstat-no" title="statement not covered" >import * as vscode from "vscode";</span>
+<span class="cstat-no" title="statement not covered" >import {</span>
+  isPositionInString,
+  intrinsics,
+  FORTRAN_KEYWORDS
+} from "../lib/helper";
 <span class="cstat-no" title="statement not covered" >import { getDeclaredFunctions } from "../lib/functions";</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >export class FortranCompletionProvider</span>
+  implements vscode.CompletionItemProvider {
+  public provideCompletionItems<span class="fstat-no" title="function not covered" >(</span>
+    document: vscode.TextDocument,
+    position: vscode.Position,
+    token: vscode.CancellationToken
+  ): Thenable&lt;vscode.CompletionItem[]&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.provideCompletionItemsInternal(</span>
+      document,
+      position,
+      token,
+      vscode.workspace.getConfiguration("go")
+    );
+  }
+  public provideCompletionItemsInternal<span class="fstat-no" title="function not covered" >(</span>
+    document: vscode.TextDocument,
+    position: vscode.Position,
+    token: vscode.CancellationToken,
+    config: vscode.WorkspaceConfiguration
+  ): Thenable&lt;vscode.CompletionItem[]&gt; {
+<span class="cstat-no" title="statement not covered" >    return new Promise&lt;vscode.CompletionItem[]&gt;((resolve, reject) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      let filename = document.fileName;</span>
+<span class="cstat-no" title="statement not covered" >      let lineText = document.lineAt(position.line).text;</span>
+<span class="cstat-no" title="statement not covered" >      let lineTillCurrentPosition = lineText.substr(0, position.character);</span>
+      // nothing to complete
+<span class="cstat-no" title="statement not covered" >      if (lineText.match(/^\s*\/\//)) {</span>
+<span class="cstat-no" title="statement not covered" >        return resolve([]);</span>
+      }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export class FortranCompletionProvider implements vscode.CompletionItemProvider {</span>
+<span class="cstat-no" title="statement not covered" >      let inString = isPositionInString(document, position);</span>
+<span class="cstat-no" title="statement not covered" >      if (!inString &amp;&amp; lineTillCurrentPosition.endsWith('"')) {</span>
+        // completing a string
+<span class="cstat-no" title="statement not covered" >        return resolve([]);</span>
+      }
 &nbsp;
-    public provideCompletionItems<span class="fstat-no" title="function not covered" >(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken)</span>: Thenable&lt;vscode.CompletionItem[]&gt; {
-<span class="cstat-no" title="statement not covered" >        return this.provideCompletionItemsInternal(document, position, token, vscode.workspace.getConfiguration('go'));</span>
-    }
-    public provideCompletionItemsInternal<span class="fstat-no" title="function not covered" >(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, config: vscode.WorkspaceConfiguration)</span>: Thenable&lt;vscode.CompletionItem[]&gt; {
-<span class="cstat-no" title="statement not covered" >        return new Promise&lt;vscode.CompletionItem[]&gt;((resolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            let filename = document.fileName;</span>
-<span class="cstat-no" title="statement not covered" >            let lineText = document.lineAt(position.line).text;</span>
-<span class="cstat-no" title="statement not covered" >            let lineTillCurrentPosition = lineText.substr(0, position.character);</span>
-            // nothing to complete
-<span class="cstat-no" title="statement not covered" >            if (lineText.match(/^\s*\/\//)) {</span>
-<span class="cstat-no" title="statement not covered" >                return resolve([]);</span>
-            }
+      // get current word
+<span class="cstat-no" title="statement not covered" >      let wordAtPosition = document.getWordRangeAtPosition(position);</span>
+<span class="cstat-no" title="statement not covered" >      let currentWord = "";</span>
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        wordAtPosition &amp;&amp;
+        wordAtPosition.start.character &lt; position.character
+      ) {
+<span class="cstat-no" title="statement not covered" >        let word = document.getText(wordAtPosition);</span>
+<span class="cstat-no" title="statement not covered" >        currentWord = word.substr(</span>
+          0,
+          position.character - wordAtPosition.start.character
+        );
+      }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            let inString = isPositionInString(document, position);</span>
-<span class="cstat-no" title="statement not covered" >            if (!inString &amp;&amp; lineTillCurrentPosition.endsWith('\"')) { // completing a string</span>
-<span class="cstat-no" title="statement not covered" >                return resolve([]);</span>
-            }
+<span class="cstat-no" title="statement not covered" >      if (currentWord.match(/^\d+$/)) {</span>
+        // starts with a number
+<span class="cstat-no" title="statement not covered" >        return resolve([]);</span>
+      }
 &nbsp;
-            // get current word
-<span class="cstat-no" title="statement not covered" >            let wordAtPosition = document.getWordRangeAtPosition(position);</span>
-<span class="cstat-no" title="statement not covered" >            let currentWord = '';</span>
-<span class="cstat-no" title="statement not covered" >            if (wordAtPosition &amp;&amp; wordAtPosition.start.character &lt; position.character) {</span>
-<span class="cstat-no" title="statement not covered" >                let word = document.getText(wordAtPosition);</span>
-<span class="cstat-no" title="statement not covered" >                currentWord = word.substr(0, position.character - wordAtPosition.start.character);</span>
-            }
+<span class="cstat-no" title="statement not covered" >      let suggestions = [];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (currentWord.match(/^\d+$/)) { // starts with a number</span>
-<span class="cstat-no" title="statement not covered" >                return resolve([]);</span>
-            }
+<span class="cstat-no" title="statement not covered" >      if (currentWord.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        intrinsics.forEach(intrinsic =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (intrinsic.startsWith(currentWord.toUpperCase())) {</span>
+<span class="cstat-no" title="statement not covered" >            suggestions.push(</span>
+              new vscode.CompletionItem(
+                intrinsic,
+                vscode.CompletionItemKind.Method
+              )
+            );
+          }
+        });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            let suggestions = [];</span>
+        // add keyword suggestions
+<span class="cstat-no" title="statement not covered" >        FORTRAN_KEYWORDS.forEach(keyword =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (keyword.startsWith(currentWord.toUpperCase())) {</span>
+<span class="cstat-no" title="statement not covered" >            suggestions.push(</span>
+              new vscode.CompletionItem(
+                keyword.toLowerCase(),
+                vscode.CompletionItemKind.Keyword
+              )
+            );
+          }
+        });
+      }
+<span class="cstat-no" title="statement not covered" >      const functions = getDeclaredFunctions(document);</span>
+      // check for available functions
+<span class="cstat-no" title="statement not covered" >      functions.filter(fun =&gt; <span class="cstat-no" title="statement not covered" >fun.name.startsWith(currentWord))</span>.forEach(fun =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        suggestions.push(</span>
+          new vscode.CompletionItem(
+            fun.name,
+            vscode.CompletionItemKind.Function
+          )
+        );
+      });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (currentWord.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >                intrinsics.forEach(intrinsic =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    if (intrinsic.startsWith(currentWord.toUpperCase())) {</span>
-<span class="cstat-no" title="statement not covered" >                        suggestions.push(new vscode.CompletionItem(intrinsic, vscode.CompletionItemKind.Method));</span>
-                    }
-                });
-&nbsp;
-                // add keyword suggestions
-<span class="cstat-no" title="statement not covered" >               FORTRAN_KEYWORDS.forEach(keyword =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    if (keyword.startsWith(currentWord.toUpperCase())) {</span>
-<span class="cstat-no" title="statement not covered" >                        suggestions.push(new vscode.CompletionItem(keyword.toLowerCase(), vscode.CompletionItemKind.Keyword));</span>
-                    }
-                });
-            }
-<span class="cstat-no" title="statement not covered" >            const functions = getDeclaredFunctions(document);</span>
-            // check for available functions
-<span class="cstat-no" title="statement not covered" >            functions.filter(fun =&gt; <span class="cstat-no" title="statement not covered" >fun.name.startsWith(currentWord))</span></span>
-            .forEach(fun =&gt;{
-<span class="cstat-no" title="statement not covered" >                suggestions.push(new vscode.CompletionItem(fun.name, vscode.CompletionItemKind.Function));   </span>
-            });
-            
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            return resolve(suggestions);</span>
-&nbsp;
-        })
-&nbsp;
-    }
+<span class="cstat-no" title="statement not covered" >      return resolve(suggestions);</span>
+    });
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -262,7 +364,7 @@ import * as fs from 'fs';
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 06 2017 02:54:54 GMT-0300 (-03)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 18:43:07 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

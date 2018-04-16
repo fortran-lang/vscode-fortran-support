@@ -13,30 +13,10 @@
 		"F08"
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
-	"injections": {
-		"source.fortran.free - ( string | comment | meta.preprocessor )": {
-			"patterns": [
-				{
-					"include": "#line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.double.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.single.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		}
-	},
 	"patterns": [
+		{
+			"include": "#preprocessor"
+		},
 		{
 			"include": "#comments"
 		},
@@ -114,6 +94,366 @@
 		}
 	],
 	"repository": {
+		"preprocessor": {
+			"begin": "^\\s*(#)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.preprocessor.indicator.fortran"
+				}
+			},
+			"end": "\\n",
+			"patterns": [
+				{
+						"include": "#preprocessor-if-construct"
+				},
+				{
+						"include": "#preprocessor-statements"
+				}
+		]
+		},
+		"preprocessor-comments": {
+			"name": "comment.preprocessor",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		"preprocessor-constants": {
+			"patterns": [
+				{
+					"include": "#preprocessor-numeric-constant"
+				},
+				{
+					"include": "#preprocessor-string-constant"
+				}
+			]
+		},
+		"preprocessor-numeric-constant": {
+			"comment": "Numeric constants",
+			"name": "constant.numeric.fortran",
+			"match": "(?ix)[\\+\\-]?(\\b\\d+\\.?\\d*|\\.\\d+) (_\\w+|d[\\+\\-]?\\d+|e[\\+\\-]?\\d+(_\\w+)?)?(?![a-z_])"
+		},
+		"preprocessor-string-constant": {
+			"patterns": [
+				{
+					"comment": "Double quote string",
+					"name": "string.quoted.double.include.preprocessor.fortran",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.preprocessor.fortran"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.preprocessor.fortran"
+						}
+					}
+				},
+				{
+					"comment": "Single quote string",
+					"name": "string.quoted.single.include.preprocessor.fortran",
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.preprocessor.fortran"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.preprocessor.fortran"
+						}
+					}
+				}
+			]
+		},
+		"preprocessor-if-construct": {
+			"patterns": [
+				{
+					"begin": "(?i)\\G\\s*\\b(if)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.if.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						},
+						{
+							"include": "#preprocessor-numeric-constant"
+						},
+						{
+							"include": "#preprocessor-logical-operators"
+						},
+						{
+							"include": "#preprocessor-defined-function"
+						}
+					]
+				},
+				{
+					"begin": "(?i)\\G\\s*\\b(ifdef)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.ifdef.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						},
+						{
+							"include": "#preprocessor-numeric-constant"
+						},
+						{
+							"include": "#preprocessor-logical-operators"
+						}
+					]
+				},
+				{
+					"begin": "(?i)\\G\\s*\\b(ifndef)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.ifndef.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						},
+						{
+							"include": "#preprocessor-numeric-constant"
+						},
+						{
+							"include": "#preprocessor-logical-operators"
+						}
+					]
+				},
+				{
+					"begin": "(?i)\\G\\s*\\b(else)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.else.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						},
+						{
+							"include": "#preprocessor-numeric-constant"
+						}
+					]
+				},
+				{
+					"begin": "(?i)\\G\\s*\\b(elif)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.elif.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						},
+						{
+							"include": "#preprocessor-numeric-constant"
+						},
+						{
+							"include": "#preprocessor-logical-operators"
+						},
+						{
+							"include": "#preprocessor-defined-function"
+						}
+					]
+				},
+				{
+					"begin": "(?i)\\G\\s*\\b(endif)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.preprocessor.endif.fortran"
+						}
+					},
+					"end": "(?=\\n)",
+					"patterns": [
+						{
+							"include": "#preprocessor-comments"
+						}
+					]
+				}
+			]
+		},
+		"preprocessor-defined-function": {
+			"match": "(?i)\\b(defined)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.define.preprocessor.fortran"
+				}
+			}
+		},
+		"preprocessor-operators": {
+			"patterns": [
+				{
+					"include": "#preprocessor-assignment-operator"
+				},
+				{
+					"include": "#preprocessor-line-continuation-operator"
+				},
+				{
+					"include": "#preprocessor-logical-operators"
+				}
+			]
+		},
+		"preprocessor-assignment-operator": {
+			"name": "keyword.operator.assignment.preprocessor.fortran",
+			"match": "(?<!\\=)(\\=)(?!\\=)"
+		},
+		"preprocessor-line-continuation-operator": {
+			"begin": "\\s*(\\\\)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.operator.line-continuation.preprocessor.fortran"
+				}
+			},
+			"end": "(?i)^"
+		},
+		"preprocessor-logical-operators": {
+			"name": "keyword.operator.logical.preprocessor.fortran",
+			"match": "&&"
+		},
+		"preprocessor-statements": {
+			"patterns": [
+				{
+					"include": "#preprocessor-define-statement"
+				},
+				{
+					"include": "#preprocessor-error-statement"
+				},
+				{
+					"include": "#preprocessor-include-statement"
+				},
+				{
+					"include": "#preprocessor-preprocessor-pragma-statement"
+				},
+				{
+					"include": "#preprocessor-undefine-statement"
+				}
+			]
+		},
+		"preprocessor-define-statement": {
+			"begin": "(?i)\\G\\s*\\b(define)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.define.preprocessor.fortran"
+				}
+			},
+			"end": "(?=\\n)",
+			"patterns": [
+				{
+					"include": "#preprocessor-comments"
+				},
+				{
+					"include": "#preprocessor-string-constant"
+				},
+				{
+					"include": "#preprocessor-assignment-operator"
+				},
+				{
+					"include": "#preprocessor-line-continuation-operator"
+				}
+			]
+		},
+		"preprocessor-error-statement": {
+			"begin": "(?i)\\G\\s*(error)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.error.preprocessor.fortran"
+				}
+			},
+			"end": "(?=\\n)",
+			"patterns": [
+				{
+					"include": "#preprocessor-comments"
+				},
+				{
+					"include": "#preprocessor-string-constant"
+				},
+				{
+					"include": "#preprocessor-line-continuation-operator"
+				}
+			]
+		},
+		"preprocessor-include-statement": {
+			"begin": "(?i)\\G\\s*(include)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.include.preprocessor.fortran"
+				}
+			},
+			"end": "(?=\\n)",
+			"patterns": [
+				{
+					"include": "#preprocessor-comments"
+				},
+				{
+					"include": "#preprocessor-string-constant"
+				},
+				{
+					"name": "string.quoted.other.lt-gt.include.preprocessor.fortran",
+					"begin": "<",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.preprocessor.fortran"
+						}
+					},
+					"end": ">",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.preprocessor.fortran"
+						}
+					}
+				},
+				{
+					"include": "#line-continuation-operator"
+				}
+			]
+		},
+		"preprocessor-pragma-statement": {
+			"begin": "(?i)\\G\\s*\\b(pragma)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.pragma.preprocessor.fortran"
+				}
+			},
+			"end": "(?=\\n)",
+			"patterns": [
+				{
+					"include": "#preprocessor-comments"
+				},
+				{
+					"include": "#preprocessor-string-constant"
+				}
+			]
+		},
+		"preprocessor-undefine-statement": {
+			"begin": "(?i)\\G\\s*\\b(undef)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.undef.preprocessor.fortran"
+				}
+			},
+			"end": "(?=\\n)",
+			"patterns": [
+				{
+					"include": "#preprocessor-comments"
+				}
+			]
+		},
 		"abstract-attribute": {
 			"comment": "Introduced in the Fortran 2003 standard.",
 			"match": "(?i)\\G\\s*\\b(abstract)\\b",
@@ -2990,7 +3330,7 @@
 		},
 		"arithmetic-operators": {
 			"comment": "Introduced in the Fortran 1977 standard.",
-			"match": "(\\-)|(\\+)|(\\/)|(\\*\\*)|(\\*)",
+			"match": "(\\-)|(\\+)|\\/(?!\\/|\\=|\\\\)|(\\*\\*)|(\\*)",
 			"captures": {
 				"1": {
 					"name": "keyword.operator.subtraction.fortran"
@@ -3012,14 +3352,14 @@
 		"assignment-operator": {
 			"comment": "Introduced in the Fortran 1977 standard.",
 			"name": "keyword.operator.assignment.fortran",
-			"match": "(?<!\\=)(\\=)(?!\\=)"
+			"match": "(?<!\\=)(\\=)(?!\\=|\\>)"
 		},
 		"derived-type-operators": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"match": "\\s*(\\%)",
 			"captures": {
 				"1": {
-					"name": "keyword.operator.selector.fortran"
+					"name": "keyword.other.selector.fortran"
 				}
 			}
 		},
@@ -3064,24 +3404,24 @@
 			"patterns": [
 				{
 					"comment": "Introduced in the Fortran 1977 standard.",
-					"match": "(?ix)(\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
-					"name": "keyword.fortran"
+					"match": "(?ix)(\\s*\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
+					"name": "keyword.logical.fortran"
 				},
 				{
 					"comment": "Introduced in the Fortran 1990 standard.",
-					"name": "keyword.operator.logical.fortran.modern",
-					"match": "(\\=\\=|\\/\\=|\\>\\=|\\>|\\<|\\<\\=)"
+					"name": "keyword.logical.fortran.modern",
+					"match": "(\\=\\=|\\/\\=|\\>\\=|(?<!\\=)\\>|\\<|\\<\\=)"
 				}
 			]
 		},
 		"pointer-operators": {
 			"comment": "Introduced in the Fortran 1990 standard.",
-			"name": "keyword.operator.point.fortran",
+			"name": "keyword.other.point.fortran",
 			"match": "(\\=\\>)"
 		},
 		"string-operators": {
 			"comment": "Introduced in the Fortran 19?? standard.",
-			"name": "keyword.operator.concatination.fortran",
+			"name": "keyword.other.concatination.fortran",
 			"match": "(\\/\\/)"
 		},
 		"string-line-continuation-operator": {
@@ -3352,7 +3692,7 @@
 					"match": "(?i)\\G\\s*\\b(program)\\b",
 					"captures": {
 						"1": {
-							"name": "keyword.other.program.fortran"
+							"name": "keyword.control.program.fortran"
 						}
 					}
 				},
@@ -3367,13 +3707,13 @@
 					"end": "(?ix)\\b(?:(end\\s*program)(?:\\s+(\\1))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
 					"endCaptures": {
 						"1": {
-							"name": "keyword.other.endprogram.fortran"
+							"name": "keyword.control.endprogram.fortran"
 						},
 						"2": {
 							"name": "entity.name.program.fortran"
 						},
 						"3": {
-							"name": "keyword.other.endprogram.fortran"
+							"name": "keyword.control.endprogram.fortran"
 						},
 						"4": {
 							"name": "invalid.error.fortran"

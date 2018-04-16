@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
     </div>
   </div>
@@ -67,7 +67,14 @@
 22
 23
 24
-25</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+25
+26
+27
+28
+29
+30
+31
+32</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -80,48 +87,62 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// src/extension.ts
-<span class="cstat-no" title="statement not covered" >import * as vscode from 'vscode';</span>
+<span class="cstat-no" title="statement not covered" >import * as vscode from "vscode";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >import FortranLintingProvider from './features/linter-provider';</span>
-<span class="cstat-no" title="statement not covered" >import FortranHoverProvider from './features/hover-provider';</span>
-<span class="cstat-no" title="statement not covered" >import { FortranCompletionProvider } from './features/completion-provider';</span>
-<span class="cstat-no" title="statement not covered" >import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';</span>
+<span class="cstat-no" title="statement not covered" >import FortranLintingProvider from "./features/linter-provider";</span>
+<span class="cstat-no" title="statement not covered" >import FortranHoverProvider from "./features/hover-provider";</span>
+<span class="cstat-no" title="statement not covered" >import { FortranCompletionProvider } from "./features/completion-provider";</span>
+<span class="cstat-no" title="statement not covered" >import { FortranDocumentSymbolProvider } from "./features/document-symbol-provider";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const FORTRAN_FREE_FORM_ID = "fortran_free-form";</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export function activate(context: vscode.ExtensionContext)</span> {</span>
+<span class="cstat-no" title="statement not covered" >  let hoverProvider = new FortranHoverProvider();</span>
+<span class="cstat-no" title="statement not covered" >  let completionProvider = new FortranCompletionProvider();</span>
+<span class="cstat-no" title="statement not covered" >  let symbolProvider = new FortranDocumentSymbolProvider();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    let hoverProvider = new FortranHoverProvider();</span>
-<span class="cstat-no" title="statement not covered" >    let completionProvider = new FortranCompletionProvider();</span>
-<span class="cstat-no" title="statement not covered" >    let symbolProvider = new FortranDocumentSymbolProvider();</span>
+<span class="cstat-no" title="statement not covered" >  if (vscode.workspace.getConfiguration("fortran").get("linterEnabled", true)) {</span>
+<span class="cstat-no" title="statement not covered" >    let linter = new FortranLintingProvider();</span>
+<span class="cstat-no" title="statement not covered" >    linter.activate(context.subscriptions);</span>
+<span class="cstat-no" title="statement not covered" >    vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter);</span>
+  }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (vscode.workspace.getConfiguration('fortran').get('linterEnabled', true)) {</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        let linter = new FortranLintingProvider();</span>
-<span class="cstat-no" title="statement not covered" >        linter.activate(context.subscriptions);</span>
-<span class="cstat-no" title="statement not covered" >        vscode.languages.registerCodeActionsProvider('fortran90', linter);</span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    vscode.languages.registerCompletionItemProvider('fortran90', completionProvider);</span>
-<span class="cstat-no" title="statement not covered" >    vscode.languages.registerHoverProvider('fortran90', hoverProvider);</span>
-<span class="cstat-no" title="statement not covered" >    vscode.languages.registerDocumentSymbolProvider('fortran90', symbolProvider);</span>
-}</pre></td></tr>
+<span class="cstat-no" title="statement not covered" >  vscode.languages.registerCompletionItemProvider(</span>
+    FORTRAN_FREE_FORM_ID,
+    completionProvider
+  );
+<span class="cstat-no" title="statement not covered" >  vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider);</span>
+<span class="cstat-no" title="statement not covered" >  vscode.languages.registerDocumentSymbolProvider(</span>
+    FORTRAN_FREE_FORM_ID,
+    symbolProvider
+  );
+}
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 06 2017 02:54:54 GMT-0300 (-03)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 18:43:07 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../prettify.js"></script>
