@@ -3330,7 +3330,7 @@
 		},
 		"arithmetic-operators": {
 			"comment": "Introduced in the Fortran 1977 standard.",
-			"match": "(\\-)|(\\+)|(\\/)|(\\*\\*)|(\\*)",
+			"match": "(\\-)|(\\+)|\\/(?!\\/|\\=|\\\\)|(\\*\\*)|(\\*)",
 			"captures": {
 				"1": {
 					"name": "keyword.operator.subtraction.fortran"
@@ -3352,14 +3352,14 @@
 		"assignment-operator": {
 			"comment": "Introduced in the Fortran 1977 standard.",
 			"name": "keyword.operator.assignment.fortran",
-			"match": "(?<!\\=)(\\=)(?!\\=)"
+			"match": "(?<!\\=)(\\=)(?!\\=|\\>)"
 		},
 		"derived-type-operators": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"match": "\\s*(\\%)",
 			"captures": {
 				"1": {
-					"name": "keyword.operator.selector.fortran"
+					"name": "keyword.other.selector.fortran"
 				}
 			}
 		},
@@ -3404,24 +3404,24 @@
 			"patterns": [
 				{
 					"comment": "Introduced in the Fortran 1977 standard.",
-					"match": "(?ix)(\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
-					"name": "keyword.fortran"
+					"match": "(?ix)(\\s*\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
+					"name": "keyword.logical.fortran"
 				},
 				{
 					"comment": "Introduced in the Fortran 1990 standard.",
-					"name": "keyword.operator.logical.fortran.modern",
-					"match": "(\\=\\=|\\/\\=|\\>\\=|\\>|\\<|\\<\\=)"
+					"name": "keyword.logical.fortran.modern",
+					"match": "(\\=\\=|\\/\\=|\\>\\=|(?<!\\=)\\>|\\<|\\<\\=)"
 				}
 			]
 		},
 		"pointer-operators": {
 			"comment": "Introduced in the Fortran 1990 standard.",
-			"name": "keyword.operator.point.fortran",
+			"name": "keyword.other.point.fortran",
 			"match": "(\\=\\>)"
 		},
 		"string-operators": {
 			"comment": "Introduced in the Fortran 19?? standard.",
-			"name": "keyword.operator.concatination.fortran",
+			"name": "keyword.other.concatination.fortran",
 			"match": "(\\/\\/)"
 		},
 		"string-line-continuation-operator": {
@@ -3692,7 +3692,7 @@
 					"match": "(?i)\\G\\s*\\b(program)\\b",
 					"captures": {
 						"1": {
-							"name": "keyword.other.program.fortran"
+							"name": "keyword.control.program.fortran"
 						}
 					}
 				},
@@ -3707,13 +3707,13 @@
 					"end": "(?ix)\\b(?:(end\\s*program)(?:\\s+(\\1))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
 					"endCaptures": {
 						"1": {
-							"name": "keyword.other.endprogram.fortran"
+							"name": "keyword.control.endprogram.fortran"
 						},
 						"2": {
 							"name": "entity.name.program.fortran"
 						},
 						"3": {
-							"name": "keyword.other.endprogram.fortran"
+							"name": "keyword.control.endprogram.fortran"
 						},
 						"4": {
 							"name": "invalid.error.fortran"
