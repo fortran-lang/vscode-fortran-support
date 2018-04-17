@@ -5,6 +5,18 @@ All notable changes to this extension will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] - 2018-04-16
+
+### Fixed
+
+* Regression bug in the last release (#44)
+
+### Added
+
+* Improvements on preprocessor directives highlighting
+
+## [0.6.3] - 2018-01-27
+
 ## [1.0.1] - 2018-03-19
 
 ### Fixed
