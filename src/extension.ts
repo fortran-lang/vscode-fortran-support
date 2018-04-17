@@ -6,7 +6,7 @@ import FortranHoverProvider from "./features/hover-provider";
 import { FortranCompletionProvider } from "./features/completion-provider";
 import { FortranDocumentSymbolProvider } from "./features/document-symbol-provider";
 
-const FORTRAN_FREE_FORM_ID = "fortran_free-form";
+const FORTRAN_FREE_FORM_ID = { language: "fortran_free-form", scheme: "file" };
 
 export function activate(context: vscode.ExtensionContext) {
   let hoverProvider = new FortranHoverProvider();

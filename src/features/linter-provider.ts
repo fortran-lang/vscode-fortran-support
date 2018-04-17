@@ -15,7 +15,7 @@ export default class FortranLintingProvider {
   private doModernFortranLint(textDocument: vscode.TextDocument) {
     const errorRegex: RegExp = /^([a-zA-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\s+(.*)\s+.*?\s+(Error|Warning|Fatal Error):\s(.*)$/gm;
 
-    if (textDocument.languageId !== LANGUAGE_ID) {
+    if (textDocument.languageId !== LANGUAGE_ID || textDocument.uri.scheme !== "file") {
       return;
     }
     let decoded = "";
