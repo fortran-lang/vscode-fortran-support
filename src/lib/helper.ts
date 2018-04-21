@@ -113,3 +113,31 @@ let saveKeywordToJson = (keyword) => {
     });
 };
 
+export const convertToMethod = sub => {
+    let range = new vscode.Range(
+        sub.line - 1,
+        sub.column,
+        sub.line - 1,
+        sub.column + sub.name.length
+    );
+    return new vscode.SymbolInformation(
+        sub.name,
+        vscode.SymbolKind.Method,
+        range
+    );
+};
+
+
+export const convertToFunction = fun => {
+    let range = new vscode.Range(
+        fun.line - 1,
+        fun.column,
+        fun.line - 1,
+        fun.column + fun.name.length
+    );
+    return new vscode.SymbolInformation(
+        fun.name,
+        vscode.SymbolKind.Function,
+        range
+    );
+};

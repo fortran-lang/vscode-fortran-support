@@ -8,15 +8,18 @@ import {
 } from "vscode";
 
 import * as vscode from "vscode";
+import * as grammar from '../lib/grammar';
 import {
   parseFunction as getDeclaredFunction,
   parseSubroutine as getDeclaredSubroutine
 } from "../lib/functions";
 import { parseVars as getDeclaredVar } from "../lib/variables";
 import { error } from "util";
+import * as helper from '../lib/helper';
 
 type SymbolType = "subroutine" | "function" | "variable";
 type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
+
 
 export class FortranDocumentSymbolProvider
   implements vscode.DocumentSymbolProvider {
@@ -28,15 +31,12 @@ export class FortranDocumentSymbolProvider
     document: TextDocument,
     token: CancellationToken
   ): Thenable<vscode.SymbolInformation[]> {
-    const cancel = new Promise<vscode.SymbolInformation[]>(
-      (resolve, reject) => {
-        token.onCancellationRequested(evt => {
-          reject(error);
-        });
-      }
-    );
-    return Promise.race([this.parseDoc(document), cancel]);
+    return grammar.declarationsFromFile(document.fileName).then(({ subroutines, functions }) => {
+      return [...subroutines.map(helper.convertToMethod), ...functions.map(helper.convertToFunction)]
+        .sort((a, b) => a.location.range.start.line - b.location.range.start.line);
+    });
   }
+
   parseDoc = async (document: TextDocument) => {
     let lines = document.lineCount;
     let symbols = [];

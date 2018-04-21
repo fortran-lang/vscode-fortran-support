@@ -1,8 +1,7 @@
 {
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
-  "description":
-    "Modern Fortran language support, including syntax highlighting and error detection.",
+  "description": "Modern Fortran language support, including syntax highlighting and error detection.",
   "version": "1.1.0",
   "publisher": "krvajalm",
   "engines": {
@@ -13,21 +12,47 @@
     "type": "git",
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
-  "categories": ["Languages", "Snippets", "Linters"],
-  "activationEvents": ["onLanguage:fortran_free-form"],
+  "categories": [
+    "Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:fortran_free-form"
+  ],
   "main": "./out/src/extension",
   "contributes": {
     "languages": [
       {
         "id": "fortran_free-form",
-        "aliases": ["Fortran90", "fortran90"],
-        "extensions": [".f90", ".F90", ".f95", ".F95", ".f08", ".F08"],
+        "aliases": [
+          "Fortran90",
+          "fortran90"
+        ],
+        "extensions": [
+          ".f90",
+          ".F90",
+          ".f95",
+          ".F95",
+          ".f08",
+          ".F08"
+        ],
         "configuration": "./language-configuration.json"
       },
       {
         "id": "fortran_fixed-form",
-        "aliases": ["Fortran ", "fortran", "FORTRAN77"],
-        "extensions": [".f", ".F", ".f77", ".F77", ".FPP"]
+        "aliases": [
+          "Fortran ",
+          "fortran",
+          "FORTRAN77"
+        ],
+        "extensions": [
+          ".f",
+          ".F",
+          ".f77",
+          ".F77",
+          ".FPP"
+        ]
       }
     ],
     "grammars": [
@@ -53,19 +78,19 @@
       "title": "Fortran configuration",
       "properties": {
         "fortran.includePaths": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
           "default": [],
-          "description":
-            "Specifies folder paths to be used as include path for the Fortran linter"
+          "description": "Specifies folder paths to be used as include path for the Fortran linter"
         },
         "fortran.gfortranExecutable": {
           "type": "string",
           "default": "gfortran",
-          "description":
-            "Specifies the complete path of the gfortran executable"
+          "description": "Specifies the complete path of the gfortran executable"
         },
         "fortran.linterEnabled": {
           "type": "boolean",
@@ -73,46 +98,59 @@
           "description": "Enables or disables the linter functionality"
         },
         "fortran.linterExtraArgs": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
-          "default": ["-Wall"],
-          "description":
-            "Specify additional options to use when calling the gfortran compiler"
+          "default": [
+            "-Wall"
+          ],
+          "description": "Specify additional options to use when calling the gfortran compiler"
         },
         "fortran.symbols": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
-          "default": ["function", "subroutine"],
-          "description":
-            "Specify what kind of symbols should be shown by the symbols' provider"
+          "default": [
+            "function",
+            "subroutine"
+          ],
+          "description": "Specify what kind of symbols should be shown by the symbols' provider"
         }
       }
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
+    "antlr:build": "cd ./src/lib/grammar/ && java -jar /usr/local/lib/antlr-4.7.1-complete.jar -Dlanguage=JavaScript Fortran.g4 -o generated",
+    "vscode:prepublish": "antlr:build && tsc -p ./",
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "CODE_TESTS_WORKSPACE='./' node ./node_modules/vscode/bin/test",
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
-    "@types/glob": "^5.0.30",
     "@types/fs-extra": "0.0.35",
-    "fs-extra": "^1.0.0",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.3",
-    "mocha": "^2.3.3",
-    "decache": "^4.1.0",
-    "@types/node": "^6.0.40",
+    "@types/glob": "^5.0.30",
+    "@types/memoizee": "^0.4.2",
     "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "antlr4": "^4.7.1",
+    "decache": "^4.1.0",
+    "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
     "istanbul": "^0.4.5",
+    "memoizee": "^0.4.12",
+    "mocha": "^5.1.0",
     "remap-istanbul": "^0.8.4",
-    "tslint": "^4.0.2"
-  }
+    "tsc": "^1.20150623.0",
+    "tslint": "^4.0.2",
+    "typescript": "^2.8.3",
+    "vscode": "^1.0.3"
+  },
+  "dependencies": {}
 }
