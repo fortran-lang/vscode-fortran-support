@@ -22,6 +22,6 @@ suite("Extension Tests", () => {
     vscode.window.showTextDocument(doc);
     const symbolProvider = new FortranDocumentSymbolProvider();
     const symbols = await symbolProvider.provideDocumentSymbols(doc, null);
-    assert.equal(symbols.length, 1);
+    assert.equal(symbols.length, 6);
   });
 });
