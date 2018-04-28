@@ -2,10 +2,10 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 
-
-
-export const LANGUAGE_ID = 'fortran90';
-
+// IMPORTANT: this should match the value 
+// on the package.json otherwise the extension won't 
+// work at all ⛽️ 
+export const LANGUAGE_ID = 'FortranFreeForm';
 
 export const intrinsics = [
     "ABORT", "ABS", "ACCESS", "ACHAR", "ACOS", "ACOSH", "ADJUSTL", "ADJUSTR", "AIMAG", "AINT", "ALARM", "ALL", "ALLOCATED", "AND", "ANINT", "ANY", "ASIN", "ASINH", "ASSOCIATED", "ATAN", "ATAN2",
