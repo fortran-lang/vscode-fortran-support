@@ -57,7 +57,8 @@ export class FortranDocumentSymbolProvider
       }
     }
     return symbols;
-  }
+  };
+
   getSymbolsOfType(type: "subroutine" | "function" | "variable"): ParserFunc {
     switch (type) {
       case "subroutine":
@@ -100,6 +101,7 @@ export class FortranDocumentSymbolProvider
       );
     }
   }
+
   private parseVariableDefinition(line: TextLine) {
     const variable = getDeclaredVar(line);
     if (variable) {
@@ -111,6 +113,7 @@ export class FortranDocumentSymbolProvider
       );
     }
   }
+  
   getSymbolTypes() {
     let config = vscode.workspace.getConfiguration("fortran");
     const symbolTypes = config.get<SymbolType[]>("symbols", [
