@@ -18,7 +18,7 @@ export default class FortranLintingProvider {
     if (textDocument.languageId !== LANGUAGE_ID || textDocument.uri.scheme !== "file") {
       return;
     }
-    
+
     let decoded = "";
     let diagnostics: vscode.Diagnostic[] = [];
     let command = this.getGfortranPath();

@@ -2,9 +2,9 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 
-// IMPORTANT: this should match the value 
-// on the package.json otherwise the extension won't 
-// work at all ⛽️ 
+// IMPORTANT: this should match the value
+// on the package.json otherwise the extension won't
+// work at all
 export const LANGUAGE_ID = 'FortranFreeForm';
 
 export const intrinsics = [
