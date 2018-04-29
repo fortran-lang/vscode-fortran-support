@@ -49,7 +49,8 @@
         ]
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^[^!]*(then\\s*(!.*)?$|\\s*(program|subroutine|function|module|do|block|associate)\\b.*|\\s*(else|else\\s*if|elsewhere)\\b.*)$",
-        "decreaseIndentPattern": "^\\s*end\\s*(if|do)\\s*|^\\s*else\\b.*$|^\\s*end\\s(function|subroutine|module|program)"
+        "unIndentedLinePattern": "^\\s*!.*",
+        "increaseIndentPattern": "then(\\s*|\\s*!.*)$|^\\s*(program|subroutine|function|module|do|block|associate|case|select\\s*case)\\b.*$|\\s*(else|else\\s*if|elsewhere)\\b.*$",
+        "decreaseIndentPattern": "^\\s*end\\s*(select|if|do|function|subroutine|module|program)\\b.*$|^\\s*else|case\\b.*$"
     }
 }
