@@ -4,9 +4,6 @@ node_js:
   - "7.0"
 sudo: false
 
-os:
-  - linux
-  - osx
 matrix:
   include:
     - language: java
@@ -18,6 +15,7 @@ before_install:
       sh -e /etc/init.d/xvfb start;
       sleep 3;
     fi
+  - wget http://www.antlr.org/download/antlr-4.7.1-complete.jar
     
 install:
   - npm install -g vsce
