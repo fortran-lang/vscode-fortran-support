@@ -15,7 +15,7 @@ before_install:
       sh -e /etc/init.d/xvfb start;
       sleep 3;
     fi
-  - wget http://www.antlr.org/download/antlr-4.7.1-complete.jar && copy antlr-4.7.1-complete.jar /usr/local/lib/
+  - wget http://www.antlr.org/download/antlr-4.7.1-complete.jar && cp antlr-4.7.1-complete.jar /usr/local/lib/
 
     
 install:
