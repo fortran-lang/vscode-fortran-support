@@ -5,6 +5,15 @@ All notable changes to this extension will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018-05-25
+
+### Fixed
+* Linter was broken in previous version (#55)
+
+### Added
+* Improved indentation rules (#57)
+* Better syntax highlighting of module names (#51)
+
 ## [1.1.0] - 2018-04-16
 
 ### Fixed
@@ -14,8 +23,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * Improvements on preprocessor directives highlighting
-
-## [0.6.3] - 2018-01-27
 
 ## [1.0.1] - 2018-03-19
 
