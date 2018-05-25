@@ -1,0 +1,625 @@
+{
+  "comment": "OpenMP rules for Fortran.",
+  "scopeName": "source.openmp",
+  "injectionSelector": "comment",
+  "fileTypes": [],
+  "patterns": [
+    {
+      "name": "meta.openmp.directive",
+      "begin": "(?i)\\G(\\$(omp\\b)?)",
+      "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+      "end": "(?=[$\\n])",
+      "patterns": [
+        { "include": "#environment-variables" },
+        { "include": "#intrinsic-functions" },
+        { "include": "#operators" },
+        { "include": "#synchronization-constructs" },
+        { "include": "#end-directives" },
+        { "include": "#directives" },
+        { "include": "#clauses" }
+      ]
+    }
+  ],
+  "repository": {
+    "clauses": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(collapse)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.numeric.openmp",
+              "match": "\\G\\s*\\d+"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(copyin)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "begin": "(?i)\\b(default)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.regexp.openmp",
+              "match": "(?i)\\G(firstprivate|none|private|shared)"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(firstprivate)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "begin": "(?i)\\b(if)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\b(lastprivate)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(ordered)\\b"
+        },
+        {
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(nowait)\\b"
+        },
+        {
+          "begin": "(?i)\\b(num_threads)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\b(private)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "begin": "(?i)\\b(proc_bind)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.regexp.openmp",
+              "match": "(?i)\\G(close|master|spread)"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(reduction)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "\\G(?=\\s*[^\\)\\n])",
+              "end": "(:)|(?=\\))",
+              "endCaptures": { "1": { "name": "operator.colon.openmp" } },
+              "patterns": [
+                {
+                  "name": "string.regexp.openmp",
+                  "match":
+                    "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
+                },
+                { "include": "#invalid-word" }
+              ]
+            },
+            { "include": "#variable-list" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(schedule)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "(?i)\\G\\s*(dynamic|guided|static)\\b",
+              "beginCaptures": {
+                "1": { "name": "string.regexp.openmp" }
+              },
+              "end": "(?=\\))",
+              "patterns": [
+                {
+                  "begin": "\\G\\s*(,)",
+                  "beginCaptures": {
+                    "1": { "name": "punctuation.comma.openmp" }
+                  },
+                  "end": "(?=\\))"
+                },
+                { "include": "#invalid-word" }
+              ]
+            },
+            {
+              "name": "string.regexp.openmp",
+              "match": "(?i)\\G\\s*\\b(auto|runtime)\\b"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(shared)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "comment": "do-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(do(\\s*simd)?)\\b"
+        },
+        {
+          "comment": "declare-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(declare(\\s*reduction|\\s*simd|\\s*target)?)\\b"
+        },
+        {
+          "comment": "distribute-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(distribute(\\s*parallel\\s*do)?(\\s*simd)?)\\b"
+        },
+        {
+          "comment": "parallel-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
+        },
+        {
+          "comment": "sections-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(sections)\\b"
+        },
+        {
+          "comment": "shared-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(shared)\\b"
+        },
+        {
+          "comment": "single-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(single)\\b"
+        },
+        {
+          "comment": "target-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(target(\\s*data|teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
+        },
+        {
+          "comment": "task-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(task)\\b"
+        },
+        {
+          "comment": "teams-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
+        },
+        {
+          "comment": "threadprivate-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(threadprivate)\\b"
+        },
+        {
+          "comment": "workshare-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(workshare)\\b"
+        }
+      ]
+    },
+    "end-directives": {
+      "patterns": [
+        {
+          "comment": "end-atomic-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*atomic)\\b"
+        },
+        {
+          "comment": "end-distribute-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(end\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)\\b"
+        },
+        {
+          "comment": "end-do-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*do(\\s*simd)?)\\b"
+        },
+        {
+          "comment": "end-parallel-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(end\\s*parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
+        },
+        {
+          "comment": "end-sections-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*sections)\\b"
+        },
+        {
+          "comment": "end-simd-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*simd)\\b"
+        },
+        {
+          "comment": "end-single-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*single)\\b"
+        },
+        {
+          "comment": "end-target-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(end\\s*target(\\s*data|\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
+        },
+        {
+          "comment": "end-task-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*task)\\b"
+        },
+        {
+          "comment": "end-teams-directive",
+          "name": "string.regexp.openmp",
+          "match":
+            "(?i)\\b(end\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
+        },
+        {
+          "comment": "end-workshare-directive",
+          "name": "string.regexp.openmp",
+          "match": "(?i)\\b(end\\s*workshare)\\b"
+        }
+      ]
+    },
+    "environment-variables": {
+      "patterns": [
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_dynamic)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_nested)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_num_threads)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_schedule)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_proc_bind)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_stacksize)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_wait_policy)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_thread_limit)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_max_active_levels)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_places)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_cancelation)\\b"
+        },
+        {
+          "name": "variable.parameter.openmp",
+          "match": "(?i)\\b(omp_default_device)\\b"
+        }
+      ]
+    },
+    "intrinsic-functions": {
+      "patterns": [
+        {
+          "begin":
+            "(?i)\\b(omp_get_(active_levels|cancelation|level|proc_bind|thread_limit))\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openmp"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin":
+            "(?i)\\b(omp_(get|set)_(default_device|dynamic|max_active_levels|nested|num_threads|schedule))\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openmp"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        }
+      ]
+    },
+    "operators": {
+      "comment":
+        "Operator that allows a line to be continued on the next line.",
+      "patterns": [
+        {
+          "match": "\\G\\s*(&)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openmp"
+            }
+          }
+        },
+        {
+          "contentName": "meta.line-continuation.openmp",
+          "begin": "\\s*(&)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openmp"
+            }
+          },
+          "end": "(?i)^(?:\\s*(&))?",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openmp"
+            }
+          },
+          "patterns": [
+            {
+              "name": "invalid.error.openmp",
+              "match": "\\S*"
+            }
+          ]
+        }
+      ]
+    },
+    "synchronization-constructs": {
+      "patterns": [
+        {
+          "begin":
+            "(?ix) \\G\\s+( barrier |(end\\s*)?master |(end\\s*)?ordered |(end\\s*)?task\\s*group |taskwait )\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": [{ "include": "#invalid-word" }]
+        },
+        {
+          "begin": "(?i)\\G\\s+(flush)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\G\\s+(atomic)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "begin": "(?i)\\G\\s+(capture|read|write|update)\\b",
+              "beginCaptures": {
+                "1": { "name": "string.regexp.openmp" }
+              },
+              "end": "(?=[$\\n])",
+              "patterns": [
+                {
+                  "name": "string.regexp.openmp",
+                  "match": "(?i)\\G\\s+(seq_cst)\\b"
+                },
+                { "include": "#invalid-word" }
+              ]
+            },
+            {
+              "name": "string.regexp.openmp",
+              "match": "(?i)\\G\\s+(seq_cst)\\b"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+(cancel)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "begin": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b",
+              "beginCaptures": {
+                "1": { "name": "string.regexp.openmp" }
+              },
+              "end": "(?=[$\\n])",
+              "patterns": []
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+(cancellation\\s+point)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "name": "string.regexp.openmp",
+              "match": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+((end\\s*)?critical)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
+          "end": "(?=[$\\n])",
+          "patterns": []
+        }
+      ]
+    },
+    "invalid-word": {
+      "name": "invalid.error.openmp",
+      "match": "(?i)\\b\\w+\\b"
+    }
+  }
+}

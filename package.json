@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
-  "categories": ["Languages", "Snippets", "Linters"],
+  "categories": ["Programming Languages", "Snippets", "Linters"],
   "activationEvents": ["onLanguage:FortranFreeForm"],
   "main": "./out/src/extension",
   "contributes": {
@@ -35,6 +35,11 @@
         "language": "FortranFreeForm",
         "scopeName": "source.fortran.free",
         "path": "./syntaxes/fortran_free-form.tmLanguage.json"
+      },
+      {
+        "scopeName": "source.openmp",
+        "path": "./syntaxes/openmp_lang.json",
+        "injectTo": ["source.fortran.free"]
       },
       {
         "language": "fortran_fixed-form",
