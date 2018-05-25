@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 * Linter was broken in previous version (#55)
+* Symbol listing was failing for subroutine without brackets (#61)
 
 ### Added
 * Improved indentation rules (#57)
