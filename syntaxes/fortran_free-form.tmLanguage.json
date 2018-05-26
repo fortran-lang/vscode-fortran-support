@@ -1236,7 +1236,7 @@
 									"patterns": [
 										{
 											"comment": "rest of else line",
-											"begin": "\\G(?!\\s*\\n)",
+											"begin": "(?!(\\s*!)|(\\s*\\n))",
 											"end": "(?=[;!\\n])",
 											"patterns": [
 												{
