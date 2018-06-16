@@ -5106,7 +5106,7 @@
 			]
 		},
 		"variable": {
-			"name": "variable.parameter.fortran",
+			"name": "meta.parameter.fortran",
 			"begin": "(?i)\\b(?=[a-z])",
 			"end": "(?<!\\G)",
 			"applyEndPatternLast": 1,
