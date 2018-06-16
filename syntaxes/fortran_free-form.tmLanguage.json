@@ -3352,7 +3352,7 @@
 		"assignment-operator": {
 			"comment": "Introduced in the Fortran 1977 standard.",
 			"name": "keyword.operator.assignment.fortran",
-			"match": "(?<!\\=)(\\=)(?!\\=|\\>)"
+			"match": "(?<!\\/|\\=|\\<|\\>)(\\=)(?!\\=|\\>)"
 		},
 		"derived-type-operators": {
 			"comment": "Introduced in the Fortran 1995 standard.",
@@ -3410,7 +3410,7 @@
 				{
 					"comment": "Introduced in the Fortran 1990 standard.",
 					"name": "keyword.logical.fortran.modern",
-					"match": "(\\=\\=|\\/\\=|\\>\\=|(?<!\\=)\\>|\\<|\\<\\=)"
+					"match": "(\\=\\=|\\/\\=|\\>\\=|(?<!\\=)\\>|\\<\\=|\\<)"
 				}
 			]
 		},
