@@ -88,9 +88,6 @@
 		},
 		{
 			"include": "#intrinsic-functions"
-		},
-		{
-			"include": "#variable"
 		}
 	],
 	"repository": {
@@ -4734,9 +4731,6 @@
 						},
 						{
 							"include": "#intrinsic-functions"
-						},
-						{
-							"include": "#variable"
 						}
 					]
 				}
@@ -4773,9 +4767,6 @@
 				},
 				{
 					"include": "#intrinsic-functions"
-				},
-				{
-					"include": "#variable"
 				}
 			]
 		},
@@ -4844,9 +4835,6 @@
 				},
 				{
 					"include": "#operator-keyword"
-				},
-				{
-					"include": "#variable"
 				}
 			]
 		},
@@ -4889,9 +4877,6 @@
 				},
 				{
 					"include": "#operator-keyword"
-				},
-				{
-					"include": "#variable"
 				}
 			]
 		},
@@ -5021,9 +5006,6 @@
 				},
 				{
 					"include": "#intrinsic-functions"
-				},
-				{
-					"include": "#variable"
 				}
 			]
 		},
@@ -5061,9 +5043,6 @@
 				},
 				{
 					"include": "#intrinsic-functions"
-				},
-				{
-					"include": "#variable"
 				}
 			]
 		},
@@ -5102,33 +5081,6 @@
 							"include": "#pointer-operators"
 						}
 					]
-				}
-			]
-		},
-		"variable": {
-			"name": "variable.parameter.fortran",
-			"begin": "(?i)\\b(?=[a-z])",
-			"end": "(?<!\\G)",
-			"applyEndPatternLast": 1,
-			"patterns": [
-				{
-					"include": "#brackets"
-				},
-				{
-					"include": "#derived-type-operators"
-				},
-				{
-					"include": "#parentheses-dummy-variables"
-				},
-				{
-					"include": "#word"
-				}
-			]
-		},
-		"word": {
-			"patterns": [
-				{
-					"match": "(?i)(?:\\G|(?<=\\%))\\s*\\b([a-z]\\w*)\\b"
 				}
 			]
 		}
