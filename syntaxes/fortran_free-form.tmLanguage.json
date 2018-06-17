@@ -4786,7 +4786,7 @@
 					"name": "punctuation.definition.parameters.begin.fortran"
 				}
 			},
-			"end": "(\\)|(?=\\n))",
+			"end": "\\)",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.parameters.end.fortran"
