@@ -1,9 +1,8 @@
 {
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
-  "description":
-    "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "1.2.0",
+  "description": "Modern Fortran language support, including syntax highlighting and error detection.",
+  "version": "1.3.0",
   "publisher": "krvajalm",
   "engines": {
     "vscode": "^1.19.0"
@@ -13,21 +12,47 @@
     "type": "git",
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
-  "categories": ["Programming Languages", "Snippets", "Linters"],
-  "activationEvents": ["onLanguage:FortranFreeForm"],
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:FortranFreeForm"
+  ],
   "main": "./out/src/extension",
   "contributes": {
     "languages": [
       {
         "id": "FortranFreeForm",
-        "aliases": ["Fortran90", "fortran90"],
-        "extensions": [".f90", ".F90", ".f95", ".F95", ".f08", ".F08"],
+        "aliases": [
+          "Fortran90",
+          "fortran90"
+        ],
+        "extensions": [
+          ".f90",
+          ".F90",
+          ".f95",
+          ".F95",
+          ".f08",
+          ".F08"
+        ],
         "configuration": "./language-configuration.json"
       },
       {
         "id": "fortran_fixed-form",
-        "aliases": ["Fortran ", "fortran", "FORTRAN77"],
-        "extensions": [".f", ".F", ".f77", ".F77", ".FPP"]
+        "aliases": [
+          "Fortran ",
+          "fortran",
+          "FORTRAN77"
+        ],
+        "extensions": [
+          ".f",
+          ".F",
+          ".f77",
+          ".F77",
+          ".FPP"
+        ]
       }
     ],
     "grammars": [
@@ -39,7 +64,9 @@
       {
         "scopeName": "source.openmp",
         "path": "./syntaxes/openmp_lang.json",
-        "injectTo": ["source.fortran.free"]
+        "injectTo": [
+          "source.fortran.free"
+        ]
       },
       {
         "language": "fortran_fixed-form",
@@ -58,19 +85,19 @@
       "title": "Fortran configuration",
       "properties": {
         "fortran.includePaths": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
           "default": [],
-          "description":
-            "Specifies folder paths to be used as include path for the Fortran linter"
+          "description": "Specifies folder paths to be used as include path for the Fortran linter"
         },
         "fortran.gfortranExecutable": {
           "type": "string",
           "default": "gfortran",
-          "description":
-            "Specifies the complete path of the gfortran executable"
+          "description": "Specifies the complete path of the gfortran executable"
         },
         "fortran.linterEnabled": {
           "type": "boolean",
@@ -78,22 +105,29 @@
           "description": "Enables or disables the linter functionality"
         },
         "fortran.linterExtraArgs": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
-          "default": ["-Wall"],
-          "description":
-            "Specify additional options to use when calling the gfortran compiler"
+          "default": [
+            "-Wall"
+          ],
+          "description": "Specify additional options to use when calling the gfortran compiler"
         },
         "fortran.symbols": {
-          "type": ["array"],
+          "type": [
+            "array"
+          ],
           "items": {
             "type": "string"
           },
-          "default": ["function", "subroutine"],
-          "description":
-            "Specify what kind of symbols should be shown by the symbols' provider"
+          "default": [
+            "function",
+            "subroutine"
+          ],
+          "description": "Specify what kind of symbols should be shown by the symbols' provider"
         }
       }
     }
