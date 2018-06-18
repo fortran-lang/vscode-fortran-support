@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.0] - 2018-06-18
 
 ### Fixed
-* 
+* Fixed issue #10 (this is an example, use real issue link here)
 * 
 
 ## Added 
