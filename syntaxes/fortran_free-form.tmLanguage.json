@@ -4794,11 +4794,11 @@
 			},
 			"patterns": [
 				{
-                    "include": "#dummy-variable"
-                },
-                {
-                    "include": "#line-continuation-operator"
-                }
+					"include": "#dummy-variable"
+				},
+				{
+					"include": "#line-continuation-operator"
+				}
 			]
 		},
 		"dummy-variable": {
