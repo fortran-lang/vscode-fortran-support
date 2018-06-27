@@ -4786,7 +4786,7 @@
 					"name": "punctuation.definition.parameters.begin.fortran"
 				}
 			},
-			"end": "\\)",
+			"end": "\\)|(?=\\n)",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.parameters.end.fortran"
@@ -4794,8 +4794,11 @@
 			},
 			"patterns": [
 				{
-					"include": "#dummy-variable"
-				}
+                    "include": "#dummy-variable"
+                },
+                {
+                    "include": "#line-continuation-operator"
+                }
 			]
 		},
 		"dummy-variable": {
