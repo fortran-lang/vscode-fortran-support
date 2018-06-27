@@ -8,11 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.0] - 2018-06-18
 
 ### Fixed
-* Subroutine symbol list was failing with more than one line arguments (#71)
+* Subroutine and function on symbol list were failing with more than one line arguments (#71)
 * Minor syntax highlighting issues (#62, #73)
 
 ## Added 
 * Implementation of OpenMP directives highlighting (#17)
+* Syntax highlight on multiple line of dummy arguments
 
 ## [1.2.0] - 2018-05-25
 
