@@ -66,6 +66,15 @@ The available options are
 
 and by default only functions and subroutines are shown
 
+
+You can also configure the case for fortran intrinsics auto-complete by using
+
+```
+{
+    "fortran.lowercaseIntrinsics": true
+}
+```
+
 ## Snippets
 
 This is a list of some of the snippets included, if you like to include some additionals snippets please let me know and I will add them.

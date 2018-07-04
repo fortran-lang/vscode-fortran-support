@@ -63,16 +63,22 @@ export class FortranCompletionProvider
       }
 
       let suggestions = [];
+      // Get configuration
+      let config = vscode.workspace.getConfiguration("fortran");
+      let intrinsic_lowercase = config.get("lowercaseIntrinsics", []);
 
       if (currentWord.length > 0) {
         intrinsics.forEach(intrinsic => {
           if (intrinsic.startsWith(currentWord.toUpperCase())) {
-            suggestions.push(
-              new vscode.CompletionItem(
-                intrinsic,
-                vscode.CompletionItemKind.Method
-              )
-            );
+             if (intrinsic_lowercase) {
+              suggestions.push(
+              new vscode.CompletionItem(intrinsic.toLowerCase(), vscode.CompletionItemKind.Method)
+              );
+             } else {
+                suggestions.push(
+                new vscode.CompletionItem(intrinsic, vscode.CompletionItemKind.Method)
+                );
+             }
           }
         });
 
