@@ -1,4 +1,3 @@
-// src/extension.ts
 import * as vscode from "vscode";
 
 import FortranLintingProvider from "./features/linter-provider";
@@ -24,9 +23,13 @@ export function activate(context: vscode.ExtensionContext) {
     FORTRAN_FREE_FORM_ID,
     completionProvider
   );
+
+
   vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider);
+
   vscode.languages.registerDocumentSymbolProvider(
     FORTRAN_FREE_FORM_ID,
     symbolProvider
   );
+
 }

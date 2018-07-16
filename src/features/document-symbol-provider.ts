@@ -12,10 +12,12 @@ import {
   parseFunction as getDeclaredFunction,
   parseSubroutine as getDeclaredSubroutine
 } from "../lib/functions";
-import { parseVars as getDeclaredVar } from "../lib/variables";
+import { parseVars as getDeclaredVars } from "../lib/variables";
+import { getDerivedTypeDefinition } from "../lib";
 import { error } from "util";
+import { throws } from "assert";
 
-type SymbolType = "subroutine" | "function" | "variable";
+type SymbolType = "subroutine" | "function" | "variable" | "derived_type";
 type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
 
 export class FortranDocumentSymbolProvider
@@ -59,15 +61,16 @@ export class FortranDocumentSymbolProvider
     return symbols;
   }
 
-  getSymbolsOfType(type: "subroutine" | "function" | "variable"): ParserFunc {
+  getSymbolsOfType(type: SymbolType): ParserFunc {
     switch (type) {
       case "subroutine":
         return this.parseSubroutineDefinition;
       case "function":
         return this.parseFunctionDefinition;
-
       case "variable":
         return this.parseVariableDefinition;
+      case "derived_type":
+        return this.parseDerivedTypeDefinition;
       default:
         return () => undefined;
     }
@@ -103,7 +106,7 @@ export class FortranDocumentSymbolProvider
   }
 
   private parseVariableDefinition(line: TextLine) {
-    const variable = getDeclaredVar(line);
+    const variable = getDeclaredVars(line);
     if (variable) {
       let range = new vscode.Range(line.range.start, line.range.end);
       return new vscode.SymbolInformation(
@@ -114,12 +117,26 @@ export class FortranDocumentSymbolProvider
     }
   }
 
-  getSymbolTypes() {
+  private parseDerivedTypeDefinition = (line: TextLine) => {
+    const variable = getDerivedTypeDefinition(line.text);
+    if (variable) {
+      let range = new vscode.Range(line.range.start, line.range.end);
+      return new vscode.SymbolInformation(
+        variable.name,
+        vscode.SymbolKind.Class,
+        range
+      );
+    }
+  }
+
+  getSymbolTypes(): SymbolType[] {
     let config = vscode.workspace.getConfiguration("fortran");
     const symbolTypes = config.get<SymbolType[]>("symbols", [
       "subroutine",
-      "function"
+      "function",
+      "derived_type"
     ]);
+
     return symbolTypes;
   }
 }

@@ -125,7 +125,8 @@
           },
           "default": [
             "function",
-            "subroutine"
+            "subroutine",
+            "derived_type"
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
         }
