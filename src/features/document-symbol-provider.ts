@@ -59,7 +59,7 @@ export class FortranDocumentSymbolProvider
       }
     }
     return symbols;
-  };
+  }
 
   getSymbolsOfType(type: SymbolType): ParserFunc {
     switch (type) {
@@ -127,7 +127,7 @@ export class FortranDocumentSymbolProvider
         range
       );
     }
-  };
+  }
 
   getSymbolTypes(): SymbolType[] {
     let config = vscode.workspace.getConfiguration("fortran");

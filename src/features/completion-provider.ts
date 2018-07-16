@@ -120,7 +120,7 @@ export class FortranCompletionProvider
       );
     });
     return suggestions;
-  };
+  }
 
 
 
