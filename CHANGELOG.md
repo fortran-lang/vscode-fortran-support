@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-* Add syntax highlight for 'forall' construct (#82)
+### Added 
+* Syntax highlight for 'forall' construct (#82)
 
 ## [1.3.1] - 2018-06-26
 
@@ -14,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Subroutine and function on symbol list were failing with more than one line arguments (#71)
 * Minor syntax highlighting issues (#62, #73)
 
-## Added 
+### Added 
 * Implementation of OpenMP directives highlighting (#17)
 * Syntax highlight on multiple line of dummy arguments
 
