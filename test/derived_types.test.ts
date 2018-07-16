@@ -27,4 +27,8 @@ suite("derived type matcher", () => {
     assert.deepEqual(getDerivedTypeDefinition("type,  extends(BasePerson), public :: Person"), {name: "Person"})
   });
 
+  test("must include :: if extends is used", () => {
+    assert.equal(getDerivedTypeDefinition("type,  extends(BasePerson) Person"), undefined)
+  });
+
 });
