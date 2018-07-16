@@ -13,7 +13,7 @@ import {
   parseSubroutine as getDeclaredSubroutine
 } from "../lib/functions";
 import { parseVars as getDeclaredVars } from "../lib/variables";
-import { getDerivedTypeDefinition} from '../lib';
+import { getDerivedTypeDefinition } from "../lib";
 import { error } from "util";
 import { throws } from "assert";
 
@@ -22,7 +22,6 @@ type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
 
 export class FortranDocumentSymbolProvider
   implements vscode.DocumentSymbolProvider {
-
   vars: Array<vscode.SymbolInformation>;
   functions: Array<vscode.SymbolInformation>;
   subroutines: Array<vscode.SymbolInformation>;
@@ -60,7 +59,7 @@ export class FortranDocumentSymbolProvider
       }
     }
     return symbols;
-  }
+  };
 
   getSymbolsOfType(type: SymbolType): ParserFunc {
     switch (type) {
@@ -71,7 +70,7 @@ export class FortranDocumentSymbolProvider
       case "variable":
         return this.parseVariableDefinition;
       case "derived_type":
-          return this.parseDerivedTypeDefinition;
+        return this.parseDerivedTypeDefinition;
       default:
         return () => undefined;
     }
@@ -128,19 +127,16 @@ export class FortranDocumentSymbolProvider
         range
       );
     }
-  }
+  };
 
-  getSymbolTypes(): SymbolType[]{
+  getSymbolTypes(): SymbolType[] {
     let config = vscode.workspace.getConfiguration("fortran");
     const symbolTypes = config.get<SymbolType[]>("symbols", [
       "subroutine",
-      "function"
-    ]);
-
-    return [
-      "subroutine",
       "function",
       "derived_type"
-    ];
+    ]);
+
+    return symbolTypes;
   }
 }
