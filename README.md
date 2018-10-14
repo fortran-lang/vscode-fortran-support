@@ -6,16 +6,16 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![GitHub release](https://img.shields.io/github/release/krvajal/vscode-fortran-support.svg)](https://GitHub.com/krvajal/vscode-fortran-support/releases/)
 
-> This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on gfortran. You can download the Visual Estudio Code editor from [here](https://code.visualstudio.com/download).
+> This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on `gfortran`. You can download the Visual Studio Code editor from [here](https://code.visualstudio.com/download).
 
 ## Features
 
-* Syntax highlighting
-* Code Snippets
-* Documentation on hover for intrisic functions
-* Code linting based on `gfortran` to show errors swiggles in your code
-* Code autocompletion (beta)
-* Symbols provider
+- Syntax highlighting
+- Code Snippets
+- Documentation on hover for intrinsic functions
+- Code linting based on `gfortran` to show errors wiggles in your code
+- Code autocompletion (beta)
+- Symbols provider
 
 ![symbol_nav](./doc/symbol_nav.png)
 
@@ -58,17 +58,25 @@ You can configure what kind of symbols will appear in the symbol list by using
 
 The available options are
 
-* "function"
-* "subroutine"
-* "variable"
-* "module" (not supported yet)
-* "program" (not supported yet)
+- "function"
+- "subroutine"
+- "variable"
+- "module" (not supported yet)
+- "program" (not supported yet)
 
 and by default only functions and subroutines are shown
 
+You can also configure the case for fortran intrinsics auto-complete by using
+
+```
+{
+    "fortran.preferredCase": "lowercase" | "uppercase"
+}
+```
+
 ## Snippets
 
-This is a list of some of the snippets included, if you like to include some additionals snippets please let me know and I will add them.
+This is a list of some of the snippets included, if you like to include additional snippets please let me know and I will add them.
 
 #### Program skeleton
 
@@ -78,7 +86,7 @@ This is a list of some of the snippets included, if you like to include some add
 
 ![module snippet](https://media.giphy.com/media/3ohzdUNRuio5FfyF1u/giphy.gif)
 
-## Error swiggles
+## Error wiggles
 
 To trigger code validations you must save the file first.
 
@@ -88,13 +96,13 @@ For the linter to work you need to have `gfortran` on your path, or wherever you
 
 ## Issues
 
-Please report any issues and feature request on the github repo [here](https://github.com/krvajalmiguelangel/vscode-fortran-support/issues/new)
+Please report any issues and feature request on the GitHub repo [here](https://github.com/krvajalmiguelangel/vscode-fortran-support/issues/new)
 
 ## Notice
 
 The syntax highlight support was imported from [TextMate bundle](https://github.com/textmate/fortran.tmbundle)
 
-The idea of using gfortran cames from this awesome [fortran plugin](https://github.com/315234/SublimeFortran) for Sublime Text.
+The idea of using `gfortran` comes from this awesome [fortran plugin](https://github.com/315234/SublimeFortran) for Sublime Text.
 
 ## LICENSE
 
