@@ -140,18 +140,30 @@
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
-    "@types/glob": "^5.0.30",
     "@types/fs-extra": "0.0.35",
-    "fs-extra": "^1.0.0",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.3",
-    "mocha": "^2.3.3",
-    "decache": "^4.1.0",
-    "@types/node": "^6.0.40",
+    "@types/glob": "^5.0.30",
     "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "decache": "^4.1.0",
+    "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
+    "husky": "^1.1.2",
     "istanbul": "^0.4.5",
+    "lint-staged": "^7.3.0",
+    "mocha": "^2.3.3",
     "remap-istanbul": "^0.8.4",
-    "tslint": "^4.0.2"
+    "tslint": "^4.0.2",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ]
   }
 }
