@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as vscode from 'vscode'
 import intrinsics from './fortran-intrinsics'
+import { installTool } from './tools'
 
 // IMPORTANT: this should match the value
 // on the package.json otherwise the extension won't
@@ -9,7 +10,6 @@ export const LANGUAGE_ID = 'FortranFreeForm'
 export const FORTRAN_FREE_FORM_ID = { language: LANGUAGE_ID, scheme: 'file' }
 export { intrinsics }
 export const EXTENSION_ID = 'fortran'
-
 
 export const FORTRAN_KEYWORDS = [
   'FUNCTION',
@@ -118,6 +118,19 @@ let saveKeywordToJson = keyword => {
   })
 }
 
-export function getBinPath(tool: string): string {
-  return '/usr/local/bin/fortls'
+export { default as getBinPath } from './paths'
+
+export function promptForMissingTool(tool: string) {
+  const items = ['Install']
+  let message = ''
+  if (tool === 'fortran-langserver') {
+    message =
+      'You choose to use the fortranLanguageServer functionality but it is not installed. Please press the Install button to install it'
+  }
+  vscode.window.showInformationMessage(message, ...items).then(selected => {
+    if (selected === 'Install') {
+      installTool(tool)
+    }
+  })
+
 }

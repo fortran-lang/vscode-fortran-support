@@ -3,15 +3,22 @@ import {
   LanguageClientOptions,
   Executable,
 } from 'vscode-languageclient'
-import { getBinPath, FORTRAN_FREE_FORM_ID } from './lib/helper'
+import * as vscode from 'vscode'
+import {
+  getBinPath,
+  FORTRAN_FREE_FORM_ID,
+  promptForMissingTool,
+} from './lib/helper'
+import { LANG_SERVER_TOOL_ID } from './lib/tools'
 
-class FortranLangServer {
+export class FortranLangServer {
+
   c: LanguageClient
   constructor(context, config) {
     let langServerFlags: string[] = config.get('languageServerFlags', [])
 
     const serverOptions: Executable = {
-      command: getBinPath('fortran-langserver'),
+      command: getBinPath(LANG_SERVER_TOOL_ID),
       args: [...langServerFlags],
       options: {},
     }
@@ -42,4 +49,22 @@ class FortranLangServer {
   }
 }
 
-export { FortranLangServer }
+export function checkForLangServer(config) {
+  const useLangServer = config.get('useLanguageServer')
+  if (!useLangServer) return false
+  if (process.platform === 'win32') {
+    vscode.window.showInformationMessage(
+      'The Fortran language server is not supported on Windows yet.'
+    )
+    return false
+  }
+  let langServerAvailable = getBinPath('fortran-langserver')
+  if (!langServerAvailable) {
+    promptForMissingTool(LANG_SERVER_TOOL_ID)
+    vscode.window.showInformationMessage(
+      'Reload VS Code window after installing the Fortran language server'
+    )
+  }
+  return true
+}
+

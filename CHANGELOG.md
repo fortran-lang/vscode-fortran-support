@@ -71,7 +71,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Autoindentation rules for code blocks (thx @graceyangfan for the feature request)
+- Auto indentation rules for code blocks (thx @graceyangfan for the feature request)
 
 ### Fixed
 
@@ -81,7 +81,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- A bug in the regex to parse output errors from gfortran
+- A bug in the regex to parse output errors from `gfortran`
 - Now the spawn command uses the directory of the file `gfortran` is analyzing
 
 ## [0.5.1] - 2017-07-06

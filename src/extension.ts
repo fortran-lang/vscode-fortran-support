@@ -5,9 +5,9 @@ import FortranLintingProvider from './features/linter-provider'
 import FortranHoverProvider from './features/hover-provider'
 import { FortranCompletionProvider } from './features/completion-provider'
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider'
-import { FORTRAN_FREE_FORM_ID } from './lib/helper'
-import { FortranLangServer } from './lang-server'
-import { ConfigurationFeature } from 'vscode-languageclient/lib/configuration'
+
+import { FORTRAN_FREE_FORM_ID, EXTENSION_ID } from './lib/helper'
+import { FortranLangServer, checkForLangServer } from './lang-server'
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
   let completionProvider = new FortranCompletionProvider()
   let symbolProvider = new FortranDocumentSymbolProvider()
 
-  const extensionConfig = vscode.workspace.getConfiguration('LANGUAGE_ID')
+  const extensionConfig = vscode.workspace.getConfiguration(EXTENSION_ID)
 
   if (extensionConfig.get('linterEnabled', true)) {
     let linter = new FortranLintingProvider()
@@ -33,7 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
     FORTRAN_FREE_FORM_ID,
     symbolProvider
   )
-  if (extensionConfig.get('useLanguageServer')) {
+  
+  if (checkForLangServer(extensionConfig)) {
+
     const langServer = new FortranLangServer(context, extensionConfig)
     langServer.start()
     langServer.onReady().then(() => {
