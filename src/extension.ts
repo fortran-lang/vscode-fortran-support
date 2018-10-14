@@ -6,7 +6,7 @@ import FortranHoverProvider from './features/hover-provider'
 import { FortranCompletionProvider } from './features/completion-provider'
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider'
 import { FORTRAN_FREE_FORM_ID, EXTENSION_ID } from './lib/helper'
-import { FortranLangServer } from './lang-server'
+import { FortranLangServer, checkForLangServer } from './lang-server'
 
 export function activate(context: vscode.ExtensionContext) {
   let hoverProvider = new FortranHoverProvider()
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
     FORTRAN_FREE_FORM_ID,
     symbolProvider
   )
-  if (extensionConfig.get('useLanguageServer')) {
+  if (checkForLangServer(extensionConfig)) {
     const langServer = new FortranLangServer(context, extensionConfig)
     langServer.start()
     langServer.onReady().then(() => {

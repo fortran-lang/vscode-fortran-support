@@ -118,3 +118,17 @@ let saveKeywordToJson = keyword => {
 }
 
 export { default as getBinPath } from './paths'
+
+export function promptForMissingTool(tool: string) {
+  const items = ['Install']
+  let message = ''
+  if (tool === 'fortran-langserver') {
+    message =
+      'You choose to use the fortranLanguageServer functionality but it is not installed. Please press the Install button to install it'
+  }
+  vscode.window.showInformationMessage(message, ...items).then(selected => {
+    if (selected === 'Install') {
+      console.log('Install tool')
+    }
+  })
+}

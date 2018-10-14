@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as os from 'os'
+import { toolBinNames } from './tools'
 
 let binPathCache: { [tool: string]: string } = {}
 
@@ -19,6 +19,8 @@ export default function getBinPath(tool: string): string | null {
   )
   for (let p of possiblePaths) {
     if (fileExists(p)) {
+      // save in cache
+      binPathCache[tool] = p
       return p
     }
   }
@@ -27,10 +29,6 @@ export default function getBinPath(tool: string): string | null {
 
 function getBinName(tool: string): string {
   return toolBinNames[tool]
-}
-
-const toolBinNames = {
-  'fortran-langserver': 'fortls',
 }
 
 function fileExists(filePath: string): boolean {
