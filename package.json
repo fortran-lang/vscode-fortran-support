@@ -129,10 +129,14 @@
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
         },
-        "fortran.lowercaseIntrinsics": {
-          "type": "boolean",
-          "default": true,
-          "description": "Specifies the Case for intrinsics auto-complete"
+        "fortran.preferredCase": {
+          "type": "string",
+          "default": "lowercase",
+          "enum": [
+            "lowercase",
+            "uppercase"
+          ],
+          "description": "Scpecify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
         }
       }
     }
