@@ -7,14 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2018-10-14
+
 ### Added
 
 - Syntax highlight for `forall` construct (#82)
 - Add experimental support for the [Fortran Language Server](https://github.com/hansec/fortran-language-server)
+- Added the option to specify the casing to use when providing autocompletion options (Fixes #35)
 
 ### Changed
 
 - Updated the minimum supported version of VS Code to 1.22.0
+- Internal changes and cleanup
 
 ## [1.3.1] - 2018-06-26
 
