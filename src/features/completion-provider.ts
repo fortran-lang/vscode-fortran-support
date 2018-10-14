@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as vscode from 'vscode'
 import { isPositionInString, intrinsics, FORTRAN_KEYWORDS } from '../lib/helper'
 import { getDeclaredFunctions } from '../lib/functions'
+
 import { EXTENSION_ID } from '../lib/helper'
 
 class CaseCoverter {
@@ -153,5 +154,6 @@ export class FortranCompletionProvider
       )
     }
     return currentWord
+
   }
 }

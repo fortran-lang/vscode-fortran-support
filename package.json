@@ -5,7 +5,7 @@
   "version": "1.3.1",
   "publisher": "krvajalm",
   "engines": {
-    "vscode": "^1.19.0"
+    "vscode": "^1.22.0"
   },
   "icon": "images/icon.png",
   "repository": {
@@ -129,6 +129,11 @@
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
         },
+        "fortran.useLanguageServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Experimental: Not available in Windows. Use Fortran language server from hansec for Hover, Definition, Find All References, Signature Help, File Outline and Workspace Symbol features"
+       },
         "fortran.preferredCase": {
           "type": "string",
           "default": "lowercase",
@@ -136,7 +141,7 @@
             "lowercase",
             "uppercase"
           ],
-          "description": "Scpecify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+          "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
         }
       }
     }
@@ -163,7 +168,7 @@
     "remap-istanbul": "^0.8.4",
     "tslint": "^4.0.2",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.3"
+    "vscode": "^1.1.21"
   },
   "husky": {
     "hooks": {
@@ -174,5 +179,8 @@
     "*.ts": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "vscode-languageclient": "^5.1.0"
   }
 }
