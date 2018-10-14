@@ -128,6 +128,15 @@
             "subroutine"
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
+        },
+        "fortran.preferredCase": {
+          "type": "string",
+          "default": "lowercase",
+          "enum": [
+            "lowercase",
+            "uppercase"
+          ],
+          "description": "Scpecify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
         }
       }
     }
