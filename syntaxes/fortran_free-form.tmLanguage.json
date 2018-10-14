@@ -1454,6 +1454,41 @@
 				}
 			]
 		},
+		"forall-construct": {
+			"comment": "Introduced in the Fortran 1995 standard.",
+			"contentName": "meta.block.forall.fortran",
+			"begin": "(?i)\\s*\\b(forall)\\b",
+			"beginCaptures":{
+				"1": {
+					"name": "keyword.control.forall.fortran"
+				}
+			},
+			"end": "(?i)\\s*\\b(end\\s*forall)\\b",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.endforall.fortran"
+				}
+			},
+			"patterns":[
+				{
+					"comment": "Loop control.",
+					"name": "meta.loop-control.fortran",
+					"begin": "(?i)\\G(?!\\s*[;!\\n])",
+					"end": "(?=[;!\\n])",
+					"patterns":[
+						{
+							"include": "#parentheses"
+						},
+						{
+							"include": "#invalid-word"
+						}
+					]
+				},
+				{
+					"include": "$base"
+				}
+			]
+		},
 		"control-statements": {
 			"patterns": [
 				{

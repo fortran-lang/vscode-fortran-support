@@ -7,6 +7,7 @@ import * as vscode from 'vscode'
 export const LANGUAGE_ID = 'FortranFreeForm'
 export const EXTENSION_ID = 'fortran'
 
+
 export const intrinsics = [
   'ABORT',
   'ABS',
