@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Syntax highlight for `forall` construct (#82)
 - Add experimental support for the [Fortran Language Server](https://github.com/hansec/fortran-language-server)
 
+### Changed
+
+- Updated the minimum supported version of VS Code to 1.22.0
+
 ## [1.3.1] - 2018-06-26
 
 ### Fixed
