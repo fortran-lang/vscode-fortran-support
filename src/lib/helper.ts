@@ -10,7 +10,6 @@ export const FORTRAN_FREE_FORM_ID = { language: LANGUAGE_ID, scheme: 'file' }
 export { intrinsics }
 export const EXTENSION_ID = 'fortran'
 
-
 export const FORTRAN_KEYWORDS = [
   'FUNCTION',
   'MODULE',
@@ -118,6 +117,4 @@ let saveKeywordToJson = keyword => {
   })
 }
 
-export function getBinPath(tool: string): string {
-  return '/usr/local/bin/fortls'
-}
+export { default as getBinPath } from './paths'
