@@ -12,6 +12,7 @@ import {
 import { LANG_SERVER_TOOL_ID } from './lib/tools'
 
 export class FortranLangServer {
+
   c: LanguageClient
   constructor(context, config) {
     let langServerFlags: string[] = config.get('languageServerFlags', [])
@@ -66,3 +67,4 @@ export function checkForLangServer(config) {
   }
   return true
 }
+

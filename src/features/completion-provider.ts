@@ -154,5 +154,6 @@ export class FortranCompletionProvider
       )
     }
     return currentWord
+
   }
 }
