@@ -270,4 +270,4 @@ export default [
   'UNPACK',
   'VERIFY',
   'XOR',
-]
+];

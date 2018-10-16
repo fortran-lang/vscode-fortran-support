@@ -5,7 +5,7 @@
   "version": "2.0.0",
   "publisher": "krvajalm",
   "engines": {
-    "vscode": "^1.22.0"
+    "vscode": "^1.25.x"
   },
   "icon": "images/icon.png",
   "repository": {
@@ -131,7 +131,7 @@
         },
         "fortran.useLanguageServer": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Experimental: Not available in Windows. Use Fortran language server from hansec for Hover, Definition, Find All References, Signature Help, File Outline and Workspace Symbol features"
         },
         "fortran.preferredCase": {
