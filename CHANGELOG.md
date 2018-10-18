@@ -9,13 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.0.1] - 2018-10-18
 
-### Changed
-
-- Changed default configuration of LanguageServer to `false`
-- ￼Update vscode minimal engine
-
-## [2.0.0] - 2018-10-14
-
 ### Added
 
 - Syntax highlight for `forall` construct (#82)
@@ -26,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Updated the minimum supported version of VS Code to 1.22.0
 - Internal changes and cleanup
+- Set default configuration of LanguageServer to `false`
+- ￼Update vscode minimal engine
 
 ## [1.3.1] - 2018-06-26
 
