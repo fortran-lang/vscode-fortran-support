@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1] - 2018-10-18
+
+### Changed
+
+- Changed default configuration of LanguageServer to `false`
+- ￼Update vscode minimal engine
+
 ## [2.0.0] - 2018-10-14
 
 ### Added
