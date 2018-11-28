@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.2] - 2018-11-28
+
+### Added
+
+- Extensions `.for`, `.FOR` and `.fpp` added to fixed-form highlight (#97)
+
 ## [2.0.1] - 2018-10-18
 
 ### Changed
