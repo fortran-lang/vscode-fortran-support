@@ -25,7 +25,11 @@ export default class FortranLintingProvider {
     let argList = this.constructArgumentList(textDocument);
 
     let filePath = path.parse(textDocument.fileName).dir;
-    let childProcess = cp.spawn(command, argList, { cwd: filePath });
+
+    let env = Object.create(process.env);
+    env.LC_ALL = 'en_US.UTF-8';
+    let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
+
 
     if (childProcess.pid) {
       childProcess.stdout.on("data", (data: Buffer) => {
