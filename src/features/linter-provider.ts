@@ -26,10 +26,18 @@ export default class FortranLintingProvider {
 
     let filePath = path.parse(textDocument.fileName).dir;
 
-    let env = Object.create(process.env);
-    env.LC_ALL = 'en_US.UTF-8';
+    /*
+     * reset localization settings to traditional C English behavior in case
+     * gfortran is set up to use the system provided localization information,
+     * so errorRegex can nevertheless be used to filter out errors and warnings
+     *
+     * see also: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
+     */
+    const env = {
+      ...process.env,
+      LC_ALL:'C'
+    };
     let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
-
 
     if (childProcess.pid) {
       childProcess.stdout.on("data", (data: Buffer) => {
