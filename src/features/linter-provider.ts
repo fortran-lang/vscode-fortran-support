@@ -35,7 +35,7 @@ export default class FortranLintingProvider {
      */
     const env = {
       ...process.env,
-      LC_ALL:'C'
+      LC_ALL: 'C'
     };
     let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
 
