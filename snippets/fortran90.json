@@ -23,10 +23,9 @@
     "Do Loop": {
         "prefix": "do",
         "body": [
-            "do ${1:index} = ${2:start},${3:end}",
-            "    !TODO_statement",
+            "do ${1:index} = ${2:start}, ${3:end}",
             "    ${4}",
-            "enddo"
+            "end do"
         ],
         "description": "Create a do loop"
     },
