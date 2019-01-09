@@ -4570,7 +4570,7 @@
 		"derived-type": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"name": "meta.specification.type.derived.fortran",
-			"match": "(?i)\\b(?:(class)|(type))\\s*(\\()\\s*([a-z]\\w*)(\\))",
+			"match": "(?i)\\b(?:(class)|(type))\\s*(\\()\\s*(([a-z]\\w*)|\\*)\\s*(\\))",
 			"captures": {
 				"1": {
 					"name": "storage.type.class.fortran"
