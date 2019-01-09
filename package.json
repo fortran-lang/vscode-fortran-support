@@ -5,7 +5,7 @@
   "version": "2.0.2",
   "publisher": "krvajalm",
   "engines": {
-    "vscode": "^1.25.x"
+    "vscode": "^1.30.x"
   },
   "icon": "images/icon.png",
   "repository": {
