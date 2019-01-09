@@ -55,7 +55,8 @@
           ".FOR",
           ".fpp",
           ".FPP"
-        ]
+        ],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
