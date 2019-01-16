@@ -2059,7 +2059,7 @@
 		"derived-type-component-type-specification": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
 			"end": "(?=[;!\\n])",
 			"patterns": [
 				{
@@ -4064,7 +4064,7 @@
 		},
 		"type-specification-statements": {
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
 			"end": "(?=[\\);!\\n])",
 			"patterns": [
 				{
@@ -4635,7 +4635,7 @@
 			"comment": "Introduced in the Fortran 1977 standard.",
 			"patterns": [
 				{
-					"begin": "(?i)\\b(?:(complex)|(double\\s*precision)|(integer)|(real))\\s*(?=\\()",
+					"begin": "(?i)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real))\\s*(?=\\()",
 					"beginCaptures": {
 						"1": {
 							"name": "storage.type.complex.fortran"
@@ -4644,12 +4644,15 @@
 							"name": "storage.type.double.fortran"
 						},
 						"3": {
-							"name": "storage.type.integer.fortran"
+							"name": "storage.type.doublecomplex.fortran"
 						},
 						"4": {
-							"name": "storage.type.real.fortran"
+							"name": "storage.type.integer.fortran"
 						},
 						"5": {
+							"name": "storage.type.real.fortran"
+						},
+						"6": {
 							"name": "punctuation.parentheses.left.fortran"
 						}
 					},
@@ -4667,7 +4670,7 @@
 					]
 				},
 				{
-					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(integer)|(real))\\b(?:\\s*(\\*)\\s*(\\d*))?",
+					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real))\\b(?:\\s*(\\*)\\s*(\\d*))?",
 					"captures": {
 						"1": {
 							"name": "storage.type.complex.fortran"
@@ -4676,15 +4679,18 @@
 							"name": "storage.type.double.fortran"
 						},
 						"3": {
-							"name": "storage.type.integer.fortran"
+							"name": "storage.type.doublecomplex.fortran"
 						},
 						"4": {
-							"name": "storage.type.real.fortran"
+							"name": "storage.type.integer.fortran"
 						},
 						"5": {
-							"name": "keyword.operator.multiplication.fortran"
+							"name": "storage.type.real.fortran"
 						},
 						"6": {
+							"name": "keyword.operator.multiplication.fortran"
+						},
+						"7": {
 							"name": "constant.numeric.fortran"
 						}
 					}
