@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Extensions `.for`, `.FOR` and `.fpp` added to fixed-form highlight (#97)
-- Highlight support for unlimited polymorphic variables (#106)
+- Extend syntax highlighting (#106,#109)
 - Comments enable on fixed-form (#100)
 
 ## [2.0.1] - 2018-10-18
