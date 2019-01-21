@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.2] - 2018-11-28
+
+### Changed
+
+- Fixed wrong language on gfortran messages (#101)
+
+### Added
+
+- Extensions `.for`, `.FOR` and `.fpp` added to fixed-form highlight (#97)
+- Extend syntax highlighting (#106,#109)
+- Comments enable on fixed-form (#100)
+
 ## [2.0.1] - 2018-10-18
 
 ### Changed
