@@ -1278,7 +1278,7 @@
 			"patterns": [
 				{
 					"name": "meta.block.select.fortran",
-					"begin": "(?i)\\b(select)\\b",
+					"begin": "(?i)\\b(select\\s*case|selectcase)\\b",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.control.select.fortran"
@@ -1293,7 +1293,7 @@
 					"patterns": [
 						{
 							"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-							"begin": "(?i)\\G\\s*\\b(case)\\b",
+							"begin": "(?i)^\\s*\\b(case)\\b",
 							"beginCaptures": {
 								"1": {
 									"name": "keyword.control.case.fortran"
