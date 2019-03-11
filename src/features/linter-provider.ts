@@ -37,6 +37,12 @@ export default class FortranLintingProvider {
       ...process.env,
       LC_ALL: 'C'
     };
+    if (process.platform == 'win32') {
+      // Windows needs to know the path of other tools
+      if (!env.Path.includes(path.dirname(command))) {
+        env.Path = `${path.dirname(command)}${path.delimiter}` + env.Path;
+      }
+    }
     let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
 
     if (childProcess.pid) {
