@@ -133,11 +133,6 @@
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
         },
-        "fortran.useLanguageServer": {
-          "type": "boolean",
-          "default": false,
-          "description": "Experimental: Not available in Windows. Use Fortran language server from hansec for Hover, Definition, Find All References, Signature Help, File Outline and Workspace Symbol features"
-        },
         "fortran.preferredCase": {
           "type": "string",
           "default": "lowercase",

@@ -89,7 +89,7 @@ This is a list of some of the snippets included, if you like to include addition
 ## Error wiggles
 
 To trigger code validations you must save the file first.
-
+<!-- 
 ## Fortran Language Server (Experimental)
 
 This extension uses a host of tools to provide the various language features. An alternative is to use a single language server that provides the same feature.
@@ -100,6 +100,7 @@ Set `fortran.useLanguageServer` to `true` to use the Fortran language server fro
 - Since only a single language server is spun up for given VS Code instance, having multi-root setup does not work
 - If set to true, you will be prompted to install the Fortran language server. Once installed, you will have to reload VS Code window. The language server will then be run by the Fortran extension in the background to provide services needed for the above mentioned features.
 - Every time you change the value of the setting `fortran.useLanguageServer`, you need to reload the VS Code window for it to take effect.
+-->
 
 ## Requirements
 
