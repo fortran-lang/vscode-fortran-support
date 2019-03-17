@@ -1,0 +1,4 @@
+{
+    "keyword":"COTAND",
+    "docstr":"`COTAND` — Cotangent function, degrees\n\n### Description\nCOTAND(X) computes the cotangent of X in degrees. Equivalent to COSD(x) divided by SIND(x), or 1 / TAND(x).\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = COTAND(X)\n### Arguments\n- X: The type shall be REAL or COMPLEX.\n### Return value\nThe return value has same type and kind as X, and its value is in degrees.\n"
+}
