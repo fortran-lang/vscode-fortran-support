@@ -2,7 +2,7 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "publisher": "krvajalm",
   "engines": {
     "vscode": "^1.30.x"
@@ -132,11 +132,6 @@
             "subroutine"
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
-        },
-        "fortran.useLanguageServer": {
-          "type": "boolean",
-          "default": false,
-          "description": "Experimental: Not available in Windows. Use Fortran language server from hansec for Hover, Definition, Find All References, Signature Help, File Outline and Workspace Symbol features"
         },
         "fortran.preferredCase": {
           "type": "string",

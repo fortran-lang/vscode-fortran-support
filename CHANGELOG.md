@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-xx-xx
+
+### Changed
+
+- Improve usage of Linter on Windows 10 (#116)
+- Improve identation (#115)
+- Improve highlight (#110)
+- Temporary remove configuration for experimental support of Fortran Language Server (#105)
+
+### Added
+
+- New intrinsics from [GFortran docs](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html#Intrinsic-Procedures) (#113)
+
 ## [2.0.2] - 2018-11-28
 
 ### Changed

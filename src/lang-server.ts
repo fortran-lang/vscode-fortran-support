@@ -50,7 +50,7 @@ export class FortranLangServer {
 }
 
 export function checkForLangServer(config) {
-  const useLangServer = config.get('useLanguageServer')
+  const useLangServer = false //config.get('useLanguageServer')
   if (!useLangServer) return false
   if (process.platform === 'win32') {
     vscode.window.showInformationMessage(
