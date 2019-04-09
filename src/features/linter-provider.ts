@@ -32,10 +32,10 @@ export default class FortranLintingProvider {
      * so errorRegex can nevertheless be used to filter out errors and warnings
      *
      * see also: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
-     */    
+     */
     const env = process.env;
     env.LC_ALL = 'C';
-    if (process.platform == 'win32') {
+    if (process.platform === 'win32') {
       // Windows needs to know the path of other tools
       if (!env.Path.includes(path.dirname(command))) {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
