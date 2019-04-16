@@ -1278,7 +1278,7 @@
 			"patterns": [
 				{
 					"name": "meta.block.select.fortran",
-					"begin": "(?i)\\b(select\\s*case|selectcase)\\b",
+					"begin": "(?i)\\b(select)",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.control.select.fortran"
@@ -1293,7 +1293,7 @@
 					"patterns": [
 						{
 							"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-							"begin": "(?i)^\\s*\\b(case)\\b",
+							"begin": "(?i)\\s*(case)\\b",
 							"beginCaptures": {
 								"1": {
 									"name": "keyword.control.case.fortran"
@@ -1336,10 +1336,10 @@
 						},
 						{
 							"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
-							"begin": "(?i)\\G\\s*\\b(type)\\b",
+							"begin": "(?i)\\s*(type)\\b",
 							"beginCaptures": {
 								"1": {
-									"name": "keyword.control.case.fortran"
+									"name": "keyword.control.type.fortran"
 								}
 							},
 							"end": "(?i)(?=\\b(end\\s*select)\\b)",
@@ -1348,7 +1348,7 @@
 									"include": "#parentheses"
 								},
 								{
-									"begin": "(?i)\\b(?:(class)|(type))\\b",
+									"begin": "(?i)\\b(?:(class)|(type))",
 									"beginCaptures": {
 										"1": {
 											"name": "keyword.control.class.fortran"
@@ -1368,7 +1368,7 @@
 											}
 										},
 										{
-											"match": "(?i)\\G\\s*\\b(is)\\b",
+											"match": "(?i)\\G\\s*(is)\\b",
 											"captures": {
 												"1": {
 													"name": "keyword.control.is.fortran"
