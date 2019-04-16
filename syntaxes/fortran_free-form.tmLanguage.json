@@ -4064,7 +4064,7 @@
 		},
 		"type-specification-statements": {
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n]*\\bfunction\\b))",
 			"end": "(?=[\\);!\\n])",
 			"patterns": [
 				{
@@ -4670,7 +4670,7 @@
 					]
 				},
 				{
-					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real))\\b(?:\\s*(\\*)\\s*(\\d*))?",
+					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real)|(dimension))\\b(?:\\s*(\\*)\\s*(\\d*))?",
 					"captures": {
 						"1": {
 							"name": "storage.type.complex.fortran"
@@ -4688,9 +4688,12 @@
 							"name": "storage.type.real.fortran"
 						},
 						"6": {
+							"name": "storage.type.dimension.fortran"
+							},
+						"7": {
 							"name": "keyword.operator.multiplication.fortran"
 						},
-						"7": {
+						"8": {
 							"name": "constant.numeric.fortran"
 						}
 					}
