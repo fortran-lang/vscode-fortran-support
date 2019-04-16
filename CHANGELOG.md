@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.1.0] - 2019-xx-xx
+## [2.1.1] - 2019-xx-xx
+
+### Changed
+
+- Improve syntax highlight (#128, #127)
+- Improve Paths to linter (#124)
+- Improve environment processing (#126)
+
+### Added
+
+- New snippets (#104)
+
+## [2.1.0] - 2019-03-26
 
 ### Changed
 
