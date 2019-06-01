@@ -107,7 +107,7 @@ export default class FortranLintingProvider {
     );
     let argList = [
       ...args,
-      ...(getIncludeParams(includePaths)), // include paths
+      ...getIncludeParams(includePaths), // include paths
       textDocument.fileName,
       `-o ${fileNameWithoutExtension}.mod`
     ];

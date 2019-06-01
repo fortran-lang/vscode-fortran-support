@@ -87,11 +87,7 @@ export const _loadDocString = (keyword: string) => {
 };
 
 export const getIncludeParams = (paths: string[]) => {
-  let arrayPaths: string[] = [];  
-  paths.forEach(function(element) {
-    arrayPaths.push("-I"+element);
-  });
-  return arrayPaths;
+  return paths.map(path => `-I${path}`)
 };
 
 export function isPositionInString(
