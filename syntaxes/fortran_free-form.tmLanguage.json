@@ -1236,7 +1236,7 @@
 									"patterns": [
 										{
 											"comment": "rest of else line",
-											"begin": "(?!(\\s*!)|(\\s*\\n))",
+											"begin": "(?!(\\s*(;|!|\\n)))",
 											"end": "(?=[;!\\n])",
 											"patterns": [
 												{
@@ -1278,7 +1278,7 @@
 			"patterns": [
 				{
 					"name": "meta.block.select.fortran",
-					"begin": "(?i)\\b(select\\s*case|selectcase)\\b",
+					"begin": "(?i)\\b(select)",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.control.select.fortran"
@@ -1293,7 +1293,7 @@
 					"patterns": [
 						{
 							"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-							"begin": "(?i)^\\s*\\b(case)\\b",
+							"begin": "(?i)\\s*(case)\\b",
 							"beginCaptures": {
 								"1": {
 									"name": "keyword.control.case.fortran"
@@ -1336,10 +1336,10 @@
 						},
 						{
 							"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
-							"begin": "(?i)\\G\\s*\\b(type)\\b",
+							"begin": "(?i)\\s*(type)\\b",
 							"beginCaptures": {
 								"1": {
-									"name": "keyword.control.case.fortran"
+									"name": "keyword.control.type.fortran"
 								}
 							},
 							"end": "(?i)(?=\\b(end\\s*select)\\b)",
@@ -1348,7 +1348,7 @@
 									"include": "#parentheses"
 								},
 								{
-									"begin": "(?i)\\b(?:(class)|(type))\\b",
+									"begin": "(?i)\\b(?:(class)|(type))",
 									"beginCaptures": {
 										"1": {
 											"name": "keyword.control.class.fortran"
@@ -1368,7 +1368,7 @@
 											}
 										},
 										{
-											"match": "(?i)\\G\\s*\\b(is)\\b",
+											"match": "(?i)\\G\\s*(is)\\b",
 											"captures": {
 												"1": {
 													"name": "keyword.control.is.fortran"
@@ -4064,7 +4064,7 @@
 		},
 		"type-specification-statements": {
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n]*\\bfunction\\b))",
 			"end": "(?=[\\);!\\n])",
 			"patterns": [
 				{
@@ -4670,7 +4670,7 @@
 					]
 				},
 				{
-					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real))\\b(?:\\s*(\\*)\\s*(\\d*))?",
+					"match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real)|(dimension))\\b(?:\\s*(\\*)\\s*(\\d*))?",
 					"captures": {
 						"1": {
 							"name": "storage.type.complex.fortran"
@@ -4688,9 +4688,12 @@
 							"name": "storage.type.real.fortran"
 						},
 						"6": {
+							"name": "storage.type.dimension.fortran"
+							},
+						"7": {
 							"name": "keyword.operator.multiplication.fortran"
 						},
-						"7": {
+						"8": {
 							"name": "constant.numeric.fortran"
 						}
 					}
