@@ -80,7 +80,7 @@ export class FortranDocumentSymbolProvider
         let range = new vscode.Range(line.range.start, line.range.end);
         return new vscode.SymbolInformation(
           fun.name,
-          vscode.SymbolKind.Method,
+          vscode.SymbolKind.Function,
           range
         );
       }
