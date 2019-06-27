@@ -8,7 +8,7 @@
       "name": "meta.openmp.directive",
       "begin": "(?i)\\G(\\$(omp\\b)?&?)",
       "beginCaptures": { "1": { "name": "comment.directive.openmp" } },
-      "end": "(?=[$\\n])",
+      "end": "(?=[\\n])",
       "patterns": [
         { "include": "#environment-variables" },
         { "include": "#intrinsic-functions" },
