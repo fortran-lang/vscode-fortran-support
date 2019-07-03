@@ -33,11 +33,9 @@ export default class FortranLintingProvider {
      *
      * see also: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
      */
-    const env = {
-      ...process.env,
-      LC_ALL: 'C'
-    };
-    if (process.platform == 'win32') {
+    const env = process.env;
+    env.LC_ALL = 'C';
+    if (process.platform === 'win32') {
       // Windows needs to know the path of other tools
       if (!env.Path.includes(path.dirname(command))) {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
@@ -107,7 +105,7 @@ export default class FortranLintingProvider {
     );
     let argList = [
       ...args,
-      getIncludeParams(includePaths), // include paths
+      ...getIncludeParams(includePaths), // include paths
       textDocument.fileName,
       `-o ${fileNameWithoutExtension}.mod`
     ];

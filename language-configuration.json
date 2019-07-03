@@ -55,7 +55,7 @@
             "flags": "i"
         },
         "decreaseIndentPattern": {
-            "pattern": "^\\s*end\\s*(select|if|do|function|subroutine|module|program)\\b.*$|^\\s*else|case\\b.*$",
+            "pattern": "^\\s*end\\s*(select|if|do|function|subroutine|module|program)\\b.*$|^\\s*(else|case)\\b.*$",
             "flags": "i"
         }
     }
