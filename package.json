@@ -15,7 +15,8 @@
   "categories": [
     "Programming Languages",
     "Snippets",
-    "Linters"
+    "Linters",
+    "Debuggers"
   ],
   "activationEvents": [
     "onLanguage:FortranFreeForm"
@@ -82,6 +83,18 @@
       {
         "language": "FortranFreeForm",
         "path": "./snippets/fortran90.json"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "cppdbg",
+        "label": "Fortran (GDB)",
+        "enableBreakpointsFor": {
+          "languageIds": [
+            "FortranFreeForm",
+            "fortran_fixed-form"
+          ]
+        }
       }
     ],
     "configuration": {
