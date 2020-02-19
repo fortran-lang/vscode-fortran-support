@@ -1278,7 +1278,7 @@
 			"patterns": [
 				{
 					"name": "meta.block.select.fortran",
-					"begin": "(?i)\\b(select)",
+					"begin": "(?i)\\b(select\\s*case|select\\s*type)",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.control.select.fortran"
