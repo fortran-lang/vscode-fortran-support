@@ -27,7 +27,7 @@
         },
         {
             "open": "(/",
-            "close": "/)"
+            "close": "/"
         }
     ],
     "surroundingPairs": [

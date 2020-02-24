@@ -74,7 +74,7 @@ export const parseSubroutine = (line: TextLine) => {
   return _parse(line, MethodType.Subroutine);
 };
 export const _parse = (line: TextLine, type: MethodType) => {
-  const functionRegEx = /([a-zA-Z]+(\([\w.=]+\))*)*\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(\)|\&)\s*(result\([a-z_][\w]*(\)|\&))*/i;
+  const functionRegEx = /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|\&)\s*(result\([a-z_][\w]*(?:\)|\&))*/i;
   const subroutineRegEx = /^\s*(?!\bend\b)\w*\s*\bsubroutine\b\s*([a-z][a-z0-9_]*)\s*(?:\((\s*[a-z][a-z0-9_,\s]*)*\s*(\)|\&))*/i;
   const regEx =
     type === MethodType.Subroutine ? subroutineRegEx : functionRegEx;
