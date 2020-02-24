@@ -120,6 +120,11 @@
           ],
           "description": "Specify additional options to use when calling the gfortran compiler"
         },
+        "fortran.provideSymbols": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enables or disables symbol functionality (disable if using 'Fortran IntelliSense')"
+        },
         "fortran.symbols": {
           "type": [
             "array"
@@ -132,6 +137,16 @@
             "subroutine"
           ],
           "description": "Specify what kind of symbols should be shown by the symbols' provider"
+        },
+        "fortran.provideHover": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enables or hover functionality (disable if using 'Fortran IntelliSense')"
+        },
+        "fortran.provideCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enables or disables completion functionality (disable if using 'Fortran IntelliSense')"
         },
         "fortran.preferredCase": {
           "type": "string",

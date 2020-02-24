@@ -11,9 +11,6 @@ import { FortranLangServer, checkForLangServer } from './lang-server'
 
 
 export function activate(context: vscode.ExtensionContext) {
-  let hoverProvider = new FortranHoverProvider()
-  let completionProvider = new FortranCompletionProvider()
-  let symbolProvider = new FortranDocumentSymbolProvider()
 
   const extensionConfig = vscode.workspace.getConfiguration(EXTENSION_ID)
 
@@ -23,17 +20,30 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter)
   }
 
-  vscode.languages.registerCompletionItemProvider(
-    FORTRAN_FREE_FORM_ID,
-    completionProvider
-  )
-  vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider)
+  if (extensionConfig.get('provideCompletion', true)) {
+    let completionProvider = new FortranCompletionProvider()
+    vscode.languages.registerCompletionItemProvider(
+      FORTRAN_FREE_FORM_ID,
+      completionProvider
+    )
+  }
 
-  vscode.languages.registerDocumentSymbolProvider(
-    FORTRAN_FREE_FORM_ID,
-    symbolProvider
-  )
-  
+  if (extensionConfig.get('provideHover', true)) {
+    let hoverProvider = new FortranHoverProvider()
+    vscode.languages.registerHoverProvider(
+      FORTRAN_FREE_FORM_ID,
+      hoverProvider
+    )
+  }
+
+  if (extensionConfig.get('provideSymbols', true)) {
+    let symbolProvider = new FortranDocumentSymbolProvider()
+    vscode.languages.registerDocumentSymbolProvider(
+      FORTRAN_FREE_FORM_ID,
+      symbolProvider
+    )
+  }
+
   if (checkForLangServer(extensionConfig)) {
 
     const langServer = new FortranLangServer(context, extensionConfig)
