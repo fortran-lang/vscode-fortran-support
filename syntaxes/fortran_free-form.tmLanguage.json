@@ -2110,6 +2110,9 @@
 									"include": "#invalid-word"
 								}
 							]
+						},
+						{
+							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4071,6 +4074,9 @@
 					"include": "#types"
 				},
 				{
+					"include": "#line-continuation-operator"
+				},
+				{
 					"comment": "Attribute list.",
 					"contentName": "meta.attribute-list.fortran",
 					"begin": "(?=\\s*(,|::))",
@@ -4148,6 +4154,9 @@
 									"include": "#invalid-word"
 								}
 							]
+						},
+						{
+							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4939,6 +4948,9 @@
 				},
 				{
 					"include": "#variable"
+				},
+				{
+					"include": "#line-continuation-operator"
 				}
 			]
 		},
