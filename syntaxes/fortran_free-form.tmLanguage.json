@@ -1335,49 +1335,6 @@
 							]
 						},
 						{
-							"comment": "Select rank construct. Introduced in the Fortran 2018 standard.",
-							"begin": "(?i)\\s*(rank)\\b",
-							"beginCaptures": {
-								"1": {
-									"name": "keyword.control.rank.fortran"
-								}
-							},
-							"end": "(?i)(?=\\b(end\\s*select)\\b)",
-							"patterns": [
-								{
-									"include": "#parentheses"
-								},
-								{
-									"begin": "(?i)\\b(rank)\\b",
-									"beginCaptures": {
-										"1": {
-											"name": "keyword.control.rank.fortran"
-										}
-									},
-									"end": "(?i)(?=[;!\\n])",
-									"patterns": [
-										{
-											"match": "(?i)\\G\\s*\\b(default)\\b",
-											"captures": {
-												"1": {
-													"name": "keyword.control.default.fortran"
-												}
-											}
-										},
-										{
-											"include": "#parentheses"
-										},
-										{
-											"include": "#invalid-word"
-										}
-									]
-								},
-								{
-									"include": "$base"
-								}
-							]
-						},
-						{
 							"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
 							"begin": "(?i)\\s*(type)\\b",
 							"beginCaptures": {
