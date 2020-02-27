@@ -22,6 +22,9 @@
     "onLanguage:FortranFreeForm"
   ],
   "main": "./out/src/extension",
+  "extensionDependencies": [
+    "ms-vscode.cpptools"
+  ],
   "contributes": {
     "languages": [
       {
@@ -85,16 +88,12 @@
         "path": "./snippets/fortran90.json"
       }
     ],
-    "debuggers": [
+    "breakpoints": [
       {
-        "type": "cppdbg",
-        "label": "Fortran (GDB)",
-        "enableBreakpointsFor": {
-          "languageIds": [
-            "FortranFreeForm",
-            "fortran_fixed-form"
-          ]
-        }
+        "language": "FortranFreeForm"
+      },
+      {
+        "language": "fortran_fixed-form"
       }
     ],
     "configuration": {
