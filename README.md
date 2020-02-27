@@ -24,7 +24,7 @@
 
 You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
 
-```
+``` json
 {
     "fortran.includePaths": [
         "/usr/local/include",
@@ -35,7 +35,7 @@ You can control the include paths to be used by the linter with the `fortran.inc
 
 By default the `gfortran` executable is assumed to be found in the path. In order to use a different one or if it can't be found in the path you can point the extension to use a custom one with the `fortran.gfortranExecutable` setting.
 
-```
+``` json
 {
     "fortran.gfortranExecutable": '/usr/local/bin/gfortran-4.7',
 }
@@ -43,7 +43,7 @@ By default the `gfortran` executable is assumed to be found in the path. In orde
 
 If you want to pass extra options to the `gfortran` executable or override the default one, you can use the setting `fortran.linterExtraArgs`. By default `-Wall` is the only option.
 
-```
+``` json
 {
     "fortran.linterExtraArgs": ['-Wall'],
 }
@@ -51,7 +51,7 @@ If you want to pass extra options to the `gfortran` executable or override the d
 
 You can configure what kind of symbols will appear in the symbol list by using
 
-```
+``` json
 {
     "fortran.symbols": [ "function", "subroutine"]
 }
@@ -69,7 +69,7 @@ and by default only functions and subroutines are shown
 
 You can also configure the case for fortran intrinsics auto-complete by using
 
-```
+``` json
 {
     "fortran.preferredCase": "lowercase" | "uppercase"
 }
