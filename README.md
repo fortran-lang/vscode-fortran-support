@@ -6,7 +6,7 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![GitHub release](https://img.shields.io/github/release/krvajal/vscode-fortran-support.svg)](https://GitHub.com/krvajal/vscode-fortran-support/releases/)
 
-> This extension provides support for the Fortran programming language. It includes syntax highlighting, code snippets and a linting based on `gfortran`. You can download the Visual Studio Code editor from [here](https://code.visualstudio.com/download).
+> This extension provides support for the Fortran programming language. It includes syntax highlighting, debugging, code snippets and a linting based on `gfortran`. You can download the Visual Studio Code editor from [here](https://code.visualstudio.com/download).
 
 ## Features
 
@@ -16,6 +16,7 @@
 - Code linting based on `gfortran` to show errors wiggles in your code
 - Code autocompletion (beta)
 - Symbols provider
+- Debugger, uses Microsoft's [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
 
 ![symbol_nav](./doc/symbol_nav.png)
 
@@ -90,9 +91,64 @@ This is a list of some of the snippets included, if you like to include addition
 
 To trigger code validations you must save the file first.
 
+## Debugging
+
+The extension uses the debugger from Microsoft's
+[C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
+for Visual Studio Code. This allows this extension to use the full functionality
+of the C/C++ extension for debugging applications:
+(un)conditional breaking points, expression evaluation, multi-threaded debugging,
+call stack, stepping, watch window.
+
+A minimal `launch.json` script, responsible for controlling the debugger, is
+provided below. However, Visual Studio Code is also capable of autogenerating
+a `launch.json` file and the configurations inside the file.
+
+More details about how to setup the debugger can be found in Microsoft's website:
+
+- General information about debugging in VS Code: <https://code.visualstudio.com/docs/editor/debugging>
+- C/C++ extension debugger information: <https://code.visualstudio.com/docs/cpp/cpp-debug>
+- Build tasks for easy compiling: <https://code.visualstudio.com/docs/editor/tasks>
+
+``` json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Fortran",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.out",
+            "args": [], // Possible input args for a.out
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+```
+
 ## Requirements
 
 For the linter to work you need to have `gfortran` on your path, or wherever you configure it to be.
+
+For debugging you need to have one of the following debuggers installed:
+
+- **Linux**: GDB
+- **macOS**: GDB or LLDB
+- **Windows**: GDB  or Visual Studio Windows Debugger
 
 ## Issues
 
