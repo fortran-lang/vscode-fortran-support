@@ -1456,26 +1456,21 @@
 		},
 		"forall-construct": {
 			"comment": "Introduced in the Fortran 1995 standard.",
-			"contentName": "meta.block.forall.fortran",
-			"begin": "(?i)\\s*\\b(forall)\\b",
-			"beginCaptures":{
+			"begin": "(?i)\\b(forall)\\b",
+			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.forall.fortran"
 				}
 			},
-			"end": "(?i)\\s*\\b(end\\s*forall)\\b",
-			"endCaptures": {
-				"1": {
-					"name": "keyword.control.endforall.fortran"
-				}
-			},
-			"patterns":[
+			"end": "(?<!\\G)",
+			"applyEndPatternLast": 1,
+			"patterns": [
 				{
 					"comment": "Loop control.",
 					"name": "meta.loop-control.fortran",
 					"begin": "(?i)\\G(?!\\s*[;!\\n])",
-					"end": "(?=[;!\\n])",
-					"patterns":[
+					"end": "(?<!\\G)",
+					"patterns": [
 						{
 							"include": "#parentheses"
 						},
@@ -1485,7 +1480,29 @@
 					]
 				},
 				{
-					"include": "$base"
+					"name": "meta.block.forall.fortran",
+					"begin": "(?<=\\))(?=\\s*[;!\\n])",
+					"end": "(?i)\\b(end\\s*forall)\\b",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.control.endforall.fortran"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$base"
+						}
+					]
+				},
+				{
+					"name": "meta.statement.control.forall.fortran",
+					"begin": "(?i)(?<=\\))(?!\\s*[;!\\n])",
+					"end": "\\n",
+					"patterns": [
+						{
+							"include": "$base"
+						}
+					]
 				}
 			]
 		},
