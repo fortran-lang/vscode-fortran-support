@@ -15,7 +15,7 @@ import { FortranDocumentSymbolProvider } from "../src/features/document-symbol-p
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Extension Tests", () => {
   test("symbol provider works as expected", async () => {
-    const filePath = path.resolve(__dirname, "../..//test/resources/sample.f90");
+    const filePath = path.resolve(__dirname, "../../test/resources/sample.f90");
     const openPath = vscode.Uri.file(filePath);
     const doc = await vscode.workspace.openTextDocument(openPath);
     vscode.window.showTextDocument(doc);
