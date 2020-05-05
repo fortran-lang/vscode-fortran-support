@@ -37,7 +37,7 @@ By default the `gfortran` executable is assumed to be found in the path. In orde
 
 ``` jsonc
 {
-    "fortran.gfortranExecutable": '/usr/local/bin/gfortran-4.7',
+    "fortran.gfortranExecutable": "/usr/local/bin/gfortran-4.7",
 }
 ```
 
@@ -45,7 +45,7 @@ If you want to pass extra options to the `gfortran` executable or override the d
 
 ``` jsonc
 {
-    "fortran.linterExtraArgs": ['-Wall'],
+    "fortran.linterExtraArgs": ["-Wall"],
 }
 ```
 
