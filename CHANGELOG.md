@@ -7,7 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.1.1] - 2019-xx-xx
+## [2.2.0] - 2020-04-11
+
+### Changed
+
+- Improve syntax highlight (#149, #166, #169)
+- Fix Symbols in VSCode ^1.4x (#154, #140, #151)
+- Dependencies Update (#144, #146, #155)
+- Improve code completion (#148)
+
+### Added
+
+- More custom settings (#152)
+- Breakpoints support (#150)
+
+## [2.1.1] - 2019-06-03
 
 ### Changed
 

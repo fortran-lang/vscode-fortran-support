@@ -994,7 +994,13 @@
 					"include": "#if-construct"
 				},
 				{
-					"include": "#select-construct"
+					"include": "#select-case-construct"
+				},
+				{
+					"include": "#select-type-construct"
+				},
+				{
+					"include": "#select-rank-construct"
 				},
 				{
 					"include": "#where-construct"
@@ -1274,121 +1280,167 @@
 				}
 			]
 		},
-		"select-construct": {
+		"select-case-construct":{
+			"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
+			"begin": "(?i)\\b(select)\\s*(case)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.select.fortran"
+				},
+				"2": {
+					"name": "keyword.control.case.fortran"
+				}
+			},
+			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.endselect.fortran"
+				}
+			},
 			"patterns": [
 				{
-					"name": "meta.block.select.fortran",
-					"begin": "(?i)\\b(select)",
+					"include": "#parentheses"
+				},
+				{
+					"begin": "(?i)\\b(case)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.control.select.fortran"
+							"name": "keyword.control.case.fortran"
 						}
 					},
-					"end": "(?i)\\b(end\\s*select)\\b",
-					"endCaptures": {
-						"1": {
-							"name": "keyword.control.endselect.fortran"
-						}
-					},
+					"end": "(?i)(?=[;!\\n])",
 					"patterns": [
 						{
-							"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-							"begin": "(?i)\\s*(case)\\b",
-							"beginCaptures": {
+							"match": "(?i)\\G\\s*\\b(default)\\b",
+							"captures": {
 								"1": {
-									"name": "keyword.control.case.fortran"
+									"name": "keyword.control.default.fortran"
 								}
-							},
-							"end": "(?i)(?=\\b(end\\s*select)\\b)",
-							"patterns": [
-								{
-									"include": "#parentheses"
-								},
-								{
-									"begin": "(?i)\\b(case)\\b",
-									"beginCaptures": {
-										"1": {
-											"name": "keyword.control.case.fortran"
-										}
-									},
-									"end": "(?i)(?=[;!\\n])",
-									"patterns": [
-										{
-											"match": "(?i)\\G\\s*\\b(default)\\b",
-											"captures": {
-												"1": {
-													"name": "keyword.control.default.fortran"
-												}
-											}
-										},
-										{
-											"include": "#parentheses"
-										},
-										{
-											"include": "#invalid-word"
-										}
-									]
-								},
-								{
-									"include": "$base"
-								}
-							]
+							}
 						},
 						{
-							"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
-							"begin": "(?i)\\s*(type)\\b",
-							"beginCaptures": {
-								"1": {
-									"name": "keyword.control.type.fortran"
-								}
-							},
-							"end": "(?i)(?=\\b(end\\s*select)\\b)",
-							"patterns": [
-								{
-									"include": "#parentheses"
-								},
-								{
-									"begin": "(?i)\\b(?:(class)|(type))",
-									"beginCaptures": {
-										"1": {
-											"name": "keyword.control.class.fortran"
-										},
-										"2": {
-											"name": "keyword.control.type.fortran"
-										}
-									},
-									"end": "(?i)(?=[;!\\n])",
-									"patterns": [
-										{
-											"match": "(?i)\\G\\s*\\b(default)\\b",
-											"captures": {
-												"1": {
-													"name": "keyword.control.default.fortran"
-												}
-											}
-										},
-										{
-											"match": "(?i)\\G\\s*(is)\\b",
-											"captures": {
-												"1": {
-													"name": "keyword.control.is.fortran"
-												}
-											}
-										},
-										{
-											"include": "#parentheses"
-										},
-										{
-											"include": "#invalid-word"
-										}
-									]
-								},
-								{
-									"include": "$base"
-								}
-							]
+							"include": "#parentheses"
+						},
+						{
+							"include": "#invalid-word"
 						}
 					]
+				},
+				{
+					"include": "$base"
+				}
+			]
+		},
+		"select-type-construct":{
+			"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
+			"begin": "(?i)\\b(select)\\s*(type)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.select.fortran"
+				},
+				"2": {
+					"name": "keyword.control.type.fortran"
+				}
+			},
+			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.endselect.fortran"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#parentheses"
+				},
+				{
+					"begin": "(?i)\\b(?:(class)|(type))",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.class.fortran"
+						},
+						"2": {
+							"name": "keyword.control.type.fortran"
+						}
+					},
+					"end": "(?i)(?=[;!\\n])",
+					"patterns": [
+						{
+							"match": "(?i)\\G\\s*\\b(default)\\b",
+							"captures": {
+								"1": {
+									"name": "keyword.control.default.fortran"
+								}
+							}
+						},
+						{
+							"match": "(?i)\\G\\s*(is)\\b",
+							"captures": {
+								"1": {
+									"name": "keyword.control.is.fortran"
+								}
+							}
+						},
+						{
+							"include": "#parentheses"
+						},
+						{
+							"include": "#invalid-word"
+						}
+					]
+				},
+				{
+					"include": "$base"
+				}
+			]
+		},
+		"select-rank-construct":{
+			"comment": "Select rank construct. Introduced in the Fortran 2008 standard.",
+			"begin": "(?i)\\b(select)\\s*(rank)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.select.fortran"
+				},
+				"2": {
+					"name": "keyword.control.rank.fortran"
+				}
+			},
+			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.endselect.fortran"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#parentheses"
+				},
+				{
+					"begin": "(?i)\\b(rank)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.rank.fortran"
+						}
+					},
+					"end": "(?i)(?=[;!\\n])",
+					"patterns": [
+						{
+							"match": "(?i)\\G\\s*\\b(default)\\b",
+							"captures": {
+								"1": {
+									"name": "keyword.control.default.fortran"
+								}
+							}
+						},
+						{
+							"include": "#parentheses"
+						},
+						{
+							"include": "#invalid-word"
+						}
+					]
+				},
+				{
+					"include": "$base"
 				}
 			]
 		},
@@ -1456,26 +1508,21 @@
 		},
 		"forall-construct": {
 			"comment": "Introduced in the Fortran 1995 standard.",
-			"contentName": "meta.block.forall.fortran",
-			"begin": "(?i)\\s*\\b(forall)\\b",
-			"beginCaptures":{
+			"begin": "(?i)\\b(forall)\\b",
+			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.forall.fortran"
 				}
 			},
-			"end": "(?i)\\s*\\b(end\\s*forall)\\b",
-			"endCaptures": {
-				"1": {
-					"name": "keyword.control.endforall.fortran"
-				}
-			},
-			"patterns":[
+			"end": "(?<!\\G)",
+			"applyEndPatternLast": 1,
+			"patterns": [
 				{
 					"comment": "Loop control.",
 					"name": "meta.loop-control.fortran",
 					"begin": "(?i)\\G(?!\\s*[;!\\n])",
-					"end": "(?=[;!\\n])",
-					"patterns":[
+					"end": "(?<!\\G)",
+					"patterns": [
 						{
 							"include": "#parentheses"
 						},
@@ -1485,7 +1532,29 @@
 					]
 				},
 				{
-					"include": "$base"
+					"name": "meta.block.forall.fortran",
+					"begin": "(?<=\\))(?=\\s*[;!\\n])",
+					"end": "(?i)\\b(end\\s*forall)\\b",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.control.endforall.fortran"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$base"
+						}
+					]
+				},
+				{
+					"name": "meta.statement.control.forall.fortran",
+					"begin": "(?i)(?<=\\))(?!\\s*[;!\\n])",
+					"end": "\\n",
+					"patterns": [
+						{
+							"include": "$base"
+						}
+					]
 				}
 			]
 		},
@@ -2110,6 +2179,9 @@
 									"include": "#invalid-word"
 								}
 							]
+						},
+						{
+							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4071,6 +4143,9 @@
 					"include": "#types"
 				},
 				{
+					"include": "#line-continuation-operator"
+				},
+				{
 					"comment": "Attribute list.",
 					"contentName": "meta.attribute-list.fortran",
 					"begin": "(?=\\s*(,|::))",
@@ -4148,6 +4223,9 @@
 									"include": "#invalid-word"
 								}
 							]
+						},
+						{
+							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4939,6 +5017,9 @@
 				},
 				{
 					"include": "#variable"
+				},
+				{
+					"include": "#line-continuation-operator"
 				}
 			]
 		},

@@ -44,7 +44,6 @@ export class FortranDocumentSymbolProvider
 
     for (let i = 0; i < lines; i++) {
       let line: vscode.TextLine = document.lineAt(i);
-      line = { ...line, text: line.text.trim() };
       if (line.isEmptyOrWhitespace) continue;
       let initialCharacter = line.text.trim().charAt(0);
       if (initialCharacter === "!" || initialCharacter === "#") continue;
@@ -75,12 +74,12 @@ export class FortranDocumentSymbolProvider
 
   private parseSubroutineDefinition(line: TextLine) {
     try {
-      const fun = getDeclaredSubroutine(line);
-      if (fun) {
+      const subroutine = getDeclaredSubroutine(line);
+      if (subroutine) {
         let range = new vscode.Range(line.range.start, line.range.end);
         return new vscode.SymbolInformation(
-          fun.name,
-          vscode.SymbolKind.Method,
+          subroutine.name,
+          vscode.SymbolKind.Function,
           range
         );
       }
@@ -90,12 +89,11 @@ export class FortranDocumentSymbolProvider
   }
 
   private parseFunctionDefinition(line: TextLine) {
-    const subroutine = getDeclaredFunction(line);
-    if (subroutine) {
+    const fun = getDeclaredFunction(line);
+    if (fun) {
       let range = new vscode.Range(line.range.start, line.range.end);
-
       return new vscode.SymbolInformation(
-        subroutine.name,
+        fun.name,
         vscode.SymbolKind.Function,
         range
       );
