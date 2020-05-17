@@ -1,9 +1,9 @@
 {
   "name": "linter-gfortran",
-  "displayName": "Modern Fortran",
-  "description": "Modern Fortran language support, including syntax highlighting and error detection.",
+  "displayName": "Modern Fortran 2",
+  "description": "Apply new changes to the original extension by Miguel Carvajal. Same Repo, just a different publisher. Modern Fortran language support, including syntax highlighting and error detection.",
   "version": "2.2.0",
-  "publisher": "krvajalm",
+  "publisher": "pedro-ricardo",
   "engines": {
     "vscode": "^1.30.x"
   },
