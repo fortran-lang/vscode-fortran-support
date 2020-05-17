@@ -88,14 +88,6 @@
         "path": "./snippets/fortran90.json"
       }
     ],
-    "breakpoints": [
-      {
-        "language": "FortranFreeForm"
-      },
-      {
-        "language": "fortran_fixed-form"
-      }
-    ],
     "configuration": {
       "type": "object",
       "title": "Fortran configuration",
@@ -153,7 +145,7 @@
         "fortran.provideHover": {
           "type": "boolean",
           "default": true,
-          "description": "Enables or hover functionality (disable if using 'Fortran IntelliSense')"
+          "description": "Enables hover functionality (disable if using 'Fortran IntelliSense')"
         },
         "fortran.provideCompletion": {
           "type": "boolean",
