@@ -8,7 +8,7 @@ import { installTool } from './tools';
 // work at all
 export const LANGUAGE_ID = 'FortranFreeForm';
 export const FORTRAN_FREE_FORM_ID = { language: LANGUAGE_ID, scheme: 'file' };
-export { intrinsics }
+export { intrinsics };
 export const EXTENSION_ID = 'fortran';
 
 export const FORTRAN_KEYWORDS = [
@@ -115,7 +115,7 @@ let saveKeywordToJson = keyword => {
   });
 };
 
-export { default as getBinPath } from './paths'
+export { default as getBinPath } from './paths';
 
 export function promptForMissingTool(tool: string) {
   const items = ['Install'];
