@@ -46,7 +46,7 @@
       {
         "id": "fortran_fixed-form",
         "aliases": [
-          "Fortran ",
+          "Fortran",
           "fortran",
           "FORTRAN77"
         ],
@@ -162,7 +162,15 @@
           "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
         }
       }
-    }
+    },
+    "breakpoints": [
+      {
+        "language": "FortranFreeForm"
+      },
+      {
+        "language": "fortran_fixed-form"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
