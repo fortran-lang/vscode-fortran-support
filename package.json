@@ -2,7 +2,7 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "publisher": "krvajalm",
   "engines": {
     "vscode": "^1.30.x"

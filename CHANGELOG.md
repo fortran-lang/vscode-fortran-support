@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.2.1] - 2020-04-11
+
+### Fixed
+
+- Add capability to set breakpoints (#89)
+
 ## [2.2.0] - 2020-04-11
 
 ### Changed
