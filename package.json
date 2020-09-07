@@ -193,7 +193,7 @@
     "mocha": "^2.3.3",
     "remap-istanbul": "^0.8.4",
     "tslint": "^4.0.2",
-    "typescript": "^2.0.3",
+    "typescript": "^3.5.1",
     "vscode": "^1.1.37"
   },
   "husky": {
