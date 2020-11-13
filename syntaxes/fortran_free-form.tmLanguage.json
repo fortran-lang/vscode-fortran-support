@@ -1280,18 +1280,16 @@
 				}
 			]
 		},
-		"select-case-construct":{
+		"select-case-construct": {
 			"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-			"begin": "(?i)\\b(select)\\s*(case)\\b",
+			"name": "meta.block.select.case.fortran",
+			"begin": "(?i)\\b(select\\s*case)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.select.fortran"
-				},
-				"2": {
-					"name": "keyword.control.case.fortran"
+					"name": "keyword.control.selectcase.fortran"
 				}
 			},
-			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"end": "(?i)\\b(end\\s*select)\\b",
 			"endCaptures": {
 				"1": {
 					"name": "keyword.control.endselect.fortran"
