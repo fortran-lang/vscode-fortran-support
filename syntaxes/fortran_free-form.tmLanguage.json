@@ -1389,18 +1389,16 @@
 				}
 			]
 		},
-		"select-rank-construct":{
+		"select-rank-construct": {
 			"comment": "Select rank construct. Introduced in the Fortran 2008 standard.",
-			"begin": "(?i)\\b(select)\\s*(rank)\\b",
+			"name": "meta.block.select.rank.fortran",
+			"begin": "(?i)\\b(select\\s*rank)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.select.fortran"
-				},
-				"2": {
-					"name": "keyword.control.rank.fortran"
+					"name": "keyword.control.selectrank.fortran"
 				}
 			},
-			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"end": "(?i)\\b(end\\s*select)\\b",
 			"endCaptures": {
 				"1": {
 					"name": "keyword.control.endselect.fortran"
