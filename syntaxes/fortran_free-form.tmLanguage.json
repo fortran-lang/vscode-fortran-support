@@ -982,8 +982,8 @@
 		"named-control-constructs": {
 			"comment": "Introduced in the Fortran 1990 standard.",
 			"contentName": "meta.named-construct.fortran.modern",
-			"begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select|where)\\b)",
-			"end": "(?i)\\s*(?!\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select|where)\\b)\\b(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
+			"begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)",
+			"end": "(?i)\\s*(?!\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)\\b(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
 			"endCaptures": {
 				"2": {
 					"name": "invalid.error.fortran.modern"
