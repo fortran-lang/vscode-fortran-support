@@ -13,6 +13,29 @@
 		"F08"
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
+	"injections": {
+		"source.fortran.free - ( string | comment )": {
+			"patterns": [
+				{
+					"include": "#line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.double.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.single.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		}
+	},
 	"patterns": [
 		{
 			"include": "#preprocessor"
@@ -1559,6 +1582,7 @@
 			]
 		},
 		"control-statements": {
+			"comment": "Statements controlling the flow of the program",
 			"patterns": [
 				{
 					"include": "#assign-statement"
@@ -2179,9 +2203,6 @@
 									"include": "#invalid-word"
 								}
 							]
-						},
-						{
-							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4143,9 +4164,6 @@
 					"include": "#types"
 				},
 				{
-					"include": "#line-continuation-operator"
-				},
-				{
 					"comment": "Attribute list.",
 					"contentName": "meta.attribute-list.fortran",
 					"begin": "(?=\\s*(,|::))",
@@ -4223,9 +4241,6 @@
 									"include": "#invalid-word"
 								}
 							]
-						},
-						{
-							"include": "#line-continuation-operator"
 						}
 					]
 				},
@@ -4917,9 +4932,6 @@
 			"patterns": [
 				{
 					"include": "#dummy-variable"
-				},
-				{
-					"include": "#line-continuation-operator"
 				}
 			]
 		},
@@ -5017,9 +5029,6 @@
 				},
 				{
 					"include": "#variable"
-				},
-				{
-					"include": "#line-continuation-operator"
 				}
 			]
 		},
