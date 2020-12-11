@@ -4648,8 +4648,8 @@
 		"derived-type": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"name": "meta.specification.type.derived.fortran",
-			"match": "(?i)\\b(?:(class)|(type))\\s*(\\()\\s*(([a-z]\\w*)|\\*)\\s*(\\))",
-			"captures": {
+			"begin": "(?i)\\b(?:(class)|(type))\\s*(\\()\\s*(([a-z]\\w*)|\\*)",
+			"beginCaptures": {
 				"1": {
 					"name": "storage.type.class.fortran"
 				},
@@ -4661,11 +4661,20 @@
 				},
 				"4": {
 					"name": "entity.name.type.fortran"
-				},
-				"5": {
+				}
+			},
+			"end": "(\\))",
+			"endCaptures": {
+				"1": {
 					"name": "punctuation.parentheses.right.fortran"
 				}
-			}
+			},
+			"contentName": "meta.type-spec.fortran",
+			"patterns": [
+				{
+					"include": "#parentheses-dummy-variables"
+				}
+			]
 		},
 		"logical-type": {
 			"comment": "Introduced in the Fortran 1977 standard.",
