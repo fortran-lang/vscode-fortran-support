@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Fixes syntax highlighting for nested case-select constructs
+  ([#181](https://github.com/krvajal/vscode-fortran-support/issues/181)) via
+  ([#218](https://github.com/krvajal/vscode-fortran-support/pull/218))
+
 ## [2.2.1] - 2020-04-11
 
 ### Fixed
