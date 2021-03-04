@@ -160,6 +160,11 @@
             "uppercase"
           ],
           "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+        },
+        "fortran.suppressWarning": {
+          "type": "boolean",
+          "default": false,
+          "description": "Suppress warnings in the problems"
         }
       }
     },

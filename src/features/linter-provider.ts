@@ -8,7 +8,11 @@ import { getIncludeParams, LANGUAGE_ID } from "../lib/helper";
 import * as vscode from "vscode";
 
 export default class FortranLintingProvider {
-  constructor() {}
+  constructor(
+    private outputChannel = vscode.window.createOutputChannel('Modern Fortran')
+  ) {
+    this.log("Initialize Modern Fortran");
+  }
 
   private diagnosticCollection: vscode.DiagnosticCollection;
 
@@ -41,6 +45,7 @@ export default class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
+    this.log(`Execute: "${command} ${argList.join(" ")}"`);
     let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
 
     if (childProcess.pid) {
@@ -49,6 +54,7 @@ export default class FortranLintingProvider {
       });
       childProcess.stderr.on("data", data => {
         decoded += data;
+        this.log(`Error : ${decoded}`);
       });
       childProcess.stderr.on("end", () => {
         let matchesArray: string[];
@@ -61,6 +67,9 @@ export default class FortranLintingProvider {
             type.toLowerCase() === "warning"
               ? vscode.DiagnosticSeverity.Warning
               : vscode.DiagnosticSeverity.Error;
+          if (this.getSuppressWarning() && severity == vscode.DiagnosticSeverity.Warning) {
+            continue;
+          }
           let message = elements[6];
           let range = new vscode.Range(
             new vscode.Position(startLine - 1, startColumn),
@@ -154,6 +163,10 @@ export default class FortranLintingProvider {
     vscode.workspace.textDocuments.forEach(this.doModernFortranLint, this);
   }
 
+	public log(...messages: string[]) {
+		this.outputChannel.appendLine(messages.join(' '))
+	}
+
   public dispose(): void {
     this.diagnosticCollection.clear();
     this.diagnosticCollection.dispose();
@@ -173,5 +186,9 @@ export default class FortranLintingProvider {
   private getLinterExtraArgs(): string[] {
     let config = vscode.workspace.getConfiguration("fortran");
     return config.get("linterExtraArgs", ["-Wall"]);
+  }
+  private getSuppressWarning(): boolean {
+    let config = vscode.workspace.getConfiguration("fortran");
+    return config.get("suppressWarning", false);
   }
 }
