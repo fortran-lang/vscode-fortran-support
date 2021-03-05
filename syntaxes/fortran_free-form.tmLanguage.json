@@ -982,8 +982,8 @@
 		"named-control-constructs": {
 			"comment": "Introduced in the Fortran 1990 standard.",
 			"contentName": "meta.named-construct.fortran.modern",
-			"begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select|where)\\b)",
-			"end": "(?i)\\s*(?!\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select|where)\\b)\\b(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
+			"begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)",
+			"end": "(?i)\\s*(?!\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)\\b(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
 			"endCaptures": {
 				"2": {
 					"name": "invalid.error.fortran.modern"
@@ -1303,18 +1303,16 @@
 				}
 			]
 		},
-		"select-case-construct":{
+		"select-case-construct": {
 			"comment": "Select case construct. Introduced in the Fortran 1990 standard.",
-			"begin": "(?i)\\b(select)\\s*(case)\\b",
+			"name": "meta.block.select.case.fortran",
+			"begin": "(?i)\\b(select\\s*case)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.select.fortran"
-				},
-				"2": {
-					"name": "keyword.control.case.fortran"
+					"name": "keyword.control.selectcase.fortran"
 				}
 			},
-			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"end": "(?i)\\b(end\\s*select)\\b",
 			"endCaptures": {
 				"1": {
 					"name": "keyword.control.endselect.fortran"
@@ -1354,18 +1352,16 @@
 				}
 			]
 		},
-		"select-type-construct":{
+		"select-type-construct": {
 			"comment": "Select type construct. Introduced in the Fortran 2003 standard.",
-			"begin": "(?i)\\b(select)\\s*(type)\\b",
+			"name": "meta.block.select.type.fortran",
+			"begin": "(?i)\\b(select\\s*type)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.select.fortran"
-				},
-				"2": {
-					"name": "keyword.control.type.fortran"
+					"name": "keyword.control.selecttype.fortran"
 				}
 			},
-			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"end": "(?i)\\b(end\\s*select)\\b",
 			"endCaptures": {
 				"1": {
 					"name": "keyword.control.endselect.fortran"
@@ -1376,7 +1372,7 @@
 					"include": "#parentheses"
 				},
 				{
-					"begin": "(?i)\\b(?:(class)|(type))",
+					"begin": "(?i)\\b(?:(class)|(type))\\b",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.control.class.fortran"
@@ -1396,7 +1392,7 @@
 							}
 						},
 						{
-							"match": "(?i)\\G\\s*(is)\\b",
+							"match": "(?i)\\G\\s*\\b(is)\\b",
 							"captures": {
 								"1": {
 									"name": "keyword.control.is.fortran"
@@ -1416,18 +1412,16 @@
 				}
 			]
 		},
-		"select-rank-construct":{
+		"select-rank-construct": {
 			"comment": "Select rank construct. Introduced in the Fortran 2008 standard.",
-			"begin": "(?i)\\b(select)\\s*(rank)\\b",
+			"name": "meta.block.select.rank.fortran",
+			"begin": "(?i)\\b(select\\s*rank)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.select.fortran"
-				},
-				"2": {
-					"name": "keyword.control.rank.fortran"
+					"name": "keyword.control.selectrank.fortran"
 				}
 			},
-			"end": "(?i)(?=\\b(end\\s*select)\\b)",
+			"end": "(?i)\\b(end\\s*select)\\b",
 			"endCaptures": {
 				"1": {
 					"name": "keyword.control.endselect.fortran"
