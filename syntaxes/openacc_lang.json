@@ -156,6 +156,10 @@
         },
         {
           "name": "string.regexp.openacc",
+          "match": "(?i)\\b(finalize)\\b"
+        },
+        {
+          "name": "string.regexp.openacc",
           "match": "(?i)\\b(independent|auto)\\b"
         },
         {
@@ -329,7 +333,7 @@
           "comment": "executable-directive",
           "name": "string.regexp.openacc",
           "match":
-            "(?i)\\b(init|finalize|set|update|wait)\\b"
+            "(?i)\\b(init|shutdown|set|update|wait)\\b"
         },
         {
           "comment": "cache-directive",
