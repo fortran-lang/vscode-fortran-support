@@ -58,8 +58,7 @@
             "1": {
               "name": "punctuation.parentheses.right.openacc"
             }
-          },
-          "patterns": [{ "include": "#variable-list" }]
+          }
         },
         {
           "begin": "(?i)\\b(default)\\s*(\\()",
@@ -84,7 +83,22 @@
           ]
         },
         {
-          "begin": "(?i)\\b(firstprivate|private)\\s*(\\()",
+          "begin": "(?i)\\b(private)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openmp" },
+            "2": {
+              "name": "punctuation.parentheses.left.openmp"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openmp"
+            }
+          }
+        },
+        {
+          "begin": "(?i)\\b(firstprivate)\\s*(\\()",
           "beginCaptures": {
             "1": { "name": "string.regexp.openacc" },
             "2": {
@@ -96,8 +110,7 @@
             "1": {
               "name": "punctuation.parentheses.right.openacc"
             }
-          },
-          "patterns": [{ "include": "#variable-list" }]
+          }
         },
         {
           "begin": "(?i)\\b(if|self)\\s*(\\()",
@@ -216,8 +229,7 @@
                 },
                 { "include": "#invalid-word" }
               ]
-            },
-            { "include": "#variable-list" }
+            }
           ]
         },
         {
@@ -255,8 +267,7 @@
             "1": {
               "name": "punctuation.parentheses.right.openacc"
             }
-          },
-          "patterns": [{ "include": "#variable-list" }]
+          }
         }
       ]
     },
