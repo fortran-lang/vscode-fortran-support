@@ -1,0 +1,586 @@
+{
+  "comment": "OpenACC rules for Fortran.",
+  "scopeName": "source.openacc",
+  "injectionSelector": "comment",
+  "fileTypes": [],
+  "patterns": [
+    {
+      "name": "meta.openacc.directive",
+      "begin": "(?i)\\G(\\$(acc\\b)&?)",
+      "beginCaptures": { "1": { "name": "comment.directive.openacc" } },
+      "end": "(?=[\\n])",
+      "patterns": [
+        { "include": "#environment-variables" },
+        { "include": "#intrinsic-functions" },
+        { "include": "#operators" },
+        { "include": "#synchronization-constructs" },
+        { "include": "#end-directives" },
+        { "include": "#directives" },
+        { "include": "#clauses" }
+      ]
+    }
+  ],
+  "repository": {
+    "clauses": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(collapse)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.numeric.openacc",
+              "match": "\\G\\s*\\d+"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(copyin)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "begin": "(?i)\\b(default)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.regexp.openacc",
+              "match": "(?i)\\G(present|none)"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(firstprivate|private)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        },
+        {
+          "begin": "(?i)\\b(if|self)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\b(device_type)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.regexp.openacc",
+              "match": "(?i)\\G(\\w+)"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(if_present)\\b"
+        },
+        {
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(independent|auto)\\b"
+        },
+        {
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(gang|worker|vector)(\\(\\d+\\))?\\b"
+        },
+        {
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(async)(\\(\\d+\\))?\\b"
+        },
+        {
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(seq)\\b"
+        },
+        {
+          "begin": "(?i)\\b(num_(gangs|workers))\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\b(vector_length)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\b(reduction)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "\\G(?=\\s*[^\\)\\n])",
+              "end": "(:)|(?=\\))",
+              "endCaptures": { "1": { "name": "operator.colon.openacc" } },
+              "patterns": [
+                {
+                  "name": "string.regexp.openacc",
+                  "match":
+                    "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
+                },
+                { "include": "#invalid-word" }
+              ]
+            },
+            { "include": "#variable-list" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(tile)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.tile.openacc",
+              "match": "\\G\\s*\\d+\\s*(,\\d+)*"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(use_device)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "string.regexp.openacc" },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.right.openacc"
+            }
+          },
+          "patterns": [{ "include": "#variable-list" }]
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "comment": "loop-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(loop(\\s*simd)?)\\b"
+        },
+        {
+          "comment": "declare-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(declare(\\s*copy|\\s*copyin|\\s*copyout|\\s*create|\\s*present|\\s*deviceptr|\\s*device_resident|\\s*link)?)\\b"
+        },
+        {
+          "comment": "parallel-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(parallel(\\s*loop)?)\\b"
+        },
+        {
+          "comment": "kernels-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(kernels(\\s*loop)?)\\b"
+        },
+        {
+          "comment": "serial-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(serial(\\s*loop)?)\\b"
+        },
+        {
+          "comment": "data-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(data)\\b"
+        },
+        {
+          "comment": "enter-data-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(enter data)\\b"
+        },
+        {
+          "comment": "exit-data-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(exit data)\\b"
+        },
+        {
+          "comment": "host-data-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(host_data)\\b"
+        },
+        {
+          "comment": "executable-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(init|finalize|set|update|wait)\\b"
+        },
+        {
+          "comment": "cache-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(cache)\\b"
+        }
+      ]
+    },
+    "end-directives": {
+      "patterns": [
+        {
+          "comment": "end-atomic-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(end\\s*atomic)\\b"
+        },
+        {
+          "comment": "end-loop-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(end\\s*loop)\\b"
+        },
+        {
+          "comment": "end-data-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(end\\s*data)\\b"
+        },
+        {
+          "comment": "end-host-data-directive",
+          "name": "string.regexp.openacc",
+          "match": "(?i)\\b(end\\s*host_data)\\b"
+        },
+        {
+          "comment": "end-parallel-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(end\\s*parallel(\\s*loop)?)\\b"
+        },
+        {
+          "comment": "end-kernels-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(end\\s*kernels(\\s*loop)?)\\b"
+        },
+        {
+          "comment": "end-serial-directive",
+          "name": "string.regexp.openacc",
+          "match":
+            "(?i)\\b(end\\s*serial(\\s*loop)?)\\b"
+        }
+      ]
+    },
+    "environment-variables": {
+      "patterns": [
+        {
+          "name": "variable.parameter.openacc",
+          "match": "(?i)\\b(acc_device_type)\\b"
+        },
+        {
+          "name": "variable.parameter.openacc",
+          "match": "(?i)\\b(acc_device_num)\\b"
+        },
+        {
+          "name": "variable.parameter.openacc",
+          "match": "(?i)\\b(acc_proflib)\\b"
+        }
+      ]
+    },
+    "intrinsic-functions": {
+      "patterns": [
+        {
+          "begin":
+            "(?i)\\b(acc_(get|set)_(num_devices|device_type|device_num|default_async))\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openacc"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin":
+            "(?i)\\b(acc_get_(current_cuda_device|current_cuda_context|cuda_stream))\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openacc"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin":
+            "(?i)\\b(acc_get_(current_opencl_device|current_opencl_context|opencl_queue))\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openacc"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin":
+            "(?i)\\b(acc_get_property)\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.intrinsic.openacc"
+            },
+            "2": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.parentheses.left.openacc"
+            }
+          },
+          "patterns": [{ "include": "$self" }]
+        }
+      ]
+    },
+    "operators": {
+      "comment":
+        "Operator that allows a line to be continued on the next line.",
+      "patterns": [
+        {
+          "match": "\\G\\s*(&)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openacc"
+            }
+          }
+        },
+        {
+          "contentName": "meta.line-continuation.openacc",
+          "begin": "\\s*(&)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openacc"
+            }
+          },
+          "end": "(?i)^(?:\\s*(&))?",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.line-continuation.openacc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "invalid.error.openacc",
+              "match": "\\S*"
+            }
+          ]
+        }
+      ]
+    },
+    "synchronization-constructs": {
+      "patterns": [
+        {
+          "begin":
+            "(?ix) \\G\\s+( barrier |(end\\s*)?master |(end\\s*)?ordered |(end\\s*)?task\\s*group |taskwait )\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": [{ "include": "#invalid-word" }]
+        },
+        {
+          "begin": "(?i)\\G\\s+(flush)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": [{ "include": "$self" }]
+        },
+        {
+          "begin": "(?i)\\G\\s+(atomic)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "begin": "(?i)\\G\\s+(capture|read|write|update)\\b",
+              "beginCaptures": {
+                "1": { "name": "string.regexp.openacc" }
+              },
+              "end": "(?=[$\\n])",
+              "patterns": [
+                {
+                  "name": "string.regexp.openacc",
+                  "match": "(?i)\\G\\s+(seq_cst)\\b"
+                },
+                { "include": "#invalid-word" }
+              ]
+            },
+            {
+              "name": "string.regexp.openacc",
+              "match": "(?i)\\G\\s+(seq_cst)\\b"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+(cancel)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "begin": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b",
+              "beginCaptures": {
+                "1": { "name": "string.regexp.openacc" }
+              },
+              "end": "(?=[$\\n])",
+              "patterns": []
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+(cancellation\\s+point)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": [
+            {
+              "name": "string.regexp.openacc",
+              "match": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b"
+            },
+            { "include": "#invalid-word" }
+          ]
+        },
+        {
+          "begin": "(?i)\\G\\s+((end\\s*)?critical)\\b",
+          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
+          "end": "(?=[$\\n])",
+          "patterns": []
+        }
+      ]
+    },
+    "invalid-word": {
+      "name": "invalid.error.openacc",
+      "match": "(?i)\\b\\w+\\b"
+    }
+  }
+}
