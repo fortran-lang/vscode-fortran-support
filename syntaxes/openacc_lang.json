@@ -46,7 +46,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(copyin)\\s*(\\()",
+          "begin": "(?i)\\b(copyin|copyout|copy|create|delete|no_create|present|attach|detach|device|host)\\s*(\\()",
           "beginCaptures": {
             "1": { "name": "string.regexp.openacc" },
             "2": {
@@ -116,7 +116,7 @@
           "patterns": [{ "include": "$self" }]
         },
         {
-          "begin": "(?i)\\b(device_type)\\s*(\\()",
+          "begin": "(?i)\\b(device_type|device_num|default_async)\\s*(\\()",
           "beginCaptures": {
             "1": { "name": "string.regexp.openacc" },
             "2": {
@@ -151,7 +151,7 @@
         },
         {
           "name": "string.regexp.openacc",
-          "match": "(?i)\\b(async)(\\(\\d+\\))?\\b"
+          "match": "(?i)\\b(async|wait)(\\(\\d+\\))?\\b"
         },
         {
           "name": "string.regexp.openacc",
@@ -504,19 +504,6 @@
     "synchronization-constructs": {
       "patterns": [
         {
-          "begin":
-            "(?ix) \\G\\s+( barrier |(end\\s*)?master |(end\\s*)?ordered |(end\\s*)?task\\s*group |taskwait )\\b",
-          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
-          "end": "(?=[$\\n])",
-          "patterns": [{ "include": "#invalid-word" }]
-        },
-        {
-          "begin": "(?i)\\G\\s+(flush)\\b",
-          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
-          "end": "(?=[$\\n])",
-          "patterns": [{ "include": "$self" }]
-        },
-        {
           "begin": "(?i)\\G\\s+(atomic)\\b",
           "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
           "end": "(?=[$\\n])",
@@ -541,40 +528,6 @@
             },
             { "include": "#invalid-word" }
           ]
-        },
-        {
-          "begin": "(?i)\\G\\s+(cancel)\\b",
-          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
-          "end": "(?=[$\\n])",
-          "patterns": [
-            {
-              "begin": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b",
-              "beginCaptures": {
-                "1": { "name": "string.regexp.openacc" }
-              },
-              "end": "(?=[$\\n])",
-              "patterns": []
-            },
-            { "include": "#invalid-word" }
-          ]
-        },
-        {
-          "begin": "(?i)\\G\\s+(cancellation\\s+point)\\b",
-          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
-          "end": "(?=[$\\n])",
-          "patterns": [
-            {
-              "name": "string.regexp.openacc",
-              "match": "(?i)\\G\\s+(do|parallel|sections|taskgroup)\\b"
-            },
-            { "include": "#invalid-word" }
-          ]
-        },
-        {
-          "begin": "(?i)\\G\\s+((end\\s*)?critical)\\b",
-          "beginCaptures": { "1": { "name": "string.regexp.openacc" } },
-          "end": "(?=[$\\n])",
-          "patterns": []
         }
       ]
     },
