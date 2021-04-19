@@ -49,13 +49,13 @@ program main
   !$acc cache(A(:))
 
   ! Test all four forms of atomic
-  !$acc atomic capture(A)
+  !$acc atomic capture
   !$acc end atomic
-  !$acc atomic update(A)
+  !$acc atomic update
   !$acc end atomic
-  !$acc atomic read(A)
+  !$acc atomic read
   !$acc end atomic
-  !$acc atomic write(A)
+  !$acc atomic write
   !$acc end atomic
 
   !The "do" should not highlight, if it does it's coming from OpenMP
