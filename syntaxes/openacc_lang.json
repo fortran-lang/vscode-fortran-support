@@ -46,7 +46,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(copyin|copyout|copy|create|delete|no_create|present|attach|detach|device|host)\\s*(\\()",
+          "begin": "(?i)\\b(copyin|copyout|copy|create|delete|no_create|present|attach|detach|deviceptr|device|host)\\s*(\\()",
           "beginCaptures": {
             "1": { "name": "string.regexp.openacc" },
             "2": {
