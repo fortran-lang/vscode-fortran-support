@@ -1,5 +1,6 @@
 "use strict";
 
+import * as os from "os";
 import * as path from "path";
 import * as cp from "child_process";
 import ChildProcess = cp.ChildProcess;
@@ -8,7 +9,7 @@ import { getIncludeParams, LANGUAGE_ID } from "../lib/helper";
 import * as vscode from "vscode";
 
 export default class FortranLintingProvider {
-  constructor() {}
+  constructor() { }
 
   private diagnosticCollection: vscode.DiagnosticCollection;
 
@@ -87,8 +88,8 @@ export default class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    let options = vscode.workspace.rootPath
-      ? { cwd: vscode.workspace.rootPath }
+    let options = vscode.workspace.workspaceFolders
+      ? { cwd: vscode.workspace.workspaceFolders }
       : undefined;
     let args = [
       "-fsyntax-only",
@@ -164,7 +165,7 @@ export default class FortranLintingProvider {
     let config = vscode.workspace.getConfiguration("fortran");
     let includePaths: string[] = config.get("includePaths", []);
 
-    return includePaths;
+    return includePaths.map(this.resolveVariables);
   }
   private getGfortranPath(): string {
     let config = vscode.workspace.getConfiguration("fortran");
@@ -172,6 +173,30 @@ export default class FortranLintingProvider {
   }
   private getLinterExtraArgs(): string[] {
     let config = vscode.workspace.getConfiguration("fortran");
-    return config.get("linterExtraArgs", ["-Wall"]);
+    let args = config.get("linterExtraArgs", ["-Wall"]);
+
+    return args.map(this.resolveVariables);
+  }
+
+  /**
+   * Resolve the absolute paths of built-in vscode variables
+   * `${workspaceFolder}`, `${workspaceRoot}` and `~`
+   */
+  private resolveVariables(input: string): string {
+    if (!input) {
+      return "";
+    }
+
+    // Get the top-most workspace folder
+    const folder: vscode.WorkspaceFolder | undefined = vscode.workspace.workspaceFolders[0];
+    let ret: string = input;
+    // Replace workspaceFolder and workspaceRoot with absolute workspace path
+    ret = ret.replace(/(\${workspaceFolder}|\${workspaceRoot})/g, folder.uri.fsPath);
+
+    // Resolve '~' at the start of the path.
+    let regexp = () => /^\~/g;
+    ret = ret.replace(regexp(), (match: string, name: string) => os.homedir());
+
+    return ret;
   }
 }

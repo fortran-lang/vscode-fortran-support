@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#181](https://github.com/krvajal/vscode-fortran-support/issues/181)) via
   ([#218](https://github.com/krvajal/vscode-fortran-support/pull/218))
 
+### Added
+
+- Added capability to resolve `${workspaceFolder}` variable from settings
+  ([#176](https://github.com/krvajal/vscode-fortran-support/issues/176))
+
 ## [2.2.1] - 2020-04-11
 
 ### Fixed
