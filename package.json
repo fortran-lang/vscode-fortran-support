@@ -191,6 +191,7 @@
     "istanbul": "^0.4.5",
     "lint-staged": "^7.3.0",
     "mocha": "^2.3.3",
+    "prettier": "^2.3.1",
     "remap-istanbul": "^0.8.4",
     "tslint": "^4.0.2",
     "typescript": "^3.5.1",

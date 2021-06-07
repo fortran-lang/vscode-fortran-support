@@ -10,23 +10,27 @@ import { FORTRAN_FREE_FORM_ID, EXTENSION_ID } from './lib/helper'
 import { FortranLangServer, checkForLangServer } from './lang-server'
 import { LoggingService } from './services/logging-service'
 import * as pkg from '../package.json'
+import { Config } from './services/config'
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   const loggingService = new LoggingService()
-  const extensionConfig = vscode.workspace.getConfiguration(EXTENSION_ID)
 
+  const extensionConfig = new Config(
+    vscode.workspace.getConfiguration(EXTENSION_ID),
+    loggingService
+  )
   loggingService.logInfo(`Extension Name: ${pkg.displayName}`)
   loggingService.logInfo(`Extension Version: ${pkg.version}`)
 
-  if (extensionConfig.get('linterEnabled', true)) {
-    let linter = new FortranLintingProvider(loggingService)
+  if (await extensionConfig.get('linterEnabled', true)) {
+    let linter = new FortranLintingProvider(loggingService, extensionConfig)
     linter.activate(context.subscriptions)
     vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter)
   } else {
     loggingService.logInfo('Linter is not enabled')
   }
 
-  if (extensionConfig.get('provideCompletion', true)) {
+  if (await extensionConfig.get('provideCompletion', true)) {
     let completionProvider = new FortranCompletionProvider(loggingService)
     vscode.languages.registerCompletionItemProvider(
       FORTRAN_FREE_FORM_ID,
@@ -36,14 +40,14 @@ export function activate(context: vscode.ExtensionContext) {
     loggingService.logInfo('Completion Provider is not enabled')
   }
 
-  if (extensionConfig.get('provideHover', true)) {
+  if (await extensionConfig.get('provideHover', true)) {
     let hoverProvider = new FortranHoverProvider(loggingService)
     vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider)
   } else {
     loggingService.logInfo('Hover Provider is not enabled')
   }
 
-  if (extensionConfig.get('provideSymbols', true)) {
+  if (await extensionConfig.get('provideSymbols', true)) {
     let symbolProvider = new FortranDocumentSymbolProvider()
     vscode.languages.registerDocumentSymbolProvider(
       FORTRAN_FREE_FORM_ID,

@@ -6,16 +6,23 @@ import { getIncludeParams, LANGUAGE_ID } from '../lib/helper'
 
 import * as vscode from 'vscode'
 import { LoggingService } from '../services/logging-service'
+import { Config } from '../services/config'
+import { EnvironmentVariables } from '../services/utils'
+
+const ERROR_REGEX: RegExp =
+  /^([a-zA-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\s+(.*)\s+.*?\s+(Error|Warning|Fatal Error):\s(.*)$/gm
+
+const knownModNames = ['mpi']
 
 export default class FortranLintingProvider {
-  constructor(private loggingService: LoggingService) {}
+  constructor(
+    private loggingService: LoggingService,
+    private _config: Config
+  ) {}
 
   private diagnosticCollection: vscode.DiagnosticCollection
 
-  private doModernFortranLint(textDocument: vscode.TextDocument) {
-    const errorRegex: RegExp =
-      /^([a-zA-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\s+(.*)\s+.*?\s+(Error|Warning|Fatal Error):\s(.*)$/gm
-
+  private async doModernFortranLint(textDocument: vscode.TextDocument) {
     if (
       textDocument.languageId !== LANGUAGE_ID ||
       textDocument.uri.scheme !== 'file'
@@ -24,9 +31,9 @@ export default class FortranLintingProvider {
     }
 
     let decoded = ''
-    let diagnostics: vscode.Diagnostic[] = []
-    let command = this.getGfortranPath()
-    let argList = this.constructArgumentList(textDocument)
+
+    let command = await this.getGfortranPath()
+    let argList = await this.constructArgumentList(textDocument)
 
     let filePath = path.parse(textDocument.fileName).dir
 
@@ -37,70 +44,82 @@ export default class FortranLintingProvider {
      *
      * see also: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
      */
-    const env = process.env
-    env.LC_ALL = 'C'
+    const env: EnvironmentVariables = { ...process.env, LC_ALL: 'C' }
     if (process.platform === 'win32') {
       // Windows needs to know the path of other tools
       if (!env.Path.includes(path.dirname(command))) {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`
       }
     }
-    let childProcess = cp.spawn(command, argList, { cwd: filePath, env: env })
+    this.loggingService.logInfo(
+      `executing linter command ${command} ${argList.join(' ')}`
+    )
+    let gfortran = cp.spawn(command, argList, { cwd: filePath, env })
 
-    if (childProcess.pid) {
-      childProcess.stdout.on('data', (data: Buffer) => {
+    if (gfortran && gfortran.pid) {
+      gfortran!.stdout!.on('data', (data: Buffer) => {
         decoded += data
       })
-      childProcess.stderr.on('data', (data) => {
+      gfortran!.stderr!.on('data', (data) => {
         decoded += data
       })
-      childProcess.stderr.on('end', () => {
-        let matchesArray: string[]
-        while ((matchesArray = errorRegex.exec(decoded)) !== null) {
-          let elements: string[] = matchesArray.slice(1) // get captured expressions
-          let startLine = parseInt(elements[2])
-          let startColumn = parseInt(elements[3])
-          let type = elements[5] // error or warning
-          let severity =
-            type.toLowerCase() === 'warning'
-              ? vscode.DiagnosticSeverity.Warning
-              : vscode.DiagnosticSeverity.Error
-          let message = elements[6]
-          let range = new vscode.Range(
-            new vscode.Position(startLine - 1, startColumn),
-            new vscode.Position(startLine - 1, startColumn)
-          )
-          let diagnostic = new vscode.Diagnostic(range, message, severity)
-          diagnostics.push(diagnostic)
-        }
-
-        this.diagnosticCollection.set(textDocument.uri, diagnostics)
+      gfortran!.stderr.on('end', () => {
+        this.reportErrors(decoded, textDocument)
       })
-      childProcess.stdout.on('close', (code) => {
+      gfortran.stdout.on('close', (code) => {
         console.log(`child process exited with code ${code}`)
       })
     } else {
-      childProcess.on('error', (err: any) => {
+      gfortran.on('error', (err: any) => {
         if (err.code === 'ENOENT') {
           vscode.window.showErrorMessage(
-            "gfortran can't found on path, update your settings with a proper path or disable the linter."
+            "gfortran executable can't be found at the provided path, update your settings with a proper path or disable the linter."
           )
         }
       })
     }
   }
 
-  private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    let options = vscode.workspace.rootPath
-      ? { cwd: vscode.workspace.rootPath }
-      : undefined
+  reportErrors(errors: string, textDocument: vscode.TextDocument) {
+    let diagnostics: vscode.Diagnostic[] = []
+    let matchesArray: string[]
+    while ((matchesArray = ERROR_REGEX.exec(errors)) !== null) {
+      let elements: string[] = matchesArray.slice(1) // get captured expressions
+      let startLine = parseInt(elements[2])
+      let startColumn = parseInt(elements[3])
+      let type = elements[5] // error or warning
+      let severity =
+        type.toLowerCase() === 'warning'
+          ? vscode.DiagnosticSeverity.Warning
+          : vscode.DiagnosticSeverity.Error
+      let message = elements[6]
+      const [isModError, modName] = isModuleMissingErrorMessage(message)
+      // skip error from known mod names
+      if (isModError && knownModNames.includes(modName)) {
+        continue
+      }
+      let range = new vscode.Range(
+        new vscode.Position(startLine - 1, startColumn),
+        new vscode.Position(startLine - 1, startColumn)
+      )
+
+      let diagnostic = new vscode.Diagnostic(range, message, severity)
+      diagnostics.push(diagnostic)
+    }
+
+    this.diagnosticCollection.set(textDocument.uri, diagnostics)
+  }
+
+  private async constructArgumentList(
+    textDocument: vscode.TextDocument
+  ): Promise<string[]> {
     let args = [
       '-fsyntax-only',
       '-cpp',
       '-fdiagnostics-show-option',
-      ...this.getLinterExtraArgs(),
+      ...(await this.getLinterExtraArgs()),
     ]
-    let includePaths = this.getIncludePaths()
+    let includePaths = await this.getIncludePaths()
 
     let extensionIndex = textDocument.fileName.lastIndexOf('.')
     let fileNameWithoutExtension = textDocument.fileName.substring(
@@ -164,21 +183,34 @@ export default class FortranLintingProvider {
     this.command.dispose()
   }
 
-  private getIncludePaths(): string[] {
-    let config = vscode.workspace.getConfiguration('fortran')
-    let includePaths: string[] = config.get('includePaths', [])
-
+  private async getIncludePaths(): Promise<string[]> {
+    let includePaths: string[] = await this._config.get('includePaths', [])
+    this.loggingService.logInfo(`using include paths "${includePaths}"`)
     return includePaths
   }
-  private getGfortranPath(): string {
-    let config = vscode.workspace.getConfiguration('fortran')
-    const gfortranPath = config.get('gfortranExecutable', 'gfortran')
-    this.loggingService.logInfo(`using gfortran executable: ${gfortranPath}`)
+
+  private async getGfortranPath(): Promise<string> {
+    const gfortranPath = await this._config.get(
+      'gfortranExecutable',
+      'gfortran'
+    )
+    this.loggingService.logInfo(`using gfortran executable: "${gfortranPath}"`)
     return gfortranPath
   }
 
-  private getLinterExtraArgs(): string[] {
-    let config = vscode.workspace.getConfiguration('fortran')
-    return config.get('linterExtraArgs', ['-Wall'])
+  private getLinterExtraArgs(): Promise<string[]> {
+    return this._config.get('linterExtraArgs', ['-Wall'])
   }
+}
+
+function isModuleMissingErrorMessage(
+  message: string
+): [boolean, string | null] {
+  const result = /^Cannot open module file '(\w+).mod' for reading/.exec(
+    message
+  )
+  if (result) {
+    return [true, result[1]]
+  }
+  return [false, null]
 }
