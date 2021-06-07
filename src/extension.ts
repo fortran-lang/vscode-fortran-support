@@ -8,32 +8,39 @@ import { FortranDocumentSymbolProvider } from './features/document-symbol-provid
 
 import { FORTRAN_FREE_FORM_ID, EXTENSION_ID } from './lib/helper'
 import { FortranLangServer, checkForLangServer } from './lang-server'
-
+import { LoggingService } from './services/logging-service'
+import * as pkg from '../package.json'
 
 export function activate(context: vscode.ExtensionContext) {
-
+  const loggingService = new LoggingService()
   const extensionConfig = vscode.workspace.getConfiguration(EXTENSION_ID)
 
+  loggingService.logInfo(`Extension Name: ${pkg.displayName}`)
+  loggingService.logInfo(`Extension Version: ${pkg.version}`)
+
   if (extensionConfig.get('linterEnabled', true)) {
-    let linter = new FortranLintingProvider()
+    let linter = new FortranLintingProvider(loggingService)
     linter.activate(context.subscriptions)
     vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter)
+  } else {
+    loggingService.logInfo('Linter is not enabled')
   }
 
   if (extensionConfig.get('provideCompletion', true)) {
-    let completionProvider = new FortranCompletionProvider()
+    let completionProvider = new FortranCompletionProvider(loggingService)
     vscode.languages.registerCompletionItemProvider(
       FORTRAN_FREE_FORM_ID,
       completionProvider
     )
+  } else {
+    loggingService.logInfo('Completion Provider is not enabled')
   }
 
   if (extensionConfig.get('provideHover', true)) {
-    let hoverProvider = new FortranHoverProvider()
-    vscode.languages.registerHoverProvider(
-      FORTRAN_FREE_FORM_ID,
-      hoverProvider
-    )
+    let hoverProvider = new FortranHoverProvider(loggingService)
+    vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider)
+  } else {
+    loggingService.logInfo('Hover Provider is not enabled')
   }
 
   if (extensionConfig.get('provideSymbols', true)) {
@@ -42,10 +49,11 @@ export function activate(context: vscode.ExtensionContext) {
       FORTRAN_FREE_FORM_ID,
       symbolProvider
     )
+  } else {
+    loggingService.logInfo('Symbol Provider is not enabled')
   }
 
   if (checkForLangServer(extensionConfig)) {
-
     const langServer = new FortranLangServer(context, extensionConfig)
     langServer.start()
     langServer.onReady().then(() => {

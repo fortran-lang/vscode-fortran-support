@@ -183,7 +183,7 @@
     "@types/fs-extra": "0.0.35",
     "@types/glob": "^5.0.30",
     "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
+    "@types/node": "^15.12.1",
     "decache": "^4.1.0",
     "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
