@@ -177,6 +177,7 @@
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "CODE_TESTS_WORKSPACE='./' node ./node_modules/vscode/bin/test",
+    "test:grammar": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/resources/*.f90\"",
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
@@ -194,7 +195,8 @@
     "remap-istanbul": "^0.8.4",
     "tslint": "^4.0.2",
     "typescript": "^3.5.1",
-    "vscode": "^1.1.37"
+    "vscode": "^1.1.37",
+    "vscode-tmgrammar-test": "^0.0.11"
   },
   "husky": {
     "hooks": {
