@@ -1,0 +1,177 @@
+>
+>! ------------------------------------------------------------------------------
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>!
+#^ source.fortran.free comment.line.fortran
+>!  Tests the syntax highlighting of nested case select constructs is correct
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>!-------------------------------------------------------------------------------
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>
+>program select_case_test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>   implicit none
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.statement.implicit.fortran
+#            ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>
+>   integer :: i, j, k
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran
+#   ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran storage.type.integer.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.attribute-list.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>
+>
+>   select case(i)
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran
+#   ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.selectcase.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>   case(1)
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>      select case(j)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#      ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.selectcase.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>      case(1)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran constant.numeric.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      case(2)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran constant.numeric.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      case default
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#           ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.default.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      end select
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.endselect.fortran
+>
+>   case(2)
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>      select case(k)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#      ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.selectcase.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>      case(1)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran constant.numeric.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      case(2)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran constant.numeric.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran punctuation.parentheses.right.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      case default
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#           ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.default.fortran
+>         print*, i, j
+#^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#         ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran meta.parameter.fortran
+>      end select
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.block.select.case.fortran keyword.control.endselect.fortran
+>
+>   case default
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.case.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#        ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.default.fortran
+>      print*, i, j
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#      ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.print.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.operator.power.fortran
+#            ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.parameter.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran meta.parameter.fortran
+>   end select
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran
+#   ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.fortran meta.block.select.case.fortran keyword.control.endselect.fortran
+>
+>end program select_case_test
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
