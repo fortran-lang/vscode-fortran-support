@@ -3,6 +3,29 @@
   "scopeName": "source.openacc",
   "injectionSelector": "comment",
   "fileTypes": [],
+  "injections": {
+		"source.fortran.free - ( string | comment )": {
+			"patterns": [
+				{
+					"include": "#line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.double.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.single.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		}
+	},
   "patterns": [
     {
       "name": "meta.openacc.directive",
@@ -478,41 +501,6 @@
             }
           },
           "patterns": [{ "include": "$self" }]
-        }
-      ]
-    },
-    "operators": {
-      "comment":
-        "Operator that allows a line to be continued on the next line.",
-      "patterns": [
-        {
-          "match": "\\G\\s*(&)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openacc"
-            }
-          }
-        },
-        {
-          "contentName": "meta.line-continuation.openacc",
-          "begin": "\\s*(&)",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openacc"
-            }
-          },
-          "end": "(?i)^(?:\\s*(&))?",
-          "endCaptures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openacc"
-            }
-          },
-          "patterns": [
-            {
-              "name": "invalid.error.openacc",
-              "match": "\\S*"
-            }
-          ]
         }
       ]
     },

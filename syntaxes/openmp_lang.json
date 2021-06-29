@@ -3,6 +3,29 @@
   "scopeName": "source.openmp",
   "injectionSelector": "comment",
   "fileTypes": [],
+  "injections": {
+		"source.fortran.free - ( string | comment )": {
+			"patterns": [
+				{
+					"include": "#line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.double.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		},
+		"string.quoted.single.fortran": {
+			"patterns": [
+				{
+					"include": "#string-line-continuation-operator"
+				}
+			]
+		}
+	},
   "patterns": [
     {
       "name": "meta.openmp.directive",
@@ -502,41 +525,6 @@
             }
           },
           "patterns": [{ "include": "$self" }]
-        }
-      ]
-    },
-    "operators": {
-      "comment":
-        "Operator that allows a line to be continued on the next line.",
-      "patterns": [
-        {
-          "match": "\\G\\s*(&)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openmp"
-            }
-          }
-        },
-        {
-          "contentName": "meta.line-continuation.openmp",
-          "begin": "\\s*(&)",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openmp"
-            }
-          },
-          "end": "(?i)^(?:\\s*(&))?",
-          "endCaptures": {
-            "1": {
-              "name": "keyword.operator.line-continuation.openmp"
-            }
-          },
-          "patterns": [
-            {
-              "name": "invalid.error.openmp",
-              "match": "\\S*"
-            }
-          ]
         }
       ]
     },
