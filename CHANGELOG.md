@@ -30,6 +30,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added syntax highlight support for OpenACC
   ([224](https://github.com/krvajal/vscode-fortran-support/pull/224))
 
+## [2.2.2] - 2020-12-11
+
+### Fixed
+
+- Fixed fixed-form tab character at start syntax highlighting
+  ([#191](https://github.com/krvajal/vscode-fortran-support/pull/191))
+- Fixed `class` paranthesis erroneous syntax highlighting
+  ([#196](https://github.com/krvajal/vscode-fortran-support/issues/196))
+- Fixed multiline block interface syntax highlighting
+  ([#202](https://github.com/krvajal/vscode-fortran-support/issues/202))
+
+### Changed
+
+- Updated `package.json`
+  ([#192](https://github.com/krvajal/vscode-fortran-support/pull/192))
+- Rewrote solution for `select` in variable name
+  ([#203](https://github.com/krvajal/vscode-fortran-support/pull/203))
+
 ## [2.2.1] - 2020-04-11
 
 ### Fixed
