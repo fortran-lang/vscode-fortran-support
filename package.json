@@ -77,6 +77,13 @@
         ]
       },
       {
+        "scopeName": "source.openacc",
+        "path": "./syntaxes/openacc_lang.json",
+        "injectTo": [
+          "source.fortran.free"
+        ]
+      },
+      {
         "language": "fortran_fixed-form",
         "scopeName": "source.fortran.fixed",
         "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"

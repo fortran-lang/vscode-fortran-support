@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixes line continuation syntax highlighting for OpenMP
+  ([#225](https://github.com/krvajal/vscode-fortran-support/issues/225))
+
 ### Changed
 
 - Fixes syntax highlighting for nested case-select constructs
   ([#181](https://github.com/krvajal/vscode-fortran-support/issues/181)) via
   ([#218](https://github.com/krvajal/vscode-fortran-support/pull/218))
+
+### Added
+
+- Added syntax highlight support for OpenACC
+  ([224](https://github.com/krvajal/vscode-fortran-support/pull/224))
 
 ## [2.2.1] - 2020-04-11
 
