@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added syntax highlight support for OpenACC
-  ([224](https://github.com/krvajal/vscode-fortran-support/pull/224))
+  ([#224](https://github.com/krvajal/vscode-fortran-support/pull/224))
 
 ## [2.2.2] - 2020-12-11
 
@@ -110,7 +110,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Changed default configuration of LanguageServer to `false`
-- ￼Update vscode minimal engine
+- Update vscode minimal engine
 
 ## [2.0.0] - 2018-10-14
 
@@ -230,10 +230,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Show docs for intrinsic functions on hover
-  ### Changed
+
+### Changed
+
 - Updated icon for the extension
 - Fix bug on linter not working
 
-## [Unreleased]
+## [0.1.0]
 
 - Initial release
+
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...HEAD
+[2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1
+[2.2.1]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.0...v2.2.1
+[2.2.0]: https://github.com/krvajal/vscode-fortran-support/compare/2.1.0...v2.2.0
+[2.1.0]: https://github.com/krvajal/vscode-fortran-support/compare/2.0.2...2.1.0
+[2.0.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.0.0...2.0.2
+[2.0.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.3.0...v2.0.0
+[1.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.3...v1.0.0
+[0.6.3]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.1...v0.6.3
+[0.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v0.4.5...v0.6.0
+[0.4.5]: https://github.com/krvajal/vscode-fortran-support/compare/v0.4.4...v0.4.5
+[0.4.4]: https://github.com/krvajal/vscode-fortran-support/compare/tag/v0.4.4
