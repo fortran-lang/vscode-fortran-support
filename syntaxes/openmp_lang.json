@@ -4,32 +4,32 @@
   "injectionSelector": "comment",
   "fileTypes": [],
   "injections": {
-		"source.fortran.free - ( string | comment )": {
-			"patterns": [
-				{
-					"include": "#line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.double.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.single.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		}
-	},
+    "source.fortran.free - ( string | comment )": {
+      "patterns": [
+        {
+          "include": "#line-continuation-operator"
+        }
+      ]
+    },
+    "string.quoted.double.fortran": {
+      "patterns": [
+        {
+          "include": "#string-line-continuation-operator"
+        }
+      ]
+    },
+    "string.quoted.single.fortran": {
+      "patterns": [
+        {
+          "include": "#string-line-continuation-operator"
+        }
+      ]
+    }
+  },
   "patterns": [
     {
       "name": "meta.openmp.directive",
-      "begin": "(?i)\\G(\\$(omp\\b)&?)",
+      "begin": "(?i)\\G(\\$(omp\\b)?&?)",
       "beginCaptures": { "1": { "name": "comment.directive.openmp" } },
       "end": "(?=[\\n])",
       "patterns": [

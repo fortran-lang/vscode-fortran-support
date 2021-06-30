@@ -4,28 +4,28 @@
   "injectionSelector": "comment",
   "fileTypes": [],
   "injections": {
-		"source.fortran.free - ( string | comment )": {
-			"patterns": [
-				{
-					"include": "#line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.double.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		},
-		"string.quoted.single.fortran": {
-			"patterns": [
-				{
-					"include": "#string-line-continuation-operator"
-				}
-			]
-		}
-	},
+    "source.fortran.free - ( string | comment )": {
+      "patterns": [
+        {
+          "include": "#line-continuation-operator"
+        }
+      ]
+    },
+    "string.quoted.double.fortran": {
+      "patterns": [
+        {
+          "include": "#string-line-continuation-operator"
+        }
+      ]
+    },
+    "string.quoted.single.fortran": {
+      "patterns": [
+        {
+          "include": "#string-line-continuation-operator"
+        }
+      ]
+    }
+  },
   "patterns": [
     {
       "name": "meta.openacc.directive",
