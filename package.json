@@ -191,19 +191,12 @@
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
-    "@types/fs-extra": "0.0.35",
-    "@types/glob": "^5.0.30",
     "@types/mocha": "^2.2.32",
     "@types/node": "^15.12.1",
-    "decache": "^4.1.0",
-    "fs-extra": "^1.0.0",
-    "glob": "^7.1.1",
     "husky": "^1.1.2",
-    "istanbul": "^0.4.5",
     "lint-staged": "^7.3.0",
-    "mocha": "^2.3.3",
-    "remap-istanbul": "^0.8.4",
-    "tslint": "^4.0.2",
+    "mocha": "^9.0.1",
+    "tslint": "^5.20.1",
     "typescript": "^3.5.1",
     "vscode": "^1.1.37",
     "vscode-tmgrammar-test": "^0.0.11"
