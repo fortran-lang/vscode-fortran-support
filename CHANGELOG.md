@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.3.0]
+
 ### Fixed
 
 - Fixes line continuation syntax highlighting for OpenMP
