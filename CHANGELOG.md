@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Adds support for .f18 and .F18 file extensions
+  ([#252](https://github.com/krvajal/vscode-fortran-support/pull/252))
+
 ## [2.3.0]
 
 ### Fixed
