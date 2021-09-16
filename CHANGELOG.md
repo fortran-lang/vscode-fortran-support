@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixes OpenACC syntax highlighting not triggering
+
 ### Added
 
 - Adds support for .f18 and .F18 file extensions

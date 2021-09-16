@@ -29,7 +29,7 @@
   "patterns": [
     {
       "name": "meta.openmp.directive",
-      "begin": "(?i)\\G(\\$(omp\\b)?&?)",
+      "begin": "(?i)\\G(\\$(omp\\b)&?)",
       "beginCaptures": { "1": { "name": "comment.directive.openmp" } },
       "end": "(?=[\\n])",
       "patterns": [
