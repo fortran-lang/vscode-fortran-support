@@ -10,7 +10,9 @@
 		"f03",
 		"F03",
 		"f08",
-		"F08"
+		"F08",
+		"f18",
+		"F18"
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
 	"injections": {
