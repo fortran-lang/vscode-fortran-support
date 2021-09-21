@@ -1,7 +1,8 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
+import { installPythonTool } from './tools';
 import intrinsics from './fortran-intrinsics';
-import { installTool, LANG_SERVER_TOOL_ID } from './tools';
+import { LoggingService } from '../services/logging-service';
 
 // IMPORTANT: this should match the value
 // on the package.json otherwise the extension won't
@@ -109,24 +110,50 @@ export function isPositionInString(
 let saveKeywordToJson = keyword => {
   let doc = _loadDocString(keyword);
   let docObject = JSON.stringify({ keyword: keyword, docstr: doc });
-  fs.appendFile('src/docs/' + keyword + '.json', docObject, function(err) {
+  fs.appendFile('src/docs/' + keyword + '.json', docObject, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
 };
 
 
-export function promptForMissingTool(tool: string) {
+/**
+ * Install a package either a Python pip package or a VS Marketplace Extension.
+ * 
+ * For the Python install supply the name of the package in PyPi
+ * e.g. fortran-language-server
+ * 
+ * For the VS Extension to be installed supply the id of the extension 
+ * e.g 'hansec.fortran-ls'
+ * 
+ * @param tool name of the tool e.g. fortran-language-server
+ * @param msg optional message for installing said package
+ * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
+ */
+export function promptForMissingTool(tool: string, msg: string, toolType: string, logger?: LoggingService) {
   const items = ['Install'];
-  let message = '';
-  if (tool === 'fortran-langserver') {
-    message =
-      'You choose to use the fortranLanguageServer functionality but it is not installed. Please press the Install button to install it';
-  }
-  vscode.window.showInformationMessage(message, ...items).then(selected => {
-    if (selected === 'Install') {
-      installTool(tool);
-    }
+  return new Promise((resolve, reject) => {
+    resolve(
+      vscode.window.showInformationMessage(msg, ...items).then(selected => {
+        if (selected === 'Install') {
+          switch (toolType) {
+            case 'Python':
+              installPythonTool(tool, logger);
+              break;
+
+            case 'VSExt':
+              logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
+              vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
+              logger.logInfo(`Extension ${tool} successfully installed`);
+              break;
+
+            default:
+              logger.logError(`Failed to install tool: ${tool}`);
+              break;
+          }
+        }
+      })
+    );
   });
 
 }
