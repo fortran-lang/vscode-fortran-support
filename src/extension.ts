@@ -12,6 +12,7 @@ import { FORTRAN_FREE_FORM_ID, EXTENSION_ID, promptForMissingTool } from './lib/
 import { LoggingService } from './services/logging-service'
 import * as pkg from '../package.json'
 import { LANG_SERVER_TOOL_ID } from './lib/tools'
+import { FortranFormattingProvider } from './features/formatting-provider'
 
 export function activate(context: vscode.ExtensionContext) {
   const loggingService = new LoggingService()
@@ -26,6 +27,18 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter)
   } else {
     loggingService.logInfo('Linter is not enabled')
+  }
+
+  if (extensionConfig.get('formatter') !== 'Disabled') {
+    let disposable: vscode.Disposable =
+      vscode.languages.registerDocumentFormattingEditProvider(
+        FORTRAN_FREE_FORM_ID,
+        new FortranFormattingProvider(loggingService)
+      );
+    context.subscriptions.push(disposable);
+  }
+  else {
+    loggingService.logInfo('Formatting is disabled')
   }
 
   if (extensionConfig.get('provideCompletion', true)) {
