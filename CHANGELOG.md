@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Adds support for .f18 and .F18 file extensions
   ([#252](https://github.com/krvajal/vscode-fortran-support/pull/252))
 
+### Fixed
+- Fixed OpenMP syntax accidentally matching OpenACC (See [184](https://github.com/krvajal/vscode-fortran-support/issues/184#issuecomment-920139084))
+
 ## [2.3.0]
 
 ### Fixed
