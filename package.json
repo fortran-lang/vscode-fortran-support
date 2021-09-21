@@ -216,13 +216,15 @@
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/node": "^15.12.1",
+    "@types/which": "^2.0.1",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "mocha": "^9.0.1",
     "tslint": "^5.20.1",
     "typescript": "^3.5.1",
     "vscode": "^1.1.37",
-    "vscode-tmgrammar-test": "^0.0.11"
+    "vscode-tmgrammar-test": "^0.0.11",
+    "which": "^2.0.2"
   },
   "husky": {
     "hooks": {
