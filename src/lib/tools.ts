@@ -1,9 +1,6 @@
 export const LANG_SERVER_TOOL_ID = 'fortran-langserver';
 import * as cp from 'child_process';
-export const toolBinNames = {
-  [LANG_SERVER_TOOL_ID]: 'fortls',
-  'gnu-compiler': 'gfortran',
-};
+
 
 export function installTool(toolname) {
   if (toolname === LANG_SERVER_TOOL_ID) {
