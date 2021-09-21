@@ -7,10 +7,11 @@ import FortranHoverProvider from './features/hover-provider'
 import { FortranCompletionProvider } from './features/completion-provider'
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider'
 
-import { FORTRAN_FREE_FORM_ID, EXTENSION_ID } from './lib/helper'
-import { FortranLangServer, checkForLangServer } from './lang-server'
+import { FortranLangServer } from './lang-server'
+import { FORTRAN_FREE_FORM_ID, EXTENSION_ID, promptForMissingTool } from './lib/helper'
 import { LoggingService } from './services/logging-service'
 import * as pkg from '../package.json'
+import { LANG_SERVER_TOOL_ID } from './lib/tools'
 
 export function activate(context: vscode.ExtensionContext) {
   const loggingService = new LoggingService()
@@ -52,6 +53,25 @@ export function activate(context: vscode.ExtensionContext) {
     )
   } else {
     loggingService.logInfo('Symbol Provider is not enabled')
+  }
+
+  // Check if the language server is installed and if not prompt to install it
+  if (!which.sync('fortls', { nothrow: true })) {
+    let msg = `It is highly recommended to use the fortran-language-server to 
+              enable hover, peeking, gotos and many more.
+              For a full list of features the language server adds see:
+              https://github.com/hansec/fortran-language-server`;
+    promptForMissingTool(LANG_SERVER_TOOL_ID, msg, 'Python', loggingService);
+  }
+
+  // Check that Fortran Intellisense is installed and if not prompt to install
+  if (!vscode.extensions.getExtension('hansec.fortran-ls')) {
+    let msg = `It is highly recommended to install the Fortran IntelliSense 
+              extension. The extension is used to interface with the 
+              fortran-language-server.
+              For a full list of features provided by the extension see:
+              https://github.com/hansec/vscode-fortran-ls`;
+    promptForMissingTool('hansec.fortran-ls', msg, 'VSExt', loggingService);
   }
 
   // Our interface with `fortls` has been disabled in favour of the @hansec's
