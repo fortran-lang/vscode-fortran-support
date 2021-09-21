@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Adds support for formatting with `findent` and `fprettify`
+  ([#29](https://github.com/krvajal/vscode-fortran-support/issues/29))
+- Adds prompts for installing Fortran IntelliSense and fortran-language-server
+
+### Removed
+
+- Removes `paths.js` for detecting binaries in favour of `which`
+
 ## [2.3.1]
 
 ### Changed
