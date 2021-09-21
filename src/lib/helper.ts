@@ -115,7 +115,6 @@ let saveKeywordToJson = keyword => {
   });
 };
 
-export { default as getBinPath } from './paths'
 
 export function promptForMissingTool(tool: string) {
   const items = ['Install'];
