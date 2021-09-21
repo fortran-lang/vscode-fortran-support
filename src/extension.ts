@@ -1,4 +1,5 @@
 // src/extension.ts
+import * as which from 'which'
 import * as vscode from 'vscode'
 
 import FortranLintingProvider from './features/linter-provider'
@@ -53,7 +54,10 @@ export function activate(context: vscode.ExtensionContext) {
     loggingService.logInfo('Symbol Provider is not enabled')
   }
 
-  if (checkForLangServer(extensionConfig)) {
+  // Our interface with `fortls` has been disabled in favour of the @hansec's
+  // VS Code extension Fortran IntelliSense
+  const useInternalFLInterface = false;
+  if (useInternalFLInterface) {
     const langServer = new FortranLangServer(context, extensionConfig)
     langServer.start()
     langServer.onReady().then(() => {
