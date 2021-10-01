@@ -7,7 +7,6 @@ import { LoggingService } from '../services/logging-service';
 // IMPORTANT: this should match the value
 // on the package.json otherwise the extension won't
 // work at all
-export const LANGUAGE_ID = 'FortranFreeForm';
 export const FORTRAN_DOCUMENT_SELECTOR = [
   { scheme: 'file', language: 'FortranFreeForm' },
   { scheme: 'file', language: 'FortranFixedForm' }
