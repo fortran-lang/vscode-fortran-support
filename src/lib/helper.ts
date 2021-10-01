@@ -145,6 +145,7 @@ export function promptForMissingTool(tool: string, msg: string, toolType: string
 
             case 'VSExt':
               logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
+              vscode.commands.executeCommand('extension.open', tool);
               vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
               logger.logInfo(`Extension ${tool} successfully installed`);
               break;
