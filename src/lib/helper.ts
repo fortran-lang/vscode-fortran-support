@@ -8,7 +8,10 @@ import { LoggingService } from '../services/logging-service';
 // on the package.json otherwise the extension won't
 // work at all
 export const LANGUAGE_ID = 'FortranFreeForm';
-export const FORTRAN_FREE_FORM_ID = { language: LANGUAGE_ID, scheme: 'file' };
+export const FORTRAN_DOCUMENT_SELECTOR = [
+  { scheme: 'file', language: 'FortranFreeForm' },
+  { scheme: 'file', language: 'FortranFixedForm' }
+];
 export { intrinsics }
 export const EXTENSION_ID = 'fortran';
 
