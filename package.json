@@ -40,7 +40,8 @@
     "Formatters"
   ],
   "activationEvents": [
-    "onLanguage:FortranFreeForm"
+    "onLanguage:FortranFreeForm",
+    "onLanguage:FortranFixedForm"
   ],
   "main": "./out/src/extension",
   "extensionDependencies": [

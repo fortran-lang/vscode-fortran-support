@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Fixed
+
+- Extension now activates for `FortranFixedForm`
+
 ## Changed
 
 - Renamed the Fixed Format Format language from `fortran_fixed-form` to
