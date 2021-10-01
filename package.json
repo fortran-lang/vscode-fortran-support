@@ -4,14 +4,34 @@
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
   "version": "2.3.1",
   "publisher": "krvajalm",
+  "license": "MIT",
+  "author": {
+    "email": "krvajal.miguelangel@gmail.com",
+    "name": "Miguel Carvajal"
+  },
+  "maintainers": [
+    {
+      "email": "giannis.nikiteas@gmail.com",
+      "name": "Giannis Nikiteas"
+    }
+  ],
   "engines": {
     "vscode": "^1.30.x"
   },
   "icon": "images/icon.png",
+  "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
+  "qna": "https://github.com/krvajalmiguelangel/vscode-fortran-support/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
+  "keywords": [
+    "Fortran",
+    "Free Form fortran",
+    "Fixed Form fortran",
+    "IntelliSense",
+    "IDE"
+  ],
   "categories": [
     "Programming Languages",
     "Snippets",
