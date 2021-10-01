@@ -6,7 +6,7 @@ import {
 import * as which from 'which'
 import * as vscode from 'vscode'
 import {
-  FORTRAN_FREE_FORM_ID,
+  FORTRAN_DOCUMENT_SELECTOR,
 } from './lib/helper'
 import { LANG_SERVER_TOOL_ID } from './lib/tools'
 
@@ -23,7 +23,7 @@ export class FortranLangServer {
     }
 
     const clientOptions: LanguageClientOptions = {
-      documentSelector: [FORTRAN_FREE_FORM_ID],
+      documentSelector: FORTRAN_DOCUMENT_SELECTOR,
     }
 
     this.c = new LanguageClient(
