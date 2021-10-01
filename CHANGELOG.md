@@ -10,12 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## Fixed
 
 - Extension now activates for `FortranFixedForm`
+  ([#257](https://github.com/krvajal/vscode-fortran-support/issues/257))
 - Linting is now operational for `FortranFixedForm`
+  ([#258](https://github.com/krvajal/vscode-fortran-support/issues/258))
 
 ## Changed
 
 - Renamed the Fixed Format Format language from `fortran_fixed-form` to
   `FortranFixedForm`, an alias has been added for backwards compatibility
+  ([#259](https://github.com/krvajal/vscode-fortran-support/issues/259))
 
 ### Added
 
