@@ -1,4 +1,4 @@
 {
-    "keyword":"IERRNO",
-    "docstr":"`IERRNO` — Get the last system error number\n\n### Description\nReturns the last system error number, as given by the C `errno`variable.\n\n\n\n### Syntax\n`RESULT = IERRNO()`\n\n\n### Arguments\nNone.\n\n\n\n### Return value\nThe return value is of type `INTEGER` and of the default integer\nkind.\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n\n### See also\n<a href=\"PERROR.html#PERROR\">PERROR</a>\n"
+  "keyword": "IERRNO",
+  "docstr": "`IERRNO` — Get the last system error number\n\n### Description\nReturns the last system error number, as given by the C `errno`variable.\n\n\n\n### Syntax\n`RESULT = IERRNO()`\n\n\n### Arguments\nNone.\n\n\n\n### Return value\nThe return value is of type `INTEGER` and of the default integer\nkind.\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n\n### See also\n<a href=\"PERROR.html#PERROR\">PERROR</a>\n"
 }
