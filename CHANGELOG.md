@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## Fixed
 
 - Extension now activates for `FortranFixedForm`
+- Linting is now operational for `FortranFixedForm`
 
 ## Changed
 
