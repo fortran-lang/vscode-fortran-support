@@ -34,11 +34,18 @@ export class FortranFormattingProvider
   }
 
   /**
-   * Use `fprettyfy` to format a Fortran file.
+   * Use `fprettify` to format a Fortran file.
    * 
    * @param document vscode.TextDocument document to operate on
    */
   private doFormatFprettify(document: vscode.TextDocument) {
+
+    // fprettify can only do FortranFreeFrom
+    if (document.languageId !== 'FortranFreeForm') {
+      this.logger.logError(`fprettify can only format FortranFreeForm, change
+                            to findent for FortranFixedForm formatting`);
+      return
+    }
 
     const formatterName: string = 'fprettify';
     let formatterPath: string = this.getFormatterPath();
