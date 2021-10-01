@@ -2,13 +2,13 @@
 
 import * as path from 'path'
 import * as cp from 'child_process'
-import { getIncludeParams, LANGUAGE_ID } from '../lib/helper'
+import { FORTRAN_DOCUMENT_SELECTOR, getIncludeParams } from '../lib/helper'
 
 import * as vscode from 'vscode'
 import { LoggingService } from '../services/logging-service'
 
 export default class FortranLintingProvider {
-  constructor(private loggingService: LoggingService) {}
+  constructor(private loggingService: LoggingService) { }
 
   private diagnosticCollection: vscode.DiagnosticCollection
 
@@ -16,9 +16,10 @@ export default class FortranLintingProvider {
     const errorRegex: RegExp =
       /^([a-zA-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\s+(.*)\s+.*?\s+(Error|Warning|Fatal Error):\s(.*)$/gm
 
+    // Only lint Fortran (free, fixed) format files
     if (
-      textDocument.languageId !== LANGUAGE_ID ||
-      textDocument.uri.scheme !== 'file'
+      FORTRAN_DOCUMENT_SELECTOR.some((element) => { element.language !== textDocument.languageId }) ||
+      FORTRAN_DOCUMENT_SELECTOR.some((element) => { element.scheme !== textDocument.uri.scheme })
     ) {
       return
     }
