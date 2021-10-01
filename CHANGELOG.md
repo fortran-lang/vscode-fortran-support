@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fixes OpenACC syntax highlighting not triggering
+- Fixes internal hover documentation display
+  ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
 
 ### Added
 
