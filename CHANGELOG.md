@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Changed
+
+- Renamed the Fixed Format Format language from `fortran_fixed-form` to
+  `FortranFixedForm`, an alias has been added for backwards compatibility
+
 ### Added
 
 - Adds support for formatting with `findent` and `fprettify`

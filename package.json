@@ -70,11 +70,12 @@
         "configuration": "./language-configuration.json"
       },
       {
-        "id": "fortran_fixed-form",
+        "id": "FortranFixedForm",
         "aliases": [
           "Fortran",
           "fortran",
-          "FORTRAN77"
+          "FORTRAN77",
+          "fortran_fixed-form"
         ],
         "extensions": [
           ".f",
@@ -110,7 +111,7 @@
         ]
       },
       {
-        "language": "fortran_fixed-form",
+        "language": "FortranFixedForm",
         "scopeName": "source.fortran.fixed",
         "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
       }
@@ -221,7 +222,7 @@
         "language": "FortranFreeForm"
       },
       {
-        "language": "fortran_fixed-form"
+        "language": "FortranFixedForm"
       }
     ]
   },
