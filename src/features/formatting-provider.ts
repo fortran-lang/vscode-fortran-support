@@ -77,6 +77,15 @@ export class FortranFormattingProvider
 
     const formatterName: string = 'findent';
     let formatterPath: string = this.getFormatterPath();
+    // If no formatter path is present check that formatter is present in $PATH
+    if (!formatterPath) {
+      if (!which.sync(formatterName, { nothrow: true })) {
+        this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
+                                Attempting to install now.`);
+        let msg = `Installing ${formatterName} through pip with --user option`;
+        promptForMissingTool(formatterName, msg, 'Python');
+      }
+    }
     let formatter: string = path.join(formatterPath, formatterName);
 
     // Annoyingly findent only outputs to a file and not to a stream so
