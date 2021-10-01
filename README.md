@@ -16,7 +16,7 @@
 - Code autocompletion (beta)
 - Symbols provider
 - Debugger, uses Microsoft's [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
-- Formatting with [findent](https://sourceforge.net/projects/findent/) or [fprettify](https://github.com/pseewald/fprettify)
+- Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 
 ![symbol_nav](./doc/symbol_nav.png)
 
@@ -142,10 +142,9 @@ More details about how to setup the debugger can be found in Microsoft's website
 
 ## Formatting
 
-Two formatters are supported [`findent`](https://sourceforge.net/projects/findent/)
-and [`fprettify`](https://github.com/pseewald/fprettify). `fprettify` can be installed
-automatically through the extension using `pip`, while `findent` must be installed
-by the user manually.
+Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
+and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
+installed with `pip` automatically through the extension.
 
 The formatter is controlled by the user option
 
