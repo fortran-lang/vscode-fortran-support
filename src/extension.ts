@@ -8,7 +8,7 @@ import { FortranCompletionProvider } from './features/completion-provider'
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider'
 
 import { FortranLangServer } from './lang-server'
-import { FORTRAN_FREE_FORM_ID, EXTENSION_ID, promptForMissingTool } from './lib/helper'
+import { FORTRAN_DOCUMENT_SELECTOR, EXTENSION_ID, promptForMissingTool } from './lib/helper'
 import { LoggingService } from './services/logging-service'
 import * as pkg from '../package.json'
 import { LANG_SERVER_TOOL_ID } from './lib/tools'
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (extensionConfig.get('linterEnabled', true)) {
     let linter = new FortranLintingProvider(loggingService)
     linter.activate(context.subscriptions)
-    vscode.languages.registerCodeActionsProvider(FORTRAN_FREE_FORM_ID, linter)
+    vscode.languages.registerCodeActionsProvider(FORTRAN_DOCUMENT_SELECTOR, linter)
   } else {
     loggingService.logInfo('Linter is not enabled')
   }
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (extensionConfig.get('formatter') !== 'Disabled') {
     let disposable: vscode.Disposable =
       vscode.languages.registerDocumentFormattingEditProvider(
-        FORTRAN_FREE_FORM_ID,
+        FORTRAN_DOCUMENT_SELECTOR,
         new FortranFormattingProvider(loggingService)
       );
     context.subscriptions.push(disposable);
@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (extensionConfig.get('provideCompletion', true)) {
     let completionProvider = new FortranCompletionProvider(loggingService)
     vscode.languages.registerCompletionItemProvider(
-      FORTRAN_FREE_FORM_ID,
+      FORTRAN_DOCUMENT_SELECTOR,
       completionProvider
     )
   } else {
@@ -53,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   if (extensionConfig.get('provideHover', true)) {
     let hoverProvider = new FortranHoverProvider(loggingService)
-    vscode.languages.registerHoverProvider(FORTRAN_FREE_FORM_ID, hoverProvider)
+    vscode.languages.registerHoverProvider(FORTRAN_DOCUMENT_SELECTOR, hoverProvider)
   } else {
     loggingService.logInfo('Hover Provider is not enabled')
   }
@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (extensionConfig.get('provideSymbols', true)) {
     let symbolProvider = new FortranDocumentSymbolProvider()
     vscode.languages.registerDocumentSymbolProvider(
-      FORTRAN_FREE_FORM_ID,
+      FORTRAN_DOCUMENT_SELECTOR,
       symbolProvider
     )
   } else {
