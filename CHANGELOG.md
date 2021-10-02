@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Adds support for .f18 and .F18 file extensions
   ([#252](https://github.com/krvajal/vscode-fortran-support/pull/252))
+- Adds workflow for automatic publishing to VS Marketplace
+  ([#237](https://github.com/krvajal/vscode-fortran-support/issues/237))
 
 ## [2.3.0]
 
