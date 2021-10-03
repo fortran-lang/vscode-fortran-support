@@ -58,10 +58,13 @@
           ".F90",
           ".f95",
           ".F95",
+          ".f03",
+          ".F03",
           ".f08",
           ".F08",
           ".f18",
-          ".F18"
+          ".F18",
+          ".pf"
         ],
         "configuration": "./language-configuration.json"
       },
