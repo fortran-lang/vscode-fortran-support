@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#252](https://github.com/krvajal/vscode-fortran-support/pull/252))
 - Adds workflow for automatic publishing to VS Marketplace
   ([#237](https://github.com/krvajal/vscode-fortran-support/issues/237))
+- Adds basic support for pFUnit (.pf) highlighting
+  ([#185](https://github.com/krvajal/vscode-fortran-support/issues/185))
 
 ## [2.3.0]
 
