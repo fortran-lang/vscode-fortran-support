@@ -39,8 +39,8 @@ export class Tokenizer {
     while (expression !== "") {
       let match = false;
       for (let i = 0; i < this.tokenInfos.length; i++) {
-        let info = this.tokenInfos[i];
-        let result = info.pattern.exec(expression);
+        const info = this.tokenInfos[i];
+        const result = info.pattern.exec(expression);
 
         if (result && result.length > 0) {
           match = true;

@@ -18,7 +18,7 @@ export class FortranFormattingProvider
 
   public provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
 
-    let formatterName: string = this.getFormatter();
+    const formatterName: string = this.getFormatter();
 
     if (formatterName === 'fprettify') {
       this.doFormatFprettify(document);
@@ -27,10 +27,10 @@ export class FortranFormattingProvider
       this.doFormatFindent(document);
     }
     else {
-      this.logger.logError('Cannot format document with formatter set to Disabled')
+      this.logger.logError('Cannot format document with formatter set to Disabled');
     }
 
-    return
+    return;
   }
 
   /**
@@ -44,33 +44,33 @@ export class FortranFormattingProvider
     if (document.languageId !== 'FortranFreeForm') {
       this.logger.logError(`fprettify can only format FortranFreeForm, change
                             to findent for FortranFixedForm formatting`);
-      return
+      return;
     }
 
-    const formatterName: string = 'fprettify';
-    let formatterPath: string = this.getFormatterPath();
+    const formatterName = 'fprettify';
+    const formatterPath: string = this.getFormatterPath();
     // If no formatter path is present check that formatter is present in $PATH
     if (!formatterPath) {
       if (!which.sync(formatterName, { nothrow: true })) {
         this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
                                 Attempting to install now.`);
-        let msg = `Installing ${formatterName} through pip with --user option`;
+        const msg = `Installing ${formatterName} through pip with --user option`;
         promptForMissingTool(formatterName, msg, 'Python');
       }
     }
-    let formatter: string = path.join(formatterPath, formatterName);
+    const formatter: string = path.join(formatterPath, formatterName);
 
-    let args: string[] = [document.fileName, ...this.getFormatterArgs()];
+    const args: string[] = [document.fileName, ...this.getFormatterArgs()];
     // args.push('--silent'); // TODO: pass?
 
     // Get current file (name rel to path), run extension can be in a shell??
-    let process = cp.spawn(formatter, args);
+    const process = cp.spawn(formatter, args);
 
     // if the findent then capture the output from that and parse it back to the file
-    process.stdout.on('data', (data) => { this.logger.logInfo(`formatter stdout: ${data}`) });
-    process.stderr.on('data', (data) => { this.logger.logError(`formatter stderr: ${data}`) });
-    process.on('close', (code: number) => { if (code !== 0) this.logger.logInfo(`formatter exited with code: ${code}`) });
-    process.on('error', (code) => { this.logger.logInfo(`formatter exited with code: ${code}`) });
+    process.stdout.on('data', (data) => { this.logger.logInfo(`formatter stdout: ${data}`); });
+    process.stderr.on('data', (data) => { this.logger.logError(`formatter stderr: ${data}`); });
+    process.on('close', (code: number) => { if (code !== 0) this.logger.logInfo(`formatter exited with code: ${code}`); });
+    process.on('error', (code) => { this.logger.logInfo(`formatter exited with code: ${code}`); });
 
   }
 
@@ -82,14 +82,14 @@ export class FortranFormattingProvider
    */
   private doFormatFindent(document: vscode.TextDocument) {
 
-    const formatterName: string = 'findent';
-    let formatterPath: string = this.getFormatterPath();
+    const formatterName = 'findent';
+    const formatterPath: string = this.getFormatterPath();
     // If no formatter path is present check that formatter is present in $PATH
     if (!formatterPath) {
       if (!which.sync(formatterName, { nothrow: true })) {
         this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
                                 Attempting to install now.`);
-        let msg = `Installing ${formatterName} through pip with --user option`;
+        const msg = `Installing ${formatterName} through pip with --user option`;
         promptForMissingTool(formatterName, msg, 'Python');
       }
     }
@@ -97,8 +97,8 @@ export class FortranFormattingProvider
 
     // Annoyingly findent only outputs to a file and not to a stream so
     // let us go and create a temporary file
-    let out = document.uri.path + '.findent.tmp';
-    let args: string = ['< ' + document.fileName + ' >', out, ...this.getFormatterArgs()].join(' ');
+    const out = document.uri.path + '.findent.tmp';
+    const args: string = ['< ' + document.fileName + ' >', out, ...this.getFormatterArgs()].join(' ');
     formatter = formatter + ' ' + args;
 
     // @note It is wise to have all IO operations being synchronous we don't
@@ -121,13 +121,13 @@ export class FortranFormattingProvider
    */
   private getFormatter(): string {
 
-    let config = vscode.workspace.getConfiguration(EXTENSION_ID)
-    const formatter: string = config.get('formatting.formatter', 'Disabled')
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    const formatter: string = config.get('formatting.formatter', 'Disabled');
 
     if (!FORMATTERS.includes(formatter)) {
-      this.logger.logError(`Unsupported formatter: ${formatter}`)
+      this.logger.logError(`Unsupported formatter: ${formatter}`);
     }
-    return formatter
+    return formatter;
   }
 
   /**
@@ -136,10 +136,10 @@ export class FortranFormattingProvider
    * @returns {string[]} list of additional arguments
    */
   private getFormatterArgs(): string[] {
-    let config = vscode.workspace.getConfiguration(EXTENSION_ID)
-    const args: string[] = config.get('formatting.args', [])
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    const args: string[] = config.get('formatting.args', []);
 
-    return args
+    return args;
   }
 
   /**
@@ -148,12 +148,12 @@ export class FortranFormattingProvider
    * @returns {string} path of formatter
    */
   private getFormatterPath(): string {
-    let config = vscode.workspace.getConfiguration(EXTENSION_ID)
-    const formatterPath: string = config.get('formatting.path', '')
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    const formatterPath: string = config.get('formatting.path', '');
     if (formatterPath !== '') {
-      this.logger.logInfo(`Formatter located in: ${formatterPath}`)
+      this.logger.logInfo(`Formatter located in: ${formatterPath}`);
     }
 
-    return formatterPath
+    return formatterPath;
   }
 }

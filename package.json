@@ -234,16 +234,19 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "CODE_TESTS_WORKSPACE='./' node ./node_modules/vscode/bin/test",
     "test:grammar": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/resources/*.f90\"",
-    "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "npm run lint -- --fix"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/node": "^15.12.1",
     "@types/which": "^2.0.1",
-    "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "mocha": "^9.0.1",
-    "tslint": "^5.20.1",
     "typescript": "^3.5.1",
     "vscode": "^1.1.37",
     "vscode-tmgrammar-test": "^0.0.11",
@@ -251,12 +254,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run format"
     }
   },
   "lint-staged": {
     "*.ts": [
-      "prettier --write"
+      "npm run format",
+      "git add"
     ]
   },
   "dependencies": {

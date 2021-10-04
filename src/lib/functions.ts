@@ -1,13 +1,11 @@
 import * as vscode from "vscode";
 import { TextLine } from "vscode";
 
-interface SymbolParser {}
 
 export interface Tag {
   name: string;
   path?: string;
   scope?: string;
-  parseMe?: (SymbolParser) => vscode.SymbolInformation;
 }
 
 export interface Variable extends Tag {
@@ -23,25 +21,25 @@ export interface Subroutine extends Tag {
   lineNumber: number;
 }
 
-export interface Function extends Subroutine {
+export interface FortranFunction extends Subroutine {
   return: Variable; // function is a subroutine with return type
 }
 
 export enum MethodType {
   Subroutine,
-  Function
+  FortranFunction
 }
 
 export function getDeclaredFunctions(
   document: vscode.TextDocument
-): Function[] {
-  let lines = document.lineCount;
-  let funcs = [];
+): FortranFunction[] {
+  const lines = document.lineCount;
+  const funcs = [];
 
   for (let i = 0; i < lines; i++) {
-    let line: vscode.TextLine = document.lineAt(i);
+    const line: vscode.TextLine = document.lineAt(i);
     if (line.isEmptyOrWhitespace) continue;
-    let newFunc = parseFunction(line);
+    const newFunc = parseFunction(line);
     if (newFunc) {
       funcs.push(newFunc);
     }
@@ -52,13 +50,13 @@ export function getDeclaredFunctions(
 export function getDeclaredSubroutines(
   document: vscode.TextDocument
 ): Subroutine[] {
-  let lines = document.lineCount;
-  let subroutines = [];
+  const lines = document.lineCount;
+  const subroutines = [];
 
   for (let i = 0; i < lines; i++) {
-    let line: vscode.TextLine = document.lineAt(i);
+    const line: vscode.TextLine = document.lineAt(i);
     if (line.isEmptyOrWhitespace) continue;
-    let newSubroutine = parseSubroutine(line);
+    const newSubroutine = parseSubroutine(line);
     if (newSubroutine) {
       subroutines.push(newSubroutine);
     }
@@ -67,36 +65,36 @@ export function getDeclaredSubroutines(
 }
 
 export const parseFunction = (line: vscode.TextLine) => {
-  return _parse(line, MethodType.Function);
+  return _parse(line, MethodType.FortranFunction);
 };
 
 export const parseSubroutine = (line: TextLine) => {
   return _parse(line, MethodType.Subroutine);
 };
 export const _parse = (line: TextLine, type: MethodType) => {
-  const functionRegEx = /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|\&)\s*(result\([a-z_][\w]*(?:\)|\&))*/i;
-  const subroutineRegEx = /^\s*(?!\bend\b)\w*\s*\bsubroutine\b\s*([a-z][a-z0-9_]*)\s*(?:\((\s*[a-z][a-z0-9_,\s]*)*\s*(\)|\&))*/i;
+  const functionRegEx = /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|&)\s*(result\([a-z_][\w]*(?:\)|&))*/i;
+  const subroutineRegEx = /^\s*(?!\bend\b)\w*\s*\bsubroutine\b\s*([a-z][a-z0-9_]*)\s*(?:\((\s*[a-z][a-z0-9_,\s]*)*\s*(\)|&))*/i;
   const regEx =
     type === MethodType.Subroutine ? subroutineRegEx : functionRegEx;
 
   if (type === MethodType.Subroutine && line.text.toLowerCase().indexOf("subroutine") < 0)
     return;
-  if (type === MethodType.Function && line.text.toLowerCase().indexOf("function") < 0) return;
+  if (type === MethodType.FortranFunction && line.text.toLowerCase().indexOf("function") < 0) return;
   const searchResult = regEx.exec(line.text);
-  if (searchResult && type === MethodType.Function) {
-    let [attr, kind_descriptor, name, argsstr, result] = searchResult.slice(
+  if (searchResult && type === MethodType.FortranFunction) {
+    const [attr, kind_descriptor, name, argsstr, result] = searchResult.slice(
       1,
       5
     );
-    let args = argsstr ? parseArgs(argsstr) : [];
+    const args = argsstr ? parseArgs(argsstr) : [];
     return {
       name: name,
       args: args,
       lineNumber: line.lineNumber
     };
   } else if (searchResult && type === MethodType.Subroutine) {
-    let [name, argsstr] = searchResult.slice(1);
-    let args = argsstr ? parseArgs(argsstr) : [];
+    const [name, argsstr] = searchResult.slice(1);
+    const args = argsstr ? parseArgs(argsstr) : [];
     return {
       name: name,
       args: args,
@@ -106,8 +104,8 @@ export const _parse = (line: TextLine, type: MethodType) => {
 };
 
 export const parseArgs = (argsstr: string) => {
-  let args = argsstr.trim().split(",");
-  let variables: Variable[] = args
+  const args = argsstr.trim().split(",");
+  const variables: Variable[] = args
     .filter(name => validVariableName(name))
     .map(name => {
       return { name: name };

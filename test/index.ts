@@ -3,11 +3,9 @@
 
 // This file is used by VS Code's default test runner to configure Mocha before the test run.
 
-/* tslint:disable:no-var-keyword no-var-requires */
-var testRunner = require("vscode/lib/testrunner");
-/* tslint:enable:no-var-keyword no-var-requires */
+import testRunner = require("vscode/lib/testrunner");
 
-let mochaOptions: any = {
+const mochaOptions: any = {
   ui: "tdd",
   useColors: true,
   invert: true,
