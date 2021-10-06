@@ -17,10 +17,13 @@
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
 	"injections": {
-		"source.fortran.free - ( string | comment )": {
+		"source.fortran.free - ( string | comment | source.preprocessor )": {
 			"patterns": [
 				{
 					"include": "#line-continuation-operator"
+				},
+				{
+					"include": "#preprocessor"
 				}
 			]
 		},
@@ -121,6 +124,7 @@
 	],
 	"repository": {
 		"preprocessor": {
+			"name": "source.preprocessor",
 			"begin": "^\\s*(#)",
 			"beginCaptures": {
 				"1": {
