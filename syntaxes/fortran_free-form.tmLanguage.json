@@ -329,9 +329,6 @@
 		"preprocessor-operators": {
 			"patterns": [
 				{
-					"include": "#preprocessor-assignment-operator"
-				},
-				{
 					"include": "#preprocessor-line-continuation-operator"
 				},
 				{
@@ -388,10 +385,7 @@
 					"include": "#preprocessor-comments"
 				},
 				{
-					"include": "#preprocessor-string-constant"
-				},
-				{
-					"include": "#preprocessor-assignment-operator"
+					"include": "#preprocessor-constants"
 				},
 				{
 					"include": "#preprocessor-line-continuation-operator"
