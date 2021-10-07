@@ -1,0 +1,1 @@
+#define Var1 0

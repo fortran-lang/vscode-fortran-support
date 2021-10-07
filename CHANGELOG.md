@@ -9,11 +9,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.3.1]
 
+### Changed
+
+- Changes the syntax highlighting of preprocessor macros to match that of C++
+
 ### Fixed
 
 - Fixes OpenACC syntax highlighting not triggering
 - Fixes internal hover documentation display
   ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
+- Fixes preprocessor syntax highlighting with line continuations
+  ([#248](https://github.com/krvajal/vscode-fortran-support/issues/248))
+- Fixes preprocessor syntax highlighting with derived type and conditionals
+  ([#249](https://github.com/krvajal/vscode-fortran-support/issues/249))
+- Fixes the general preprocessor syntax highlighting and adds testing
 
 ### Added
 

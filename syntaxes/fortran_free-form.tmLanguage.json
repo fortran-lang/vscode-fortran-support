@@ -17,7 +17,7 @@
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
 	"injections": {
-		"source.fortran.free - ( string | comment | source.preprocessor )": {
+		"source.fortran.free - ( string | comment | meta.preprocessor )": {
 			"patterns": [
 				{
 					"include": "#line-continuation-operator"
@@ -124,22 +124,22 @@
 	],
 	"repository": {
 		"preprocessor": {
-			"name": "source.preprocessor",
+			"name": "meta.preprocessor",
 			"begin": "^\\s*(#)",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.preprocessor.indicator.fortran"
+					"name": "keyword.control.preprocessor.indicator.fortran"
 				}
 			},
 			"end": "\\n",
 			"patterns": [
 				{
-						"include": "#preprocessor-if-construct"
+					"include": "#preprocessor-if-construct"
 				},
 				{
-						"include": "#preprocessor-statements"
+					"include": "#preprocessor-statements"
 				}
-		]
+			]
 		},
 		"preprocessor-comments": {
 			"name": "comment.preprocessor",
@@ -149,17 +149,285 @@
 		"preprocessor-constants": {
 			"patterns": [
 				{
-					"include": "#preprocessor-numeric-constant"
+					"include": "#cpp-numeric-constant"
 				},
 				{
 					"include": "#preprocessor-string-constant"
 				}
 			]
 		},
-		"preprocessor-numeric-constant": {
-			"comment": "Numeric constants",
-			"name": "constant.numeric.fortran",
-			"match": "(?ix)[\\+\\-]?(\\b\\d+\\.?\\d*|\\.\\d+) (_\\w+|d[\\+\\-]?\\d+|e[\\+\\-]?\\d+(_\\w+)?)?(?![a-z_])"
+		"cpp-numeric-constant": {
+			"match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])*",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"begin": "(?=.)",
+							"end": "$",
+							"beginCaptures": {},
+							"endCaptures": {},
+							"patterns": [
+								{
+									"match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9a-fA-F])\\.|\\.(?=[0-9a-fA-F])))([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([pP])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "keyword.other.unit.hexadecimal.cpp"
+										},
+										"2": {
+											"name": "constant.numeric.hexadecimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"3": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"4": {
+											"name": "constant.numeric.hexadecimal.cpp"
+										},
+										"5": {
+											"name": "constant.numeric.hexadecimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"6": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"7": {
+											"name": "keyword.other.unit.exponent.hexadecimal.cpp"
+										},
+										"8": {
+											"name": "keyword.operator.plus.exponent.hexadecimal.cpp"
+										},
+										"9": {
+											"name": "keyword.operator.minus.exponent.hexadecimal.cpp"
+										},
+										"10": {
+											"name": "constant.numeric.exponent.hexadecimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"11": {
+											"name": "keyword.other.unit.suffix.floating-point.cpp"
+										},
+										"12": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "\\G(?=[0-9.])(?!0[xXbB])([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9])\\.|\\.(?=[0-9])))([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([eE])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "constant.numeric.decimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"2": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"3": {
+											"name": "constant.numeric.decimal.point.cpp"
+										},
+										"4": {
+											"name": "constant.numeric.decimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"5": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"6": {
+											"name": "keyword.other.unit.exponent.decimal.cpp"
+										},
+										"7": {
+											"name": "keyword.operator.plus.exponent.decimal.cpp"
+										},
+										"8": {
+											"name": "keyword.operator.minus.exponent.decimal.cpp"
+										},
+										"9": {
+											"name": "constant.numeric.exponent.decimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"10": {
+											"name": "keyword.other.unit.suffix.floating-point.cpp"
+										},
+										"11": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "(\\G0[bB])([01](?:[01]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "keyword.other.unit.binary.cpp"
+										},
+										"2": {
+											"name": "constant.numeric.binary.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"3": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"4": {
+											"name": "keyword.other.unit.suffix.integer.cpp"
+										},
+										"5": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "(\\G0)((?:[0-7]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))+)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "keyword.other.unit.octal.cpp"
+										},
+										"2": {
+											"name": "constant.numeric.octal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"3": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"4": {
+											"name": "keyword.other.unit.suffix.integer.cpp"
+										},
+										"5": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([pP])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "keyword.other.unit.hexadecimal.cpp"
+										},
+										"2": {
+											"name": "constant.numeric.hexadecimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"3": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"4": {
+											"name": "keyword.other.unit.exponent.hexadecimal.cpp"
+										},
+										"5": {
+											"name": "keyword.operator.plus.exponent.hexadecimal.cpp"
+										},
+										"6": {
+											"name": "keyword.operator.minus.exponent.hexadecimal.cpp"
+										},
+										"7": {
+											"name": "constant.numeric.exponent.hexadecimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"8": {
+											"name": "keyword.other.unit.suffix.integer.cpp"
+										},
+										"9": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "\\G(?=[0-9.])(?!0[xXbB])([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([eE])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)",
+									"captures": {
+										"1": {
+											"name": "constant.numeric.decimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"2": {
+											"name": "punctuation.separator.constant.numeric.cpp"
+										},
+										"3": {
+											"name": "keyword.other.unit.exponent.decimal.cpp"
+										},
+										"4": {
+											"name": "keyword.operator.plus.exponent.decimal.cpp"
+										},
+										"5": {
+											"name": "keyword.operator.minus.exponent.decimal.cpp"
+										},
+										"6": {
+											"name": "constant.numeric.exponent.decimal.cpp",
+											"patterns": [
+												{
+													"match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+													"name": "punctuation.separator.constant.numeric.cpp"
+												}
+											]
+										},
+										"7": {
+											"name": "keyword.other.unit.suffix.integer.cpp"
+										},
+										"8": {
+											"name": "keyword.other.unit.user-defined.cpp"
+										}
+									}
+								},
+								{
+									"match": "(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])+",
+									"name": "invalid.illegal.constant.numeric.cpp"
+								}
+							]
+						}
+					]
+				}
+			}
 		},
 		"preprocessor-string-constant": {
 			"patterns": [
@@ -200,10 +468,11 @@
 		"preprocessor-if-construct": {
 			"patterns": [
 				{
+					"name": "meta.preprocessor.conditional.fortran",
 					"begin": "(?i)\\G\\s*\\b(if)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.if.fortran"
+							"name": "keyword.control.preprocessor.if.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -212,13 +481,19 @@
 							"include": "#preprocessor-comments"
 						},
 						{
-							"include": "#preprocessor-numeric-constant"
+							"include": "#cpp-numeric-constant"
 						},
 						{
 							"include": "#preprocessor-logical-operators"
 						},
 						{
+							"include": "#preprocessor-arithmetic-operators"
+						},
+						{
 							"include": "#preprocessor-defined-function"
+						},
+						{
+							"include": "#preprocessor-line-continuation-operator"
 						}
 					]
 				},
@@ -226,7 +501,7 @@
 					"begin": "(?i)\\G\\s*\\b(ifdef)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.ifdef.fortran"
+							"name": "keyword.control.preprocessor.ifdef.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -235,10 +510,16 @@
 							"include": "#preprocessor-comments"
 						},
 						{
-							"include": "#preprocessor-numeric-constant"
+							"include": "#cpp-numeric-constant"
 						},
 						{
 							"include": "#preprocessor-logical-operators"
+						},
+						{
+							"include": "#preprocessor-arithmetic-operators"
+						},
+						{
+							"include": "#preprocessor-line-continuation-operator"
 						}
 					]
 				},
@@ -246,7 +527,7 @@
 					"begin": "(?i)\\G\\s*\\b(ifndef)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.ifndef.fortran"
+							"name": "keyword.control.preprocessor.ifndef.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -255,10 +536,16 @@
 							"include": "#preprocessor-comments"
 						},
 						{
-							"include": "#preprocessor-numeric-constant"
+							"include": "#cpp-numeric-constant"
 						},
 						{
 							"include": "#preprocessor-logical-operators"
+						},
+						{
+							"include": "#preprocessor-arithmetic-operators"
+						},
+						{
+							"include": "#preprocessor-line-continuation-operator"
 						}
 					]
 				},
@@ -266,7 +553,7 @@
 					"begin": "(?i)\\G\\s*\\b(else)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.else.fortran"
+							"name": "keyword.control.preprocessor.else.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -275,7 +562,7 @@
 							"include": "#preprocessor-comments"
 						},
 						{
-							"include": "#preprocessor-numeric-constant"
+							"include": "#cpp-numeric-constant"
 						}
 					]
 				},
@@ -283,7 +570,7 @@
 					"begin": "(?i)\\G\\s*\\b(elif)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.elif.fortran"
+							"name": "keyword.control.preprocessor.elif.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -292,13 +579,19 @@
 							"include": "#preprocessor-comments"
 						},
 						{
-							"include": "#preprocessor-numeric-constant"
+							"include": "#cpp-numeric-constant"
 						},
 						{
 							"include": "#preprocessor-logical-operators"
 						},
 						{
+							"include": "#preprocessor-arithmetic-operators"
+						},
+						{
 							"include": "#preprocessor-defined-function"
+						},
+						{
+							"include": "#preprocessor-line-continuation-operator"
 						}
 					]
 				},
@@ -306,7 +599,7 @@
 					"begin": "(?i)\\G\\s*\\b(endif)\\b",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.preprocessor.endif.fortran"
+							"name": "keyword.control.preprocessor.endif.fortran"
 						}
 					},
 					"end": "(?=\\n)",
@@ -322,7 +615,7 @@
 			"match": "(?i)\\b(defined)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.define.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.defined.fortran"
 				}
 			}
 		},
@@ -333,25 +626,89 @@
 				},
 				{
 					"include": "#preprocessor-logical-operators"
+				},
+				{
+					"include": "#preprocessor-arithmetic-operators"
 				}
 			]
 		},
 		"preprocessor-assignment-operator": {
 			"name": "keyword.operator.assignment.preprocessor.fortran",
+			"comment": "assignments with = are not allowed",
 			"match": "(?<!\\=)(\\=)(?!\\=)"
 		},
 		"preprocessor-line-continuation-operator": {
 			"begin": "\\s*(\\\\)",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.operator.line-continuation.preprocessor.fortran"
+					"name": "constant.character.escape.line-continuation.preprocessor.fortran"
 				}
 			},
 			"end": "(?i)^"
 		},
 		"preprocessor-logical-operators": {
 			"name": "keyword.operator.logical.preprocessor.fortran",
-			"match": "&&"
+			"comment": "and:&&, bitand:&, or:||, bitor:|, not eq:!=, not:!, xor:^, compl:~",
+			"match": "(&&)|(==)|(\\!=)|(\\|\\|)|(\\<\\=)|(\\>=)|(\\<)|(\\>)|(~)|(\\^)|(&)|(\\!)|(\\|)",
+			"captures": {
+				"1": {
+					"name": "keyword.operator.logical.preprocessor.and.fortran"
+				},
+				"2": {
+					"name": "keyword.operator.logical.preprocessor.equals.fortran"
+				},
+				"3": {
+					"name": "keyword.operator.logical.preprocessor.not_equals.fortran"
+				},
+				"4": {
+					"name": "keyword.operator.logical.preprocessor.or.fortran"
+				},
+				"5": {
+					"name": "keyword.operator.logical.preprocessor.less_eq.fortran"
+				},
+				"6": {
+					"name": "keyword.operator.logical.preprocessor.more_eq.fortran"
+				},
+				"7": {
+					"name": "keyword.operator.logical.preprocessor.less.fortran"
+				},
+				"8": {
+					"name": "keyword.operator.logical.preprocessor.more.fortran"
+				},
+				"9": {
+					"name": "keyword.operator.logical.preprocessor.complementary.fortran"
+				},
+				"10": {
+					"name": "keyword.operator.logical.preprocessor.xor.fortran"
+				},
+				"11": {
+					"name": "keyword.operator.logical.preprocessor.bitand.fortran"
+				},
+				"12": {
+					"name": "keyword.operator.logical.preprocessor.not.fortran"
+				},
+				"13": {
+					"name": "keyword.operator.logical.preprocessor.bitor.fortran"
+				}
+			}
+		},
+		"preprocessor-arithmetic-operators": {
+			"comment": "division regex is different than in main fortran",
+			"match": "(\\-)|(\\+)|(\\/)|(\\*)",
+			"captures": {
+				"1": {
+					"name": "keyword.operator.subtraction.fortran"
+				},
+				"2": {
+					"name": "keyword.operator.addition.fortran"
+				},
+				"3": {
+					"name": "keyword.operator.division.fortran"
+				},
+				"4": {
+					"name": "keyword.operator.multiplication.fortran"
+				}
+			}
 		},
 		"preprocessor-statements": {
 			"patterns": [
@@ -373,10 +730,11 @@
 			]
 		},
 		"preprocessor-define-statement": {
+			"name": "meta.preprocessor.macro.fortran",
 			"begin": "(?i)\\G\\s*\\b(define)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.define.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.define.fortran"
 				}
 			},
 			"end": "(?=\\n)",
@@ -393,10 +751,11 @@
 			]
 		},
 		"preprocessor-error-statement": {
+			"name": "meta.preprocessor.macro.fortran",
 			"begin": "(?i)\\G\\s*(error)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.error.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.error.fortran"
 				}
 			},
 			"end": "(?=\\n)",
@@ -413,10 +772,11 @@
 			]
 		},
 		"preprocessor-include-statement": {
+			"name": "meta.preprocessor.include.fortran",
 			"begin": "(?i)\\G\\s*(include)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.include.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.include.fortran"
 				}
 			},
 			"end": "(?=\\n)",
@@ -448,10 +808,11 @@
 			]
 		},
 		"preprocessor-pragma-statement": {
+			"name": "meta.preprocessor.pragma.fortran",
 			"begin": "(?i)\\G\\s*\\b(pragma)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.pragma.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.pragma.fortran"
 				}
 			},
 			"end": "(?=\\n)",
@@ -465,16 +826,20 @@
 			]
 		},
 		"preprocessor-undefine-statement": {
+			"name": "meta.preprocessor.undef.fortran",
 			"begin": "(?i)\\G\\s*\\b(undef)\\b",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.undef.preprocessor.fortran"
+					"name": "keyword.control.preprocessor.undef.fortran"
 				}
 			},
 			"end": "(?=\\n)",
 			"patterns": [
 				{
 					"include": "#preprocessor-comments"
+				},
+				{
+					"include": "#preprocessor-line-continuation-operator"
 				}
 			]
 		},
@@ -4786,7 +5151,7 @@
 						},
 						"6": {
 							"name": "storage.type.dimension.fortran"
-							},
+						},
 						"7": {
 							"name": "keyword.operator.multiplication.fortran"
 						},
