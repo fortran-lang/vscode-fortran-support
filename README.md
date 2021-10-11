@@ -4,6 +4,7 @@
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
+[![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?)](http://opensource.org/licenses/MIT)
 
 > This extension provides support for the Fortran programming language. It includes syntax highlighting, debugging, code snippets and a linting based on `gfortran`. You can download the Visual Studio Code editor from [here](https://code.visualstudio.com/download).
 
