@@ -1,0 +1,222 @@
+>! if
+#^ source.fortran.free comment.line.fortran
+# ^^^ source.fortran.free comment.line.fortran
+>if (1 > 2) then
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran
+#      ^ source.fortran.free meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#       ^ source.fortran.free meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#          ^ source.fortran.free
+#           ^^^^ source.fortran.free keyword.control.then.fortran
+>end if
+#^^^^^^ source.fortran.free keyword.control.endif.fortran
+>
+>! if-else
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^ source.fortran.free comment.line.fortran
+>if (1 > 2) then
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran
+#      ^ source.fortran.free meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#       ^ source.fortran.free meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#          ^ source.fortran.free
+#           ^^^^ source.fortran.free keyword.control.then.fortran
+>else
+#^^^^ source.fortran.free meta.block.if.fortran keyword.control.else.fortran
+>end if
+#^^^^^^ source.fortran.free keyword.control.endif.fortran
+>
+>! if-else-if-else
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>if (1 > 2) then
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran
+#      ^ source.fortran.free meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#       ^ source.fortran.free meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#          ^ source.fortran.free
+#           ^^^^ source.fortran.free keyword.control.then.fortran
+>else if (2 < 1) then
+#^^^^^^^ source.fortran.free meta.block.if.fortran keyword.control.elseif.fortran
+#       ^ source.fortran.free meta.block.if.fortran
+#        ^ source.fortran.free meta.block.if.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.block.if.fortran constant.numeric.fortran
+#          ^ source.fortran.free meta.block.if.fortran
+#           ^ source.fortran.free meta.block.if.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.block.if.fortran
+#             ^ source.fortran.free meta.block.if.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.block.if.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.free meta.block.if.fortran
+#                ^^^^ source.fortran.free meta.block.if.fortran keyword.control.then.fortran
+>else
+#^^^^ source.fortran.free meta.block.if.fortran keyword.control.else.fortran
+>end if
+#^^^^^^ source.fortran.free keyword.control.endif.fortran
+>
+>! labelled if
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>label1: if (1 > 2) then
+#^^^^^^^ source.fortran.free
+#       ^ source.fortran.free meta.named-construct.fortran.modern
+#        ^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.if.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                 ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.named-construct.fortran.modern
+#                   ^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.then.fortran
+>end if label1
+#^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
+#      ^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#       ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran meta.parameter.fortran
+>
+>! labelled if-else
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>label2: if (1 > 2) then
+#^^^^^^^ source.fortran.free
+#       ^ source.fortran.free meta.named-construct.fortran.modern
+#        ^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.if.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                 ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.named-construct.fortran.modern
+#                   ^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.then.fortran
+>else label2
+#^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.else.fortran
+#    ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else
+>end if label2
+#^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
+#      ^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#       ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran meta.parameter.fortran
+>
+>! labelled if-else-if-else
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>label3: if (1 > 2) then
+#^^^^^^^ source.fortran.free
+#       ^ source.fortran.free meta.named-construct.fortran.modern
+#        ^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.if.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                 ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.named-construct.fortran.modern
+#                   ^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.then.fortran
+>else if (2 < 1) then label3
+#^^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.elseif.fortran
+#       ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#        ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran constant.numeric.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#                ^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.then.fortran
+#                    ^^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.elseif
+>else label3
+#^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.else.fortran
+#    ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
+#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else
+>end if label3
+#^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
+#      ^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#       ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran meta.parameter.fortran
+>
+>! labelled if with whitespace after end label
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>label4: if (1 > 2) then
+#^^^^^^^ source.fortran.free
+#       ^ source.fortran.free meta.named-construct.fortran.modern
+#        ^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.if.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                 ^ source.fortran.free meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.named-construct.fortran.modern
+#                   ^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.then.fortran
+>end if  label4   ! bug continuous to new line
+#^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
+#      ^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#        ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran meta.parameter.fortran
+#              ^^^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#                 ^ source.fortran.free comment.line.fortran
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>
+>! nested labels with whitespaces
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>if (1 > 2) then
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran
+#      ^ source.fortran.free meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#       ^ source.fortran.free meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#          ^ source.fortran.free
+#           ^^^^ source.fortran.free keyword.control.then.fortran
+>   label5: if (1) then
+#^^^ source.fortran.free meta.block.if.fortran
+#   ^^^^^^^ source.fortran.free meta.block.if.fortran
+#          ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern
+#           ^^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern keyword.control.if.fortran
+#             ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#              ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                 ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern
+#                  ^^^^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern keyword.control.then.fortran
+>   end if label5 !
+#^^^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.block.if.fortran
+#   ^^^^^^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern keyword.control.endif.fortran
+#         ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#          ^^^^^^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.statement.control.if.fortran meta.parameter.fortran
+#                ^ source.fortran.free meta.block.if.fortran meta.named-construct.fortran.modern meta.statement.control.if.fortran
+#                 ^ source.fortran.free meta.block.if.fortran comment.line.fortran
+>else
+#^^^^ source.fortran.free meta.block.if.fortran keyword.control.else.fortran
+>! whitespace in the "end if label5 " causes else to be incorrect
+#^ source.fortran.free meta.block.if.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.block.if.fortran comment.line.fortran
+>end if
+#^^^^^^ source.fortran.free keyword.control.endif.fortran
