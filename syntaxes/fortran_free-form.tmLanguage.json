@@ -1356,7 +1356,7 @@
 			"end": "(?i)\\s*(?!\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)\\b(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
 			"endCaptures": {
 				"2": {
-					"name": "invalid.error.fortran.modern"
+					"name": "invalid.error.named-control-constructs.fortran.modern"
 				}
 			},
 			"applyEndPatternLast": 1,
@@ -2310,7 +2310,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.derived-type.fortran",
 					"begin": "\\G(?=\\s*(,|::))",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2363,7 +2363,7 @@
 							"name": "entity.name.type.fortran"
 						},
 						"3": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.derived-type.fortran"
 						}
 					},
 					"patterns": [
@@ -2372,7 +2372,7 @@
 						},
 						{
 							"comment": "Derived type specification block.",
-							"name": "meta.block.specification.fortran",
+							"name": "meta.block.specification.derived-type.fortran",
 							"begin": "(?i)^(?!\\s*\\b(?:contains|end\\s*type)\\b)",
 							"end": "(?i)^(?=\\s*\\b(?:contains|end\\s*type)\\b)",
 							"patterns": [
@@ -2474,7 +2474,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.derived-type-component-procedure.fortran",
 					"begin": "(?=\\s*(,|::|\\())",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2515,7 +2515,7 @@
 		},
 		"derived-type-component-type-specification": {
 			"comment": "Introduced in the Fortran 1995 standard.",
-			"name": "meta.specification.type.fortran",
+			"name": "meta.specification.derived-type.fortran",
 			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*(?<!\\(\\s*|::\\s*)\\bfunction\\b))",
 			"end": "(?=[;!\\n])",
 			"patterns": [
@@ -2527,7 +2527,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.derived-type-component-type.fortran",
 					"begin": "(?=\\s*(,|::))",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2602,7 +2602,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"name": "meta.attribute-list.fortran",
+					"name": "meta.attribute-list.derived-type-contains-final-procedure.fortran",
 					"begin": "(?=\\s*(::))",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2634,7 +2634,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.derived-type-contains-generic-procedure.fortran",
 					"begin": "(?=\\s*(,|::|\\())",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2698,7 +2698,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.derived-type-contains-procedure.fortran",
 					"begin": "(?=\\s*(,|::|\\())",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -2778,7 +2778,7 @@
 					]
 				},
 				{
-					"name": "meta.block.specification.fortran",
+					"name": "meta.block.specification.enum.fortran",
 					"begin": "(?i)(?!\\s*\\b(end\\s*enum)\\b)",
 					"end": "(?i)(?=\\b(end\\s*enum)\\b)",
 					"patterns": [
@@ -2797,7 +2797,7 @@
 							"patterns": [
 								{
 									"comment": "Attribute list.",
-									"contentName": "meta.attribute-list.fortran",
+									"contentName": "meta.attribute-list.enum.fortran",
 									"begin": "(?=\\s*(,|::))",
 									"end": "(::)|(?=[;!\\n])",
 									"endCaptures": {
@@ -3201,7 +3201,7 @@
 							"name": "keyword.operator.assignment.fortran"
 						},
 						"4": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface.fortran"
 						},
 						"5": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3222,7 +3222,7 @@
 							"name": "keyword.operator.assignment.fortran"
 						},
 						"5": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface-end.fortran"
 						},
 						"6": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3251,7 +3251,7 @@
 							"name": "keyword.operator.fortran"
 						},
 						"4": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface-block-op.fortran"
 						},
 						"5": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3272,7 +3272,7 @@
 							"name": "keyword.operator.fortran"
 						},
 						"5": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface-block-op-end.fortran"
 						},
 						"6": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3307,7 +3307,7 @@
 							"name": "keyword.other.unformatted.fortran"
 						},
 						"6": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface-block.fortran"
 						},
 						"7": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3334,7 +3334,7 @@
 							"name": "keyword.other.unformatted.fortran"
 						},
 						"7": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.generic-interface-block-end.fortran"
 						},
 						"8": {
 							"name": "punctuation.parentheses.right.fortran"
@@ -3385,7 +3385,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"name": "meta.attribute-list.fortran",
+					"name": "meta.attribute-list.interface.fortran",
 					"begin": "(?i)(?=\\G\\s*(?!\\bprocedure\\b))",
 					"end": "(?i)(?=\\bprocedure\\b)",
 					"patterns": [
@@ -3885,7 +3885,7 @@
 							"include": "#comments"
 						},
 						{
-							"name": "invalid.error.fortran",
+							"name": "invalid.error.line-cont.fortran",
 							"match": "\\S[^!]*"
 						}
 					]
@@ -3935,7 +3935,7 @@
 					"include": "#comments"
 				},
 				{
-					"name": "invalid.error.fortran",
+					"name": "invalid.error.string-line-cont.fortran",
 					"match": "\\S.*"
 				}
 			]
@@ -3971,7 +3971,7 @@
 					"name": "keyword.control.end-block-data.fortran"
 				},
 				"4": {
-					"name": "invalid.error.fortran"
+					"name": "invalid.error.block-data-definition.fortran"
 				}
 			},
 			"patterns": [
@@ -3981,14 +3981,15 @@
 			]
 		},
 		"function-definition": {
-			"comment": "Funtion program unit. Introduced in the Fortran 1977 standard.",
+			"comment": "Function program unit. Introduced in the Fortran 1977 standard.",
 			"name": "meta.function.fortran",
-			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!\\(\\s*|::\\s*))\\bfunction\\b)",
+			"comment2": "Escape :: ( , if they are before function. These are non-fixed width lookbehinds but they seem to work",
+			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!\\(\\s*|::\\s*|,\\s*))\\bfunction\\b)",
 			"end": "(?=[;!\\n])",
 			"patterns": [
 				{
 					"comment": "Function attribute list.",
-					"name": "meta.attribute-list.fortran",
+					"name": "meta.attribute-list.function.fortran",
 					"begin": "(?i)(?=\\G\\s*(?!\\bfunction\\b))",
 					"end": "(?i)(?=\\bfunction\\b)",
 					"patterns": [
@@ -4005,16 +4006,7 @@
 							"include": "#recursive-attribute"
 						},
 						{
-							"include": "#character-type"
-						},
-						{
-							"include": "#derived-type"
-						},
-						{
-							"include": "#logical-type"
-						},
-						{
-							"include": "#numeric-type"
+							"include": "#types"
 						},
 						{
 							"include": "#invalid-word"
@@ -4022,6 +4014,7 @@
 					]
 				},
 				{
+					"comment": "Captures the function keyword",
 					"begin": "(?i)\\b(function)\\b",
 					"beginCaptures": {
 						"1": {
@@ -4050,7 +4043,7 @@
 									"name": "keyword.other.endfunction.fortran"
 								},
 								"4": {
-									"name": "invalid.error.fortran"
+									"name": "invalid.error.function.fortran"
 								}
 							},
 							"patterns": [
@@ -4073,7 +4066,7 @@
 								},
 								{
 									"comment": "Specification and execution block.",
-									"name": "meta.block.specification.fortran",
+									"name": "meta.block.specification.function.fortran",
 									"begin": "(?i)(?!(?:end\\s*[;!\\n]|end\\s*function\\b))",
 									"end": "(?i)(?=(?:end\\s*[;!\\n]|end\\s*function\\b))",
 									"patterns": [
@@ -4138,14 +4131,14 @@
 							"name": "keyword.other.endmodule.fortran"
 						},
 						"4": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.module-definition.fortran"
 						}
 					},
 					"applyEndPatternLast": 1,
 					"patterns": [
 						{
 							"comment": "Module specification block.",
-							"name": "meta.block.specification.fortran",
+							"name": "meta.block.specification.module.fortran",
 							"begin": "\\G",
 							"end": "(?i)(?=\\b(?:end\\s*[;!\\n]|end\\s*module\\b))",
 							"patterns": [
@@ -4208,14 +4201,14 @@
 							"name": "keyword.control.endprogram.fortran"
 						},
 						"4": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.program-definition.fortran"
 						}
 					},
 					"applyEndPatternLast": 1,
 					"patterns": [
 						{
 							"comment": "Program specification block.",
-							"name": "meta.block.specification.fortran",
+							"name": "meta.block.specification.program.fortran",
 							"begin": "\\G",
 							"end": "(?i)(?=\\b(?:end\\s*[;!\\n]|end\\s*program\\b))",
 							"patterns": [
@@ -4279,7 +4272,7 @@
 									"name": "keyword.other.endprocedure.fortran"
 								},
 								"4": {
-									"name": "invalid.error.fortran"
+									"name": "invalid.error.procedure-definition.fortran"
 								}
 							},
 							"patterns": [
@@ -4296,7 +4289,7 @@
 								},
 								{
 									"comment": "Specification and execution block.",
-									"name": "meta.block.specification.fortran",
+									"name": "meta.block.specification.procedure.fortran",
 									"begin": "(?i)(?!\\s*(?:contains\\b|end\\s*[;!\\n]|end\\s*procedure\\b))",
 									"end": "(?i)(?=\\s*(?:contains\\b|end\\s*[;!\\n]|end\\s*procedure\\b))",
 									"patterns": [
@@ -4335,7 +4328,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"name": "meta.attribute-list.fortran",
+					"name": "meta.attribute-list.subroutine.fortran",
 					"begin": "(?i)(?=\\G\\s*(?!\\bsubroutine\\b))",
 					"end": "(?i)(?=\\bsubroutine\\b)",
 					"patterns": [
@@ -4385,7 +4378,7 @@
 									"name": "keyword.other.endsubroutine.fortran"
 								},
 								"4": {
-									"name": "invalid.error.fortran"
+									"name": "invalid.error.subroutine.fortran"
 								}
 							},
 							"patterns": [
@@ -4405,7 +4398,7 @@
 								},
 								{
 									"comment": "Specification and execution block.",
-									"name": "meta.block.specification.fortran",
+									"name": "meta.block.specification.subroutine.fortran",
 									"begin": "(?i)(?!\\b(?:end\\s*[;!\\n]|end\\s*subroutine\\b))",
 									"end": "(?i)(?=\\b(?:end\\s*[;!\\n]|end\\s*subroutine\\b))",
 									"patterns": [
@@ -4483,14 +4476,14 @@
 							"name": "keyword.other.endsubmodule.fortran"
 						},
 						"4": {
-							"name": "invalid.error.fortran"
+							"name": "invalid.error.submodule.fortran"
 						}
 					},
 					"applyEndPatternLast": 1,
 					"patterns": [
 						{
 							"comment": "Submodule specification block.",
-							"name": "meta.block.specification.fortran",
+							"name": "meta.block.specification.submodule.fortran",
 							"begin": "\\G",
 							"end": "(?i)(?=\\b(?:end\\s*[;!\\n]|end\\s*submodule\\b))",
 							"patterns": [
@@ -4530,7 +4523,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.type-specification-statements.fortran",
 					"begin": "(?=\\s*(,|::))",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -4625,7 +4618,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.procedure.fortran",
 					"begin": "(?=\\s*(,|::|\\())",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -4759,7 +4752,7 @@
 				},
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.normal.fortran",
 					"begin": "(?=\\s*::)",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -4882,7 +4875,7 @@
 			"patterns": [
 				{
 					"comment": "Attribute list.",
-					"contentName": "meta.attribute-list.fortran",
+					"contentName": "meta.attribute-list.namelist.fortran",
 					"begin": "(?=\\s*(,|::|\\())",
 					"end": "(::)|(?=[;!\\n])",
 					"endCaptures": {
@@ -5291,6 +5284,7 @@
 			]
 		},
 		"dummy-variable-list": {
+			"name": "keyword.dummy-variable-list",
 			"begin": "\\G\\s*(\\()",
 			"beginCaptures": {
 				"1": {
@@ -5319,11 +5313,11 @@
 			}
 		},
 		"invalid-character": {
-			"name": "invalid.error.fortran",
+			"name": "invalid.error.character.fortran",
 			"match": "(?i)[^\\s;!\\n]+"
 		},
 		"invalid-word": {
-			"name": "invalid.error.fortran",
+			"name": "invalid.error.word.fortran",
 			"match": "(?i)\\b\\w+\\b"
 		},
 		"IO-item-list": {
