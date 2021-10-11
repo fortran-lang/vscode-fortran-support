@@ -2512,7 +2512,7 @@
 		"derived-type-component-type-specification": {
 			"comment": "Introduced in the Fortran 1995 standard.",
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*(?<!\\(\\s*|::\\s*)\\bfunction\\b))",
 			"end": "(?=[;!\\n])",
 			"patterns": [
 				{
@@ -3979,7 +3979,7 @@
 		"function-definition": {
 			"comment": "Funtion program unit. Introduced in the Fortran 1977 standard.",
 			"name": "meta.function.fortran",
-			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*\\bfunction\\b)",
+			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!\\(\\s*|::\\s*))\\bfunction\\b)",
 			"end": "(?=[;!\\n])",
 			"patterns": [
 				{
@@ -4326,7 +4326,7 @@
 		"subroutine-definition": {
 			"comment": "Subroutine program unit. Introduced in the Fortran 1977 standard.",
 			"name": "meta.subroutine.fortran",
-			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*\\bsubroutine\\b)",
+			"begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!::\\s*))\\bsubroutine\\b)",
 			"end": "(?=[;!\\n])",
 			"patterns": [
 				{
@@ -4517,7 +4517,8 @@
 		},
 		"type-specification-statements": {
 			"name": "meta.specification.type.fortran",
-			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n]*\\bfunction\\b))",
+			"comment": "Supported types for function and escape :: if function is used as a variable name (which is bad practice).",
+			"begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n]*(?<!\\(\\s*|::\\s*)\\bfunction\\b))",
 			"end": "(?=[\\);!\\n])",
 			"patterns": [
 				{
