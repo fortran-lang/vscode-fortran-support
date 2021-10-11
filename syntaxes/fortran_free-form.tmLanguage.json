@@ -13,7 +13,11 @@
 		"F08",
 		"f18",
 		"F18",
-		".pf"
+		"fpp",
+		"FPP",
+		".pf",
+		".PF"
+
 	],
 	"firstLineMatch": "(?i)-[*]- mode: fortran free -[*]-",
 	"injections": {
@@ -125,7 +129,7 @@
 	"repository": {
 		"preprocessor": {
 			"name": "meta.preprocessor",
-			"begin": "^\\s*(#)",
+			"begin": "^\\s*(#:?)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.preprocessor.indicator.fortran"

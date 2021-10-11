@@ -8,9 +8,7 @@
                 "f77",
                 "F77",
                 "for",
-                "FOR",
-                "fpp",
-                "FPP"
+                "FOR"
         ],
         "injections": {
                 "source.fortran.fixed - ( string | comment )": {
