@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixes preprocessor syntax highlighting with derived type and conditionals
   ([#249](https://github.com/krvajal/vscode-fortran-support/issues/249))
 - Fixes the general preprocessor syntax highlighting and adds testing
+- Fixes using function/subroutine as parameter in functions/subroutines
+  ([#207](https://github.com/krvajal/vscode-fortran-support/issues/207))
 
 ### Added
 
