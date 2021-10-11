@@ -39,3 +39,8 @@ if (1 > 2) then
 else
 ! whitespace in the "end if label5 " causes else to be incorrect
 end if
+
+! stop
+if (1) stop
+if (1) stop label6
+if (1) stop "label"//"7"

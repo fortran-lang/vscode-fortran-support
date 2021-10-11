@@ -2291,10 +2291,13 @@
 		"stop-statement": {
 			"comment": "Introduced in the Fortran 1977 standard.",
 			"name": "meta.statement.control.stop.fortran",
-			"begin": "(?i)\\s*\\b(stop)\\b",
+			"begin": "(?i)\\s*\\b(stop)\\b(?:\\s*\\b([a-z]\\w*)\\b)?",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.stop.fortran"
+				},
+				"2": {
+					"name": "meta.label.stop"
 				}
 			},
 			"end": "(?=[;!\\n])",

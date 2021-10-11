@@ -220,3 +220,41 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.block.if.fortran comment.line.fortran
 >end if
 #^^^^^^ source.fortran.free keyword.control.endif.fortran
+>
+>! stop
+#^ source.fortran.free comment.line.fortran
+# ^^^^^ source.fortran.free comment.line.fortran
+>if (1) stop
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
+#       ^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
+>if (1) stop label6
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
+#       ^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
+#           ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
+#            ^^^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran meta.label.stop
+>if (1) stop "label"//"7"
+#^^ source.fortran.free keyword.control.if.fortran
+#  ^ source.fortran.free meta.expression.control.logical.fortran
+#   ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#    ^ source.fortran.free meta.expression.control.logical.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
+#       ^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
+#           ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
+#            ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#             ^^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran
+#                  ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+#                   ^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran keyword.other.concatination.fortran
+#                     ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#                      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran
+#                       ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
