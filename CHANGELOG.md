@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#207](https://github.com/krvajal/vscode-fortran-support/issues/207))
 - Fixes labelled conditionals erroneous highlighting
   ([#204](https://github.com/krvajal/vscode-fortran-support/issues/204))
+- Fixes labelled conditionals erroneous highlighting when followed by whitespace
+  ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
 
 ### Added
 
