@@ -1,0 +1,93 @@
+>*     euclid.f (FORTRAN 77)
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>*     Find greatest common divisor using the Euclidean algorithm
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>
+>      PROGRAM EUCLID
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^ source.fortran.fixed
+>         PRINT *, 'A?'
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>         READ *, NA
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.fixed
+>         IF (NA.LE.0) THEN
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            PRINT *, 'A must be a positive integer.'
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            STOP
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^ source.fortran.fixed
+>         END IF
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed
+>         PRINT *, 'B?'
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>         READ *, NB
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.fixed
+>         IF (NB.LE.0) THEN
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            PRINT *, 'B must be a positive integer.'
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            STOP
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^ source.fortran.fixed
+>         END IF
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed
+>         PRINT *, 'The GCD of', NA, ' and', NB, ' is', NGCD(NA, NB), '.'
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>         STOP
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^ source.fortran.fixed
+>      END
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed
+>
+>      FUNCTION NGCD(NA, NB)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>         IA = NA
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^ source.fortran.fixed
+>         IB = NB
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^ source.fortran.fixed
+>    1    IF (IB.NE.0) THEN
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            ITEMP = IA
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            IA = IB
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.fixed
+>            IB = MOD(ITEMP, IB)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+>            GOTO 1
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^ source.fortran.fixed
+>         END IF
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed
+>         NGCD = IA
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^^^^ source.fortran.fixed
+>         RETURN
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed
+>      END
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed
+>

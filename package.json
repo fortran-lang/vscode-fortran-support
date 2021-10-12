@@ -211,8 +211,10 @@
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "CODE_TESTS_WORKSPACE='./' node ./node_modules/vscode/bin/test",
-    "test:grammar": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/**/*{.f90,F90}\"",
-    "test:grammar-update":  "npm run test:grammar -- -u",
+    "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/**/*{.f90,F90}\"",
+    "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json -t \"./test/**/*{.f,F}\"",
+    "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
+    "test:grammar-update": "npm run test:grammar -- -u",
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
