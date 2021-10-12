@@ -2386,6 +2386,9 @@
 							"include": "#dummy-variable-list"
 						},
 						{
+							"include": "#comments"
+						},
+						{
 							"comment": "Derived type specification block.",
 							"name": "meta.block.specification.derived-type.fortran",
 							"begin": "(?i)^(?!\\s*\\b(?:contains|end\\s*type)\\b)",
@@ -4460,7 +4463,7 @@
 							"name": "punctuation.parentheses.left.fortran"
 						},
 						"3": {
-							"name": "entity.name.module.fortran"
+							"name": "entity.name.class.submodule.fortran"
 						}
 					},
 					"end": "(\\))",

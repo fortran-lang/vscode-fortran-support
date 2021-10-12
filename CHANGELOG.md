@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
 - Fixes labelled `stop` conditions
   ([#172](https://github.com/krvajal/vscode-fortran-support/issues/172))
+- Fixes incorrect comment capture for type, abstract|extends types
+  ([#262](https://github.com/krvajal/vscode-fortran-support/issues/262))
 
 ### Added
 
