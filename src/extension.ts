@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     let linter = new FortranLintingProvider(loggingService)
     linter.activate(context.subscriptions)
     vscode.languages.registerCodeActionsProvider(FORTRAN_DOCUMENT_SELECTOR, linter)
+    loggingService.logInfo('Linter is enabled')
   } else {
     loggingService.logInfo('Linter is not enabled')
   }
@@ -36,6 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
         new FortranFormattingProvider(loggingService)
       );
     context.subscriptions.push(disposable);
+    loggingService.logInfo('Formatting is enabled')
   }
   else {
     loggingService.logInfo('Formatting is disabled')
@@ -54,6 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (extensionConfig.get('provideHover', true)) {
     let hoverProvider = new FortranHoverProvider(loggingService)
     vscode.languages.registerHoverProvider(FORTRAN_DOCUMENT_SELECTOR, hoverProvider)
+    loggingService.logInfo('Hover Provider is enabled')
   } else {
     loggingService.logInfo('Hover Provider is not enabled')
   }
@@ -64,6 +67,7 @@ export function activate(context: vscode.ExtensionContext) {
       FORTRAN_DOCUMENT_SELECTOR,
       symbolProvider
     )
+    loggingService.logInfo('Symbol Provider is enabled')
   } else {
     loggingService.logInfo('Symbol Provider is not enabled')
   }

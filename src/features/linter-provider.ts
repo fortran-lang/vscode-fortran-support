@@ -18,8 +18,8 @@ export default class FortranLintingProvider {
 
     // Only lint Fortran (free, fixed) format files
     if (
-      FORTRAN_DOCUMENT_SELECTOR.some((element) => { element.language !== textDocument.languageId }) ||
-      FORTRAN_DOCUMENT_SELECTOR.some((element) => { element.scheme !== textDocument.uri.scheme })
+      !FORTRAN_DOCUMENT_SELECTOR.some(e => e.scheme === textDocument.uri.scheme) ||
+      !FORTRAN_DOCUMENT_SELECTOR.some(e => e.language === textDocument.languageId)
     ) {
       return
     }
@@ -138,7 +138,7 @@ export default class FortranLintingProvider {
   private command: vscode.Disposable
 
   public activate(subscriptions: vscode.Disposable[]) {
-    this.diagnosticCollection = vscode.languages.createDiagnosticCollection()
+    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran')
 
     vscode.workspace.onDidOpenTextDocument(
       this.doModernFortranLint,
