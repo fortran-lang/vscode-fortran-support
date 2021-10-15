@@ -1,25 +1,38 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license. See LICENSE file in the project root for details.
+import * as path from 'path';
+import * as Mocha from 'mocha';
+import * as glob from 'glob';
 
-// This file is used by VS Code's default test runner to configure Mocha before the test run.
+export function run(): Promise<void> {
+  // Create the mocha test
+  const mocha = new Mocha({
+    ui: 'tdd',
+    color: true
+  });
 
-/* tslint:disable:no-var-keyword no-var-requires */
-var testRunner = require("vscode/lib/testrunner");
-/* tslint:enable:no-var-keyword no-var-requires */
+  const testsRoot = __dirname;
 
-let mochaOptions: any = {
-  ui: "tdd",
-  useColors: true,
-  invert: true,
-  grep: "debuggerContext" // Do not run tests intended for the debuggerContext
-};
+  return new Promise((c, e) => {
+    glob('**/**.test.js', { cwd: testsRoot }, (err, files) => {
+      if (err) {
+        return e(err);
+      }
 
-// Look for the env variable to decide wheter to use the TeamCity reporter or not
-if (process.env.VSCODE_REACT_NATIVE_TEAMCITY_TEST) {
-  mochaOptions.reporter = "mocha-teamcity-reporter";
+      // Add files to the test suite
+      files.forEach(f => mocha.addFile(path.resolve(testsRoot, f)));
+
+      try {
+        // Run the mocha test
+        mocha.timeout(100000);
+        mocha.run(failures => {
+          if (failures > 0) {
+            e(new Error(`${failures} tests failed.`));
+          } else {
+            c();
+          }
+        });
+      } catch (err) {
+        e(err);
+      }
+    });
+  });
 }
-
-// Register Mocha options
-testRunner.configure(mochaOptions);
-
-module.exports = testRunner;

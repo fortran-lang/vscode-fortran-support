@@ -11,8 +11,8 @@
         "resolveJsonModule": true
     },
     "include": [
-        "src/**/*.ts",
-        "src/docs/**/*.json",
+        "test/**/*.ts",
+        "syntaxes/*.json",
     ],
     "exclude": [
         "node_modules",
