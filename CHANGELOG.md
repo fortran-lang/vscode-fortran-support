@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.5.0]
+
+## Added
+
+- Adds path interpolation in `includePaths` and `linterExtraArgs`
+- Adds glob support for `includePaths`
+- Adds option for global module directory output `linterModOutput`
+
 ## [2.4.0]
 
 ## Fixed

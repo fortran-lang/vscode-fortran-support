@@ -6,6 +6,8 @@ import { FORTRAN_DOCUMENT_SELECTOR, getIncludeParams } from '../lib/helper'
 
 import * as vscode from 'vscode'
 import { LoggingService } from '../services/logging-service'
+import { resolveVariables } from '../lib/tools'
+import * as fg from 'fast-glob'
 
 export default class FortranLintingProvider {
   constructor(private loggingService: LoggingService) { }
@@ -92,14 +94,13 @@ export default class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    let options = vscode.workspace.rootPath
-      ? { cwd: vscode.workspace.rootPath }
-      : undefined
+
     let args = [
       '-fsyntax-only',
       '-cpp',
       '-fdiagnostics-show-option',
       ...this.getLinterExtraArgs(),
+      this.getModOutputDir(),
     ]
     let includePaths = this.getIncludePaths()
 
@@ -165,12 +166,28 @@ export default class FortranLintingProvider {
     this.command.dispose()
   }
 
+  private getModOutputDir(): string {
+    const config = vscode.workspace.getConfiguration('fortran');
+    let modout: string = config.get('linterModOutput', '');
+    if (modout) {
+      modout = '-J' + resolveVariables(modout);
+      this.loggingService.logInfo(`Linter.moduleOutput`)
+    }
+    return modout
+  }
+
   private getIncludePaths(): string[] {
     let config = vscode.workspace.getConfiguration('fortran')
-    let includePaths: string[] = config.get('includePaths', [])
-
-    return includePaths
+    const includePaths: string[] = config.get('includePaths', [])
+    // Resolve internal variables and expand glob patterns
+    const resIncludePaths = includePaths.map((e) => resolveVariables(e));
+    // This needs to be after the resolvevariables since {} are used in globs
+    const globIncPaths: string[] = fg.sync(resIncludePaths, { onlyDirectories: true });
+    // Output the original include paths
+    this.loggingService.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`)
+    return globIncPaths
   }
+
   private getGfortranPath(): string {
     let config = vscode.workspace.getConfiguration('fortran')
     const gfortranPath = config.get('gfortranExecutable', 'gfortran')
@@ -180,6 +197,8 @@ export default class FortranLintingProvider {
 
   private getLinterExtraArgs(): string[] {
     let config = vscode.workspace.getConfiguration('fortran')
-    return config.get('linterExtraArgs', ['-Wall'])
+    const args = config.get('linterExtraArgs', ['-Wall']).map((e) => resolveVariables(e));
+    this.loggingService.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
+    return args.map((e) => resolveVariables(e));
   }
 }
