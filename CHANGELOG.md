@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Changes the syntax highlighting of preprocessor macros to match that of C++
+- Changes npm `vscode` module to `@types/vscode` and `@vscode/test-electron`
+  ([#263](https://github.com/krvajal/vscode-fortran-support/issues/263))
 
 ### Fixed
 
