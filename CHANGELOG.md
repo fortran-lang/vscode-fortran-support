@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.3.1]
+## [2.4.0]
 
 ### Changed
 
@@ -273,8 +273,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.1...HEAD
-[2.3.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.3.1
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...v2.3.0
 [2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1
 [2.2.1]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.0...v2.2.1
