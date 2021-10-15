@@ -9,22 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.5.0]
 
-## Added
-
-- Adds path interpolation in `includePaths` and `linterExtraArgs`
-- Adds glob support for `includePaths`
-- Adds option for global module directory output `linterModOutput`
-
-## [2.4.0]
-
-## Fixed
+### Fixed
 
 - Extension now activates for `FortranFixedForm`
   ([#257](https://github.com/krvajal/vscode-fortran-support/issues/257))
 - Linting is now operational for `FortranFixedForm`
   ([#258](https://github.com/krvajal/vscode-fortran-support/issues/258))
 
-## Changed
+### Changed
 
 - Renamed the Fixed Format Format language from `fortran_fixed-form` to
   `FortranFixedForm`, an alias has been added for backwards compatibility
@@ -40,11 +32,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Removes `paths.js` for detecting binaries in favour of `which`
 
-## [2.3.1]
+## [2.4.0]
 
 ### Changed
 
 - Changes the syntax highlighting of preprocessor macros to match that of C++
+- Changes npm `vscode` module to `@types/vscode` and `@vscode/test-electron`
+  ([#263](https://github.com/krvajal/vscode-fortran-support/issues/263))
 
 ### Fixed
 
@@ -304,9 +298,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...HEAD
-[2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.1...v2.4.0
-[2.3.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.3.1
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...v2.3.0
 [2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1
 [2.2.1]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.0...v2.2.1
