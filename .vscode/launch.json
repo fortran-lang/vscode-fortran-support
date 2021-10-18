@@ -14,25 +14,21 @@
             "outFiles": [
                 "${workspaceFolder}/out/src/**/*.js"
             ],
-            "preLaunchTask": "npm: watch",
+            "preLaunchTask": "npm: watch-dev",
         },
         {
             "name": "Launch Tests",
             "type": "extensionHost",
             "request": "launch",
-            "env": {
-                "CODE_TESTS_WORKSPACE": "./"
-            },
+            "runtimeExecutable": "${execPath}",
             "args": [
-                "${workspaceFolder}/test/resources/sample.f90",
-                "--disable-extensions",
                 "--extensionDevelopmentPath=${workspaceFolder}",
                 "--extensionTestsPath=${workspaceFolder}/out/test"
             ],
             "outFiles": [
                 "${workspaceFolder}/out/test/**/*.js"
             ],
-            "preLaunchTask": "npm: compile",
+            "preLaunchTask": "npm: pretest setup",
         },
     ]
 }
