@@ -110,7 +110,7 @@
 >else label2
 #^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.else.fortran
 #    ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
-#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else
+#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else.fortran
 >end if label2
 #^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
 #      ^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
@@ -145,11 +145,11 @@
 #              ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran punctuation.parentheses.right.fortran
 #               ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
 #                ^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.then.fortran
-#                    ^^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.elseif
+#                    ^^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.elseif.fortran
 >else label3
 #^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran keyword.control.else.fortran
 #    ^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran
-#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else
+#     ^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.if.fortran meta.label.else.fortran
 >end if label3
 #^^^^^^ source.fortran.free meta.named-construct.fortran.modern keyword.control.endif.fortran
 #      ^ source.fortran.free meta.named-construct.fortran.modern meta.statement.control.if.fortran
@@ -241,7 +241,7 @@
 #      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
 #       ^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
 #           ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran
-#            ^^^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran meta.label.stop
+#            ^^^^^^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran meta.label.stop.stop
 >if (1) stop "label"//"7"
 #^^ source.fortran.free keyword.control.if.fortran
 #  ^ source.fortran.free meta.expression.control.logical.fortran

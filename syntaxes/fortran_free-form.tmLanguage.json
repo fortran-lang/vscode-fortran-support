@@ -1617,7 +1617,7 @@
 													"name": "keyword.control.then.fortran"
 												},
 												"2": {
-													"name": "meta.label.elseif"
+													"name": "meta.label.elseif.fortran"
 												}
 											}
 										},
@@ -1646,7 +1646,7 @@
 													"match": "\\s*([a-z]\\w*)?\\s*",
 													"captures": {
 														"1": {
-															"name": "meta.label.else"
+															"name": "meta.label.else.fortran"
 														}
 													}
 												},
@@ -2297,7 +2297,7 @@
 					"name": "keyword.control.stop.fortran"
 				},
 				"2": {
-					"name": "meta.label.stop"
+					"name": "meta.label.stop.stop"
 				}
 			},
 			"end": "(?=[;!\\n])",
