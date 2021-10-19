@@ -1646,10 +1646,13 @@
 											"patterns": [
 												{
 													"comment": "capture the label if present",
-													"match": "\\s*([a-z]\\w*)?\\s*",
+													"match": "\\s*([a-z]\\w*)?\\s*\\b(\\w*)\\b",
 													"captures": {
 														"1": {
 															"name": "meta.label.else.fortran"
+														},
+														"2": {
+															"name": "invalid.error.label.else.fortran"
 														}
 													}
 												},
