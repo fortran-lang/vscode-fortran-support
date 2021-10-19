@@ -1352,8 +1352,11 @@
 			"comment": "Introduced in the Fortran 1990 standard.",
 			"contentName": "meta.named-construct.fortran.modern",
 			"begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)",
-			"end": "(?i)(?!\\s*\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)(?:\\b(\\1)\\b)?(?:\\s*([^\\s;!][^;!\\n]*?))?(?=\\s*[;!\\n])",
+			"end": "(?i)(?!\\s*\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)(?:\\b(\\1)\\b)?([^\\s;!\\n]*?)?(?=\\s*[;!\\n])",
 			"endCaptures": {
+				"1": {
+					"name": "meta.label.end.name.fortran"
+				},
 				"2": {
 					"name": "invalid.error.named-control-constructs.fortran.modern"
 				}
@@ -1617,7 +1620,7 @@
 													"name": "keyword.control.then.fortran"
 												},
 												"2": {
-													"name": "meta.label.elseif"
+													"name": "meta.label.elseif.fortran"
 												}
 											}
 										},
@@ -1643,10 +1646,13 @@
 											"patterns": [
 												{
 													"comment": "capture the label if present",
-													"match": "\\s*([a-z]\\w*)?\\s*",
+													"match": "\\s*([a-z]\\w*)?\\s*\\b(\\w*)\\b",
 													"captures": {
 														"1": {
-															"name": "meta.label.else"
+															"name": "meta.label.else.fortran"
+														},
+														"2": {
+															"name": "invalid.error.label.else.fortran"
 														}
 													}
 												},
@@ -2297,7 +2303,7 @@
 					"name": "keyword.control.stop.fortran"
 				},
 				"2": {
-					"name": "meta.label.stop"
+					"name": "meta.label.stop.stop"
 				}
 			},
 			"end": "(?=[;!\\n])",
