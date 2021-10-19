@@ -44,3 +44,12 @@ end if
 if (1) stop
 if (1) stop label6
 if (1) stop "label"//"7"
+
+! do loop
+do i = 1, 10
+end do
+
+! labelled do loop
+label8: do i = 1, 10
+end do label8
+

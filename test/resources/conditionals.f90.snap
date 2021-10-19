@@ -258,3 +258,41 @@
 #                     ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
 #                      ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran
 #                       ^ source.fortran.free meta.statement.control.if.fortran meta.statement.control.stop.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>
+>! do loop
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^ source.fortran.free comment.line.fortran
+>do i = 1, 10
+#^^ source.fortran.free meta.block.do.unlabeled.fortran keyword.control.do.fortran
+#  ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#   ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran meta.parameter.fortran
+#    ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#     ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran keyword.operator.assignment.fortran
+#      ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#       ^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+#        ^^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#          ^^ source.fortran.free meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+>end do
+#^^^^^^ source.fortran.free meta.block.do.unlabeled.fortran keyword.control.enddo.fortran
+>
+>! labelled do loop
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>label8: do i = 1, 10
+#^^^^^^^ source.fortran.free
+#       ^ source.fortran.free meta.named-construct.fortran.modern
+#        ^^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran keyword.control.do.fortran
+#          ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#           ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran meta.parameter.fortran
+#            ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#             ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran keyword.operator.assignment.fortran
+#              ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#               ^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+#                ^^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#                  ^^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+>end do label8
+#^^^^^^ source.fortran.free meta.named-construct.fortran.modern meta.block.do.unlabeled.fortran keyword.control.enddo.fortran
+#      ^ source.fortran.free meta.named-construct.fortran.modern
+#       ^^^^^^ source.fortran.free meta.label.end.name.fortran
+>
+>
