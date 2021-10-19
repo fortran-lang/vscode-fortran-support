@@ -94,8 +94,6 @@ export function resolveVariables(input: string | undefined, additionalEnvironmen
               newValue = folder.uri.fsPath;
             }
 
-            // Replace the initial string
-            newValue = input.replace(/(\${workspaceFolder(?:(:|.)\w*)?})/g, newValue);
           }
           break;
         }
