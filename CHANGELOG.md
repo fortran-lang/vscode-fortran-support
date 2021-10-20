@@ -7,10 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.0]
+
+### Changed
+
+- Changes the syntax highlighting of preprocessor macros to match that of C++
+- Changes npm `vscode` module to `@types/vscode` and `@vscode/test-electron`
+  ([#263](https://github.com/krvajal/vscode-fortran-support/issues/263))
+
+### Fixed
+
+- Fixes OpenACC syntax highlighting not triggering
+- Fixes internal hover documentation display
+  ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
+- Fixes preprocessor syntax highlighting with line continuations
+  ([#248](https://github.com/krvajal/vscode-fortran-support/issues/248))
+- Fixes preprocessor syntax highlighting with derived type and conditionals
+  ([#249](https://github.com/krvajal/vscode-fortran-support/issues/249))
+- Fixes the general preprocessor syntax highlighting and adds testing
+- Fixes using function/subroutine as parameter in functions/subroutines
+  ([#207](https://github.com/krvajal/vscode-fortran-support/issues/207))
+- Fixes labelled conditionals erroneous highlighting
+  ([#204](https://github.com/krvajal/vscode-fortran-support/issues/204))
+- Fixes labelled conditionals erroneous highlighting when followed by whitespace
+  ([#205](https://github.com/krvajal/vscode-fortran-support/issues/205))
+- Fixes labelled `stop` conditions
+  ([#172](https://github.com/krvajal/vscode-fortran-support/issues/172))
+- Fixes incorrect comment capture for type, abstract|extends types
+  ([#262](https://github.com/krvajal/vscode-fortran-support/issues/262))
+
 ### Added
 
 - Adds support for .f18 and .F18 file extensions
   ([#252](https://github.com/krvajal/vscode-fortran-support/pull/252))
+- Adds workflow for automatic publishing to VS Marketplace
+  ([#237](https://github.com/krvajal/vscode-fortran-support/issues/237))
+- Adds basic support for pFUnit (.pf) highlighting
+  ([#185](https://github.com/krvajal/vscode-fortran-support/issues/185))
 
 ## [2.3.0]
 
@@ -28,7 +61,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added syntax highlight support for OpenACC
-  ([224](https://github.com/krvajal/vscode-fortran-support/pull/224))
+  ([#224](https://github.com/krvajal/vscode-fortran-support/pull/224))
+
+## [2.2.2] - 2020-12-11
+
+### Fixed
+
+- Fixed fixed-form tab character at start syntax highlighting
+  ([#191](https://github.com/krvajal/vscode-fortran-support/pull/191))
+- Fixed `class` paranthesis erroneous syntax highlighting
+  ([#196](https://github.com/krvajal/vscode-fortran-support/issues/196))
+- Fixed multiline block interface syntax highlighting
+  ([#202](https://github.com/krvajal/vscode-fortran-support/issues/202))
+
+### Changed
+
+- Updated `package.json`
+  ([#192](https://github.com/krvajal/vscode-fortran-support/pull/192))
+- Rewrote solution for `select` in variable name
+  ([#203](https://github.com/krvajal/vscode-fortran-support/pull/203))
 
 ## [2.2.1] - 2020-04-11
 
@@ -92,7 +143,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Changed default configuration of LanguageServer to `false`
-- ￼Update vscode minimal engine
+- Update vscode minimal engine
 
 ## [2.0.0] - 2018-10-14
 
@@ -212,10 +263,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Show docs for intrinsic functions on hover
-  ### Changed
+
+### Changed
+
 - Updated icon for the extension
 - Fix bug on linter not working
 
-## [Unreleased]
+## [0.1.0]
 
 - Initial release
+
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...v2.3.0
+[2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1
+[2.2.1]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.0...v2.2.1
+[2.2.0]: https://github.com/krvajal/vscode-fortran-support/compare/2.1.0...v2.2.0
+[2.1.0]: https://github.com/krvajal/vscode-fortran-support/compare/2.0.2...2.1.0
+[2.0.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.0.0...2.0.2
+[2.0.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.3.0...v2.0.0
+[1.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/krvajal/vscode-fortran-support/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.3...v1.0.0
+[0.6.3]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.1...v0.6.3
+[0.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v0.4.5...v0.6.0
+[0.4.5]: https://github.com/krvajal/vscode-fortran-support/compare/v0.4.4...v0.4.5
+[0.4.4]: https://github.com/krvajal/vscode-fortran-support/compare/tag/v0.4.4

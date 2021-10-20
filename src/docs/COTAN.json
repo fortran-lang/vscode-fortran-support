@@ -1,4 +1,4 @@
 {
-    "keyword":"COTAN",
-    "docstr":"`COTAN` — Cotangent function\n\n### Description\nCOTAN(X) computes the cotangent of X. Equivalent to COS(x) divided by SIN(x), or 1 / TAN(x).\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = COTAN(X)\n### Arguments\n- X: The type shall be REAL or COMPLEX.\n### Return value\nThe return value has same type and kind as X, and its value is in radians.\n"
+  "keyword": "COTAN",
+  "docstr": "`COTAN` — Cotangent function\n\n### Description\nCOTAN(X) computes the cotangent of X. Equivalent to COS(x) divided by SIN(x), or 1 / TAN(x).\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = COTAN(X)\n### Arguments\n- X: The type shall be REAL or COMPLEX.\n### Return value\nThe return value has same type and kind as X, and its value is in radians.\n"
 }

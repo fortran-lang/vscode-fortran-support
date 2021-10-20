@@ -1,40 +1,48 @@
-// Available variables which can be used inside of strings.
-// ${workspaceRoot}: the root folder of the team
-// ${file}: the current opened file
-// ${fileBasename}: the current opened file's basename
-// ${fileDirname}: the current opened file's dirname
-// ${fileExtname}: the current opened file's extension
-// ${cwd}: the current working directory of the spawned process
-
-// A task runner that calls a custom npm script that compiles the extension.
 {
     "version": "2.0.0",
-
-    // we want to run npm
-    "command": "npm",
-
-    // we run the custom script "compile" as defined in package.json
-    "args": ["run", "compile", "--loglevel", "silent"],
-
-    // The tsc compiler is started in watching mode
-    "isBackground": true,
-
-    // use the standard tsc in watch mode problem matcher to find compile problems in the output.
-    "problemMatcher": "$tsc-watch",
     "tasks": [
         {
-            "label": "npm",
-            "type": "shell",
-            "command": "npm",
-            "args": [
-                "run",
-                "compile",
-                "--loglevel",
-                "silent"
-            ],
+            "label": "npm: watch-dev",
+            "type": "npm",
+            "script": "watch-dev",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
-            "group": "build"
+            "detail": "tsc -watch -p tsconfig.json"
+        },
+        {
+            "label": "npm: compile-dev",
+            "type": "npm",
+            "script": "compile-dev",
+            "group": "build",
+            "problemMatcher": "$tsc",
+            "detail": "tsc -p tsconfig.json"
+        },
+        {
+            "label": "npm: pretest",
+            "type": "npm",
+            "script": "pretest",
+            "group": "test",
+            "problemMatcher": "$tsc",
+            "detail": "tsc -p tsconfig.test.json"
+        },
+        {
+            "label": "npm: pretest setup",
+            "type": "shell",
+            "dependsOn": [
+                "npm: compile-dev",
+                "npm: pretest"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "detail": "setup for test launch"
+            
         }
     ]
 }

@@ -10,6 +10,10 @@
         "rootDir": ".",
         "resolveJsonModule": true
     },
+    "include": [
+        "src/**/*.ts",
+        "src/docs/**/*.json",
+    ],
     "exclude": [
         "node_modules",
         ".vscode-test"

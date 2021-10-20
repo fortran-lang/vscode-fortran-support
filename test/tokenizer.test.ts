@@ -6,12 +6,12 @@ import { Tokenizer, TokenType } from '../src/lib/tokenizer';
 
 suite("fortran tokenizer", () => {
 
-    test("get correct amount of tokens", () => {
-        const fortranTokenizer = constructFortranTokenizer();
-        fortranTokenizer.tokenize("function a( m, n)\n 2 + 3\nend");
-        let tokens = fortranTokenizer.tokens;
-        assert.equal(tokens.length, 11);
-    });
+  test("get correct amount of tokens", () => {
+    const fortranTokenizer = constructFortranTokenizer();
+    fortranTokenizer.tokenize("function a( m, n)\n 2 + 3\nend");
+    let tokens = fortranTokenizer.tokens;
+    assert.strictEqual(tokens.length, 11);
+  });
 });
 
 function constructFortranTokenizer() {

@@ -1,7 +1,8 @@
+name: Build and Test syntax
 on: [push]
 jobs:
   grammar:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]

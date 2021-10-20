@@ -1,4 +1,4 @@
 {
-    "keyword":"TRANSPOSE",
-    "docstr":"`TRANSPOSE` — Transpose an array of rank two\n\n### Description\nTranspose an array of rank two. Element (i, j) of the result has the value\n`MATRIX(j, i)`, for all i, j.\n\n\n\n### Syntax\n`RESULT = TRANSPOSE(MATRIX)`\n\n\n### Arguments\n\n     \n | `MATRIX`  | Shall be an array of any type and have a rank of two.\n\n\n\n\n\n\n### Return value\nThe result has the same type as `MATRIX`, and has shape\n`(/ m, n /)` if `MATRIX` has shape `(/ n, m /)`. \n\n\n### Standard\nFortran 95 and later\n\n\n\n### Class\nTransformational function\n\n\n"
+  "keyword": "TRANSPOSE",
+  "docstr": "`TRANSPOSE` — Transpose an array of rank two\n\n### Description\nTranspose an array of rank two. Element (i, j) of the result has the value\n`MATRIX(j, i)`, for all i, j.\n\n\n\n### Syntax\n`RESULT = TRANSPOSE(MATRIX)`\n\n\n### Arguments\n\n     \n | `MATRIX`  | Shall be an array of any type and have a rank of two.\n\n\n\n\n\n\n### Return value\nThe result has the same type as `MATRIX`, and has shape\n`(/ m, n /)` if `MATRIX` has shape `(/ n, m /)`. \n\n\n### Standard\nFortran 95 and later\n\n\n\n### Class\nTransformational function\n\n\n"
 }

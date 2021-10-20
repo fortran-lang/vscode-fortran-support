@@ -1,4 +1,4 @@
 {
-    "keyword":"ISATTY",
-    "docstr":"`ISATTY` — Whether a unit is a terminal device.\n\n### Description\nDetermine whether a unit is connected to a terminal device.\n\n\n\n### Syntax\n`RESULT = ISATTY(UNIT)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nReturns `.TRUE.` if the `UNIT` is connected to a terminal\ndevice, `.FALSE.` otherwise.\n\n\n\n### Example\n\n     ```\n\n\nPROGRAM test_isatty\n\n  INTEGER(kind=1) :: unit\n\n  DO unit = 1, 10\n\n    write(*,*) isatty(unit=unit)\n\n  END DO\n\nEND PROGRAM\n\n```\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n\n### See also\n<a href=\"TTYNAM.html#TTYNAM\">TTYNAM</a>\n"
+  "keyword": "ISATTY",
+  "docstr": "`ISATTY` — Whether a unit is a terminal device.\n\n### Description\nDetermine whether a unit is connected to a terminal device.\n\n\n\n### Syntax\n`RESULT = ISATTY(UNIT)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nReturns `.TRUE.` if the `UNIT` is connected to a terminal\ndevice, `.FALSE.` otherwise.\n\n\n\n### Example\n```\n\n\nPROGRAM test_isatty\n\n  INTEGER(kind=1) :: unit\n\n  DO unit = 1, 10\n\n    write(*,*) isatty(unit=unit)\n\n  END DO\n\nEND PROGRAM\n\n```\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n\n### See also\n<a href=\"TTYNAM.html#TTYNAM\">TTYNAM</a>\n"
 }

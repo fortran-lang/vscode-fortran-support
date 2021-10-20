@@ -1,0 +1,659 @@
+>#if   defined(PETSC_USING_F90) && !defined(PETSC_USE_FORTRANKIND)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#      ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#             ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                               ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.and.fortran
+#                                 ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                                  ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not.fortran
+#                                   ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+>#define PetscObjectState 1
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                         ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#elif defined(PETSC_USING_F90) || !defined(PETSC_USE_FORTRANKIND)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^ source.fortran.free meta.preprocessor
+#      ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#             ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor
+#                               ^^ source.fortran.free meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.or.fortran
+#                                 ^ source.fortran.free meta.preprocessor
+#                                  ^ source.fortran.free meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not.fortran
+#                                   ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor
+>#define PetscObjectState 0
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                         ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#endif /* a comment */
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.endif.fortran
+#      ^ source.fortran.free meta.preprocessor
+#       ^^ source.fortran.free meta.preprocessor comment.preprocessor
+#         ^^^^^^^^^^^ source.fortran.free meta.preprocessor comment.preprocessor
+#                    ^^ source.fortran.free meta.preprocessor comment.preprocessor
+>
+>#define zoltan_mpi_id_datatype_name "MPI_UNSIGNED"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                                    ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                                     ^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                                 ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#define ZOLTAN_ID_CONSTANT(z)  z
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+>
+>! Testing C++ numeric literals
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>#if defined(__STDC_VERSION__)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#           ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+>#  if (__STDC_VERSION__ >= 199901L)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#   ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#     ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                        ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.more_eq.fortran
+#                          ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                           ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#                                 ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.other.unit.suffix.integer.cpp
+#                                  ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+>#    define ZOLTAN_GNO_SPEC   "%zd"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#     ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#           ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                              ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                               ^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                  ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#  else
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor
+#   ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.else.fortran
+>#    define ZOLTAN_GNO_SPEC   "%ld"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#     ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#           ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                              ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                               ^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                  ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#  endif
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor
+#   ^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.endif.fortran
+>#else
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.else.fortran
+>#  define ZOLTAN_GNO_SPEC   "%ld"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#   ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#         ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                            ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                             ^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#endif
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if defined (__sun) || defined(MSOL2) || defined (ARCH_SOL2)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#           ^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                    ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.or.fortran
+#                      ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                       ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#                              ^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                                      ^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.or.fortran
+#                                        ^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+#                                         ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#                                                ^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.conditional.fortran
+>#define CHOLMOD_SOL2
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+>#define CHOLMOD_ARCHITECTURE "Sun Solaris"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                             ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                              ^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                         ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>
+>#elif defined (__linux) || defined(MGLNX86) || defined (ARCH_GLNX86)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^ source.fortran.free meta.preprocessor
+#      ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#             ^^^^^^^^^^^ source.fortran.free meta.preprocessor
+#                        ^^ source.fortran.free meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.or.fortran
+#                          ^ source.fortran.free meta.preprocessor
+#                           ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#                                  ^^^^^^^^^^ source.fortran.free meta.preprocessor
+#                                            ^^ source.fortran.free meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.or.fortran
+#                                              ^ source.fortran.free meta.preprocessor
+#                                               ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#                                                      ^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor
+>#define CHOLMOD_LINUX
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+>#define CHOLMOD_ARCHITECTURE "Linux"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                             ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                              ^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                   ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>
+>#elif defined(__APPLE__)
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^ source.fortran.free meta.preprocessor
+#      ^^^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.defined.fortran
+#             ^^^^^^^^^^^ source.fortran.free meta.preprocessor
+>#define CHOLMOD_MAC
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+>#define CHOLMOD_ARCHITECTURE "Mac"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                             ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                              ^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                 ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>
+>#else
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.else.fortran
+>! /* If the architecture is unknown, and you call the BLAS, you may need to */
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! /* define BLAS_BY_VALUE, BLAS_NO_UNDERSCORE, and/or BLAS_CHAR_ARG yourself. */
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>#define CHOLMOD_ARCHITECTURE "unknown"
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran
+#                             ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#                              ^^^^^^^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran
+#                                     ^ source.fortran.free meta.preprocessor meta.preprocessor.macro.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#endif
+#^ source.fortran.free meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>program main
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>   implicit none
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran
+#            ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>
+>
+>   type logical_vector
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran keyword.control.type.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran
+#        ^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran entity.name.type.fortran
+>#ifdef DEBUG
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor
+>   logical, dimension(:), pointer :: ptr=>null()
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran
+#   ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran storage.type.character.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.comma.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#            ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran storage.modifier.dimension.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.parentheses.right.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.comma.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                          ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran storage.modifier.pointer.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran keyword.operator.double-colon.fortran
+#                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran
+#                                     ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran meta.parameter.fortran
+#                                        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran keyword.other.point.fortran
+#                                          ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran support.function.intrinsic.fortran
+#                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+>#else
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   logical, dimension(:), pointer :: ptr
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran
+#   ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran storage.type.character.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.comma.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#            ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran storage.modifier.dimension.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.parentheses.right.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran punctuation.comma.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                          ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran storage.modifier.pointer.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.attribute-list.derived-type-component-type.fortran
+#                                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran keyword.operator.double-colon.fortran
+#                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran
+#                                     ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.specification.derived-type.fortran meta.name-list.fortran meta.parameter.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran meta.block.specification.derived-type.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>   end type logical_vector
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran keyword.control.endtype.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran
+#            ^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.derived-type.definition.fortran entity.name.type.fortran
+>
+>   real &
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.real.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.line-continuation.fortran
+>#ifdef DEBUG
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.preprocessor
+>   , target,
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.target.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>   :: val(3)
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran constant.numeric.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>! Tests ifndef, include, endif, define
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#ifndef Var1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.ifndef.fortran
+#       ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>#include "header.h"
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.include.fortran keyword.control.preprocessor.include.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.include.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.include.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.begin.preprocessor.fortran
+#          ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.include.fortran string.quoted.double.include.preprocessor.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.include.fortran string.quoted.double.include.preprocessor.fortran punctuation.definition.string.end.preprocessor.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>#define Var2 2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>
+>! Test equality logical operators
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#if   Var1 == Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#             ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+>#define OP 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#elif Var1 != Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not_equals.fortran
+#             ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>#define OP 2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#elif Var1 <= Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.less_eq.fortran
+#             ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>#define OP 3
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#elif Var1 >= Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.more_eq.fortran
+#             ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>#define OP 4
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>#undef OP
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran keyword.control.preprocessor.undef.fortran
+#      ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran
+>
+>! Test comparative logical operators
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#if   Var1 <  Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.less.fortran
+#            ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+>#define OP 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#elif Var1 <= Var2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.less_eq.fortran
+#             ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>#define OP 2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>#undef OP
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran keyword.control.preprocessor.undef.fortran
+#      ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran
+>
+>! Test arithmetic operators
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#if   Var1 == Var1 + 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.addition.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>#elif Var1 == Var1 - 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.subtraction.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor constant.numeric.decimal.cpp
+>#elif Var1 == Var1 * 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.multiplication.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor constant.numeric.decimal.cpp
+>#elif Var1 == Var1 / 1
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.elif.fortran
+#     ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.operator.division.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor constant.numeric.decimal.cpp
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>! Test line continuation
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#if !defined( \
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not.fortran
+#     ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.character.escape.line-continuation.preprocessor.fortran
+>   PETSC_USING_F90) \
+#^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.character.escape.line-continuation.preprocessor.fortran
+>&& \
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.and.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.character.escape.line-continuation.preprocessor.fortran
+>!defined(PETSC_USE_FORTRANKIND)
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not.fortran
+# ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.defined.fortran
+#        ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+>#define Var3 \
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran keyword.control.preprocessor.define.fortran
+#       ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.character.escape.line-continuation.preprocessor.fortran
+>   1
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.macro.fortran constant.numeric.decimal.cpp
+>#undef \
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran keyword.control.preprocessor.undef.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran constant.character.escape.line-continuation.preprocessor.fortran
+>   Var1
+#^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.undef.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>! --------------------!
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! and   : &&  ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! bitand: &   ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! bitor : |   ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! not   : !   ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! not_eq: !=  ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! or    : ||  ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! xor   : ^   ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! compl : ~   ! valid !
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! --------------------!
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>#if 2 | -3
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.bitor.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.subtraction.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>print*, 'OR  (|) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if 2 ^ -3
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.xor.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.subtraction.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>print*, 'XOR (^) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if 2&2
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.bitand.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>print*, 'AND (&) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if !(2&-3)
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.bitand.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.subtraction.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+>print*, 'NOT (!) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if 2 != 3
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.not_equals.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>print*, 'NOT EQUAL (!=) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#if ~2 == -3
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.control.preprocessor.if.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.complementary.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.logical.preprocessor.fortran keyword.operator.logical.preprocessor.equals.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran keyword.operator.subtraction.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor meta.preprocessor.conditional.fortran constant.numeric.decimal.cpp
+>print*, 'complement (~) operator'
+#^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>! and_eq , &=  ! not valid
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! or_eq  , |=  ! not valid
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>! xor_eq , ^=  ! not valid
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>end program main
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran

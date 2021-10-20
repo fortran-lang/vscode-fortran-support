@@ -1,4 +1,4 @@
 {
-    "keyword":"PERROR",
-    "docstr":"`PERROR` — Print system error message\n\n### Description\nPrints (on the C `stderr` stream) a newline-terminated error\nmessage corresponding to the last system error. This is prefixed by\n`STRING`, a colon and a space. See `perror(3)`.\n\n\n\n### Syntax\n`CALL PERROR(STRING)`\n\n\n### Arguments\n\n     \n and of the\ndefault kind.\n\n\n\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nSubroutine\n\n\n\n### See also\n<a href=\"IERRNO.html#IERRNO\">IERRNO</a>\n"
+  "keyword": "PERROR",
+  "docstr": "`PERROR` — Print system error message\n\n### Description\nPrints (on the C `stderr` stream) a newline-terminated error\nmessage corresponding to the last system error. This is prefixed by\n`STRING`, a colon and a space. See `perror(3)`.\n\n\n\n### Syntax\n`CALL PERROR(STRING)`\n\n\n### Arguments\n\n     \n and of the\ndefault kind.\n\n\n\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nSubroutine\n\n\n\n### See also\n<a href=\"IERRNO.html#IERRNO\">IERRNO</a>\n"
 }

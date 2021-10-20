@@ -9,7 +9,7 @@ export function installTool(toolname) {
   if (toolname === LANG_SERVER_TOOL_ID) {
     const installProcess = cp.spawn(
       'pip',
-      'install fortran-language-server'.split(' ')
+      'install --user --upgrade fortran-language-server'.split(' ')
     );
     installProcess.on('exit', (code, signal) => {
       if (code !== 0) {

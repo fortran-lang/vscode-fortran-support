@@ -1,0 +1,213 @@
+>!Made-up directives to test OpenACC support
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program main
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  implicit none
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran
+#           ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>       
+>  !The highlighting should continue on the second line
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc data copy(A) copyin(B(:)) copyout(C(1:N)) present(D) &
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc&     no_create(E) deviceptr(F)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc parallel loop private(foo) firstprivate(bar) tile(32,32)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc parallel
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop collapse(2)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end parallel
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc end data
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc kernels default(present)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop independent
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop reduction(+:sum)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop reduction(max:the_max)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop gang worker vector
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop gang(128) worker(4) vector(128)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc loop seq
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end kernels
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc parallel loop num_gangs(1) num_workers(1) vector_length(1) default(none)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc enter data create(A(1:N)) attach(B)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc update device(A) async
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc update host(A(1:N)) async(1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc update self(A(:)) async(2) wait(1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc wait(1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc wait
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc exit data delete(A) detach(B) finalize
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc serial self(.TRUE.) if(.FALSE.)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc host_data use_device(A)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end host_data
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc declare device_resident(A)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !$acc init device_type(foo) device_num(bar)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc shutdown device_type(foo) device_num(bar)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc set default_async(1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  
+>  !$acc cache(A(:))
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  ! Test all four forms of atomic
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc atomic capture
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end atomic
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc atomic update
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end atomic
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc atomic read
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end atomic
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc atomic write
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc end atomic
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  !The "do" should not highlight, if it does it's coming from OpenMP
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$acc parallel do
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !The "do" here still should, since it is OpenMP
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  !$omp parallel do
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>end program main
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran

@@ -2,16 +2,36 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.2.1",
+  "version": "2.4.0",
   "publisher": "krvajalm",
+  "license": "MIT",
+  "author": {
+    "email": "krvajal.miguelangel@gmail.com",
+    "name": "Miguel Carvajal"
+  },
+  "maintainers": [
+    {
+      "email": "giannis.nikiteas@gmail.com",
+      "name": "Giannis Nikiteas"
+    }
+  ],
   "engines": {
     "vscode": "^1.30.x"
   },
   "icon": "images/icon.png",
+  "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
+  "qna": "https://github.com/krvajalmiguelangel/vscode-fortran-support/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
   },
+  "keywords": [
+    "Fortran",
+    "Free Form fortran",
+    "Fixed Form fortran",
+    "IntelliSense",
+    "IDE"
+  ],
   "categories": [
     "Programming Languages",
     "Snippets",
@@ -38,10 +58,16 @@
           ".F90",
           ".f95",
           ".F95",
+          ".f03",
+          ".F03",
           ".f08",
           ".F08",
           ".f18",
-          ".F18"
+          ".F18",
+          ".fpp",
+          ".FPP",
+          ".pf",
+          ".PF"
         ],
         "configuration": "./language-configuration.json"
       },
@@ -58,9 +84,7 @@
           ".f77",
           ".F77",
           ".for",
-          ".FOR",
-          ".fpp",
-          ".FPP"
+          ".FOR"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -182,29 +206,32 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "CODE_TESTS_WORKSPACE='./' node ./node_modules/vscode/bin/test",
-    "test:grammar": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/resources/*.f90\"",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p tsconfig.prod.json",
+    "compile-dev": "tsc -p tsconfig.json",
+    "watch": "tsc -watch -p tsconfig.prod.json",
+    "watch-dev": "tsc -watch -p tsconfig.json",
+    "pretest": "tsc -p tsconfig.test.json",
+    "test": "node ./out/test/runTest.js",
+    "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/**/*{.f90,F90}\"",
+    "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json -t \"./test/**/*{.f,F}\"",
+    "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
+    "test:grammar-update": "npm run test:grammar-free -- -u && npm run test:grammar-fixed -- -u",
     "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
   },
   "devDependencies": {
-    "@types/fs-extra": "0.0.35",
-    "@types/glob": "^5.0.30",
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^15.12.1",
-    "decache": "^4.1.0",
-    "fs-extra": "^1.0.0",
-    "glob": "^7.1.1",
-    "husky": "^1.1.2",
-    "istanbul": "^0.4.5",
-    "lint-staged": "^7.3.0",
-    "mocha": "^2.3.3",
-    "remap-istanbul": "^0.8.4",
-    "tslint": "^4.0.2",
-    "typescript": "^3.5.1",
-    "vscode": "^1.1.37",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^15.14.9",
+    "@types/vscode": "^1.30.0",
+    "@types/which": "^2.0.1",
+    "@vscode/test-electron": "^1.6.2",
+    "glob": "^7.2.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
+    "mocha": "^9.1.3",
+    "tslint": "^5.20.1",
+    "typescript": "^3.9.10",
     "vscode-tmgrammar-test": "^0.0.11"
   },
   "husky": {

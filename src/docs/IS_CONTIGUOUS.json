@@ -1,4 +1,4 @@
 {
-    "keyword":"IS_CONTIGUOUS",
-    "docstr":"`IS_CONTIGUOUS` — Test whether an array is contiguous\n\n### Description\nIS_CONTIGUOUS tests whether an array is contiguous.\n### Standard\nFortran 2008 and later.\n### Class\nInquiry function\n### Syntax\nRESULT = IS_CONTIGUOUS(ARRAY)\n### Arguments\n- ARRAY: Shall be an array of any type.\n### Return value\nReturns a LOGICAL of the default kind, which .TRUE. if ARRAY is contiguous and false otherwise.\n"
+  "keyword": "IS_CONTIGUOUS",
+  "docstr": "`IS_CONTIGUOUS` — Test whether an array is contiguous\n\n### Description\nIS_CONTIGUOUS tests whether an array is contiguous.\n### Standard\nFortran 2008 and later.\n### Class\nInquiry function\n### Syntax\nRESULT = IS_CONTIGUOUS(ARRAY)\n### Arguments\n- ARRAY: Shall be an array of any type.\n### Return value\nReturns a LOGICAL of the default kind, which .TRUE. if ARRAY is contiguous and false otherwise.\n"
 }

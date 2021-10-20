@@ -28,7 +28,7 @@ export class FortranLangServer {
     }
 
     this.c = new LanguageClient(
-      'fortran-langserver',
+      LANG_SERVER_TOOL_ID,
       serverOptions,
       clientOptions
     )
@@ -58,7 +58,7 @@ export function checkForLangServer(config) {
     )
     return false
   }
-  let langServerAvailable = getBinPath('fortran-langserver')
+  let langServerAvailable = getBinPath(LANG_SERVER_TOOL_ID)
   if (!langServerAvailable) {
     promptForMissingTool(LANG_SERVER_TOOL_ID)
     vscode.window.showInformationMessage(

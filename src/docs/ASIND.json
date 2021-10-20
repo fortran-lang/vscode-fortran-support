@@ -1,4 +1,4 @@
 {
-    "keyword":"ASIND",
-    "docstr":"`ASIND` — Arcsine function, degrees\n\n### Description\nASIND(X) computes the arcsine of its X in degrees (inverse of SIND(X)).\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = ASIND(X)\n### Arguments\n- X: The type shall be either REAL and a magnitude that is less than or equal to one - or be COMPLEX.\n### Return value\nThe return value is of the same type and kind as X. The real part of the result is in degrees and lies in the range -90 \\leq \\Re \\asin(x) \\leq 90.\n"
+  "keyword": "ASIND",
+  "docstr": "`ASIND` — Arcsine function, degrees\n\n### Description\nASIND(X) computes the arcsine of its X in degrees (inverse of SIND(X)).\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = ASIND(X)\n### Arguments\n- X: The type shall be either REAL and a magnitude that is less than or equal to one - or be COMPLEX.\n### Return value\nThe return value is of the same type and kind as X. The real part of the result is in degrees and lies in the range -90 \\leq \\Re \\asin(x) \\leq 90.\n"
 }

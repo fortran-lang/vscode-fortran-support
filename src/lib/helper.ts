@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 import intrinsics from './fortran-intrinsics';
-import { installTool } from './tools';
+import { installTool, LANG_SERVER_TOOL_ID } from './tools';
 
 // IMPORTANT: this should match the value
 // on the package.json otherwise the extension won't

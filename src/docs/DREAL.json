@@ -1,4 +1,4 @@
 {
-    "keyword":"DREAL",
-    "docstr":"`DREAL` — Double real part function\n\n### Description\n`DREAL(Z)` returns the real part of complex variable `Z`.\n\n\n\n### Syntax\n`RESULT = DREAL(A)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value is of type `REAL(8)`.\n\n\n\n### Example\n\n     ```\n\n\nprogram test_dreal\n\n    complex(8) :: z = (1.3_8,7.2_8)\n\n    print *, dreal(z)\n\nend program test_dreal\n\n```\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nElemental function\n\n\n\n### See also\n<a href=\"AIMAG.html#AIMAG\">AIMAG</a>\n\n   "
+  "keyword": "DREAL",
+  "docstr": "`DREAL` — Double real part function\n\n### Description\n`DREAL(Z)` returns the real part of complex variable `Z`.\n\n\n\n### Syntax\n`RESULT = DREAL(A)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value is of type `REAL(8)`.\n\n\n\n### Example\n```\n\n\nprogram test_dreal\n\n    complex(8) :: z = (1.3_8,7.2_8)\n\n    print *, dreal(z)\n\nend program test_dreal\n\n```\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nElemental function\n\n\n\n### See also\n<a href=\"AIMAG.html#AIMAG\">AIMAG</a>\n\n   "
 }
