@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.2]
+
+### Fixed
+
+- Extension now activates for `FortranFixedForm`
+  ([#257](https://github.com/krvajal/vscode-fortran-support/issues/257))
+- Linting is now operational for `FortranFixedForm`
+  ([#258](https://github.com/krvajal/vscode-fortran-support/issues/258))
+
+### Changed
+
+- Renamed the Fixed Format Format language from `fortran_fixed-form` to
+  `FortranFixedForm`, an alias has been added for backwards compatibility
+  ([#259](https://github.com/krvajal/vscode-fortran-support/issues/259))
+
+### Removed
+
+- Removes `paths.js` for detecting binaries in favour of `which`
+
+## [2.4.1]
+
 ### Fixed
 
 - Fixes dummy variable list erroneous syntax highlighting
@@ -278,7 +299,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...HEAD
+[2.4.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.1...v2.4.2
+[2.4.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...v2.3.0
 [2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1

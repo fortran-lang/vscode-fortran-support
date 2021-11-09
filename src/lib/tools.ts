@@ -1,23 +1,22 @@
-export const LANG_SERVER_TOOL_ID = 'fortran-langserver';
-import * as cp from 'child_process';
-export const toolBinNames = {
-  [LANG_SERVER_TOOL_ID]: 'fortls',
-  'gnu-compiler': 'gfortran',
-};
+export const LANG_SERVER_TOOL_ID = 'fortran-language-server';
+export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
 
-export function installTool(toolname) {
-  if (toolname === LANG_SERVER_TOOL_ID) {
-    const installProcess = cp.spawn(
-      'pip',
-      'install --user --upgrade fortran-language-server'.split(' ')
-    );
-    installProcess.on('exit', (code, signal) => {
-      if (code !== 0) {
-        // extension failed to install
-      }
-    });
-    installProcess.on('error', err => {
-      // failed to install
-    });
-  }
+import * as cp from 'child_process';
+import { LoggingService } from '../services/logging-service';
+
+export function installPythonTool(pyPackage: string, logger?: LoggingService) {
+
+  const installProcess = cp.spawn(
+    'pip',
+    'install --user --upgrade '.concat(pyPackage).split(' ')
+  );
+  installProcess.stdout.on('data', (data) => { logger.logInfo(`pip install: ${data}`) });
+  installProcess.on('exit', (code, signal) => {
+    if (code !== 0) {
+      logger.logError(`Python package ${pyPackage} failed to install with code: ${code}, signal: ${signal}`);
+    }
+  });
+  installProcess.on('error', err => {
+    logger.logError(`${err}`);
+  });
 }

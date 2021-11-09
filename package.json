@@ -16,7 +16,7 @@
     }
   ],
   "engines": {
-    "vscode": "^1.30.x"
+    "vscode": "^1.52.x"
   },
   "icon": "images/icon.png",
   "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
@@ -39,7 +39,8 @@
     "Debuggers"
   ],
   "activationEvents": [
-    "onLanguage:FortranFreeForm"
+    "onLanguage:FortranFreeForm",
+    "onLanguage:FortranFixedForm"
   ],
   "main": "./out/src/extension",
   "extensionDependencies": [
@@ -72,11 +73,12 @@
         "configuration": "./language-configuration.json"
       },
       {
-        "id": "fortran_fixed-form",
+        "id": "FortranFixedForm",
         "aliases": [
           "Fortran",
           "fortran",
-          "FORTRAN77"
+          "FORTRAN77",
+          "fortran_fixed-form"
         ],
         "extensions": [
           ".f",
@@ -110,7 +112,7 @@
         ]
       },
       {
-        "language": "fortran_fixed-form",
+        "language": "FortranFixedForm",
         "scopeName": "source.fortran.fixed",
         "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
       }
@@ -201,7 +203,7 @@
         "language": "FortranFreeForm"
       },
       {
-        "language": "fortran_fixed-form"
+        "language": "FortranFixedForm"
       }
     ]
   },
@@ -245,6 +247,7 @@
     ]
   },
   "dependencies": {
-    "vscode-languageclient": "^7.0.0"
+    "vscode-languageclient": "^7.0.0",
+    "which": "^2.0.2"
   }
 }
