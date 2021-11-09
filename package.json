@@ -16,7 +16,7 @@
     }
   ],
   "engines": {
-    "vscode": "^1.30.x"
+    "vscode": "^1.52.x"
   },
   "icon": "images/icon.png",
   "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
