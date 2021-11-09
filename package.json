@@ -222,7 +222,7 @@
   "devDependencies": {
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^15.14.9",
+    "@types/node": "^16.11.7",
     "@types/vscode": "^1.62.0",
     "@types/which": "^2.0.1",
     "@vscode/test-electron": "^1.6.2",
