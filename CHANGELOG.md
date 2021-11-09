@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixes dummy variable list erroneous syntax highlighting
+  ([#264](https://github.com/krvajal/vscode-fortran-support/issues/264))
+
 ## [2.4.0]
 
 ### Changed

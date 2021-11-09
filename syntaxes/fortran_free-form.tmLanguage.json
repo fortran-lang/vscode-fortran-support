@@ -5308,7 +5308,7 @@
 			]
 		},
 		"dummy-variable-list": {
-			"name": "keyword.dummy-variable-list",
+			"name": "meta.dummy-variable-list",
 			"begin": "\\G\\s*(\\()",
 			"beginCaptures": {
 				"1": {
