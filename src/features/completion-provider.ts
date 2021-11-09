@@ -8,9 +8,9 @@ import { EXTENSION_ID } from '../lib/helper';
 import { LoggingService } from '../services/logging-service';
 
 class CaseCoverter {
-  preferredCase: string
-  static LOWER = 'lowercase'
-  static UPPER = 'uppercase'
+  preferredCase: string;
+  static LOWER = 'lowercase';
+  static UPPER = 'uppercase';
 
   constructor(preferredCase: string = CaseCoverter.LOWER) {
     this.preferredCase = preferredCase;
@@ -34,9 +34,7 @@ class CaseCoverter {
   }
 }
 
-export class FortranCompletionProvider
-  implements vscode.CompletionItemProvider
-{
+export class FortranCompletionProvider implements vscode.CompletionItemProvider {
   constructor(private loggingService: LoggingService) {}
   public provideCompletionItems(
     document: vscode.TextDocument,
@@ -84,24 +82,14 @@ export class FortranCompletionProvider
         resolve([]);
       }
 
-      const intrinsicSuggestions = this.getIntrinsicSuggestions(
-        currentWord,
-        caseConverter
-      );
+      const intrinsicSuggestions = this.getIntrinsicSuggestions(currentWord, caseConverter);
 
       // add keyword suggestions
       const keywordSuggestions = this.getKeywordSuggestions(currentWord);
 
-      const functionSuggestions = this.getFunctionSuggestions(
-        document,
-        currentWord
-      );
+      const functionSuggestions = this.getFunctionSuggestions(document, currentWord);
 
-      return resolve([
-        ...intrinsicSuggestions,
-        ...keywordSuggestions,
-        ...functionSuggestions,
-      ]);
+      return resolve([...intrinsicSuggestions, ...keywordSuggestions, ...functionSuggestions]);
     });
   }
 
@@ -110,7 +98,7 @@ export class FortranCompletionProvider
     caseConverter: CaseCoverter
   ): vscode.CompletionItem[] {
     return intrinsics
-      .filter((i) => i.startsWith(currentWord.toUpperCase()))
+      .filter(i => i.startsWith(currentWord.toUpperCase()))
       .map((intrinsic: string) => {
         return new vscode.CompletionItem(
           caseConverter.convert(intrinsic),
@@ -120,14 +108,11 @@ export class FortranCompletionProvider
   }
 
   private getKeywordSuggestions(currentWord: string): vscode.CompletionItem[] {
-    return FORTRAN_KEYWORDS.filter((keyword) =>
-      keyword.startsWith(currentWord.toUpperCase())
-    ).map((keyword) => {
-      return new vscode.CompletionItem(
-        keyword.toLowerCase(),
-        vscode.CompletionItemKind.Keyword
-      );
-    });
+    return FORTRAN_KEYWORDS.filter(keyword => keyword.startsWith(currentWord.toUpperCase())).map(
+      keyword => {
+        return new vscode.CompletionItem(keyword.toLowerCase(), vscode.CompletionItemKind.Keyword);
+      }
+    );
   }
 
   private getFunctionSuggestions(
@@ -137,12 +122,9 @@ export class FortranCompletionProvider
     const functions = getDeclaredFunctions(document);
     // check for available functions
     return functions
-      .filter((fun) => fun.name.startsWith(currentWord))
-      .map((fun) => {
-        return new vscode.CompletionItem(
-          `${fun.name}(`,
-          vscode.CompletionItemKind.Function
-        );
+      .filter(fun => fun.name.startsWith(currentWord))
+      .map(fun => {
+        return new vscode.CompletionItem(`${fun.name}(`, vscode.CompletionItemKind.Function);
       });
   }
 
@@ -151,10 +133,7 @@ export class FortranCompletionProvider
     let currentWord = '';
     if (wordAtPosition && wordAtPosition.start.character < position.character) {
       const word = document.getText(wordAtPosition);
-      currentWord = word.substr(
-        0,
-        position.character - wordAtPosition.start.character
-      );
+      currentWord = word.substr(0, position.character - wordAtPosition.start.character);
     }
     return currentWord;
   }

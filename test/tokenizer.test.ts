@@ -1,13 +1,11 @@
-
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert';
 import { Tokenizer, TokenType } from '../src/lib/tokenizer';
 
-suite("fortran tokenizer", () => {
-
-  test("get correct amount of tokens", () => {
+suite('fortran tokenizer', () => {
+  test('get correct amount of tokens', () => {
     const fortranTokenizer = constructFortranTokenizer();
-    fortranTokenizer.tokenize("function a( m, n)\n 2 + 3\nend");
+    fortranTokenizer.tokenize('function a( m, n)\n 2 + 3\nend');
     const tokens = fortranTokenizer.tokens;
     assert.strictEqual(tokens.length, 11);
   });

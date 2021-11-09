@@ -238,8 +238,7 @@
               "patterns": [
                 {
                   "name": "string.regexp.openmp",
-                  "match":
-                    "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
+                  "match": "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
                 },
                 { "include": "#invalid-word" }
               ]
@@ -324,8 +323,7 @@
         {
           "comment": "parallel-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
+          "match": "(?i)\\b(parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
         },
         {
           "comment": "sections-directive",
@@ -345,8 +343,7 @@
         {
           "comment": "target-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(target(\\s*data|teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
+          "match": "(?i)\\b(target(\\s*data|teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
         },
         {
           "comment": "task-directive",
@@ -356,8 +353,7 @@
         {
           "comment": "teams-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
+          "match": "(?i)\\b(teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
         },
         {
           "comment": "threadprivate-directive",
@@ -381,8 +377,7 @@
         {
           "comment": "end-distribute-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(end\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)\\b"
+          "match": "(?i)\\b(end\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)\\b"
         },
         {
           "comment": "end-do-directive",
@@ -392,8 +387,7 @@
         {
           "comment": "end-parallel-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(end\\s*parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
+          "match": "(?i)\\b(end\\s*parallel(\\s*do(\\s*simd)?|\\s*sections|\\s*workshare)?)\\b"
         },
         {
           "comment": "end-sections-directive",
@@ -413,8 +407,7 @@
         {
           "comment": "end-target-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(end\\s*target(\\s*data|\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
+          "match": "(?i)\\b(end\\s*target(\\s*data|\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?|\\s*update)?)\\b"
         },
         {
           "comment": "end-task-directive",
@@ -424,8 +417,7 @@
         {
           "comment": "end-teams-directive",
           "name": "string.regexp.openmp",
-          "match":
-            "(?i)\\b(end\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
+          "match": "(?i)\\b(end\\s*teams(\\s*distribute(\\s*parallel\\s*do)?(\\s*simd)?)?)\\b"
         },
         {
           "comment": "end-workshare-directive",
@@ -489,8 +481,7 @@
     "intrinsic-functions": {
       "patterns": [
         {
-          "begin":
-            "(?i)\\b(omp_get_(active_levels|cancelation|level|proc_bind|thread_limit))\\s*(\\()",
+          "begin": "(?i)\\b(omp_get_(active_levels|cancelation|level|proc_bind|thread_limit))\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openmp"
@@ -508,8 +499,7 @@
           "patterns": [{ "include": "$self" }]
         },
         {
-          "begin":
-            "(?i)\\b(omp_(get|set)_(default_device|dynamic|max_active_levels|nested|num_threads|schedule))\\s*(\\()",
+          "begin": "(?i)\\b(omp_(get|set)_(default_device|dynamic|max_active_levels|nested|num_threads|schedule))\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openmp"
@@ -531,8 +521,7 @@
     "synchronization-constructs": {
       "patterns": [
         {
-          "begin":
-            "(?ix) \\G\\s+( barrier |(end\\s*)?master |(end\\s*)?ordered |(end\\s*)?task\\s*group |taskwait )\\b",
+          "begin": "(?ix) \\G\\s+( barrier |(end\\s*)?master |(end\\s*)?ordered |(end\\s*)?task\\s*group |taskwait )\\b",
           "beginCaptures": { "1": { "name": "string.regexp.openmp" } },
           "end": "(?=[$\\n])",
           "patterns": [{ "include": "#invalid-word" }]

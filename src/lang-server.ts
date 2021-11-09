@@ -1,18 +1,11 @@
-import {
-  LanguageClient,
-  LanguageClientOptions,
-  Executable,
-} from 'vscode-languageclient/node';
+import { LanguageClient, LanguageClientOptions, Executable } from 'vscode-languageclient/node';
 import * as which from 'which';
 import * as vscode from 'vscode';
-import {
-  FORTRAN_DOCUMENT_SELECTOR,
-} from './lib/helper';
+import { FORTRAN_DOCUMENT_SELECTOR } from './lib/helper';
 import { LANG_SERVER_TOOL_ID } from './lib/tools';
 
 export class FortranLangServer {
-
-  c: LanguageClient
+  c: LanguageClient;
   constructor(context, config) {
     const langServerFlags: string[] = config.get('languageServerFlags', []);
 
@@ -26,11 +19,7 @@ export class FortranLangServer {
       documentSelector: FORTRAN_DOCUMENT_SELECTOR,
     };
 
-    this.c = new LanguageClient(
-      LANG_SERVER_TOOL_ID,
-      serverOptions,
-      clientOptions
-    );
+    this.c = new LanguageClient(LANG_SERVER_TOOL_ID, serverOptions, clientOptions);
   }
 
   start() {
@@ -42,8 +31,7 @@ export class FortranLangServer {
   }
 
   getCapabilities() {
-    const capabilities =
-      this.c.initializeResult && this.c.initializeResult.capabilities;
+    const capabilities = this.c.initializeResult && this.c.initializeResult.capabilities;
     return capabilities;
   }
 }

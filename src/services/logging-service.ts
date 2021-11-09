@@ -1,11 +1,11 @@
 import { window } from 'vscode';
 
-type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE'
+type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
 
 export class LoggingService {
-  private outputChannel = window.createOutputChannel('Modern Fortran')
+  private outputChannel = window.createOutputChannel('Modern Fortran');
 
-  private logLevel: LogLevel = 'INFO'
+  private logLevel: LogLevel = 'INFO';
 
   public setOutputLevel(logLevel: LogLevel) {
     this.logLevel = logLevel;
@@ -37,11 +37,7 @@ export class LoggingService {
    * @param message The message to append to the output channel
    */
   public logInfo(message: string, data?: unknown): void {
-    if (
-      this.logLevel === 'NONE' ||
-      this.logLevel === 'WARN' ||
-      this.logLevel === 'ERROR'
-    ) {
+    if (this.logLevel === 'NONE' || this.logLevel === 'WARN' || this.logLevel === 'ERROR') {
       return;
     }
     this.logMessage(message, 'INFO');

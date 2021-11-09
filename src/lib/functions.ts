@@ -1,6 +1,5 @@
-import * as vscode from "vscode";
-import { TextLine } from "vscode";
-
+import * as vscode from 'vscode';
+import { TextLine } from 'vscode';
 
 export interface Tag {
   name: string;
@@ -27,12 +26,10 @@ export interface FortranFunction extends Subroutine {
 
 export enum MethodType {
   Subroutine,
-  FortranFunction
+  FortranFunction,
 }
 
-export function getDeclaredFunctions(
-  document: vscode.TextDocument
-): FortranFunction[] {
+export function getDeclaredFunctions(document: vscode.TextDocument): FortranFunction[] {
   const lines = document.lineCount;
   const funcs = [];
 
@@ -47,9 +44,7 @@ export function getDeclaredFunctions(
   return funcs;
 }
 
-export function getDeclaredSubroutines(
-  document: vscode.TextDocument
-): Subroutine[] {
+export function getDeclaredSubroutines(document: vscode.TextDocument): Subroutine[] {
   const lines = document.lineCount;
   const subroutines = [];
 
@@ -72,25 +67,23 @@ export const parseSubroutine = (line: TextLine) => {
   return _parse(line, MethodType.Subroutine);
 };
 export const _parse = (line: TextLine, type: MethodType) => {
-  const functionRegEx = /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|&)\s*(result\([a-z_][\w]*(?:\)|&))*/i;
-  const subroutineRegEx = /^\s*(?!\bend\b)\w*\s*\bsubroutine\b\s*([a-z][a-z0-9_]*)\s*(?:\((\s*[a-z][a-z0-9_,\s]*)*\s*(\)|&))*/i;
-  const regEx =
-    type === MethodType.Subroutine ? subroutineRegEx : functionRegEx;
+  const functionRegEx =
+    /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|&)\s*(result\([a-z_][\w]*(?:\)|&))*/i;
+  const subroutineRegEx =
+    /^\s*(?!\bend\b)\w*\s*\bsubroutine\b\s*([a-z][a-z0-9_]*)\s*(?:\((\s*[a-z][a-z0-9_,\s]*)*\s*(\)|&))*/i;
+  const regEx = type === MethodType.Subroutine ? subroutineRegEx : functionRegEx;
 
-  if (type === MethodType.Subroutine && line.text.toLowerCase().indexOf("subroutine") < 0)
+  if (type === MethodType.Subroutine && line.text.toLowerCase().indexOf('subroutine') < 0) return;
+  if (type === MethodType.FortranFunction && line.text.toLowerCase().indexOf('function') < 0)
     return;
-  if (type === MethodType.FortranFunction && line.text.toLowerCase().indexOf("function") < 0) return;
   const searchResult = regEx.exec(line.text);
   if (searchResult && type === MethodType.FortranFunction) {
-    const [attr, kind_descriptor, name, argsstr, result] = searchResult.slice(
-      1,
-      5
-    );
+    const [attr, kind_descriptor, name, argsstr, result] = searchResult.slice(1, 5);
     const args = argsstr ? parseArgs(argsstr) : [];
     return {
       name: name,
       args: args,
-      lineNumber: line.lineNumber
+      lineNumber: line.lineNumber,
     };
   } else if (searchResult && type === MethodType.Subroutine) {
     const [name, argsstr] = searchResult.slice(1);
@@ -98,13 +91,13 @@ export const _parse = (line: TextLine, type: MethodType) => {
     return {
       name: name,
       args: args,
-      lineNumber: line.lineNumber
+      lineNumber: line.lineNumber,
     };
   }
 };
 
 export const parseArgs = (argsstr: string) => {
-  const args = argsstr.trim().split(",");
+  const args = argsstr.trim().split(',');
   const variables: Variable[] = args
     .filter(name => validVariableName(name))
     .map(name => {

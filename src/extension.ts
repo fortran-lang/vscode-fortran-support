@@ -31,10 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   if (extensionConfig.get('provideCompletion', true)) {
     const completionProvider = new FortranCompletionProvider(loggingService);
-    vscode.languages.registerCompletionItemProvider(
-      FORTRAN_DOCUMENT_SELECTOR,
-      completionProvider
-    );
+    vscode.languages.registerCompletionItemProvider(FORTRAN_DOCUMENT_SELECTOR, completionProvider);
   } else {
     loggingService.logInfo('Completion Provider is not enabled');
   }
@@ -49,10 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   if (extensionConfig.get('provideSymbols', true)) {
     const symbolProvider = new FortranDocumentSymbolProvider();
-    vscode.languages.registerDocumentSymbolProvider(
-      FORTRAN_DOCUMENT_SELECTOR,
-      symbolProvider
-    );
+    vscode.languages.registerDocumentSymbolProvider(FORTRAN_DOCUMENT_SELECTOR, symbolProvider);
     loggingService.logInfo('Symbol Provider is enabled');
   } else {
     loggingService.logInfo('Symbol Provider is not enabled');

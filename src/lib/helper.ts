@@ -9,7 +9,7 @@ import { LoggingService } from '../services/logging-service';
 // work at all
 export const FORTRAN_DOCUMENT_SELECTOR = [
   { scheme: 'file', language: 'FortranFreeForm' },
-  { scheme: 'file', language: 'FortranFixedForm' }
+  { scheme: 'file', language: 'FortranFixedForm' },
 ];
 export { intrinsics };
 export const EXTENSION_ID = 'fortran';
@@ -29,10 +29,7 @@ export const FORTRAN_KEYWORDS = [
 ];
 
 export const isIntrinsic = keyword => {
-  return (
-    intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !==
-    -1
-  );
+  return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
 };
 
 interface Doc {
@@ -51,9 +48,7 @@ export const loadDocString = keyword => {
 export const _loadDocString = (keyword: string) => {
   keyword = keyword.toUpperCase();
 
-  const docStringBuffer = fs.readFileSync(
-    __dirname + '/../../../src/docs/' + keyword + '.html'
-  );
+  const docStringBuffer = fs.readFileSync(__dirname + '/../../../src/docs/' + keyword + '.html');
   let docText = docStringBuffer.toString();
   const codeRegex = /<code>(.+?)<\/code>\n?/g;
   const varRegex = /<var>(.+?)<\/var>/g;
@@ -102,8 +97,7 @@ export function isPositionInString(
 
   // Count the number of double quotes in the line till current position. Ignore escaped double quotes
   let doubleQuotesCnt = (lineTillCurrentPosition.match(/"/g) || []).length;
-  const escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\"/g) || [])
-    .length;
+  const escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\"/g) || []).length;
 
   doubleQuotesCnt -= escapedDoubleQuotesCnt;
   return doubleQuotesCnt % 2 === 1;
@@ -118,21 +112,25 @@ const saveKeywordToJson = keyword => {
   });
 };
 
-
 /**
  * Install a package either a Python pip package or a VS Marketplace Extension.
- * 
+ *
  * For the Python install supply the name of the package in PyPi
  * e.g. fortran-language-server
- * 
- * For the VS Extension to be installed supply the id of the extension 
+ *
+ * For the VS Extension to be installed supply the id of the extension
  * e.g 'hansec.fortran-ls'
- * 
+ *
  * @param tool name of the tool e.g. fortran-language-server
  * @param msg optional message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
  */
-export function promptForMissingTool(tool: string, msg: string, toolType: string, logger?: LoggingService) {
+export function promptForMissingTool(
+  tool: string,
+  msg: string,
+  toolType: string,
+  logger?: LoggingService
+) {
   const items = ['Install'];
   return new Promise((resolve, reject) => {
     resolve(
@@ -158,5 +156,4 @@ export function promptForMissingTool(tool: string, msg: string, toolType: string
       })
     );
   });
-
 }

@@ -8,9 +8,9 @@ import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
 
 export default class FortranLintingProvider {
-  constructor(private loggingService: LoggingService) { }
+  constructor(private loggingService: LoggingService) {}
 
-  private diagnosticCollection: vscode.DiagnosticCollection
+  private diagnosticCollection: vscode.DiagnosticCollection;
 
   private doModernFortranLint(textDocument: vscode.TextDocument) {
     const errorRegex =
@@ -46,13 +46,16 @@ export default class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
-    const childProcess = cp.spawn(command, argList, { cwd: filePath, env: env });
+    const childProcess = cp.spawn(command, argList, {
+      cwd: filePath,
+      env: env,
+    });
 
     if (childProcess.pid) {
       childProcess.stdout.on('data', (data: Buffer) => {
         decoded += data;
       });
-      childProcess.stderr.on('data', (data) => {
+      childProcess.stderr.on('data', data => {
         decoded += data;
       });
       childProcess.stderr.on('end', () => {
@@ -77,7 +80,7 @@ export default class FortranLintingProvider {
 
         this.diagnosticCollection.set(textDocument.uri, diagnostics);
       });
-      childProcess.stdout.on('close', (code) => {
+      childProcess.stdout.on('close', code => {
         console.log(`child process exited with code ${code}`);
       });
     } else {
@@ -92,9 +95,7 @@ export default class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const options = vscode.workspace.rootPath
-      ? { cwd: vscode.workspace.rootPath }
-      : undefined;
+    const options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
     const args = [
       '-fsyntax-only',
       '-cpp',
@@ -104,10 +105,7 @@ export default class FortranLintingProvider {
     const includePaths = this.getIncludePaths();
 
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
-    const fileNameWithoutExtension = textDocument.fileName.substring(
-      0,
-      extensionIndex
-    );
+    const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
     const argList = [
       ...args,
       ...getIncludeParams(includePaths), // include paths
@@ -115,10 +113,10 @@ export default class FortranLintingProvider {
       `-o ${fileNameWithoutExtension}.mod`,
     ];
 
-    return argList.map((arg) => arg.trim()).filter((arg) => arg !== '');
+    return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private static commandId = 'fortran.lint.runCodeAction'
+  private static commandId = 'fortran.lint.runCodeAction';
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -135,18 +133,14 @@ export default class FortranLintingProvider {
     // }];
   }
 
-  private command: vscode.Disposable
+  private command: vscode.Disposable;
 
   public activate(subscriptions: vscode.Disposable[]) {
     this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
 
-    vscode.workspace.onDidOpenTextDocument(
-      this.doModernFortranLint,
-      this,
-      subscriptions
-    );
+    vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
-      (textDocument) => {
+      textDocument => {
         this.diagnosticCollection.delete(textDocument.uri);
       },
       null,

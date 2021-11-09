@@ -1,8 +1,9 @@
-import * as vscode from "vscode";
-import { Variable } from "./functions";
-import { TextLine } from "vscode";
+import * as vscode from 'vscode';
+import { Variable } from './functions';
+import { TextLine } from 'vscode';
 
-const varibleDecRegEx = /([a-zA-Z]{1,}(\([a-zA-Z0-9]{1,}\))?)(\s*,\s*[a-zA-Z()])*\s*::\s*([a-zA-Z_][a-zA-Z0-9_]*)/g;
+const varibleDecRegEx =
+  /([a-zA-Z]{1,}(\([a-zA-Z0-9]{1,}\))?)(\s*,\s*[a-zA-Z()])*\s*::\s*([a-zA-Z_][a-zA-Z0-9_]*)/g;
 
 export function getDeclaredVars(document: vscode.TextDocument): Variable[] {
   const lines = document.lineCount;
