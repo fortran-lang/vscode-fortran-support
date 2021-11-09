@@ -16,6 +16,8 @@ jobs:
         run: yarn install
       - name: Compile
         run: yarn compile
+      - name: Linting
+        run: yarn lint
       - name: Test Syntax Highlighting
         run: yarn test:grammar
       - name: Test Unittests

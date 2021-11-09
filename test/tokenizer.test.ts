@@ -1,15 +1,12 @@
-
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert';
-import * as fs from 'fs';
 import { Tokenizer, TokenType } from '../src/lib/tokenizer';
 
-suite("fortran tokenizer", () => {
-
-  test("get correct amount of tokens", () => {
+suite('fortran tokenizer', () => {
+  test('get correct amount of tokens', () => {
     const fortranTokenizer = constructFortranTokenizer();
-    fortranTokenizer.tokenize("function a( m, n)\n 2 + 3\nend");
-    let tokens = fortranTokenizer.tokens;
+    fortranTokenizer.tokenize('function a( m, n)\n 2 + 3\nend');
+    const tokens = fortranTokenizer.tokens;
     assert.strictEqual(tokens.length, 11);
   });
 });
@@ -26,6 +23,6 @@ function constructFortranTokenizer() {
   tokenizer.add(/^\(\s*/, TokenType.LEFT_PARENTESIS); // left parentesis
   tokenizer.add(/^\)\s*/, TokenType.RIGHT_PARENTESIS); // right parentesis
   tokenizer.add(/^,\s*/, TokenType.COMMA); // comma separator
-  tokenizer.add(/[+\-*\/]\s*/, TokenType.BINARY_OPERATOR); // operators
+  tokenizer.add(/[+\-*/]\s*/, TokenType.BINARY_OPERATOR); // operators
   return tokenizer;
 }

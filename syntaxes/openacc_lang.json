@@ -251,8 +251,7 @@
               "patterns": [
                 {
                   "name": "string.regexp.openacc",
-                  "match":
-                    "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
+                  "match": "(?i)\\G\\s*(\\+|\\-|\\*|\\.and\\.|\\.or\\.|\\.eqv\\.|\\.neqv\\.|\\b(max|min|iand|ior|ieor)\\b)"
                 },
                 { "include": "#invalid-word" }
               ]
@@ -313,56 +312,47 @@
         {
           "comment": "parallel-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(parallel(\\s*loop)?)\\b"
+          "match": "(?i)\\b(parallel(\\s*loop)?)\\b"
         },
         {
           "comment": "kernels-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(kernels(\\s*loop)?)\\b"
+          "match": "(?i)\\b(kernels(\\s*loop)?)\\b"
         },
         {
           "comment": "serial-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(serial(\\s*loop)?)\\b"
+          "match": "(?i)\\b(serial(\\s*loop)?)\\b"
         },
         {
           "comment": "data-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(data)\\b"
+          "match": "(?i)\\b(data)\\b"
         },
         {
           "comment": "enter-data-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(enter data)\\b"
+          "match": "(?i)\\b(enter data)\\b"
         },
         {
           "comment": "exit-data-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(exit data)\\b"
+          "match": "(?i)\\b(exit data)\\b"
         },
         {
           "comment": "host-data-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(host_data)\\b"
+          "match": "(?i)\\b(host_data)\\b"
         },
         {
           "comment": "executable-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(init|shutdown|set|update|wait)\\b"
+          "match": "(?i)\\b(init|shutdown|set|update|wait)\\b"
         },
         {
           "comment": "cache-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(cache)\\b"
+          "match": "(?i)\\b(cache)\\b"
         }
       ]
     },
@@ -391,20 +381,17 @@
         {
           "comment": "end-parallel-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(end\\s*parallel(\\s*loop)?)\\b"
+          "match": "(?i)\\b(end\\s*parallel(\\s*loop)?)\\b"
         },
         {
           "comment": "end-kernels-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(end\\s*kernels(\\s*loop)?)\\b"
+          "match": "(?i)\\b(end\\s*kernels(\\s*loop)?)\\b"
         },
         {
           "comment": "end-serial-directive",
           "name": "string.regexp.openacc",
-          "match":
-            "(?i)\\b(end\\s*serial(\\s*loop)?)\\b"
+          "match": "(?i)\\b(end\\s*serial(\\s*loop)?)\\b"
         }
       ]
     },
@@ -427,8 +414,7 @@
     "intrinsic-functions": {
       "patterns": [
         {
-          "begin":
-            "(?i)\\b(acc_(get|set)_(num_devices|device_type|device_num|default_async))\\s*(\\()",
+          "begin": "(?i)\\b(acc_(get|set)_(num_devices|device_type|device_num|default_async))\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openacc"
@@ -446,8 +432,7 @@
           "patterns": [{ "include": "$self" }]
         },
         {
-          "begin":
-            "(?i)\\b(acc_get_(current_cuda_device|current_cuda_context|cuda_stream))\\s*(\\()",
+          "begin": "(?i)\\b(acc_get_(current_cuda_device|current_cuda_context|cuda_stream))\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openacc"
@@ -465,8 +450,7 @@
           "patterns": [{ "include": "$self" }]
         },
         {
-          "begin":
-            "(?i)\\b(acc_get_(current_opencl_device|current_opencl_context|opencl_queue))\\s*(\\()",
+          "begin": "(?i)\\b(acc_get_(current_opencl_device|current_opencl_context|opencl_queue))\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openacc"
@@ -484,8 +468,7 @@
           "patterns": [{ "include": "$self" }]
         },
         {
-          "begin":
-            "(?i)\\b(acc_get_property)\\s*(\\()",
+          "begin": "(?i)\\b(acc_get_property)\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.openacc"

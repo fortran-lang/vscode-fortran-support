@@ -240,7 +240,9 @@
     "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json -t \"./test/**/*{.f,F}\"",
     "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
     "test:grammar-update": "npm run test:grammar-free -- -u && npm run test:grammar-fixed -- -u",
-    "lint": "node ./node_modules/tslint/bin/tslint ./src/**/*.ts "
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint-fix": "npm run lint -- --fix",
+    "format": "prettier --write 'src/**/*.{ts,json}' 'test/**/*.ts' 'syntaxes/**/*.json' 'snippets/**/*.json' '*.{md,json}'"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
@@ -248,12 +250,18 @@
     "@types/node": "^16.11.7",
     "@types/vscode": "^1.62.0",
     "@types/which": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "@vscode/test-electron": "^1.6.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsdoc": "^37.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "glob": "^7.2.0",
-    "husky": "^7.0.4",
+    "husky": "^4.3.8",
     "lint-staged": "^11.2.6",
     "mocha": "^9.1.3",
-    "tslint": "^6.1.3",
+    "prettier": "^2.4.1",
     "typescript": "^4.4.4",
     "vscode-tmgrammar-test": "^0.0.11"
   },
@@ -264,7 +272,9 @@
   },
   "lint-staged": {
     "*.ts": [
-      "prettier --write"
+      "npm run format",
+      "npm run lint-fix",
+      "npm run lint -- --max-warnings=0"
     ]
   },
   "dependencies": {

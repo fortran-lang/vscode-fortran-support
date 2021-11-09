@@ -283,5 +283,5 @@ export default [
   'UNLINK',
   'UNPACK',
   'VERIFY',
-  'XOR'
+  'XOR',
 ];
