@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.3]
+
+### Changed
+
+- Changed from `tslint` to `eslint` and `prettier` to format ts, json, md files
+  ([#260](https://github.com/krvajal/vscode-fortran-support/issues/260))
+
 ## [2.4.2]
 
 ### Fixed
@@ -299,7 +306,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.3...HEAD
+[2.4.3]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
