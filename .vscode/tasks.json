@@ -42,7 +42,13 @@
                 "isDefault": true
             },
             "detail": "setup for test launch"
-            
+        },
+        {
+            "type": "npm",
+            "script": "lint",
+            "problemMatcher": "$eslint-stylish",
+            "label": "npm: lint",
+            "detail": "eslint . --ext .ts,.tsx"
         }
     ]
 }
