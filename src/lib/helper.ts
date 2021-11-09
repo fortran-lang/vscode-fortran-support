@@ -11,7 +11,7 @@ export const FORTRAN_DOCUMENT_SELECTOR = [
   { scheme: 'file', language: 'FortranFreeForm' },
   { scheme: 'file', language: 'FortranFixedForm' }
 ];
-export { intrinsics }
+export { intrinsics };
 export const EXTENSION_ID = 'fortran';
 
 export const FORTRAN_KEYWORDS = [
@@ -42,23 +42,23 @@ interface Doc {
 
 export const loadDocString = keyword => {
   keyword = keyword.toUpperCase();
-  let filepath = __dirname + '/../docs/' + keyword + '.json';
-  let docstr = fs.readFileSync(filepath).toString();
-  let doc: Doc = JSON.parse(docstr);
+  const filepath = __dirname + '/../docs/' + keyword + '.json';
+  const docstr = fs.readFileSync(filepath).toString();
+  const doc: Doc = JSON.parse(docstr);
   return doc.docstr;
 };
 
 export const _loadDocString = (keyword: string) => {
   keyword = keyword.toUpperCase();
 
-  let docStringBuffer = fs.readFileSync(
+  const docStringBuffer = fs.readFileSync(
     __dirname + '/../../../src/docs/' + keyword + '.html'
   );
   let docText = docStringBuffer.toString();
   const codeRegex = /<code>(.+?)<\/code>\n?/g;
   const varRegex = /<var>(.+?)<\/var>/g;
   const spanRegex = /<samp><span class="command">(\w+)<\/span><\/samp>/g;
-  const tableRegex = /<table\s*.*>([\s\w<>\/\W]+?)<\/table>/g;
+  const tableRegex = /<table\s*.*>([\s\w<>/\W]+?)<\/table>/g;
   const codeExampleRegex = /<code class="smallexample"[\s\W\w]*?>([\s\W\w<>]*?)<\/code>/g;
   const headerRegex = /^ *<h(\d)>(.+?)<\/h\1>\n?/gm;
   const defListRegex = /<dt>([\w\W]+?)<\/dt><dd>([\w\W]+?)(<br>)?<\/dd>/g;
@@ -70,9 +70,9 @@ export const _loadDocString = (keyword: string) => {
     .replace(spanRegex, (match, code) => `*${code}*`)
     .replace(defListRegex, (match, entry, def) => `**${entry}** ${def}\n`)
     .replace(codeExampleRegex, (match, code) => '```\n' + code + '\n\n```\n')
-    .replace(/<td\s*.*?>([\s\w<>\/\W]+?)<\/td>/g, (match, code) => ' | ' + code)
-    .replace(/<tr\s*.*?>([\s\w<>\/\W]+?)<\/tr>/g, (match, code) => code + '\n')
-    .replace(/<tbody\s*.*?>([\s\w<>\/\W]+?)<\/tbody>/g, (match, code) => code)
+    .replace(/<td\s*.*?>([\s\w<>/\W]+?)<\/td>/g, (match, code) => ' | ' + code)
+    .replace(/<tr\s*.*?>([\s\w<>/\W]+?)<\/tr>/g, (match, code) => code + '\n')
+    .replace(/<tbody\s*.*?>([\s\w<>/\W]+?)<\/tbody>/g, (match, code) => code)
     .replace(tableRegex, (match, code) => code)
     .replace(codeRegex, (match, code: string) => {
       return '`' + code + '`';
@@ -80,8 +80,8 @@ export const _loadDocString = (keyword: string) => {
     .replace(/<p>\s*?/g, '\n')
     .replace(/<\/p>\s*?/g, '\n')
     .replace(headerRegex, (match, h: string, code: string) => {
-      let headerLevel: number = parseInt(h);
-      let header = '#'.repeat(headerLevel);
+      const headerLevel: number = parseInt(h);
+      const header = '#'.repeat(headerLevel);
       return `${header} ${code}\n`;
     });
   docText = docText.replace(/^ *<br>\n?/gm, '\n').replace(/<\?dl>/g, '');
@@ -97,21 +97,21 @@ export function isPositionInString(
   document: vscode.TextDocument,
   position: vscode.Position
 ): boolean {
-  let lineText = document.lineAt(position.line).text;
-  let lineTillCurrentPosition = lineText.substr(0, position.character);
+  const lineText = document.lineAt(position.line).text;
+  const lineTillCurrentPosition = lineText.substr(0, position.character);
 
   // Count the number of double quotes in the line till current position. Ignore escaped double quotes
-  let doubleQuotesCnt = (lineTillCurrentPosition.match(/\"/g) || []).length;
-  let escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\\"/g) || [])
+  let doubleQuotesCnt = (lineTillCurrentPosition.match(/"/g) || []).length;
+  const escapedDoubleQuotesCnt = (lineTillCurrentPosition.match(/\\"/g) || [])
     .length;
 
   doubleQuotesCnt -= escapedDoubleQuotesCnt;
   return doubleQuotesCnt % 2 === 1;
 }
 
-let saveKeywordToJson = keyword => {
-  let doc = _loadDocString(keyword);
-  let docObject = JSON.stringify({ keyword: keyword, docstr: doc });
+const saveKeywordToJson = keyword => {
+  const doc = _loadDocString(keyword);
+  const docObject = JSON.stringify({ keyword: keyword, docstr: doc });
   fs.appendFile('src/docs/' + keyword + '.json', docObject, function (err) {
     if (err) throw err;
     console.log('Saved!');

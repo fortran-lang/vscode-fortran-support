@@ -10,7 +10,7 @@ export function installPythonTool(pyPackage: string, logger?: LoggingService) {
     'pip',
     'install --user --upgrade '.concat(pyPackage).split(' ')
   );
-  installProcess.stdout.on('data', (data) => { logger.logInfo(`pip install: ${data}`) });
+  installProcess.stdout.on('data', (data) => { logger.logInfo(`pip install: ${data}`); });
   installProcess.on('exit', (code, signal) => {
     if (code !== 0) {
       logger.logError(`Python package ${pyPackage} failed to install with code: ${code}, signal: ${signal}`);
