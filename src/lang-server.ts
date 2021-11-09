@@ -2,7 +2,7 @@ import {
   LanguageClient,
   LanguageClientOptions,
   Executable,
-} from 'vscode-languageclient'
+} from 'vscode-languageclient/node'
 import * as which from 'which'
 import * as vscode from 'vscode'
 import {
