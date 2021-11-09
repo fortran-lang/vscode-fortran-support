@@ -252,6 +252,7 @@
   "lint-staged": {
     "*.ts": [
       "npm run format",
+      "npm run lint-fix",
       "npm run lint -- --max-warnings=0"
     ]
   },
