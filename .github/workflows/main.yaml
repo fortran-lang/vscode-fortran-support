@@ -12,8 +12,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: yarn test:grammar
-      - run: yarn test
-
- 
+      - name: Installing Extension
+        run: yarn install
+      - name: Test Syntax Highlighting
+        run: yarn test:grammar
+      - name: Test Unittests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: yarn test
