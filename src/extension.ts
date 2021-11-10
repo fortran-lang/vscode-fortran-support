@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   if (extensionConfig.get('formatter') !== 'Disabled') {
-    let disposable: vscode.Disposable = vscode.languages.registerDocumentFormattingEditProvider(
+    const disposable: vscode.Disposable = vscode.languages.registerDocumentFormattingEditProvider(
       FORTRAN_DOCUMENT_SELECTOR,
       new FortranFormattingProvider(loggingService)
     );

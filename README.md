@@ -164,7 +164,7 @@ If the formatter is not present in the `PATH` its location can be input with
 
 ```json
 {
-    "fortran.formattting.path": "/custom-path-to-formatter-binary",
+  "fortran.formattting.path": "/custom-path-to-formatter-binary"
 }
 ```
 
