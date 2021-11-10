@@ -46,6 +46,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Removes `paths.js` for detecting binaries in favour of `which`
 
+## [2.4.1]
+
+### Fixed
+
+- Fixes dummy variable list erroneous syntax highlighting
+  ([#264](https://github.com/krvajal/vscode-fortran-support/issues/264))
+
 ## [2.4.0]
 
 ### Changed
