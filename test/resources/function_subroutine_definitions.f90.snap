@@ -12,11 +12,11 @@
 #  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
 #            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
 #             ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                 ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                  ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                     ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                      ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                 ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                  ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                     ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                      ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: arg
 #^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
 #    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
@@ -45,11 +45,11 @@
 #          ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                   ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                      ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -81,11 +81,11 @@
 #       ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -117,11 +117,11 @@
 #          ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                   ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                      ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -162,11 +162,11 @@
 #                             ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                                      ^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                                     ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                     ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                                                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                                           ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -198,11 +198,11 @@
 #                   ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #                           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                            ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                                  ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                                      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                  ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                                                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                                        ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -234,11 +234,11 @@
 #                 ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #                          ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 #                                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
 #                                                    ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
 #                                                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
@@ -272,11 +272,11 @@
 #  ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #           ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                        ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: function
 #^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
 #    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
@@ -301,11 +301,11 @@
 #  ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
 #          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
 #           ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                         ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                         ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: subroutine
 #^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
 #    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
@@ -330,11 +330,11 @@
 #  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
 #            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
 #             ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                             ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                       ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                             ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                       ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: subroutine
 #^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
 #    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
@@ -359,11 +359,11 @@
 #  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
 #            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
 #             ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran keyword.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: function
 #^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
 #    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran

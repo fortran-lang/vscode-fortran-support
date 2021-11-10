@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.5.0]
 
+### Added
+
+- Adds support for formatting with `findent` and `fprettify`
+  ([#29](https://github.com/krvajal/vscode-fortran-support/issues/29))
+
+## [2.4.3]
+
+### Changed
+
+- Changed from `tslint` to `eslint` and `prettier` to format ts, json, md files
+  ([#260](https://github.com/krvajal/vscode-fortran-support/issues/260))
+
+## [2.4.2]
+
 ### Fixed
 
 - Extension now activates for `FortranFixedForm`
@@ -24,8 +38,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Adds support for formatting with `findent` and `fprettify`
-  ([#29](https://github.com/krvajal/vscode-fortran-support/issues/29))
 - Adds prompts for installing Fortran IntelliSense and fortran-language-server
 
 ### Removed
@@ -299,7 +311,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial release
 
 [unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...HEAD
-[2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...v2.5.0
+[2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.3...v2.5.0
+[2.4.3]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...v2.4.3
+[2.4.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.1...v2.4.2
+[2.4.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.2.2...v2.3.0
 [2.2.2]: https://github.com/krvajal/vscode-fortran-support/compare/2.2.1...v2.2.1

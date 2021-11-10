@@ -9,7 +9,7 @@ export enum TokenType {
   LEFT_PARENTESIS,
   RIGHT_PARENTESIS,
   COMMA,
-  BINARY_OPERATOR
+  BINARY_OPERATOR,
 }
 
 export interface TokenInfo {
@@ -36,16 +36,16 @@ export class Tokenizer {
 
   public tokenize(expression: string) {
     this.tokens = [];
-    while (expression !== "") {
+    while (expression !== '') {
       let match = false;
       for (let i = 0; i < this.tokenInfos.length; i++) {
-        let info = this.tokenInfos[i];
-        let result = info.pattern.exec(expression);
+        const info = this.tokenInfos[i];
+        const result = info.pattern.exec(expression);
 
         if (result && result.length > 0) {
           match = true;
           this.tokens.push({ token: info.token, sequence: result[0].trim() });
-          expression = expression.replace(info.pattern, "");
+          expression = expression.replace(info.pattern, '');
           break;
         }
       }

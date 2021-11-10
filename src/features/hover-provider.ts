@@ -1,7 +1,7 @@
-import { CancellationToken, TextDocument, Position, Hover } from 'vscode'
+import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
 
-import { isIntrinsic, loadDocString } from '../lib/helper'
-import { LoggingService } from '../services/logging-service'
+import { isIntrinsic, loadDocString } from '../lib/helper';
+import { LoggingService } from '../services/logging-service';
 
 export default class FortranHoverProvider {
   constructor(private loggingService: LoggingService) {}
@@ -10,11 +10,11 @@ export default class FortranHoverProvider {
     position: Position,
     token: CancellationToken
   ): Hover | Thenable<Hover> {
-    let wordRange = document.getWordRangeAtPosition(position)
-    let word = document.getText(wordRange)
+    const wordRange = document.getWordRangeAtPosition(position);
+    const word = document.getText(wordRange);
 
     if (isIntrinsic(word)) {
-      return new Hover(loadDocString(word))
+      return new Hover(loadDocString(word));
     }
   }
 }

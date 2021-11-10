@@ -25,36 +25,33 @@
 
 You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
 
-``` jsonc
+```jsonc
 {
-    "fortran.includePaths": [
-        "/usr/local/include",
-         "/usr/local"
-    ]
+  "fortran.includePaths": ["/usr/local/include", "/usr/local"]
 }
 ```
 
 By default the `gfortran` executable is assumed to be found in the path. In order to use a different one or if it can't be found in the path you can point the extension to use a custom one with the `fortran.gfortranExecutable` setting.
 
-``` jsonc
+```jsonc
 {
-    "fortran.gfortranExecutable": "/usr/local/bin/gfortran-4.7",
+  "fortran.gfortranExecutable": "/usr/local/bin/gfortran-4.7"
 }
 ```
 
 If you want to pass extra options to the `gfortran` executable or override the default one, you can use the setting `fortran.linterExtraArgs`. By default `-Wall` is the only option.
 
-``` jsonc
+```jsonc
 {
-    "fortran.linterExtraArgs": ["-Wall"],
+  "fortran.linterExtraArgs": ["-Wall"]
 }
 ```
 
 You can configure what kind of symbols will appear in the symbol list by using
 
-``` jsonc
+```jsonc
 {
-    "fortran.symbols": [ "function", "subroutine"]
+  "fortran.symbols": ["function", "subroutine"]
 }
 ```
 
@@ -70,7 +67,7 @@ and by default only functions and subroutines are shown
 
 You can also configure the case for fortran intrinsics auto-complete by using
 
-``` jsonc
+```jsonc
 {
     "fortran.preferredCase": "lowercase" | "uppercase"
 }
@@ -80,7 +77,7 @@ You can also configure the case for fortran intrinsics auto-complete by using
 
 This is a list of some of the snippets included, if you like to include additional snippets please let me know and I will add them.
 
-#### Program skeleton
+### Program skeleton
 
 ![program snippet](https://media.giphy.com/media/OYdq9BKYMOOdy/giphy.gif)
 
@@ -111,33 +108,33 @@ More details about how to setup the debugger can be found in Microsoft's website
 - C/C++ extension debugger information: <https://code.visualstudio.com/docs/cpp/cpp-debug>
 - Build tasks for easy compiling: <https://code.visualstudio.com/docs/editor/tasks>
 
-``` jsonc
+```jsonc
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Fortran",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/a.out",
+      "args": [], // Possible input args for a.out
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
         {
-            "name": "(gdb) Fortran",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/a.out",
-            "args": [], // Possible input args for a.out
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
@@ -167,7 +164,7 @@ If the formatter is not present in the `PATH` its location can be input with
 
 ```json
 {
-    "fortran.formattting.path": "/custom-path-to-formatter-binary",
+  "fortran.formattting.path": "/custom-path-to-formatter-binary"
 }
 ```
 
@@ -183,7 +180,7 @@ For debugging you need to have one of the following debuggers installed:
 
 - **Linux**: GDB
 - **macOS**: GDB or LLDB
-- **Windows**: GDB  or Visual Studio Windows Debugger
+- **Windows**: GDB or Visual Studio Windows Debugger
 
 ## Issues
 

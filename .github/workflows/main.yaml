@@ -5,14 +5,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x, 16.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: yarn test:grammar
-
- 
+      - name: Installing Extension
+        run: yarn install
+      - name: Compile
+        run: yarn compile
+      - name: Linting
+        run: yarn lint
+      - name: Test Syntax Highlighting
+        run: yarn test:grammar
+      - name: Test Unittests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: yarn test
