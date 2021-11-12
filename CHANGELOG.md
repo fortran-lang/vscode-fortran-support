@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#257](https://github.com/krvajal/vscode-fortran-support/issues/257))
 - Linting is now operational for `FortranFixedForm`
   ([#258](https://github.com/krvajal/vscode-fortran-support/issues/258))
+- Fixes dummy variable list erroneous syntax highlighting
+  ([#264](https://github.com/krvajal/vscode-fortran-support/issues/264))
 
 ### Changed
 
