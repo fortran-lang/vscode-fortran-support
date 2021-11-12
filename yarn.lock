@@ -125,7 +125,7 @@
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
   "version" "4.0.0"
 
-"@types/vscode@^1.62.0":
+"@types/vscode@^1.30.0":
   "integrity" "sha512-iGlQJ1w5e3qPUryroO6v4lxg3ql1ztdTCwQW3xEwFawdyPLoeUSv48SYfMwc7kQA7h6ThUqflZIjgKAykeF9oA=="
   "resolved" "https://registry.npmjs.org/@types/vscode/-/vscode-1.62.0.tgz"
   "version" "1.62.0"
