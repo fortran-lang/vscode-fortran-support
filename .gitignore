@@ -4,3 +4,8 @@ node_modules
 *.vsix
 .DS_Store
 coverage
+
+# Fortran files
+*.o
+*.mod
+*.smod
