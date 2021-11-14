@@ -8,6 +8,7 @@ import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
 import { resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
+import { glob } from 'glob';
 
 export default class FortranLintingProvider {
   constructor(private loggingService: LoggingService) {}
@@ -174,13 +175,38 @@ export default class FortranLintingProvider {
   private getIncludePaths(): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
     const includePaths: string[] = config.get('includePaths', []);
+    // Output the original include paths
+    this.loggingService.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
     // Resolve internal variables and expand glob patterns
     const resIncludePaths = includePaths.map(e => resolveVariables(e));
     // This needs to be after the resolvevariables since {} are used in globs
-    const globIncPaths: string[] = fg.sync(resIncludePaths, { onlyDirectories: true });
-    // Output the original include paths
-    this.loggingService.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
-    return globIncPaths;
+    try {
+      const globIncPaths: string[] = fg.sync(resIncludePaths, {
+        onlyDirectories: true,
+        suppressErrors: false,
+      });
+      return globIncPaths;
+      // Try to recover from fast-glob failing due to EACCES using slower more
+      // robust glob.
+    } catch (eacces) {
+      this.loggingService.logWarning(`You lack read permissions for an include directory
+          or more likely a glob match from the input 'includePaths' list. This can happen when
+          using overly broad root level glob patters e.g. /usr/lib/** .
+          No reason to worry. I will attempt to recover. 
+          You should consider adjusting your 'includePaths' if linting performance is slow.`);
+      this.loggingService.logWarning(`${eacces.message}`);
+      try {
+        const globIncPaths: string[] = [];
+        for (const i of resIncludePaths) {
+          // use '/' to match only directories and not files
+          globIncPaths.push(...glob.sync(i + '/', { strict: false }));
+        }
+        return globIncPaths;
+        // if we failed again then our includes are somehow wrong. Abort
+      } catch (error) {
+        this.loggingService.logError(`Failed to recover: ${error}`);
+      }
+    }
   }
 
   private getGfortranPath(): string {
