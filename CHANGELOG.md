@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.6.0]
 
+### Fixed
+
+- Fixes log channel not initialising when extension fails to activate
+  ([#286](https://github.com/krvajal/vscode-fortran-support/issues/286))
+
 ### Added
 
 - Adds support for variable and path interpolation along with glob expressions

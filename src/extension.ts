@@ -14,8 +14,10 @@ import * as pkg from '../package.json';
 import { LANG_SERVER_TOOL_ID } from './lib/tools';
 import { FortranFormattingProvider } from './features/formatting-provider';
 
+// Make it global to catch errors when activation fails
+const loggingService = new LoggingService();
+
 export function activate(context: vscode.ExtensionContext) {
-  const loggingService = new LoggingService();
   const extensionConfig = vscode.workspace.getConfiguration(EXTENSION_ID);
 
   loggingService.logInfo(`Extension Name: ${pkg.displayName}`);
