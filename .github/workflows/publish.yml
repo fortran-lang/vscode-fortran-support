@@ -1,7 +1,6 @@
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 name: Deploy Extension
 jobs:
