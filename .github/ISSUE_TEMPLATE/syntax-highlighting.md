@@ -4,7 +4,6 @@ about: Create a bug report for erroneous syntax highlighting
 title: ''
 labels: syntax-highlight
 assignees: ''
-
 ---
 
 **Describe the bug**

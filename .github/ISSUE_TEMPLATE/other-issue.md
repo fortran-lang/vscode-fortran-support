@@ -4,7 +4,6 @@ about: Any other issue not covered by the above templates
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Describe the issue**
