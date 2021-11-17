@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.6.0]
+## [2.6.1]
 
 ### Fixed
 
 - Fixes log channel not initialising when extension fails to activate
   ([#286](https://github.com/krvajal/vscode-fortran-support/issues/286))
+
+## [2.6.0]
 
 ### Added
 
@@ -334,7 +336,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.0...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.1...HEAD
+[2.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...v2.4.3
