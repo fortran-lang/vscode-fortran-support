@@ -6,6 +6,9 @@ import { FORTRAN_DOCUMENT_SELECTOR, getIncludeParams } from '../lib/helper';
 
 import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
+import { resolveVariables } from '../lib/tools';
+import * as fg from 'fast-glob';
+import { glob } from 'glob';
 
 export default class FortranLintingProvider {
   constructor(private loggingService: LoggingService) {}
@@ -95,12 +98,12 @@ export default class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const options = vscode.workspace.rootPath ? { cwd: vscode.workspace.rootPath } : undefined;
     const args = [
       '-fsyntax-only',
       '-cpp',
       '-fdiagnostics-show-option',
       ...this.getLinterExtraArgs(),
+      this.getModOutputDir(),
     ];
     const includePaths = this.getIncludePaths();
 
@@ -159,12 +162,53 @@ export default class FortranLintingProvider {
     this.command.dispose();
   }
 
+  private getModOutputDir(): string {
+    const config = vscode.workspace.getConfiguration('fortran');
+    let modout: string = config.get('linterModOutput', '');
+    if (modout) {
+      modout = '-J' + resolveVariables(modout);
+      this.loggingService.logInfo(`Linter.moduleOutput`);
+    }
+    return modout;
+  }
+
   private getIncludePaths(): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
     const includePaths: string[] = config.get('includePaths', []);
-
-    return includePaths;
+    // Output the original include paths
+    this.loggingService.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
+    // Resolve internal variables and expand glob patterns
+    const resIncludePaths = includePaths.map(e => resolveVariables(e));
+    // This needs to be after the resolvevariables since {} are used in globs
+    try {
+      const globIncPaths: string[] = fg.sync(resIncludePaths, {
+        onlyDirectories: true,
+        suppressErrors: false,
+      });
+      return globIncPaths;
+      // Try to recover from fast-glob failing due to EACCES using slower more
+      // robust glob.
+    } catch (eacces) {
+      this.loggingService.logWarning(`You lack read permissions for an include directory
+          or more likely a glob match from the input 'includePaths' list. This can happen when
+          using overly broad root level glob patters e.g. /usr/lib/** .
+          No reason to worry. I will attempt to recover. 
+          You should consider adjusting your 'includePaths' if linting performance is slow.`);
+      this.loggingService.logWarning(`${eacces.message}`);
+      try {
+        const globIncPaths: string[] = [];
+        for (const i of resIncludePaths) {
+          // use '/' to match only directories and not files
+          globIncPaths.push(...glob.sync(i + '/', { strict: false }));
+        }
+        return globIncPaths;
+        // if we failed again then our includes are somehow wrong. Abort
+      } catch (error) {
+        this.loggingService.logError(`Failed to recover: ${error}`);
+      }
+    }
   }
+
   private getGfortranPath(): string {
     const config = vscode.workspace.getConfiguration('fortran');
     const gfortranPath = config.get('gfortranExecutable', 'gfortran');
@@ -174,6 +218,8 @@ export default class FortranLintingProvider {
 
   private getLinterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
-    return config.get('linterExtraArgs', ['-Wall']);
+    const args = config.get('linterExtraArgs', ['-Wall']).map(e => resolveVariables(e));
+    this.loggingService.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
+    return args.map(e => resolveVariables(e));
   }
 }

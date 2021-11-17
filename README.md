@@ -144,9 +144,9 @@ Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
 and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
 installed with `pip` automatically through the extension.
 
-findent             |  fprettify
-:-------------------------:|:-------------------------:
-![](./images/findent-demo.gif)  |  ![](./images/fprettify-demo.gif)
+|            findent             |            fprettify             |
+| :----------------------------: | :------------------------------: |
+| ![](./images/findent-demo.gif) | ![](./images/fprettify-demo.gif) |
 
 The formatter is controlled by the user option
 

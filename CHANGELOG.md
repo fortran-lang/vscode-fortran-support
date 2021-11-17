@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.1]
+
+### Fixed
+
+- Fixes log channel not initialising when extension fails to activate
+  ([#286](https://github.com/krvajal/vscode-fortran-support/issues/286))
+
+## [2.6.0]
+
+### Added
+
+- Adds support for variable and path interpolation along with glob expressions
+  ([#231](https://github.com/krvajal/vscode-fortran-support/issues/231))
+  ([#86](https://github.com/krvajal/vscode-fortran-support/issues/86))
+- Adds explicit option `linterModOutput` for module output
+  ([#176](https://github.com/krvajal/vscode-fortran-support/issues/176))
+
 ## [2.5.0]
 
 ### Added
@@ -319,7 +336,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.1...HEAD
+[2.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.0...v2.6.1
+[2.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.1...v2.4.2
