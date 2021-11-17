@@ -17,6 +17,7 @@
 - Code autocompletion (beta)
 - Symbols provider
 - Debugger, uses Microsoft's [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
+- Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 
 ![symbol_nav](./doc/symbol_nav.png)
 
@@ -136,6 +137,44 @@ More details about how to setup the debugger can be found in Microsoft's website
   ]
 }
 ```
+
+## Formatting
+
+Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
+and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
+installed with `pip` automatically through the extension.
+
+findent             |  fprettify
+:-------------------------:|:-------------------------:
+![](./images/findent-demo.gif)  |  ![](./images/fprettify-demo.gif)
+
+The formatter is controlled by the user option
+
+```json
+{
+    "fortran.formatting.formatter": "Disabled" | "findent" | "fprettify",
+}
+```
+
+Additional arguments to the formatter can be input using
+
+```json
+{
+    "fortran.formatting.args":, ["-Cn", "--align-paren=1"]
+}
+```
+
+If the formatter is not present in the `PATH` its location can be input with
+
+```json
+{
+  "fortran.formattting.path": "/custom-path-to-formatter-binary"
+}
+```
+
+### NOTE: About `findent`
+
+`findent` can also be used to generate dependency files for a project.
 
 ## Requirements
 

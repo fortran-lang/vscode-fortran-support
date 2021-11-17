@@ -2,7 +2,7 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "publisher": "krvajalm",
   "license": "MIT",
   "author": {
@@ -36,7 +36,8 @@
     "Programming Languages",
     "Snippets",
     "Linters",
-    "Debuggers"
+    "Debuggers",
+    "Formatters"
   ],
   "activationEvents": [
     "onLanguage:FortranFreeForm",
@@ -158,6 +159,26 @@
             "-Wall"
           ],
           "description": "Specify additional options to use when calling the gfortran compiler"
+        },
+        "fortran.formatting.formatter": {
+          "type": "string",
+          "default": "findent",
+          "enum": [
+            "findent",
+            "fprettify",
+            "Disabled"
+          ],
+          "description": "Fortran formatter, currently supports findent and fprettify"
+        },
+        "fortran.formatting.args": {
+          "type": "array",
+          "default": [],
+          "description": "Additional arguments for the formatter"
+        },
+        "fortran.formatting.path": {
+          "type": "string",
+          "default": "",
+          "description": "Specify the full path of where the formatter is installed"
         },
         "fortran.provideSymbols": {
           "type": "boolean",
