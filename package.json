@@ -162,7 +162,7 @@
         },
         "fortran.formatting.formatter": {
           "type": "string",
-          "default": "Disabled",
+          "default": "findent",
           "enum": [
             "findent",
             "fprettify",
