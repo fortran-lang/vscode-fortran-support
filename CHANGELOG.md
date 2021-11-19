@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0]
+
+### Fixed
+
+- Fixes linting regex to capture a wider spectrum of errors
+  ([#295](https://github.com/krvajal/vscode-fortran-support/issues/295))
+
+### Changed
+
+- Changes the interface of the extension to accommodate for the newest features
+  ([#292](https://github.com/krvajal/vscode-fortran-support/issues/292))
+
+### Added
+
+- Adds support for Intel (ifort) and LLVM (flang) compilers
+  ([#291](https://github.com/krvajal/vscode-fortran-support/issues/291))
+- Adds native support for the fortran-language-server (`fortls`) making
+  unnecessary the usage of Fortran Intellisense extension
+  ([#290](https://github.com/krvajal/vscode-fortran-support/issues/290))
+
 ## [2.6.1]
 
 ### Fixed

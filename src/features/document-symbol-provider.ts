@@ -99,7 +99,8 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
 
   getSymbolTypes() {
     const config = vscode.workspace.getConfiguration('fortran');
-    const symbolTypes = config.get<SymbolType[]>('symbols', ['subroutine', 'function']);
+    // It does not make much sense for this to be an input option
+    const symbolTypes: SymbolType[] = ['subroutine', 'function', 'variable'];
     return symbolTypes;
   }
 }

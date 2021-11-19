@@ -25,6 +25,7 @@
 
 You can control the include paths to be used by the linter with the `fortran.linter.includePaths` setting.
 The `linter.includePaths` should match the include requirements for your projects compilation.
+
 > NOTE: if a glob pattern is used only directories matching the pattern will be included.
 
 ```jsonc
