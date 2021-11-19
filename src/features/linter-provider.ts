@@ -8,6 +8,7 @@ import { LoggingService } from '../services/logging-service';
 import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
+import { arraysEqual } from '../lib/helper';
 
 export class FortranLintingProvider {
   constructor(private logger: LoggingService = new LoggingService()) {}
@@ -15,6 +16,7 @@ export class FortranLintingProvider {
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
   private compilerPath: string;
+  private cache = { includePaths: [''], globIncPaths: [''] };
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -148,19 +150,39 @@ export class FortranLintingProvider {
     return modout;
   }
 
+  /**
+   * Resolves, interpolates and expands internal variables and glob patterns
+   * for the `linter.includePaths` option. The results are stored in a cache
+   * to improve performance
+   *
+   * @returns String Array of directories
+   */
   private getIncludePaths(): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
-    const includePaths: string[] = config.get('linter.includePaths', []);
+    let includePaths: string[] = config.get('linter.includePaths', []);
+
+    // Check if we can use the cached results for the include directories no
+    // need to evaluate the glob patterns everytime we call the linter
+    if (arraysEqual(includePaths, this.cache['includePaths'])) {
+      return this.cache['globIncPaths'];
+    }
+
+    // Update our cache input
+    this.cache['includePaths'] = includePaths;
     // Output the original include paths
     this.logger.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
     // Resolve internal variables and expand glob patterns
     const resIncludePaths = includePaths.map(e => resolveVariables(e));
+    // fast-glob cannot work with Windows paths
+    includePaths = includePaths.map(e => e.replace('/\\/g', '/'));
     // This needs to be after the resolvevariables since {} are used in globs
     try {
       const globIncPaths: string[] = fg.sync(resIncludePaths, {
         onlyDirectories: true,
         suppressErrors: false,
       });
+      // Update values in cache
+      this.cache['globIncPaths'] = globIncPaths;
       return globIncPaths;
       // Try to recover from fast-glob failing due to EACCES using slower more
       // robust glob.
@@ -177,6 +199,7 @@ export class FortranLintingProvider {
           // use '/' to match only directories and not files
           globIncPaths.push(...glob.sync(i + '/', { strict: false }));
         }
+        this.cache['globIncPaths'] = globIncPaths;
         return globIncPaths;
         // if we failed again then our includes are somehow wrong. Abort
       } catch (error) {
