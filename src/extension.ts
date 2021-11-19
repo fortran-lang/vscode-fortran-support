@@ -11,7 +11,7 @@ import { LoggingService } from './services/logging-service';
 import * as pkg from '../package.json';
 import { LANG_SERVER_TOOL_ID } from './lib/tools';
 import { FortranFormattingProvider } from './features/formatting-provider';
-import { FortranLanguageServer } from './fortls-interface';
+import { FortranLanguageServer } from './features/fortls-interface';
 import { EXTENSION_ID, FortranDocumentSelector, promptForMissingTool } from './lib/tools';
 
 // Make it global to catch errors when activation fails

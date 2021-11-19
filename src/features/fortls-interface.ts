@@ -5,8 +5,8 @@
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, Disposable } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
-import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
-import { LoggingService } from './services/logging-service';
+import { EXTENSION_ID, FortranDocumentSelector } from '../lib/tools';
+import { LoggingService } from '../services/logging-service';
 
 export class FortranLanguageServer {
   constructor(private logger: LoggingService) {
