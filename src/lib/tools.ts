@@ -75,6 +75,7 @@ export function promptForMissingTool(
 
             default:
               logger.logError(`Failed to install tool: ${tool}`);
+              vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
               break;
           }
         }
@@ -100,6 +101,8 @@ export function installPythonTool(pyPackage: string, logger?: LoggingService) {
       logger.logError(
         `Python package ${pyPackage} failed to install with code: ${code}, signal: ${signal}`
       );
+    } else {
+      logger.logInfo(`Successfully installed ${pyPackage}.`);
     }
   });
   installProcess.on('error', err => {
