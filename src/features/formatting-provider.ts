@@ -45,16 +45,14 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
 
     const formatterName = 'fprettify';
     const formatterPath: string = this.getFormatterPath();
-    // If no formatter path is present check that formatter is present in $PATH
-    if (!formatterPath) {
-      if (!which.sync(formatterName, { nothrow: true })) {
-        this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
-                                Attempting to install now.`);
-        const msg = `Installing ${formatterName} through pip with --user option`;
-        promptForMissingTool(formatterName, msg, 'Python');
-      }
-    }
     const formatter: string = path.join(formatterPath, formatterName);
+    // If no formatter is detected try and install it
+    if (!which.sync(formatter, { nothrow: true })) {
+      this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
+                                Attempting to install now.`);
+      const msg = `Installing ${formatterName} through pip with --user option`;
+      promptForMissingTool(formatterName, msg, 'Python');
+    }
 
     const args: string[] = [document.fileName, ...this.getFormatterArgs()];
     // args.push('--silent'); // TODO: pass?
@@ -86,16 +84,14 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private doFormatFindent(document: vscode.TextDocument) {
     const formatterName = 'findent';
     const formatterPath: string = this.getFormatterPath();
-    // If no formatter path is present check that formatter is present in $PATH
-    if (!formatterPath) {
-      if (!which.sync(formatterName, { nothrow: true })) {
-        this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
-                                Attempting to install now.`);
-        const msg = `Installing ${formatterName} through pip with --user option`;
-        promptForMissingTool(formatterName, msg, 'Python');
-      }
-    }
     let formatter: string = path.join(formatterPath, formatterName);
+    // If no formatter is detected try and install it
+    if (!which.sync(formatter, { nothrow: true })) {
+      this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
+                                    Attempting to install now.`);
+      const msg = `Installing ${formatterName} through pip with --user option`;
+      promptForMissingTool(formatterName, msg, 'Python');
+    }
 
     // Annoyingly findent only outputs to a file and not to a stream so
     // let us go and create a temporary file
