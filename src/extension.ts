@@ -3,7 +3,7 @@ import * as which from 'which';
 import * as vscode from 'vscode';
 
 import { FortranLintingProvider } from './features/linter-provider';
-import FortranHoverProvider from './features/hover-provider';
+import { FortranHoverProvider } from './features/hover-provider';
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
 
