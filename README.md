@@ -6,64 +6,58 @@
 [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
 [![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?)](http://opensource.org/licenses/MIT)
 
-> This extension provides support for the Fortran programming language. It includes syntax highlighting, debugging, code snippets and a linting based on `gfortran`. You can download the Visual Studio Code editor from [here](https://code.visualstudio.com/download).
+## Key Features
 
-## Features
-
-- Syntax highlighting
-- Code Snippets
-- Documentation on hover for intrinsic functions
-- Code linting based on `gfortran` to show errors wiggles in your code
-- Code autocompletion (beta)
-- Symbols provider
+- Syntax highlighting (Free and Fixed forms)
+- Hover support
+- Autocompletion support
+- Peek/Go to definitions and references
+- Linting support i.e. error wiggles for `gfortran`, `flang` and `ifort`
+- Symbols outline support for functions, subroutines, modules, etc.
+- Native support leveraging the `fortran-language-server`
 - Debugger, uses Microsoft's [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
 - Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
+- Code snippets (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
 
-![symbol_nav](./doc/symbol_nav.png)
+![alt](./images/intro-demo.gif)
 
 ## Settings
 
-You can control the include paths to be used by the linter with the `fortran.includePaths` setting.
+You can control the include paths to be used by the linter with the `fortran.linter.includePaths` setting.
+The `linter.includePaths` should match the include requirements for your projects compilation.
+> NOTE: if a glob pattern is used only directories matching the pattern will be included.
 
 ```jsonc
 {
-  "fortran.includePaths": ["/usr/local/include", "/usr/local"]
+  "fortran.linter.includePaths": ["/usr/include/**", "${workspaceFolder}/include/**"]
 }
 ```
 
-By default the `gfortran` executable is assumed to be found in the path. In order to use a different one or if it can't be found in the path you can point the extension to use a custom one with the `fortran.gfortranExecutable` setting.
+By default the `gfortran` executable is assumed to be found in the path. In order to use a different one or if it can't be found in the path you can point the extension to use a custom one with the `fortran.linter.compilerPath` setting.
 
 ```jsonc
 {
-  "fortran.gfortranExecutable": "/usr/local/bin/gfortran-4.7"
+  "fortran.linter.compilerPath": "/usr/local/bin/gfortran-11.2"
 }
 ```
 
-If you want to pass extra options to the `gfortran` executable or override the default one, you can use the setting `fortran.linterExtraArgs`. By default `-Wall` is the only option.
+If you want to pass extra options to the `gfortran` executable or override the default one, you can use the setting `fortran.linter.extraArgs`. Default value is `-Wall` (or `-warn all` for ifort).
 
 ```jsonc
 {
-  "fortran.linterExtraArgs": ["-Wall"]
+  "fortran.linter.extraArgs": ["-Wall"]
 }
 ```
 
-You can configure what kind of symbols will appear in the symbol list by using
+To show the symbols in the file outline enable `provide.symbols`. Symbols can be
+served by the fortran-language-server, the built-in, both or none. By default
+`fortls` is used.
 
 ```jsonc
 {
-  "fortran.symbols": ["function", "subroutine"]
+  "fortran.provide.symbols": "fortls" | "Built-in" | "Both" | "Disable"
 }
 ```
-
-The available options are
-
-- "function"
-- "subroutine"
-- "variable"
-- "module" (not supported yet)
-- "program" (not supported yet)
-
-and by default only functions and subroutines are shown
 
 You can also configure the case for fortran intrinsics auto-complete by using
 
@@ -144,9 +138,9 @@ Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
 and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
 installed with `pip` automatically through the extension.
 
-|            findent             |            fprettify             |
-| :----------------------------: | :------------------------------: |
-| ![](./images/findent-demo.gif) | ![](./images/fprettify-demo.gif) |
+|              findent              |              fprettify              |
+| :-------------------------------: | :---------------------------------: |
+| ![alt](./images/findent-demo.gif) | ![alt](./images/fprettify-demo.gif) |
 
 The formatter is controlled by the user option
 
@@ -160,7 +154,7 @@ Additional arguments to the formatter can be input using
 
 ```json
 {
-    "fortran.formatting.args":, ["-Cn", "--align-paren=1"]
+    "fortran.formatting.args":, ["-Cn", "-Rr"]
 }
 ```
 
@@ -175,6 +169,33 @@ If the formatter is not present in the `PATH` its location can be input with
 ### NOTE: About `findent`
 
 `findent` can also be used to generate dependency files for a project.
+
+## All options
+
+A summary of all the options
+
+| Setting                       | Possible values                          | Default     | Description                                                                                                  |
+| ----------------------------- | ---------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| `provide.hover`               | `fortls`, `Built-in`, `Both`, `Disabled` | `fortls`    | Enables hover support, by default it uses fortran-language-server                                            |
+| `provide.autocomplete`        | `fortls`, `Built-in`, `Both`, `Disabled` | `fortls`    | Enables code autocompletion, by default it uses fortran-language-server                                      |
+| `provide.symbols`             | `fortls`, `Built-in`, `Both`, `Disabled` | `fortls`    | Outline of type members in the document, by default it uses fortran-language-server                          |
+| `linter.compiler`             | `gfortran`, `flang`, `ifort`, `Disabled` | `gfortran`  | Compiler used for linting support                                                                            |
+| `linter.includePaths`         | String Array                             | `[]`        | Specifies folder paths to be used as include paths during linting. Can handle globs                          |
+| `linter.compilerPath`         | String                                   | `''`        | Specifies the path to the linter executable                                                                  |
+| `linter.extraArgs`            | String Array                             | `[-Wall]`   | Pass additional options to the linter compiler                                                               |
+| `linter.modOutput`            | String                                   | `''`        | Global output directory for .mod files generated due to linting                                              |
+| `formatting.formatter`        | `findent`, `fprettify`, `Disabled`       | `findent`   | Fortran formatter, currently supports findent and fprettify                                                  |
+| `fortran.formatting.args`     | String Array                             | `[]`        | Additional arguments for the formatter                                                                       |
+| `formatting.path`             | String                                   | `''`        | If the formatter is not in the $PATH specify the full path to its location                                   |
+| `fortls.path`                 | String                                   | `fortls`    | Path to the Fortran language server (fortls)                                                                 |
+| `fortls.preserveKeywordOrder` | Boolean                                  | `true`      | Display variable keywords information when hovering in original order (default: sort to consistent ordering) |
+| `fortls.disableDiagnostics`   | Boolean                                  | `false`     | Disable diagnostics (requires v1.12.0+)                                                                      |
+| `fortls.incrementalSync`      | Boolean                                  | `true`      | Use incremental synchronization for file changes                                                             |
+| `fortls.notifyInit`           | Boolean                                  | `false`     | Notify when workspace initialization is complete (requires v1.7.0+)                                          |
+| `fortls.extraArgs`            | String Array                             | `[]`        | Additional arguments for the fortran-language-server                                                         |
+| `maxLineLength`               | Number                                   | -1          | Maximum line length (fortls requires v1.8.0+). Passed in both the linter and the language server             |
+| `maxCommentLineLength`        | Number                                   | -1          | Maximum comment line length (fortls requires v1.8.0+). Passed in both the linter and the language server     |
+| `preferredCase`               | `lowercase`, `uppercase`                 | `lowercase` | Specify the word case to use when suggesting autocomplete options                                            |
 
 ## Requirements
 
