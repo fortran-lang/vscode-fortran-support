@@ -90,13 +90,20 @@ function detectDeprecatedOptions() {
   if (config.get('provideHover')) oldArgs.push('fortran.provideHover');
   if (config.get('provideCompletion')) oldArgs.push('fortran.provideCompletion');
 
+  // only captures config options set to true but the package.json deprecation
+  // descriptions should take care of the rest
   if (oldArgs.length !== 0) {
-    const err = vscode.window.showErrorMessage(
-      `Deprecated settings have been detected in your settings.
+    vscode.window
+      .showErrorMessage(
+        `Deprecated settings have been detected in your settings.
        Please update your settings to make use of the new names. The old names will not work.`,
-      'Open Settings'
-    );
-    err.then(() => vscode.commands.executeCommand('workbench.action.openGlobalSettings'));
-    loggingService.logError(`The following deprecated options have been detected:\n${oldArgs}`);
+        'Open Settings'
+      )
+      .then(selected => {
+        if (selected === 'Open Settings') {
+          vscode.commands.executeCommand('workbench.action.openGlobalSettings');
+        }
+        loggingService.logError(`The following deprecated options have been detected:\n${oldArgs}`);
+      });
   }
 }
