@@ -254,7 +254,15 @@ export class FortranLintingProvider {
     }
     const user_args: string[] = config.get('linter.extraArgs');
     // If we have specified linter.extraArgs then replace default arguments
-    if (user_args.length) args = config.get<string[]>('linter.extraArgs');
+    if (user_args.length > 0) args = user_args.slice();
+    // gfortran and flang have compiler flags for restricting the width of
+    // the code.
+    // You can always override by passing in the correct args as extraArgs
+    if (compiler !== 'ifort') {
+      const ln: number = config.get('fortls.maxLineLength');
+      const lnStr: string = ln === -1 ? 'none' : ln.toString();
+      args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
+    }
     this.logger.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
 
     // Resolve internal variables but do not apply glob pattern matching
@@ -429,7 +437,7 @@ export class FortranLintingProvider {
       // ifort theoretically supports fsyntax-only too but I had trouble
       // getting it to work on my machine
       case 'ifort':
-        return ['-syntax-only'];
+        return ['-syntax-only', '-fpp'];
 
       default:
         break;

@@ -155,11 +155,9 @@
           "default": "fortls",
           "enum": [
             "fortls",
-            "Built-in",
-            "Both",
-            "Disabled"
+            "Both"
           ],
-          "description": "Outline of type members in the document, by default it uses fortran-language-server."
+          "description": "Outline of modules, functions, subroutines, etc. in the document, by default it uses fortran-language-server, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
         },
         "fortran.linter.compiler": {
           "type": "string",
@@ -234,17 +232,32 @@
         "fortran.fortls.disableDiagnostics": {
           "type": "boolean",
           "default": false,
-          "description": "Disable diagnostics (requires v1.12.0+)."
+          "description": "Disable additional diagnostics from fortls e.g. multiple variable definitions, unknown modules in use statement (requires v1.12.0+)."
         },
         "fortran.fortls.incrementalSync": {
           "type": "boolean",
           "default": true,
           "description": "Use incremental synchronization for file changes."
         },
+        "fortran.fortls.symbolTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include derived types in the symbols outline. If false it adds the  `--symbol_skip_mem` argument to fortls."
+        },
         "fortran.fortls.notifyInit": {
           "type": "boolean",
           "default": false,
           "description": "Notify when workspace initialization is complete (requires v1.7.0+)."
+        },
+        "fortran.fortls.maxLineLength": {
+          "type": "number",
+          "default": -1,
+          "description": "Maximum line length (fortls requires v1.8.0+). For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
+        },
+        "fortran.fortls.maxCommentLineLength": {
+          "type": "number",
+          "default": -1,
+          "description": "Maximum comment line length (fortls requires v1.8.0+)."
         },
         "fortran.fortls.extraArgs": {
           "type": [
@@ -255,16 +268,6 @@
           },
           "default": [],
           "description": "Additional arguments for the fortran-language-server"
-        },
-        "fortran.maxLineLength": {
-          "type": "number",
-          "default": -1,
-          "description": "Maximum line length (fortls requires v1.8.0+). Passed in both the linter and the language server."
-        },
-        "fortran.maxCommentLineLength": {
-          "type": "number",
-          "default": -1,
-          "description": "Maximum comment line length (fortls requires v1.8.0+). Passed in both the linter and the language server."
         },
         "fortran.preferredCase": {
           "type": "string",
@@ -294,7 +297,7 @@
           "deprecationMessage": "fortran.provideSymbols has been renamed to fortran.provide.symbols. By default the fortran-language-server symbols are used, to enable the built-in symbols turn on the Built-in option."
         },
         "fortran.symbols": {
-          "deprecationMessage": "fortran.symbols has been removed in favour of returning all symbols."
+          "deprecationMessage": "fortran.symbols has been removed in favour of the fortran language server returning all symbols."
         },
         "fortran.provideHover": {
           "deprecationMessage": "fortran.provideHover has been renamed to fortran.provide.hover. By default the fortran-language-server hover is used, to enable the built-in hover turn on the Built-in option."

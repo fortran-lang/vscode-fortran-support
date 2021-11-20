@@ -58,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerHoverProvider(FortranDocumentSelector(), hoverProvider);
   }
 
-  if (symbolsType === 'Built-in') {
+  if (symbolsType === 'Both') {
     const symbolProvider = new FortranDocumentSymbolProvider();
     vscode.languages.registerDocumentSymbolProvider(FortranDocumentSelector(), symbolProvider);
   }

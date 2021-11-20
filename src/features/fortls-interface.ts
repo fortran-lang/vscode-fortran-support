@@ -42,51 +42,43 @@ export class FortranLanguageServer {
    */
   private didOpenTextDocument(document: TextDocument): void {
     // We are only interested in Fortran files
-    if (!document.languageId.toLowerCase().startsWith('fortran')) {
+    if (
+      !FortranDocumentSelector().some(e => e.scheme === document.uri.scheme) ||
+      !FortranDocumentSelector().some(e => e.language === document.languageId)
+    ) {
       return;
     }
     const uri = document.uri;
     const folder = workspace.getWorkspaceFolder(uri);
     // Files outside a folder can't be handled. This might depend on the language.
     // Single file languages like JSON might handle files outside the workspace folders.
-    if (!folder) {
-      return;
-    }
-    this.logger.logInfo('Fortran Language Server');
+    // This will be undefined if the file does not belong to the workspace
+    if (!folder) return;
+    if (this.clients.has(folder.uri.toString())) return;
 
-    // If we have nested workspace folders we only start a server on the outer most workspace folder.
-    // folder = this.getOuterMostWorkspaceFolder(folder);
-    if (this.clients.has(folder.uri.toString())) {
-      return;
-    }
+    this.logger.logInfo('Initialising the Fortran Language Server');
 
     // Get path for the language server
     const conf = workspace.getConfiguration(EXTENSION_ID);
-    const executablePath = conf.get<string>('path') || 'fortls';
-    const maxLineLength = conf.get<number>('maxLineLength') || -1;
-    const maxCommentLineLength = conf.get<number>('maxCommentLineLength') || -1;
+    const executablePath = conf.get<string>('fortls.path');
+    const maxLineLength = conf.get<number>('fortls.maxLineLength');
+    const maxCommentLineLength = conf.get<number>('fortls.maxCommentLineLength');
+    const fortlsExtraArgs = conf.get<string[]>('fortls.extraArgs');
+    const autocomplete = conf.get<string>('provide.autocomplete');
+    const letterCase = conf.get<string>('preferredCase');
+    const hover = conf.get<string>('provide.hover');
 
     // Setup server arguments
     const args: string[] = ['--enable_code_actions'];
-    // todo: fortran.useFortranLanguageServer: true|false
-    if (conf.get<string>('provide.autocomplete', 'fortls') === 'Disabled') {
+    if (autocomplete === 'Disabled' || autocomplete === 'Built-in') {
       args.push('--autocomplete_no_prefix');
     }
-    if (conf.get<string>('preferredCase', 'lowercase') === 'lowercase') {
-      args.push('--lowercase_intrinsics');
-    }
-    if (conf.get<string>('provide.symbols', 'fortls') === 'Disabled') {
-      args.push('--symbol_skip_mem');
-    }
-
     // Enable all hover functionality. Does not make much sense to have one
     // but not the other two
-    if (
-      conf.get<string>('provide.hover', 'fortls') === 'fortls' ||
-      conf.get<string>('provide.hover', 'fortls') === 'Both'
-    ) {
+    if (hover === 'fortls' || hover === 'Both') {
       args.push('--variable_hover', '--hover_signature', '--use_signature_help');
     }
+    if (letterCase === 'lowercase') args.push('--lowercase_intrinsics');
 
     // FORTLS specific args with no overlap with the main extension
     if (conf.get<boolean>('fortls.preserveKeywordOrder')) {
@@ -96,18 +88,23 @@ export class FortranLanguageServer {
       args.push('--disable_diagnostics');
     }
     if (conf.get<boolean>('fortls.incrementalSync')) {
-      args.push('--incrmental_sync');
+      args.push('--incremental_sync');
+    }
+    if (!conf.get<boolean>('fortls.symbolTypes')) {
+      args.push('--symbol_skip_mem');
     }
     if (conf.get<boolean>('fortls.notifyInit')) {
       args.push('--notify_init');
     }
 
-    // TODO: this should also be passed in the linter.extraArgs
     if (maxLineLength > 0) {
       args.push(`--max_line_length=${maxLineLength}`);
     }
     if (maxCommentLineLength > 0) {
       args.push(`--max_comment_line_length=${maxCommentLineLength}`);
+    }
+    if (fortlsExtraArgs.length > 0) {
+      args.push(...fortlsExtraArgs);
     }
 
     // Detect language server version and verify selected options
