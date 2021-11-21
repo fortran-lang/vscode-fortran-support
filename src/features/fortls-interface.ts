@@ -16,7 +16,7 @@ export class FortranLanguageServer {
   private clients: Map<string, LanguageClient> = new Map();
   private _fortlsVersion: string | undefined;
 
-  public activate(disposables: Disposable[]) {
+  public async activate(disposables: Disposable[]) {
     workspace.onDidOpenTextDocument(this.didOpenTextDocument, this, disposables);
     workspace.textDocuments.forEach(this.didOpenTextDocument, this);
     return;

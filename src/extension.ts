@@ -17,7 +17,7 @@ import { EXTENSION_ID, FortranDocumentSelector, promptForMissingTool } from './l
 // Make it global to catch errors when activation fails
 const loggingService = new LoggingService();
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration(EXTENSION_ID);
   const linterType = config.get<string>('linter.compiler');
   const formatterType = config.get<string>('formatting.formatter');

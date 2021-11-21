@@ -27,7 +27,7 @@ export class FortranLintingProvider {
     return;
   }
 
-  public activate(subscriptions: vscode.Disposable[]) {
+  public async activate(subscriptions: vscode.Disposable[]) {
     this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
 
     vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);

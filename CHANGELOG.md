@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Changes the interface of the extension to accommodate for the newest features
   ([#292](https://github.com/krvajal/vscode-fortran-support/issues/292))
+- Changes main parts of the extension to being asynchronous
+  ([#285](https://github.com/krvajal/vscode-fortran-support/issues/285))
 
 ### Added
 
