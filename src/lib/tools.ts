@@ -50,7 +50,7 @@ export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
  * @param msg optional message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
  */
-export function promptForMissingTool(
+export async function promptForMissingTool(
   tool: string,
   msg: string,
   toolType: string,
@@ -58,7 +58,7 @@ export function promptForMissingTool(
 ) {
   const items = ['Install'];
   return new Promise((resolve, reject) => {
-    resolve(
+    return resolve(
       vscode.window.showInformationMessage(msg, ...items).then(selected => {
         if (selected === 'Install') {
           switch (toolType) {
@@ -92,22 +92,22 @@ export function promptForMissingTool(
  * @param logger `optional` logging channel for output
  */
 export function installPythonTool(pyPackage: string, logger?: LoggingService) {
-  const installProcess = cp.spawn('pip', 'install --user --upgrade '.concat(pyPackage).split(' '));
-  installProcess.stdout.on('data', data => {
-    logger.logInfo(`pip install: ${data}`);
-  });
-  installProcess.on('exit', (code, signal) => {
-    if (code !== 0) {
-      logger.logError(
-        `Python package ${pyPackage} failed to install with code: ${code}, signal: ${signal}`
-      );
-    } else {
-      logger.logInfo(`Successfully installed ${pyPackage}.`);
-    }
-  });
-  installProcess.on('error', err => {
-    logger.logError(`${err}`);
-  });
+  const installProcess = cp.spawnSync(
+    'pip',
+    'install --user --upgrade '.concat(pyPackage).split(' ')
+  );
+  if (installProcess.error) {
+    logger.logError(
+      `Python package ${pyPackage} failed to install with code: ${installProcess.error}`
+    );
+  }
+  if (installProcess.stdout) {
+    const sep = '-'.repeat(80);
+    logger.logInfo(
+      `pip install --user --upgrade ${pyPackage}:\n${sep}\n${installProcess.stdout}${sep}`
+    );
+    logger.logInfo(`pip install was successful`);
+  }
 }
 
 /**
