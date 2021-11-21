@@ -11,5 +11,5 @@ First of all, this is a Visual Studio Code extension that uses TypeScript and to
 1. Fork the repo
 2. Clone your fork
 3. Create a branch
-4. Run `yarn install`
-5. To test the extension run `yarn test:grammar && yarn test`
+4. Run `npm install`
+5. To test the extension run `npm run test:grammar && npm test`
