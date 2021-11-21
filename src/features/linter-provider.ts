@@ -52,6 +52,9 @@ export class FortranLintingProvider {
   }
 
   private doModernFortranLint(textDocument: vscode.TextDocument) {
+    // Only lint if a compiler is specified
+    const config = vscode.workspace.getConfiguration('fortran.linter');
+    if (config.get<string>('fortran.linter.compiler') === 'Disabled') return;
     // Only lint Fortran (free, fixed) format files
     if (
       !FortranDocumentSelector().some(e => e.scheme === textDocument.uri.scheme) ||

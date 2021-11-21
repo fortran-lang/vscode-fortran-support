@@ -34,11 +34,10 @@ export async function activate(context: vscode.ExtensionContext) {
   loggingService.logInfo(`Hover set to: ${hoverType}`);
   loggingService.logInfo(`Symbols set to: ${symbolsType}`);
 
-  if (linterType !== 'Disabled') {
-    const linter = new FortranLintingProvider(loggingService);
-    linter.activate(context.subscriptions);
-    vscode.languages.registerCodeActionsProvider(FortranDocumentSelector(), linter);
-  }
+  // Linter is always activated but will only lint if compiler !== Disabled
+  const linter = new FortranLintingProvider(loggingService);
+  linter.activate(context.subscriptions);
+  vscode.languages.registerCodeActionsProvider(FortranDocumentSelector(), linter);
 
   if (formatterType !== 'Disabled') {
     const disposable: vscode.Disposable = vscode.languages.registerDocumentFormattingEditProvider(

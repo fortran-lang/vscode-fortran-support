@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fixes linting regex to capture a wider spectrum of errors
   ([#295](https://github.com/krvajal/vscode-fortran-support/issues/295))
+- Fixes linter activation from `Disabled` to some compiler `X` without having
+  to restart the extension
+  ([#296](https://github.com/krvajal/vscode-fortran-support/issues/296))
 
 ### Changed
 
