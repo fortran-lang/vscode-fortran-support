@@ -29,5 +29,35 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.configPath": ".prettierrc"
+  "prettier.configPath": ".prettierrc",
+
+  "files.associations": {
+    "*.fd": "FortranFixedForm"
+  },
+
+  // ***************************************************************************
+  // Fortran Options
+  // ***************************************************************************
+  // Fortran providers
+  "fortran.provide.hover": "fortls",
+  "fortran.provide.symbols": "fortls",
+  "fortran.provide.autocomplete": "fortls",
+  // // Linter options
+  "fortran.linter.compiler": "gfortran",
+  "fortran.linter.includePaths": ["/usr/include/", "/usr/include/*"],
+  // Add arguments used in compilation
+  "fortran.linter.extraArgs": [
+    "-fdefault-real-8",
+    "-fdefault-double-8",
+    "-Wunused-variable",
+    "-Wunused-dummy-argument"
+  ],
+  // Formatting options
+  "fortran.formatting.formatter": "findent",
+  "fortran.formatting.args": ["-Cn", "--align-paren=1"],
+  // Fortran-Language-Server specific options
+  "fortran.fortls.incrementalSync": true,
+  "fortran.fortls.preserveKeywordOrder": true,
+  // Other Fortran options
+  "fortran.preferredCase": "lowercase"
 }
