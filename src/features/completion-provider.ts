@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { isPositionInString, intrinsics, FORTRAN_KEYWORDS } from '../lib/helper';
 import { getDeclaredFunctions } from '../lib/functions';
 
-import { EXTENSION_ID } from '../lib/helper';
+import { EXTENSION_ID } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
 
 class CaseCoverter {

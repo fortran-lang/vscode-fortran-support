@@ -6,9 +6,8 @@ import * as which from 'which';
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 
-import { FORMATTERS } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
-import { EXTENSION_ID, promptForMissingTool } from '../lib/helper';
+import { FORMATTERS, EXTENSION_ID, promptForMissingTool } from '../lib/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
   constructor(private logger: LoggingService) {}

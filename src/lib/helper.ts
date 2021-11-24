@@ -4,15 +4,7 @@ import { installPythonTool } from './tools';
 import intrinsics from './fortran-intrinsics';
 import { LoggingService } from '../services/logging-service';
 
-// IMPORTANT: this should match the value
-// on the package.json otherwise the extension won't
-// work at all
-export const FORTRAN_DOCUMENT_SELECTOR = [
-  { scheme: 'file', language: 'FortranFreeForm' },
-  { scheme: 'file', language: 'FortranFixedForm' },
-];
 export { intrinsics };
-export const EXTENSION_ID = 'fortran';
 
 export const FORTRAN_KEYWORDS = [
   'FUNCTION',
@@ -84,10 +76,6 @@ export const _loadDocString = (keyword: string) => {
   return docText;
 };
 
-export const getIncludeParams = (paths: string[]) => {
-  return paths.map(path => `-I${path}`);
-};
-
 export function isPositionInString(
   document: vscode.TextDocument,
   position: vscode.Position
@@ -111,52 +99,6 @@ const saveKeywordToJson = keyword => {
     console.log('Saved!');
   });
 };
-
-/**
- * Install a package either a Python pip package or a VS Marketplace Extension.
- *
- * For the Python install supply the name of the package in PyPi
- * e.g. fortran-language-server
- *
- * For the VS Extension to be installed supply the id of the extension
- * e.g 'hansec.fortran-ls'
- *
- * @param tool name of the tool e.g. fortran-language-server
- * @param msg optional message for installing said package
- * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
- */
-export function promptForMissingTool(
-  tool: string,
-  msg: string,
-  toolType: string,
-  logger?: LoggingService
-) {
-  const items = ['Install'];
-  return new Promise((resolve, reject) => {
-    resolve(
-      vscode.window.showInformationMessage(msg, ...items).then(selected => {
-        if (selected === 'Install') {
-          switch (toolType) {
-            case 'Python':
-              installPythonTool(tool, logger);
-              break;
-
-            case 'VSExt':
-              logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
-              vscode.commands.executeCommand('extension.open', tool);
-              vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
-              logger.logInfo(`Extension ${tool} successfully installed`);
-              break;
-
-            default:
-              logger.logError(`Failed to install tool: ${tool}`);
-              break;
-          }
-        }
-      })
-    );
-  });
-}
 
 export function isUri(input: any): input is vscode.Uri {
   return input && input instanceof vscode.Uri;

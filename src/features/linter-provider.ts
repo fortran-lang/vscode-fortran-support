@@ -2,11 +2,10 @@
 
 import * as path from 'path';
 import * as cp from 'child_process';
-import { FORTRAN_DOCUMENT_SELECTOR, getIncludeParams } from '../lib/helper';
 
 import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
-import { resolveVariables } from '../lib/tools';
+import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
 
@@ -21,8 +20,8 @@ export default class FortranLintingProvider {
 
     // Only lint Fortran (free, fixed) format files
     if (
-      !FORTRAN_DOCUMENT_SELECTOR.some(e => e.scheme === textDocument.uri.scheme) ||
-      !FORTRAN_DOCUMENT_SELECTOR.some(e => e.language === textDocument.languageId)
+      !FortranDocumentSelector().some(e => e.scheme === textDocument.uri.scheme) ||
+      !FortranDocumentSelector().some(e => e.language === textDocument.languageId)
     ) {
       return;
     }
@@ -111,7 +110,7 @@ export default class FortranLintingProvider {
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
     const argList = [
       ...args,
-      ...getIncludeParams(includePaths), // include paths
+      ...this.getIncludeParams(includePaths), // include paths
       textDocument.fileName,
       `-o ${fileNameWithoutExtension}.mod`,
     ];
@@ -222,4 +221,8 @@ export default class FortranLintingProvider {
     this.loggingService.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
     return args.map(e => resolveVariables(e));
   }
+
+  private getIncludeParams = (paths: string[]) => {
+    return paths.map(path => `-I${path}`);
+  };
 }

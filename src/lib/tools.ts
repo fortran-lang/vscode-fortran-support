@@ -1,6 +1,3 @@
-export const LANG_SERVER_TOOL_ID = 'fortran-language-server';
-export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
-
 import * as os from 'os';
 import * as vscode from 'vscode';
 import * as assert from 'assert';
@@ -8,9 +5,91 @@ import * as cp from 'child_process';
 import { LoggingService } from '../services/logging-service';
 import { isString, isArrayOfString } from './helper';
 
+export const EXTENSION_ID = 'fortran';
+export const LANG_SERVER_TOOL_ID = 'fortran-language-server';
+export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
+
 // Platform-specific environment variable delimiter
 export const envDelimiter: string = process.platform === 'win32' ? ';' : ':';
 
+/**
+ * Generates a document selector for the supported file and languages
+ * if the folder is present then a glob pattern for all the files in the workspace
+ * is included
+ *
+ * @warning this should match the value on the package.json otherwise the extension
+ * won't work at all
+ *
+ * @param folder `optional` WorkspaceFolder to search
+ * @returns tuple of DocumentSelector
+ */
+export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
+  if (folder) {
+    return [
+      { scheme: 'file', language: 'FortranFreeForm', pattern: `${folder.uri.fsPath}/**/*` },
+      { scheme: 'file', language: 'FortranFixedForm', pattern: `${folder.uri.fsPath}/**/*` },
+    ];
+  } else {
+    return [
+      { scheme: 'file', language: 'FortranFreeForm' },
+      { scheme: 'file', language: 'FortranFixedForm' },
+    ];
+  }
+}
+
+/**
+ * Install a package either a Python pip package or a VS Marketplace Extension.
+ *
+ * For the Python install supply the name of the package in PyPi
+ * e.g. fortran-language-server
+ *
+ * For the VS Extension to be installed supply the id of the extension
+ * e.g 'hansec.fortran-ls'
+ *
+ * @param tool name of the tool e.g. fortran-language-server
+ * @param msg optional message for installing said package
+ * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
+ */
+export function promptForMissingTool(
+  tool: string,
+  msg: string,
+  toolType: string,
+  logger?: LoggingService
+) {
+  const items = ['Install'];
+  return new Promise((resolve, reject) => {
+    resolve(
+      vscode.window.showInformationMessage(msg, ...items).then(selected => {
+        if (selected === 'Install') {
+          switch (toolType) {
+            case 'Python':
+              installPythonTool(tool, logger);
+              break;
+
+            case 'VSExt':
+              logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
+              vscode.commands.executeCommand('extension.open', tool);
+              vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
+              logger.logInfo(`Extension ${tool} successfully installed`);
+              break;
+
+            default:
+              logger.logError(`Failed to install tool: ${tool}`);
+              break;
+          }
+        }
+      })
+    );
+  });
+}
+
+/**
+ * A wrapper around a call to `pip` for installing external tools.
+ * Does not explicitly check if `pip` is installed.
+ *
+ * @param pyPackage name of python package in PyPi
+ * @param logger `optional` logging channel for output
+ */
 export function installPythonTool(pyPackage: string, logger?: LoggingService) {
   const installProcess = cp.spawn('pip', 'install --user --upgrade '.concat(pyPackage).split(' '));
   installProcess.stdout.on('data', data => {

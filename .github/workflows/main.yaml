@@ -13,14 +13,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Installing Extension
-        run: yarn install
+        run: npm ci
       - name: Compile
-        run: yarn compile
+        run: npm run compile
       - name: Linting
-        run: yarn lint
+        run: npm run lint
       - name: Test Syntax Highlighting
-        run: yarn test:grammar
+        run: npm run test:grammar
       - name: Test Unittests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: yarn test
+          run: npm test
