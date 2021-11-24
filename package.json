@@ -2,7 +2,7 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "publisher": "krvajalm",
   "license": "MIT",
   "author": {
@@ -221,6 +221,11 @@
             "uppercase"
           ],
           "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+        },
+        "fortran.ignoreWarning.fortls": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide error message when the fortran-language-server is not detected"
         }
       }
     },
