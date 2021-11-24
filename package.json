@@ -278,6 +278,11 @@
           ],
           "description": "Specify the word case to use when suggesting autocomplete options."
         },
+        "fortran.ignoreWarning.fortls": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide error message when the fortran-language-server is not detected"
+        },
         "fortran.includePaths": {
           "deprecationMessage": "fortran.includePaths has been renamed to fortran.linter.includePaths."
         },

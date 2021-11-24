@@ -66,19 +66,30 @@ export async function activate(context: vscode.ExtensionContext) {
   // Not the most elegant solution but we need pip install to have finished
   // before the activate function is called so we do a little code duplication
   which(config.get<string>('fortls.path'), err => {
-    if (err) {
-      const msg = `It is highly recommended to use the fortran-language-server to
+    if (!config.get('ignoreWarning.fortls')) {
+      if (err) {
+        const msg = `It is highly recommended to use the fortran-language-server to
               enable IDE features like hover, peeking, gotos and many more.
               For a full list of features the language server adds see:
               https://github.com/hansec/fortran-language-server`;
-      promptForMissingTool(LANG_SERVER_TOOL_ID, msg, 'Python', loggingService).then(() => {
+        promptForMissingTool(
+          LANG_SERVER_TOOL_ID,
+          msg,
+          'Python',
+          ['Install', "Don't Show Again"],
+          loggingService,
+          () => {
+            config.update('ignoreWarning.fortls', true);
+          }
+        ).then(() => {
+          const fortls = new FortranLanguageServer(loggingService);
+          fortls.activate(context.subscriptions);
+        });
+      } else {
+        // Spawn the fortran-language-server
         const fortls = new FortranLanguageServer(loggingService);
         fortls.activate(context.subscriptions);
-      });
-    } else {
-      // Spawn the fortran-language-server
-      const fortls = new FortranLanguageServer(loggingService);
-      fortls.activate(context.subscriptions);
+      }
     }
   });
 }
