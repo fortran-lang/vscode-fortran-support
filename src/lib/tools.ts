@@ -47,40 +47,43 @@ export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
  * e.g 'hansec.fortran-ls'
  *
  * @param tool name of the tool e.g. fortran-language-server
- * @param msg optional message for installing said package
+ * @param msg message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
+ * @param opts options for the prompt. "Install" and "Don't Show Again" are coded
+ * @param logger log channel output
+ * @param action a void function for an action to perform when "Don't Show Again" is pressed
  */
 export function promptForMissingTool(
   tool: string,
   msg: string,
   toolType: string,
-  logger?: LoggingService
+  opts: string[],
+  logger?: LoggingService,
+  action?: () => void
 ) {
   const items = ['Install'];
-  return new Promise((resolve, reject) => {
-    resolve(
-      vscode.window.showInformationMessage(msg, ...items).then(selected => {
-        if (selected === 'Install') {
-          switch (toolType) {
-            case 'Python':
-              installPythonTool(tool, logger);
-              break;
+  return vscode.window.showInformationMessage(msg, ...opts).then(selected => {
+    if (selected === 'Install') {
+      switch (toolType) {
+        case 'Python':
+          installPythonTool(tool, logger);
+          break;
 
-            case 'VSExt':
-              logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
-              vscode.commands.executeCommand('extension.open', tool);
-              vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
-              logger.logInfo(`Extension ${tool} successfully installed`);
-              break;
+        case 'VSExt':
+          logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
+          vscode.commands.executeCommand('extension.open', tool);
+          vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
+          logger.logInfo(`Extension ${tool} successfully installed`);
+          break;
 
-            default:
-              logger.logError(`Failed to install tool: ${tool}`);
-              vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
-              break;
-          }
-        }
-      })
-    );
+        default:
+          logger.logError(`Failed to install tool: ${tool}`);
+          vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
+          break;
+      }
+    } else if (selected === "Don't Show Again") {
+      action();
+    }
   });
 }
 

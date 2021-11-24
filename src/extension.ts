@@ -71,6 +71,18 @@ export function activate(context: vscode.ExtensionContext) {
               enable hover, peeking, gotos and many more.
               For a full list of features the language server adds see:
               https://github.com/hansec/fortran-language-server`;
-    promptForMissingTool(LANG_SERVER_TOOL_ID, msg, 'Python', loggingService);
+
+    if (!extensionConfig.get('ignoreWarning.fortls')) {
+      promptForMissingTool(
+        LANG_SERVER_TOOL_ID,
+        msg,
+        'Python',
+        ['Install', "Don't Show Again"],
+        loggingService,
+        () => {
+          extensionConfig.update('ignoreWarning.fortls', true);
+        }
+      );
+    }
   }
 }

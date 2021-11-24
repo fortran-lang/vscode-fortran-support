@@ -221,6 +221,11 @@
             "uppercase"
           ],
           "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+        },
+        "fortran.ignoreWarning.fortls": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide error message when the fortran-language-server is not detected"
         }
       }
     },

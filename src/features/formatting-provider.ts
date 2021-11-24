@@ -51,7 +51,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
                                 Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python');
+      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     const args: string[] = [document.fileName, ...this.getFormatterArgs()];
@@ -90,7 +90,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
                                     Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python');
+      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     // Annoyingly findent only outputs to a file and not to a stream so
