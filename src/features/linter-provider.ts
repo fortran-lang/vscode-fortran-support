@@ -148,7 +148,7 @@ export class FortranLintingProvider {
     }
     if (modout) {
       modout = modFlag + resolveVariables(modout);
-      this.logger.logInfo(`Linter.moduleOutput`);
+      this.logger.logInfo(`Linter.moduleOutput: ${modout}`);
     }
     return modout;
   }
