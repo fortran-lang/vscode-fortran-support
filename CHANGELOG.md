@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.2]
+
+### Added
+
+- Adds Don't Show Again option when failing to spawn `fortls`, Fortran Intellisense
+  pop-up has already been removed
+  ([#303](https://github.com/krvajal/vscode-fortran-support/issues/303))
+
 ## [2.6.1]
 
 ### Fixed
@@ -336,7 +344,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.1...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.2...HEAD
+[2.6.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.1...v2.6.2
 [2.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.4.3...v2.5.0
