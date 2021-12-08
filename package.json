@@ -43,7 +43,7 @@
     "onLanguage:FortranFreeForm",
     "onLanguage:FortranFixedForm"
   ],
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "extensionDependencies": [
     "ms-vscode.cpptools"
   ],
@@ -145,7 +145,6 @@
           "enum": [
             "fortls",
             "Built-in",
-            "Both",
             "Disabled"
           ],
           "description": "Enables code autocompletion, by default it uses fortran-language-server."
@@ -323,11 +322,12 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p tsconfig.prod.json",
-    "compile-dev": "tsc -p tsconfig.json",
-    "watch": "tsc -watch -p tsconfig.prod.json",
-    "watch-dev": "tsc -watch -p tsconfig.json",
-    "pretest": "tsc -p tsconfig.test.json",
+    "compile": "webpack --mode production",
+    "compile-dev": "webpack --mode development",
+    "watch": "webpack --mode production --watch --progress",
+    "watch-dev": "webpack --mode development --watch --progress",
+    "webpack": "webpack --mode production",
+    "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
     "test": "node ./out/test/runTest.js",
     "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/**/*{.f90,F90}\"",
     "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json -t \"./test/**/*{.f,F}\"",
@@ -356,8 +356,11 @@
     "lint-staged": "^12.1.2",
     "mocha": "^9.1.3",
     "prettier": "^2.5.1",
+    "ts-loader": "^9.2.6",
     "typescript": "^4.5.2",
-    "vscode-tmgrammar-test": "^0.0.11"
+    "vscode-tmgrammar-test": "^0.0.11",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "lint-staged": {
     "*.ts": [

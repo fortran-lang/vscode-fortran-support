@@ -20,7 +20,7 @@ export const FORTRAN_KEYWORDS = [
   'IMPLICIT',
 ];
 
-export const isIntrinsic = keyword => {
+export const isIntrinsic = (keyword: string) => {
   return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
 };
 
@@ -29,9 +29,9 @@ interface Doc {
   docstr: string;
 }
 
-export const loadDocString = keyword => {
+export const loadDocString = (keyword: string) => {
   keyword = keyword.toUpperCase();
-  const filepath = __dirname + '/../docs/' + keyword + '.json';
+  const filepath = __dirname + '/../doc/intrinsics/' + keyword + '.json';
   const docstr = fs.readFileSync(filepath).toString();
   const doc: Doc = JSON.parse(docstr);
   return doc.docstr;

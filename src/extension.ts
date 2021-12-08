@@ -52,7 +52,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCompletionItemProvider(FortranDocumentSelector(), completionProvider);
   }
 
-  if (hoverType === 'Built-in') {
+  if (hoverType === 'Built-in' || hoverType === 'Both') {
     const hoverProvider = new FortranHoverProvider(loggingService);
     vscode.languages.registerHoverProvider(FortranDocumentSelector(), hoverProvider);
   }

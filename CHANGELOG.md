@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Adds native support for the fortran-language-server (`fortls`) making
   unnecessary the usage of Fortran Intellisense extension
   ([#290](https://github.com/krvajal/vscode-fortran-support/issues/290))
+
 ## [2.6.2]
 
 ### Added
