@@ -1,5 +1,5 @@
 // src/extension.ts
-import * as which from 'which';
+import which from 'which';
 import * as vscode from 'vscode';
 
 import { FortranLintingProvider } from './features/linter-provider';
@@ -65,7 +65,7 @@ export async function activate(context: vscode.ExtensionContext) {
   // Check if the language server is installed and if not prompt to install it
   // Not the most elegant solution but we need pip install to have finished
   // before the activate function is called so we do a little code duplication
-  which(config.get<string>('fortls.path'), err => {
+  which(config.get<string>('fortls.path'), (err: any) => {
     if (!config.get('ignoreWarning.fortls')) {
       if (err) {
         const msg = `It is highly recommended to use the fortran-language-server to

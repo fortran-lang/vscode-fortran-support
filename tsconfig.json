@@ -5,8 +5,10 @@
     "outDir": "out",
     "lib": ["ES2020"],
     "sourceMap": true,
-    "rootDir": ".",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "rootDir": "."
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", ".vscode-test"]

@@ -34,10 +34,9 @@ const config = {
           {
             loader: 'ts-loader',
             options: {
-              configFile:
-                process.env.NODE_ENV === 'production'
-                  ? path.resolve('./tsconfig.prod.json')
-                  : path.resolve('./tsconfig.json'),
+              compilerOptions: {
+                sourceMap: true,
+              },
             },
           },
         ],
