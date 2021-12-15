@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#296](https://github.com/krvajal/vscode-fortran-support/issues/296))
 - Fixes nopass pointer erroneous syntax highlighting
   ([#318](https://github.com/krvajal/vscode-fortran-support/issues/318))
+- Fixes `%` accessor highlighting for type-bound subroutines
+  ([#325](https://github.com/krvajal/vscode-fortran-support/issues/325))
 
 ### Changed
 

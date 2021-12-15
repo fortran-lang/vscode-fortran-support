@@ -2053,7 +2053,7 @@
                   "name": "variable.other.fortran"
                 },
                 "2": {
-                  "name": "punctuation.accessor.fortran"
+                  "name": "keyword.accessor.fortran"
                 },
                 "3": {
                   "name": "entity.name.function.subroutine.fortran"
