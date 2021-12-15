@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixes linter activation from `Disabled` to some compiler `X` without having
   to restart the extension
   ([#296](https://github.com/krvajal/vscode-fortran-support/issues/296))
+- Fixes nopass pointer erroneous syntax highlighting
+  ([#318](https://github.com/krvajal/vscode-fortran-support/issues/318))
 
 ### Changed
 
