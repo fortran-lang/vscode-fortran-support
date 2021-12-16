@@ -342,7 +342,7 @@
   "devDependencies": {
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.11.11",
+    "@types/node": "^16.11.12",
     "@types/vscode": "^1.30.0",
     "@types/which": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
@@ -350,7 +350,7 @@
     "@vscode/test-electron": "^1.6.2",
     "eslint": "^8.4.1",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsdoc": "^37.1.0",
+    "eslint-plugin-jsdoc": "^37.2.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.1.2",
