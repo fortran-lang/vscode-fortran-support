@@ -36,10 +36,10 @@
   "Subroutine": {
     "prefix": "sub",
     "body": [
-      "subroutine ${1:routine}(${2:arg1}, ${3: arg2})",
+      "subroutine ${1:routine}(${2:arg1}, ${3:arg2})",
       "\timplicit none",
-      "\t${4:type1},intent(in) :: ${2:arg1}",
-      "\t${5:type2},intent(out) :: ${3:arg2}",
+      "\t${4:type1}, intent(${5:intent-spec}) :: ${2:arg1}",
+      "\t${6:type2}, intent(${7:intent-spec}) :: ${3:arg2}",
       "\t${0}",
       "end subroutine ${1:routine}"
     ],
