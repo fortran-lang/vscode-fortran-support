@@ -26,8 +26,8 @@
     "body": [
       "function ${1:func}(${2:arg}) result(${3:retval})",
       "\timplicit none",
-      "\t${4:type} :: ${2:arg}",
-      "\t${5:type} :: ${3:retval}",
+      "\t${4:type1}, intent(${5:intent-spec}) :: ${2:arg}",
+      "\t${6:type2} :: ${3:retval}",
       "\t${0}",
       "end function ${1:func}"
     ],
