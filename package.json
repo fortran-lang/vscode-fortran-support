@@ -265,7 +265,7 @@
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "@vscode/test-electron": "^2.0.2",
-    "eslint": "^8.6.0",
+    "eslint": "^8.7.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsdoc": "^37.6.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -284,7 +284,7 @@
     ]
   },
   "dependencies": {
-    "fast-glob": "^3.2.10",
+    "fast-glob": "^3.2.11",
     "glob": "^7.2.0",
     "vscode-languageclient": "^7.0.0",
     "which": "^2.0.2"
