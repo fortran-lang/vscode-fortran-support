@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#292](https://github.com/krvajal/vscode-fortran-support/issues/292))
 - Changes main parts of the extension to being asynchronous
   ([#285](https://github.com/krvajal/vscode-fortran-support/issues/285))
+- Changes Language Server prompt from `fortran-language-server` to `fortls`
 
 ### Added
 

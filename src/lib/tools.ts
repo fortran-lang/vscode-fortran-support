@@ -6,7 +6,7 @@ import { LoggingService } from '../services/logging-service';
 import { isString, isArrayOfString } from './helper';
 
 export const EXTENSION_ID = 'fortran';
-export const LANG_SERVER_TOOL_ID = 'fortran-language-server';
+export const LANG_SERVER_TOOL_ID = 'fortls';
 export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
 
 // Platform-specific environment variable delimiter
