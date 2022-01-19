@@ -3,30 +3,60 @@
 'use strict';
 
 import { spawnSync } from 'child_process';
-import { commands, window, workspace, TextDocument, Disposable } from 'vscode';
+import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
 import { EXTENSION_ID, FortranDocumentSelector } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
+
+// The clients are non member variables of the class because they need to be
+// shared for command registration. The command operates on the client and not
+// the server
+export const clients: Map<string, LanguageClient> = new Map();
+
+/**
+ * Checks if the Language Server should run in the current workspace and return
+ * the workspace folder if it should else return undefined.
+ * @param document the active VS Code editor
+ * @returns the root workspace folder or undefined
+ */
+export function checkLanguageServerActivation(document: TextDocument): WorkspaceFolder | undefined {
+  // We are only interested in Fortran files
+  if (
+    !FortranDocumentSelector().some(e => e.scheme === document.uri.scheme) ||
+    !FortranDocumentSelector().some(e => e.language === document.languageId)
+  ) {
+    return undefined;
+  }
+  const uri = document.uri;
+  const folder = workspace.getWorkspaceFolder(uri);
+  // Files outside a folder can't be handled. This might depend on the language.
+  // Single file languages like JSON might handle files outside the workspace folders.
+  // This will be undefined if the file does not belong to the workspace
+  if (!folder) return undefined;
+  if (clients.has(folder.uri.toString())) return undefined;
+
+  return folder;
+}
 
 export class FortranLanguageServer {
   constructor(private logger: LoggingService) {
     this.logger.logInfo('Fortran Language Server');
   }
 
-  private clients: Map<string, LanguageClient> = new Map();
   private _fortlsVersion: string | undefined;
 
-  public async activate(disposables: Disposable[]) {
-    workspace.onDidOpenTextDocument(this.didOpenTextDocument, this, disposables);
+  public async activate() {
+    workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
     workspace.textDocuments.forEach(this.didOpenTextDocument, this);
     return;
   }
 
-  public deactivate() {
+  public async deactivate(): Promise<void> {
     const promises: Thenable<void>[] = [];
-    for (const client of this.clients.values()) {
+    for (const client of clients.values()) {
       promises.push(client.stop());
     }
+    await Promise.all(promises);
     return undefined;
   }
 
@@ -40,21 +70,9 @@ export class FortranLanguageServer {
    * @param document document to lint
    * @returns
    */
-  private didOpenTextDocument(document: TextDocument): void {
-    // We are only interested in Fortran files
-    if (
-      !FortranDocumentSelector().some(e => e.scheme === document.uri.scheme) ||
-      !FortranDocumentSelector().some(e => e.language === document.languageId)
-    ) {
-      return;
-    }
-    const uri = document.uri;
-    const folder = workspace.getWorkspaceFolder(uri);
-    // Files outside a folder can't be handled. This might depend on the language.
-    // Single file languages like JSON might handle files outside the workspace folders.
-    // This will be undefined if the file does not belong to the workspace
+  private async didOpenTextDocument(document: TextDocument): Promise<void> {
+    const folder = checkLanguageServerActivation(document);
     if (!folder) return;
-    if (this.clients.has(folder.uri.toString())) return;
 
     this.logger.logInfo('Initialising the Fortran Language Server');
 
@@ -133,7 +151,7 @@ export class FortranLanguageServer {
         clientOptions
       );
       client.start();
-      this.clients.set(folder.uri.toString(), client);
+      clients.set(folder.uri.toString(), client);
     }
   }
 

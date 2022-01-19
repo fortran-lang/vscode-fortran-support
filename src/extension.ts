@@ -1,18 +1,21 @@
 // src/extension.ts
-import which from 'which';
 import * as vscode from 'vscode';
-
-import { FortranLintingProvider } from './features/linter-provider';
-import { FortranHoverProvider } from './features/hover-provider';
+import which from 'which';
+import * as pkg from '../package.json';
+import { registerCommands } from './features/commands';
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
-
-import { LoggingService } from './services/logging-service';
-import * as pkg from '../package.json';
-import { LANG_SERVER_TOOL_ID } from './lib/tools';
 import { FortranFormattingProvider } from './features/formatting-provider';
 import { FortranLanguageServer } from './features/fortls-interface';
-import { EXTENSION_ID, FortranDocumentSelector, promptForMissingTool } from './lib/tools';
+import { FortranHoverProvider } from './features/hover-provider';
+import { FortranLintingProvider } from './features/linter-provider';
+import {
+  EXTENSION_ID,
+  FortranDocumentSelector,
+  LANG_SERVER_TOOL_ID,
+  promptForMissingTool,
+} from './lib/tools';
+import { LoggingService } from './services/logging-service';
 
 // Make it global to catch errors when activation fails
 const loggingService = new LoggingService();
@@ -62,6 +65,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentSymbolProvider(FortranDocumentSelector(), symbolProvider);
   }
 
+  registerCommands(context.subscriptions);
+
   // Check if the language server is installed and if not prompt to install it
   // Not the most elegant solution but we need pip install to have finished
   // before the activate function is called so we do a little code duplication
@@ -83,12 +88,12 @@ export async function activate(context: vscode.ExtensionContext) {
           }
         ).then(() => {
           const fortls = new FortranLanguageServer(loggingService);
-          fortls.activate(context.subscriptions);
+          fortls.activate();
         });
       } else {
         // Spawn the fortran-language-server
         const fortls = new FortranLanguageServer(loggingService);
-        fortls.activate(context.subscriptions);
+        fortls.activate();
       }
     }
   });
