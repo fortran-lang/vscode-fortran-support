@@ -208,10 +208,15 @@
           ],
           "description": "Fortran formatter, currently supports findent and fprettify"
         },
-        "fortran.formatting.args": {
+        "fortran.formatting.findentArgs": {
           "type": "array",
           "default": [],
-          "description": "Additional arguments for the formatter"
+          "description": "Additional arguments for the findent formatter"
+        },
+        "fortran.formatting.fprettifyArgs": {
+          "type": "array",
+          "default": [],
+          "description": "Additional arguments for the fprettify formatter"
         },
         "fortran.formatting.path": {
           "type": "string",

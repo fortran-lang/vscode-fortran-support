@@ -54,7 +54,7 @@
   ],
   // Formatting options
   "fortran.formatting.formatter": "findent",
-  "fortran.formatting.args": ["-Cn", "--align-paren=1"],
+  "fortran.formatting.findentArgs": ["-Cn", "--align-paren=1"],
   // Fortran-Language-Server specific options
   "fortran.fortls.incrementalSync": true,
   "fortran.fortls.preserveKeywordOrder": true,

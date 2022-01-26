@@ -205,3 +205,37 @@ export function resolveVariables(
   return ret;
   // return new Promise<string>((resolve) => { resolve(ret) });
 }
+
+export function getWholeFileRange(document: vscode.TextDocument): vscode.Range {
+  return new vscode.Range(0, 0, document.lineCount, 0);
+}
+
+export async function spawnAsPromise(
+  cmd: string,
+  args: ReadonlyArray<string> | undefined,
+  options: cp.SpawnOptions | undefined,
+  input: string | undefined
+) {
+  return new Promise<string>((resolve, reject) => {
+    // You could separate STDOUT and STDERR if your heart so desires...
+    let output = '';
+    const child = cp.spawn(cmd, args, options);
+    child.stdout.on('data', data => {
+      output += data;
+    });
+    child.stderr.on('data', data => {
+      output += data;
+    });
+    child.on('close', code => {
+      code === 0 ? resolve(output) : reject(output);
+    });
+    child.on('error', err => {
+      reject(err.toString());
+    });
+
+    if (input) {
+      child.stdin.write(input);
+      child.stdin.end();
+    }
+  });
+}

@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#365](https://github.com/krvajal/vscode-fortran-support/issues/365))
 - Fixes formatting on Windows (needed .exe extension)
   ([#354](https://github.com/krvajal/vscode-fortran-support/issues/354))
+- Fixes `onSave` formatting errors
+  ([#364](https://github.com/krvajal/vscode-fortran-support/issues/364))
 
 ### Changed
 
