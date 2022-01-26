@@ -37,10 +37,10 @@
     "prefix": "sub",
     "body": [
       "subroutine ${1:routine}(${2:arg1}, ${3: arg2})",
-      "$\t${4:type1}, intent(in) :: ${2:arg1}",
-      "$\t${5:type2}, intent(out) :: ${3:arg2}",
+      "\t${4:type1}, intent(${5:in}) :: ${2:arg1}",
+      "\t${6:type2}, intent(${7:out}) :: ${3:arg2}",
       "",
-      "$\t${0}",
+      "\t${0}",
       "end subroutine ${1:routine}"
     ],
     "description": "Create a subroutine"
