@@ -125,18 +125,23 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     const range_whole_file = new vscode.Range(firstLine.range.start, lastline.range.end);
 
     const temp_file = document.fileName + '.findent.tmp';
-
+    const temp_file2 = document.fileName + '.findent.tmp2';
     // Cannot copy file since it hasn't been saved yet!
     // Needs to be synchronous!
-    fs.writeFileSync(temp_file, document.getText(), 'utf8');
+    fs.writeFileSync(temp_file2, document.getText(), 'utf8');
 
-    const args: string = ['< ' + temp_file + ' >', temp_file, ...this.getFormatterArgs()].join(' ');
+    const args: string = ['< ' + temp_file2 + ' >', temp_file, ...this.getFormatterArgs()].join(
+      ' '
+    );
     const command = formatter + ' ' + args;
 
     const process = cp.execSync(command, { stdio: 'inherit' });
 
     const new_file_as_string = fs.readFileSync(temp_file, 'utf8');
     fs.unlink(temp_file, err => {
+      console.log('failed to delete tempfile');
+    });
+    fs.unlink(temp_file2, err => {
       console.log('failed to delete tempfile');
     });
 
