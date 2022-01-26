@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#325](https://github.com/krvajal/vscode-fortran-support/issues/325))
 - Fixes `fortls` not spawning when `ignoreWarning` was set to true
   ([#365](https://github.com/krvajal/vscode-fortran-support/issues/365))
+- Fixes formatting on Windows (needed .exe extension)
+  ([#354](https://github.com/krvajal/vscode-fortran-support/issues/354))
 
 ### Changed
 

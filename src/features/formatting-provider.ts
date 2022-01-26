@@ -43,7 +43,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       return;
     }
 
-    const formatterName = 'fprettify';
+    const formatterName = process.platform !== 'win32' ? 'fprettify' : 'fprettify.exe';
     const formatterPath: string = this.getFormatterPath();
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
@@ -58,19 +58,19 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     // args.push('--silent'); // TODO: pass?
 
     // Get current file (name rel to path), run extension can be in a shell??
-    const process = cp.spawn(formatter, args);
+    const pid = cp.spawn(formatter, args);
 
     // if the findent then capture the output from that and parse it back to the file
-    process.stdout.on('data', data => {
+    pid.stdout.on('data', data => {
       this.logger.logInfo(`formatter stdout: ${data}`);
     });
-    process.stderr.on('data', data => {
+    pid.stderr.on('data', data => {
       this.logger.logError(`formatter stderr: ${data}`);
     });
-    process.on('close', (code: number) => {
+    pid.on('close', (code: number) => {
       if (code !== 0) this.logger.logInfo(`formatter exited with code: ${code}`);
     });
-    process.on('error', code => {
+    pid.on('error', code => {
       this.logger.logInfo(`formatter exited with code: ${code}`);
     });
   }
@@ -82,7 +82,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    * @param document vscode.TextDocument document to operate on
    */
   private doFormatFindent(document: vscode.TextDocument) {
-    const formatterName = 'findent';
+    const formatterName = process.platform !== 'win32' ? 'findent' : 'findent.exe';
     const formatterPath: string = this.getFormatterPath();
     let formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
