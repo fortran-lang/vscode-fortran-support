@@ -145,9 +145,9 @@ installed with `pip` automatically through the extension.
 
 The formatter is controlled by the user option
 
-```json
+```jsonc
 {
-    "fortran.formatting.formatter": "Disabled" | "findent" | "fprettify",
+  "fortran.formatting.formatter": "findent" // "fprettify" or "Disabled"
 }
 ```
 
@@ -155,7 +155,7 @@ Additional arguments to the formatter can be input using
 
 ```json
 {
-    "fortran.formatting.findentArgs":, ["-Cn", "-Rr"],
+    "fortran.formatting.findentArgs": ["-Cn", "-Rr"],
     "fortran.formatting.fprettifyArgs": ["--whitespace-comma", "--enable-decl"]
 }
 ```
