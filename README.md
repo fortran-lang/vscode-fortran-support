@@ -197,6 +197,7 @@ A summary of all the options
 | `fortls.maxLineLength`        | Number                                   | -1          | Maximum line length (fortls requires v1.8.0+). For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none` |
 | `fortls.maxCommentLineLength` | Number                                   | -1          | Maximum comment line length (fortls requires v1.8.0+).                                                                                                                                             |
 | `fortls.extraArgs`            | String Array                             | `[]`        | Additional arguments for the fortls                                                                                                                                                                |
+| `fortls.disabled`             | Boolean                                  | `false`     | Disable the Language Server. If true, it will limit the extension's functionality substantially (should be avoid!)                                                                                 |
 | `preferredCase`               | `lowercase`, `uppercase`                 | `lowercase` | Specify the word case to use when suggesting autocomplete options                                                                                                                                  |
 
 ## Requirements

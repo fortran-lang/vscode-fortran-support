@@ -268,6 +268,11 @@
           "default": [],
           "description": "Additional arguments for the fortls"
         },
+        "fortran.fortls.disabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable the Language Server. If true, it will limit the extension's functionality substantially (should be avoid!)"
+        },
         "fortran.preferredCase": {
           "type": "string",
           "default": "lowercase",

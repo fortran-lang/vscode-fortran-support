@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   ([#318](https://github.com/krvajal/vscode-fortran-support/issues/318))
 - Fixes `%` accessor highlighting for type-bound subroutines
   ([#325](https://github.com/krvajal/vscode-fortran-support/issues/325))
+- Fixes `fortls` not spawning when `ignoreWarning` was set to true
+  ([#365](https://github.com/krvajal/vscode-fortran-support/issues/365))
 
 ### Changed
 
@@ -38,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   unnecessary the usage of Fortran Intellisense extension
   ([#290](https://github.com/krvajal/vscode-fortran-support/issues/290))
 - Adds commands for re/starting/stopping the Language Server
+- Added more options for configuring the `fortls` settings through the UI
 
 ## [2.6.2]
 

@@ -169,18 +169,31 @@ export class FortranLanguageServer {
     const results = spawnSync(executablePath, args.concat(['--version']));
     if (results.error) {
       const selected = window.showErrorMessage(
-        'Error spawning fortls: Please check that "fortls" is installed and in your path.',
-        'Open settings'
+        'Error starting fortls: Check that fortls is in your PATH or that "fortran.fortls.path" is pointing to a fortls binary.',
+        'Settings',
+        'Workspace settings',
+        'Disable fortls'
       );
-      selected.then(() => commands.executeCommand('workbench.action.openGlobalSettings'));
+      selected.then(opt => {
+        const config = workspace.getConfiguration(EXTENSION_ID);
+        if (opt === 'Settings') commands.executeCommand('workbench.action.openGlobalSettings');
+        else if (opt === 'Workspace settings')
+          commands.executeCommand('workbench.action.openWorkspaceSettings');
+        else if (opt === 'Disable fortls') config.update('fortls.disabled', true);
+      });
       return null;
     }
     if (results.status !== 0) {
       const selected = window.showErrorMessage(
         'Error launching fortls: Please check that all selected options are supported by your language server version.',
-        'Open settings'
+        'Settings',
+        'Workspace settings'
       );
-      selected.then(() => commands.executeCommand('workbench.action.openGlobalSettings'));
+      selected.then(opt => {
+        if (opt === 'settings') commands.executeCommand('workbench.action.openGlobalSettings');
+        else if (opt === 'Workspace settings')
+          commands.executeCommand('workbench.action.openWorkspaceSettings');
+      });
       return null;
     }
     return results.stdout.toString().trim();
