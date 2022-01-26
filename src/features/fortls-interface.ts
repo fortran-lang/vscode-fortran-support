@@ -61,7 +61,7 @@ export class FortranLanguageServer {
   }
 
   /**
-   * Launch the fortran-language-server. This launches the server for all
+   * Launch fortls. This launches the server for all
    * glob matches in the workspace and caches it.
    *
    * for references on the method see:
@@ -169,7 +169,7 @@ export class FortranLanguageServer {
     const results = spawnSync(executablePath, args.concat(['--version']));
     if (results.error) {
       const selected = window.showErrorMessage(
-        'Error spawning fortls: Please check that fortran-language-server is installed and in your path.',
+        'Error spawning fortls: Please check that "fortls" is installed and in your path.',
         'Open settings'
       );
       selected.then(() => commands.executeCommand('workbench.action.openGlobalSettings'));

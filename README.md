@@ -14,7 +14,7 @@
 - Peek/Go to definitions and references
 - Linting support i.e. error wiggles for `gfortran`, `flang` and `ifort`
 - Symbols outline support for functions, subroutines, modules, etc.
-- Native support leveraging the `fortran-language-server`
+- Native support leveraging the `fortls`
 - Debugger, uses Microsoft's [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
 - Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 - Code snippets (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
@@ -51,7 +51,7 @@ If you want to pass extra options to the `gfortran` executable or override the d
 ```
 
 To show the symbols in the file outline enable `provide.symbols`. Symbols can be
-served by the fortran-language-server, the built-in, both or none. By default
+served by the fortls, the built-in, both or none. By default
 `fortls` is used.
 
 ```jsonc
@@ -177,9 +177,9 @@ A summary of all the options
 
 | Setting                       | Possible values                          | Default     | Description                                                                                                                                                                                        |
 | ----------------------------- | ---------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `provide.hover`               | `fortls`, `Built-in`, `Both`, `Disabled` | `fortls`    | Enables hover support, by default it uses fortran-language-server                                                                                                                                  |
-| `provide.autocomplete`        | `fortls`, `Built-in`, `Disabled`         | `fortls`    | Enables code autocompletion, by default it uses fortran-language-server                                                                                                                            |
-| `provide.symbols`             | `fortls`, `Both`                         | `fortls`    | Outline of modules, functions, subroutines, etc. in the document, by default it uses fortran-language-server, `Both` will use `fortls` and the `Built-in` functionality (not recommended)          |
+| `provide.hover`               | `fortls`, `Built-in`, `Both`, `Disabled` | `fortls`    | Enables hover support, by default it uses fortls                                                                                                                                  |
+| `provide.autocomplete`        | `fortls`, `Built-in`, `Disabled`         | `fortls`    | Enables code autocompletion, by default it uses fortls                                                                                                                            |
+| `provide.symbols`             | `fortls`, `Both`                         | `fortls`    | Outline of modules, functions, subroutines, etc. in the document, by default it uses fortls, `Both` will use `fortls` and the `Built-in` functionality (not recommended)          |
 | `linter.compiler`             | `gfortran`, `flang`, `ifort`, `Disabled` | `gfortran`  | Compiler used for linting support                                                                                                                                                                  |
 | `linter.includePaths`         | String Array                             | `[]`        | Specifies folder paths to be used as include paths during linting. Can handle globs                                                                                                                |
 | `linter.compilerPath`         | String                                   | `''`        | Specifies the path to the linter executable                                                                                                                                                        |
@@ -196,7 +196,7 @@ A summary of all the options
 | `fortls.notifyInit`           | Boolean                                  | `false`     | Notify when workspace initialization is complete (requires v1.7.0+)                                                                                                                                |
 | `fortls.maxLineLength`        | Number                                   | -1          | Maximum line length (fortls requires v1.8.0+). For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none` |
 | `fortls.maxCommentLineLength` | Number                                   | -1          | Maximum comment line length (fortls requires v1.8.0+).                                                                                                                                             |
-| `fortls.extraArgs`            | String Array                             | `[]`        | Additional arguments for the fortran-language-server                                                                                                                                               |
+| `fortls.extraArgs`            | String Array                             | `[]`        | Additional arguments for the fortls                                                                                                                                               |
 | `preferredCase`               | `lowercase`, `uppercase`                 | `lowercase` | Specify the word case to use when suggesting autocomplete options                                                                                                                                  |
 
 ## Requirements

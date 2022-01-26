@@ -91,7 +91,7 @@ export async function activate(context: vscode.ExtensionContext) {
           fortls.activate();
         });
       } else {
-        // Spawn the fortran-language-server
+        // Spawn fortls
         const fortls = new FortranLanguageServer(loggingService);
         fortls.activate();
       }

@@ -41,12 +41,12 @@ export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
  * Install a package either a Python pip package or a VS Marketplace Extension.
  *
  * For the Python install supply the name of the package in PyPi
- * e.g. fortran-language-server
+ * e.g. fortls
  *
  * For the VS Extension to be installed supply the id of the extension
  * e.g 'hansec.fortran-ls'
  *
- * @param tool name of the tool e.g. fortran-language-server
+ * @param tool name of the tool e.g. fortls
  * @param msg message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
  * @param opts options for the prompt. "Install" and "Don't Show Again" are coded

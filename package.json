@@ -137,7 +137,7 @@
             "Both",
             "Disabled"
           ],
-          "description": "Enables hover support, by default it uses fortran-language-server."
+          "description": "Enables hover support, by default it uses fortls."
         },
         "fortran.provide.autocomplete": {
           "type": "string",
@@ -147,7 +147,7 @@
             "Built-in",
             "Disabled"
           ],
-          "description": "Enables code autocompletion, by default it uses fortran-language-server."
+          "description": "Enables code autocompletion, by default it uses fortls."
         },
         "fortran.provide.symbols": {
           "type": "string",
@@ -156,7 +156,7 @@
             "fortls",
             "Both"
           ],
-          "description": "Outline of modules, functions, subroutines, etc. in the document, by default it uses fortran-language-server, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
+          "description": "Outline of modules, functions, subroutines, etc. in the document, by default it uses fortls, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
         },
         "fortran.linter.compiler": {
           "type": "string",
@@ -266,7 +266,7 @@
             "type": "string"
           },
           "default": [],
-          "description": "Additional arguments for the fortran-language-server"
+          "description": "Additional arguments for the fortls"
         },
         "fortran.preferredCase": {
           "type": "string",
@@ -280,7 +280,7 @@
         "fortran.ignoreWarning.fortls": {
           "type": "boolean",
           "default": false,
-          "description": "Hide error message when the fortran-language-server is not detected"
+          "description": "Hide error message when the fortls is not detected"
         },
         "fortran.includePaths": {
           "deprecationMessage": "fortran.includePaths has been renamed to fortran.linter.includePaths."
@@ -298,16 +298,16 @@
           "deprecationMessage": "fortran.linterModOutput has been renamed to fortran.linter.modOutput."
         },
         "fortran.provideSymbols": {
-          "deprecationMessage": "fortran.provideSymbols has been renamed to fortran.provide.symbols. By default the fortran-language-server symbols are used, to enable the built-in symbols turn on the Built-in option."
+          "deprecationMessage": "fortran.provideSymbols has been renamed to fortran.provide.symbols. By default the fortls symbols are used, to enable the built-in symbols turn on the Built-in option."
         },
         "fortran.symbols": {
           "deprecationMessage": "fortran.symbols has been removed in favour of the fortran language server returning all symbols."
         },
         "fortran.provideHover": {
-          "deprecationMessage": "fortran.provideHover has been renamed to fortran.provide.hover. By default the fortran-language-server hover is used, to enable the built-in hover turn on the Built-in option."
+          "deprecationMessage": "fortran.provideHover has been renamed to fortran.provide.hover. By default the fortls hover is used, to enable the built-in hover turn on the Built-in option."
         },
         "fortran.provideCompletion": {
-          "deprecationMessage": "fortran.provideCompletion has been renamed to fortran.provide.autocomplete. By default the fortran-language-server autocompletion is used, to enable the built-in autocompletion turn on the Built-in option."
+          "deprecationMessage": "fortran.provideCompletion has been renamed to fortran.provide.autocomplete. By default the fortls autocompletion is used, to enable the built-in autocompletion turn on the Built-in option."
         }
       }
     },
