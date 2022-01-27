@@ -1,5 +1,5 @@
 name: Build and Test syntax
-on: [push]
+on: [push, pull_request]
 jobs:
   grammar:
     runs-on: ubuntu-latest
