@@ -126,7 +126,7 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Fortran configuration",
+      "title": "%fortran.config.title%",
       "properties": {
         "fortran.includePaths": {
           "type": [
@@ -136,17 +136,17 @@
             "type": "string"
           },
           "default": [],
-          "description": "Specifies folder paths to be used as include path for the Fortran linter"
+          "description": "%fortran.includePaths.desc%"
         },
         "fortran.gfortranExecutable": {
           "type": "string",
           "default": "gfortran",
-          "description": "Specifies the complete path of the gfortran executable"
+          "description": "%fortran.gfortranExecutable.desc%"
         },
         "fortran.linterEnabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enables or disables the linter functionality"
+          "description": "%fortran.linterEnabled.desc%"
         },
         "fortran.linterExtraArgs": {
           "type": [
@@ -158,12 +158,12 @@
           "default": [
             "-Wall"
           ],
-          "description": "Specify additional options to use when calling the gfortran compiler"
+          "description": "%fortran.linterExtraArgs.desc%"
         },
         "fortran.linterModOutput": {
           "type": "string",
           "default": "",
-          "description": "Global output directory for .mod files `-J<linterModOutput>`"
+          "markdownDescription": "%fortran.linterModOutput.desc%"
         },
         "fortran.formatting.formatter": {
           "type": "string",
@@ -173,22 +173,22 @@
             "fprettify",
             "Disabled"
           ],
-          "description": "Fortran formatter, currently supports findent and fprettify"
+          "markdownDescription": "%fortran.formatting.formatter.desc%"
         },
         "fortran.formatting.args": {
           "type": "array",
           "default": [],
-          "description": "Additional arguments for the formatter"
+          "description": "%fortran.formatting.args.desc%"
         },
         "fortran.formatting.path": {
           "type": "string",
           "default": "",
-          "description": "Specify the full path of where the formatter is installed"
+          "description": "%fortran.formatting.path.desc%"
         },
         "fortran.provideSymbols": {
           "type": "boolean",
           "default": true,
-          "description": "Enables or disables symbol functionality (disable if using 'Fortran IntelliSense')"
+          "description": "%fortran.provideSymbols.desc%"
         },
         "fortran.symbols": {
           "type": [
@@ -201,17 +201,17 @@
             "function",
             "subroutine"
           ],
-          "description": "Specify what kind of symbols should be shown by the symbols' provider"
+          "description": "%fortran.symbols.desc%"
         },
         "fortran.provideHover": {
           "type": "boolean",
           "default": true,
-          "description": "Enables hover functionality (disable if using 'Fortran IntelliSense')"
+          "description": "%fortran.provideHover.desc%"
         },
         "fortran.provideCompletion": {
           "type": "boolean",
           "default": true,
-          "description": "Enables or disables completion functionality (disable if using 'Fortran IntelliSense')"
+          "description": "%fortran.provideCompletion.desc%"
         },
         "fortran.preferredCase": {
           "type": "string",
@@ -220,12 +220,12 @@
             "lowercase",
             "uppercase"
           ],
-          "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+          "markdownDescription": "%fortran.preferredCase.desc%"
         },
         "fortran.ignoreWarning.fortls": {
           "type": "boolean",
           "default": false,
-          "description": "Hide error message when the fortran-language-server is not detected"
+          "description": "%fortran.ignoreWarning.fortls.desc%"
         }
       }
     },
