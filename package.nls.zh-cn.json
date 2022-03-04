@@ -1,0 +1,17 @@
+{
+    "fortran.config.title": "Fortran 配置",
+    "fortran.includePaths.desc": "为 Fortran Linter 指定包含路径。",
+    "fortran.gfortranExecutable.desc": "指定 gfortran 可执行文件的路径。",
+    "fortran.linterEnabled.desc": "使能或者禁止 linter 功能。",
+    "fortran.linterExtraArgs.desc": "指定调用 gfortran 编译器时要添加的额外选项。",
+    "fortran.linterModOutput.desc": "全局设置 .mod 文件输出目录 `-J<linterModOutput>`。",
+    "fortran.formatting.formatter.desc": "使用哪一个 Fortran 格式化器，当前支持 `findent` 和 `fprettify`。",
+    "fortran.formatting.args.desc": "传递给格式化器的额外参数。",
+    "fortran.formatting.path.desc": "指定格式化器的绝对路径。",
+    "fortran.provideSymbols.desc": "使能或禁止符号功能 (如果使用了 'Fortran IntelliSense' 则禁止)。",
+    "fortran.symbols.desc": "指定应该显示什么类型的符号。",
+    "fortran.provideHover.desc": "使能或禁止鼠标悬浮功能 (如果使用了 'Fortran IntelliSense' 则禁止)。",
+    "fortran.provideCompletion.desc": "使能或禁止补全功能 (如果使用了 'Fortran IntelliSense' 则禁止)。",
+    "fortran.preferredCase.desc": "指定当提供自动补全信息时使用大写还是小写 (只能为 `lowercase` 或者 `upercase`)。",
+    "fortran.ignoreWarning.fortls.desc": "当找不到 fortran-language-server 时，隐藏错误信息。"
+}
