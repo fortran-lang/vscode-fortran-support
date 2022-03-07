@@ -260,7 +260,7 @@
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.0",
     "@types/node": "^16.11.21",
-    "@types/vscode": "^1.30.0",
+    "@types/vscode": "^1.65.0",
     "@types/which": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.10.2",
