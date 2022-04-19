@@ -4,6 +4,7 @@ node_modules
 *.vsix
 .DS_Store
 coverage
+dist
 
 # Fortran files
 *.o
