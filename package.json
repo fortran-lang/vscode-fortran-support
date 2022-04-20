@@ -228,10 +228,20 @@
           "default": "fortls",
           "description": "Path to the Fortran language server (fortls)."
         },
-        "fortran.fortls.preserveKeywordOrder": {
+        "fortran.fortls.configure": {
+          "type": "string",
+          "default": "",
+          "description": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file"
+        },
+        "fortran.fortls.sortKeywords": {
           "type": "boolean",
-          "default": true,
-          "description": "Display variable keywords information when hovering in original order (default: sort to consistent ordering)."
+          "default": false,
+          "description": "Display variable keywords information when hovering in a sorted, consistent order."
+        },
+        "fortran.fortls.disableAutoupdate": {
+          "type": "boolean",
+          "default": false,
+          "description": "fortls will automatically attempt to update itself from PyPi. Set this option if you want to fix your version of fortls. Autoudpate will not occur for Anaconda environments."
         },
         "fortran.fortls.disableDiagnostics": {
           "type": "boolean",
@@ -318,6 +328,9 @@
         },
         "fortran.provideCompletion": {
           "deprecationMessage": "fortran.provideCompletion has been renamed to fortran.provide.autocomplete. By default the fortls autocompletion is used, to enable the built-in autocompletion turn on the Built-in option."
+        },
+        "fortran.fortls.preserveKeywordOrder": {
+          "deprecationMessage": "This option is now the default, use fortran.fortls.sortKeywords to sort keywords."
         }
       }
     },
