@@ -207,7 +207,7 @@ export class FortranLanguageServer {
         'Workspace settings'
       );
       selected.then(opt => {
-        if (opt === 'settings') commands.executeCommand('workbench.action.openGlobalSettings');
+        if (opt === 'Settings') commands.executeCommand('workbench.action.openGlobalSettings');
         else if (opt === 'Workspace settings')
           commands.executeCommand('workbench.action.openWorkspaceSettings');
       });
