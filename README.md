@@ -66,7 +66,7 @@ You can control the include paths to be used by the linter with the `fortran.lin
 | ------------------------------------------------------------------------------------------------------------------ |
 | For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
 
-```jsonc
+```json
 {
   "fortran.linter.includePaths": ["/usr/include/**", "${workspaceFolder}/include/**"]
 }
@@ -80,7 +80,7 @@ You can control the include paths to be used by the linter with the `fortran.lin
 
 More options can be passed to the linter via
 
-```jsonc
+```json
 {
   "fortran.linter.extraArgs": [
     "-fdefault-real-8",
@@ -108,7 +108,7 @@ The linter executable is assumed to be found in the `PATH`.
 In order to use a different executable or if the executable can't be found in the `PATH`
 you can point the extension to another linter with the `fortran.linter.compilerPath` option.
 
-```jsonc
+```json
 {
   "fortran.linter.compilerPath": "/opt/oneapi/compiler/2022.0.2/linux/bin/intel64/ifort"
 }
@@ -196,7 +196,7 @@ If the formatter is not present in the `PATH` its location can be input with
 
 ```json
 {
-  "fortran.formattting.path": "/custom-path-to-formatter-binary"
+  "fortran.formatting.path": "/custom-path-to-formatter-binary"
 }
 ```
 
