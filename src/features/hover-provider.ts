@@ -3,7 +3,7 @@ import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
 import { isIntrinsic, loadDocString } from '../lib/helper';
 import { LoggingService } from '../services/logging-service';
 
-export default class FortranHoverProvider {
+export class FortranHoverProvider {
   constructor(private loggingService: LoggingService) {}
   public provideHover(
     document: TextDocument,

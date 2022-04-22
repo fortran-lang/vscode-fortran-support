@@ -2,28 +2,32 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "2.6.2",
+  "version": "3.0.2022021000",
   "publisher": "krvajalm",
   "license": "MIT",
   "author": {
-    "email": "krvajal.miguelangel@gmail.com",
-    "name": "Miguel Carvajal"
+    "name": "The Fortran Programming Language",
+    "url": "https://fortran-lang.org"
   },
   "maintainers": [
+    {
+      "email": "krvajal.miguelangel@gmail.com",
+      "name": "Miguel Carvajal"
+    },
     {
       "email": "giannis.nikiteas@gmail.com",
       "name": "Giannis Nikiteas"
     }
   ],
   "engines": {
-    "vscode": "^1.30.x"
+    "vscode": "^1.63.0"
   },
-  "icon": "images/icon.png",
-  "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
-  "qna": "https://github.com/krvajalmiguelangel/vscode-fortran-support/issues",
+  "icon": "assets/icon.png",
+  "homepage": "https://github.com/fortran-lang/vscode-fortran-support#readme",
+  "qna": "https://github.com/fortran-lang/vscode-fortran-support/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
+    "url": "https://github.com/fortran-lang/vscode-fortran-support.git"
   },
   "keywords": [
     "Fortran",
@@ -43,7 +47,7 @@
     "onLanguage:FortranFreeForm",
     "onLanguage:FortranFixedForm"
   ],
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "extensionDependencies": [
     "ms-vscode.cpptools"
   ],
@@ -128,7 +132,48 @@
       "type": "object",
       "title": "Fortran configuration",
       "properties": {
-        "fortran.includePaths": {
+        "fortran.provide.hover": {
+          "type": "string",
+          "default": "fortls",
+          "enum": [
+            "fortls",
+            "Built-in",
+            "Both",
+            "Disabled"
+          ],
+          "description": "Enables hover support, by default it uses fortls."
+        },
+        "fortran.provide.autocomplete": {
+          "type": "string",
+          "default": "fortls",
+          "enum": [
+            "fortls",
+            "Built-in",
+            "Disabled"
+          ],
+          "description": "Enables code autocompletion, by default it uses fortls."
+        },
+        "fortran.provide.symbols": {
+          "type": "string",
+          "default": "fortls",
+          "enum": [
+            "fortls",
+            "Both"
+          ],
+          "description": "Outline of modules, functions, subroutines, etc. in the document, by default it uses fortls, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
+        },
+        "fortran.linter.compiler": {
+          "type": "string",
+          "default": "gfortran",
+          "enum": [
+            "gfortran",
+            "flang",
+            "ifort",
+            "Disabled"
+          ],
+          "description": "Compiler used for linting support."
+        },
+        "fortran.linter.includePaths": {
           "type": [
             "array"
           ],
@@ -136,34 +181,26 @@
             "type": "string"
           },
           "default": [],
-          "description": "Specifies folder paths to be used as include path for the Fortran linter"
+          "description": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
-        "fortran.gfortranExecutable": {
+        "fortran.linter.compilerPath": {
           "type": "string",
-          "default": "gfortran",
-          "description": "Specifies the complete path of the gfortran executable"
+          "default": "",
+          "description": "Specifies the path to the linter executable."
         },
-        "fortran.linterEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enables or disables the linter functionality"
-        },
-        "fortran.linterExtraArgs": {
+        "fortran.linter.extraArgs": {
           "type": [
             "array"
           ],
           "items": {
             "type": "string"
           },
-          "default": [
-            "-Wall"
-          ],
-          "description": "Specify additional options to use when calling the gfortran compiler"
+          "description": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
-        "fortran.linterModOutput": {
+        "fortran.linter.modOutput": {
           "type": "string",
           "default": "",
-          "description": "Global output directory for .mod files `-J<linterModOutput>`"
+          "description": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
         "fortran.formatting.formatter": {
           "type": "string",
@@ -175,43 +212,85 @@
           ],
           "description": "Fortran formatter, currently supports findent and fprettify"
         },
-        "fortran.formatting.args": {
+        "fortran.formatting.findentArgs": {
           "type": "array",
           "default": [],
-          "description": "Additional arguments for the formatter"
+          "description": "Additional arguments for the findent formatter"
+        },
+        "fortran.formatting.fprettifyArgs": {
+          "type": "array",
+          "default": [],
+          "description": "Additional arguments for the fprettify formatter"
         },
         "fortran.formatting.path": {
           "type": "string",
           "default": "",
-          "description": "Specify the full path of where the formatter is installed"
+          "description": "If the formatter is not in the $PATH specify the full path to its location."
         },
-        "fortran.provideSymbols": {
+        "fortran.fortls.path": {
+          "type": "string",
+          "default": "fortls",
+          "description": "Path to the Fortran language server (fortls)."
+        },
+        "fortran.fortls.configure": {
+          "type": "string",
+          "default": "",
+          "description": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file"
+        },
+        "fortran.fortls.sortKeywords": {
+          "type": "boolean",
+          "default": false,
+          "description": "Display variable keywords information when hovering in a sorted, consistent order."
+        },
+        "fortran.fortls.disableAutoupdate": {
+          "type": "boolean",
+          "default": false,
+          "description": "fortls will automatically attempt to update itself from PyPi. Set this option if you want to fix your version of fortls. Autoudpate will not occur for Anaconda environments."
+        },
+        "fortran.fortls.disableDiagnostics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable additional diagnostics from fortls e.g. multiple variable definitions, unknown modules in use statement (requires v1.12.0+)."
+        },
+        "fortran.fortls.incrementalSync": {
           "type": "boolean",
           "default": true,
-          "description": "Enables or disables symbol functionality (disable if using 'Fortran IntelliSense')"
+          "description": "Use incremental synchronization for file changes."
         },
-        "fortran.symbols": {
+        "fortran.fortls.symbolTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include derived types in the symbols outline. If false it adds the  `--symbol_skip_mem` argument to fortls."
+        },
+        "fortran.fortls.notifyInit": {
+          "type": "boolean",
+          "default": false,
+          "description": "Notify when workspace initialization is complete (requires v1.7.0+)."
+        },
+        "fortran.fortls.maxLineLength": {
+          "type": "number",
+          "default": -1,
+          "description": "Maximum line length (fortls requires v1.8.0+). For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
+        },
+        "fortran.fortls.maxCommentLineLength": {
+          "type": "number",
+          "default": -1,
+          "description": "Maximum comment line length (fortls requires v1.8.0+)."
+        },
+        "fortran.fortls.extraArgs": {
           "type": [
             "array"
           ],
           "items": {
             "type": "string"
           },
-          "default": [
-            "function",
-            "subroutine"
-          ],
-          "description": "Specify what kind of symbols should be shown by the symbols' provider"
+          "default": [],
+          "description": "Additional arguments for the fortls"
         },
-        "fortran.provideHover": {
+        "fortran.fortls.disabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Enables hover functionality (disable if using 'Fortran IntelliSense')"
-        },
-        "fortran.provideCompletion": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enables or disables completion functionality (disable if using 'Fortran IntelliSense')"
+          "default": false,
+          "description": "Disable the Language Server. If true, it will limit the extension's functionality substantially (should be avoid!)"
         },
         "fortran.preferredCase": {
           "type": "string",
@@ -220,12 +299,42 @@
             "lowercase",
             "uppercase"
           ],
-          "description": "Specify the word case to use when suggesting autocomplete options (One of 'lowercase' or 'upercase')"
+          "description": "Specify the word case to use when suggesting autocomplete options."
         },
         "fortran.ignoreWarning.fortls": {
           "type": "boolean",
           "default": false,
-          "description": "Hide error message when the fortran-language-server is not detected"
+          "description": "Hide error message when the fortls is not detected"
+        },
+        "fortran.includePaths": {
+          "deprecationMessage": "fortran.includePaths has been renamed to fortran.linter.includePaths."
+        },
+        "fortran.gfortranExecutable": {
+          "deprecationMessage": "fortran.gfortranExecutable has been renamed to fortran.linter.compilerPath"
+        },
+        "fortran.linterEnabled": {
+          "deprecationMessage": "fortran.linterEnabled has been renamed to fortran.linter.compiler set to Disable to turn off."
+        },
+        "fortran.linterExtraArgs": {
+          "deprecationMessage": "fortran.linterExtraArgs has been renamed to fortran.linter.extraArgs"
+        },
+        "fortran.linterModOutput": {
+          "deprecationMessage": "fortran.linterModOutput has been renamed to fortran.linter.modOutput."
+        },
+        "fortran.provideSymbols": {
+          "deprecationMessage": "fortran.provideSymbols has been renamed to fortran.provide.symbols. By default the fortls symbols are used, to enable the built-in symbols turn on the Built-in option."
+        },
+        "fortran.symbols": {
+          "deprecationMessage": "fortran.symbols has been removed in favour of the fortran language server returning all symbols."
+        },
+        "fortran.provideHover": {
+          "deprecationMessage": "fortran.provideHover has been renamed to fortran.provide.hover. By default the fortls hover is used, to enable the built-in hover turn on the Built-in option."
+        },
+        "fortran.provideCompletion": {
+          "deprecationMessage": "fortran.provideCompletion has been renamed to fortran.provide.autocomplete. By default the fortls autocompletion is used, to enable the built-in autocompletion turn on the Built-in option."
+        },
+        "fortran.fortls.preserveKeywordOrder": {
+          "deprecationMessage": "This option is now the default, use fortran.fortls.sortKeywords to sort keywords."
         }
       }
     },
@@ -236,15 +345,53 @@
       {
         "language": "FortranFixedForm"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.restartLanguageServer",
+        "title": "Restart the Fortran Language Server"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.stopLanguageServer",
+        "title": "Stop the Fortran Language Server"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.startLanguageServer",
+        "title": "Start the Fortran Language Server"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.restartLanguageServer",
+          "title": "Restart the Fortran Language Server",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "command": "fortran.analysis.stopLanguageServer",
+          "title": "Stop the Fortran Language Server",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "command": "fortran.analysis.startLanguageServer",
+          "title": "Start the Fortran Language Server",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p tsconfig.prod.json",
-    "compile-dev": "tsc -p tsconfig.json",
-    "watch": "tsc -watch -p tsconfig.prod.json",
-    "watch-dev": "tsc -watch -p tsconfig.json",
-    "pretest": "tsc -p tsconfig.test.json",
+    "compile": "webpack --mode production",
+    "compile-dev": "webpack --mode development",
+    "watch": "webpack --mode production --watch --progress",
+    "watch-dev": "webpack --mode development --watch --progress",
+    "webpack": "webpack --mode production",
+    "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
     "test": "node ./out/test/runTest.js",
     "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json -t \"./test/**/*{.f90,F90}\"",
     "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json -t \"./test/**/*{.f,F}\"",
@@ -260,7 +407,7 @@
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.0",
     "@types/node": "^16.11.21",
-    "@types/vscode": "^1.30.0",
+    "@types/vscode": "^1.63.0",
     "@types/which": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.10.2",
@@ -273,8 +420,11 @@
     "lint-staged": "^12.3.2",
     "mocha": "^9.2.0",
     "prettier": "^2.5.1",
+    "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
-    "vscode-tmgrammar-test": "^0.0.11"
+    "vscode-tmgrammar-test": "^0.0.11",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "lint-staged": {
     "*.ts": [

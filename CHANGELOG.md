@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0]
+
+### Fixed
+
+- Fixes linting regex to capture a wider spectrum of errors
+  ([#295](https://github.com/krvajal/vscode-fortran-support/issues/295))
+- Fixes linter activation from `Disabled` to some compiler `X` without having
+  to restart the extension
+  ([#296](https://github.com/krvajal/vscode-fortran-support/issues/296))
+- Fixes nopass pointer erroneous syntax highlighting
+  ([#318](https://github.com/krvajal/vscode-fortran-support/issues/318))
+- Fixes `%` accessor highlighting for type-bound subroutines
+  ([#325](https://github.com/krvajal/vscode-fortran-support/issues/325))
+- Fixes `fortls` not spawning when `ignoreWarning` was set to true
+  ([#365](https://github.com/krvajal/vscode-fortran-support/issues/365))
+- Fixes formatting on Windows (needed .exe extension)
+  ([#354](https://github.com/krvajal/vscode-fortran-support/issues/354))
+- Fixes `onSave` formatting errors
+  ([#364](https://github.com/krvajal/vscode-fortran-support/issues/364))
+
+### Changed
+
+- Updates `README` text and animations, changes `SECURITY` and updates `package.json`
+- Changes the interface of the extension to accommodate for the newest features
+  ([#292](https://github.com/krvajal/vscode-fortran-support/issues/292))
+- Changes main parts of the extension to being asynchronous
+  ([#285](https://github.com/krvajal/vscode-fortran-support/issues/285))
+- Changes Language Server prompt from `fortran-language-server` to `fortls`
+- Updates VS Code engine to handle `vsce --pre-release`
+
+### Added
+
+- Adds support for Intel (ifort) and LLVM (flang) compilers
+  ([#291](https://github.com/krvajal/vscode-fortran-support/issues/291))
+- Adds native support for the fortran-language-server (`fortls`) making
+  unnecessary the usage of Fortran Intellisense extension
+  ([#290](https://github.com/krvajal/vscode-fortran-support/issues/290))
+- Adds commands for re/starting/stopping the Language Server
+- Added more options for configuring the `fortls` settings through the UI
+
 ## [2.6.2]
 
 ### Added
@@ -344,7 +384,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.2...HEAD
+[unreleased]: https://github.com/krvajal/vscode-fortran-support/compare/v3.0....HEAD
+[3.0.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.2...v3.0.0
 [2.6.2]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.1...v2.6.2
 [2.6.1]: https://github.com/krvajal/vscode-fortran-support/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/krvajal/vscode-fortran-support/compare/v2.5.0...v2.6.0

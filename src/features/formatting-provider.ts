@@ -7,27 +7,35 @@ import * as vscode from 'vscode';
 import * as cp from 'child_process';
 
 import { LoggingService } from '../services/logging-service';
-import { FORMATTERS, EXTENSION_ID, promptForMissingTool } from '../lib/tools';
+import {
+  FORMATTERS,
+  EXTENSION_ID,
+  promptForMissingTool,
+  getWholeFileRange,
+  spawnAsPromise,
+} from '../lib/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
+  private readonly workspace = vscode.workspace.getConfiguration(EXTENSION_ID);
+  private formatter: string | undefined;
   constructor(private logger: LoggingService) {}
 
-  public provideDocumentFormattingEdits(
+  public async provideDocumentFormattingEdits(
     document: vscode.TextDocument,
     options: vscode.FormattingOptions,
     token: vscode.CancellationToken
-  ): vscode.ProviderResult<vscode.TextEdit[]> {
+  ): Promise<vscode.TextEdit[]> {
     const formatterName: string = this.getFormatter();
 
     if (formatterName === 'fprettify') {
-      this.doFormatFprettify(document);
+      return this.doFormatFprettify(document);
     } else if (formatterName === 'findent') {
-      this.doFormatFindent(document);
+      return this.doFormatFindent(document);
     } else {
       this.logger.logError('Cannot format document with formatter set to Disabled');
     }
 
-    return;
+    return undefined;
   }
 
   /**
@@ -35,15 +43,15 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    *
    * @param document vscode.TextDocument document to operate on
    */
-  private doFormatFprettify(document: vscode.TextDocument) {
+  private async doFormatFprettify(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     // fprettify can only do FortranFreeFrom
     if (document.languageId !== 'FortranFreeForm') {
       this.logger.logError(`fprettify can only format FortranFreeForm, change
                             to findent for FortranFixedForm formatting`);
-      return;
+      return undefined;
     }
 
-    const formatterName = 'fprettify';
+    const formatterName = process.platform !== 'win32' ? 'fprettify' : 'fprettify.exe';
     const formatterPath: string = this.getFormatterPath();
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
@@ -54,37 +62,22 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
-    const args: string[] = [document.fileName, ...this.getFormatterArgs()];
-    // args.push('--silent'); // TODO: pass?
-
-    // Get current file (name rel to path), run extension can be in a shell??
-    const process = cp.spawn(formatter, args);
-
-    // if the findent then capture the output from that and parse it back to the file
-    process.stdout.on('data', data => {
-      this.logger.logInfo(`formatter stdout: ${data}`);
-    });
-    process.stderr.on('data', data => {
-      this.logger.logError(`formatter stderr: ${data}`);
-    });
-    process.on('close', (code: number) => {
-      if (code !== 0) this.logger.logInfo(`formatter exited with code: ${code}`);
-    });
-    process.on('error', code => {
-      this.logger.logInfo(`formatter exited with code: ${code}`);
-    });
+    const args: string[] = ['--stdout', ...this.getFormatterArgs()];
+    const edits: vscode.TextEdit[] = [];
+    const output = await spawnAsPromise(formatter, args, undefined, document.getText());
+    edits.push(new vscode.TextEdit(getWholeFileRange(document), output));
+    return edits;
   }
 
   /**
    * Use `findent` to format a Fortran file.
-   * Creates a temporary file where the output is placed and then deleted
    *
    * @param document vscode.TextDocument document to operate on
    */
-  private doFormatFindent(document: vscode.TextDocument) {
-    const formatterName = 'findent';
+  private async doFormatFindent(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
+    const formatterName = process.platform !== 'win32' ? 'findent' : 'findent.exe';
     const formatterPath: string = this.getFormatterPath();
-    let formatter: string = path.join(formatterPath, formatterName);
+    const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
       this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
@@ -93,21 +86,11 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
-    // Annoyingly findent only outputs to a file and not to a stream so
-    // let us go and create a temporary file
-    const out = document.uri.path + '.findent.tmp';
-    const args: string = ['< ' + document.fileName + ' >', out, ...this.getFormatterArgs()].join(
-      ' '
-    );
-    formatter = formatter + ' ' + args;
-
-    // @note It is wise to have all IO operations being synchronous we don't
-    // want to copy or delete the temp file before findent has completed.
-    // I cannot forsee a situation where a performance bottleneck is created
-    // since findent performs something like ~100k lines per second
-    cp.execSync(formatter, { stdio: 'inherit' });
-    fs.copyFileSync(out, document.fileName);
-    fs.unlinkSync(out);
+    const args: string[] = this.getFormatterArgs();
+    const edits: vscode.TextEdit[] = [];
+    const output = await spawnAsPromise(formatter, args, undefined, document.getText());
+    edits.push(new vscode.TextEdit(getWholeFileRange(document), output));
+    return edits;
   }
 
   /**
@@ -119,13 +102,12 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    * @returns {string} formatter name or `Disabled`
    */
   private getFormatter(): string {
-    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    const formatter: string = config.get('formatting.formatter', 'Disabled');
+    this.formatter = this.workspace.get('formatting.formatter', 'Disabled');
 
-    if (!FORMATTERS.includes(formatter)) {
-      this.logger.logError(`Unsupported formatter: ${formatter}`);
+    if (!FORMATTERS.includes(this.formatter)) {
+      this.logger.logError(`Unsupported formatter: ${this.formatter}`);
     }
-    return formatter;
+    return this.formatter;
   }
 
   /**
@@ -134,9 +116,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    * @returns {string[]} list of additional arguments
    */
   private getFormatterArgs(): string[] {
-    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    const args: string[] = config.get('formatting.args', []);
-
+    const args: string[] = this.workspace.get(`formatting.${this.formatter}Args`, []);
     return args;
   }
 
@@ -146,8 +126,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    * @returns {string} path of formatter
    */
   private getFormatterPath(): string {
-    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    const formatterPath: string = config.get('formatting.path', '');
+    const formatterPath: string = this.workspace.get('formatting.path', '');
     if (formatterPath !== '') {
       this.logger.logInfo(`Formatter located in: ${formatterPath}`);
     }

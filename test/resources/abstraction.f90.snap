@@ -293,7 +293,7 @@
 #       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran keyword.control.call.fortran
 #           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran
 #            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran variable.other.fortran
-#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran punctuation.accessor.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran keyword.accessor.fortran
 #              ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran entity.name.function.subroutine.fortran
 #                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran punctuation.parentheses.left.fortran
 #                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.call.fortran meta.parameter.fortran

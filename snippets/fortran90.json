@@ -25,9 +25,9 @@
     "prefix": "fun",
     "body": [
       "function ${1:func}(${2:arg}) result(${3:retval})",
-      "\timplicit none",
-      "\t${4:type} :: ${2:arg}",
-      "\t${4:type} :: ${3:retval}",
+      "\t${4:integer}, intent(in) :: ${2:arg}",
+      "\t${5:integer} :: ${3:retval}",
+      "",
       "\t${0}",
       "end function ${1:func}"
     ],
@@ -37,13 +37,30 @@
     "prefix": "sub",
     "body": [
       "subroutine ${1:routine}(${2:arg1}, ${3: arg2})",
-      "implicit none",
-      "${4:type1},intent(in) :: ${2:arg1}",
-      "${5:type2},intent(out) :: ${3:arg2}",
-      "${0}",
+      "\t${4:type1}, intent(${5:in}) :: ${2:arg1}",
+      "\t${6:type2}, intent(${7:out}) :: ${3:arg2}",
+      "",
+      "\t${0}",
       "end subroutine ${1:routine}"
     ],
     "description": "Create a subroutine"
+  },
+  "Type": {
+    "prefix": "typ",
+    "body": [
+      "type, public :: ${1:type_name}",
+      "\t${2:integer} :: ${3:var}",
+      "\t${4}",
+      "",
+      "private",
+      "\t${5}",
+      "",
+      "contains",
+      "\t${0}",
+      "",
+      "end type ${1:type_name}"
+    ],
+    "description": "Create a new type"
   },
   "ifs": {
     "prefix": "if",

@@ -6,7 +6,7 @@ import { LoggingService } from '../services/logging-service';
 import { isString, isArrayOfString } from './helper';
 
 export const EXTENSION_ID = 'fortran';
-export const LANG_SERVER_TOOL_ID = 'fortran-language-server';
+export const LANG_SERVER_TOOL_ID = 'fortls';
 export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
 
 // Platform-specific environment variable delimiter
@@ -41,19 +41,19 @@ export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
  * Install a package either a Python pip package or a VS Marketplace Extension.
  *
  * For the Python install supply the name of the package in PyPi
- * e.g. fortran-language-server
+ * e.g. fortls
  *
  * For the VS Extension to be installed supply the id of the extension
  * e.g 'hansec.fortran-ls'
  *
- * @param tool name of the tool e.g. fortran-language-server
+ * @param tool name of the tool e.g. fortls
  * @param msg message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
  * @param opts options for the prompt. "Install" and "Don't Show Again" are coded
  * @param logger log channel output
  * @param action a void function for an action to perform when "Don't Show Again" is pressed
  */
-export function promptForMissingTool(
+export async function promptForMissingTool(
   tool: string,
   msg: string,
   toolType: string,
@@ -95,22 +95,22 @@ export function promptForMissingTool(
  * @param logger `optional` logging channel for output
  */
 export function installPythonTool(pyPackage: string, logger?: LoggingService) {
-  const installProcess = cp.spawn('pip', 'install --user --upgrade '.concat(pyPackage).split(' '));
-  installProcess.stdout.on('data', data => {
-    logger.logInfo(`pip install: ${data}`);
-  });
-  installProcess.on('exit', (code, signal) => {
-    if (code !== 0) {
-      logger.logError(
-        `Python package ${pyPackage} failed to install with code: ${code}, signal: ${signal}`
-      );
-    } else {
-      logger.logInfo(`Successfully installed ${pyPackage}.`);
-    }
-  });
-  installProcess.on('error', err => {
-    logger.logError(`${err}`);
-  });
+  const installProcess = cp.spawnSync(
+    'pip',
+    'install --user --upgrade '.concat(pyPackage).split(' ')
+  );
+  if (installProcess.error) {
+    logger.logError(
+      `Python package ${pyPackage} failed to install with code: ${installProcess.error}`
+    );
+  }
+  if (installProcess.stdout) {
+    const sep = '-'.repeat(80);
+    logger.logInfo(
+      `pip install --user --upgrade ${pyPackage}:\n${sep}\n${installProcess.stdout}${sep}`
+    );
+    logger.logInfo(`pip install was successful`);
+  }
 }
 
 /**
@@ -204,4 +204,38 @@ export function resolveVariables(
 
   return ret;
   // return new Promise<string>((resolve) => { resolve(ret) });
+}
+
+export function getWholeFileRange(document: vscode.TextDocument): vscode.Range {
+  return new vscode.Range(0, 0, document.lineCount, 0);
+}
+
+export async function spawnAsPromise(
+  cmd: string,
+  args: ReadonlyArray<string> | undefined,
+  options: cp.SpawnOptions | undefined,
+  input: string | undefined
+) {
+  return new Promise<string>((resolve, reject) => {
+    // You could separate STDOUT and STDERR if your heart so desires...
+    let output = '';
+    const child = cp.spawn(cmd, args, options);
+    child.stdout.on('data', data => {
+      output += data;
+    });
+    child.stderr.on('data', data => {
+      output += data;
+    });
+    child.on('close', code => {
+      code === 0 ? resolve(output) : reject(output);
+    });
+    child.on('error', err => {
+      reject(err.toString());
+    });
+
+    if (input) {
+      child.stdin.write(input);
+      child.stdin.end();
+    }
+  });
 }

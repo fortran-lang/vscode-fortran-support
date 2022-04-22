@@ -13,6 +13,7 @@ import {
   parseSubroutine as getDeclaredSubroutine,
 } from '../lib/functions';
 import { parseVars as getDeclaredVar } from '../lib/variables';
+import { EXTENSION_ID } from '../lib/tools';
 
 type SymbolType = 'subroutine' | 'function' | 'variable';
 type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
@@ -98,8 +99,9 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
   }
 
   getSymbolTypes() {
-    const config = vscode.workspace.getConfiguration('fortran');
-    const symbolTypes = config.get<SymbolType[]>('symbols', ['subroutine', 'function']);
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    // It does not make much sense for this to be an input option
+    const symbolTypes: SymbolType[] = ['subroutine', 'function'];
     return symbolTypes;
   }
 }

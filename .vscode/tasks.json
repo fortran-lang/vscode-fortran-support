@@ -11,7 +11,7 @@
       },
       "isBackground": true,
       "problemMatcher": "$tsc-watch",
-      "detail": "tsc -watch -p tsconfig.json"
+      "detail": "webpack --mode development --watch --progress"
     },
     {
       "label": "npm: compile-dev",
@@ -19,7 +19,7 @@
       "script": "compile-dev",
       "group": "build",
       "problemMatcher": "$tsc",
-      "detail": "tsc -p tsconfig.json"
+      "detail": "webpack --mode development"
     },
     {
       "label": "npm: pretest",
@@ -27,18 +27,7 @@
       "script": "pretest",
       "group": "test",
       "problemMatcher": "$tsc",
-      "detail": "tsc -p tsconfig.test.json"
-    },
-    {
-      "label": "npm: pretest setup",
-      "type": "shell",
-      "dependsOn": ["npm: compile-dev", "npm: pretest"],
-      "dependsOrder": "sequence",
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "detail": "setup for test launch"
+      "detail": "npm run compile-dev && tsc -p tsconfig.test.json"
     },
     {
       "type": "npm",
