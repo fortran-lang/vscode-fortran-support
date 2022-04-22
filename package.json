@@ -6,10 +6,14 @@
   "publisher": "krvajalm",
   "license": "MIT",
   "author": {
-    "email": "krvajal.miguelangel@gmail.com",
-    "name": "Miguel Carvajal"
+    "name": "The Fortran Programming Language",
+    "url": "https://fortran-lang.org"
   },
   "maintainers": [
+    {
+      "email": "krvajal.miguelangel@gmail.com",
+      "name": "Miguel Carvajal"
+    },
     {
       "email": "giannis.nikiteas@gmail.com",
       "name": "Giannis Nikiteas"
@@ -18,12 +22,12 @@
   "engines": {
     "vscode": "^1.63.0"
   },
-  "icon": "images/icon.png",
-  "homepage": "https://github.com/krvajalmiguelangel/vscode-fortran-support",
-  "qna": "https://github.com/krvajalmiguelangel/vscode-fortran-support/issues",
+  "icon": "assets/icon.png",
+  "homepage": "https://github.com/fortran-lang/vscode-fortran-support#readme",
+  "qna": "https://github.com/fortran-lang/vscode-fortran-support/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/krvajalmiguelangel/vscode-fortran-support.git"
+    "url": "https://github.com/fortran-lang/vscode-fortran-support.git"
   },
   "keywords": [
     "Fortran",

@@ -11,5 +11,5 @@
     "rootDir": "."
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", ".vscode-test"]
+  "exclude": ["node_modules", ".vscode-test", "assets/videos"]
 }

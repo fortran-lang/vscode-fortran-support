@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg11879"
+   sodipodi:docname="modern-fortran-logo.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11881"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.5312793"
+     inkscape:cx="428.04443"
+     inkscape:cy="608.58555"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs11876" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#734f96;fill-opacity:1;stroke:none;stroke-width:0.144767;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3876"
+       width="60.19545"
+       height="15.736053"
+       x="111.29187"
+       y="128.57928"
+       ry="2.9265988"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.9122px;line-height:1.25;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+       x="108.24136"
+       y="141.22025"
+       id="text3866"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394"><tspan
+         sodipodi:role="line"
+         id="tspan3864"
+         x="108.24136"
+         y="141.22025"
+         style="fill:#000000;stroke-width:0.372806;-inkscape-font-specification:Clarendon;font-family:Clarendon;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"> <tspan
+   style="fill:#ffffff;-inkscape-font-specification:Clarendon;font-family:Clarendon;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+   id="tspan3884">Fortran</tspan></tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.148421;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect15917"
+       width="63.272865"
+       height="15.736053"
+       x="48.019005"
+       y="128.57928"
+       ry="2.9265988"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.9122px;line-height:1.25;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"
+       x="49.091225"
+       y="141.4496"
+       id="text3900"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394"><tspan
+         sodipodi:role="line"
+         id="tspan3898"
+         x="49.091225"
+         y="141.4496"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#734f96"
+           id="tspan3894">Modern</tspan></tspan></text>
+    <rect
+       style="fill:#734f96;fill-opacity:1;stroke:none;stroke-width:0.144767;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3876-9"
+       width="60.19545"
+       height="15.736053"
+       x="110.03622"
+       y="158.01401"
+       ry="2.9265988"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.9122px;line-height:1.25;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"
+       x="106.98571"
+       y="170.7644"
+       id="text3866-1"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394"><tspan
+         sodipodi:role="line"
+         id="tspan3864-2"
+         x="106.98571"
+         y="170.7644"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#ffffff"
+   id="tspan3884-7">Fortran</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.9122px;line-height:1.25;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"
+       x="46.24807"
+       y="170.77487"
+       id="text3900-9"
+       inkscape:export-filename="/home/gn/Code/TypeScript/vscode-fortran-support/assets/modern-fortran-logo.png"
+       inkscape:export-xdpi="150.11394"
+       inkscape:export-ydpi="150.11394"><tspan
+         sodipodi:role="line"
+         id="tspan3898-3"
+         x="46.24807"
+         y="170.77487"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#000000;stroke-width:0.372806"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Clarendon;-inkscape-font-specification:Clarendon;fill:#734f96"
+           id="tspan3894-6">Modern</tspan></tspan></text>
+  </g>
+</svg>
