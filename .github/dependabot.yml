@@ -13,3 +13,10 @@ updates:
       - 'gnikit'
     reviewers:
       - 'gnikit'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    assignees:
+      - 'gnikit'

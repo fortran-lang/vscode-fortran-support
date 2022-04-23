@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added GitHub Actions environment to dependabot
 - Adds support for Intel (ifort) and LLVM (flang) compilers
   ([#291](https://github.com/krvajal/vscode-fortran-support/issues/291))
 - Adds native support for the fortran-language-server (`fortls`) making
