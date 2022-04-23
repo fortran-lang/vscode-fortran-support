@@ -1,4 +1,0 @@
-{
-  "keyword": "GETGID",
-  "docstr": "`GETGID` — Group ID function\n\n### Description\nReturns the numerical group ID of the current process.\n\n\n\n### Syntax\n`RESULT = GETGID()`\n\n\n### Return value\nThe return value of `GETGID` is an `INTEGER` of the default\nkind.\n\n\n\n### Example\nSee `GETPID` for an example.\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n\n### See also\n<a href=\"GETPID.html#GETPID\">GETPID</a>, <a href=\"GETUID.html#GETUID\">GETUID</a>\n"
-}

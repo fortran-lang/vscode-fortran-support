@@ -1,4 +1,0 @@
-{
-  "keyword": "SINH",
-  "docstr": "`SINH` — Hyperbolic sine function\n\n### Description\n`SINH(X)` computes the hyperbolic sine of `X`.\n\n\n\n### Syntax\n`RESULT = SINH(X)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value has same type and kind as `X`.\n\n\n\n### Example\n```\n\n\nprogram test_sinh\n\n  real(8) :: x = - 1.0_8\n\n  x = sinh(x)\n\nend program test_sinh\n\n```\n\n\n\n### Specific names\n\n     \n | Name             | Argument           | Return type        | Standard\n\n | `SINH(X)`   | `REAL(4) X`   | `REAL(4)`     | Fortran 95 and later\n\n | `DSINH(X)`  | `REAL(8) X`   | `REAL(8)`     | Fortran 95 and later\n\n\n\n\n\n\n### Standard\nFortran 95 and later, for a complex argument Fortran 2008 or later\n\n\n\n### Class\nElemental function\n\n\n\n### See also\n<a href=\"ASINH.html#ASINH\">ASINH</a>\n"
-}

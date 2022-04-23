@@ -1,4 +1,0 @@
-{
-  "keyword": "COSD",
-  "docstr": "`COSD` — Cosine function, degrees\n\n### Description\nCOSD(X) computes the cosine of X in degrees.\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = COSD(X)\n### Arguments\n- X: The type shall be REAL or COMPLEX.\n### Return value\nThe return value is of the same type and kind as X. The real part of the result is in degrees. If X is of the type REAL, the return value lies in the range -1 \\leq \\cosd (x) \\leq 1.\n"
-}

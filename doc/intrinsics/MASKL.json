@@ -1,4 +1,0 @@
-{
-  "keyword": "MASKL",
-  "docstr": "`MASKL` — Left justified mask\n\n### Description\n`MASKL(I[, KIND])` has its leftmost `I` bits set to 1, and the\nremaining bits set to 0.\n\n\n\n### Syntax\n`RESULT = MASKL(I[, KIND])`\n\n\n### Arguments\n\n     \n. \n\n | `KIND`  | Shall be a scalar constant expression of type\n`INTEGER`.\n\n\n\n\n\n\n### Return value\nThe return value is of type `INTEGER`. If `KIND` is present, it\nspecifies the kind value of the return type; otherwise, it is of the\ndefault integer kind.\n\n\n\n### Standard\nFortran 2008 and later\n\n\n\n### Class\nElemental function\n\n\n\n### See also\n<a href=\"MASKR.html#MASKR\">MASKR</a>\n"
-}
