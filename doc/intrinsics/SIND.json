@@ -1,4 +1,0 @@
-{
-  "keyword": "SIND",
-  "docstr": "`SIND` — Sine function, degrees\n\n### Description\nIND(X) computes the sine of X in degrees.\nThis function is for compatibility only and should be avoided in favor of standard constructs wherever possible.\n### Standard\nGNU Extension, enabled with -fdec-math\n### Class\nElemental function\n### Syntax\nRESULT = SIND(X)\n### Arguments\n- X: The type shall be REAL or COMPLEX.\n    ### Return value\nThe return value has same type and kind as X, and its value is in degrees.\n"
-}

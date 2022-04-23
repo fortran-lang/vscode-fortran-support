@@ -1,7 +1,6 @@
 import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
-
-import { isIntrinsic, loadDocString } from '../lib/helper';
 import { LoggingService } from '../services/logging-service';
+import intrinsics from './intrinsics.json';
 
 export class FortranHoverProvider {
   constructor(private loggingService: LoggingService) {}
@@ -13,8 +12,18 @@ export class FortranHoverProvider {
     const wordRange = document.getWordRangeAtPosition(position);
     const word = document.getText(wordRange);
 
-    if (isIntrinsic(word)) {
-      return new Hover(loadDocString(word));
+    const intrinsicDoc: string = this.isIntrinsic(word);
+    if (intrinsicDoc) return new Hover(intrinsicDoc);
+  }
+
+  /**
+   * Get if a word is a Fortran intrinsic and return the documentation if true.
+   * @param keyword word to provide hover info for
+   * @returns if `keyword` is an intrinsic return the documentation for it, otherwise return `undefined`
+   */
+  private isIntrinsic(keyword: string): string {
+    if (Object.prototype.hasOwnProperty.call(intrinsics, keyword.toUpperCase())) {
+      return intrinsics[keyword.toUpperCase()].doc;
     }
   }
 }

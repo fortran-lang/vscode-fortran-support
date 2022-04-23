@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Merged all Fortran intrinsics into a single `json` file
+  ([#424](https://github.com/fortran-lang/vscode-fortran-support/issues/424))
 - Updates `README` text and animations, changes `SECURITY` and updates `package.json`
 - Changes the interface of the extension to accommodate for the newest features
   ([#292](https://github.com/krvajal/vscode-fortran-support/issues/292))

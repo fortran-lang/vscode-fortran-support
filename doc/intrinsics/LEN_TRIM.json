@@ -1,4 +1,0 @@
-{
-  "keyword": "LEN_TRIM",
-  "docstr": "`LEN_TRIM` — Length of a character entity without trailing blank characters\n\n### Description\nReturns the length of a character string, ignoring any trailing blanks.\n\n\n\n### Syntax\n`RESULT = LEN_TRIM(STRING [, KIND])`\n\n\n### Arguments\n\n     \n,\nwith `INTENT(IN)`<br>\n | `KIND`  | (Optional) An `INTEGER` initialization\nexpression indicating the kind parameter of the result.\n\n\n\n\n\n\n### Return value\nThe return value is of type `INTEGER` and of kind `KIND`. If\n`KIND` is absent, the return value is of default integer kind.\n\n\n\n### Standard\nFortran 95 and later, with `KIND` argument Fortran 2003 and later\n\n\n\n### Class\nElemental function\n\n\n\n### See also\n<a href=\"LEN.html#LEN\">LEN</a>, <a href=\"ADJUSTL.html#ADJUSTL\">ADJUSTL</a>, <a href=\"ADJUSTR.html#ADJUSTR\">ADJUSTR</a>\n"
-}

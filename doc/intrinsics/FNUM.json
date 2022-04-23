@@ -1,4 +1,0 @@
-{
-  "keyword": "FNUM",
-  "docstr": "`FNUM` — File number function\n\n### Description\n`FNUM(UNIT)` returns the POSIX file descriptor number corresponding to the\nopen Fortran I/O unit `UNIT`.\n\n\n\n### Syntax\n`RESULT = FNUM(UNIT)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value is of type `INTEGER`\n\n\n### Example\n```\n\n\nprogram test_fnum\n\n  integer :: i\n\n  open (unit=10, status = \"scratch\")\n\n  i = fnum(10)\n\n  print *, i\n\n  close (10)\n\nend program test_fnum\n\n```\n\n     \n\n### Standard\nGNU extension\n\n\n\n### Class\nFunction\n\n\n"
-}

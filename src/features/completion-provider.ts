@@ -1,11 +1,11 @@
 import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
 import * as fs from 'fs';
 import * as vscode from 'vscode';
-import { isPositionInString, intrinsics, FORTRAN_KEYWORDS } from '../lib/helper';
+import { isPositionInString, FORTRAN_KEYWORDS } from '../lib/helper';
 import { getDeclaredFunctions } from '../lib/functions';
-
 import { EXTENSION_ID } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
+import intrinsics from './intrinsics.json';
 
 class CaseCoverter {
   preferredCase: string;
@@ -97,7 +97,7 @@ export class FortranCompletionProvider implements vscode.CompletionItemProvider 
     currentWord: string,
     caseConverter: CaseCoverter
   ): vscode.CompletionItem[] {
-    return intrinsics
+    return Object.keys(intrinsics)
       .filter(i => i.startsWith(currentWord.toUpperCase()))
       .map((intrinsic: string) => {
         return new vscode.CompletionItem(

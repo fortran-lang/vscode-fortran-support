@@ -1,4 +1,0 @@
-{
-  "keyword": "FRACTION",
-  "docstr": "`FRACTION` — Fractional part of the model representation\n\n### Description\n`FRACTION(X)` returns the fractional part of the model\nrepresentation of `X`.\n\n\n\n### Syntax\n`Y = FRACTION(X)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value is of the same type and kind as the argument. \nThe fractional part of the model representation of `X` is returned;\nit is `X * RADIX(X)**(-EXPONENT(X))`.\n\n\n\n### Example\n```\n\n\nprogram test_fraction\n\n  real :: x\n\n  x = 178.1387e-4\n\n  print *, fraction(x), x * radix(x)**(-exponent(x))\n\nend program test_fraction\n\n```\n\n     \n\n### Standard\nFortran 95 and later\n\n\n\n### Class\nElemental function\n\n\n"
-}

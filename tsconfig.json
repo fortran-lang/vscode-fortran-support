@@ -10,6 +10,6 @@
     "removeComments": true,
     "rootDir": "."
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["node_modules", ".vscode-test", "assets/videos"]
 }

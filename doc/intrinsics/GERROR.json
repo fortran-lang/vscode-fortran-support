@@ -1,4 +1,0 @@
-{
-  "keyword": "GERROR",
-  "docstr": "`GERROR` — Get last system error message\n\n### Description\nReturns the system error message corresponding to the last system error. \nThis resembles the functionality of `strerror(3)` in C.\n\n\n\n### Syntax\n`CALL GERROR(RESULT)`\n\n\n### Arguments\n\n     \n and of default\n\n\n\n\n\n\n### Example\n```\n\n\nPROGRAM test_gerror\n\n  CHARACTER(len=100) :: msg\n\n  CALL gerror(msg)\n\n  WRITE(*,*) msg\n\nEND PROGRAM\n\n```\n\n\n\n### Standard\nGNU extension\n\n\n\n### Class\nSubroutine\n\n\n\n### See also\n<a href=\"IERRNO.html#IERRNO\">IERRNO</a>, <a href=\"PERROR.html#PERROR\">PERROR</a>\n"
-}

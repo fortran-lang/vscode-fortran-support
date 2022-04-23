@@ -1,4 +1,0 @@
-{
-  "keyword": "LOC",
-  "docstr": "`LOC` — Returns the address of a variable\n\n### Description\n`LOC(X)` returns the address of `X` as an integer.\n\n\n\n### Syntax\n`RESULT = LOC(X)`\n\n\n### Arguments\n\n     \n | `X`  | Variable of any type.\n\n\n\n\n\n\n### Return value\nThe return value is of type `INTEGER`, with a `KIND`corresponding to the size (in bytes) of a memory address on the target\nmachine.\n\n\n\n### Example\n```\n\n\nprogram test_loc\n\n  integer :: i\n\n  real :: r\n\n  i = loc(r)\n\n  print *, i\n\nend program test_loc\n\n```\n\n     \n\n### Standard\nGNU extension\n\n\n\n### Class\nInquiry function\n\n\n"
-}

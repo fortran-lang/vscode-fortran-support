@@ -1,4 +1,0 @@
-{
-  "keyword": "SLEEP",
-  "docstr": "`SLEEP` — Sleep for the specified number of seconds\n\n### Description\nCalling this subroutine causes the process to pause for `SECONDS` seconds.\n\n\n\n### Syntax\n`CALL SLEEP(SECONDS)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Example\n```\n\n\nprogram test_sleep\n\n  call sleep(5)\n\nend\n\n```\n\n     \n\n### Standard\nGNU extension\n\n\n\n### Class\nSubroutine\n\n\n"
-}

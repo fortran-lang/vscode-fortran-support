@@ -1,10 +1,5 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
-import { installPythonTool } from './tools';
-import intrinsics from './fortran-intrinsics';
-import { LoggingService } from '../services/logging-service';
-
-export { intrinsics };
 
 export const FORTRAN_KEYWORDS = [
   'FUNCTION',
@@ -19,23 +14,6 @@ export const FORTRAN_KEYWORDS = [
   'END',
   'IMPLICIT',
 ];
-
-export const isIntrinsic = (keyword: string) => {
-  return intrinsics.findIndex(intrinsic => intrinsic === keyword.toUpperCase()) !== -1;
-};
-
-interface Doc {
-  keyword: string;
-  docstr: string;
-}
-
-export const loadDocString = (keyword: string) => {
-  keyword = keyword.toUpperCase();
-  const filepath = __dirname + '/../doc/intrinsics/' + keyword + '.json';
-  const docstr = fs.readFileSync(filepath).toString();
-  const doc: Doc = JSON.parse(docstr);
-  return doc.docstr;
-};
 
 export const _loadDocString = (keyword: string) => {
   keyword = keyword.toUpperCase();

@@ -1,4 +1,0 @@
-{
-  "keyword": "UMASK",
-  "docstr": "`UMASK` — Set the file creation mask\n\n### Description\nSets the file creation mask to `MASK`. If called as a function, it\nreturns the old value. If called as a subroutine and argument `OLD`\nif it is supplied, it is set to the old value. See `umask(2)`.\n\n\n\n### Syntax\n\n     \n\n\n | `OLD = UMASK(MASK)`     <br>\n\n\n\n\n\n### Arguments\n\n     \n. \n\n | `OLD`  | (Optional) Shall be a scalar of type\n`INTEGER`.\n\n\n\n   \n\n\n### Standard\nGNU extension\n\n\n\n### Class\nSubroutine, function\n\n\n"
-}

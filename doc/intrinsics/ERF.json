@@ -1,4 +1,0 @@
-{
-  "keyword": "ERF",
-  "docstr": "`ERF` — Error function\n\n### Description\n`ERF(X)` computes the error function of `X`.\n\n\n\n### Syntax\n`RESULT = ERF(X)`\n\n\n### Arguments\n\n     \n.\n\n\n\n\n\n\n### Return value\nThe return value is of type `REAL`, of the same kind as\n`X` and lies in the range -1 \\leq erf (x) \\leq 1 .\n\n\n\n### Example\n```\n\n\nprogram test_erf\n\n  real(8) :: x = 0.17_8\n\n  x = erf(x)\n\nend program test_erf\n\n```\n\n\n\n### Specific names\n\n     \n | Name             | Argument           | Return type        | Standard\n\n | `DERF(X)`   | `REAL(8) X`   | `REAL(8)`     | GNU extension\n\n\n\n\n\n### Standard\nFortran 2008 and later\n\n\n\n### Class\nElemental function\n\n\n"
-}
