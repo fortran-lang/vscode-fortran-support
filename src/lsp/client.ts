@@ -2,11 +2,13 @@
 
 'use strict';
 
+import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
 import { EXTENSION_ID, FortranDocumentSelector } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
+import { RestartLS } from '../features/commands';
 
 // The clients are non member variables of the class because they need to be
 // shared for command registration. The command operates on the client and not
@@ -39,10 +41,16 @@ export function checkLanguageServerActivation(document: TextDocument): Workspace
 }
 
 export class FortlsClient {
-  constructor(private logger: LoggingService) {
+  constructor(private context: vscode.ExtensionContext, private logger: LoggingService) {
     this.logger.logInfo('Fortran Language Server');
+
+    // Register Language Server Commands
+    this.context.subscriptions.push(
+      vscode.commands.registerCommand(RestartLS, this.restartLS, this)
+    );
   }
 
+  private client: LanguageClient | undefined;
   private _fortlsVersion: string | undefined;
 
   public async activate() {
@@ -58,8 +66,9 @@ export class FortlsClient {
 
   public async deactivate(): Promise<void> {
     const promises: Thenable<void>[] = [];
-    for (const client of clients.values()) {
-      promises.push(client.stop());
+    for (const [key, client] of clients.entries()) {
+      promises.push(client.stop()); // stop the language server
+      clients.delete(key); // delete the URI from the map
     }
     await Promise.all(promises);
     return undefined;
@@ -104,14 +113,15 @@ export class FortlsClient {
       };
 
       // Create the language client, start the client and add it to the registry
-      const client = new LanguageClient(
+      this.client = new LanguageClient(
         'fortls',
         'Fortran Language Server',
         serverOptions,
         clientOptions
       );
-      client.start();
-      clients.set(folder.uri.toString(), client);
+      this.client.start();
+      // Add the Language Client to the global map
+      clients.set(folder.uri.toString(), this.client);
     }
   }
 
@@ -122,7 +132,6 @@ export class FortlsClient {
   private async fortlsArguments() {
     // Get path for the language server
     const conf = workspace.getConfiguration(EXTENSION_ID);
-    const executablePath = conf.get<string>('fortls.path');
     const maxLineLength = conf.get<number>('fortls.maxLineLength');
     const maxCommentLineLength = conf.get<number>('fortls.maxCommentLineLength');
     const fortlsExtraArgs = conf.get<string[]>('fortls.extraArgs');
@@ -261,5 +270,15 @@ export class FortlsClient {
         resolve(false);
       }
     });
+  }
+
+  /**
+   * Restart the language server
+   */
+  private async restartLS(): Promise<void> {
+    this.logger.logInfo('Restarting language server...');
+    vscode.window.showInformationMessage('Restarting language server...');
+    await this.deactivate();
+    await this.activate();
   }
 }

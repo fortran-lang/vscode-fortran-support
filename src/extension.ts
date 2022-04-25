@@ -1,7 +1,6 @@
 // src/extension.ts
 import * as vscode from 'vscode';
 import * as pkg from '../package.json';
-import { registerCommands } from './features/commands';
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
 import { FortranFormattingProvider } from './features/formatting-provider';
@@ -59,10 +58,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentSymbolProvider(FortranDocumentSelector(), symbolProvider);
   }
 
-  registerCommands(context.subscriptions);
-
   if (!config.get<boolean>('fortls.disabled')) {
-    new FortlsClient(loggingService).activate();
+    new FortlsClient(context, loggingService).activate();
   }
 }
 
