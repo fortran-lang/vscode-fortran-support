@@ -38,7 +38,7 @@ export function checkLanguageServerActivation(document: TextDocument): Workspace
   return folder;
 }
 
-export class FortranLanguageServer {
+export class FortlsClient {
   constructor(private logger: LoggingService) {
     this.logger.logInfo('Fortran Language Server');
   }

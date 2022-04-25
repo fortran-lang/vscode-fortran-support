@@ -1,20 +1,14 @@
 // src/extension.ts
 import * as vscode from 'vscode';
-import which from 'which';
 import * as pkg from '../package.json';
 import { registerCommands } from './features/commands';
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
 import { FortranFormattingProvider } from './features/formatting-provider';
-import { FortranLanguageServer } from './lsp/client';
+import { FortlsClient } from './lsp/client';
 import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
-import {
-  EXTENSION_ID,
-  FortranDocumentSelector,
-  LANG_SERVER_TOOL_ID,
-  promptForMissingTool,
-} from './lib/tools';
+import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
 import { LoggingService } from './services/logging-service';
 
 // Make it global to catch errors when activation fails
@@ -68,7 +62,7 @@ export async function activate(context: vscode.ExtensionContext) {
   registerCommands(context.subscriptions);
 
   if (!config.get<boolean>('fortls.disabled')) {
-    new FortranLanguageServer(loggingService).activate();
+    new FortlsClient(loggingService).activate();
   }
 }
 
