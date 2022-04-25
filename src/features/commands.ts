@@ -1,7 +1,7 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import { checkLanguageServerActivation, clients } from './fortls-interface';
+import { checkLanguageServerActivation, clients } from '../lsp/client';
 
 export const RestartLS = 'fortran.analysis.restartLanguageServer';
 export const StarttLS = 'fortran.analysis.startLanguageServer';

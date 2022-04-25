@@ -6,7 +6,7 @@ import { registerCommands } from './features/commands';
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
 import { FortranFormattingProvider } from './features/formatting-provider';
-import { FortranLanguageServer } from './features/fortls-interface';
+import { FortranLanguageServer } from './lsp/client';
 import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
 import {
