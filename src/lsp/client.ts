@@ -46,8 +46,13 @@ export class FortranLanguageServer {
   private _fortlsVersion: string | undefined;
 
   public async activate() {
-    workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
-    workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+    // Detect if fortls is present, download if missing or disable LS functionality
+    // Do not allow activating the LS functionality if no fortls is detected
+    await this.fortlsDownload().then(fortlsDisabled => {
+      if (fortlsDisabled) return;
+      workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
+      workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+    });
     return;
   }
 
@@ -214,5 +219,47 @@ export class FortranLanguageServer {
       return null;
     }
     return results.stdout.toString().trim();
+  }
+
+  /**
+   * Check if fortls is present in the system, if not show prompt to install/disable.
+   * If disabling or erroring the function will return true.
+   * For all normal cases it should return false.
+   *
+   * @returns false if the fortls has been detected or installed successfully
+   */
+  private async fortlsDownload(): Promise<boolean> {
+    const config = workspace.getConfiguration(EXTENSION_ID);
+    const ls = config.get<string>('fortls.path');
+
+    // Check for version, if this fails fortls provided is invalid
+    const results = spawnSync(ls, ['--version']);
+    const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
+      For a full list of features the language server adds see: https://github.com/gnikit/fortls`;
+    return new Promise<boolean>(resolve => {
+      let fortlsDisabled = false;
+      if (results.error) {
+        const selection = window.showInformationMessage(msg, 'Install', 'Disable');
+        selection.then(opt => {
+          if (opt === 'Install') {
+            const install = spawnSync('pip', ['install', '--user', '--upgrade', 'fortls']);
+            if (install.error) {
+              window.showErrorMessage('Had trouble installing fortls, please install manually');
+              fortlsDisabled = true;
+            }
+            if (install.stdout) {
+              this.logger.logInfo(install.stdout.toString());
+              fortlsDisabled = false;
+            }
+          } else if (opt == 'Disable') {
+            config.update('fortls.disabled', true);
+            fortlsDisabled = true;
+          }
+          resolve(fortlsDisabled);
+        });
+      } else {
+        resolve(false);
+      }
+    });
   }
 }

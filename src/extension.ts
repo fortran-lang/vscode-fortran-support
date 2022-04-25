@@ -67,41 +67,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
   registerCommands(context.subscriptions);
 
-  // Check if the language server is installed and if not prompt to install it
-  // Not the most elegant solution but we need pip install to have finished
-  // before the activate function is called so we do a little code duplication
-  if (!config.get<string>('fortls.disabled')) {
-    which(config.get<string>('fortls.path'), (err: any) => {
-      if (!config.get('ignoreWarning.fortls')) {
-        if (err) {
-          const msg = `It is highly recommended to use the fortls to
-              enable IDE features like hover, peeking, gotos and many more.
-              For a full list of features the language server adds see:
-              https://github.com/gnikit/fortls`;
-          promptForMissingTool(
-            LANG_SERVER_TOOL_ID,
-            msg,
-            'Python',
-            ['Install', "Don't Show Again"],
-            loggingService,
-            () => {
-              config.update('ignoreWarning.fortls', true);
-            }
-          ).then(() => {
-            // fortls not installed AND Warnings are enabled
-            new FortranLanguageServer(loggingService).activate();
-          });
-        }
-        // Ignore fortls Warnings NOT set. Activate the LS
-        else {
-          new FortranLanguageServer(loggingService).activate();
-        }
-      }
-      // Ignore fortls Warnings are SET. Activate the LS
-      else {
-        new FortranLanguageServer(loggingService).activate();
-      }
-    });
+  if (!config.get<boolean>('fortls.disabled')) {
+    new FortranLanguageServer(loggingService).activate();
   }
 }
 
