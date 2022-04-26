@@ -301,11 +301,6 @@
           ],
           "description": "Specify the word case to use when suggesting autocomplete options."
         },
-        "fortran.ignoreWarning.fortls": {
-          "type": "boolean",
-          "default": false,
-          "description": "Hide error message when the fortls is not detected"
-        },
         "fortran.includePaths": {
           "deprecationMessage": "fortran.includePaths has been renamed to fortran.linter.includePaths."
         },
@@ -351,16 +346,6 @@
         "category": "Fortran",
         "command": "fortran.analysis.restartLanguageServer",
         "title": "Restart the Fortran Language Server"
-      },
-      {
-        "category": "Fortran",
-        "command": "fortran.analysis.stopLanguageServer",
-        "title": "Stop the Fortran Language Server"
-      },
-      {
-        "category": "Fortran",
-        "command": "fortran.analysis.startLanguageServer",
-        "title": "Start the Fortran Language Server"
       }
     ],
     "menus": {
@@ -369,16 +354,6 @@
           "category": "Fortran",
           "command": "fortran.analysis.restartLanguageServer",
           "title": "Restart the Fortran Language Server",
-          "when": "!virtualWorkspace && shellExecutionSupported"
-        },
-        {
-          "command": "fortran.analysis.stopLanguageServer",
-          "title": "Stop the Fortran Language Server",
-          "when": "!virtualWorkspace && shellExecutionSupported"
-        },
-        {
-          "command": "fortran.analysis.startLanguageServer",
-          "title": "Start the Fortran Language Server",
           "when": "!virtualWorkspace && shellExecutionSupported"
         }
       ]

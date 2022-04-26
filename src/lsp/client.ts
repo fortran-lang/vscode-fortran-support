@@ -2,11 +2,13 @@
 
 'use strict';
 
+import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
-import { EXTENSION_ID, FortranDocumentSelector } from '../lib/tools';
+import { EXTENSION_ID, FortranDocumentSelector, LS_NAME } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
+import { RestartLS } from '../features/commands';
 
 // The clients are non member variables of the class because they need to be
 // shared for command registration. The command operates on the client and not
@@ -38,23 +40,38 @@ export function checkLanguageServerActivation(document: TextDocument): Workspace
   return folder;
 }
 
-export class FortranLanguageServer {
-  constructor(private logger: LoggingService) {
+export class FortlsClient {
+  constructor(private logger: LoggingService, private context?: vscode.ExtensionContext) {
     this.logger.logInfo('Fortran Language Server');
+
+    // if context is present
+    if (context !== undefined) {
+      // Register Language Server Commands
+      this.context.subscriptions.push(
+        vscode.commands.registerCommand(RestartLS, this.restartLS, this)
+      );
+    }
   }
 
+  private client: LanguageClient | undefined;
   private _fortlsVersion: string | undefined;
 
   public async activate() {
-    workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
-    workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+    // Detect if fortls is present, download if missing or disable LS functionality
+    // Do not allow activating the LS functionality if no fortls is detected
+    await this.fortlsDownload().then(fortlsDisabled => {
+      if (fortlsDisabled) return;
+      workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
+      workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+    });
     return;
   }
 
   public async deactivate(): Promise<void> {
     const promises: Thenable<void>[] = [];
-    for (const client of clients.values()) {
-      promises.push(client.stop());
+    for (const [key, client] of clients.entries()) {
+      promises.push(client.stop()); // stop the language server
+      clients.delete(key); // delete the URI from the map
     }
     await Promise.all(promises);
     return undefined;
@@ -99,14 +116,15 @@ export class FortranLanguageServer {
       };
 
       // Create the language client, start the client and add it to the registry
-      const client = new LanguageClient(
-        'fortls',
+      this.client = new LanguageClient(
+        LS_NAME,
         'Fortran Language Server',
         serverOptions,
         clientOptions
       );
-      client.start();
-      clients.set(folder.uri.toString(), client);
+      this.client.start();
+      // Add the Language Client to the global map
+      clients.set(folder.uri.toString(), this.client);
     }
   }
 
@@ -117,7 +135,6 @@ export class FortranLanguageServer {
   private async fortlsArguments() {
     // Get path for the language server
     const conf = workspace.getConfiguration(EXTENSION_ID);
-    const executablePath = conf.get<string>('fortls.path');
     const maxLineLength = conf.get<number>('fortls.maxLineLength');
     const maxCommentLineLength = conf.get<number>('fortls.maxCommentLineLength');
     const fortlsExtraArgs = conf.get<string[]>('fortls.extraArgs');
@@ -214,5 +231,57 @@ export class FortranLanguageServer {
       return null;
     }
     return results.stdout.toString().trim();
+  }
+
+  /**
+   * Check if fortls is present in the system, if not show prompt to install/disable.
+   * If disabling or erroring the function will return true.
+   * For all normal cases it should return false.
+   *
+   * @returns false if the fortls has been detected or installed successfully
+   */
+  private async fortlsDownload(): Promise<boolean> {
+    const config = workspace.getConfiguration(EXTENSION_ID);
+    const ls = config.get<string>('fortls.path');
+
+    // Check for version, if this fails fortls provided is invalid
+    const results = spawnSync(ls, ['--version']);
+    const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
+      For a full list of features the language server adds see: https://github.com/gnikit/fortls`;
+    return new Promise<boolean>(resolve => {
+      let fortlsDisabled = false;
+      if (results.error) {
+        const selection = window.showInformationMessage(msg, 'Install', 'Disable');
+        selection.then(opt => {
+          if (opt === 'Install') {
+            const install = spawnSync('pip', ['install', '--user', '--upgrade', LS_NAME]);
+            if (install.error) {
+              window.showErrorMessage('Had trouble installing fortls, please install manually');
+              fortlsDisabled = true;
+            }
+            if (install.stdout) {
+              this.logger.logInfo(install.stdout.toString());
+              fortlsDisabled = false;
+            }
+          } else if (opt == 'Disable') {
+            config.update('fortls.disabled', true);
+            fortlsDisabled = true;
+          }
+          resolve(fortlsDisabled);
+        });
+      } else {
+        resolve(false);
+      }
+    });
+  }
+
+  /**
+   * Restart the language server
+   */
+  private async restartLS(): Promise<void> {
+    this.logger.logInfo('Restarting language server...');
+    vscode.window.showInformationMessage('Restarting language server...');
+    await this.deactivate();
+    await this.activate();
   }
 }
