@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed hovering over user defined types while debugging
+  ([#426](https://github.com/fortran-lang/vscode-fortran-support/issues/426))
 - Fixes linting regex to capture a wider spectrum of errors
   ([#295](https://github.com/krvajal/vscode-fortran-support/issues/295))
 - Fixes linter activation from `Disabled` to some compiler `X` without having
