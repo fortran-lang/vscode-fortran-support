@@ -1,389 +1,381 @@
->interface function_subroutine_definitions
-#^^^^^^^^^ source.fortran.free meta.interface.generic.fortran keyword.control.interface.fortran
-#         ^ source.fortran.free meta.interface.generic.fortran
-#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran entity.name.function.fortran
 >
 >  ! Normal subroutine
-#^^ source.fortran.free meta.interface.generic.fortran
-#  ^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
-#   ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
+#^^ source.fortran.free
+#  ^ source.fortran.free comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
 >  subroutine sub( arg )
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
-#  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
-#             ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                 ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                  ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                     ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                      ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#            ^ source.fortran.free meta.subroutine.fortran
+#             ^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                 ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                  ^^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                     ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                      ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#    ^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end subroutine
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#  ^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
 >
 >  ! Normal functions
-#^^ source.fortran.free meta.interface.generic.fortran
-#  ^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
-#   ^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
+#^^ source.fortran.free
+#  ^ source.fortran.free comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
 >  integer function fun_integer( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.integer.fortran
-#         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#          ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                   ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                      ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                             ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.integer.fortran
+#         ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#          ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#                  ^ source.fortran.free meta.function.fortran
+#                   ^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                              ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                     ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                      ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                            ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                             ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                                ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_integer
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  real function fun_real( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
-#      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#       ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                       ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#      ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#       ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#               ^ source.fortran.free meta.function.fortran
+#                ^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                        ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                          ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                              ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                               ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                      ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                       ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                          ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_real
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  logical function fun_logical( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
-#         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#          ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                   ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                               ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                      ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                             ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
+#         ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#          ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#                  ^ source.fortran.free meta.function.fortran
+#                   ^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                              ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                     ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                      ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                            ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                             ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                                ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_logical
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  character(kind=1, len=100) function fun_character( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
-#            ^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
-#                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
-#                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran constant.numeric.fortran
-#                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran
-#                   ^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
-#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
-#                        ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran constant.numeric.fortran
-#                           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
-#                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#                             ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                                      ^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                                     ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                                                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                                           ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                                                  ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
+#           ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
+#            ^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#                ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran constant.numeric.fortran
+#                  ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran
+#                   ^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#                       ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                        ^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran constant.numeric.fortran
+#                           ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
+#                            ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#                             ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#                                     ^ source.fortran.free meta.function.fortran
+#                                      ^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                                    ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                     ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                        ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                         ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                                          ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                                           ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                                                 ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                                                  ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                                                     ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_character
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  double precision function fun_double_precision( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.double.fortran
-#                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#                   ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#                           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                            ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                                  ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                                     ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                                      ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                                                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                                        ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                                               ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                                                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.double.fortran
+#                  ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#                   ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#                           ^ source.fortran.free meta.function.fortran
+#                            ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                                                ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                                 ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                  ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                     ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                      ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                                       ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                                        ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                                              ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                                               ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                                                  ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_double_precision
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  double complex function fun_double_complex( arg ) result(val)
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran storage.type.doublecomplex.fortran
-#                ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#                 ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#                          ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                                            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                                 ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                                  ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
-#                                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran
-#                                                    ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
-#                                                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
-#                                                           ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
-#                                                              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.doublecomplex.fortran
+#                ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#                 ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#                         ^ source.fortran.free meta.function.fortran
+#                          ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                                            ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                                             ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                              ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                                 ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                                  ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                                                    ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                                          ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                                           ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                                              ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
 >    integer, intent(inout) :: arg
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_double_complex
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  ! Weird edge cases where the keyword function/subroutine is also used as arguments
-#^^ source.fortran.free meta.interface.generic.fortran
-#  ^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran comment.line.fortran
+#^^ source.fortran.free
+#  ^ source.fortran.free comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
 >  function fun_with_fun(   function )
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#           ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                        ^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#          ^ source.fortran.free meta.function.fortran
+#           ^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                       ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                           ^^^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: function
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_with_fun
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  function fun_with_sub( subroutine )
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.attribute-list.function.fortran
-#  ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.function.fortran
-#          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#           ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
-#                       ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                        ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                         ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#          ^ source.fortran.free meta.function.fortran
+#           ^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                       ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                         ^^^^^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: subroutine
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end function fun_with_sub
-#^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran meta.block.specification.function.fortran
-#  ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran keyword.other.endfunction.fortran
-#              ^ source.fortran.free meta.interface.generic.fortran meta.function.fortran
-#               ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.function.fortran entity.name.function.fortran
+#^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#              ^ source.fortran.free meta.function.fortran
+#               ^^^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
 >
 >  subroutine sub_with_sub(   subroutine  )
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
-#  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
-#             ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                          ^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                             ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                       ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#            ^ source.fortran.free meta.subroutine.fortran
+#             ^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                          ^^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                             ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                       ^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                         ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: subroutine
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#    ^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end subroutine sub_with_sub
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#  ^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
-#                ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
-#                 ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran
+#                 ^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
 >
 >  subroutine sub_with_fun( function )
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
-#  ^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
-#             ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                           ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
-#                                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
-#                                    ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#            ^ source.fortran.free meta.subroutine.fortran
+#             ^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                          ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                           ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >    integer, intent(inout) :: function
-#^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#    ^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
-#           ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
-#            ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#             ^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
-#                   ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                    ^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
-#                         ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
-#                          ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
-#                           ^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
-#                             ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
-#                              ^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#    ^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#            ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#             ^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                   ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                    ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in-out.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
 >  end subroutine sub_with_fun
-#^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
-#  ^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
-#                ^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran
-#                 ^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran
+#                 ^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
 >
->end interface function_subroutine_definitions
-#^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran keyword.control.endinterface.fortran
-#             ^ source.fortran.free meta.interface.generic.fortran
-#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.interface.generic.fortran entity.name.function.fortran
