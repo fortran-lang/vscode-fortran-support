@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
-import { EXTENSION_ID, FortranDocumentSelector } from '../lib/tools';
+import { EXTENSION_ID, FortranDocumentSelector, LS_NAME } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
 import { RestartLS } from '../features/commands';
 
@@ -41,13 +41,16 @@ export function checkLanguageServerActivation(document: TextDocument): Workspace
 }
 
 export class FortlsClient {
-  constructor(private context: vscode.ExtensionContext, private logger: LoggingService) {
+  constructor(private logger: LoggingService, private context?: vscode.ExtensionContext) {
     this.logger.logInfo('Fortran Language Server');
 
-    // Register Language Server Commands
-    this.context.subscriptions.push(
-      vscode.commands.registerCommand(RestartLS, this.restartLS, this)
-    );
+    // if context is present
+    if (context !== undefined) {
+      // Register Language Server Commands
+      this.context.subscriptions.push(
+        vscode.commands.registerCommand(RestartLS, this.restartLS, this)
+      );
+    }
   }
 
   private client: LanguageClient | undefined;
@@ -114,7 +117,7 @@ export class FortlsClient {
 
       // Create the language client, start the client and add it to the registry
       this.client = new LanguageClient(
-        'fortls',
+        LS_NAME,
         'Fortran Language Server',
         serverOptions,
         clientOptions
@@ -251,7 +254,7 @@ export class FortlsClient {
         const selection = window.showInformationMessage(msg, 'Install', 'Disable');
         selection.then(opt => {
           if (opt === 'Install') {
-            const install = spawnSync('pip', ['install', '--user', '--upgrade', 'fortls']);
+            const install = spawnSync('pip', ['install', '--user', '--upgrade', LS_NAME]);
             if (install.error) {
               window.showErrorMessage('Had trouble installing fortls, please install manually');
               fortlsDisabled = true;

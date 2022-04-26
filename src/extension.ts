@@ -59,7 +59,7 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 
   if (!config.get<boolean>('fortls.disabled')) {
-    new FortlsClient(context, loggingService).activate();
+    new FortlsClient(loggingService, context).activate();
   }
 }
 
