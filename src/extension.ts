@@ -61,6 +61,32 @@ export async function activate(context: vscode.ExtensionContext) {
   if (!config.get<boolean>('fortls.disabled')) {
     new FortlsClient(loggingService, context).activate();
   }
+  // override VS Code's default implementation of the debug hover
+  // here we match Fortran derived types and scope them appropriately
+  // e.g. "val%a%b" with hovering over "a" will match "val%a"
+  context.subscriptions.push(
+    vscode.languages.registerEvaluatableExpressionProvider(FortranDocumentSelector(), {
+      provideEvaluatableExpression(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        token: vscode.CancellationToken
+      ): vscode.ProviderResult<vscode.EvaluatableExpression> {
+        // Match the % characters in defined types
+        const DERIVED_TYPE_REGEX = /[a-z][\w%]*/i;
+        // Get the word at the current position and the string matching
+        // the derived type REGEX. Use the start of the regex and end of word as range
+        const wordRange = document.getWordRangeAtPosition(position);
+        const derivedTypeRange = document.getWordRangeAtPosition(position, DERIVED_TYPE_REGEX);
+        if (wordRange) {
+          if (derivedTypeRange) {
+            return new vscode.EvaluatableExpression(wordRange.with(derivedTypeRange.start));
+          }
+          return new vscode.EvaluatableExpression(wordRange);
+        }
+        return undefined;
+      },
+    })
+  );
 }
 
 function detectDeprecatedOptions() {
