@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed slow performance of very long lines by using a different solution for
+  ([#207](https://github.com/fortran-lang/vscode-fortran-support/issues/207))
+  ([#309](https://github.com/fortran-lang/vscode-fortran-support/issues/309))
 - Fixed hovering over user defined types while debugging
   ([#426](https://github.com/fortran-lang/vscode-fortran-support/issues/426))
 - Fixes linting regex to capture a wider spectrum of errors

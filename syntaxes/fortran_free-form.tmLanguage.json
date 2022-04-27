@@ -2543,7 +2543,7 @@
     "derived-type-component-type-specification": {
       "comment": "Introduced in the Fortran 1995 standard.",
       "name": "meta.specification.derived-type.fortran",
-      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^'\";!\\n]*(?<!\\(\\s*|::\\s*)\\bfunction\\b))",
+      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^:'\";!\\n]*\\bfunction\\b))",
       "end": "(?=[;!\\n])",
       "patterns": [
         {
@@ -4010,8 +4010,7 @@
     "function-definition": {
       "comment": "Function program unit. Introduced in the Fortran 1977 standard.",
       "name": "meta.function.fortran",
-      "comment2": "Escape :: ( , if they are before function. These are non-fixed width lookbehinds but they seem to work",
-      "begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!\\(\\s*|::\\s*|,\\s*))\\bfunction\\b)",
+      "begin": "(?i)(?=([^:'\";!\\n](?!\\bend)(?!\\bsubroutine\\b))*\\bfunction\\b)",
       "end": "(?=[;!\\n])",
       "patterns": [
         {
@@ -4094,8 +4093,8 @@
                 {
                   "comment": "Specification and execution block.",
                   "name": "meta.block.specification.function.fortran",
-                  "begin": "(?i)(?!(?:end\\s*[;!\\n]|end\\s*function\\b))",
-                  "end": "(?i)(?=(?:end\\s*[;!\\n]|end\\s*function\\b))",
+                  "begin": "(?i)(?!\\b(?:end\\s*[;!\\n]|end\\s*function\\b))",
+                  "end": "(?i)(?=\\b(?:end\\s*[;!\\n]|end\\s*function\\b))",
                   "patterns": [
                     {
                       "comment": "Contains block.",
@@ -4106,7 +4105,7 @@
                           "name": "keyword.control.contains.fortran"
                         }
                       },
-                      "end": "(?i)(?=\\s*(?:end\\s*[;!\\n]|end\\s*function\\b))",
+                      "end": "(?i)(?=(?:end\\s*[;!\\n]|end\\s*function\\b))",
                       "patterns": [
                         {
                           "include": "$base"
@@ -4350,7 +4349,7 @@
     "subroutine-definition": {
       "comment": "Subroutine program unit. Introduced in the Fortran 1977 standard.",
       "name": "meta.subroutine.fortran",
-      "begin": "(?i)(?=([^'\";!\\n](?!\\bend))*(?:(?<!::\\s*))\\bsubroutine\\b)",
+      "begin": "(?i)(?=([^:'\";!\\n](?!\\bend))*\\bsubroutine\\b)",
       "end": "(?=[;!\\n])",
       "patterns": [
         {
@@ -4542,7 +4541,7 @@
     "type-specification-statements": {
       "name": "meta.specification.type.fortran",
       "comment": "Supported types for function and escape :: if function is used as a variable name (which is bad practice).",
-      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n]*(?<!\\(\\s*|::\\s*)\\bfunction\\b))",
+      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n:]*\\bfunction\\b))",
       "end": "(?=[\\);!\\n])",
       "patterns": [
         {
