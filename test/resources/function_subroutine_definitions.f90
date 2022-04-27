@@ -1,4 +1,3 @@
-interface function_subroutine_definitions
 
   ! Normal subroutine
   subroutine sub( arg )
@@ -46,5 +45,3 @@ interface function_subroutine_definitions
   subroutine sub_with_fun( function )
     integer, intent(inout) :: function
   end subroutine sub_with_fun
-
-end interface function_subroutine_definitions
