@@ -46,6 +46,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added unittests for the formatting providers
+  ([#423](https://github.com/fortran-lang/vscode-fortran-support/issues/423))
 - Added GitHub Actions environment to dependabot
 - Adds support for Intel (ifort) and LLVM (flang) compilers
   ([#291](https://github.com/krvajal/vscode-fortran-support/issues/291))
