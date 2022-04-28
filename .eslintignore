@@ -1,3 +1,1 @@
 *.js
-test/**/index.ts
-test/**/runTest.ts
