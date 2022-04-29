@@ -44,6 +44,47 @@ export function isFortran(document: vscode.TextDocument): boolean {
   );
 }
 
+//
+// Taken with minimal alterations from lsp-multi-server-sample
+//
+
+/**
+ * Return in ascending order the workspace folders in an array of strings
+ * @returns sorted workspace folders
+ */
+export function sortedWorkspaceFolders(): string[] | undefined {
+  const workspaceFolders = vscode.workspace.workspaceFolders
+    ? vscode.workspace.workspaceFolders
+        .map(folder => {
+          let result = folder.uri.toString();
+          if (result.charAt(result.length - 1) !== '/') result = result + '/';
+          return result;
+        })
+        .sort((a, b) => {
+          return a.length - b.length;
+        })
+    : [];
+  return workspaceFolders;
+}
+
+/**
+ * Locate the top most workspace folder for a given file
+ * @param folder workspace folder
+ * @returns outer most workspace folder
+ */
+export function getOuterMostWorkspaceFolder(
+  folder: vscode.WorkspaceFolder
+): vscode.WorkspaceFolder {
+  const sorted = sortedWorkspaceFolders();
+  for (const element of sorted) {
+    let uri = folder.uri.toString();
+    if (uri.charAt(uri.length - 1) !== '/') uri = uri + '/';
+    if (uri.startsWith(element))
+      return vscode.workspace.getWorkspaceFolder(vscode.Uri.parse(element))!;
+  }
+  return folder;
+}
+
 /**
  * Install a package either a Python pip package or a VS Marketplace Extension.
  *

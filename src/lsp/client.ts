@@ -1,5 +1,3 @@
-// Modified version of Chris Hansen's Fortran Intellisense
-
 'use strict';
 
 import * as path from 'path';
@@ -7,7 +5,13 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
-import { EXTENSION_ID, FortranDocumentSelector, LS_NAME, isFortran } from '../lib/tools';
+import {
+  EXTENSION_ID,
+  FortranDocumentSelector,
+  LS_NAME,
+  isFortran,
+  getOuterMostWorkspaceFolder,
+} from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
 import { RestartLS } from '../features/commands';
 
@@ -87,8 +91,7 @@ export class FortlsClient {
       args: args,
     };
 
-    const folder = workspace.getWorkspaceFolder(document.uri);
-    this.logger.logInfo('Initialising the Fortran Language Server');
+    let folder = workspace.getWorkspaceFolder(document.uri);
 
     /**
      * The strategy for registering the language server is to register an individual
@@ -124,6 +127,8 @@ export class FortlsClient {
     }
     // The document is part of a workspace folder
     if (!clients.has(folder.uri.toString())) {
+      folder = getOuterMostWorkspaceFolder(folder);
+      if (clients.has(folder.uri.toString())) return;
       this.logger.logInfo('Initialising Language Server for workspace: ' + folder.uri.fsPath);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
