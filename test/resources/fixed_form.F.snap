@@ -7,87 +7,237 @@
 >
 >      PROGRAM EUCLID
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^ source.fortran.fixed
+#      ^^^^^^^ source.fortran.fixed meta.program.fortran keyword.control.program.fortran
+#             ^ source.fortran.fixed meta.program.fortran
+#              ^^^^^^ source.fortran.fixed meta.program.fortran entity.name.program.fortran
 >         PRINT *, 'A?'
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#                ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
 >         READ *, NA
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.read.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
 >         IF (NA.LE.0) THEN
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#               ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                      ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.then.fortran
 >            PRINT *, 'A must be a positive integer.'
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#            ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.control.print.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.operator.power.fortran
+#                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran
+#                                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
 >            STOP
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran meta.statement.control.stop.fortran
+#            ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
 >         END IF
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#         ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.endif.fortran
 >         PRINT *, 'B?'
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#                ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
 >         READ *, NB
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.read.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#               ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
 >         IF (NB.LE.0) THEN
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#               ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                      ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.then.fortran
 >            PRINT *, 'B must be a positive integer.'
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#            ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.control.print.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.operator.power.fortran
+#                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran
+#                                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
 >            STOP
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran meta.statement.control.stop.fortran
+#            ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
 >         END IF
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#         ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.endif.fortran
 >         PRINT *, 'The GCD of', NA, ' and', NB, ' is', NGCD(NA, NB), '.'
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#         ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.operator.power.fortran
+#                ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                   ^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                              ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#                                  ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                     ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                          ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                            ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#                                              ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                                 ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                                     ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                                       ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#                                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                                            ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran meta.parameter.fortran
+#                                                              ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#                                                                ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran meta.parameter.fortran
+#                                                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#                                                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                                                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
 >         STOP
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.control.stop.fortran
+#         ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.control.stop.fortran keyword.control.stop.fortran
 >      END
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.program.fortran keyword.control.endprogram.fortran
 >
 >      FUNCTION NGCD(NA, NB)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#      ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#              ^ source.fortran.fixed meta.function.fortran
+#               ^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                    ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                        ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >         IA = NA
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#              ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
 >         IB = NB
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#              ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
 >    1    IF (IB.NE.0) THEN
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran
+#            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#               ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                      ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.then.fortran
 >            ITEMP = IA
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#            ^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran keyword.operator.assignment.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#                    ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
 >            IA = IB
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
+#              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#                 ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
 >            IB = MOD(ITEMP, IB)
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
+#              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#                 ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran support.function.intrinsic.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran punctuation.parentheses.left.fortran
+#                     ^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
+#                          ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#                            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran punctuation.parentheses.right.fortran
 >            GOTO 1
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.statement.control.goto.fortran
+#            ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.statement.control.goto.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
 >         END IF
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.block.if.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.endif.fortran
 >         NGCD = IA
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
 >         RETURN
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^^^^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
 >      END
-#^^^^^^ source.fortran.fixed constant.numeric.fortran
-#      ^^^^ source.fortran.fixed
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
 >

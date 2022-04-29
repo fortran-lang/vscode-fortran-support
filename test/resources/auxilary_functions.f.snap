@@ -1,0 +1,1338 @@
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      real Function sqrEdge(xy1, xy2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#          ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#           ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran
+#                    ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                            ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                 ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C Routine computes sqruare distance between two points
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         real xy1(2), xy2(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                    ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         sqrEdge = (xy1(1) - xy2(1)) ** 2 + (xy1(2) - xy2(2)) ** 2
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                    ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.subtraction.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                             ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                     ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.addition.fortran
+#                                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                                             ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.subtraction.fortran
+#                                                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                                      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+#                                                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                                              ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+>         Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      real Function calEdge(xy1, xy2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#          ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#           ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran
+#                    ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                            ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                 ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C Routine computes distance between two points
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         real xy1(2), xy2(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                    ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         calEdge = sqrt((xy1(1) - xy2(1)) ** 2 +
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran support.function.intrinsic.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                         ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.subtraction.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                  ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                          ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.addition.fortran
+>     &                   (xy1(2) - xy2(2)) ** 2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.line-continuation-operator.fortran
+#      ^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                          ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.subtraction.fortran
+#                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                   ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+#                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                           ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#                                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+>         Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      real Function calNorm(xy1)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#          ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#           ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran
+#                    ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                            ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C Routine calculates norm of vector xy1
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         real xy1(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         calNorm = sqrt(xy1(1) ** 2 + xy1(2) ** 2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran support.function.intrinsic.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.left.fortran
+#                        ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                               ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.addition.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                             ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.division.fortran
+#                                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran punctuation.parentheses.right.fortran
+>         Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Subroutine extNormal(xy1, xy2, xy3, xyn)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran
+#                 ^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                           ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                               ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                     ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                        ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                         ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                          ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                             ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C Routines compute external normal vector to the edge {xy1, xy2}
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C of triangle {xy1, xy2, xy3}
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         real xy1(2), xy2(2), xy3(2), xyn(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                    ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                            ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                    ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         real x, y, d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                  ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>
+>         x = xy2(1) - xy1(1)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         y = xy2(2) - xy1(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         d = sqrt(x * x + y * y)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran support.function.intrinsic.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.power.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                        ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.addition.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.power.fortran
+#                             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran punctuation.parentheses.right.fortran
+>
+>         xyn(1) = -y / d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         xyn(2) =  x / d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#                 ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>
+>c ... orientation
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         x = xy3(1) - xy1(1)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         y = xy3(2) - xy1(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         If( x*xyn(1) + y*xyn(2).GT.0D0 ) Then
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran keyword.operator.power.fortran
+#               ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran keyword.operator.addition.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran
+#                        ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran keyword.operator.power.fortran
+#                          ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran constant.numeric.fortran
+#                               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                                    ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran
+#                                        ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                                          ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.control.then.fortran
+>            xyn(1) = -xyn(1)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#            ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran keyword.operator.assignment.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran keyword.operator.subtraction.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>            xyn(2) = -xyn(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#            ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran keyword.operator.assignment.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran keyword.operator.subtraction.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         End if
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.block.if.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.control.endif.fortran
+>
+>         Return
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Subroutine calNormal(xy1, xy2, xyn)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran
+#                 ^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                           ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                               ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                   ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                    ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                     ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                        ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C Routines compute a normal vector to the edge {xy1, xy2}
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         real xy1(2), xy2(2), xyn(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                    ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                            ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         real x, y, d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                  ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>
+>         x = xy2(1) - xy1(1)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         y = xy2(2) - xy1(2)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         d = sqrt(x * x + y * y)
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran support.function.intrinsic.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.power.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                        ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.addition.fortran
+#                         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.power.fortran
+#                             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran punctuation.parentheses.right.fortran
+>
+>         xyn(1) = -y / d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                  ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.subtraction.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         xyn(2) =  x / d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran constant.numeric.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#                 ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                   ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                     ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                      ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>
+>         Return
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      real Function DotMul(a, b)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#          ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#           ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran
+#                    ^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                             ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C Routine computes scalar product of two vectors
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         real a(2), b(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         DotMul = a(1) * b(1) + a(2) * b(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.power.fortran
+#                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.addition.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.power.fortran
+#                                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      real Function VecMul(a, b)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#          ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#           ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                   ^ source.fortran.fixed meta.function.fortran
+#                    ^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                             ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C Routine computes vector product a x b which is a number in 2D.
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         real a(2), b(2)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         VecMul = a(1) * b(2) - a(2) * b(1)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.power.fortran
+#                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                             ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.subtraction.fortran
+#                               ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.power.fortran
+#                                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                                        ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>         Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Logical Function check1j(i1, j)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#              ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                      ^ source.fortran.fixed meta.function.fortran
+#                       ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                  ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                   ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C check1j = TRUE if i1 belongs to the set j(3).
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         Integer j(3)
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.integer.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>         check1j = .TRUE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.true.fortran
+>         If(i1.EQ.j(1)) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                        ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                             ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>         If(i1.EQ.j(2)) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                        ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                             ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>         If(i1.EQ.j(3)) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                       ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                        ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                            ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                             ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>
+>         check1j = .FALSE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.false.fortran
+> 1000    Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Logical Function check12(i1, j1, j2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#              ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                      ^ source.fortran.fixed meta.function.fortran
+#                       ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                  ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                   ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                      ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                       ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C check12 = TRUE if i1 belongs to the set {j1, j2}.
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         check12 = .TRUE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.true.fortran
+>         If(i1.EQ.j1) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                      ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                           ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>         If(i1.EQ.j2) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                      ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                           ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>
+>         check12 = .FALSE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.false.fortran
+> 1000    Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Logical Function check22(i1, i2, j1, j2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
+#             ^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran
+#              ^^^^^^^^ source.fortran.fixed meta.function.fortran keyword.other.function.fortran
+#                      ^ source.fortran.fixed meta.function.fortran
+#                       ^^^^^^^ source.fortran.fixed meta.function.fortran entity.name.function.fortran
+#                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                               ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                 ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                  ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                   ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                     ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                      ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                       ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                          ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                                           ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                             ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C check22 = TRUE if pair {i1, i2} coinsides with {j1, j2}.
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+>         check22 = .FALSE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.false.fortran
+>         If(i1.NE.j1 .AND. i1.NE.j2) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                    ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran
+#                           ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                             ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                                 ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                                     ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                                          ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>         If(i2.NE.j1 .AND. i2.NE.j2) goto 1000
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.control.if.fortran
+#           ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#              ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                  ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                    ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                          ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran
+#                           ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                             ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran keyword.logical.fortran
+#                                 ^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                                    ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                                     ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran keyword.control.goto.fortran
+#                                         ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran
+#                                          ^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.if.fortran meta.statement.control.goto.fortran constant.numeric.fortran
+>
+>         check22 = .TRUE.
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#         ^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.parameter.fortran
+#                ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                 ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran keyword.operator.assignment.fortran
+#                  ^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
+#                   ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.language.logical.true.fortran
+> 1000    Return
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.function.fortran keyword.other.endfunction.fortran
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Subroutine swapii(i1, i2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran
+#                 ^^^^^^ source.fortran.fixed meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                            ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C Routine swaps two integers
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         i  = i1
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         i1 = i2
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         i2 = i
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>
+>         Return
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Subroutine swapdd(d1, d2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran
+#                 ^^^^^^ source.fortran.fixed meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                       ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                          ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                           ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                            ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C Routine swaps two real numbers
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         real d, d1, d2
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                   ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                     ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>         d  = d1
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         d1 = d2
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         d2 = d
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>
+>         Return
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>
+>
+>C ================================================================
+#^ source.fortran.fixed comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+>      Subroutine paramInclude(d1, d2)
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran
+#                 ^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                             ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                              ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                 ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                                  ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                                    ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C Dummy function to test includes on hover
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>C ================================================================
+#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+>         include "parameters.prm"
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.include.fortran keyword.control.include.fortran
+#                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.include.fortran
+#                 ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.include.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#                  ^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.include.fortran string.quoted.double.fortran
+#                                ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.include.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>         real d, d1, d2
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#              ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#               ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                   ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                     ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>         d = AniRatio
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#          ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#             ^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         d1 = AniEigenvalue
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>         d2 = DiscreteGrad
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#           ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#            ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#             ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#              ^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+>
+>         Return
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran
+#         ^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.control.return.fortran keyword.control.return.fortran
+>      End
+#^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
+#      ^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.endsubroutine.fortran

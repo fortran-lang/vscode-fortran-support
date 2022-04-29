@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Updated grammar unittests to include scope injections
 - Merged Language Server's log channel to Modern Fortran's log channel
 - Merged all Fortran intrinsics into a single `json` file
   ([#424](https://github.com/fortran-lang/vscode-fortran-support/issues/424))
