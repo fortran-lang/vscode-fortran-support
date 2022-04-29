@@ -1,4 +1,4 @@
-import { window } from 'vscode';
+import { OutputChannel, window } from 'vscode';
 
 type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
 
@@ -9,6 +9,14 @@ export class LoggingService {
 
   public setOutputLevel(logLevel: LogLevel) {
     this.logLevel = logLevel;
+  }
+
+  public getOutputLevel(): LogLevel {
+    return this.logLevel;
+  }
+
+  public getOutputChannel(): OutputChannel {
+    return this.outputChannel;
   }
 
   /**

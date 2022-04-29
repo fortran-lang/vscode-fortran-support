@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Merged Language Server's log channel to Modern Fortran's log channel
 - Merged all Fortran intrinsics into a single `json` file
   ([#424](https://github.com/fortran-lang/vscode-fortran-support/issues/424))
 - Updates `README` text and animations, changes `SECURITY` and updates `package.json`
@@ -46,6 +47,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added single file and multiple workspace folder support for the Language Server
+  ([#446](https://github.com/fortran-lang/vscode-fortran-support/issues/446))
+- Added file synchronization with VS Code settings and `.fortls` against the Language Server
 - Added unittests for the formatting providers
   ([#423](https://github.com/fortran-lang/vscode-fortran-support/issues/423))
 - Added GitHub Actions environment to dependabot
