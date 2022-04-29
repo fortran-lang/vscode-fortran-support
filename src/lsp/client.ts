@@ -3,7 +3,7 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
-import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
+import { commands, window, workspace, TextDocument } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
 import {
   EXTENSION_ID,
@@ -107,8 +107,9 @@ export class FortlsClient {
 
     // If the document is part of a standalone file and not part of a workspace
     if (!folder) {
-      this.logger.logInfo('Initialising Language Server for file: ' + document.uri.fsPath);
       const fileRoot: string = path.dirname(document.uri.fsPath);
+      if (clients.has(fileRoot)) return; // already registered
+      this.logger.logInfo('Initialising Language Server for file: ' + document.uri.fsPath);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(fileRoot),
@@ -128,7 +129,7 @@ export class FortlsClient {
     // The document is part of a workspace folder
     if (!clients.has(folder.uri.toString())) {
       folder = getOuterMostWorkspaceFolder(folder);
-      if (clients.has(folder.uri.toString())) return;
+      if (clients.has(folder.uri.toString())) return; // already registered
       this.logger.logInfo('Initialising Language Server for workspace: ' + folder.uri.fsPath);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
