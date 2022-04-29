@@ -20,15 +20,14 @@ export const envDelimiter: string = process.platform === 'win32' ? ';' : ':';
  *
  * @warning this should match the value on the package.json otherwise the extension
  * won't work at all
- *
- * @param folder `optional` WorkspaceFolder to search
+ * @param path `optional` string for `pattern` path to include
  * @returns tuple of DocumentSelector
  */
-export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
-  if (folder) {
+export function FortranDocumentSelector(path?: string) {
+  if (path) {
     return [
-      { scheme: 'file', language: 'FortranFreeForm', pattern: `${folder.uri.fsPath}/**/*` },
-      { scheme: 'file', language: 'FortranFixedForm', pattern: `${folder.uri.fsPath}/**/*` },
+      { scheme: 'file', language: 'FortranFreeForm', pattern: `${path}/**/*` },
+      { scheme: 'file', language: 'FortranFixedForm', pattern: `${path}/**/*` },
     ];
   } else {
     return [
@@ -36,6 +35,13 @@ export function FortranDocumentSelector(folder?: vscode.WorkspaceFolder) {
       { scheme: 'file', language: 'FortranFixedForm' },
     ];
   }
+}
+
+export function isFortran(document: vscode.TextDocument): boolean {
+  return (
+    FortranDocumentSelector().some(e => e.scheme === document.uri.scheme) &&
+    FortranDocumentSelector().some(e => e.language === document.languageId)
+  );
 }
 
 /**

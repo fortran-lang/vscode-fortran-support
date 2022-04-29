@@ -2,11 +2,12 @@
 
 'use strict';
 
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument, WorkspaceFolder } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
-import { EXTENSION_ID, FortranDocumentSelector, LS_NAME } from '../lib/tools';
+import { EXTENSION_ID, FortranDocumentSelector, LS_NAME, isFortran } from '../lib/tools';
 import { LoggingService } from '../services/logging-service';
 import { RestartLS } from '../features/commands';
 
@@ -14,31 +15,6 @@ import { RestartLS } from '../features/commands';
 // shared for command registration. The command operates on the client and not
 // the server
 export const clients: Map<string, LanguageClient> = new Map();
-
-/**
- * Checks if the Language Server should run in the current workspace and return
- * the workspace folder if it should else return undefined.
- * @param document the active VS Code editor
- * @returns the root workspace folder or undefined
- */
-export function checkLanguageServerActivation(document: TextDocument): WorkspaceFolder | undefined {
-  // We are only interested in Fortran files
-  if (
-    !FortranDocumentSelector().some(e => e.scheme === document.uri.scheme) ||
-    !FortranDocumentSelector().some(e => e.language === document.languageId)
-  ) {
-    return undefined;
-  }
-  const uri = document.uri;
-  const folder = workspace.getWorkspaceFolder(uri);
-  // Files outside a folder can't be handled. This might depend on the language.
-  // Single file languages like JSON might handle files outside the workspace folders.
-  // This will be undefined if the file does not belong to the workspace
-  if (!folder) return undefined;
-  if (clients.has(folder.uri.toString())) return undefined;
-
-  return folder;
-}
 
 export class FortlsClient {
   constructor(private logger: LoggingService, private context?: vscode.ExtensionContext) {
@@ -54,7 +30,8 @@ export class FortlsClient {
   }
 
   private client: LanguageClient | undefined;
-  private _fortlsVersion: string | undefined;
+  private version: string | undefined;
+  private readonly name: string = 'Fortran Language Server';
 
   public async activate() {
     // Detect if fortls is present, download if missing or disable LS functionality
@@ -63,6 +40,15 @@ export class FortlsClient {
       if (fortlsDisabled) return;
       workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
       workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+      workspace.onDidChangeWorkspaceFolders(event => {
+        for (const folder of event.removed) {
+          const client = clients.get(folder.uri.toString());
+          if (client) {
+            clients.delete(folder.uri.toString());
+            client.stop();
+          }
+        }
+      });
     });
     return;
   }
@@ -88,43 +74,72 @@ export class FortlsClient {
    * @returns
    */
   private async didOpenTextDocument(document: TextDocument): Promise<void> {
-    const folder = checkLanguageServerActivation(document);
-    if (!folder) return;
-
-    this.logger.logInfo('Initialising the Fortran Language Server');
+    if (!isFortran(document)) return;
 
     const args: string[] = await this.fortlsArguments();
     const executablePath = workspace.getConfiguration(EXTENSION_ID).get<string>('fortls.path');
 
     // Detect language server version and verify selected options
-    this._fortlsVersion = this.getLSVersion(executablePath, args);
-    if (this._fortlsVersion) {
-      const serverOptions: ServerOptions = {
-        command: executablePath,
-        args: args,
-      };
+    this.version = this.getLSVersion(executablePath, args);
+    if (!this.version) return;
+    const serverOptions: ServerOptions = {
+      command: executablePath,
+      args: args,
+    };
 
+    const folder = workspace.getWorkspaceFolder(document.uri);
+    this.logger.logInfo('Initialising the Fortran Language Server');
+
+    /**
+     * The strategy for registering the language server is to register an individual
+     * server for the top-most workspace folder. If we are outside of a workspace
+     * then we register the server for folder the standalone Fortran file is located.
+     * This has to be done in order for standalone server to NOT interfere with
+     * the workspace server.
+     *
+     * We also set the log channel to the Modern Fortran log output and add
+     * system watchers for the default configuration file .fortls and the
+     * configuration settings for the entire extension.
+     */
+
+    // If the document is part of a standalone file and not part of a workspace
+    if (!folder) {
+      this.logger.logInfo('Initialising Language Server for file: ' + document.uri.fsPath);
+      const fileRoot: string = path.dirname(document.uri.fsPath);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
-        // Register the server for all Fortran documents in workspace
-        // NOTE: remove the folder args and workspaceFolder to ge single file language servers
-        // will also have to change the checkLanguageServerActivation method
-        // we want fortran documents but not just in the workspace
-        // if in the workspace do provide
-        documentSelector: FortranDocumentSelector(folder),
-        workspaceFolder: folder,
+        documentSelector: FortranDocumentSelector(fileRoot),
+        outputChannel: this.logger.getOutputChannel(),
+        synchronize: {
+          // Synchronize all configuration settings to the server
+          configurationSection: EXTENSION_ID,
+          // Notify the server about file changes to '.fortls files contained in the workspace
+          // fileEvents: workspace.createFileSystemWatcher('**/.fortls'),
+        },
       };
-
-      // Create the language client, start the client and add it to the registry
-      this.client = new LanguageClient(
-        LS_NAME,
-        'Fortran Language Server',
-        serverOptions,
-        clientOptions
-      );
+      this.client = new LanguageClient(LS_NAME, this.name, serverOptions, clientOptions);
       this.client.start();
-      // Add the Language Client to the global map
-      clients.set(folder.uri.toString(), this.client);
+      clients.set(fileRoot, this.client); // Add the client to the global map
+      return;
+    }
+    // The document is part of a workspace folder
+    if (!clients.has(folder.uri.toString())) {
+      this.logger.logInfo('Initialising Language Server for workspace: ' + folder.uri.fsPath);
+      // Options to control the language client
+      const clientOptions: LanguageClientOptions = {
+        documentSelector: FortranDocumentSelector(folder.uri.fsPath),
+        workspaceFolder: folder,
+        outputChannel: this.logger.getOutputChannel(),
+        synchronize: {
+          // Synchronize all configuration settings to the server
+          configurationSection: EXTENSION_ID,
+          // Notify the server about file changes to '.fortls files contained in the workspace
+          // fileEvents: workspace.createFileSystemWatcher('**/.fortls'),
+        },
+      };
+      this.client = new LanguageClient(LS_NAME, this.name, serverOptions, clientOptions);
+      this.client.start();
+      clients.set(folder.uri.toString(), this.client); // Add the client to the global map
     }
   }
 
