@@ -392,7 +392,7 @@
     "eslint-plugin-jsdoc": "^39.2.9",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.0",
-    "lint-staged": "^12.3.2",
+    "lint-staged": "^12.4.1",
     "mocha": "^9.2.0",
     "prettier": "^2.5.1",
     "ts-loader": "^9.2.6",
