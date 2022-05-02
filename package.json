@@ -395,7 +395,7 @@
     "lint-staged": "^12.4.1",
     "mocha": "^9.2.0",
     "prettier": "^2.5.1",
-    "ts-loader": "^9.2.6",
+    "ts-loader": "^9.3.0",
     "typescript": "^4.6.4",
     "vscode-tmgrammar-test": "^0.1.1",
     "webpack": "^5.65.0",
