@@ -2,7 +2,7 @@
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
-  "version": "3.0.2022042917",
+  "version": "3.0.2022050508",
   "publisher": "fortran-lang",
   "license": "MIT",
   "author": {
