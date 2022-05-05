@@ -7,7 +7,7 @@ import { isString, isArrayOfString } from './helper';
 
 export const LS_NAME = 'fortls';
 export const EXTENSION_ID = 'fortran';
-export const EXTENSION_VSSTORE_ID = 'krvajalm.linter-gfortran';
+export const EXTENSION_VSSTORE_ID = 'fortran-lang.linter-gfortran';
 export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
 
 // Platform-specific environment variable delimiter

@@ -3,7 +3,7 @@
   "displayName": "Modern Fortran",
   "description": "Modern Fortran language support, including syntax highlighting and error detection.",
   "version": "3.0.2022042917",
-  "publisher": "krvajalm",
+  "publisher": "fortran-lang",
   "license": "MIT",
   "author": {
     "name": "The Fortran Programming Language",

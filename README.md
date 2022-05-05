@@ -1,9 +1,9 @@
 ![alt](assets/modern-fortran-logo.png)
 
 [![GitHub Actions](https://github.com/fortran-lang/vscode-fortran-support/actions/workflows/main.yaml/badge.svg)](https://github.com/fortran-lang/vscode-fortran-support/actions)
-[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
-[![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/krvajalm.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-gfortran)
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
+[![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
 [![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?)](http://opensource.org/licenses/MIT)
 
 ![alt](assets/intro-demo.gif)
@@ -251,7 +251,7 @@ For debugging you need to have one of the following debuggers installed:
 
 ## Issues
 
-Please report any issues and feature request on the GitHub repo [here](https://github.com/krvajalmiguelangel/vscode-fortran-support/issues/new)
+Please report any issues and feature request on the GitHub repo [here](https://github.com/fortran-langiguelangel/vscode-fortran-support/issues/new)
 
 ## Notice
 
