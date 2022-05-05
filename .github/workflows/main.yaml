@@ -1,4 +1,4 @@
-name: Build and Test syntax
+name: CI
 on: [push, pull_request]
 jobs:
   grammar:
