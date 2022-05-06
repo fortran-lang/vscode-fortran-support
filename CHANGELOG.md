@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added warning notifications for extensions that interfere with Modern Fortran
+  ([#458](https://github.com/fortran-lang/vscode-fortran-support/issues/458))
 - Added single file and multiple workspace folder support for the Language Server
   ([#446](https://github.com/fortran-lang/vscode-fortran-support/issues/446))
 - Added file synchronization with VS Code settings and `.fortls` against the Language Server

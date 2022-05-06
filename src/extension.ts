@@ -118,4 +118,21 @@ function detectDeprecatedOptions() {
         loggingService.logError(`The following deprecated options have been detected:\n${oldArgs}`);
       });
   }
+
+  // NOTE: the API for this will probably change in the near future to return true
+  // even if the extension is not activated
+  // see: https://github.com/microsoft/vscode/issues/133734
+  if (vscode.extensions.getExtension('hansec.fortran-ls')) {
+    vscode.window.showWarningMessage(
+      `Modern Fortran is not compatible with FORTRAN Intellisense. 
+      Language Server integration is handled in Modern Fortran now.
+      Please Disable FORTRAN Intellisense.`
+    );
+  }
+  if (vscode.extensions.getExtension('ekibun.fortranbreaker')) {
+    vscode.window
+      .showWarningMessage(`Modern Fortran is not compatible with Fortran Breakpoint Support.
+      Breakpoint support is handled natively in Modern Fortran.
+      Please Disable Fortran Breakpoint Support.`);
+  }
 }
