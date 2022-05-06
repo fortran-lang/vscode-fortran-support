@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added unittest for `fortls` spawning and integration, checks for initialization values
+  ([#422](https://github.com/fortran-lang/vscode-fortran-support/issues/422))
 - Added warning notifications for extensions that interfere with Modern Fortran
   ([#458](https://github.com/fortran-lang/vscode-fortran-support/issues/458))
 - Added single file and multiple workspace folder support for the Language Server
