@@ -1,4 +1,8 @@
-![alt](assets/modern-fortran-logo.png)
+<p align="center">
+  <img src="assets/modern-fortran-logo.png"/>
+</p>
+
+<div align="center">
 
 [![GitHub Actions](https://github.com/fortran-lang/vscode-fortran-support/actions/workflows/main.yaml/badge.svg)](https://github.com/fortran-lang/vscode-fortran-support/actions)
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
@@ -6,7 +10,11 @@
 [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
 [![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?)](http://opensource.org/licenses/MIT)
 
-![alt](assets/intro-demo.gif)
+</div>
+
+<p align="center">
+  <img src="assets/intro-demo.gif"/>
+</p>
 
 ## Key Features
 
