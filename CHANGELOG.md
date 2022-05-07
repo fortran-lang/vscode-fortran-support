@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added GitHub Actions support for pre-Release builds
+  ([#459](https://github.com/fortran-lang/vscode-fortran-support/issues/459))
 - Added unittest for `fortls` spawning and integration, checks for initialization values
   ([#422](https://github.com/fortran-lang/vscode-fortran-support/issues/422))
 - Added warning notifications for extensions that interfere with Modern Fortran
