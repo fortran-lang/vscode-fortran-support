@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added ability to rescan for linting include files.
 - Added GitHub Actions support for pre-Release builds
   ([#459](https://github.com/fortran-lang/vscode-fortran-support/issues/459))
 - Added unittest for `fortls` spawning and integration, checks for initialization values
@@ -63,6 +64,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed issue with linter cache containing outdated folders
+  ([#464](https://github.com/fortran-lang/vscode-fortran-support/issues/464))
 - Fixed slow performance of very long lines by using a different solution for
   ([#207](https://github.com/fortran-lang/vscode-fortran-support/issues/207))
   ([#309](https://github.com/fortran-lang/vscode-fortran-support/issues/309))

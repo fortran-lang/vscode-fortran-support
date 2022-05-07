@@ -9,6 +9,7 @@ import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
 import { arraysEqual } from '../lib/helper';
+import { RescanLint } from './commands';
 
 export class FortranLintingProvider {
   constructor(private logger: LoggingService = new LoggingService()) {}
@@ -28,6 +29,10 @@ export class FortranLintingProvider {
   }
 
   public async activate(subscriptions: vscode.Disposable[]) {
+    // Register Linter commands
+    subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
+
+    // Register the Linter provider
     this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
 
     vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
@@ -48,7 +53,6 @@ export class FortranLintingProvider {
   public dispose(): void {
     this.diagnosticCollection.clear();
     this.diagnosticCollection.dispose();
-    // this.command.dispose();
   }
 
   private doModernFortranLint(textDocument: vscode.TextDocument) {
@@ -166,6 +170,10 @@ export class FortranLintingProvider {
 
     // Check if we can use the cached results for the include directories no
     // need to evaluate the glob patterns everytime we call the linter
+    // TODO: register command that forces re-linting
+    // Not sure what the best approach for this one is?
+    // Should I add a watcher to all the files under globIncPaths?
+    // Should I add a watcher on the files under the workspace?
     if (arraysEqual(includePaths, this.cache['includePaths'])) {
       return this.cache['globIncPaths'];
     }
@@ -445,5 +453,13 @@ export class FortranLintingProvider {
       default:
         break;
     }
+  }
+
+  /**
+   * Regenerate the cache for the include files paths of the linter
+   */
+  private rescanLinter() {
+    this.cache['includePaths'] = [];
+    this.getIncludePaths();
   }
 }

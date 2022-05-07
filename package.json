@@ -346,6 +346,11 @@
         "category": "Fortran",
         "command": "fortran.analysis.restartLanguageServer",
         "title": "Restart the Fortran Language Server"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.rescanLinter",
+        "title": "Rescan Linter paths"
       }
     ],
     "menus": {
@@ -354,6 +359,12 @@
           "category": "Fortran",
           "command": "fortran.analysis.restartLanguageServer",
           "title": "Restart the Fortran Language Server",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.rescanLinter",
+          "title": "Rescan Linter paths",
           "when": "!virtualWorkspace && shellExecutionSupported"
         }
       ]
