@@ -116,6 +116,6 @@ export function arraysEqual(a: any[], b: any[]) {
   if (a === b) return true;
   if (a == null || b == null) return false;
   if (a.length !== b.length) return false;
-  if (a.every((e, i) => e !== b[i])) return false;
+  if (!a.every((e, i) => e === b[i])) return false;
   return true;
 }
