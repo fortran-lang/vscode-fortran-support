@@ -7,12 +7,18 @@ async function main() {
     // The folder containing the Extension Manifest package.json
     // Passed to `--extensionDevelopmentPath`
     const extensionDevelopmentPath = path.resolve(__dirname, '../../');
+    const workspacePath = path.resolve(__dirname, '../../test/resources/');
 
     // The path to the extension test runner script
     // Passed to --extensionTestsPath
     const extensionTestsPath = path.resolve(__dirname, './index');
 
-    const launchArgs = ['--disable-extensions', '--install-extension', 'ms-vscode.cpptools'];
+    const launchArgs = [
+      workspacePath,
+      '--disable-extensions',
+      '--install-extension',
+      'ms-vscode.cpptools',
+    ];
     // Download VS Code, unzip it and run the integration test
     await runTests({
       launchArgs,

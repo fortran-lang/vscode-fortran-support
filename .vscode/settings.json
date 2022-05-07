@@ -57,7 +57,6 @@
   "fortran.formatting.findentArgs": ["-Cn", "--align-paren=1"],
   // Fortran-Language-Server specific options
   "fortran.fortls.incrementalSync": true,
-  "fortran.fortls.preserveKeywordOrder": true,
   // Other Fortran options
   "fortran.preferredCase": "lowercase"
 }

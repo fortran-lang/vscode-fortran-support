@@ -78,6 +78,8 @@ const saveKeywordToJson = keyword => {
   });
 };
 
+export const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 export function isUri(input: any): input is vscode.Uri {
   return input && input instanceof vscode.Uri;
 }
