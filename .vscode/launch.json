@@ -19,9 +19,7 @@
       "runtimeExecutable": "${execPath}",
       "args": [
         "${workspaceFolder}/test/resources",
-        "--install-extension",
-        "ms-vscode.cpptools",
-        "--disable-extensions",
+        "--disable-extension=fortran-lang.linter-gfortran",
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--extensionTestsPath=${workspaceFolder}/out/test"
       ],

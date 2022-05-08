@@ -13,12 +13,7 @@ async function main() {
     // Passed to --extensionTestsPath
     const extensionTestsPath = path.resolve(__dirname, './index');
 
-    const launchArgs = [
-      workspacePath,
-      '--disable-extensions',
-      '--install-extension',
-      'ms-vscode.cpptools',
-    ];
+    const launchArgs = [workspacePath, '--disable-extensions'];
     // Download VS Code, unzip it and run the integration test
     await runTests({
       launchArgs,
