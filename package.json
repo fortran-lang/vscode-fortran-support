@@ -372,6 +372,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "clean": "npx rimraf dist out .vscode-test",
     "compile": "webpack --mode production",
     "compile-dev": "webpack --mode development",
     "watch": "webpack --mode production --watch --progress",
