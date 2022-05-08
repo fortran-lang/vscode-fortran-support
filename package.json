@@ -1,7 +1,7 @@
 {
   "name": "linter-gfortran",
   "displayName": "Modern Fortran",
-  "description": "Modern Fortran language support, including syntax highlighting and error detection.",
+  "description": "Fortran language support, syntax highlighting, Language Server support, Debugging, Diagnostics and much more.",
   "version": "3.0.2022050508",
   "publisher": "fortran-lang",
   "license": "MIT",
@@ -129,7 +129,6 @@
       }
     ],
     "configuration": {
-      "type": "object",
       "title": "Fortran configuration",
       "properties": {
         "fortran.provide.hover": {
@@ -141,7 +140,7 @@
             "Both",
             "Disabled"
           ],
-          "description": "Enables hover support, by default it uses fortls."
+          "markdownDescription": "Enables hover support, by default it uses `fortls`."
         },
         "fortran.provide.autocomplete": {
           "type": "string",
@@ -151,7 +150,7 @@
             "Built-in",
             "Disabled"
           ],
-          "description": "Enables code autocompletion, by default it uses fortls."
+          "markdownDescription": "Enables code autocompletion, by default it uses `fortls`."
         },
         "fortran.provide.symbols": {
           "type": "string",
@@ -160,7 +159,7 @@
             "fortls",
             "Both"
           ],
-          "description": "Outline of modules, functions, subroutines, etc. in the document, by default it uses fortls, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
+          "markdownDescription": "Outline of modules, functions, subroutines, etc. in the document, by default it uses `fortls`, `Both` will use `fortls` and the `Built-in` functionality (not recommended)."
         },
         "fortran.linter.compiler": {
           "type": "string",
@@ -171,7 +170,7 @@
             "ifort",
             "Disabled"
           ],
-          "description": "Compiler used for linting support."
+          "markdownDescription": "Compiler used for linting support."
         },
         "fortran.linter.includePaths": {
           "type": [
@@ -181,12 +180,12 @@
             "type": "string"
           },
           "default": [],
-          "description": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+          "markdownDescription": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
         "fortran.linter.compilerPath": {
           "type": "string",
           "default": "",
-          "description": "Specifies the path to the linter executable."
+          "markdownDescription": "Specifies the path to the linter executable."
         },
         "fortran.linter.extraArgs": {
           "type": [
@@ -195,12 +194,12 @@
           "items": {
             "type": "string"
           },
-          "description": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+          "markdownDescription": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
         "fortran.linter.modOutput": {
           "type": "string",
           "default": "",
-          "description": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+          "markdownDescription": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
         },
         "fortran.formatting.formatter": {
           "type": "string",
@@ -210,87 +209,91 @@
             "fprettify",
             "Disabled"
           ],
-          "description": "Fortran formatter, currently supports findent and fprettify"
+          "markdownDescription": "Fortran formatter, currently supports `findent` and `fprettify`"
         },
         "fortran.formatting.findentArgs": {
           "type": "array",
-          "default": [],
-          "description": "Additional arguments for the findent formatter"
-        },
-        "fortran.formatting.fprettifyArgs": {
-          "type": "array",
-          "default": [],
-          "description": "Additional arguments for the fprettify formatter"
-        },
-        "fortran.formatting.path": {
-          "type": "string",
-          "default": "",
-          "description": "If the formatter is not in the $PATH specify the full path to its location."
-        },
-        "fortran.fortls.path": {
-          "type": "string",
-          "default": "fortls",
-          "description": "Path to the Fortran language server (fortls)."
-        },
-        "fortran.fortls.configure": {
-          "type": "string",
-          "default": "",
-          "description": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file"
-        },
-        "fortran.fortls.sortKeywords": {
-          "type": "boolean",
-          "default": false,
-          "description": "Display variable keywords information when hovering in a sorted, consistent order."
-        },
-        "fortran.fortls.disableAutoupdate": {
-          "type": "boolean",
-          "default": false,
-          "description": "fortls will automatically attempt to update itself from PyPi. Set this option if you want to fix your version of fortls. Autoudpate will not occur for Anaconda environments."
-        },
-        "fortran.fortls.disableDiagnostics": {
-          "type": "boolean",
-          "default": false,
-          "description": "Disable additional diagnostics from fortls e.g. multiple variable definitions, unknown modules in use statement (requires v1.12.0+)."
-        },
-        "fortran.fortls.incrementalSync": {
-          "type": "boolean",
-          "default": true,
-          "description": "Use incremental synchronization for file changes."
-        },
-        "fortran.fortls.symbolTypes": {
-          "type": "boolean",
-          "default": true,
-          "description": "Include derived types in the symbols outline. If false it adds the  `--symbol_skip_mem` argument to fortls."
-        },
-        "fortran.fortls.notifyInit": {
-          "type": "boolean",
-          "default": false,
-          "description": "Notify when workspace initialization is complete (requires v1.7.0+)."
-        },
-        "fortran.fortls.maxLineLength": {
-          "type": "number",
-          "default": -1,
-          "description": "Maximum line length (fortls requires v1.8.0+). For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
-        },
-        "fortran.fortls.maxCommentLineLength": {
-          "type": "number",
-          "default": -1,
-          "description": "Maximum comment line length (fortls requires v1.8.0+)."
-        },
-        "fortran.fortls.extraArgs": {
-          "type": [
-            "array"
-          ],
           "items": {
             "type": "string"
           },
           "default": [],
-          "description": "Additional arguments for the fortls"
+          "markdownDescription": "Additional arguments for the `findent` formatter"
+        },
+        "fortran.formatting.fprettifyArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "Additional arguments for the `fprettify` formatter"
+        },
+        "fortran.formatting.path": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "If the formatter is not in the `$PATH` specify the full path to its location."
+        },
+        "fortran.fortls.path": {
+          "type": "string",
+          "default": "fortls",
+          "markdownDescription": "Path to the Fortran language server (`fortls`)."
+        },
+        "fortran.fortls.configure": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file"
+        },
+        "fortran.fortls.sortKeywords": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Display variable keywords information when hovering in a sorted, consistent order."
+        },
+        "fortran.fortls.disableAutoupdate": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "fortls will automatically attempt to update itself from PyPi. Set this option if you want to fix your version of fortls. Autoudpate will not occur for Anaconda environments."
+        },
+        "fortran.fortls.disableDiagnostics": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Disable additional diagnostics from `fortls` e.g. multiple variable definitions, unknown modules in use statement."
+        },
+        "fortran.fortls.incrementalSync": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Use incremental synchronization for file changes."
+        },
+        "fortran.fortls.symbolTypes": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Include derived types in the symbols outline. If false it adds the  `--symbol_skip_mem` argument to fortls."
+        },
+        "fortran.fortls.notifyInit": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Notify when workspace initialization is complete."
+        },
+        "fortran.fortls.maxLineLength": {
+          "type": "number",
+          "default": -1,
+          "markdownDescription": "Maximum line length. For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
+        },
+        "fortran.fortls.maxCommentLineLength": {
+          "type": "number",
+          "default": -1,
+          "markdownDescription": "Maximum comment line length."
+        },
+        "fortran.fortls.extraArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "Additional arguments for the `fortls`"
         },
         "fortran.fortls.disabled": {
           "type": "boolean",
           "default": false,
-          "description": "Disable the Language Server. If true, it will limit the extension's functionality substantially (should be avoid!)"
+          "markdownDescription": "Disable the Language Server. If true, it will limit the extension's functionality substantially. **Should be avoided!**"
         },
         "fortran.preferredCase": {
           "type": "string",
@@ -299,7 +302,7 @@
             "lowercase",
             "uppercase"
           ],
-          "description": "Specify the word case to use when suggesting autocomplete options."
+          "markdownDescription": "Specify the word case to use when suggesting autocomplete options."
         },
         "fortran.includePaths": {
           "deprecationMessage": "fortran.includePaths has been renamed to fortran.linter.includePaths."
