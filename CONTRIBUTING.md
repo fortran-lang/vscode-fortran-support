@@ -1,15 +1,67 @@
-# #CONTRIBUTING
+# Contributing
 
-You _always_ want to look at this file **before** contributing. In here you
-should find steps that you need to take to set up your development environment
-as well as instructions for coding standards and contribution guidelines.
+👍🎉 Thank you for taking the time to contribute! 🎉👍
 
-## Setup instructions
+In this file you will find all the steps necessary to guide you through your first contribution to the project.
 
-First of all, this is a Visual Studio Code extension that uses TypeScript and tools based on [Node.js](https://nodejs.org/en/) with dependencies from npm. So you will need to have Node installed on your `$PATH`.
+Please note our [Code of Conduct](https://github.com/fortran-lang/.github/blob/main/CODE_OF_CONDUCT.md) and adhere to it in all your interactions with this project.
 
-1. Fork the repo
-2. Clone your fork
-3. Create a branch
-4. Run `npm install`
-5. To test the extension run `npm run test:grammar && npm test`
+## 📚 Getting Started
+
+### Downloading ⬇️
+
+Firstly, fork the repository from <https://github.com/fortran-lang/vscode-fortran-support>.
+
+Then clone the repository into your local machine.
+
+```sh
+git@github.com:<YOUR-USERNAME>/vscode-fortran-support.git
+```
+
+Where `<YOUR-USERNAME>` should be your GitHub username.
+
+### Dependencies
+
+To build this project you will need [NodeJS](https://nodejs.org/) `>= 16.13.1`.
+Open a terminal and run for a quick dependency installation:
+
+```sh
+npm ci
+```
+
+or for a full dependency installation:
+
+```sh
+npm install
+```
+
+### Compiling 🏗️
+
+During development, you can run a watcher to continuously check for changes and compile the extension:
+
+```sh
+npm run watch-dev
+```
+
+or do a standalone compilation via:
+
+```sh
+npm run compile-dev
+```
+
+👉 **Tip!** You can press <kbd>CTRL+SHIFT+B</kbd> (<kbd>CMD+SHIFT+B</kbd> on Mac) to start the watch task.
+
+### Developing & Debugging 🐞️
+
+You can now start writing code the `watcher` task will check for compilation errors.
+You can actively debug the extension by pressing <kbd>F5</kbd> with `Launch Extension` selected.
+
+👉 **Tip!** You don't need to stop and restart the development version of VS Code after each change. You can just execute `Reload Window` from the command palette in the
+VS Code window prefixed with `[Extension Development Host]`.
+
+
+
+https://user-images.githubusercontent.com/16143716/167411072-58a25378-13ad-41c5-bb20-2dacc8ad004a.mp4
+
+
+
