@@ -58,3 +58,10 @@ You can actively debug the extension by pressing <kbd>F5</kbd> with `Launch Exte
 
 👉 **Tip!** You don't need to stop and restart the development version of VS Code after each change. You can just execute `Reload Window` from the command palette in the
 VS Code window prefixed with `[Extension Development Host]`.
+
+
+
+https://user-images.githubusercontent.com/16143716/167411072-58a25378-13ad-41c5-bb20-2dacc8ad004a.mp4
+
+
+
