@@ -142,6 +142,7 @@ export class FortranLintingProvider {
     let modout: string = config.get('linter.modOutput', '');
     let modFlag = '-J';
     switch (compiler) {
+      case 'ifx':
       case 'ifort':
         modFlag = '-module ';
         break;
@@ -240,7 +241,7 @@ export class FortranLintingProvider {
    * specified.
    * Attempts to match and resolve any internal variables, but no glob support.
    *
-   * @param compiler compiler name `gfortran`, `flang`, `ifort`
+   * @param compiler compiler name `gfortran`, `ifort`, `ifx`
    * @returns
    */
   private getLinterExtraArgs(compiler: string): string[] {
@@ -255,6 +256,7 @@ export class FortranLintingProvider {
         args = ['-Wall'];
         break;
 
+      case 'ifx':
       case 'ifort':
         args = ['-warn', 'all'];
         break;
@@ -269,7 +271,7 @@ export class FortranLintingProvider {
     // gfortran and flang have compiler flags for restricting the width of
     // the code.
     // You can always override by passing in the correct args as extraArgs
-    if (compiler !== 'ifort') {
+    if (compiler !== 'ifort' && compiler !== 'ifx') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
@@ -339,6 +341,7 @@ export class FortranLintingProvider {
       case 'flang':
         break;
 
+      case 'ifx':
       case 'ifort':
         for (const m of matches) {
           const g = m.groups;
@@ -420,6 +423,7 @@ export class FortranLintingProvider {
                           failing line of code
        ----------------------^
        */
+      case 'ifx':
       case 'ifort':
         // see https://regex101.com/r/GZ0Lzz/2
         return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
@@ -447,6 +451,7 @@ export class FortranLintingProvider {
 
       // ifort theoretically supports fsyntax-only too but I had trouble
       // getting it to work on my machine
+      case 'ifx':
       case 'ifort':
         return ['-syntax-only', '-fpp'];
 

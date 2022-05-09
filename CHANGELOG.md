@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added `ifx` support Intel's LLVM based compiler `ifx`
 - Added ability to rescan for linting include files.
 - Added GitHub Actions support for pre-Release builds
   ([#459](https://github.com/fortran-lang/vscode-fortran-support/issues/459))

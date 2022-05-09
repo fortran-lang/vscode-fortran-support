@@ -166,8 +166,8 @@
           "default": "gfortran",
           "enum": [
             "gfortran",
-            "flang",
             "ifort",
+            "ifx",
             "Disabled"
           ],
           "markdownDescription": "Compiler used for linting support."
@@ -275,7 +275,7 @@
         "fortran.fortls.maxLineLength": {
           "type": "number",
           "default": -1,
-          "markdownDescription": "Maximum line length. For `gfortran` and `flang` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
+          "markdownDescription": "Maximum line length. For `gfortran` this also sets the linting compiler flag `-ffree-line-length-<n>` and `-ffixed-line-length-<n>`. Default value is `none`."
         },
         "fortran.fortls.maxCommentLineLength": {
           "type": "number",
