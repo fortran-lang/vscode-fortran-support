@@ -8,7 +8,7 @@
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
 [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
-[![MIT License](https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?)](http://opensource.org/licenses/MIT)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/fortran-lang/vscode-fortran-support/master/LICENSE)
 
 </div>
 
