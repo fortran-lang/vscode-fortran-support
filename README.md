@@ -23,7 +23,7 @@
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
 - Native Language Server integration with [`fortls`](https://github.com/gnikit/fortls)
-- Linting support for `gfortran`, `flang` and `ifort`
+- Linting support for GCC's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), and Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html) and `ifx`
 - Debugger [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
 - Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 - Code snippets (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
@@ -60,7 +60,7 @@ Using incorrect type and rank as function argument
 
 ![alt](assets/lint-demo2.gif)
 
-| :memo: Note                                |
+| 📝️ Note                                   |
 | ------------------------------------------ |
 | Save your file to generate linting results |
 
@@ -70,7 +70,7 @@ Linting results can be improved by providing additional options to the compiler.
 
 You can control the include paths to be used by the linter with the `fortran.linter.includePaths` option.
 
-| :exclamation: Important                                                                                            |
+| ❗️ Important                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------ |
 | For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
 
@@ -80,7 +80,7 @@ You can control the include paths to be used by the linter with the `fortran.lin
 }
 ```
 
-| :exclamation: Important                                                          |
+| ❗️ Important                                                                    |
 | -------------------------------------------------------------------------------- |
 | If a glob pattern is used only directories matching the pattern will be included |
 
@@ -103,12 +103,12 @@ Default value is `-Wall` (or `-warn all` for ifort).
 
 ### Changing linting compiler
 
-By default, the linter used is `gfortran`, Intel's `ifort` and LLVM's `flang` are also supported.
+By default, the linter used is `gfortran`, Intel's `ifort` and Intel's LLVM based compiler `ifx` are also supported.
 One can use a different linter compiler via the option
 
 ```jsonc
 {
-  "fortran.linter.compiler": "ifort" | "gfortran" | "flang" | "Disabled"
+  "fortran.linter.compiler": "ifort" | "gfortran" | "ifx" | "Disabled"
 }
 ```
 
