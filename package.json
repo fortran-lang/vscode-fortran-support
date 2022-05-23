@@ -400,7 +400,7 @@
     "@types/vscode": "^1.67.0",
     "@types/which": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.24.0",
-    "@typescript-eslint/parser": "^5.24.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "@vscode/test-electron": "^2.1.2",
     "eslint": "^8.15.0",
     "eslint-plugin-import": "^2.25.4",
