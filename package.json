@@ -404,7 +404,7 @@
     "@vscode/test-electron": "^2.1.2",
     "eslint": "^8.16.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsdoc": "^39.2.9",
+    "eslint-plugin-jsdoc": "^39.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
