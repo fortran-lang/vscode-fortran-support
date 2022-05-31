@@ -6,7 +6,9 @@
     "lib": ["ES2020"],
     "sourceMap": true,
     "rootDir": ".",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": true
   },
   "include": ["test/**/*.ts", "syntaxes/*.json"],
   "exclude": ["node_modules", ".vscode-test"]
