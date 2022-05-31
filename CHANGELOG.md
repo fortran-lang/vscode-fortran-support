@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed `linter.compilerPath` to use the full path to the compiler instead of the root
+  ([#500](https://github.com/fortran-lang/vscode-fortran-support/issues/500))
 - Changed all instances of the publisher to `fortran-lang`
   ([#450](https://github.com/fortran-lang/vscode-fortran-support/issues/450))
 - Updated grammar unittests to include scope injections

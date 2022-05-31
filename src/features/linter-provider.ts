@@ -2,6 +2,7 @@
 
 import * as path from 'path';
 import * as cp from 'child_process';
+import which from 'which';
 
 import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
@@ -221,7 +222,7 @@ export class FortranLintingProvider {
   }
 
   /**
-   * Returns the linter executable
+   * Returns the linter executable i.e. this.compilerPath
    * @returns String with linter
    */
   private getLinterExecutable(): string {
@@ -229,11 +230,9 @@ export class FortranLintingProvider {
 
     this.compiler = config.get<string>('compiler', 'gfortran');
     this.compilerPath = config.get<string>('compilerPath', '');
-    const linter = path.join(this.compilerPath, this.compiler);
-
-    this.logger.logInfo(`using linter: ${this.compiler} located in: ${linter}`);
-
-    return linter;
+    if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
+    this.logger.logInfo(`using linter: ${this.compiler} located in: ${this.compilerPath}`);
+    return this.compilerPath;
   }
 
   /**
