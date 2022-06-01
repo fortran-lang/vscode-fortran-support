@@ -22,11 +22,27 @@
 - Hover support, Signature help and Auto-completion
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
-- Native Language Server integration with [`fortls`](https://github.com/gnikit/fortls)
-- Linting support for GCC's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), and Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html) and `ifx`
-- Debugger [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
-- Formatting with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
-- Code snippets (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
+- [Native Language Server integration](#language-server-integration) with [`fortls`](https://github.com/gnikit/fortls)
+- [Linting support](#linting) for GCC's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), and Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`
+- [Interactive Debugger with UI](#debugging)
+- [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
+- [Code snippets](#snippets) (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
+
+## Get Started & Seek Support
+
+<p float="left">
+  <a href="https://fortran-lang.org/learn/"><img src="./assets/readme.tutorial.svg"/></a>
+  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="./assets/readme.github.svg"/></a>
+  <a href="https://fortran-lang.discourse.group/"><img src="./assets/readme.discourse.svg"/></a>
+</p>
+
+### Useful Tools
+
+<p float="center">
+  <a href="https://gnikit.github.io/fortls"><img src="./assets/readme.fortls.svg"/></a>
+  <a href="https://fpm.fortran-lang.org"><img src="./assets/readme.fpm.svg"/></a>
+  <a href="https://github.com/fortran-lang/stdlib"><img src="./assets/readme.stdlib.svg"/></a>
+</p>
 
 ## Language Server integration
 
@@ -257,16 +273,8 @@ For debugging you need to have one of the following debuggers installed:
 - **macOS**: GDB or LLDB
 - **Windows**: GDB or Visual Studio Windows Debugger
 
-## Issues
+## Contributing
 
-Please report any issues and feature request on the GitHub repo [here](https://github.com/fortran-langiguelangel/vscode-fortran-support/issues/new)
-
-## Notice
-
-The syntax highlight support was imported from [TextMate bundle](https://github.com/textmate/fortran.tmbundle)
-
-The idea of using `gfortran` comes from this awesome [fortran plugin](https://github.com/315234/SublimeFortran) for Sublime Text.
-
-## LICENSE
-
-MIT
+- [Guidelines](https://github.com/fortran-lang/vscode-fortran-support/blob/master/CONTRIBUTING.md)
+- [Code of conduct: Contributor Covenant](https://github.com/fortran-lang/.github/blob/main/CODE_OF_CONDUCT.md)
+- [License](https://github.com/fortran-lang/vscode-fortran-support/blob/master/LICENSE)

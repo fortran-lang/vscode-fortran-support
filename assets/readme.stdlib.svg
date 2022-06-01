@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="70.884521mm"
+   height="17.73621mm"
+   viewBox="0 0 70.884521 17.73621"
+   version="1.1"
+   id="svg4008"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="readme.stdlib.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4010"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.7500982"
+     inkscape:cx="333.95627"
+     inkscape:cy="-205.97303"
+     inkscape:window-width="1920"
+     inkscape:window-height="1053"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs4005" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.240185,-202.72104)">
+    <g
+       id="g22685"
+       transform="translate(-15.453775,45.716616)">
+      <rect
+         style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.237042;paint-order:stroke fill markers"
+         id="rect918"
+         width="70.647476"
+         height="17.499168"
+         x="31.812481"
+         y="157.12294"
+         ry="2.2504981" />
+      <g
+         id="g3839">
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:1.05;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.264583"
+           x="52.751194"
+           y="164.1107"
+           id="text926"><tspan
+             sodipodi:role="line"
+             id="tspan922"
+             style="font-weight:bold;fill:#ffffff;stroke-width:0.264583"
+             x="52.751194"
+             y="164.1107">stdlib</tspan><tspan
+             sodipodi:role="line"
+             style="font-size:5.64444px;fill:#ffffff;stroke-width:0.264583"
+             x="52.751194"
+             y="171.51904"
+             id="tspan924">Standard Library</tspan></text>
+        <path
+           d="m 45.605457,161.36353 -2.686659,9.40351 c -0.102849,0.35682 -0.474363,0.56252 -0.831185,0.46177 -0.356822,-0.10285 -0.562519,-0.47437 -0.461769,-0.83119 l 2.686658,-9.40309 c 0.102849,-0.3567 0.474363,-0.56323 0.831185,-0.46131 0.356822,0.1019 0.562521,0.4737 0.46177,0.83031 z m 2.178713,1.69196 2.350826,2.35083 c 0.26237,0.26236 0.26237,0.68636 0,0.94873 l -2.350826,2.35082 c -0.26237,0.26237 -0.686358,0.26237 -0.948727,0 -0.262369,-0.26237 -0.262369,-0.68636 0,-0.94873 l 1.874365,-1.87646 -1.874365,-1.87646 c -0.262369,-0.26237 -0.262369,-0.68636 0,-0.94873 0.262369,-0.26236 0.686357,-0.26236 0.948727,0 z m -7.388313,0.94873 -1.875414,1.87646 1.875414,1.87646 c 0.26237,0.26237 0.26237,0.68636 0,0.94873 -0.262368,0.26237 -0.686357,0.26237 -0.948725,0 l -2.351415,-2.35082 c -0.262285,-0.26237 -0.262285,-0.68637 0,-0.94873 l 2.351415,-2.35083 c 0.262368,-0.26236 0.686357,-0.26236 0.948725,0 0.26237,0.26237 0.26237,0.68636 0,0.94873 z"
+           id="path1022"
+           style="fill:#ffffff;stroke-width:0.0209895" />
+      </g>
+    </g>
+  </g>
+</svg>

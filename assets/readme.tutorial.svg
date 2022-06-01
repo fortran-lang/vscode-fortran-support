@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="70.884521mm"
+   height="17.73621mm"
+   viewBox="0 0 70.884521 17.73621"
+   version="1.1"
+   id="svg69418"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="readme.tutorial.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview69420"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.7500982"
+     inkscape:cx="151.31352"
+     inkscape:cy="161.97879"
+     inkscape:window-width="1920"
+     inkscape:window-height="1053"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs69415" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-64.733513,-105.41693)">
+    <g
+       id="g69318"
+       transform="translate(32.044276,13.594259)">
+      <rect
+         style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.237042;paint-order:stroke fill markers"
+         id="rect30387"
+         width="70.647476"
+         height="17.499168"
+         x="32.807758"
+         y="91.941193"
+         ry="2.2504981" />
+      <g
+         id="g68475"
+         transform="translate(1.9600047)">
+        <path
+           d="m 48.154685,102.27859 v -5.716106 c 0,-0.52617 -0.426723,-0.9527 -0.952685,-0.9527 h -6.033675 c -1.05232,0 -1.905371,0.85307 -1.905371,1.90538 v 6.351236 c 0,1.05232 0.853051,1.90537 1.905371,1.90537 h 6.351237 c 0.350707,0 0.635123,-0.28442 0.635123,-0.61726 0,-0.23261 -0.131132,-0.42712 -0.31756,-0.53787 v -1.6148 c 0.194506,-0.19133 0.31756,-0.44142 0.31756,-0.72325 z m -6.051537,-4.128296 h 3.810742 c 0.192522,0 0.335425,0.1429 0.335425,0.31755 0,0.17466 -0.142903,0.317576 -0.317562,0.317576 h -3.828605 c -0.156797,0 -0.299699,-0.142916 -0.299699,-0.317576 0,-0.17465 0.142902,-0.31755 0.299699,-0.31755 z m 0,1.270246 h 3.810742 c 0.192522,0 0.335425,0.14289 0.335425,0.31755 0,0.17467 -0.142903,0.31757 -0.317562,0.31757 h -3.828605 c -0.156797,0 -0.299699,-0.1429 -0.299699,-0.31757 0,-0.17466 0.142902,-0.31755 0.299699,-0.31755 z m 4.78129,5.08098 h -5.716113 c -0.350707,0 -0.635124,-0.28441 -0.635124,-0.63512 0,-0.35071 0.284417,-0.63512 0.635124,-0.63512 h 5.716113 z"
+           id="path26948"
+           style="fill:#ffffff;stroke-width:0.0198476" />
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.264583"
+           x="50.794899"
+           y="103.15402"
+           id="text28301"><tspan
+             sodipodi:role="line"
+             id="tspan28299"
+             style="fill:#ffffff;stroke-width:0.264583"
+             x="50.794899"
+             y="103.15402">Learn Fortran</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
