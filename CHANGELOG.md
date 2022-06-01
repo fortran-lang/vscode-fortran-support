@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Rewrote README to include links to fortran-lang and other projects
+  ([#485](https://github.com/fortran-lang/vscode-fortran-support/issues/485))
+  ([#501](https://github.com/fortran-lang/vscode-fortran-support/issues/501))
 - Changed `linter.compilerPath` to use the full path to the compiler instead of the root
   ([#500](https://github.com/fortran-lang/vscode-fortran-support/issues/500))
 - Changed all instances of the publisher to `fortran-lang`
