@@ -159,6 +159,9 @@ More details about how to set up the debugger can be found in Microsoft's websit
 - C/C++ extension debugger information: <https://code.visualstudio.com/docs/cpp/cpp-debug>
 - Build tasks for easy compiling: <https://code.visualstudio.com/docs/editor/tasks>
 
+<details>
+<summary><b>Example: Launch.json</b></summary>
+
 ```jsonc
 {
   // Use IntelliSense to learn about possible attributes.
@@ -189,15 +192,22 @@ More details about how to set up the debugger can be found in Microsoft's websit
 }
 ```
 
+</details>
+
 ## Formatting
 
 Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
 and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
 installed with `pip` automatically through the extension.
 
+<details>
+  <summary><b>Demo: formatters in action</b></summary>
+
 |              findent              |              fprettify              |
 | :-------------------------------: | :---------------------------------: |
 | ![alt](./assets/findent-demo.gif) | ![alt](./assets/fprettify-demo.gif) |
+
+</details>
 
 The formatter is controlled by the user option
 
@@ -237,13 +247,13 @@ by following these VS Code [instructions](https://code.visualstudio.com/docs/edi
 If you think a snippet should be shipped by with the extension feel free to
 submit a [feature request](https://github.com/fortran-lang/vscode-fortran-support/issues/new?assignees=&labels=feature-request&template=feature_request.md&title=)
 
-### Program skeleton
-
-![program snippet](https://media.giphy.com/media/OYdq9BKYMOOdy/giphy.gif)
-
-#### Module skeleton
-
-![module snippet](https://media.giphy.com/media/3ohzdUNRuio5FfyF1u/giphy.gif)
+<details>
+<summary><b>Demo: snippets in action</b></summary>
+<p float="left">
+  <img alt="program snippet" src="https://media.giphy.com/media/OYdq9BKYMOOdy/giphy.gif" width=400/>
+  <img alt="module snippet" src="https://media.giphy.com/media/3ohzdUNRuio5FfyF1u/giphy.gif" width=320/>
+</p>
+</details>
 
 ## Advanced options
 
