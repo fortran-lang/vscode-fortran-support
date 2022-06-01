@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/modern-fortran-logo.png"/>
+  <img src="assets/modern-fortran-logo.svg" width=800/>
 </p>
 
 <div align="center">
