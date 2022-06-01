@@ -1,4 +1,6 @@
-# Creating High Quality GIF animations
+# Information about asset creation
+
+## Creating High Quality GIF animations
 
 Two scripts have been included inside the `tools` folder for ease of use, but the following instructions should allow for more custom-made GIFs
 
@@ -35,3 +37,21 @@ considerably less sharp and artifact-free.
 ffmpeg -i animation.mp4 -vf palettegen palette.png
 ffmpeg -i animation.mp4 -i palette.png -filter_complex "fps=15,scale=-1:-1:flags=lanczos[x];[x][1:v]paletteuse" output.gif
 ```
+
+## SVG assets
+
+Assets containing the word `workspace` e.g. `readme.workspace.svg` are the master
+document from which all other assets with similar names e.g. `readme.fpm.svg` are
+derived.
+
+> Note:
+> **The derived `SVG`s are converted to Paths in order to avoid any
+> potential problems with missing fonts.**
+
+Normal workflow:
+
+1. Edit the `.workspace.svg` file
+2. Copy the final asset to a separate `SVG` file.
+3. Adjust the `SVG` file size to just the size of the asset.
+4. Convert the final Object to Path.
+5. The final asset is ready to use.
