@@ -278,3 +278,13 @@ For debugging you need to have one of the following debuggers installed:
 - [Guidelines](https://github.com/fortran-lang/vscode-fortran-support/blob/master/CONTRIBUTING.md)
 - [Code of conduct: Contributor Covenant](https://github.com/fortran-lang/.github/blob/main/CODE_OF_CONDUCT.md)
 - [License](https://github.com/fortran-lang/vscode-fortran-support/blob/master/LICENSE)
+
+## Support Us
+
+You can support further development of the extension by fiscal donations:
+
+<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/readme.lfortran.svg" width=90></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
+
+Or
+
+<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/readme.github.sponsor.svg" width=120></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
