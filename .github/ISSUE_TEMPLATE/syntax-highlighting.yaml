@@ -1,0 +1,80 @@
+name: Syntax Highlighting
+description: Spotted a bug in the Syntax Highlighting
+title: '[SYNTAX] <title>'
+labels: [syntax-highlight]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: A clear and concise description of what the bug is
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      placeholder: Add screenshots to help explain where syntax highlighting is failing
+    validations:
+      required: true
+  - type: textarea
+    id: code-example
+    attributes:
+      label: Code Example
+      description: |
+        Provide the code that caused the highlighting to fail in a Minimal Working Example.
+        See Wikipedia for how to write a Minimal Working Example: https://en.wikipedia.org/wiki/Minimal_working_example
+      value: |
+        program main
+          implicit none
+          integer :: i, j, k
+        end program main
+      render: Fortran
+    validations:
+      required: false
+  - type: dropdown
+    id: language
+    attributes:
+      label: Fortran Version (Free/Fixed Form)
+      description: Choose the type of Fortran you spotted the issue (Free or Fixed Form)
+      multiple: false
+      options:
+        - Free Form e.g. F90+
+        - Fixed Form e.g. F77
+    validations:
+      required: true
+  - type: input
+    id: modern-fortran-version
+    attributes:
+      label: Version of Modern Fortran
+      placeholder: v3.0.0, ...
+    validations:
+      required: true
+  - type: input
+    id: vscode-version
+    attributes:
+      label: Version of Visual Studio Code
+      placeholder: v1.68.0, ...
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform and Architecture
+      placeholder: Linux, MacOS/ARM, Windows, OpenBSD, ...
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      placeholder: Further relevant context, i.e. links to other issues
+    validations:
+      required: false

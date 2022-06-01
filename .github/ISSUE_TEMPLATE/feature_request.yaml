@@ -1,0 +1,19 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: '[FEAT] <title>'
+labels: [feature-request]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing request for this?
+      description: Please search to see if an issue already exists for the feature you are suggesting.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Feature Request
+      description: |
+        Describe the feature you'd like.
+    validations:
+      required: true
