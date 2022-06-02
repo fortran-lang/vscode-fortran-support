@@ -1,0 +1,21 @@
+>error stop
+#^^^^^^^^^^ source.fortran.free meta.statement.control.errorstop.fortran keyword.control.errorstop.fortran
+>error stop 10
+#^^^^^^^^^^ source.fortran.free meta.statement.control.errorstop.fortran keyword.control.errorstop.fortran
+#          ^ source.fortran.free meta.statement.control.errorstop.fortran
+#           ^^ source.fortran.free meta.statement.control.errorstop.fortran constant.numeric.fortran
+>error stop "val"//"10"
+#^^^^^^^^^^ source.fortran.free meta.statement.control.errorstop.fortran keyword.control.errorstop.fortran
+#          ^ source.fortran.free meta.statement.control.errorstop.fortran
+#           ^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#            ^^^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran
+#               ^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+#                ^^ source.fortran.free meta.statement.control.errorstop.fortran keyword.other.concatination.fortran
+#                  ^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#                   ^^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran
+#                     ^ source.fortran.free meta.statement.control.errorstop.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>error stop label
+#^^^^^^^^^^ source.fortran.free meta.statement.control.errorstop.fortran keyword.control.errorstop.fortran
+#          ^ source.fortran.free meta.statement.control.errorstop.fortran
+#           ^^^^^ source.fortran.free meta.statement.control.errorstop.fortran meta.parameter.fortran
+>
