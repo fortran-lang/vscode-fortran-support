@@ -70,6 +70,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed `error stop variable` syntax highlighting
+  ([#486](https://github.com/fortran-lang/vscode-fortran-support/issues/486))
 - Fixed issue with linter cache containing outdated folders
   ([#464](https://github.com/fortran-lang/vscode-fortran-support/issues/464))
 - Fixed slow performance of very long lines by using a different solution for
