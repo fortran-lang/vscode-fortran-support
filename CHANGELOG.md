@@ -35,6 +35,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed need for matching begin-end scope names, in the following constructs:
+  Functions, Modules, Programs, Module Procedures, Subroutines, Submodules.
+  For a more detailed explanation as to why see the issue
+  ([#278](https://github.com/fortran-lang/vscode-fortran-support/issues/278))
 - Rewrote README to include links to fortran-lang and other projects
   ([#485](https://github.com/fortran-lang/vscode-fortran-support/issues/485))
   ([#501](https://github.com/fortran-lang/vscode-fortran-support/issues/501))
