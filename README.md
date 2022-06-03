@@ -76,9 +76,8 @@ Using incorrect type and rank as function argument
 
 ![alt](assets/lint-demo2.gif)
 
-| 📝️ Note                                   |
-| ------------------------------------------ |
-| Save your file to generate linting results |
+| 📝️ Note | Save your file to generate linting results |
+| -------- | ------------------------------------------ |
 
 Linting results can be improved by providing additional options to the compiler.
 
@@ -86,9 +85,8 @@ Linting results can be improved by providing additional options to the compiler.
 
 You can control the include paths to be used by the linter with the `fortran.linter.includePaths` option.
 
-| ❗️ Important                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------ |
-| For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
+| ❗️ Important | For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
 
 ```json
 {
@@ -96,9 +94,8 @@ You can control the include paths to be used by the linter with the `fortran.lin
 }
 ```
 
-| ❗️ Important                                                                    |
-| -------------------------------------------------------------------------------- |
-| If a glob pattern is used only directories matching the pattern will be included |
+| ❗️ Important | If a glob pattern is used only directories matching the pattern will be included |
+| ------------- | -------------------------------------------------------------------------------- |
 
 ### Additional linting options
 
@@ -234,9 +231,8 @@ If the formatter is not present in the `PATH` its location can be input with
 }
 ```
 
-| :memo: Note                                                            |
-| ---------------------------------------------------------------------- |
-| `findent` can also be used to generate dependency files for a project. |
+| 📝️ Note | `findent` can also be used to generate dependency files for a project. |
+| -------- | ---------------------------------------------------------------------- |
 
 ## Snippets
 
