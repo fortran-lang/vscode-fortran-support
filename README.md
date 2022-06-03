@@ -12,6 +12,19 @@
 
 </div>
 
+<div align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#get-started--seek-support">Get Started</a> •
+  <a href="#language-server-integration">LSP</a> •
+  <a href="#linting">Lint</a> •
+  <a href="#debugging">Debug</a> •
+  <a href="#formatting">Format</a> •
+  <a href="#snippets">Snippets</a> •
+  <a href="#support-us">Donate</a>
+  <br>
+  <br>
+</div>
+
 <p align="center">
   <img src="assets/intro-demo.gif"/>
 </p>
