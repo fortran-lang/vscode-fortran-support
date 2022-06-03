@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/modern-fortran-logo.svg" width=800/>
+  <img src="assets/png/modern-fortran-logo.png" width=800/>
 </p>
 
 <div align="center">
@@ -12,8 +12,21 @@
 
 </div>
 
+<div align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#get-started--seek-support">Get Started</a> •
+  <a href="#language-server-integration">LSP</a> •
+  <a href="#linting">Lint</a> •
+  <a href="#debugging">Debug</a> •
+  <a href="#formatting">Format</a> •
+  <a href="#snippets">Snippets</a> •
+  <a href="#support-us">Donate</a>
+  <br>
+  <br>
+</div>
+
 <p align="center">
-  <img src="assets/intro-demo.gif"/>
+  <img src="assets/gif/intro-demo.gif"/>
 </p>
 
 ## Key Features
@@ -30,18 +43,18 @@
 
 ## Get Started & Seek Support
 
-<p float="left">
-  <a href="https://fortran-lang.org/learn/"><img src="./assets/readme.tutorial.svg"/></a>
-  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="./assets/readme.github.svg"/></a>
-  <a href="https://fortran-lang.discourse.group/"><img src="./assets/readme.discourse.svg"/></a>
+<p float="center">
+  <a href="https://fortran-lang.org/learn/"><img src="assets/png/readme.tutorial.png"/></a>
+  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="assets/png/readme.github.png"/></a>
+  <a href="https://fortran-lang.discourse.group/"><img src="assets/png/readme.discourse.png"/></a>
 </p>
 
 ### Useful Tools
 
 <p float="center">
-  <a href="https://gnikit.github.io/fortls"><img src="./assets/readme.fortls.svg"/></a>
-  <a href="https://fpm.fortran-lang.org"><img src="./assets/readme.fpm.svg"/></a>
-  <a href="https://github.com/fortran-lang/stdlib"><img src="./assets/readme.stdlib.svg"/></a>
+  <a href="https://gnikit.github.io/fortls"><img src="assets/png/readme.fortls.png"/></a>
+  <a href="https://fpm.fortran-lang.org"><img src="assets/png/readme.fpm.png"/></a>
+  <a href="https://github.com/fortran-lang/stdlib"><img src="assets/png/readme.stdlib.png"/></a>
 </p>
 
 ## Language Server integration
@@ -70,15 +83,14 @@ without the user having to compile.
 
 Using an invalid if expression
 
-![alt](assets/lint-demo.gif)
+![alt](assets/gif/lint-demo.gif)
 
 Using incorrect type and rank as function argument
 
-![alt](assets/lint-demo2.gif)
+![alt](assets/gif/lint-demo2.gif)
 
-| 📝️ Note                                   |
-| ------------------------------------------ |
-| Save your file to generate linting results |
+| 📝️ Note | Save your file to generate linting results |
+| -------- | ------------------------------------------ |
 
 Linting results can be improved by providing additional options to the compiler.
 
@@ -86,9 +98,8 @@ Linting results can be improved by providing additional options to the compiler.
 
 You can control the include paths to be used by the linter with the `fortran.linter.includePaths` option.
 
-| ❗️ Important                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------ |
-| For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
+| ❗️ Important | For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
 
 ```json
 {
@@ -96,9 +107,8 @@ You can control the include paths to be used by the linter with the `fortran.lin
 }
 ```
 
-| ❗️ Important                                                                    |
-| -------------------------------------------------------------------------------- |
-| If a glob pattern is used only directories matching the pattern will be included |
+| ❗️ Important | If a glob pattern is used only directories matching the pattern will be included |
+| ------------- | -------------------------------------------------------------------------------- |
 
 ### Additional linting options
 
@@ -140,7 +150,7 @@ you can point the extension to another linter with the `fortran.linter.compilerP
 
 ## Debugging
 
-![alt](assets/gdb_ani.gif)
+![alt](assets/gif/gdb_ani.gif)
 
 The extension uses the debugger from Microsoft's
 [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
@@ -203,9 +213,9 @@ installed with `pip` automatically through the extension.
 <details>
   <summary><b>Demo: formatters in action</b></summary>
 
-|              findent              |              fprettify              |
-| :-------------------------------: | :---------------------------------: |
-| ![alt](./assets/findent-demo.gif) | ![alt](./assets/fprettify-demo.gif) |
+|                findent                |                fprettify                |
+| :-----------------------------------: | :-------------------------------------: |
+| ![alt](./assets/gif/findent-demo.gif) | ![alt](./assets/gif/fprettify-demo.gif) |
 
 </details>
 
@@ -234,9 +244,8 @@ If the formatter is not present in the `PATH` its location can be input with
 }
 ```
 
-| :memo: Note                                                            |
-| ---------------------------------------------------------------------- |
-| `findent` can also be used to generate dependency files for a project. |
+| 📝️ Note | `findent` can also be used to generate dependency files for a project. |
+| -------- | ---------------------------------------------------------------------- |
 
 ## Snippets
 
@@ -293,8 +302,8 @@ For debugging you need to have one of the following debuggers installed:
 
 You can support further development of the extension by fiscal donations:
 
-<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/readme.lfortran.svg" width=90></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
+<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/png/readme.lfortran.png"></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
 
 Or
 
-<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/readme.github.sponsor.svg" width=120></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
+<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/png/readme.github.sponsor.png"></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
