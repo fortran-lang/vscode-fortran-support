@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed images from SVG to PNG because `vsce` does not support SVG
+  ([#510](https://github.com/fortran-lang/vscode-fortran-support/pull/510))
 - Changed need for matching begin-end scope names, in the following constructs:
   Functions, Modules, Programs, Module Procedures, Subroutines, Submodules.
   For a more detailed explanation as to why see the issue
