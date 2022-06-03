@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/svg/modern-fortran-logo.svg" width=800/>
+  <img src="assets/png/modern-fortran-logo.png" width=800/>
 </p>
 
 <div align="center">
@@ -43,18 +43,18 @@
 
 ## Get Started & Seek Support
 
-<p float="left">
-  <a href="https://fortran-lang.org/learn/"><img src="./assets/svg/readme.tutorial.svg"/></a>
-  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="./assets/svg/readme.github.svg"/></a>
-  <a href="https://fortran-lang.discourse.group/"><img src="./assets/svg/readme.discourse.svg"/></a>
+<p float="center">
+  <a href="https://fortran-lang.org/learn/"><img src="assets/png/readme.tutorial.png"/></a>
+  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="assets/png/readme.github.png"/></a>
+  <a href="https://fortran-lang.discourse.group/"><img src="assets/png/readme.discourse.png"/></a>
 </p>
 
 ### Useful Tools
 
 <p float="center">
-  <a href="https://gnikit.github.io/fortls"><img src="./assets/svg/readme.fortls.svg"/></a>
-  <a href="https://fpm.fortran-lang.org"><img src="./assets/svg/readme.fpm.svg"/></a>
-  <a href="https://github.com/fortran-lang/stdlib"><img src="./assets/svg/readme.stdlib.svg"/></a>
+  <a href="https://gnikit.github.io/fortls"><img src="assets/png/readme.fortls.png"/></a>
+  <a href="https://fpm.fortran-lang.org"><img src="assets/png/readme.fpm.png"/></a>
+  <a href="https://github.com/fortran-lang/stdlib"><img src="assets/png/readme.stdlib.png"/></a>
 </p>
 
 ## Language Server integration
@@ -302,8 +302,8 @@ For debugging you need to have one of the following debuggers installed:
 
 You can support further development of the extension by fiscal donations:
 
-<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/svg/readme.lfortran.svg" width=90></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
+<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/png/readme.lfortran.png"></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
 
 Or
 
-<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/svg/readme.github.sponsor.svg" width=120></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
+<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/png/readme.github.sponsor.png"></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)

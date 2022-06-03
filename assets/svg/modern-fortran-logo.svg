@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="123.83447mm"
-   height="15.736053mm"
-   viewBox="0 0 123.83447 15.736053"
+   width="211.66667mm"
+   height="26.897173mm"
+   viewBox="0 0 211.66667 26.897172"
    version="1.1"
    id="svg11879"
    sodipodi:docname="modern-fortran-logo.svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.2640146"
-     inkscape:cx="173.65306"
-     inkscape:cy="-17.800427"
+     inkscape:zoom="0.6320073"
+     inkscape:cx="155.85263"
+     inkscape:cy="148.73246"
      inkscape:window-width="1920"
      inkscape:window-height="1053"
      inkscape:window-x="1920"
@@ -42,9 +42,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-46.397192,-158.01401)">
+     transform="translate(-46.397193,-158.01401)">
     <g
-       id="g1015">
+       id="g1015"
+       transform="matrix(1.7092709,0,0,1.7092709,-32.908177,-112.07474)">
       <path
          id="rect3876-9"
          style="fill:#734f96;stroke-width:0.144767"
