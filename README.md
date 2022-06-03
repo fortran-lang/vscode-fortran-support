@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/modern-fortran-logo.svg" width=800/>
+  <img src="assets/svg/modern-fortran-logo.svg" width=800/>
 </p>
 
 <div align="center">
@@ -26,7 +26,7 @@
 </div>
 
 <p align="center">
-  <img src="assets/intro-demo.gif"/>
+  <img src="assets/gif/intro-demo.gif"/>
 </p>
 
 ## Key Features
@@ -44,17 +44,17 @@
 ## Get Started & Seek Support
 
 <p float="left">
-  <a href="https://fortran-lang.org/learn/"><img src="./assets/readme.tutorial.svg"/></a>
-  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="./assets/readme.github.svg"/></a>
-  <a href="https://fortran-lang.discourse.group/"><img src="./assets/readme.discourse.svg"/></a>
+  <a href="https://fortran-lang.org/learn/"><img src="./assets/svg/readme.tutorial.svg"/></a>
+  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="./assets/svg/readme.github.svg"/></a>
+  <a href="https://fortran-lang.discourse.group/"><img src="./assets/svg/readme.discourse.svg"/></a>
 </p>
 
 ### Useful Tools
 
 <p float="center">
-  <a href="https://gnikit.github.io/fortls"><img src="./assets/readme.fortls.svg"/></a>
-  <a href="https://fpm.fortran-lang.org"><img src="./assets/readme.fpm.svg"/></a>
-  <a href="https://github.com/fortran-lang/stdlib"><img src="./assets/readme.stdlib.svg"/></a>
+  <a href="https://gnikit.github.io/fortls"><img src="./assets/svg/readme.fortls.svg"/></a>
+  <a href="https://fpm.fortran-lang.org"><img src="./assets/svg/readme.fpm.svg"/></a>
+  <a href="https://github.com/fortran-lang/stdlib"><img src="./assets/svg/readme.stdlib.svg"/></a>
 </p>
 
 ## Language Server integration
@@ -83,11 +83,11 @@ without the user having to compile.
 
 Using an invalid if expression
 
-![alt](assets/lint-demo.gif)
+![alt](assets/gif/lint-demo.gif)
 
 Using incorrect type and rank as function argument
 
-![alt](assets/lint-demo2.gif)
+![alt](assets/gif/lint-demo2.gif)
 
 | 📝️ Note | Save your file to generate linting results |
 | -------- | ------------------------------------------ |
@@ -150,7 +150,7 @@ you can point the extension to another linter with the `fortran.linter.compilerP
 
 ## Debugging
 
-![alt](assets/gdb_ani.gif)
+![alt](assets/gif/gdb_ani.gif)
 
 The extension uses the debugger from Microsoft's
 [C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
@@ -213,9 +213,9 @@ installed with `pip` automatically through the extension.
 <details>
   <summary><b>Demo: formatters in action</b></summary>
 
-|              findent              |              fprettify              |
-| :-------------------------------: | :---------------------------------: |
-| ![alt](./assets/findent-demo.gif) | ![alt](./assets/fprettify-demo.gif) |
+|                findent                |                fprettify                |
+| :-----------------------------------: | :-------------------------------------: |
+| ![alt](./assets/gif/findent-demo.gif) | ![alt](./assets/gif/fprettify-demo.gif) |
 
 </details>
 
@@ -302,8 +302,8 @@ For debugging you need to have one of the following debuggers installed:
 
 You can support further development of the extension by fiscal donations:
 
-<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/readme.lfortran.svg" width=90></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
+<a href="https://numfocus.org/donate-to-lfortran"><img src="./assets/svg/readme.lfortran.svg" width=90></a> to our [**LFortan**](https://numfocus.org/donate-to-lfortran) project on NumFOCUS
 
 Or
 
-<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/readme.github.sponsor.svg" width=120></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
+<a href="https://github.com/fortran-lang/vscode-fortran-support"><img src="./assets/svg/readme.github.sponsor.svg" width=120></a> directly sponsoring developers through [**GitHub Sponsors**](https://github.com/fortran-lang/vscode-fortran-support)
