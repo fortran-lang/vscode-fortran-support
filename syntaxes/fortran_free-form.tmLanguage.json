@@ -4060,7 +4060,7 @@
                   "name": "entity.name.function.fortran"
                 }
               },
-              "end": "(?ix)\\s*\\b(?:(end\\s*function)(?:\\s+(\\1))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\s*\\b(?:(end\\s*function)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endfunction.fortran"
@@ -4148,7 +4148,7 @@
               "name": "entity.name.class.module.fortran"
             }
           },
-          "end": "(?ix)\\b(?:(end\\s*module)(?:\\s+(\\1))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\b(?:(end\\s*module)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.other.endmodule.fortran"
@@ -4218,7 +4218,7 @@
               "name": "entity.name.program.fortran"
             }
           },
-          "end": "(?ix)\\b(?:(end\\s*program)(?:\\s+(\\1))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\b(?:(end\\s*program)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.control.endprogram.fortran"
@@ -4289,7 +4289,7 @@
                   "name": "entity.name.function.procedure.fortran"
                 }
               },
-              "end": "(?ix)\\s*\\b(?:(end\\s*procedure)(?:\\s+(\\1))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\s*\\b(?:(end\\s*procedure)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endprocedure.fortran"
@@ -4395,7 +4395,7 @@
                   "name": "entity.name.function.subroutine.fortran"
                 }
               },
-              "end": "(?ix)\\b(?:(end\\s*subroutine)(?:\\s+(\\1))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\b(?:(end\\s*subroutine)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endsubroutine.fortran"
@@ -4493,7 +4493,7 @@
               "name": "entity.name.module.submodule.fortran"
             }
           },
-          "end": "(?ix)\\s*\\b(?:(end\\s*submodule)(?:\\s+(\\1))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\s*\\b(?:(end\\s*submodule)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.other.endsubmodule.fortran"

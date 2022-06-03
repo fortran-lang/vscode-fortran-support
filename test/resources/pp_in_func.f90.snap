@@ -1,0 +1,450 @@
+>! Out of order nested function/subroutine definitions such as in the case
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! of preprocessing directives, where the inner scope is not the scope that closes
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! first, yield invalid.error syntax highlighting because we attempt to match
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! the name from the begin REGEX to the end REGEX match i.e. \\1
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! This can be circumvented by matching a word character instead [a-z_]\\w*
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! Obviously this is not going to highlight when the wrong name is used to
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! close a scope, but the linter should solve that
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>
+>!
+#^ source.fortran.free comment.line.fortran
+>subroutine blasmul_mm()
+#^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#          ^ source.fortran.free meta.subroutine.fortran
+#           ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                     ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>   interface
+#^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#   ^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran keyword.control.interface.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor
+>      SUBROUTINE DGEMM ( )
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran
+#                 ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#else
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      SUBROUTINE SGEMM (  )
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran
+#                 ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#endif
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor
+>      END SUBROUTINE DGEMM
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran
+#                     ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+>#else
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      END SUBROUTINE SGEMM
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran
+#                     ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+>#endif
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>   end interface
+#^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran keyword.control.endinterface.fortran.modern
+>
+>end subroutine blasmul_mm
+#^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#              ^ source.fortran.free meta.subroutine.fortran
+#               ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+>
+>! This would work with the previous definition of the end REGEX because the scopes
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>! close in the order that they open
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>subroutine blasmul_mm()
+#^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#          ^ source.fortran.free meta.subroutine.fortran
+#           ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                     ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>   interface
+#^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#   ^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran keyword.control.interface.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor
+>      SUBROUTINE DGEMM ( )
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran
+#                 ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#else
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      SUBROUTINE SGEMM (  )
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran
+#                 ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#endif
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifndef DOUBLEP
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.ifndef.fortran
+#       ^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor
+>      END SUBROUTINE SGEMM
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran
+#                     ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+>#else
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      END SUBROUTINE DGEMM
+#^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#      ^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#                    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran
+#                     ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+>#endif
+#^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>   end interface
+#^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.interface.explicit.fortran keyword.control.endinterface.fortran.modern
+>
+>end subroutine blasmul_mm
+#^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
+#              ^ source.fortran.free meta.subroutine.fortran
+#               ^^^^^^^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+>
+>REAL FUNCTION blasmul_mm() RESULT(VAL)
+#^^^^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
+#    ^ source.fortran.free meta.function.fortran meta.attribute-list.function.fortran
+#     ^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.function.fortran
+#             ^ source.fortran.free meta.function.fortran
+#              ^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+#                        ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                         ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                          ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran
+#                           ^^^^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                                 ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                                  ^^^ source.fortran.free meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                                     ^ source.fortran.free meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+>   interface
+#^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran
+#   ^^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran keyword.control.interface.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.preprocessor
+>      FUNCTION DGEMM ( )
+#^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.attribute-list.function.fortran
+#      ^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran keyword.other.function.fortran
+#              ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran
+#               ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran entity.name.function.fortran
+#                    ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                     ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                      ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                       ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#else
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      FUNCTION SGEMM (  )
+#^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.attribute-list.function.fortran
+#      ^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran keyword.other.function.fortran
+#              ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran
+#               ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran entity.name.function.fortran
+#                    ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                     ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                      ^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list
+#                        ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>#endif
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor
+>      END FUNCTION DGEMM
+#^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran meta.block.specification.function.fortran
+#      ^^^^^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran keyword.other.endfunction.fortran
+#                  ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran
+#                   ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.function.fortran entity.name.function.fortran
+>#else
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>      END FUNCTION SGEMM
+#^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran meta.block.specification.function.fortran
+#      ^^^^^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran keyword.other.endfunction.fortran
+#                  ^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran
+#                   ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.function.fortran entity.name.function.fortran
+>#endif
+#^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>   end interface
+#^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.function.fortran meta.block.specification.function.fortran meta.interface.explicit.fortran keyword.control.endinterface.fortran.modern
+>
+>END FUNCTION blasmul_mm
+#^^^^^^^^^^^^ source.fortran.free meta.function.fortran keyword.other.endfunction.fortran
+#            ^ source.fortran.free meta.function.fortran
+#             ^^^^^^^^^^ source.fortran.free meta.function.fortran entity.name.function.fortran
+>
+>MODULE blasmul_mm
+#^^^^^^ source.fortran.free meta.module.fortran keyword.other.program.fortran
+#      ^ source.fortran.free meta.module.fortran
+#       ^^^^^^^^^^ source.fortran.free meta.module.fortran entity.name.class.module.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.preprocessor
+>   MODULE DGEMM
+#^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran
+#   ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran keyword.other.program.fortran
+#         ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran
+#          ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran entity.name.class.module.fortran
+>#else
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   MODULE SGEMM
+#^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran
+#   ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran keyword.other.program.fortran
+#         ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran
+#          ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran entity.name.class.module.fortran
+>#endif
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor
+>   END MODULE DGEMM
+#^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran
+#   ^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran keyword.other.endmodule.fortran
+#             ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran
+#              ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.module.fortran entity.name.class.module.fortran
+>#else
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   END MODULE SGEMM
+#^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran meta.block.specification.module.fortran
+#   ^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran keyword.other.endmodule.fortran
+#             ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran
+#              ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.module.fortran entity.name.class.module.fortran
+>#endif
+#^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>end MODULE blasmul_mm
+#^^^^^^^^^^ source.fortran.free meta.module.fortran keyword.other.endmodule.fortran
+#          ^ source.fortran.free meta.module.fortran
+#           ^^^^^^^^^^ source.fortran.free meta.module.fortran entity.name.class.module.fortran
+>
+>SUBMODULE (name) blasmul_mm
+#^^^^^^^^^ source.fortran.free meta.submodule.fortran keyword.other.submodule.fortran
+#         ^ source.fortran.free meta.submodule.fortran
+#          ^ source.fortran.free meta.submodule.fortran punctuation.parentheses.left.fortran
+#           ^^^^ source.fortran.free meta.submodule.fortran entity.name.class.submodule.fortran
+#               ^ source.fortran.free meta.submodule.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.free meta.submodule.fortran
+#                 ^^^^^^^^^^ source.fortran.free meta.submodule.fortran entity.name.module.submodule.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor
+>   SUBMODULE (name) DGEMM
+#^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran
+#   ^^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran keyword.other.submodule.fortran
+#            ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#             ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran punctuation.parentheses.left.fortran
+#              ^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.class.submodule.fortran
+#                  ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#                    ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.module.submodule.fortran
+>#else
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   SUBMODULE (name) SGEMM
+#^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran
+#   ^^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran keyword.other.submodule.fortran
+#            ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#             ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran punctuation.parentheses.left.fortran
+#              ^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.class.submodule.fortran
+#                  ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#                    ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.module.submodule.fortran
+>#endif
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor
+>   END SUBMODULE DGEMM
+#^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran keyword.other.endsubmodule.fortran
+#                ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#                 ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.module.submodule.fortran
+>#else
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   END SUBMODULE SGEMM
+#^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran meta.block.specification.submodule.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran keyword.other.endsubmodule.fortran
+#                ^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran
+#                 ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.submodule.fortran entity.name.module.submodule.fortran
+>#endif
+#^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.submodule.fortran meta.block.specification.submodule.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>end SUBMODULE blasmul_mm
+#^^^^^^^^^^^^^ source.fortran.free meta.submodule.fortran keyword.other.endsubmodule.fortran
+#             ^ source.fortran.free meta.submodule.fortran
+#              ^^^^^^^^^^ source.fortran.free meta.submodule.fortran entity.name.module.submodule.fortran
+>
+>PROGRAM blasmul_mm
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>   PROGRAM DGEMM
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran keyword.control.program.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran
+#           ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran entity.name.program.fortran
+>#else
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   PROGRAM SGEMM
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran keyword.control.program.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran
+#           ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran entity.name.program.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor
+>   END PROGRAM DGEMM
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran keyword.control.endprogram.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran
+#               ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.program.fortran entity.name.program.fortran
+>#else
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>   END PROGRAM SGEMM
+#^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran meta.block.specification.program.fortran
+#   ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran keyword.control.endprogram.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran
+#               ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.program.fortran entity.name.program.fortran
+>#endif
+#^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>end PROGRAM blasmul_mm
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>
+>MODULE PROCEDURE blasmul_mm
+#^^^^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran keyword.other.procedure.fortran
+#                ^ source.fortran.free meta.procedure.fortran
+#                 ^^^^^^^^^^ source.fortran.free meta.procedure.fortran entity.name.function.procedure.fortran
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor
+>MODULE PROCEDURE DGEMM
+#^^^^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran keyword.other.procedure.fortran
+#                ^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran
+#                 ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran entity.name.function.procedure.fortran
+>#else
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>MODULE PROCEDURE SGEMM
+#^^^^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran keyword.other.procedure.fortran
+#                ^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran
+#                 ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran entity.name.function.procedure.fortran
+>#endif
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>#ifdef DOUBLEP
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.ifdef.fortran
+#      ^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor
+>END PROCEDURE DGEMM
+#^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran keyword.other.endprocedure.fortran
+#             ^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran
+#              ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran entity.name.function.procedure.fortran
+>#else
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.else.fortran
+>END PROCEDURE SGEMM
+#^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran keyword.other.endprocedure.fortran
+#             ^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran
+#              ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.procedure.fortran entity.name.function.procedure.fortran
+>#endif
+#^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.indicator.fortran
+# ^^^^^ source.fortran.free meta.procedure.fortran meta.block.specification.procedure.fortran meta.preprocessor keyword.control.preprocessor.endif.fortran
+>
+>end PROCEDURE blasmul_mm
+#^^^^^^^^^^^^^ source.fortran.free meta.procedure.fortran keyword.other.endprocedure.fortran
+#             ^ source.fortran.free meta.procedure.fortran
+#              ^^^^^^^^^^ source.fortran.free meta.procedure.fortran entity.name.function.procedure.fortran
+>
