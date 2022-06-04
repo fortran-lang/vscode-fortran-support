@@ -43,7 +43,7 @@
 
 ## Get Started & Seek Support
 
-<p float="center">
+<p align="center">
   <a href="https://fortran-lang.org/learn/"><img src="assets/png/readme.tutorial.png"/></a>
   <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="assets/png/readme.github.png"/></a>
   <a href="https://fortran-lang.discourse.group/"><img src="assets/png/readme.discourse.png"/></a>
@@ -51,7 +51,7 @@
 
 ### Useful Tools
 
-<p float="center">
+<p align="center">
   <a href="https://gnikit.github.io/fortls"><img src="assets/png/readme.fortls.png"/></a>
   <a href="https://fpm.fortran-lang.org"><img src="assets/png/readme.fpm.png"/></a>
   <a href="https://github.com/fortran-lang/stdlib"><img src="assets/png/readme.stdlib.png"/></a>
