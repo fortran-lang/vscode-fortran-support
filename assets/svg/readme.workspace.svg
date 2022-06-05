@@ -26,8 +26,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.7801987"
-     inkscape:cx="201.38202"
-     inkscape:cy="237.8948"
+     inkscape:cx="133.97381"
+     inkscape:cy="299.68565"
      inkscape:window-width="1920"
      inkscape:window-height="1023"
      inkscape:window-x="0"
@@ -68,16 +68,16 @@
       <g
          id="g38292">
         <rect
-           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214453;paint-order:stroke fill markers"
+           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212157;paint-order:stroke fill markers"
            id="rect918"
-           width="61.962627"
-           height="16.330381"
-           x="31.801188"
-           y="149.56139"
-           ry="2.1001847" />
+           width="60.642006"
+           height="16.330688"
+           x="31.800039"
+           y="149.56223"
+           ry="2.1002243" />
         <g
            id="g46828"
-           transform="translate(-1.572424,-8.3563593)">
+           transform="translate(-2.233883,-8.3553666)">
           <text
              xml:space="preserve"
              style="font-size:7.05556px;line-height:1.05;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.264583"
@@ -109,15 +109,16 @@
       <g
          id="g38223">
         <rect
-           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214453;paint-order:stroke fill markers"
+           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212157;paint-order:stroke fill markers"
            id="rect68273"
-           width="61.962627"
-           height="16.330381"
-           x="32.620636"
-           y="128.26694"
-           ry="2.1001847" />
+           width="60.642006"
+           height="16.330688"
+           x="32.619488"
+           y="128.26738"
+           ry="2.1002243" />
         <g
-           id="g38206">
+           id="g38206"
+           transform="translate(-0.66145739,5.9804473e-4)">
           <g
              id="g46807"
              transform="translate(-2.4495888,-6.6458448)"
@@ -196,16 +197,16 @@
       <g
          id="g38132">
         <rect
-           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214453;paint-order:stroke fill markers"
+           style="fill:#a34e9c;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212157;paint-order:stroke fill markers"
            id="rect63265"
-           width="61.962627"
-           height="16.330381"
-           x="31.801188"
-           y="108.61369"
-           ry="2.1001847" />
+           width="60.642006"
+           height="16.330688"
+           x="31.800039"
+           y="108.61374"
+           ry="2.1002243" />
         <g
            id="g47001"
-           transform="translate(0.67727765)">
+           transform="translate(0.01581868,1.9952192e-4)">
           <g
              id="g46783"
              transform="matrix(0.91380754,0,0,0.91380754,0.24528006,5.2975488)">
@@ -254,16 +255,16 @@
       <g
          id="g38063">
         <rect
-           style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214453;paint-order:stroke fill markers"
+           style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212157;paint-order:stroke fill markers"
            id="rect30387"
-           width="61.962627"
-           height="16.330381"
-           x="31.801188"
-           y="88.733154"
-           ry="2.1001847" />
+           width="60.642006"
+           height="16.330688"
+           x="31.800039"
+           y="88.732803"
+           ry="2.1002243" />
         <g
            id="g38056"
-           transform="translate(0.39566648,-2.0000641e-4)">
+           transform="translate(-0.26578428,-3.9741699e-4)">
           <path
              d="M 47.541424,98.486356 V 92.77025 c 0,-0.52617 -0.426723,-0.9527 -0.952685,-0.9527 h -6.033675 c -1.05232,0 -1.905371,0.85307 -1.905371,1.90538 v 6.35124 c 0,1.05232 0.853051,1.90537 1.905371,1.90537 h 6.351237 c 0.350707,0 0.635123,-0.28442 0.635123,-0.61726 0,-0.23261 -0.131132,-0.42712 -0.31756,-0.53787 v -1.614804 c 0.194506,-0.19133 0.31756,-0.44142 0.31756,-0.72325 z M 41.489887,94.35806 h 3.810742 c 0.192522,0 0.335425,0.1429 0.335425,0.31755 0,0.17466 -0.142903,0.317576 -0.317562,0.317576 h -3.828605 c -0.156797,0 -0.299699,-0.142916 -0.299699,-0.317576 0,-0.17465 0.142902,-0.31755 0.299699,-0.31755 z m 0,1.270246 h 3.810742 c 0.192522,0 0.335425,0.14289 0.335425,0.31755 0,0.17467 -0.142903,0.31757 -0.317562,0.31757 h -3.828605 c -0.156797,0 -0.299699,-0.1429 -0.299699,-0.31757 0,-0.17466 0.142902,-0.31755 0.299699,-0.31755 z m 4.78129,5.080984 h -5.716113 c -0.350707,0 -0.635124,-0.28441 -0.635124,-0.63512 0,-0.350714 0.284417,-0.635124 0.635124,-0.635124 h 5.716113 z"
              id="path26948"
@@ -290,16 +291,16 @@
       <g
          id="g38368">
         <rect
-           style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214453;paint-order:stroke fill markers"
+           style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212157;paint-order:stroke fill markers"
            id="rect26912"
-           width="61.962627"
-           height="16.330381"
-           x="31.801188"
-           y="67.129654"
-           ry="2.1001847" />
+           width="60.642006"
+           height="16.330688"
+           x="31.800039"
+           y="67.128906"
+           ry="2.1002243" />
         <g
            id="g37984"
-           transform="translate(0.38482455,-0.00245337)">
+           transform="translate(-0.27662621,-0.00304751)">
           <text
              xml:space="preserve"
              style="font-size:5.99722px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.264583"
@@ -324,16 +325,16 @@
        transform="translate(7.2883591e-7)"
        style="display:inline">
       <rect
-         style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.214477;paint-order:stroke fill markers"
+         style="fill:#5c3f78;fill-opacity:1;stroke:#1e1e1e;stroke-width:0.212181;paint-order:stroke fill markers"
          id="rect20357"
-         width="61.962605"
-         height="16.334089"
-         x="31.801197"
-         y="44.084511"
-         ry="2.1006615" />
+         width="60.641987"
+         height="16.334396"
+         x="31.800049"
+         y="44.083363"
+         ry="2.1007011" />
       <g
          id="g38760"
-         transform="translate(0.35751096,-0.12397406)">
+         transform="translate(-0.30393595,-0.12496874)">
         <text
            xml:space="preserve"
            style="font-size:5.99722px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.264583"
