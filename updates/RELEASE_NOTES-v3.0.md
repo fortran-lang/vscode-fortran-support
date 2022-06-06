@@ -32,13 +32,13 @@ Intel compilers are now supported set the following options in settings.json:
 }
 ```
 
-![Intel Linting Diagnostics](../assets/docs/lint-intel-diagnostics.png)
+![Intel Linting Diagnostics](https://raw.githubusercontent.com/fortran-lang/vscode-fortran-support/master/assets/docs/lint-intel-diagnostics.png)
 
 ### Preprocessor warnings
 
 Preprocessor warnings and errors are now properly supported during linting
 
-![Linting Diagnostics Preprocessor](../assets/docs/lint-intel-diagnostics-preproc.png)
+![Linting Diagnostics Preprocessor](https://raw.githubusercontent.com/fortran-lang/vscode-fortran-support/master/assets/docs/lint-intel-diagnostics-preproc.png)
 
 ## Language Server `fortls`
 
@@ -104,7 +104,7 @@ Debugging functionality was previously limited when it came to nested
 user-defined types and hovering. This issue has been resolved and full
 information about an object can be shown in the hover messages while debugging.
 
-![Debugging Hover](../assets/gif/gdb_ani.gif)
+![Debugging Hover](https://raw.githubusercontent.com/fortran-lang/vscode-fortran-support/master/assets/gif/gdb_ani.gif)
 
 ## Deprecations
 
