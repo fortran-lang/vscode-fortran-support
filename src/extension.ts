@@ -127,13 +127,18 @@ function detectDeprecatedOptions() {
     vscode.window.showWarningMessage(
       `Modern Fortran is not compatible with FORTRAN Intellisense. 
       Language Server integration is handled in Modern Fortran now.
-      Please Disable FORTRAN Intellisense.`
+      Please Disable/Uninstall: FORTRAN Intellisense.`
     );
   }
   if (vscode.extensions.getExtension('ekibun.fortranbreaker')) {
     vscode.window
       .showWarningMessage(`Modern Fortran is not compatible with Fortran Breakpoint Support.
       Breakpoint support is handled natively in Modern Fortran.
-      Please Disable Fortran Breakpoint Support.`);
+      Please Disable/Uninstall: Fortran Breakpoint Support.`);
+  }
+  if (vscode.extensions.getExtension('Gimly81.fortran')) {
+    vscode.window.showWarningMessage(`Modern Fortran is not compatible with extension: fortran.
+      Both extensions provide syntax highlighting for Fortran and should not be used simultaneously.
+      Please Disable/Uninstall extension: fortran.`);
   }
 }
