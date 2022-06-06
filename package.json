@@ -129,7 +129,7 @@
       }
     ],
     "configuration": {
-      "title": "Fortran configuration",
+      "title": "Fortran",
       "properties": {
         "fortran.provide.hover": {
           "type": "string",
@@ -354,6 +354,11 @@
         "category": "Fortran",
         "command": "fortran.analysis.rescanLinter",
         "title": "Rescan Linter paths"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.showWhatsNew",
+        "title": "Show What's New in this Modern Fortran version"
       }
     ],
     "menus": {
@@ -368,6 +373,12 @@
           "category": "Fortran",
           "command": "fortran.analysis.rescanLinter",
           "title": "Rescan Linter paths",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.showWhatsNew",
+          "title": "Show What's New in this Modern Fortran version",
           "when": "!virtualWorkspace && shellExecutionSupported"
         }
       ]

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added `Whats New` page to be displayed upon update of the extension.
 - Added `ifx` support Intel's LLVM based compiler `ifx`
 - Added ability to rescan for linting include files.
 - Added GitHub Actions support for pre-Release builds

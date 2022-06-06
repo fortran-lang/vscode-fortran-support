@@ -1,6 +1,10 @@
-// src/extension.ts
+'use strict';
+
 import * as vscode from 'vscode';
 import * as pkg from '../package.json';
+import * as path from 'path';
+import * as fs from 'fs';
+
 import { FortranCompletionProvider } from './features/completion-provider';
 import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
 import { FortranFormattingProvider } from './features/formatting-provider';
@@ -9,6 +13,7 @@ import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
 import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
 import { LoggingService } from './services/logging-service';
+import { WhatsNew } from './features/commands';
 
 // Make it global to catch errors when activation fails
 const loggingService = new LoggingService();
@@ -87,6 +92,14 @@ export async function activate(context: vscode.ExtensionContext) {
       },
     })
   );
+
+  context.subscriptions.push(vscode.commands.registerCommand(WhatsNew, showWhatsNew));
+  // Upon the very first initialisation create a file to indicate that the release
+  // notes have been shown and not show them again.
+  if (!fs.existsSync(path.join(__dirname, 'displayReleaseNotes.txt'))) {
+    await showWhatsNew();
+    fs.writeFileSync(path.join(__dirname, 'displayReleaseNotes.txt'), 'false');
+  }
   return context;
 }
 
@@ -127,13 +140,23 @@ function detectDeprecatedOptions() {
     vscode.window.showWarningMessage(
       `Modern Fortran is not compatible with FORTRAN Intellisense. 
       Language Server integration is handled in Modern Fortran now.
-      Please Disable FORTRAN Intellisense.`
+      Please Disable/Uninstall: FORTRAN Intellisense.`
     );
   }
   if (vscode.extensions.getExtension('ekibun.fortranbreaker')) {
     vscode.window
       .showWarningMessage(`Modern Fortran is not compatible with Fortran Breakpoint Support.
       Breakpoint support is handled natively in Modern Fortran.
-      Please Disable Fortran Breakpoint Support.`);
+      Please Disable/Uninstall: Fortran Breakpoint Support.`);
   }
+  if (vscode.extensions.getExtension('Gimly81.fortran')) {
+    vscode.window.showWarningMessage(`Modern Fortran is not compatible with extension: fortran.
+      Both extensions provide syntax highlighting for Fortran and should not be used simultaneously.
+      Please Disable/Uninstall extension: fortran.`);
+  }
+}
+
+async function showWhatsNew() {
+  const uri = vscode.Uri.file(path.join(__dirname, '../updates/RELEASE_NOTES-v3.0.md'));
+  vscode.commands.executeCommand('markdown.showPreview', uri);
 }
