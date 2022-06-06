@@ -4,3 +4,4 @@
 
 export const RestartLS = 'fortran.analysis.restartLanguageServer';
 export const RescanLint = 'fortran.analysis.rescanLinter';
+export const WhatsNew = 'fortran.analysis.showWhatsNew';
