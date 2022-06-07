@@ -77,6 +77,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed formatter output mixes stdout and stderr
+  ([#517](https://github.com/fortran-lang/vscode-fortran-support/issues/517))
 - Fixed `error stop variable` syntax highlighting
   ([#486](https://github.com/fortran-lang/vscode-fortran-support/issues/486))
 - Fixed issue with linter cache containing outdated folders

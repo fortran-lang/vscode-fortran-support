@@ -264,18 +264,18 @@ export async function spawnAsPromise(
   options: cp.SpawnOptions | undefined,
   input: string | undefined
 ) {
-  return new Promise<string>((resolve, reject) => {
-    // You could separate STDOUT and STDERR if your heart so desires...
-    let output = '';
+  return new Promise<[string, string]>((resolve, reject) => {
+    let stdout = '';
+    let stderr = '';
     const child = cp.spawn(cmd, args, options);
     child.stdout.on('data', data => {
-      output += data;
+      stdout += data;
     });
     child.stderr.on('data', data => {
-      output += data;
+      stderr += data;
     });
     child.on('close', code => {
-      code === 0 ? resolve(output) : reject(output);
+      code === 0 ? resolve([stdout, stderr]) : reject([stdout, stderr]);
     });
     child.on('error', err => {
       reject(err.toString());

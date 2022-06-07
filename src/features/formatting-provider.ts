@@ -64,8 +64,9 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
 
     const args: string[] = ['--stdout', ...this.getFormatterArgs()];
     const edits: vscode.TextEdit[] = [];
-    const output = await spawnAsPromise(formatter, args, undefined, document.getText());
-    edits.push(new vscode.TextEdit(getWholeFileRange(document), output));
+    const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
+    edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
+    if (stderr) this.logger.logInfo(`fprettify error output: ${stderr}`);
     return edits;
   }
 
@@ -88,8 +89,9 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
 
     const args: string[] = this.getFormatterArgs();
     const edits: vscode.TextEdit[] = [];
-    const output = await spawnAsPromise(formatter, args, undefined, document.getText());
-    edits.push(new vscode.TextEdit(getWholeFileRange(document), output));
+    const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
+    edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
+    if (stderr) this.logger.logInfo(`findent error output: ${stderr}`);
     return edits;
   }
 
