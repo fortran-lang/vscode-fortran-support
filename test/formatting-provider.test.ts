@@ -58,4 +58,20 @@ end program main
 `;
     strictEqual(edits[0].newText.toString(), ref);
   });
+
+  test(`Using fprettify with stderr`, async () => {
+    doc = await vscode.workspace.openTextDocument(
+      vscode.Uri.file(
+        path.resolve(__dirname, '../../test/resources/formatting_test_fprettify_long_lines.f90')
+      )
+    );
+    const edits = await fmt['doFormatFprettify'](doc);
+    const ref = `program demo
+
+    write(*, "('Just a very long line. Just a very long line. Just a very long line. Just a very long line. Just a very long line. Just a very long line. ',i0)") 100
+
+end program
+`;
+    strictEqual(edits[0].newText.toString(), ref);
+  });
 });
