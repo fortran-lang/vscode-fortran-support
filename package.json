@@ -173,9 +173,7 @@
           "markdownDescription": "Compiler used for linting support."
         },
         "fortran.linter.includePaths": {
-          "type": [
-            "array"
-          ],
+          "type": "array",
           "items": {
             "type": "string"
           },
@@ -188,9 +186,7 @@
           "markdownDescription": "Specifies the path to the linter executable."
         },
         "fortran.linter.extraArgs": {
-          "type": [
-            "array"
-          ],
+          "type": "array",
           "items": {
             "type": "string"
           },
