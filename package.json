@@ -278,7 +278,7 @@
           "fortran.fortls.configure": {
             "type": "string",
             "default": "",
-            "markdownDescription": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file",
+            "markdownDescription": "Filename holding additional configuration options. For more see: https://gnikit.github.io/fortls/options.html#configuration-using-a-file.",
             "order": 20
           },
           "fortran.fortls.notifyInit": {
@@ -293,6 +293,12 @@
             "markdownDescription": "Use incremental synchronization for file changes.",
             "order": 40
           },
+          "fortran.fortls.nthreads": {
+            "type": "integer",
+            "default": 4,
+            "markdownDescription": "Number of threads to use during workspace initialization (default: 4).",
+            "order": 45
+          },
           "fortran.fortls.sortKeywords": {
             "type": "boolean",
             "default": false,
@@ -304,6 +310,68 @@
             "default": true,
             "markdownDescription": "Include derived types in the symbols outline. If false it adds the  `--symbol_skip_mem` argument to fortls.",
             "order": 60
+          },
+          "fortran.fortls.suffixes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Parse additional file extensions to the default (**default**: `F,F77,F90,F95,F03,F08,FOR,FPP` (lower & upper casing)) (**fortls arg: `incl_suffixes`**). For more read the [documentation](https://gnikit.github.io/fortls/options.html#incl-suffixes).",
+            "order": 61
+          },
+          "fortran.fortls.directories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Folders containing source files (**default: `['./**']`**), (**fortls arg: `source_dirs`**). For more read the [documentation](https://gnikit.github.io/fortls/options.html#source-dirs).",
+            "order": 62
+          },
+          "fortran.fortls.excludeSuffixes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Source file extensions to be excluded (**fortls arg: `excl_suffixes`**). For more read the [documentation](https://gnikit.github.io/fortls/options.html#excl-suffixes).",
+            "order": 63
+          },
+          "fortran.fortls.excludeDirectories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Folders to exclude from parsing (**fortls arg: `excl_paths`**). For more read the [documentation](https://gnikit.github.io/fortls/options.html#excl-paths).",
+            "order": 64
+          },
+          "fortran.fortls.preprocessor.suffixes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "File extensions to be parsed **ONLY** for preprocessor commands (**default**: all uppercase source file suffixes) (**fortls arg: `pp_suffixes`**). By default preprocessor definitions are parsed for all Fortran source files with uppercase extensions e.g. `.F90`, `.F`, `.F08`, etc.. However, the default behaviour can be overridden by defining `pp_defs`. For more read the [documentation](https://gnikit.github.io/fortls/options.html#pp-suffixes).",
+            "order": 65
+          },
+          "fortran.fortls.preprocessor.directories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Folders containing preprocessor files with extensions `pp_suffixes` (**fortls arg: `include_dirs`**). Understands Python glob patterns. By default `fortls` will scan the project’s directories for files with extensions `pp_suffixes` to parse for **preprocessor definitions**. However, if the preprocessor files are external to the project, their locations can be specified via `include_dirs`. For more read the [documentation](https://gnikit.github.io/fortls/options.html#include-dirs).",
+            "order": 66
+          },
+          "fortran.fortls.preprocessor.definitions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "markdownDescription": "A dictionary of preprocessor definitions. (**fortls arg: `pp_defs`**). Preprocessor definitions are normally included via `include_dirs`. For more read the [documentation](https://gnikit.github.io/fortls/options.html#pp-defs).",
+            "order": 67
           },
           "fortran.fortls.disableDiagnostics": {
             "type": "boolean",

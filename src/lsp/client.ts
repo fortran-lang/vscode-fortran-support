@@ -109,7 +109,10 @@ export class FortlsClient {
     if (!folder) {
       const fileRoot: string = path.dirname(document.uri.fsPath);
       if (clients.has(fileRoot)) return; // already registered
-      this.logger.logInfo('Initialising Language Server for file: ' + document.uri.fsPath);
+      this.logger.logInfo(
+        'Initialising Language Server for file: ' +
+          `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
+      );
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(fileRoot),
@@ -130,7 +133,10 @@ export class FortlsClient {
     if (!clients.has(folder.uri.toString())) {
       folder = getOuterMostWorkspaceFolder(folder);
       if (clients.has(folder.uri.toString())) return; // already registered
-      this.logger.logInfo('Initialising Language Server for workspace: ' + folder.uri.fsPath);
+      this.logger.logInfo(
+        'Initialising Language Server for workspace: ' +
+          `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
+      );
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(folder.uri.fsPath),
@@ -162,6 +168,7 @@ export class FortlsClient {
     const autocomplete = conf.get<string>('provide.autocomplete');
     const letterCase = conf.get<string>('preferredCase');
     const hover = conf.get<string>('provide.hover');
+    const pp = workspace.getConfiguration(`${EXTENSION_ID}.fortls.preprocessor`);
 
     // Setup server arguments
     const args: string[] = ['--enable_code_actions'];
@@ -178,6 +185,9 @@ export class FortlsClient {
     // FORTLS specific args with no overlap with the main extension
     if (conf.get<string>('fortls.configure')) {
       args.push('-c', conf.get<string>('fortls.configure'));
+    }
+    if (conf.get<number>('fortls.nthreads')) {
+      args.push(`--nthreads=${conf.get<number>('fortls.nthreads')}`);
     }
     if (conf.get<boolean>('fortls.notifyInit')) {
       args.push('--notify_init');
@@ -207,6 +217,32 @@ export class FortlsClient {
       args.push(...fortlsExtraArgs);
     }
 
+    // Fortran source file parsing
+    if (conf.get<string[]>('fortls.suffixes').length > 0) {
+      args.push('--incl_suffixes', ...conf.get<string[]>('fortls.suffixes'));
+    }
+    if (conf.get<string[]>('fortls.directories').length > 0) {
+      args.push('--source_dirs', ...conf.get<string[]>('fortls.directories'));
+    }
+    if (conf.get<string[]>('fortls.excludeSuffixes').length > 0) {
+      args.push('--excl_suffixes', ...conf.get<string[]>('fortls.excludeSuffixes'));
+    }
+    if (conf.get<string[]>('fortls.excludeDirectories').length > 0) {
+      args.push('--excl_paths', ...conf.get<string[]>('fortls.excludeDirectories'));
+    }
+
+    // Preprocessor args
+    if (pp.get<string[]>('suffixes').length > 0) {
+      args.push(`--pp_suffixes`, ...pp.get<string[]>('suffixes'));
+    }
+    if (pp.get<string[]>('directories').length > 0) {
+      args.push(`--include_dirs`, ...pp.get<string[]>('directories'));
+    }
+    const pp_defs = pp.get('definitions');
+    if (Object.keys(pp_defs).length > 0) {
+      args.push(`--pp_defs=${JSON.stringify(pp_defs)}`);
+    }
+
     return args;
   }
 
@@ -224,7 +260,7 @@ export class FortlsClient {
     const results = spawnSync(executablePath, args.concat(['--version']));
     if (results.error) {
       const selected = window.showErrorMessage(
-        'Error starting fortls: Check that fortls is in your PATH or that "fortran.fortls.path" is pointing to a fortls binary.',
+        'Modern Fortran Error starting fortls: Check that fortls is in your PATH or that "fortran.fortls.path" is pointing to a fortls binary.',
         'Settings',
         'Workspace settings',
         'Disable fortls'

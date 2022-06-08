@@ -1,0 +1,14 @@
+{
+  "fortran.fortls.disableAutoupdate": true,
+  "fortran.fortls.preprocessor.definitions": {
+    "HAVE_ZOLTAN": "",
+    "PetscInt": "integer(kind=selected_int_kind(5))"
+  },
+  "fortran.fortls.preprocessor.directories": ["include", "val"],
+  "fortran.fortls.preprocessor.suffixes": [".fypp", ".f90"],
+  "fortran.fortls.suffixes": [".FFF", ".F90-2018"],
+  "fortran.fortls.directories": ["./**"],
+  "fortran.fortls.excludeSuffixes": [".snap"],
+  "fortran.fortls.excludeDirectories": [".vscode/"],
+  "fortran.fortls.notifyInit": true
+}
