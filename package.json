@@ -474,7 +474,7 @@
       {
         "category": "Fortran",
         "command": "fortran.analysis.showWhatsNew",
-        "title": "Show What's New in this Modern Fortran version"
+        "title": "What's New"
       }
     ],
     "menus": {
@@ -494,7 +494,7 @@
         {
           "category": "Fortran",
           "command": "fortran.analysis.showWhatsNew",
-          "title": "Show What's New in this Modern Fortran version",
+          "title": "What's New",
           "when": "!virtualWorkspace && shellExecutionSupported"
         }
       ]
