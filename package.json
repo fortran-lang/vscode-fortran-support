@@ -43,6 +43,10 @@
     "Debuggers",
     "Formatters"
   ],
+  "galleryBanner": {
+    "color": "#6853ad",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onLanguage:FortranFreeForm",
     "onLanguage:FortranFixedForm"
