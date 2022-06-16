@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.2.0]
+
+### Added
+
+- Added `Modern Fortran`, `fortls` and `fpm` as keywords to the extension
+  ([#536](https://github.com/fortran-lang/vscode-fortran-support/issues/536))
+
+### Changed
+
+- Changed Free and Fixed Form language aliases. `Fortran` is now associated with `FortranFreeForm`
+  ([#536](https://github.com/fortran-lang/vscode-fortran-support/issues/536))
+
+## [3.1.0]
+
+### Changed
+
+- Version bumped to v3.1.0
+
 ## [3.0.0]
 
 ### Added
@@ -448,6 +466,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial release
 
 [unreleased]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.0....HEAD
+[3.2.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.1.0...v3.2.0
+[3.1.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v2.6.2...v3.0.0
 [2.6.2]: https://github.com/fortran-lang/vscode-fortran-support/compare/v2.6.1...v2.6.2
 [2.6.1]: https://github.com/fortran-lang/vscode-fortran-support/compare/v2.6.0...v2.6.1

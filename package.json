@@ -33,7 +33,10 @@
     "Fortran",
     "Free Form fortran",
     "Fixed Form fortran",
+    "Modern Fortran",
     "IntelliSense",
+    "fortls",
+    "fpm",
     "IDE"
   ],
   "categories": [
@@ -60,8 +63,8 @@
       {
         "id": "FortranFreeForm",
         "aliases": [
-          "Fortran90",
-          "fortran90"
+          "Fortran",
+          "Fortran90"
         ],
         "extensions": [
           ".f90",
@@ -84,10 +87,7 @@
       {
         "id": "FortranFixedForm",
         "aliases": [
-          "Fortran",
-          "fortran",
-          "FORTRAN77",
-          "fortran_fixed-form"
+          "Fortran77"
         ],
         "extensions": [
           ".f",
