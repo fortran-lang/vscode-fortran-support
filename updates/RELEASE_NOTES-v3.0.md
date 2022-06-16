@@ -72,7 +72,7 @@ option to `fortls` through
 ```
 
 For more information about `fortls` configuration options see the
-[`fortls` Documentation](https://gnikit.github.io/fortls/configuration.html)
+[`fortls` Documentation](https://gnikit.github.io/fortls/options.html#configuration-options)
 
 ### Multi Workspace and Single file support
 
