@@ -157,6 +157,6 @@ function detectDeprecatedOptions() {
 }
 
 async function showWhatsNew() {
-  const uri = vscode.Uri.file(path.join(__dirname, '../updates/RELEASE_NOTES-v3.0.md'));
+  const uri = vscode.Uri.file(path.join(__dirname, '../updates/RELEASE_NOTES-v3.2.md'));
   vscode.commands.executeCommand('markdown.showPreview', uri);
 }
