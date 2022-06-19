@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Changed Free and Fixed Form language aliases. `Fortran` is now associated with `FortranFreeForm`
   ([#536](https://github.com/fortran-lang/vscode-fortran-support/issues/536))
 
+### Fixed
+
+- Fixed `linter.modOutput` not working with Intel Fortran Compilers
+  ([#538](https://github.com/fortran-lang/vscode-fortran-support/issues/538))
+
 ## [3.1.0]
 
 ### Changed
