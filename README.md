@@ -236,11 +236,14 @@ Additional arguments to the formatter can be input using
 }
 ```
 
+To check all available arguments to formatters try `findent -h` or `fprettify -h`
+in a terminal.
+
 If the formatter is not present in the `PATH` its location can be input with
 
 ```json
 {
-  "fortran.formatting.path": "/custom-path-to-formatter-binary"
+  "fortran.formatting.path": "./custom/path/venv/bin"
 }
 ```
 
