@@ -122,7 +122,7 @@ export class FortranLintingProvider {
     const args = [
       ...this.getMandatoryLinterArgs(this.compiler),
       ...this.getLinterExtraArgs(this.compiler),
-      this.getModOutputDir(this.compiler),
+      ...this.getModOutputDir(this.compiler),
     ];
     const includePaths = this.getIncludePaths();
 
@@ -138,14 +138,14 @@ export class FortranLintingProvider {
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private getModOutputDir(compiler: string): string {
+  private getModOutputDir(compiler: string): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
     let modout: string = config.get('linter.modOutput', '');
     let modFlag = '-J';
     switch (compiler) {
       case 'ifx':
       case 'ifort':
-        modFlag = '-module ';
+        modFlag = '-module';
         break;
 
       default:
@@ -153,10 +153,10 @@ export class FortranLintingProvider {
         break;
     }
     if (modout) {
-      modout = modFlag + resolveVariables(modout);
-      this.logger.logInfo(`Linter.moduleOutput: ${modout}`);
+      modout = resolveVariables(modout);
+      this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
     }
-    return modout;
+    return [modFlag, modout];
   }
 
   /**
