@@ -535,7 +535,7 @@
     "@vscode/test-electron": "^2.1.4",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsdoc": "^39.3.2",
+    "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.2",
