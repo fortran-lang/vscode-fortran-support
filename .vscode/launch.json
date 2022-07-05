@@ -18,7 +18,7 @@
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": [
-        "${workspaceFolder}/test/resources",
+        "${workspaceFolder}/test/fortran",
         "--disable-extension=fortran-lang.linter-gfortran",
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--extensionTestsPath=${workspaceFolder}/out/test"

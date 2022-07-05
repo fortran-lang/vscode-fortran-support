@@ -9,7 +9,7 @@ suite('Formatting tests', () => {
   let doc: vscode.TextDocument;
   const fmt = new FortranFormattingProvider(new LoggingService());
   const fileUri = vscode.Uri.file(
-    path.resolve(__dirname, '../../test/resources/formatting_test.f90')
+    path.resolve(__dirname, '../../test/fortran/format/formatting_test.f90')
   );
 
   suiteSetup(async function (): Promise<void> {
@@ -62,7 +62,10 @@ end program main
   test(`Using fprettify with stderr`, async () => {
     doc = await vscode.workspace.openTextDocument(
       vscode.Uri.file(
-        path.resolve(__dirname, '../../test/resources/formatting_test_fprettify_long_lines.f90')
+        path.resolve(
+          __dirname,
+          '../../test/fortran/format/formatting_test_fprettify_long_lines.f90'
+        )
       )
     );
     const edits = await fmt['doFormatFprettify'](doc);

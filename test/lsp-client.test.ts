@@ -10,7 +10,7 @@ suite('Language Server integration tests', () => {
   let doc: vscode.TextDocument;
   const server = new FortlsClient(new LoggingService());
   const fileUri = vscode.Uri.file(
-    path.resolve(__dirname, '../../test/resources/function_subroutine_definitions.f90')
+    path.resolve(__dirname, '../../test/fortran/function_subroutine_definitions.f90')
   );
 
   suiteSetup(async function (): Promise<void> {
