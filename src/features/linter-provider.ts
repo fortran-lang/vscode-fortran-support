@@ -142,8 +142,15 @@ export class FortranLintingProvider {
   private getModOutputDir(compiler: string): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
     let modout: string = config.get('linter.modOutput', '');
-    let modFlag = '-J';
+    let modFlag = '';
+    // Return if no mod output directory is specified
+    if (modout === '') return [];
     switch (compiler) {
+      case 'flang':
+      case 'gfortran':
+        modFlag = '-J';
+        break;
+
       case 'ifx':
       case 'ifort':
         modFlag = '-module';
@@ -154,13 +161,12 @@ export class FortranLintingProvider {
         break;
 
       default:
-        modFlag = '-J';
+        modFlag = '';
         break;
     }
-    if (modout) {
-      modout = resolveVariables(modout);
-      this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
-    }
+
+    modout = resolveVariables(modout);
+    this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
     return [modFlag, modout];
   }
 
