@@ -275,7 +275,7 @@ export class FortranLintingProvider {
     // gfortran and flang have compiler flags for restricting the width of
     // the code.
     // You can always override by passing in the correct args as extraArgs
-    if (compiler !== 'ifort' && compiler !== 'ifx') {
+    if (compiler === 'gfortran') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
