@@ -408,6 +408,7 @@ export class FortranLintingProvider {
         case 'panic':
         case 'fatal':
         case 'error':
+        case 'fatal error':
           severity = vscode.DiagnosticSeverity.Error;
           break;
 
@@ -480,7 +481,7 @@ export class FortranLintingProvider {
         return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
 
       case 'nagfor':
-        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Deleted feature used|Error|Fatal|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
+        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Deleted feature used|Error|Fatal(?: Error)?|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
 
       default:
         vscode.window.showErrorMessage('Unsupported linter, change your linter.compiler option');
