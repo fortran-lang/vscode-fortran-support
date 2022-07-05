@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed tests Fortran source code directory structures
+  ([#563](https://github.com/fortran-lang/vscode-fortran-support/pull/563))
 - Changed Free and Fixed Form language aliases. `Fortran` is now associated with `FortranFreeForm`
   ([#536](https://github.com/fortran-lang/vscode-fortran-support/issues/536))
 

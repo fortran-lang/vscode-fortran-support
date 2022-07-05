@@ -161,8 +161,8 @@ suite('GNU (gfortran) lint preprocessor multiple', () => {
   const linter = new FortranLintingProvider();
   linter['compiler'] = 'gfortran';
   const msg = `
-f951: Warning: Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/resources/include' [-Wmissing-include-dirs]
-/Code/TypeScript/vscode-fortran-support/test/resources/sample.f90:4:18:
+f951: Warning: Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/fortran/include' [-Wmissing-include-dirs]
+/Code/TypeScript/vscode-fortran-support/test/fortran/sample.f90:4:18:
 
     4 |   call say_hello()
       |                  1
@@ -187,12 +187,12 @@ Error: Missing actual argument for argument 'a' at (1)
     test('REGEX: match 1 - message <msg2>', () => {
       strictEqual(
         g1['msg2'],
-        "Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/resources/include' [-Wmissing-include-dirs]"
+        "Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/fortran/include' [-Wmissing-include-dirs]"
       );
     });
     const g2 = matches[1].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g2['fname'], '/Code/TypeScript/vscode-fortran-support/test/resources/sample.f90');
+      strictEqual(g2['fname'], '/Code/TypeScript/vscode-fortran-support/test/fortran/sample.f90');
     });
     test('REGEX: match 2 - line number', () => {
       strictEqual(g2['ln'], '4');
@@ -212,7 +212,7 @@ Error: Missing actual argument for argument 'a' at (1)
     const ref = [
       new Diagnostic(
         new Range(new Position(0, 1), new Position(0, 1)),
-        "Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/resources/include' [-Wmissing-include-dirs]",
+        "Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/fortran/include' [-Wmissing-include-dirs]",
         DiagnosticSeverity.Warning
       ),
       new Diagnostic(
