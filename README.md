@@ -36,7 +36,7 @@
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
 - [Native Language Server integration](#language-server-integration) with [`fortls`](https://github.com/gnikit/fortls)
-- [Linting support](#linting) for GCC's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), and Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`
+- [Linting support](#linting): GNU's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`, NAG's [`nagfor`](https://www.nag.co.uk/nagfor/)
 - [Interactive Debugger with UI](#debugging)
 - [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 - [Code snippets](#snippets) (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
@@ -80,6 +80,12 @@ For more about the Language Server's capabilities please refer to the
 
 Linting allows for compiler error and warning detection while coding
 without the user having to compile.
+
+| Vendor                                                                                        | Compiler       |
+| --------------------------------------------------------------------------------------------- | -------------- |
+| [GNU](https://gcc.gnu.org/wiki/GFortran)                                                      | `gfortran`     |
+| [Intel](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html) | `ifort`, `ifx` |
+| [NAG](https://www.nag.com/)                                                                   | `nagfor`       |
 
 Using an invalid if expression
 

@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added NAG (`nagfor`) compiler support for linting
+  ([#476](https://github.com/fortran-lang/vscode-fortran-support/issues/476))
 - Added `Modern Fortran`, `fortls` and `fpm` as keywords to the extension
   ([#536](https://github.com/fortran-lang/vscode-fortran-support/issues/536))
 

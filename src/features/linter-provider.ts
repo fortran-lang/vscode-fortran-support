@@ -132,7 +132,8 @@ export class FortranLintingProvider {
       ...args,
       ...this.getIncludeParams(includePaths), // include paths
       textDocument.fileName,
-      `-o ${fileNameWithoutExtension}.mod`,
+      '-o',
+      `${fileNameWithoutExtension}.mod`,
     ];
 
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
@@ -146,6 +147,10 @@ export class FortranLintingProvider {
       case 'ifx':
       case 'ifort':
         modFlag = '-module';
+        break;
+
+      case 'nagfor':
+        modFlag = '-mdir';
         break;
 
       default:
@@ -270,7 +275,7 @@ export class FortranLintingProvider {
     // gfortran and flang have compiler flags for restricting the width of
     // the code.
     // You can always override by passing in the correct args as extraArgs
-    if (compiler !== 'ifort' && compiler !== 'ifx') {
+    if (compiler === 'gfortran') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
@@ -379,9 +384,57 @@ export class FortranLintingProvider {
         }
         return diagnostics;
 
+      case 'nagfor':
+        return this.linterParserNagfor(matches);
+
       default:
         break;
     }
+  }
+
+  private linterParserNagfor(matches: RegExpMatchArray[]) {
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      const fname: string = g['fname'];
+      const lineNo: number = parseInt(g['ln']);
+      const msg_type: string = g['sev1'];
+      const msg: string = g['msg1'];
+      // NAGFOR does not have a column number, so get the entire line
+      const range = vscode.window.activeTextEditor.document.lineAt(lineNo - 1).range;
+
+      let severity: vscode.DiagnosticSeverity;
+      switch (msg_type.toLowerCase()) {
+        case 'panic':
+        case 'fatal':
+        case 'error':
+        case 'fatal error':
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+
+        case 'extension':
+        case 'questionable':
+        case 'deleted feature used':
+        case 'warning':
+          severity = vscode.DiagnosticSeverity.Warning;
+          break;
+
+        case 'remark':
+        case 'note':
+        case 'info':
+          severity = vscode.DiagnosticSeverity.Information;
+          break;
+
+        default:
+          severity = vscode.DiagnosticSeverity.Error;
+          console.log('Unknown severity: ' + msg_type);
+          break;
+      }
+
+      const d = new vscode.Diagnostic(range, msg, severity);
+      diagnostics.push(d);
+    }
+    return diagnostics;
   }
 
   /**
@@ -427,6 +480,9 @@ export class FortranLintingProvider {
         // see https://regex101.com/r/GZ0Lzz/2
         return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
 
+      case 'nagfor':
+        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Deleted feature used|Error|Fatal(?: Error)?|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
+
       default:
         vscode.window.showErrorMessage('Unsupported linter, change your linter.compiler option');
     }
@@ -453,6 +509,9 @@ export class FortranLintingProvider {
       case 'ifx':
       case 'ifort':
         return ['-syntax-only', '-fpp'];
+
+      case 'nagfor':
+        return ['-M', '-quiet'];
 
       default:
         break;
