@@ -414,7 +414,6 @@ export class FortranLintingProvider {
         case 'panic':
         case 'fatal':
         case 'error':
-        case 'fatal error':
           severity = vscode.DiagnosticSeverity.Error;
           break;
 
@@ -431,9 +430,10 @@ export class FortranLintingProvider {
           severity = vscode.DiagnosticSeverity.Information;
           break;
 
+        // fatal error, sequence error, etc.
         default:
           severity = vscode.DiagnosticSeverity.Error;
-          console.log('Unknown severity: ' + msg_type);
+          console.log('Using default Error Severity for: ' + msg_type);
           break;
       }
 
@@ -486,8 +486,13 @@ export class FortranLintingProvider {
         // see https://regex101.com/r/GZ0Lzz/2
         return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
 
+      /*
+       See Section 7 of the NAGFOR manual, although it is not accurate with regards
+       to all the possible messages.
+       severity: filename, line No.: message 
+       */
       case 'nagfor':
-        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Deleted feature used|Error|Fatal(?: Error)?|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
+        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Obsolescent|Deleted feature used|(?:[\w]+ )?Error|Fatal|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
 
       default:
         vscode.window.showErrorMessage('Unsupported linter, change your linter.compiler option');
