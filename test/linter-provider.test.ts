@@ -1,6 +1,8 @@
+import * as path from 'path';
 import { strictEqual, deepStrictEqual } from 'assert';
-import { Diagnostic, DiagnosticSeverity, Range, Position } from 'vscode';
+import { Diagnostic, DiagnosticSeverity, Range, Position, window, workspace, Uri } from 'vscode';
 import { FortranLintingProvider } from '../src/features/linter-provider';
+import { delay } from '../src/lib/helper';
 
 suite('GNU (gfortran) lint single', () => {
   const linter = new FortranLintingProvider();
@@ -232,8 +234,8 @@ suite('Intel (ifort) lint single', () => {
   linter['compiler'] = 'ifort';
   const msg = `
 /fetch/radiant/RADIANT_Matrix_Free_Subgrid_Scale.F90(102): error #5082: Syntax error, found '::' when expecting one of: ( : % [ . = =>
-      PetscInt :: ierr                                     
----------------^                                           
+      PetscInt :: ierr
+---------------^
 `;
   suite('REGEX matches', () => {
     const regex = linter['getCompilerREGEX'](linter['compiler']);
@@ -508,6 +510,47 @@ C:\\Some\\random\\path\\sample.f90(4): error #6631: A non-optional actual argume
       new Diagnostic(
         new Range(new Position(3, 8), new Position(3, 8)),
         '#6631: A non-optional actual argument must be present when invoking a procedure with an explicit interface.   [A]',
+        DiagnosticSeverity.Error
+      ),
+    ];
+    deepStrictEqual(matches, ref);
+  });
+});
+
+// -----------------------------------------------------------------------------
+suite('NAG (nagfor) lint single', () => {
+  const linter = new FortranLintingProvider();
+  linter['compiler'] = 'nagfor';
+  const msg = `
+Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur here
+`;
+  suite('REGEX matches', () => {
+    const regex = linter['getCompilerREGEX'](linter['compiler']);
+    const matches = [...msg.matchAll(regex)];
+    const g = matches[0].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g['fname'], 'lint/err-mod.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g['ln'], '3');
+    });
+    test('REGEX: severity <sev1>', () => {
+      strictEqual(g['sev1'], 'Sequence Error');
+    });
+    test('REGEX: message <msg1>', () => {
+      strictEqual(g['msg1'], 'The IMPLICIT statement cannot occur here');
+    });
+  });
+  test('Diagnostics Array', async () => {
+    const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/err-mod.f90'));
+    const doc = await workspace.openTextDocument(fileUri);
+    await window.showTextDocument(doc);
+    await delay(100);
+    const matches = linter['getLinterResults'](msg);
+    const ref = [
+      new Diagnostic(
+        new Range(new Position(2, 0), new Position(2, 17)),
+        'The IMPLICIT statement cannot occur here',
         DiagnosticSeverity.Error
       ),
     ];

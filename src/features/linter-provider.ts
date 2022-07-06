@@ -142,8 +142,15 @@ export class FortranLintingProvider {
   private getModOutputDir(compiler: string): string[] {
     const config = vscode.workspace.getConfiguration('fortran');
     let modout: string = config.get('linter.modOutput', '');
-    let modFlag = '-J';
+    let modFlag = '';
+    // Return if no mod output directory is specified
+    if (modout === '') return [];
     switch (compiler) {
+      case 'flang':
+      case 'gfortran':
+        modFlag = '-J';
+        break;
+
       case 'ifx':
       case 'ifort':
         modFlag = '-module';
@@ -154,13 +161,12 @@ export class FortranLintingProvider {
         break;
 
       default:
-        modFlag = '-J';
+        modFlag = '';
         break;
     }
-    if (modout) {
-      modout = resolveVariables(modout);
-      this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
-    }
+
+    modout = resolveVariables(modout);
+    this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
     return [modFlag, modout];
   }
 
@@ -408,7 +414,6 @@ export class FortranLintingProvider {
         case 'panic':
         case 'fatal':
         case 'error':
-        case 'fatal error':
           severity = vscode.DiagnosticSeverity.Error;
           break;
 
@@ -425,9 +430,10 @@ export class FortranLintingProvider {
           severity = vscode.DiagnosticSeverity.Information;
           break;
 
+        // fatal error, sequence error, etc.
         default:
           severity = vscode.DiagnosticSeverity.Error;
-          console.log('Unknown severity: ' + msg_type);
+          console.log('Using default Error Severity for: ' + msg_type);
           break;
       }
 
@@ -480,8 +486,13 @@ export class FortranLintingProvider {
         // see https://regex101.com/r/GZ0Lzz/2
         return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
 
+      /*
+       See Section 7 of the NAGFOR manual, although it is not accurate with regards
+       to all the possible messages.
+       severity: filename, line No.: message 
+       */
       case 'nagfor':
-        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Deleted feature used|Error|Fatal(?: Error)?|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
+        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Obsolescent|Deleted feature used|(?:[\w]+ )?Error|Fatal|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
 
       default:
         vscode.window.showErrorMessage('Unsupported linter, change your linter.compiler option');
