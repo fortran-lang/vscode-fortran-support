@@ -304,98 +304,104 @@ export class FortranLintingProvider {
    * @returns Array of diagnostics for errors, warnings and infos
    */
   private getLinterResults(msg: string): vscode.Diagnostic[] {
+    // Ideally these regexes should be defined inside the linterParser functions
+    // however we would have to rewrite out linting unit tests
     const regex = this.getCompilerREGEX(this.compiler);
     const matches = [...msg.matchAll(regex)];
-    // const matches = msg.matchAll(regex);
-    const diagnostics: vscode.Diagnostic[] = [];
-
     switch (this.compiler) {
       case 'gfortran':
-        for (const m of matches) {
-          const g = m.groups;
-          // NOTE: m[0] is the entire match and then the captured groups follow
-          const fname: string = g['fname'] !== undefined ? g['fname'] : g['bin'];
-          const lineNo: number = g['ln'] !== undefined ? parseInt(g['ln']) : 1;
-          const colNo: number = g['cn'] !== undefined ? parseInt(g['cn']) : 1;
-          const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
-          const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
-
-          const range = new vscode.Range(
-            new vscode.Position(lineNo - 1, colNo),
-            new vscode.Position(lineNo - 1, colNo)
-          );
-
-          let severity: vscode.DiagnosticSeverity;
-          switch (msg_type.toLowerCase()) {
-            case 'error':
-            case 'fatal error':
-              severity = vscode.DiagnosticSeverity.Error;
-              break;
-            case 'warning':
-              severity = vscode.DiagnosticSeverity.Warning;
-              break;
-            case 'info': // gfortran does not produce info AFAIK
-              severity = vscode.DiagnosticSeverity.Information;
-              break;
-            default:
-              severity = vscode.DiagnosticSeverity.Error;
-              break;
-          }
-
-          const d = new vscode.Diagnostic(range, msg, severity);
-          diagnostics.push(d);
-        }
-
-        return diagnostics;
-
-      case 'flang':
-        break;
+        return this.linterParserGCC(matches);
 
       case 'ifx':
       case 'ifort':
-        for (const m of matches) {
-          const g = m.groups;
-          // NOTE: m[0] is the entire match and then the captured groups follow
-          const fname: string = g['fname'];
-          const lineNo: number = parseInt(g['ln']);
-          const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
-          const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
-          const colNo: number = g['cn'] !== undefined ? g['cn'].length : 1;
-
-          const range = new vscode.Range(
-            new vscode.Position(lineNo - 1, colNo),
-            new vscode.Position(lineNo - 1, colNo)
-          );
-
-          let severity: vscode.DiagnosticSeverity;
-          switch (msg_type.toLowerCase()) {
-            case 'error':
-            case 'fatal error':
-              severity = vscode.DiagnosticSeverity.Error;
-              break;
-            case 'warning':
-            case 'remark': // ifort's version of warning is remark
-              severity = vscode.DiagnosticSeverity.Warning;
-              break;
-            case 'info': // ifort does not produce info during compile-time AFAIK
-              severity = vscode.DiagnosticSeverity.Information;
-              break;
-            default:
-              severity = vscode.DiagnosticSeverity.Error;
-              break;
-          }
-
-          const d = new vscode.Diagnostic(range, msg, severity);
-          diagnostics.push(d);
-        }
-        return diagnostics;
+        return this.linterParserIntel(matches);
 
       case 'nagfor':
         return this.linterParserNagfor(matches);
 
       default:
+        vscode.window.showErrorMessage(`${this.compiler} compiler is not supported yet.`);
         break;
     }
+  }
+
+  private linterParserGCC(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      // m[0] is the entire match and then the captured groups follow
+      const fname: string = g['fname'] !== undefined ? g['fname'] : g['bin'];
+      const lineNo: number = g['ln'] !== undefined ? parseInt(g['ln']) : 1;
+      const colNo: number = g['cn'] !== undefined ? parseInt(g['cn']) : 1;
+      const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
+      const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
+
+      const range = new vscode.Range(
+        new vscode.Position(lineNo - 1, colNo),
+        new vscode.Position(lineNo - 1, colNo)
+      );
+
+      let severity: vscode.DiagnosticSeverity;
+      switch (msg_type.toLowerCase()) {
+        case 'error':
+        case 'fatal error':
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+        case 'warning':
+          severity = vscode.DiagnosticSeverity.Warning;
+          break;
+        case 'info': // gfortran does not produce info AFAIK
+          severity = vscode.DiagnosticSeverity.Information;
+          break;
+        default:
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+      }
+
+      const d = new vscode.Diagnostic(range, msg, severity);
+      diagnostics.push(d);
+    }
+    return diagnostics;
+  }
+
+  private linterParserIntel(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      // m[0] is the entire match and then the captured groups follow
+      const fname: string = g['fname'];
+      const lineNo: number = parseInt(g['ln']);
+      const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
+      const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
+      const colNo: number = g['cn'] !== undefined ? g['cn'].length : 1;
+
+      const range = new vscode.Range(
+        new vscode.Position(lineNo - 1, colNo),
+        new vscode.Position(lineNo - 1, colNo)
+      );
+
+      let severity: vscode.DiagnosticSeverity;
+      switch (msg_type.toLowerCase()) {
+        case 'error':
+        case 'fatal error':
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+        case 'warning':
+        case 'remark': // ifort's version of warning is remark
+          severity = vscode.DiagnosticSeverity.Warning;
+          break;
+        case 'info': // ifort does not produce info during compile-time AFAIK
+          severity = vscode.DiagnosticSeverity.Information;
+          break;
+        default:
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+      }
+
+      const d = new vscode.Diagnostic(range, msg, severity);
+      diagnostics.push(d);
+    }
+    return diagnostics;
   }
 
   private linterParserNagfor(matches: RegExpMatchArray[]) {
