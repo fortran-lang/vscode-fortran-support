@@ -531,7 +531,7 @@
     "@types/node": "^16.11.39",
     "@types/vscode": "^1.63.0",
     "@types/which": "^2.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.20.0",
