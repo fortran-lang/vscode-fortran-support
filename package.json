@@ -558,7 +558,7 @@
   "dependencies": {
     "fast-glob": "^3.2.11",
     "glob": "^8.0.3",
-    "vscode-languageclient": "^8.0.1",
+    "vscode-languageclient": "^8.0.2",
     "which": "^2.0.2"
   }
 }
