@@ -6,11 +6,12 @@ import which from 'which';
 
 import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
-import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
+import { EXTENSION_ID, FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
+import { cwd } from 'process';
 
 export class FortranLintingProvider {
   constructor(private logger: LoggingService = new LoggingService()) {}
@@ -93,6 +94,18 @@ export class FortranLintingProvider {
       env: env,
     });
 
+    console.log(config.get('fypp'));
+    if (config.get<boolean>('fypp')) {
+      // Spawn fypp
+      // TODO: pass arguments to fypp here
+      const fyppProcess = cp.spawn('fypp', [textDocument.fileName], { cwd: filePath });
+      fyppProcess.stdout.on('data', (data: Buffer) => {
+        console.log('stdout: ' + data);
+        childProcess.stdin.write(data.toString());
+        childProcess.stdin.end();
+      });
+    }
+
     if (childProcess.pid) {
       childProcess.stdout.on('data', (data: Buffer) => {
         compilerOutput += data;
@@ -129,12 +142,16 @@ export class FortranLintingProvider {
 
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    const fypp: boolean = config.get('linter.fypp');
+    const fortranSource: string[] = fypp ? ['-xf95', '-'] : [textDocument.fileName];
+
     const argList = [
       ...args,
       ...this.getIncludeParams(includePaths), // include paths
-      textDocument.fileName,
       '-o',
       `${fileNameWithoutExtension}.mod`,
+      ...fortranSource,
     ];
 
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');

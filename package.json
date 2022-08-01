@@ -80,7 +80,9 @@
           ".fpp",
           ".FPP",
           ".pf",
-          ".PF"
+          ".PF",
+          ".fypp",
+          ".FYPP"
         ],
         "configuration": "./language-configuration.json"
       },
@@ -199,6 +201,11 @@
               "Disabled"
             ],
             "markdownDescription": "Compiler used for linting support."
+          },
+          "fortran.linter.fypp": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Use `fypp` to expand preprocessor directives."
           },
           "fortran.linter.includePaths": {
             "type": "array",

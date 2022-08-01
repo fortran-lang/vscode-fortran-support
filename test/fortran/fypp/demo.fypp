@@ -1,0 +1,26 @@
+#:set data_names = [ 'eg1', 'eg2' ]
+module min_eg
+  implicit none
+  private
+
+#:for dname in data_names
+
+  public :: eg_${dname}$_t
+  type :: eg_${dname}$_t
+  contains
+    procedure :: do_something => do_something_${dname}$
+  end type eg_${dname}$_t
+
+#:endfor
+
+contains
+
+#:for dname in data_names
+  subroutine do_something_${dname}$ (this)
+    implicit none
+    class(eg_${dname}$_t) :: this
+    print*, "this subroutine has no syntax highlighting with either extension"
+  end subroutine do_something_${dname}$
+#:endfor
+
+end module min_eg
