@@ -1,6 +1,6 @@
 name: Bug Report
 description: Something is not working
-title: '[BUG] <title>'
+title: 'bug: <title>'
 labels: [bug]
 body:
   - type: checkboxes
