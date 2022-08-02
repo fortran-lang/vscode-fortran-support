@@ -102,7 +102,6 @@ export class FortranLintingProvider {
     const fyppProcess = this.getFyppProcess(textDocument);
     if (fyppProcess) {
       fyppProcess.stdout.on('data', (data: Buffer) => {
-        console.log('stdout: ' + data);
         childProcess.stdin.write(data.toString());
         childProcess.stdin.end();
       });
