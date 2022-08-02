@@ -1,6 +1,6 @@
 name: Syntax Highlighting
 description: Spotted a bug in the Syntax Highlighting
-title: '[SYNTAX] <title>'
+title: 'bug(syntax): <title>'
 labels: [syntax-highlight]
 body:
   - type: checkboxes
