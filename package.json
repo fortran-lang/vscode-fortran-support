@@ -200,12 +200,14 @@
               "nagfor",
               "Disabled"
             ],
-            "markdownDescription": "Compiler used for linting support."
+            "markdownDescription": "Compiler used for linting support.",
+            "order": 0
           },
-          "fortran.linter.fypp": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Use `fypp` to expand preprocessor directives."
+          "fortran.linter.compilerPath": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "Specifies the path to the linter executable.",
+            "order": 10
           },
           "fortran.linter.includePaths": {
             "type": "array",
@@ -213,9 +215,18 @@
               "type": "string"
             },
             "default": [],
-            "markdownDescription": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+            "markdownDescription": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "order": 20
           },
-          "fortran.linter.compilerPath": {
+          "fortran.linter.extraArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "markdownDescription": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "order": 30
+          },
+          "fortran.linter.modOutput": {
             "type": "string",
             "default": "",
             "markdownDescription": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",

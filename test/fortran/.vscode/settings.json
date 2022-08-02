@@ -4,12 +4,16 @@
     "HAVE_ZOLTAN": "",
     "PetscInt": "integer(kind=selected_int_kind(5))"
   },
-  "fortran.linter.fypp": true,
+  "fortran.linter.fypp.enabled": true,
   "fortran.fortls.preprocessor.directories": ["include", "val"],
   "fortran.fortls.preprocessor.suffixes": [".fypp", ".f90"],
   "fortran.fortls.suffixes": [".FFF", ".F90-2018"],
   "fortran.fortls.directories": ["./**"],
   "fortran.fortls.excludeSuffixes": [".snap"],
   "fortran.fortls.excludeDirectories": [".vscode/"],
-  "fortran.fortls.notifyInit": true
+  "fortran.fortls.notifyInit": true,
+  "fortran.linter.fypp.definitions": {
+    "DEBUG": "1",
+    "VAL": ""
+  }
 }

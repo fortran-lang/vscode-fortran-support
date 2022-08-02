@@ -6,12 +6,16 @@ import which from 'which';
 
 import * as vscode from 'vscode';
 import { LoggingService } from '../services/logging-service';
-import { EXTENSION_ID, FortranDocumentSelector, resolveVariables } from '../lib/tools';
+import {
+  EXTENSION_ID,
+  FortranDocumentSelector,
+  resolveVariables,
+  promptForMissingTool,
+} from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
-import { cwd } from 'process';
 
 export class FortranLintingProvider {
   constructor(private logger: LoggingService = new LoggingService()) {}
@@ -94,11 +98,8 @@ export class FortranLintingProvider {
       env: env,
     });
 
-    console.log(config.get('fypp'));
-    if (config.get<boolean>('fypp')) {
-      // Spawn fypp
-      // TODO: pass arguments to fypp here
-      const fyppProcess = cp.spawn('fypp', [textDocument.fileName], { cwd: filePath });
+    const fyppProcess = this.getFyppProcess(textDocument.fileName);
+    if (fyppProcess) {
       fyppProcess.stdout.on('data', (data: Buffer) => {
         console.log('stdout: ' + data);
         childProcess.stdin.write(data.toString());
@@ -143,7 +144,8 @@ export class FortranLintingProvider {
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    const fypp: boolean = config.get('linter.fypp');
+    // FIXME: currently only enabled for gfortran
+    const fypp: boolean = config.get('linter.fypp.enabled') && this.compiler === 'gfortran';
     const fortranSource: string[] = fypp ? ['-xf95', '-'] : [textDocument.fileName];
 
     const argList = [
@@ -559,5 +561,66 @@ export class FortranLintingProvider {
   private rescanLinter() {
     this.cache['includePaths'] = [];
     this.getIncludePaths();
+  }
+
+  /**
+   * Parse a source file through the `fypp` preprocessor and return and active
+   * process to parse as input to the main linter.
+   *
+   * This procedure does implements all the settings interfaces with `fypp`
+   * and checks the system for `fypp` prompting to install it if missing.
+   *
+   * @param fileName File name to pass to `fypp`
+   * @returns Async spawned process containing `fypp` output
+   */
+  private getFyppProcess(fileName: string): cp.ChildProcess | undefined {
+    const config = vscode.workspace.getConfiguration(`${EXTENSION_ID}.linter.fypp`);
+    if (!config.get('enabled')) return undefined;
+    // FIXME: currently only enabled for gfortran
+    if (this.compiler !== 'gfortran') return undefined;
+
+    let fypp: string = config.get('fypp.path', 'fypp');
+    fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
+
+    // Check if the fypp is installed
+    if (!which.sync(fypp, { nothrow: true })) {
+      this.logger.logWarning(`fypp not detected in your system. Attempting to install now.`);
+      const msg = `Installing fypp through pip with --user option`;
+      promptForMissingTool('fypp', msg, 'Python', ['Install'], this.logger);
+    }
+    const args: string[] = ['--line-numbering'];
+
+    // Pass any include paths to search for files to the fypp
+    // Include paths can be fetched from the resolved cache
+    const includePaths = this.getIncludeParams(this.cache['globIncPaths']);
+    if (includePaths.length > 0) {
+      args.push(...includePaths);
+    }
+    // TODO: includes. Should we implement them too?
+
+    // Pass any potential Python modules to fypp
+    const pythonModules: string[] = config.get('pythonModules');
+    if (pythonModules.length > 0) {
+      args.push(...pythonModules.map(pymod => `--module-dir=${pymod}`));
+    }
+    // TODO: moduleDir are they needed?
+
+    const fypp_defs: { [name: string]: string } = config.get('definitions');
+    if (Object.keys(fypp_defs).length > 0) {
+      // Preprocessor definitions, merge with pp_defs from fortls?
+      Object.entries(fypp_defs).forEach(([key, val]) => {
+        if (val) args.push(`-D${key}=${val}`);
+        else args.push(`-D${key}`);
+      });
+    }
+    args.push(`--line-numbering-mode=${config.get<string>('lineNumberingMode', 'full')}`);
+    args.push(`--line-marker-format=${config.get<string>('lineMarkerFormat', 'cpp')}`);
+    args.push(...`${config.get<string[]>('extraArgs', [])}`);
+
+    // The file to be preprocessed
+    args.push(fileName);
+
+    const filePath = path.parse(fileName).dir;
+    return cp.spawn(fypp, args, { cwd: filePath });
   }
 }
