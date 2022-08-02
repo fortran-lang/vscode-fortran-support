@@ -101,7 +101,8 @@ export class FortranLintingProvider {
         compilerOutput += data;
       });
       childProcess.stderr.on('end', () => {
-        const diagnostics = this.getLinterResults(compilerOutput);
+        let diagnostics = this.getLinterResults(compilerOutput);
+        diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
         this.diagnosticCollection.set(textDocument.uri, diagnostics);
       });
       childProcess.on('error', err => {

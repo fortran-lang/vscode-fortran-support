@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Removes duplicate diagnostic messages from the linter
+  ([#598](https://github.com/fortran-lang/vscode-fortran-support/issues/598))
+
 ## [3.2.0]
 
 ### Added
