@@ -11,6 +11,7 @@ import {
   FortranDocumentSelector,
   resolveVariables,
   promptForMissingTool,
+  isFreeForm,
 } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
@@ -98,7 +99,7 @@ export class FortranLintingProvider {
       env: env,
     });
 
-    const fyppProcess = this.getFyppProcess(textDocument.fileName);
+    const fyppProcess = this.getFyppProcess(textDocument);
     if (fyppProcess) {
       fyppProcess.stdout.on('data', (data: Buffer) => {
         console.log('stdout: ' + data);
@@ -146,7 +147,9 @@ export class FortranLintingProvider {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
     // FIXME: currently only enabled for gfortran
     const fypp: boolean = config.get('linter.fypp.enabled') && this.compiler === 'gfortran';
-    const fortranSource: string[] = fypp ? ['-xf95', '-'] : [textDocument.fileName];
+    const fortranSource: string[] = fypp
+      ? ['-xf95', isFreeForm(textDocument) ? '-ffree-form' : '-ffixed-form', '-']
+      : [textDocument.fileName];
 
     const argList = [
       ...args,
@@ -569,11 +572,10 @@ export class FortranLintingProvider {
    *
    * This procedure does implements all the settings interfaces with `fypp`
    * and checks the system for `fypp` prompting to install it if missing.
-   *
-   * @param fileName File name to pass to `fypp`
+   * @param document File name to pass to `fypp`
    * @returns Async spawned process containing `fypp` output
    */
-  private getFyppProcess(fileName: string): cp.ChildProcess | undefined {
+  private getFyppProcess(document: vscode.TextDocument): cp.ChildProcess | undefined {
     const config = vscode.workspace.getConfiguration(`${EXTENSION_ID}.linter.fypp`);
     if (!config.get('enabled')) return undefined;
     // FIXME: currently only enabled for gfortran
@@ -603,6 +605,10 @@ export class FortranLintingProvider {
     if (pythonModules.length > 0) {
       args.push(...pythonModules.map(pymod => `--module-dir=${pymod}`));
     }
+
+    // Set the output to Fixed Format if the source is Fixed
+    if (!isFreeForm(document)) args.push('--fixed-format');
+
     // TODO: moduleDir are they needed?
 
     const fypp_defs: { [name: string]: string } = config.get('definitions');
@@ -618,9 +624,9 @@ export class FortranLintingProvider {
     args.push(...`${config.get<string[]>('extraArgs', [])}`);
 
     // The file to be preprocessed
-    args.push(fileName);
+    args.push(document.fileName);
 
-    const filePath = path.parse(fileName).dir;
+    const filePath = path.parse(document.fileName).dir;
     return cp.spawn(fypp, args, { cwd: filePath });
   }
 }

@@ -44,6 +44,10 @@ export function isFortran(document: vscode.TextDocument): boolean {
   );
 }
 
+export function isFreeForm(document: vscode.TextDocument): boolean {
+  return document.languageId === 'FortranFreeForm';
+}
+
 //
 // Taken with minimal alterations from lsp-multi-server-sample
 //
