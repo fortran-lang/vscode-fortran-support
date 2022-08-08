@@ -53,7 +53,7 @@ npm run compile-dev
 
 ### Developing & Debugging 🐞️
 
-You can now start writing code the `watcher` task will check for compilation errors.
+You can now start writing code, the `watcher` task, if not running, will automatically start when debugging.
 You can actively debug the extension by pressing <kbd>F5</kbd> with `Launch Extension` selected.
 
 👉 **Tip!** You don't need to stop and restart the development version of VS Code after each change. You can just execute `Reload Window` from the command palette in the
