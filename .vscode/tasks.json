@@ -10,7 +10,20 @@
         "isDefault": true
       },
       "isBackground": true,
-      "problemMatcher": "$tsc-watch",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "never"
+      },
+      "problemMatcher": [
+        {
+          "base": "$tsc-watch",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "asset .*",
+            "endsPattern": "webpack .* compiled .*"
+          }
+        }
+      ],
       "detail": "webpack --mode development --watch --progress"
     },
     {

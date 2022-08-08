@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removes duplicate diagnostic messages from the linter
   ([#598](https://github.com/fortran-lang/vscode-fortran-support/issues/598))
 
+### Fixed
+
+- Fixed `npm run watch-dev` not syncing changes to spawned Extension Dev Host
+  ([#602](https://github.com/fortran-lang/vscode-fortran-support/issues/602))
+
 ## [3.2.0]
 
 ### Added
