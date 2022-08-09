@@ -32,11 +32,11 @@ export async function activate(context: vscode.ExtensionContext) {
 
   logger.info(`Extension Name: ${pkg.displayName}`);
   logger.info(`Extension Version: ${pkg.version}`);
-  logger.info(`Linter set to: ${linterType}`);
-  logger.info(`Formatter set to: ${formatterType}`);
-  logger.info(`Autocomplete set to: ${autocompleteType}`);
-  logger.info(`Hover set to: ${hoverType}`);
-  logger.info(`Symbols set to: ${symbolsType}`);
+  logger.info(`Linter set to: "${linterType}"`);
+  logger.info(`Formatter set to: "${formatterType}"`);
+  logger.info(`Autocomplete set to: "${autocompleteType}"`);
+  logger.info(`Hover set to: "${hoverType}"`);
+  logger.info(`Symbols set to: "${symbolsType}"`);
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(e => {

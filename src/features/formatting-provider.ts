@@ -32,7 +32,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     } else if (formatterName === 'findent') {
       return this.doFormatFindent(document);
     } else {
-      this.logger.error('Cannot format document with formatter set to Disabled');
+      this.logger.error('[format] Cannot format document with formatter set to Disabled');
     }
 
     return undefined;
@@ -46,7 +46,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private async doFormatFprettify(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     // fprettify can only do FortranFreeFrom
     if (document.languageId !== 'FortranFreeForm') {
-      this.logger.error(`fprettify can only format FortranFreeForm, change
+      this.logger.error(`[format] fprettify can only format FortranFreeForm, change
                             to findent for FortranFixedForm formatting`);
       return undefined;
     }
@@ -56,17 +56,17 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.warn(`Formatter: ${formatterName} not detected in your system.
-                                Attempting to install now.`);
+      this.logger.warn(`[format] ${formatterName} not found. Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     const args: string[] = ['--stdout', ...this.getFormatterArgs()];
+    this.logger.debug(`[format] fprettify args:`, args);
     const edits: vscode.TextEdit[] = [];
     const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
     edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.info(`fprettify error output: ${stderr}`);
+    if (stderr) this.logger.error(`[format] fprettify error output: ${stderr}`);
     return edits;
   }
 
@@ -81,17 +81,17 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.warn(`Formatter: ${formatterName} not detected in your system.
-                                    Attempting to install now.`);
+      this.logger.warn(`[format] ${formatterName} not found! Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     const args: string[] = this.getFormatterArgs();
+    this.logger.debug(`[format] findent args:`, args);
     const edits: vscode.TextEdit[] = [];
     const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
     edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.info(`findent error output: ${stderr}`);
+    if (stderr) this.logger.error(`[format] findent error output: ${stderr}`);
     return edits;
   }
 
@@ -107,7 +107,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     this.formatter = this.workspace.get('formatting.formatter', 'Disabled');
 
     if (!FORMATTERS.includes(this.formatter)) {
-      this.logger.error(`Unsupported formatter: ${this.formatter}`);
+      this.logger.error(`[format] Unsupported formatter: ${this.formatter}`);
     }
     return this.formatter;
   }
@@ -130,7 +130,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private getFormatterPath(): string {
     const formatterPath: string = this.workspace.get('formatting.path', '');
     if (formatterPath !== '') {
-      this.logger.info(`Formatter located in: ${formatterPath}`);
+      this.logger.info(`[format] Formatter located in: ${formatterPath}`);
     }
 
     return formatterPath;
