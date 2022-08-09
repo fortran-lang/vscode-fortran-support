@@ -1,89 +1,69 @@
 import { OutputChannel, window } from 'vscode';
 
-type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
+export enum LogLevel {
+  DEBUG = 0,
+  INFO = 1,
+  WARN = 2,
+  ERROR = 3,
+  NONE = 4,
+}
 
-export class LoggingService {
-  private outputChannel = window.createOutputChannel('Modern Fortran');
+export class Logger {
+  constructor(
+    private channel: OutputChannel = window.createOutputChannel('Modern Fortran'),
+    private level: LogLevel = LogLevel.INFO
+  ) {}
 
-  private logLevel: LogLevel = 'INFO';
-
-  public setOutputLevel(logLevel: LogLevel) {
-    this.logLevel = logLevel;
+  public setLogLevel(logLevel: LogLevel) {
+    this.level = logLevel;
   }
 
-  public getOutputLevel(): LogLevel {
-    return this.logLevel;
+  public getLogLevel(): LogLevel {
+    return this.level;
   }
 
   public getOutputChannel(): OutputChannel {
-    return this.outputChannel;
+    return this.channel;
   }
 
-  /**
-   * Append messages to the output channel and format it with a title
-   *
-   * @param message The message to append to the output channel
-   */
-  public logDebug(message: string, data?: unknown): void {
-    if (
-      this.logLevel === 'NONE' ||
-      this.logLevel === 'INFO' ||
-      this.logLevel === 'WARN' ||
-      this.logLevel === 'ERROR'
-    ) {
-      return;
-    }
-    this.logMessage(message, 'INFO');
+  public debug(message: string, data?: unknown): void {
+    if (this.level > LogLevel.DEBUG) return;
+    this.log(message, LogLevel.DEBUG);
     if (data) {
       this.logObject(data);
     }
   }
 
-  /**
-   * Append messages to the output channel and format it with a title
-   *
-   * @param message The message to append to the output channel
-   */
-  public logInfo(message: string, data?: unknown): void {
-    if (this.logLevel === 'NONE' || this.logLevel === 'WARN' || this.logLevel === 'ERROR') {
-      return;
-    }
-    this.logMessage(message, 'INFO');
+  public info(message: string, data?: unknown): void {
+    if (this.level > LogLevel.INFO) return;
+    this.log(message, LogLevel.INFO);
     if (data) {
       this.logObject(data);
     }
   }
 
-  /**
-   * Append messages to the output channel and format it with a title
-   *
-   * @param message The message to append to the output channel
-   */
-  public logWarning(message: string, data?: unknown): void {
-    if (this.logLevel === 'NONE' || this.logLevel === 'ERROR') {
-      return;
-    }
-    this.logMessage(message, 'WARN');
+  public warn(message: string, data?: unknown): void {
+    if (this.level > LogLevel.WARN) return;
+    this.log(message, LogLevel.WARN);
     if (data) {
       this.logObject(data);
     }
   }
 
-  public logError(message: string, error?: Error | string) {
-    if (this.logLevel === 'NONE') {
-      return;
-    }
-    this.logMessage(message, 'ERROR');
+  public error(message: string, error?: Error | string) {
+    if (this.level > LogLevel.ERROR) return;
+    this.log(message, LogLevel.ERROR);
+
     if (typeof error === 'string') {
       // Errors as a string usually only happen with
       // plugins that don't return the expected error.
-      this.outputChannel.appendLine(error);
+      this.channel.appendLine(error);
     } else if (error?.message || error?.stack) {
       if (error?.message) {
-        this.logMessage(error.message, 'ERROR');
+        this.log(error.message, LogLevel.ERROR);
       }
       if (error?.stack) {
-        this.outputChannel.appendLine(error.stack);
+        this.channel.appendLine(error.stack);
       }
     } else if (error) {
       this.logObject(error);
@@ -91,21 +71,16 @@ export class LoggingService {
   }
 
   public show() {
-    this.outputChannel.show();
+    this.channel.show();
   }
 
   private logObject(data: unknown): void {
     const message = JSON.stringify(data, null, 2);
-    this.outputChannel.appendLine(message);
+    this.channel.appendLine(message);
   }
 
-  /**
-   * Append messages to the output channel and format it with a title
-   *
-   * @param message The message to append to the output channel
-   */
-  private logMessage(message: string, logLevel: LogLevel): void {
+  private log(message: string, level: LogLevel): void {
     const title = new Date().toLocaleTimeString();
-    this.outputChannel.appendLine(`["${logLevel}" - ${title}] ${message}`);
+    this.channel.appendLine(`[${LogLevel[level]} - ${title}] ${message}`);
   }
 }

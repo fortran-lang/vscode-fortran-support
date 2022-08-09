@@ -2,12 +2,12 @@ import { strictEqual } from 'assert';
 import { FortranFormattingProvider } from '../src/features/formatting-provider';
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { LoggingService } from '../src/services/logging-service';
+import { Logger } from '../src/services/logging-service';
 import { spawnSync } from 'child_process';
 
 suite('Formatting tests', () => {
   let doc: vscode.TextDocument;
-  const fmt = new FortranFormattingProvider(new LoggingService());
+  const fmt = new FortranFormattingProvider(new Logger());
   const fileUri = vscode.Uri.file(
     path.resolve(__dirname, '../../test/fortran/format/formatting_test.f90')
   );
@@ -21,7 +21,7 @@ suite('Formatting tests', () => {
   });
 
   test('Using findent', async () => {
-    const fmt = new FortranFormattingProvider(new LoggingService());
+    const fmt = new FortranFormattingProvider(new Logger());
     fmt['formatter'] = 'findent';
     const edits = await fmt['doFormatFindent'](doc);
     strictEqual(

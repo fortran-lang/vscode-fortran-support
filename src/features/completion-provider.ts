@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { isPositionInString, FORTRAN_KEYWORDS } from '../lib/helper';
 import { getDeclaredFunctions } from '../lib/functions';
 import { EXTENSION_ID } from '../lib/tools';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging-service';
 import intrinsics from './intrinsics.json';
 
 class CaseCoverter {
@@ -35,7 +35,7 @@ class CaseCoverter {
 }
 
 export class FortranCompletionProvider implements vscode.CompletionItemProvider {
-  constructor(private loggingService: LoggingService) {}
+  constructor(private logger: Logger) {}
   public provideCompletionItems(
     document: vscode.TextDocument,
     position: vscode.Position,

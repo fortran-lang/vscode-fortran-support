@@ -5,7 +5,7 @@ import * as cp from 'child_process';
 import which from 'which';
 
 import * as vscode from 'vscode';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging-service';
 import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';
@@ -13,7 +13,7 @@ import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
 
 export class FortranLintingProvider {
-  constructor(private logger: LoggingService = new LoggingService()) {}
+  constructor(private logger: Logger = new Logger()) {}
 
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
@@ -167,7 +167,7 @@ export class FortranLintingProvider {
     }
 
     modout = resolveVariables(modout);
-    this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
+    this.logger.info(`Linter.moduleOutput: ${modFlag} ${modout}`);
     return [modFlag, modout];
   }
 
@@ -195,7 +195,7 @@ export class FortranLintingProvider {
     // Update our cache input
     this.cache['includePaths'] = includePaths;
     // Output the original include paths
-    this.logger.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
+    this.logger.info(`Linter.include:\n${includePaths.join('\r\n')}`);
     // Resolve internal variables and expand glob patterns
     const resIncludePaths = includePaths.map(e => resolveVariables(e));
     // fast-glob cannot work with Windows paths
@@ -212,12 +212,12 @@ export class FortranLintingProvider {
       // Try to recover from fast-glob failing due to EACCES using slower more
       // robust glob.
     } catch (eacces) {
-      this.logger.logWarning(`You lack read permissions for an include directory
+      this.logger.warn(`You lack read permissions for an include directory
           or more likely a glob match from the input 'includePaths' list. This can happen when
           using overly broad root level glob patters e.g. /usr/lib/** .
           No reason to worry. I will attempt to recover. 
           You should consider adjusting your 'includePaths' if linting performance is slow.`);
-      this.logger.logWarning(`${eacces.message}`);
+      this.logger.warn(`${eacces.message}`);
       try {
         const globIncPaths: string[] = [];
         for (const i of resIncludePaths) {
@@ -228,7 +228,7 @@ export class FortranLintingProvider {
         return globIncPaths;
         // if we failed again then our includes are somehow wrong. Abort
       } catch (error) {
-        this.logger.logError(`Failed to recover: ${error}`);
+        this.logger.error(`Failed to recover: ${error}`);
       }
     }
   }
@@ -243,7 +243,7 @@ export class FortranLintingProvider {
     this.compiler = config.get<string>('compiler', 'gfortran');
     this.compilerPath = config.get<string>('compilerPath', '');
     if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
-    this.logger.logInfo(`using linter: ${this.compiler} located in: ${this.compilerPath}`);
+    this.logger.info(`using linter: ${this.compiler} located in: ${this.compilerPath}`);
     return this.compilerPath;
   }
 
@@ -287,7 +287,7 @@ export class FortranLintingProvider {
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
     }
-    this.logger.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
+    this.logger.info(`Linter.arguments:\n${args.join('\r\n')}`);
 
     // Resolve internal variables but do not apply glob pattern matching
     return args.map(e => resolveVariables(e));

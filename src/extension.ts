@@ -12,11 +12,11 @@ import { FortlsClient } from './lsp/client';
 import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
 import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
-import { LoggingService } from './services/logging-service';
+import { Logger } from './services/logging-service';
 import { WhatsNew } from './features/commands';
 
 // Make it global to catch errors when activation fails
-const loggingService = new LoggingService();
+const logger = new Logger(vscode.window.createOutputChannel('Modern Fortran'));
 
 export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration(EXTENSION_ID);
@@ -27,34 +27,34 @@ export async function activate(context: vscode.ExtensionContext) {
   const symbolsType = config.get<string>('provide.symbols');
   detectDeprecatedOptions();
 
-  loggingService.logInfo(`Extension Name: ${pkg.displayName}`);
-  loggingService.logInfo(`Extension Version: ${pkg.version}`);
-  loggingService.logInfo(`Linter set to: ${linterType}`);
-  loggingService.logInfo(`Formatter set to: ${formatterType}`);
-  loggingService.logInfo(`Autocomplete set to: ${autocompleteType}`);
-  loggingService.logInfo(`Hover set to: ${hoverType}`);
-  loggingService.logInfo(`Symbols set to: ${symbolsType}`);
+  logger.info(`Extension Name: ${pkg.displayName}`);
+  logger.info(`Extension Version: ${pkg.version}`);
+  logger.info(`Linter set to: ${linterType}`);
+  logger.info(`Formatter set to: ${formatterType}`);
+  logger.info(`Autocomplete set to: ${autocompleteType}`);
+  logger.info(`Hover set to: ${hoverType}`);
+  logger.info(`Symbols set to: ${symbolsType}`);
 
   // Linter is always activated but will only lint if compiler !== Disabled
-  const linter = new FortranLintingProvider(loggingService);
+  const linter = new FortranLintingProvider(logger);
   linter.activate(context.subscriptions);
   vscode.languages.registerCodeActionsProvider(FortranDocumentSelector(), linter);
 
   if (formatterType !== 'Disabled') {
     const disposable: vscode.Disposable = vscode.languages.registerDocumentFormattingEditProvider(
       FortranDocumentSelector(),
-      new FortranFormattingProvider(loggingService)
+      new FortranFormattingProvider(logger)
     );
     context.subscriptions.push(disposable);
   }
 
   if (autocompleteType === 'Built-in') {
-    const completionProvider = new FortranCompletionProvider(loggingService);
+    const completionProvider = new FortranCompletionProvider(logger);
     vscode.languages.registerCompletionItemProvider(FortranDocumentSelector(), completionProvider);
   }
 
   if (hoverType === 'Built-in' || hoverType === 'Both') {
-    const hoverProvider = new FortranHoverProvider(loggingService);
+    const hoverProvider = new FortranHoverProvider(logger);
     vscode.languages.registerHoverProvider(FortranDocumentSelector(), hoverProvider);
   }
 
@@ -64,7 +64,7 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 
   if (!config.get<boolean>('fortls.disabled')) {
-    new FortlsClient(loggingService, context).activate();
+    new FortlsClient(logger, context).activate();
   }
   // override VS Code's default implementation of the debug hover
   // here we match Fortran derived types and scope them appropriately
@@ -129,7 +129,7 @@ function detectDeprecatedOptions() {
         if (selected === 'Open Settings') {
           vscode.commands.executeCommand('workbench.action.openGlobalSettings');
         }
-        loggingService.logError(`The following deprecated options have been detected:\n${oldArgs}`);
+        logger.error(`The following deprecated options have been detected:\n${oldArgs}`);
       });
   }
 

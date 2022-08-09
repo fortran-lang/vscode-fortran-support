@@ -12,7 +12,7 @@ import {
   isFortran,
   getOuterMostWorkspaceFolder,
 } from '../lib/tools';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging-service';
 import { RestartLS } from '../features/commands';
 
 // The clients are non member variables of the class because they need to be
@@ -21,8 +21,8 @@ import { RestartLS } from '../features/commands';
 export const clients: Map<string, LanguageClient> = new Map();
 
 export class FortlsClient {
-  constructor(private logger: LoggingService, private context?: vscode.ExtensionContext) {
-    this.logger.logInfo('Fortran Language Server');
+  constructor(private logger: Logger, private context?: vscode.ExtensionContext) {
+    this.logger.info('Fortran Language Server');
 
     // if context is present
     if (context !== undefined) {
@@ -109,7 +109,7 @@ export class FortlsClient {
     if (!folder) {
       const fileRoot: string = path.dirname(document.uri.fsPath);
       if (clients.has(fileRoot)) return; // already registered
-      this.logger.logInfo(
+      this.logger.info(
         'Initialising Language Server for file: ' +
           `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
       );
@@ -133,7 +133,7 @@ export class FortlsClient {
     if (!clients.has(folder.uri.toString())) {
       folder = getOuterMostWorkspaceFolder(folder);
       if (clients.has(folder.uri.toString())) return; // already registered
-      this.logger.logInfo(
+      this.logger.info(
         'Initialising Language Server for workspace: ' +
           `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
       );
@@ -317,7 +317,7 @@ export class FortlsClient {
               fortlsDisabled = true;
             }
             if (install.stdout) {
-              this.logger.logInfo(install.stdout.toString());
+              this.logger.info(install.stdout.toString());
               fortlsDisabled = false;
             }
           } else if (opt == 'Disable') {
@@ -336,7 +336,7 @@ export class FortlsClient {
    * Restart the language server
    */
   private async restartLS(): Promise<void> {
-    this.logger.logInfo('Restarting language server...');
+    this.logger.info('Restarting language server...');
     vscode.window.showInformationMessage('Restarting language server...');
     await this.deactivate();
     await this.activate();

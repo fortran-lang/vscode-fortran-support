@@ -2,13 +2,13 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { strictEqual } from 'assert';
 import { spawnSync } from 'child_process';
-import { LoggingService } from '../src/services/logging-service';
+import { Logger } from '../src/services/logging-service';
 import { FortlsClient } from '../src/lsp/client';
 import { delay } from '../src/lib/helper';
 
 suite('Language Server integration tests', () => {
   let doc: vscode.TextDocument;
-  const server = new FortlsClient(new LoggingService());
+  const server = new FortlsClient(new Logger());
   const fileUri = vscode.Uri.file(
     path.resolve(__dirname, '../../test/fortran/function_subroutine_definitions.f90')
   );
