@@ -12,7 +12,7 @@ import { FortlsClient } from './lsp/client';
 import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
 import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
-import { Logger } from './services/logging-service';
+import { Logger } from './services/logging';
 import { WhatsNew } from './features/commands';
 
 // Make it global to catch errors when activation fails

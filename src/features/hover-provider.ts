@@ -1,5 +1,5 @@
 import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
-import { Logger } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import intrinsics from './intrinsics.json';
 
 export class FortranHoverProvider {

@@ -2,7 +2,7 @@ import * as os from 'os';
 import * as vscode from 'vscode';
 import * as assert from 'assert';
 import * as cp from 'child_process';
-import { Logger } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import { isString, isArrayOfString } from './helper';
 
 export const LS_NAME = 'fortls';

@@ -5,7 +5,7 @@ import * as cp from 'child_process';
 import which from 'which';
 
 import * as vscode from 'vscode';
-import { Logger } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import { FortranDocumentSelector, resolveVariables } from '../lib/tools';
 import * as fg from 'fast-glob';
 import { glob } from 'glob';

@@ -12,7 +12,7 @@ import {
   isFortran,
   getOuterMostWorkspaceFolder,
 } from '../lib/tools';
-import { Logger } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
 
 // The clients are non member variables of the class because they need to be

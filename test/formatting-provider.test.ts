@@ -2,7 +2,7 @@ import { strictEqual } from 'assert';
 import { FortranFormattingProvider } from '../src/features/formatting-provider';
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { Logger } from '../src/services/logging-service';
+import { Logger } from '../src/services/logging';
 import { spawnSync } from 'child_process';
 
 suite('Formatting tests', () => {

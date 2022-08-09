@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { strictEqual } from 'assert';
 import { spawnSync } from 'child_process';
-import { Logger } from '../src/services/logging-service';
+import { Logger } from '../src/services/logging';
 import { FortlsClient } from '../src/lsp/client';
 import { delay } from '../src/lib/helper';
 
