@@ -102,7 +102,7 @@ export class FortranLintingProvider {
         compilerOutput += data;
       });
       childProcess.stderr.on('end', () => {
-        this.logger.debug(`[lint] Compiler output:`, compilerOutput);
+        this.logger.debug(`[lint] Compiler output:\n${compilerOutput}`);
         let diagnostics = this.getLinterResults(compilerOutput);
         diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
         this.diagnosticCollection.set(textDocument.uri, diagnostics);
