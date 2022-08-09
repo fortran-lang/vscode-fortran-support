@@ -11,7 +11,7 @@ export enum LogLevel {
 
 export class Logger {
   constructor(
-    private channel: OutputChannel = window.createOutputChannel('Modern Fortran'),
+    private channel: OutputChannel = window.createOutputChannel('Modern Fortran', 'log'),
     private level: LogLevel = LogLevel.INFO
   ) {}
 

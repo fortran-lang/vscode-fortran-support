@@ -16,7 +16,10 @@ import { getConfigLogLevel, Logger } from './services/logging';
 import { WhatsNew } from './features/commands';
 
 // Make it global to catch errors when activation fails
-const logger = new Logger(vscode.window.createOutputChannel('Modern Fortran'), getConfigLogLevel());
+const logger = new Logger(
+  vscode.window.createOutputChannel('Modern Fortran', 'log'),
+  getConfigLogLevel()
+);
 
 export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration(EXTENSION_ID);
