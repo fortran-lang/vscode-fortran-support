@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Renamed the default repository branch from `master` to `main`
+  ([#590](https://github.com/fortran-lang/vscode-fortran-support/issues/590))
 - Changed the way messages are logged and added `log` syntax highlighting
   ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
 - Removes duplicate diagnostic messages from the linter
