@@ -180,6 +180,19 @@
             ],
             "markdownDescription": "Specify the word case to use when suggesting autocomplete options.",
             "order": 60
+          },
+          "fortran.logging.level": {
+            "type": "string",
+            "default": "Info",
+            "enum": [
+              "None",
+              "Error",
+              "Warn",
+              "Info",
+              "Debug"
+            ],
+            "markdownDescription": "The log level for the extension.",
+            "order": 70
           }
         }
       },
@@ -560,5 +573,11 @@
     "glob": "^8.0.3",
     "vscode-languageclient": "^8.0.2",
     "which": "^2.0.2"
+  },
+  "__metadata": {
+    "id": "64379b4d-40cd-415a-8643-b07572d4a243",
+    "publisherDisplayName": "The Fortran Programming Language",
+    "publisherId": "0fb8288f-2952-4d83-8d25-46814faecc34",
+    "isPreReleaseVersion": false
   }
 }

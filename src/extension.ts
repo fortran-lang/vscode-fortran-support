@@ -12,11 +12,11 @@ import { FortlsClient } from './lsp/client';
 import { FortranHoverProvider } from './features/hover-provider';
 import { FortranLintingProvider } from './features/linter-provider';
 import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
-import { Logger } from './services/logging';
+import { getConfigLogLevel, Logger } from './services/logging';
 import { WhatsNew } from './features/commands';
 
 // Make it global to catch errors when activation fails
-const logger = new Logger(vscode.window.createOutputChannel('Modern Fortran'));
+const logger = new Logger(vscode.window.createOutputChannel('Modern Fortran'), getConfigLogLevel());
 
 export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration(EXTENSION_ID);
@@ -35,6 +35,14 @@ export async function activate(context: vscode.ExtensionContext) {
   logger.info(`Hover set to: ${hoverType}`);
   logger.info(`Symbols set to: ${symbolsType}`);
 
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration(e => {
+      if (e.affectsConfiguration(`${EXTENSION_ID}.logging.level`)) {
+        // Leave config field empty to fetch the most updated config values
+        logger.setLogLevel(getConfigLogLevel());
+      }
+    })
+  );
   // Linter is always activated but will only lint if compiler !== Disabled
   const linter = new FortranLintingProvider(logger);
   linter.activate(context.subscriptions);

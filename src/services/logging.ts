@@ -1,4 +1,5 @@
-import { OutputChannel, window } from 'vscode';
+import { OutputChannel, window, workspace, WorkspaceConfiguration } from 'vscode';
+import { EXTENSION_ID } from '../lib/tools';
 
 export enum LogLevel {
   DEBUG = 0,
@@ -83,4 +84,16 @@ export class Logger {
     const title = new Date().toLocaleTimeString();
     this.channel.appendLine(`[${LogLevel[level]} - ${title}] ${message}`);
   }
+}
+
+/**
+ * Gets the `fortran.logging.level` option from the workspace settings and converts
+ * it a `LogLevel` enum value.
+ * @param config workspace configuration object
+ * @returns `LogLevel` enum value
+ */
+export function getConfigLogLevel(
+  config: WorkspaceConfiguration = workspace.getConfiguration(EXTENSION_ID)
+): LogLevel {
+  return LogLevel[config.get<string>('logging.level').toUpperCase() as keyof typeof LogLevel];
 }
