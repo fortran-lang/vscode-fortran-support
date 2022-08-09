@@ -10,5 +10,6 @@
   "fortran.fortls.directories": ["./**"],
   "fortran.fortls.excludeSuffixes": [".snap"],
   "fortran.fortls.excludeDirectories": [".vscode/"],
-  "fortran.fortls.notifyInit": true
+  "fortran.fortls.notifyInit": true,
+  "fortran.logging.level": "Debug"
 }

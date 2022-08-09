@@ -6,7 +6,7 @@ import * as which from 'which';
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import {
   FORMATTERS,
   EXTENSION_ID,
@@ -18,7 +18,7 @@ import {
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
   private readonly workspace = vscode.workspace.getConfiguration(EXTENSION_ID);
   private formatter: string | undefined;
-  constructor(private logger: LoggingService) {}
+  constructor(private logger: Logger) {}
 
   public async provideDocumentFormattingEdits(
     document: vscode.TextDocument,
@@ -32,7 +32,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     } else if (formatterName === 'findent') {
       return this.doFormatFindent(document);
     } else {
-      this.logger.logError('Cannot format document with formatter set to Disabled');
+      this.logger.error('[format] Cannot format document with formatter set to Disabled');
     }
 
     return undefined;
@@ -46,7 +46,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private async doFormatFprettify(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     // fprettify can only do FortranFreeFrom
     if (document.languageId !== 'FortranFreeForm') {
-      this.logger.logError(`fprettify can only format FortranFreeForm, change
+      this.logger.error(`[format] fprettify can only format FortranFreeForm, change
                             to findent for FortranFixedForm formatting`);
       return undefined;
     }
@@ -56,17 +56,17 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
-                                Attempting to install now.`);
+      this.logger.warn(`[format] ${formatterName} not found. Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     const args: string[] = ['--stdout', ...this.getFormatterArgs()];
+    this.logger.debug(`[format] fprettify args:`, args);
     const edits: vscode.TextEdit[] = [];
     const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
     edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.logInfo(`fprettify error output: ${stderr}`);
+    if (stderr) this.logger.error(`[format] fprettify error output: ${stderr}`);
     return edits;
   }
 
@@ -81,17 +81,17 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.logWarning(`Formatter: ${formatterName} not detected in your system.
-                                    Attempting to install now.`);
+      this.logger.warn(`[format] ${formatterName} not found! Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
       promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
     }
 
     const args: string[] = this.getFormatterArgs();
+    this.logger.debug(`[format] findent args:`, args);
     const edits: vscode.TextEdit[] = [];
     const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
     edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.logInfo(`findent error output: ${stderr}`);
+    if (stderr) this.logger.error(`[format] findent error output: ${stderr}`);
     return edits;
   }
 
@@ -107,7 +107,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     this.formatter = this.workspace.get('formatting.formatter', 'Disabled');
 
     if (!FORMATTERS.includes(this.formatter)) {
-      this.logger.logError(`Unsupported formatter: ${this.formatter}`);
+      this.logger.error(`[format] Unsupported formatter: ${this.formatter}`);
     }
     return this.formatter;
   }
@@ -130,7 +130,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private getFormatterPath(): string {
     const formatterPath: string = this.workspace.get('formatting.path', '');
     if (formatterPath !== '') {
-      this.logger.logInfo(`Formatter located in: ${formatterPath}`);
+      this.logger.info(`[format] Formatter located in: ${formatterPath}`);
     }
 
     return formatterPath;

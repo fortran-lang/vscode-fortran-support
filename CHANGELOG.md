@@ -7,8 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added option to set the verbosity of the Output Channel
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
+- Added increased logging messages in various parts of the extension
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
+
 ### Changed
 
+- Changed the way messages are logged and added `log` syntax highlighting
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
 - Removes duplicate diagnostic messages from the linter
   ([#598](https://github.com/fortran-lang/vscode-fortran-support/issues/598))
 

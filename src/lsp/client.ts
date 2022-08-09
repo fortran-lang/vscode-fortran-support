@@ -12,7 +12,7 @@ import {
   isFortran,
   getOuterMostWorkspaceFolder,
 } from '../lib/tools';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
 
 // The clients are non member variables of the class because they need to be
@@ -21,8 +21,8 @@ import { RestartLS } from '../features/commands';
 export const clients: Map<string, LanguageClient> = new Map();
 
 export class FortlsClient {
-  constructor(private logger: LoggingService, private context?: vscode.ExtensionContext) {
-    this.logger.logInfo('Fortran Language Server');
+  constructor(private logger: Logger, private context?: vscode.ExtensionContext) {
+    this.logger.debug('[lsp.client] Fortran Language Server -- constructor');
 
     // if context is present
     if (context !== undefined) {
@@ -85,6 +85,7 @@ export class FortlsClient {
 
     // Detect language server version and verify selected options
     this.version = this.getLSVersion(executablePath, args);
+    this.logger.debug(`[lsp.client] Language Server version: ${this.version}`);
     if (!this.version) return;
     const serverOptions: ServerOptions = {
       command: executablePath,
@@ -109,10 +110,10 @@ export class FortlsClient {
     if (!folder) {
       const fileRoot: string = path.dirname(document.uri.fsPath);
       if (clients.has(fileRoot)) return; // already registered
-      this.logger.logInfo(
-        'Initialising Language Server for file: ' +
-          `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
+      this.logger.info(
+        `[lsp.client] Initialising Language Server for file: ${document.uri.fsPath}`
       );
+      this.logger.info(`[lsp.client] Language Server arguments: ${args.join(' ')}`);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(fileRoot),
@@ -133,10 +134,10 @@ export class FortlsClient {
     if (!clients.has(folder.uri.toString())) {
       folder = getOuterMostWorkspaceFolder(folder);
       if (clients.has(folder.uri.toString())) return; // already registered
-      this.logger.logInfo(
-        'Initialising Language Server for workspace: ' +
-          `${document.uri.fsPath} with command-line options: ${args.join(', ')}`
+      this.logger.info(
+        `[lsp.client] Initialising Language Server for workspace: ${folder.uri.toString()}`
       );
+      this.logger.info(`[lsp.client] Language Server arguments: ${args.join(' ')}`);
       // Options to control the language client
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(folder.uri.fsPath),
@@ -243,6 +244,7 @@ export class FortlsClient {
       args.push(`--pp_defs=${JSON.stringify(pp_defs)}`);
     }
 
+    this.logger.debug(`[lsp.client] Language Server arguments:`, args);
     return args;
   }
 
@@ -259,6 +261,7 @@ export class FortlsClient {
   private getLSVersion(executablePath: string, args: string[]) {
     const results = spawnSync(executablePath, args.concat(['--version']));
     if (results.error) {
+      this.logger.error(`[lsp.client] Unable to launch LS to check version:`, results.error);
       const selected = window.showErrorMessage(
         'Modern Fortran Error starting fortls: Check that fortls is in your PATH or that "fortran.fortls.path" is pointing to a fortls binary.',
         'Settings',
@@ -275,6 +278,7 @@ export class FortlsClient {
       return null;
     }
     if (results.status !== 0) {
+      this.logger.error(`[lsp.client] Unable to verify input arguments with LS:`);
       const selected = window.showErrorMessage(
         'Error launching fortls: Please check that all selected options are supported by your language server version.',
         'Settings',
@@ -313,11 +317,12 @@ export class FortlsClient {
           if (opt === 'Install') {
             const install = spawnSync('pip', ['install', '--user', '--upgrade', LS_NAME]);
             if (install.error) {
+              this.logger.error(`[lsp.client] Unable to install fortls:`, install.error);
               window.showErrorMessage('Had trouble installing fortls, please install manually');
               fortlsDisabled = true;
             }
             if (install.stdout) {
-              this.logger.logInfo(install.stdout.toString());
+              this.logger.info(`[lsp.client] ${install.stdout.toString()}`);
               fortlsDisabled = false;
             }
           } else if (opt == 'Disable') {
@@ -336,9 +341,10 @@ export class FortlsClient {
    * Restart the language server
    */
   private async restartLS(): Promise<void> {
-    this.logger.logInfo('Restarting language server...');
+    this.logger.info('[lsp.client] Restarting language server...');
     vscode.window.showInformationMessage('Restarting language server...');
     await this.deactivate();
     await this.activate();
+    this.logger.info('[lsp.client] Language server restarted');
   }
 }

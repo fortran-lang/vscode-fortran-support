@@ -2,7 +2,7 @@ import * as os from 'os';
 import * as vscode from 'vscode';
 import * as assert from 'assert';
 import * as cp from 'child_process';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import { isString, isArrayOfString } from './helper';
 
 export const LS_NAME = 'fortls';
@@ -106,7 +106,7 @@ export async function promptForMissingTool(
   msg: string,
   toolType: string,
   opts: string[],
-  logger?: LoggingService,
+  logger?: Logger,
   action?: () => void
 ) {
   const items = ['Install'];
@@ -118,14 +118,14 @@ export async function promptForMissingTool(
           break;
 
         case 'VSExt':
-          logger.logInfo(`Installing VS Marketplace Extension with id: ${tool}`);
+          logger.info(`Installing VS Marketplace Extension with id: ${tool}`);
           vscode.commands.executeCommand('extension.open', tool);
           vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
-          logger.logInfo(`Extension ${tool} successfully installed`);
+          logger.info(`Extension ${tool} successfully installed`);
           break;
 
         default:
-          logger.logError(`Failed to install tool: ${tool}`);
+          logger.error(`Failed to install tool: ${tool}`);
           vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
           break;
       }
@@ -142,22 +142,22 @@ export async function promptForMissingTool(
  * @param pyPackage name of python package in PyPi
  * @param logger `optional` logging channel for output
  */
-export function installPythonTool(pyPackage: string, logger?: LoggingService) {
+export function installPythonTool(pyPackage: string, logger?: Logger) {
   const installProcess = cp.spawnSync(
     'pip',
     'install --user --upgrade '.concat(pyPackage).split(' ')
   );
   if (installProcess.error) {
-    logger.logError(
+    logger.error(
       `Python package ${pyPackage} failed to install with code: ${installProcess.error}`
     );
   }
   if (installProcess.stdout) {
     const sep = '-'.repeat(80);
-    logger.logInfo(
+    logger.info(
       `pip install --user --upgrade ${pyPackage}:\n${sep}\n${installProcess.stdout}${sep}`
     );
-    logger.logInfo(`pip install was successful`);
+    logger.info(`pip install was successful`);
   }
 }
 
