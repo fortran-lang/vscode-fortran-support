@@ -11,6 +11,7 @@ import {
   LS_NAME,
   isFortran,
   getOuterMostWorkspaceFolder,
+  pipInstall,
 } from '../lib/tools';
 import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
@@ -313,18 +314,17 @@ export class FortlsClient {
       let fortlsDisabled = false;
       if (results.error) {
         const selection = window.showInformationMessage(msg, 'Install', 'Disable');
-        selection.then(opt => {
+        selection.then(async opt => {
           if (opt === 'Install') {
-            const install = spawnSync('pip', ['install', '--user', '--upgrade', LS_NAME]);
-            if (install.error) {
-              this.logger.error(`[lsp.client] Unable to install fortls:`, install.error);
-              window.showErrorMessage('Had trouble installing fortls, please install manually');
-              fortlsDisabled = true;
-            }
-            if (install.stdout) {
-              this.logger.info(`[lsp.client] ${install.stdout.toString()}`);
-              fortlsDisabled = false;
-            }
+            await pipInstall(LS_NAME)
+              .then(msg => {
+                window.showInformationMessage(msg);
+                fortlsDisabled = false;
+              })
+              .catch(msg => {
+                window.showErrorMessage(msg);
+                fortlsDisabled = true;
+              });
           } else if (opt == 'Disable') {
             config.update('fortls.disabled', true);
             fortlsDisabled = true;

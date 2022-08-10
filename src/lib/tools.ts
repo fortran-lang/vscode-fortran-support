@@ -112,22 +112,22 @@ export async function promptForMissingTool(
   const items = ['Install'];
   return vscode.window.showInformationMessage(msg, ...opts).then(selected => {
     if (selected === 'Install') {
-      switch (toolType) {
-        case 'Python':
-          installPythonTool(tool, logger);
-          break;
-
-        case 'VSExt':
-          logger.info(`Installing VS Marketplace Extension with id: ${tool}`);
-          vscode.commands.executeCommand('extension.open', tool);
-          vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
-          logger.info(`Extension ${tool} successfully installed`);
-          break;
-
-        default:
-          logger.error(`Failed to install tool: ${tool}`);
-          vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
-          break;
+      if (toolType === 'Python') {
+        pipInstall(tool)
+          .then(msg => {
+            vscode.window.showInformationMessage(msg);
+          })
+          .catch(msg => {
+            vscode.window.showErrorMessage(msg);
+          });
+      } else if (toolType === 'VSExt') {
+        if (logger) logger.info(`Installing VS Marketplace Extension with id: ${tool}`);
+        vscode.commands.executeCommand('extension.open', tool);
+        vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
+        if (logger) logger.info(`Extension ${tool} successfully installed`);
+      } else {
+        if (logger) logger.error(`Failed to install tool: ${tool}`);
+        vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
       }
     } else if (selected === "Don't Show Again") {
       action();
@@ -140,25 +140,32 @@ export async function promptForMissingTool(
  * Does not explicitly check if `pip` is installed.
  *
  * @param pyPackage name of python package in PyPi
- * @param logger `optional` logging channel for output
  */
-export function installPythonTool(pyPackage: string, logger?: Logger) {
-  const installProcess = cp.spawnSync(
-    'pip',
-    'install --user --upgrade '.concat(pyPackage).split(' ')
+export async function pipInstall(pyPackage: string): Promise<string> {
+  const py = 'python3'; // Fetches the top-most python in the Shell
+  const args = ['-m', 'pip', 'install', '--user', '--upgrade', pyPackage];
+  return await shellTask(py, args, `pip: ${pyPackage}`);
+}
+
+export async function shellTask(command: string, args: string[], name: string): Promise<string> {
+  const task = new vscode.Task(
+    { type: 'shell' },
+    vscode.TaskScope.Workspace,
+    name,
+    'Modern Fortran',
+    new vscode.ShellExecution(command, args)
   );
-  if (installProcess.error) {
-    logger.error(
-      `Python package ${pyPackage} failed to install with code: ${installProcess.error}`
-    );
-  }
-  if (installProcess.stdout) {
-    const sep = '-'.repeat(80);
-    logger.info(
-      `pip install --user --upgrade ${pyPackage}:\n${sep}\n${installProcess.stdout}${sep}`
-    );
-    logger.info(`pip install was successful`);
-  }
+  // Temporay fix to https://github.com/microsoft/vscode/issues/157756
+  (<vscode.Task>task).definition = { type: 'shell', command: command };
+  const execution = await vscode.tasks.executeTask(task);
+  return await new Promise<string>((resolve, reject) => {
+    const disposable = vscode.tasks.onDidEndTask(e => {
+      if (e.execution === execution) {
+        disposable.dispose();
+        resolve(`${name}: shell task completed successfully.`);
+      } else reject(`${name}: shell task failed.`);
+    });
+  });
 }
 
 /**
