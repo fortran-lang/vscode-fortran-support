@@ -46,8 +46,9 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private async doFormatFprettify(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     // fprettify can only do FortranFreeFrom
     if (document.languageId !== 'FortranFreeForm') {
-      this.logger.error(`[format] fprettify can only format FortranFreeForm, change
-                            to findent for FortranFixedForm formatting`);
+      this.logger.error(
+        `[format] fprettify can only format FortranFreeForm, change to findent for FortranFixedForm formatting`
+      );
       return undefined;
     }
 
