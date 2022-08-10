@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed packaging download to use `vscode.Tasks`
+  ([#608](https://github.com/fortran-lang/vscode-fortran-support/issues/608))
 - Renamed the default repository branch from `master` to `main`
   ([#590](https://github.com/fortran-lang/vscode-fortran-support/issues/590))
 - Changed the way messages are logged and added `log` syntax highlighting
