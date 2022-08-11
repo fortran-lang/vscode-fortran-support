@@ -596,11 +596,14 @@ export class FortranLintingProvider {
     }
     const args: string[] = ['--line-numbering'];
 
-    // Pass any include paths to search for files to the fypp
-    // Include paths can be fetched from the resolved cache
-    const includePaths = this.getIncludeParams(this.cache['globIncPaths']);
+    // Include paths to fypp, different from main linters include paths
+    // fypp includes typically pointing to folders in a projects source tree.
+    // While the -I options, you pass to a compiler in order to look up mod-files,
+    // are typically pointing to folders in the projects build tree.
+    // TODO: add variable and glob resolution
+    const includePaths = config.get<string[]>(`includes`);
     if (includePaths.length > 0) {
-      args.push(...includePaths);
+      args.push(...this.getIncludeParams(includePaths));
     }
 
     // Set the output to Fixed Format if the source is Fixed
