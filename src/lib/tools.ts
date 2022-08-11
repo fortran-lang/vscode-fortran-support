@@ -110,16 +110,15 @@ export async function promptForMissingTool(
   action?: () => void
 ) {
   const items = ['Install'];
-  return vscode.window.showInformationMessage(msg, ...opts).then(selected => {
+  return vscode.window.showInformationMessage(msg, ...opts).then(async selected => {
     if (selected === 'Install') {
       if (toolType === 'Python') {
-        pipInstall(tool)
-          .then(msg => {
-            vscode.window.showInformationMessage(msg);
-          })
-          .catch(msg => {
-            vscode.window.showErrorMessage(msg);
-          });
+        try {
+          const inst_msg = await pipInstall(tool);
+          vscode.window.showInformationMessage(inst_msg);
+        } catch (error) {
+          vscode.window.showErrorMessage(error);
+        }
       } else if (toolType === 'VSExt') {
         if (logger) logger.info(`Installing VS Marketplace Extension with id: ${tool}`);
         vscode.commands.executeCommand('extension.open', tool);
