@@ -602,18 +602,9 @@ export class FortranLintingProvider {
     if (includePaths.length > 0) {
       args.push(...includePaths);
     }
-    // TODO: includes. Should we implement them too?
-
-    // Pass any potential Python modules to fypp
-    const pythonModules: string[] = config.get('pythonModules');
-    if (pythonModules.length > 0) {
-      args.push(...pythonModules.map(pymod => `--module-dir=${pymod}`));
-    }
 
     // Set the output to Fixed Format if the source is Fixed
     if (!isFreeForm(document)) args.push('--fixed-format');
-
-    // TODO: moduleDir are they needed?
 
     const fypp_defs: { [name: string]: string } = config.get('definitions');
     if (Object.keys(fypp_defs).length > 0) {

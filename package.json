@@ -274,24 +274,6 @@
             "markdownDescription": "Include directories passed to `fypp`.",
             "order": 80
           },
-          "fortran.linter.fypp.pythonModules": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "default": [],
-            "markdownDescription": "Import Python modules at startup (import only trustworthy modules as they have access to an **unrestricted** Python environment!).",
-            "order": 90
-          },
-          "fortran.linter.fypp.moduleDir": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "default": [],
-            "markdownDescription": "Directory to be searched for user imported modules before looking up standard locations in `sys.path`.",
-            "order": 100
-          },
           "fortran.linter.fypp.lineNumberingMode": {
             "type": "string",
             "default": "full",
