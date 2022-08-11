@@ -1,9 +1,9 @@
 import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import intrinsics from './intrinsics.json';
 
 export class FortranHoverProvider {
-  constructor(private loggingService: LoggingService) {}
+  constructor(private logger: Logger) {}
   public provideHover(
     document: TextDocument,
     position: Position,

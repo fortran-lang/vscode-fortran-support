@@ -15,5 +15,6 @@
   "fortran.linter.fypp.definitions": {
     "DEBUG": "1",
     "VAL": ""
-  }
+  },
+  "fortran.logging.level": "Debug"
 }

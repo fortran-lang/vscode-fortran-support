@@ -182,6 +182,19 @@
             ],
             "markdownDescription": "Specify the word case to use when suggesting autocomplete options.",
             "order": 60
+          },
+          "fortran.logging.level": {
+            "type": "string",
+            "default": "Info",
+            "enum": [
+              "None",
+              "Error",
+              "Warn",
+              "Info",
+              "Debug"
+            ],
+            "markdownDescription": "The log level for the extension.",
+            "order": 70
           }
         }
       },
@@ -615,12 +628,12 @@
     "@types/node": "^16.11.39",
     "@types/vscode": "^1.63.0",
     "@types/which": "^2.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.21.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsdoc": "^39.3.4",
+    "eslint-plugin-jsdoc": "^39.3.6",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",

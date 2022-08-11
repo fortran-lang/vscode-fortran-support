@@ -5,7 +5,7 @@ import * as cp from 'child_process';
 import which from 'which';
 
 import * as vscode from 'vscode';
-import { LoggingService } from '../services/logging-service';
+import { Logger } from '../services/logging';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
@@ -19,7 +19,7 @@ import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
 
 export class FortranLintingProvider {
-  constructor(private logger: LoggingService = new LoggingService()) {}
+  constructor(private logger: Logger = new Logger()) {}
 
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
@@ -94,6 +94,7 @@ export class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
+    this.logger.info(`[lint] Compiler query command line: ${command} ${argList.join(' ')}`);
     const childProcess = cp.spawn(command, argList, {
       cwd: filePath,
       env: env,
@@ -115,11 +116,13 @@ export class FortranLintingProvider {
         compilerOutput += data;
       });
       childProcess.stderr.on('end', () => {
+        this.logger.debug(`[lint] Compiler output:\n${compilerOutput}`);
         let diagnostics = this.getLinterResults(compilerOutput);
         diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
         this.diagnosticCollection.set(textDocument.uri, diagnostics);
       });
       childProcess.on('error', err => {
+        this.logger.error(`[lint] Compiler error:`, err);
         console.log(`ERROR: ${err}`);
       });
     } else {
@@ -188,7 +191,7 @@ export class FortranLintingProvider {
     }
 
     modout = resolveVariables(modout);
-    this.logger.logInfo(`Linter.moduleOutput: ${modFlag} ${modout}`);
+    this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
     return [modFlag, modout];
   }
 
@@ -216,7 +219,7 @@ export class FortranLintingProvider {
     // Update our cache input
     this.cache['includePaths'] = includePaths;
     // Output the original include paths
-    this.logger.logInfo(`Linter.include:\n${includePaths.join('\r\n')}`);
+    if (includePaths.length > 0) this.logger.debug(`[lint] include:`, includePaths);
     // Resolve internal variables and expand glob patterns
     const resIncludePaths = includePaths.map(e => resolveVariables(e));
     // fast-glob cannot work with Windows paths
@@ -233,12 +236,12 @@ export class FortranLintingProvider {
       // Try to recover from fast-glob failing due to EACCES using slower more
       // robust glob.
     } catch (eacces) {
-      this.logger.logWarning(`You lack read permissions for an include directory
+      this.logger.warn(`[lint] You lack read permissions for an include directory
           or more likely a glob match from the input 'includePaths' list. This can happen when
           using overly broad root level glob patters e.g. /usr/lib/** .
           No reason to worry. I will attempt to recover. 
           You should consider adjusting your 'includePaths' if linting performance is slow.`);
-      this.logger.logWarning(`${eacces.message}`);
+      this.logger.warn(`[lint] ${eacces.message}`);
       try {
         const globIncPaths: string[] = [];
         for (const i of resIncludePaths) {
@@ -249,7 +252,7 @@ export class FortranLintingProvider {
         return globIncPaths;
         // if we failed again then our includes are somehow wrong. Abort
       } catch (error) {
-        this.logger.logError(`Failed to recover: ${error}`);
+        this.logger.error(`[lint] Include path glob resolution failed to recover: ${error}`);
       }
     }
   }
@@ -264,7 +267,7 @@ export class FortranLintingProvider {
     this.compiler = config.get<string>('compiler', 'gfortran');
     this.compilerPath = config.get<string>('compilerPath', '');
     if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
-    this.logger.logInfo(`using linter: ${this.compiler} located in: ${this.compilerPath}`);
+    this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${this.compilerPath}"`);
     return this.compilerPath;
   }
 
@@ -308,7 +311,7 @@ export class FortranLintingProvider {
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
     }
-    this.logger.logInfo(`Linter.arguments:\n${args.join('\r\n')}`);
+    if (args.length > 0) this.logger.debug(`[lint] arguments:`, args);
 
     // Resolve internal variables but do not apply glob pattern matching
     return args.map(e => resolveVariables(e));
@@ -561,6 +564,8 @@ export class FortranLintingProvider {
    * Regenerate the cache for the include files paths of the linter
    */
   private rescanLinter() {
+    this.logger.debug(`[lint] Resetting linter include paths cache`);
+    this.logger.debug(`[lint] Current linter include paths cache:`, this.cache['includePaths']);
     this.cache['includePaths'] = [];
     this.getIncludePaths();
   }
@@ -585,9 +590,9 @@ export class FortranLintingProvider {
 
     // Check if the fypp is installed
     if (!which.sync(fypp, { nothrow: true })) {
-      this.logger.logWarning(`fypp not detected in your system. Attempting to install now.`);
+      this.logger.warn(`[lint] fypp not detected in your system. Attempting to install now.`);
       const msg = `Installing fypp through pip with --user option`;
-      promptForMissingTool('fypp', msg, 'Python', ['Install'], this.logger);
+      promptForMissingTool('fypp', msg, 'Python', ['Install']);
     }
     const args: string[] = ['--line-numbering'];
 

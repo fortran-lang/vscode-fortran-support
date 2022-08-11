@@ -7,10 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added option to set the verbosity of the Output Channel
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
+- Added increased logging messages in various parts of the extension
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
+
 ### Changed
 
+- Changed packaging download to use `vscode.Tasks`
+  ([#608](https://github.com/fortran-lang/vscode-fortran-support/issues/608))
+- Renamed the default repository branch from `master` to `main`
+  ([#590](https://github.com/fortran-lang/vscode-fortran-support/issues/590))
+- Changed the way messages are logged and added `log` syntax highlighting
+  ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
 - Removes duplicate diagnostic messages from the linter
   ([#598](https://github.com/fortran-lang/vscode-fortran-support/issues/598))
+
+### Fixed
+
+- Fixed `npm run watch-dev` not syncing changes to spawned Extension Dev Host
+  ([#602](https://github.com/fortran-lang/vscode-fortran-support/issues/602))
 
 ## [3.2.0]
 

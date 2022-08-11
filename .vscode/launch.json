@@ -10,7 +10,7 @@
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "preLaunchTask": "npm: compile-dev"
+      "preLaunchTask": "${defaultBuildTask}"
     },
     {
       "name": "Launch Tests",
