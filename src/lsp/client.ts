@@ -311,25 +311,26 @@ export class FortlsClient {
     const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
       For a full list of features the language server adds see: https://github.com/gnikit/fortls`;
     return new Promise<boolean>(resolve => {
-      let fortlsDisabled = false;
       if (results.error) {
         const selection = window.showInformationMessage(msg, 'Install', 'Disable');
         selection.then(async opt => {
           if (opt === 'Install') {
-            await pipInstall(LS_NAME)
-              .then(msg => {
-                window.showInformationMessage(msg);
-                fortlsDisabled = false;
-              })
-              .catch(msg => {
-                window.showErrorMessage(msg);
-                fortlsDisabled = true;
-              });
+            try {
+              this.logger.info(`[lsp.client] Downloading ${LS_NAME}`);
+              const msg = await pipInstall(LS_NAME);
+              window.showInformationMessage(msg);
+              this.logger.info(`[lsp.client] ${LS_NAME} installed`);
+              resolve(false);
+            } catch (error) {
+              this.logger.error(`[lsp.client] Error installing ${LS_NAME}: ${error}`);
+              window.showErrorMessage(error);
+              resolve(true);
+            }
           } else if (opt == 'Disable') {
             config.update('fortls.disabled', true);
-            fortlsDisabled = true;
+            this.logger.info(`[lsp.client] ${LS_NAME} disabled in settings`);
+            resolve(true);
           }
-          resolve(fortlsDisabled);
         });
       } else {
         resolve(false);
