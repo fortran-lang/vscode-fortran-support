@@ -2,7 +2,6 @@ import * as os from 'os';
 import * as vscode from 'vscode';
 import * as assert from 'assert';
 import * as cp from 'child_process';
-import { Logger } from '../services/logging';
 import { isString, isArrayOfString } from './helper';
 
 export const LS_NAME = 'fortls';
@@ -98,7 +97,6 @@ export function getOuterMostWorkspaceFolder(
  * @param msg message for installing said package
  * @param toolType type of tool, supports `Python` (through pip) and 'VSExt'
  * @param opts options for the prompt. "Install" and "Don't Show Again" are coded
- * @param logger log channel output
  * @param action a void function for an action to perform when "Don't Show Again" is pressed
  */
 export async function promptForMissingTool(
@@ -106,7 +104,6 @@ export async function promptForMissingTool(
   msg: string,
   toolType: string,
   opts: string[],
-  logger?: Logger,
   action?: () => void
 ) {
   const items = ['Install'];
@@ -120,12 +117,10 @@ export async function promptForMissingTool(
           vscode.window.showErrorMessage(error);
         }
       } else if (toolType === 'VSExt') {
-        if (logger) logger.info(`Installing VS Marketplace Extension with id: ${tool}`);
+        // Installing VS Marketplace Extension
         vscode.commands.executeCommand('extension.open', tool);
         vscode.commands.executeCommand('workbench.extensions.installExtension', tool);
-        if (logger) logger.info(`Extension ${tool} successfully installed`);
       } else {
-        if (logger) logger.error(`Failed to install tool: ${tool}`);
         vscode.window.showErrorMessage(`Failed to install tool: ${tool}`);
       }
     } else if (selected === "Don't Show Again") {

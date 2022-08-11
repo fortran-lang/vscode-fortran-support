@@ -59,7 +59,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     if (!which.sync(formatter, { nothrow: true })) {
       this.logger.warn(`[format] ${formatterName} not found. Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
+      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
     }
 
     const args: string[] = ['--stdout', ...this.getFormatterArgs()];
@@ -84,7 +84,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     if (!which.sync(formatter, { nothrow: true })) {
       this.logger.warn(`[format] ${formatterName} not found! Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
+      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
     }
 
     const args: string[] = this.getFormatterArgs();
