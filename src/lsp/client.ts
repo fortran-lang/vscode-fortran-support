@@ -11,6 +11,7 @@ import {
   LS_NAME,
   isFortran,
   getOuterMostWorkspaceFolder,
+  pipInstall,
 } from '../lib/tools';
 import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
@@ -310,26 +311,26 @@ export class FortlsClient {
     const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
       For a full list of features the language server adds see: https://github.com/gnikit/fortls`;
     return new Promise<boolean>(resolve => {
-      let fortlsDisabled = false;
       if (results.error) {
         const selection = window.showInformationMessage(msg, 'Install', 'Disable');
-        selection.then(opt => {
+        selection.then(async opt => {
           if (opt === 'Install') {
-            const install = spawnSync('pip', ['install', '--user', '--upgrade', LS_NAME]);
-            if (install.error) {
-              this.logger.error(`[lsp.client] Unable to install fortls:`, install.error);
-              window.showErrorMessage('Had trouble installing fortls, please install manually');
-              fortlsDisabled = true;
-            }
-            if (install.stdout) {
-              this.logger.info(`[lsp.client] ${install.stdout.toString()}`);
-              fortlsDisabled = false;
+            try {
+              this.logger.info(`[lsp.client] Downloading ${LS_NAME}`);
+              const msg = await pipInstall(LS_NAME);
+              window.showInformationMessage(msg);
+              this.logger.info(`[lsp.client] ${LS_NAME} installed`);
+              resolve(false);
+            } catch (error) {
+              this.logger.error(`[lsp.client] Error installing ${LS_NAME}: ${error}`);
+              window.showErrorMessage(error);
+              resolve(true);
             }
           } else if (opt == 'Disable') {
             config.update('fortls.disabled', true);
-            fortlsDisabled = true;
+            this.logger.info(`[lsp.client] ${LS_NAME} disabled in settings`);
+            resolve(true);
           }
-          resolve(fortlsDisabled);
         });
       } else {
         resolve(false);

@@ -46,8 +46,9 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
   private async doFormatFprettify(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     // fprettify can only do FortranFreeFrom
     if (document.languageId !== 'FortranFreeForm') {
-      this.logger.error(`[format] fprettify can only format FortranFreeForm, change
-                            to findent for FortranFixedForm formatting`);
+      this.logger.error(
+        `[format] fprettify can only format FortranFreeForm, change to findent for FortranFixedForm formatting`
+      );
       return undefined;
     }
 
@@ -58,7 +59,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     if (!which.sync(formatter, { nothrow: true })) {
       this.logger.warn(`[format] ${formatterName} not found. Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
+      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
     }
 
     const args: string[] = ['--stdout', ...this.getFormatterArgs()];
@@ -83,7 +84,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     if (!which.sync(formatter, { nothrow: true })) {
       this.logger.warn(`[format] ${formatterName} not found! Attempting to install now.`);
       const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install'], this.logger);
+      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
     }
 
     const args: string[] = this.getFormatterArgs();
