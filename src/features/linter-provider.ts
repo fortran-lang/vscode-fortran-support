@@ -208,7 +208,6 @@ export class FortranLintingProvider {
 
     // Check if we can use the cached results for the include directories no
     // need to evaluate the glob patterns everytime we call the linter
-    // TODO: register command that forces re-linting
     // Not sure what the best approach for this one is?
     // Should I add a watcher to all the files under globIncPaths?
     // Should I add a watcher on the files under the workspace?
