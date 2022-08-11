@@ -159,11 +159,14 @@ export async function shellTask(command: string, args: string[], name: string): 
   (<vscode.Task>task).definition = { type: 'shell', command: command };
   const execution = await vscode.tasks.executeTask(task);
   return await new Promise<string>((resolve, reject) => {
-    const disposable = vscode.tasks.onDidEndTask(e => {
+    const disposable = vscode.tasks.onDidEndTaskProcess(e => {
       if (e.execution === execution) {
         disposable.dispose();
+        if (e.exitCode !== 0) {
+          reject(`ERROR: ${e.execution.task.name} failed with code ${e.exitCode}`);
+        }
         resolve(`${name}: shell task completed successfully.`);
-      } else reject(`${name}: shell task failed.`);
+      }
     });
   });
 }
