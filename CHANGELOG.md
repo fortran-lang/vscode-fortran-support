@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed how caching is performed in the linter; generalised code and improved
+  performance of the cache
+  ([#611](https://github.com/fortran-lang/vscode-fortran-support/pull/611))
 - Changed packaging download to use `vscode.Tasks`
   ([#608](https://github.com/fortran-lang/vscode-fortran-support/issues/608))
 - Renamed the default repository branch from `master` to `main`
