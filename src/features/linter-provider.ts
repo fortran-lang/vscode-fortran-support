@@ -565,8 +565,10 @@ export class FortranLintingProvider {
     const config = vscode.workspace.getConfiguration(`${EXTENSION_ID}.linter.fypp`);
     if (!config.get('enabled')) return undefined;
     // FIXME: currently only enabled for gfortran
-    if (this.compiler !== 'gfortran') return undefined;
-
+    if (this.compiler !== 'gfortran') {
+      this.logger.warn(`[lint] fypp currently only supports gfortran.`);
+      return undefined;
+    }
     let fypp: string = config.get('fypp.path', 'fypp');
     fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
 
