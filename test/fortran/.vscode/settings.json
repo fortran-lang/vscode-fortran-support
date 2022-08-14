@@ -1,21 +1,22 @@
 {
+  "fortran.logging.level": "Debug",
+  "fortran.linter.includePaths": ["${workspaceFolder}/lint/**"],
+  "fortran.linter.fypp.enabled": true,
+  "fortran.linter.fypp.includes": ["${workspaceFolder}/fypp/**"],
+  "fortran.linter.fypp.definitions": {
+    "DEBUG": "1",
+    "VAL": ""
+  },
   "fortran.fortls.disableAutoupdate": true,
   "fortran.fortls.preprocessor.definitions": {
     "HAVE_ZOLTAN": "",
     "PetscInt": "integer(kind=selected_int_kind(5))"
   },
-  "fortran.linter.fypp.enabled": true,
-  "fortran.linter.includePaths": ["${workspaceFolder}/lint/**"],
   "fortran.fortls.preprocessor.directories": ["include", "val"],
   "fortran.fortls.preprocessor.suffixes": [".fypp", ".f90"],
   "fortran.fortls.suffixes": [".FFF", ".F90-2018"],
   "fortran.fortls.directories": ["./**"],
   "fortran.fortls.excludeSuffixes": [".snap"],
   "fortran.fortls.excludeDirectories": [".vscode/"],
-  "fortran.fortls.notifyInit": true,
-  "fortran.linter.fypp.definitions": {
-    "DEBUG": "1",
-    "VAL": ""
-  },
-  "fortran.logging.level": "Debug"
+  "fortran.fortls.notifyInit": true
 }
