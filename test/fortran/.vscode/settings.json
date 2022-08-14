@@ -5,6 +5,7 @@
     "PetscInt": "integer(kind=selected_int_kind(5))"
   },
   "fortran.linter.fypp.enabled": true,
+  "fortran.linter.includePaths": ["${workspaceFolder}/lint/**"],
   "fortran.fortls.preprocessor.directories": ["include", "val"],
   "fortran.fortls.preprocessor.suffixes": [".fypp", ".f90"],
   "fortran.fortls.suffixes": [".FFF", ".F90-2018"],

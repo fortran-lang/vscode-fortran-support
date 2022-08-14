@@ -13,10 +13,9 @@ import {
   promptForMissingTool,
   isFreeForm,
 } from '../lib/tools';
-import * as fg from 'fast-glob';
-import { glob } from 'glob';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
+import { GlobPaths } from '../lib/glob-paths';
 
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {}
@@ -24,7 +23,7 @@ export class FortranLintingProvider {
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
   private compilerPath: string;
-  private cache = { includePaths: [''], globIncPaths: [''] };
+  private pathCache = new Map<string, GlobPaths>();
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -142,7 +141,10 @@ export class FortranLintingProvider {
       ...this.getLinterExtraArgs(this.compiler),
       ...this.getModOutputDir(this.compiler),
     ];
-    const includePaths = this.getIncludePaths();
+    const opt = 'linter.includePaths';
+    const includePaths = this.getGlobPathsFromSettings(opt);
+    this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
+    this.logger.debug(`[lint] resolved paths:`, this.pathCache.get(opt).paths);
 
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
@@ -200,60 +202,38 @@ export class FortranLintingProvider {
    * for the `linter.includePaths` option. The results are stored in a cache
    * to improve performance
    *
+   * @param opt String representing a VS Code setting e.g. `linter.includePaths`
+   *
    * @returns String Array of directories
    */
-  private getIncludePaths(): string[] {
-    const config = vscode.workspace.getConfiguration('fortran');
-    let includePaths: string[] = config.get('linter.includePaths', []);
-
-    // Check if we can use the cached results for the include directories no
-    // need to evaluate the glob patterns everytime we call the linter
-    // Not sure what the best approach for this one is?
-    // Should I add a watcher to all the files under globIncPaths?
-    // Should I add a watcher on the files under the workspace?
-    if (arraysEqual(includePaths, this.cache['includePaths'])) {
-      return this.cache['globIncPaths'];
-    }
-
-    // Update our cache input
-    this.cache['includePaths'] = includePaths;
-    // Output the original include paths
-    if (includePaths.length > 0) this.logger.debug(`[lint] include:`, includePaths);
-    // Resolve internal variables and expand glob patterns
-    const resIncludePaths = includePaths.map(e => resolveVariables(e));
-    // fast-glob cannot work with Windows paths
-    includePaths = includePaths.map(e => e.replace('/\\/g', '/'));
-    // This needs to be after the resolvevariables since {} are used in globs
-    try {
-      const globIncPaths: string[] = fg.sync(resIncludePaths, {
-        onlyDirectories: true,
-        suppressErrors: false,
-      });
-      // Update values in cache
-      this.cache['globIncPaths'] = globIncPaths;
-      return globIncPaths;
-      // Try to recover from fast-glob failing due to EACCES using slower more
-      // robust glob.
-    } catch (eacces) {
-      this.logger.warn(`[lint] You lack read permissions for an include directory
-          or more likely a glob match from the input 'includePaths' list. This can happen when
-          using overly broad root level glob patters e.g. /usr/lib/** .
-          No reason to worry. I will attempt to recover. 
-          You should consider adjusting your 'includePaths' if linting performance is slow.`);
-      this.logger.warn(`[lint] ${eacces.message}`);
+  private getGlobPathsFromSettings(opt: string): string[] {
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    const globPaths: string[] = config.get(opt);
+    // Initialise cache key and value if vscode option is not present
+    if (!this.pathCache.has(opt)) {
+      this.logger.debug(`[lint] Initialising cache for ${opt}`);
       try {
-        const globIncPaths: string[] = [];
-        for (const i of resIncludePaths) {
-          // use '/' to match only directories and not files
-          globIncPaths.push(...glob.sync(i + '/', { strict: false }));
-        }
-        this.cache['globIncPaths'] = globIncPaths;
-        return globIncPaths;
-        // if we failed again then our includes are somehow wrong. Abort
+        this.pathCache.set(opt, new GlobPaths(globPaths));
       } catch (error) {
-        this.logger.error(`[lint] Include path glob resolution failed to recover: ${error}`);
+        const msg = `[lint] Error initialising cache for ${opt}`;
+        this.logger.error(msg, error);
+        vscode.window.showErrorMessage(`${msg}: ${error}`);
       }
     }
+    // Check if cache is valid, and if so return cached value
+    if (arraysEqual(globPaths, this.pathCache.get(opt).globs)) {
+      return this.pathCache.get(opt).paths;
+    }
+    // Update cache and return new values
+    try {
+      this.pathCache.get(opt).update(globPaths);
+    } catch (error) {
+      const msg = `[lint] Error initialising cache for ${opt}`;
+      this.logger.error(msg, error);
+      vscode.window.showErrorMessage(`${msg}: ${error}`);
+    }
+    this.logger.debug(`[lint] ${opt} changed, updating cache`);
+    return this.pathCache.get(opt).paths;
   }
 
   /**
@@ -563,10 +543,13 @@ export class FortranLintingProvider {
    * Regenerate the cache for the include files paths of the linter
    */
   private rescanLinter() {
+    const opt = 'linter.includePaths';
     this.logger.debug(`[lint] Resetting linter include paths cache`);
-    this.logger.debug(`[lint] Current linter include paths cache:`, this.cache['includePaths']);
-    this.cache['includePaths'] = [];
-    this.getIncludePaths();
+    this.logger.debug(`[lint] Current linter include paths cache:`, this.pathCache.get(opt).globs);
+    this.pathCache.set(opt, new GlobPaths());
+    this.getGlobPathsFromSettings(opt);
+    this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
+    this.logger.debug(`[lint] resolved paths:`, this.pathCache.get(opt).paths);
   }
 
   /**

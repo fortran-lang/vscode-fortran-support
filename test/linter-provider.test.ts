@@ -1,8 +1,70 @@
 import * as path from 'path';
 import { strictEqual, deepStrictEqual } from 'assert';
-import { Diagnostic, DiagnosticSeverity, Range, Position, window, workspace, Uri } from 'vscode';
+import {
+  Diagnostic,
+  DiagnosticSeverity,
+  Range,
+  Position,
+  window,
+  workspace,
+  Uri,
+  TextDocument,
+} from 'vscode';
+import * as fg from 'fast-glob';
+import * as cp from 'child_process';
+
 import { FortranLintingProvider } from '../src/features/linter-provider';
 import { delay } from '../src/lib/helper';
+import { EXTENSION_ID } from '../src/lib/tools';
+
+suite('Linter integration', () => {
+  let doc: TextDocument;
+  const linter = new FortranLintingProvider();
+  const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/test1.f90'));
+  const root = path.resolve(__dirname, '../../test/fortran/');
+  const config = workspace.getConfiguration(EXTENSION_ID);
+  const oldVals = config.get<string[]>('linter.includePaths');
+
+  suiteSetup(async function (): Promise<void> {
+    doc = await workspace.openTextDocument(fileUri);
+    await window.showTextDocument(doc);
+  });
+
+  test('Include path globs & internal variable resolution', async () => {
+    const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
+    const refs: string[] = fg.sync(path.dirname(fileUri.path) + '/**', { onlyDirectories: true });
+    deepStrictEqual(paths, refs);
+  });
+
+  test('Path cache contains expected values', async () => {
+    let refs: string[] = ['${workspaceFolder}/lint/**'];
+    deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.globs, refs);
+    refs = fg.sync(path.join(root, 'lint') + '/**', { onlyDirectories: true });
+    deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.paths, refs);
+  });
+
+  test('Update paths using cache', async () => {
+    const refs: string[] = fg.sync([path.join(root, 'lint') + '/**', path.join(root, 'debug')], {
+      onlyDirectories: true,
+    });
+    await config.update(
+      'linter.includePaths',
+      ['${workspaceFolder}/lint/**', path.join(root, 'debug')],
+      false
+    );
+    const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
+    deepStrictEqual(paths, refs);
+  });
+
+  suiteTeardown(async function (): Promise<void> {
+    await config.update('linter.includePaths', oldVals, false);
+    // We have to reset the formatting of the files, for some reason updating
+    // the config breaks any the formatting style.
+    cp.spawn('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
+  });
+});
+
+// -----------------------------------------------------------------------------
 
 suite('GNU (gfortran) lint single', () => {
   const linter = new FortranLintingProvider();
