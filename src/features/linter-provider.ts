@@ -582,10 +582,9 @@ export class FortranLintingProvider {
     // fypp includes typically pointing to folders in a projects source tree.
     // While the -I options, you pass to a compiler in order to look up mod-files,
     // are typically pointing to folders in the projects build tree.
-    // TODO: add variable and glob resolution
     const includePaths = config.get<string[]>(`includes`);
     if (includePaths.length > 0) {
-      args.push(...this.getIncludeParams(includePaths));
+      args.push(...this.getIncludeParams(this.getGlobPathsFromSettings(`linter.fypp.includes`)));
     }
 
     // Set the output to Fixed Format if the source is Fixed
