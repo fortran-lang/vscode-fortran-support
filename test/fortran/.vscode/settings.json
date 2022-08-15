@@ -1,7 +1,7 @@
 {
   "fortran.logging.level": "Debug",
   "fortran.linter.includePaths": ["${workspaceFolder}/lint/**"],
-  "fortran.linter.fypp.enabled": true,
+  "fortran.linter.fypp.enabled": false,
   "fortran.linter.fypp.includes": ["${workspaceFolder}/fypp/**"],
   "fortran.linter.fypp.definitions": {
     "DEBUG": "1",

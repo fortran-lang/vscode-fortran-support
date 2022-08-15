@@ -61,7 +61,7 @@ export class FortranLintingProvider {
     this.diagnosticCollection.dispose();
   }
 
-  private doModernFortranLint(textDocument: vscode.TextDocument) {
+  private async doModernFortranLint(textDocument: vscode.TextDocument) {
     // Only lint if a compiler is specified
     const config = vscode.workspace.getConfiguration('fortran.linter');
     if (config.get<string>('fortran.linter.compiler') === 'Disabled') return;
