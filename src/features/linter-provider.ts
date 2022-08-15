@@ -18,7 +18,10 @@ import { RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger()) {}
+  constructor(private logger: Logger = new Logger()) {
+    // Register the Linter provider
+    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
+  }
 
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
@@ -37,9 +40,6 @@ export class FortranLintingProvider {
   public async activate(subscriptions: vscode.Disposable[]) {
     // Register Linter commands
     subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
-
-    // Register the Linter provider
-    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
 
     vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
