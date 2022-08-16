@@ -17,16 +17,80 @@ import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
+export class LinterSettings {
+  private config: vscode.WorkspaceConfiguration;
+
+  constructor(private logger: Logger = new Logger()) {
+    this.config = vscode.workspace.getConfiguration(EXTENSION_ID);
+  }
+  public update(event: vscode.ConfigurationChangeEvent) {
+    console.log('update settings');
+    if (event.affectsConfiguration(`${EXTENSION_ID}.linter`)) {
+      this.config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    }
+  }
+
+  public get enabled(): boolean {
+    return this.config.get<string>('linter.compiler') !== 'Disabled';
+  }
+  public get compiler(): string {
+    const compiler = this.config.get<string>('linter.compiler');
+    return compiler;
+  }
+  public get compilerPath(): string {
+    return this.config.get<string>('linter.compilerPath');
+  }
+  public get include(): string[] {
+    return this.config.get<string[]>('linter.includePaths');
+  }
+  public get args(): string[] {
+    return this.config.get<string[]>('linter.extraArgs');
+  }
+  public get modOutput(): string {
+    return this.config.get<string>('linter.modOutput');
+  }
+  // FYPP options
+
+  public get fyppEnabled(): boolean {
+    // FIXME: fypp currently works only with gfortran
+    if (this.compiler !== 'gfortran') {
+      this.logger.warn(`[lint] fypp currently only supports gfortran.`);
+      return false;
+    }
+    return this.config.get<boolean>('linter.fypp.enabled');
+  }
+  public get fyppPath(): string {
+    return this.config.get<string>('linter.fypp.path');
+  }
+  public get fyppDefinitions(): { [name: string]: string } {
+    return this.config.get<{ [name: string]: string }>('linter.fypp.definitions');
+  }
+  public get fyppIncludes(): string[] {
+    return this.config.get<string[]>('linter.fypp.includes');
+  }
+  public get fyppLineNumberingMode(): string {
+    return this.config.get<string>('linter.fypp.lineNumberingMode');
+  }
+  public get fyppLineMarkerFormat(): string {
+    return this.config.get<string>('linter.fypp.lineMarkerFormat');
+  }
+  public get fyppExtraArgs(): string[] {
+    return this.config.get<string[]>('linter.fypp.extraArgs');
+  }
+}
+
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {
     // Register the Linter provider
     this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
+    this.settings = new LinterSettings(this.logger);
   }
 
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
   private compilerPath: string;
   private pathCache = new Map<string, GlobPaths>();
+  private settings: LinterSettings;
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -54,6 +118,11 @@ export class FortranLintingProvider {
 
     // Run gfortran in all open fortran files
     vscode.workspace.textDocuments.forEach(this.doModernFortranLint, this);
+
+    // Update settings on Configuration change
+    vscode.workspace.onDidChangeConfiguration(e => {
+      this.settings.update(e);
+    });
   }
 
   public dispose(): void {
@@ -63,8 +132,7 @@ export class FortranLintingProvider {
 
   private async doModernFortranLint(textDocument: vscode.TextDocument) {
     // Only lint if a compiler is specified
-    const config = vscode.workspace.getConfiguration('fortran.linter');
-    if (config.get<string>('fortran.linter.compiler') === 'Disabled') return;
+    if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
     if (
       !FortranDocumentSelector().some(e => e.scheme === textDocument.uri.scheme) ||
@@ -148,10 +216,7 @@ export class FortranLintingProvider {
 
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
-    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    // FIXME: currently only enabled for gfortran
-    const fypp: boolean = config.get('linter.fypp.enabled') && this.compiler === 'gfortran';
-    const fortranSource: string[] = fypp
+    const fortranSource: string[] = this.settings.fyppEnabled
       ? ['-xf95', isFreeForm(textDocument) ? '-ffree-form' : '-ffixed-form', '-']
       : [textDocument.fileName];
 
@@ -167,8 +232,7 @@ export class FortranLintingProvider {
   }
 
   private getModOutputDir(compiler: string): string[] {
-    const config = vscode.workspace.getConfiguration('fortran');
-    let modout: string = config.get('linter.modOutput', '');
+    let modout: string = this.settings.modOutput;
     let modFlag = '';
     // Return if no mod output directory is specified
     if (modout === '') return [];
@@ -241,10 +305,8 @@ export class FortranLintingProvider {
    * @returns String with linter
    */
   private getLinterExecutable(): string {
-    const config = vscode.workspace.getConfiguration('fortran.linter');
-
-    this.compiler = config.get<string>('compiler', 'gfortran');
-    this.compilerPath = config.get<string>('compilerPath', '');
+    this.compiler = this.settings.compiler;
+    this.compilerPath = this.settings.compilerPath;
     if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
     this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${this.compilerPath}"`);
     return this.compilerPath;
@@ -259,7 +321,7 @@ export class FortranLintingProvider {
    * @returns
    */
   private getLinterExtraArgs(compiler: string): string[] {
-    const config = vscode.workspace.getConfiguration('fortran');
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
 
     // The default 'trigger all warnings' flag is different depending on the compiler
     let args: string[];
@@ -279,7 +341,7 @@ export class FortranLintingProvider {
         args = [];
         break;
     }
-    const user_args: string[] = config.get('linter.extraArgs');
+    const user_args: string[] = this.settings.args;
     // If we have specified linter.extraArgs then replace default arguments
     if (user_args.length > 0) args = user_args.slice();
     // gfortran and flang have compiler flags for restricting the width of
@@ -562,14 +624,8 @@ export class FortranLintingProvider {
    * @returns Async spawned process containing `fypp` output
    */
   private getFyppProcess(document: vscode.TextDocument): cp.ChildProcess | undefined {
-    const config = vscode.workspace.getConfiguration(`${EXTENSION_ID}.linter.fypp`);
-    if (!config.get('enabled')) return undefined;
-    // FIXME: currently only enabled for gfortran
-    if (this.compiler !== 'gfortran') {
-      this.logger.warn(`[lint] fypp currently only supports gfortran.`);
-      return undefined;
-    }
-    let fypp: string = config.get('fypp.path', 'fypp');
+    if (!this.settings.fyppEnabled) return undefined;
+    let fypp: string = this.settings.fyppPath;
     fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
 
     // Check if the fypp is installed
@@ -584,7 +640,7 @@ export class FortranLintingProvider {
     // fypp includes typically pointing to folders in a projects source tree.
     // While the -I options, you pass to a compiler in order to look up mod-files,
     // are typically pointing to folders in the projects build tree.
-    const includePaths = config.get<string[]>(`includes`);
+    const includePaths = this.settings.fyppIncludes;
     if (includePaths.length > 0) {
       args.push(...this.getIncludeParams(this.getGlobPathsFromSettings(`linter.fypp.includes`)));
     }
@@ -592,7 +648,7 @@ export class FortranLintingProvider {
     // Set the output to Fixed Format if the source is Fixed
     if (!isFreeForm(document)) args.push('--fixed-format');
 
-    const fypp_defs: { [name: string]: string } = config.get('definitions');
+    const fypp_defs: { [name: string]: string } = this.settings.fyppDefinitions;
     if (Object.keys(fypp_defs).length > 0) {
       // Preprocessor definitions, merge with pp_defs from fortls?
       Object.entries(fypp_defs).forEach(([key, val]) => {
@@ -600,9 +656,9 @@ export class FortranLintingProvider {
         else args.push(`-D${key}`);
       });
     }
-    args.push(`--line-numbering-mode=${config.get<string>('lineNumberingMode', 'full')}`);
-    args.push(`--line-marker-format=${config.get<string>('lineMarkerFormat', 'cpp')}`);
-    args.push(...`${config.get<string[]>('extraArgs', [])}`);
+    args.push(`--line-numbering-mode=${this.settings.fyppLineNumberingMode}`);
+    args.push(`--line-marker-format=${this.settings.fyppLineMarkerFormat}`);
+    args.push(...`${this.settings.fyppExtraArgs}`);
 
     // The file to be preprocessed
     args.push(document.fileName);
