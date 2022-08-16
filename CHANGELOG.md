@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added language icons for Free and Fixed form Fortran
+  ([#612](https://github.com/fortran-lang/vscode-fortran-support/issues/612))
 - Added option to set the verbosity of the Output Channel
   ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
 - Added increased logging messages in various parts of the extension
