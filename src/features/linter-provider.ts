@@ -6,13 +6,22 @@ import which from 'which';
 
 import * as vscode from 'vscode';
 import { Logger } from '../services/logging';
-import { EXTENSION_ID, FortranDocumentSelector, resolveVariables } from '../lib/tools';
+import {
+  EXTENSION_ID,
+  FortranDocumentSelector,
+  resolveVariables,
+  promptForMissingTool,
+  isFreeForm,
+} from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger()) {}
+  constructor(private logger: Logger = new Logger()) {
+    // Register the Linter provider
+    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
+  }
 
   private diagnosticCollection: vscode.DiagnosticCollection;
   private compiler: string;
@@ -31,9 +40,6 @@ export class FortranLintingProvider {
   public async activate(subscriptions: vscode.Disposable[]) {
     // Register Linter commands
     subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
-
-    // Register the Linter provider
-    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
 
     vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
@@ -55,7 +61,7 @@ export class FortranLintingProvider {
     this.diagnosticCollection.dispose();
   }
 
-  private doModernFortranLint(textDocument: vscode.TextDocument) {
+  private async doModernFortranLint(textDocument: vscode.TextDocument) {
     // Only lint if a compiler is specified
     const config = vscode.workspace.getConfiguration('fortran.linter');
     if (config.get<string>('fortran.linter.compiler') === 'Disabled') return;
@@ -92,6 +98,14 @@ export class FortranLintingProvider {
       cwd: filePath,
       env: env,
     });
+
+    const fyppProcess = this.getFyppProcess(textDocument);
+    if (fyppProcess) {
+      fyppProcess.stdout.on('data', (data: Buffer) => {
+        childProcess.stdin.write(data.toString());
+        childProcess.stdin.end();
+      });
+    }
 
     if (childProcess.pid) {
       childProcess.stdout.on('data', (data: Buffer) => {
@@ -134,12 +148,19 @@ export class FortranLintingProvider {
 
     const extensionIndex = textDocument.fileName.lastIndexOf('.');
     const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
+    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    // FIXME: currently only enabled for gfortran
+    const fypp: boolean = config.get('linter.fypp.enabled') && this.compiler === 'gfortran';
+    const fortranSource: string[] = fypp
+      ? ['-xf95', isFreeForm(textDocument) ? '-ffree-form' : '-ffixed-form', '-']
+      : [textDocument.fileName];
+
     const argList = [
       ...args,
       ...this.getIncludeParams(includePaths), // include paths
-      textDocument.fileName,
       '-o',
       `${fileNameWithoutExtension}.mod`,
+      ...fortranSource,
     ];
 
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
@@ -529,5 +550,64 @@ export class FortranLintingProvider {
     this.getGlobPathsFromSettings(opt);
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
     this.logger.debug(`[lint] resolved paths:`, this.pathCache.get(opt).paths);
+  }
+
+  /**
+   * Parse a source file through the `fypp` preprocessor and return and active
+   * process to parse as input to the main linter.
+   *
+   * This procedure does implements all the settings interfaces with `fypp`
+   * and checks the system for `fypp` prompting to install it if missing.
+   * @param document File name to pass to `fypp`
+   * @returns Async spawned process containing `fypp` output
+   */
+  private getFyppProcess(document: vscode.TextDocument): cp.ChildProcess | undefined {
+    const config = vscode.workspace.getConfiguration(`${EXTENSION_ID}.linter.fypp`);
+    if (!config.get('enabled')) return undefined;
+    // FIXME: currently only enabled for gfortran
+    if (this.compiler !== 'gfortran') {
+      this.logger.warn(`[lint] fypp currently only supports gfortran.`);
+      return undefined;
+    }
+    let fypp: string = config.get('fypp.path', 'fypp');
+    fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
+
+    // Check if the fypp is installed
+    if (!which.sync(fypp, { nothrow: true })) {
+      this.logger.warn(`[lint] fypp not detected in your system. Attempting to install now.`);
+      const msg = `Installing fypp through pip with --user option`;
+      promptForMissingTool('fypp', msg, 'Python', ['Install']);
+    }
+    const args: string[] = ['--line-numbering'];
+
+    // Include paths to fypp, different from main linters include paths
+    // fypp includes typically pointing to folders in a projects source tree.
+    // While the -I options, you pass to a compiler in order to look up mod-files,
+    // are typically pointing to folders in the projects build tree.
+    const includePaths = config.get<string[]>(`includes`);
+    if (includePaths.length > 0) {
+      args.push(...this.getIncludeParams(this.getGlobPathsFromSettings(`linter.fypp.includes`)));
+    }
+
+    // Set the output to Fixed Format if the source is Fixed
+    if (!isFreeForm(document)) args.push('--fixed-format');
+
+    const fypp_defs: { [name: string]: string } = config.get('definitions');
+    if (Object.keys(fypp_defs).length > 0) {
+      // Preprocessor definitions, merge with pp_defs from fortls?
+      Object.entries(fypp_defs).forEach(([key, val]) => {
+        if (val) args.push(`-D${key}=${val}`);
+        else args.push(`-D${key}`);
+      });
+    }
+    args.push(`--line-numbering-mode=${config.get<string>('lineNumberingMode', 'full')}`);
+    args.push(`--line-marker-format=${config.get<string>('lineMarkerFormat', 'cpp')}`);
+    args.push(...`${config.get<string[]>('extraArgs', [])}`);
+
+    // The file to be preprocessed
+    args.push(document.fileName);
+
+    const filePath = path.parse(document.fileName).dir;
+    return cp.spawn(fypp, args, { cwd: filePath });
   }
 }

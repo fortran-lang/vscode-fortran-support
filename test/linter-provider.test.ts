@@ -15,7 +15,7 @@ import * as cp from 'child_process';
 
 import { FortranLintingProvider } from '../src/features/linter-provider';
 import { delay } from '../src/lib/helper';
-import { EXTENSION_ID } from '../src/lib/tools';
+import { EXTENSION_ID, pipInstall } from '../src/lib/tools';
 
 suite('Linter integration', () => {
   let doc: TextDocument;
@@ -25,10 +25,32 @@ suite('Linter integration', () => {
   const config = workspace.getConfiguration(EXTENSION_ID);
   const oldVals = config.get<string[]>('linter.includePaths');
 
-  suiteSetup(async function (): Promise<void> {
+  suiteSetup(async () => {
     doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
   });
+
+  // FIXME: different versions of gfortran report the error at a different column number
+  // need to implement a the compiler versioning
+  // test('GNU - API call to doModernFortranLint produces correct diagnostics', async () => {
+  //   await linter['doModernFortranLint'](doc);
+  //   await delay(5000);
+  //   const ref: Diagnostic[] = [
+  //     new Diagnostic(
+  //       new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
+  //       'Syntax error in argument list at (1)',
+  //       DiagnosticSeverity.Error
+  //     ),
+  //     new Diagnostic(
+  //       new Range(new Position(7 - 1, 9 - 1), new Position(7 - 1, 9 - 1)),
+  //       "Type specified for intrinsic function 'size' at (1) is ignored [-Wsurprising]",
+  //       DiagnosticSeverity.Warning
+  //     ),
+  //   ];
+  //
+  //  const values = linter['diagnosticCollection'].get(fileUri);
+  //  deepStrictEqual(values, ref);
+  //});
 
   test('Include path globs & internal variable resolution', async () => {
     const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
@@ -58,6 +80,44 @@ suite('Linter integration', () => {
 
   suiteTeardown(async function (): Promise<void> {
     await config.update('linter.includePaths', oldVals, false);
+    // We have to reset the formatting of the files, for some reason updating
+    // the config breaks any the formatting style.
+    cp.spawn('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
+  });
+});
+
+// -----------------------------------------------------------------------------
+
+suite('fypp Linter integration', () => {
+  let doc: TextDocument;
+  const linter = new FortranLintingProvider();
+  const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/fypp/demo.fypp'));
+  const root = path.resolve(__dirname, '../../test/fortran/');
+  const config = workspace.getConfiguration(EXTENSION_ID);
+
+  suiteSetup(async () => {
+    await pipInstall('fypp');
+    await config.update(`linter.fypp.enabled`, true, false);
+    doc = await workspace.openTextDocument(fileUri);
+    await window.showTextDocument(doc);
+  });
+
+  test('GNU - API call to doModernFortranLint produces correct diagnostics', async () => {
+    await linter['doModernFortranLint'](doc);
+    await delay(5000);
+    const values = linter['diagnosticCollection'].get(fileUri);
+    const refs: Diagnostic[] = [
+      new Diagnostic(
+        new Range(new Position(18, 35), new Position(18, 35)),
+        "Unused dummy argument 'this' at (1) [-Wunused-dummy-argument]",
+        DiagnosticSeverity.Warning
+      ),
+    ];
+    deepStrictEqual(values, refs);
+  });
+
+  suiteTeardown(async () => {
+    await config.update(`linter.fypp.enabled`, false, false);
     // We have to reset the formatting of the files, for some reason updating
     // the config breaks any the formatting style.
     cp.spawn('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
@@ -607,7 +667,6 @@ Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur he
     const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/err-mod.f90'));
     const doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
-    await delay(100);
     const matches = linter['getLinterResults'](msg);
     const ref = [
       new Diagnostic(

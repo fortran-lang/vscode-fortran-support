@@ -80,7 +80,9 @@
           ".fpp",
           ".FPP",
           ".pf",
-          ".PF"
+          ".PF",
+          ".fypp",
+          ".FYPP"
         ],
         "configuration": "./language-configuration.json"
       },
@@ -211,7 +213,14 @@
               "nagfor",
               "Disabled"
             ],
-            "markdownDescription": "Compiler used for linting support."
+            "markdownDescription": "Compiler used for linting support.",
+            "order": 0
+          },
+          "fortran.linter.compilerPath": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "Specifies the path to the linter executable.",
+            "order": 10
           },
           "fortran.linter.includePaths": {
             "type": "array",
@@ -219,24 +228,81 @@
               "type": "string"
             },
             "default": [],
-            "markdownDescription": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
-          },
-          "fortran.linter.compilerPath": {
-            "type": "string",
-            "default": "",
-            "markdownDescription": "Specifies the path to the linter executable."
+            "markdownDescription": "Specifies folder paths to be used as include paths during linting. Can resolve glob patterns e.g. `/usr/local/include/**` and internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "order": 20
           },
           "fortran.linter.extraArgs": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+            "markdownDescription": "Pass additional options to the linter compiler.  Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "order": 30
           },
           "fortran.linter.modOutput": {
             "type": "string",
             "default": "",
-            "markdownDescription": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`"
+            "markdownDescription": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "order": 40
+          },
+          "fortran.linter.fypp.enabled": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Use `fypp` to expand preprocessor directives.",
+            "order": 50
+          },
+          "fortran.linter.fypp.path": {
+            "type": "string",
+            "default": "fypp",
+            "markdownDescription": "Path to the `fypp` executable.",
+            "order": 60
+          },
+          "fortran.linter.fypp.definitions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "markdownDescription": "Preprocessor definitions passed to `fypp`.",
+            "order": 70
+          },
+          "fortran.linter.fypp.includes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Include directories passed to `fypp`.",
+            "order": 80
+          },
+          "fortran.linter.fypp.lineNumberingMode": {
+            "type": "string",
+            "default": "full",
+            "enum": [
+              "full",
+              "nocontlines"
+            ],
+            "markdownDescription": "line numbering mode, `full` (default): line numbering markers generated whenever source and output lines are out of sync, `nocontlines`: line numbering markers omitted for continuation lines.",
+            "order": 110
+          },
+          "fortran.linter.fypp.lineMarkerFormat": {
+            "type": "string",
+            "default": "cpp",
+            "enum": [
+              "cpp",
+              "std",
+              "gfortran5"
+            ],
+            "markdownDescription": "ine numbering marker format,  currently std`, `cpp` and `gfortran5` are supported, where `std` emits `#line` pragmas similar to standard tools, 'cpp' produces line directives as emitted by GNU cpp, and `gfortran5` cpp line directives with a workaround for a bug introduced in GFortran 5. Default: `cpp`.",
+            "order": 120
+          },
+          "fortran.linter.fypp.extraArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Pass additional options to the `fypp` executable.",
+            "order": 130
           }
         }
       },
@@ -573,11 +639,5 @@
     "glob": "^8.0.3",
     "vscode-languageclient": "^8.0.2",
     "which": "^2.0.2"
-  },
-  "__metadata": {
-    "id": "64379b4d-40cd-415a-8643-b07572d4a243",
-    "publisherDisplayName": "The Fortran Programming Language",
-    "publisherId": "0fb8288f-2952-4d83-8d25-46814faecc34",
-    "isPreReleaseVersion": false
   }
 }
