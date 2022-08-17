@@ -14,7 +14,6 @@ import * as fg from 'fast-glob';
 import * as cp from 'child_process';
 
 import { FortranLintingProvider } from '../src/features/linter-provider';
-import { delay } from '../src/lib/helper';
 import { EXTENSION_ID, pipInstall } from '../src/lib/tools';
 
 suite('Linter integration', () => {
@@ -30,27 +29,23 @@ suite('Linter integration', () => {
     await window.showTextDocument(doc);
   });
 
-  // FIXME: different versions of gfortran report the error at a different column number
-  // need to implement a the compiler versioning
-  // test('GNU - API call to doModernFortranLint produces correct diagnostics', async () => {
-  //   await linter['doModernFortranLint'](doc);
-  //   await delay(5000);
-  //   const ref: Diagnostic[] = [
-  //     new Diagnostic(
-  //       new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
-  //       'Syntax error in argument list at (1)',
-  //       DiagnosticSeverity.Error
-  //     ),
-  //     new Diagnostic(
-  //       new Range(new Position(7 - 1, 9 - 1), new Position(7 - 1, 9 - 1)),
-  //       "Type specified for intrinsic function 'size' at (1) is ignored [-Wsurprising]",
-  //       DiagnosticSeverity.Warning
-  //     ),
-  //   ];
-  //
-  //  const values = linter['diagnosticCollection'].get(fileUri);
-  //  deepStrictEqual(values, ref);
-  //});
+  test('GNU - API call to doLint produces correct diagnostics', async () => {
+    const diags = await new FortranLintingProvider()['doLint'](doc);
+    const ref: Diagnostic[] = [
+      new Diagnostic(
+        new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
+        'Syntax error in argument list at (1)',
+        DiagnosticSeverity.Error
+      ),
+      new Diagnostic(
+        new Range(new Position(7 - 1, 9 - 1), new Position(7 - 1, 9 - 1)),
+        "Type specified for intrinsic function 'size' at (1) is ignored [-Wsurprising]",
+        DiagnosticSeverity.Warning
+      ),
+    ];
+
+    deepStrictEqual(diags, ref);
+  });
 
   test('Include path globs & internal variable resolution', async () => {
     const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
@@ -89,23 +84,20 @@ suite('Linter integration', () => {
 // -----------------------------------------------------------------------------
 
 suite('fypp Linter integration', () => {
-  let doc: TextDocument;
-  const linter = new FortranLintingProvider();
-  const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/fypp/demo.fypp'));
   const root = path.resolve(__dirname, '../../test/fortran/');
   const config = workspace.getConfiguration(EXTENSION_ID);
 
   suiteSetup(async () => {
     await pipInstall('fypp');
     await config.update(`linter.fypp.enabled`, true, false);
-    doc = await workspace.openTextDocument(fileUri);
-    await window.showTextDocument(doc);
   });
 
-  test('GNU - API call to doModernFortranLint produces correct diagnostics', async () => {
-    await linter['doModernFortranLint'](doc);
-    await delay(5000);
-    const values = linter['diagnosticCollection'].get(fileUri);
+  test('GNU - API call to doLint produces correct diagnostics', async () => {
+    const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/fypp/demo.fypp'));
+    const doc = await workspace.openTextDocument(fileUri);
+    await window.showTextDocument(doc);
+
+    const diags = await new FortranLintingProvider()['doLint'](doc);
     const refs: Diagnostic[] = [
       new Diagnostic(
         new Range(new Position(18, 35), new Position(18, 35)),
@@ -113,7 +105,7 @@ suite('fypp Linter integration', () => {
         DiagnosticSeverity.Warning
       ),
     ];
-    deepStrictEqual(values, refs);
+    deepStrictEqual(diags, refs);
   });
 
   suiteTeardown(async () => {

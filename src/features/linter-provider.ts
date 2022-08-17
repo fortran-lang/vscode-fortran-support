@@ -12,6 +12,7 @@ import {
   resolveVariables,
   promptForMissingTool,
   isFreeForm,
+  spawnAsPromise,
 } from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
@@ -105,7 +106,7 @@ export class FortranLintingProvider {
     // Register Linter commands
     subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
 
-    vscode.workspace.onDidOpenTextDocument(this.doModernFortranLint, this, subscriptions);
+    vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       textDocument => {
         this.diagnosticCollection.delete(textDocument.uri);
@@ -114,10 +115,10 @@ export class FortranLintingProvider {
       subscriptions
     );
 
-    vscode.workspace.onDidSaveTextDocument(this.doModernFortranLint, this);
+    vscode.workspace.onDidSaveTextDocument(this.doLint, this);
 
     // Run gfortran in all open fortran files
-    vscode.workspace.textDocuments.forEach(this.doModernFortranLint, this);
+    vscode.workspace.textDocuments.forEach(this.doLint, this);
 
     // Update settings on Configuration change
     vscode.workspace.onDidChangeConfiguration(e => {
@@ -130,7 +131,7 @@ export class FortranLintingProvider {
     this.diagnosticCollection.dispose();
   }
 
-  private async doModernFortranLint(textDocument: vscode.TextDocument) {
+  private async doLint(textDocument: vscode.TextDocument) {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
@@ -141,7 +142,6 @@ export class FortranLintingProvider {
       return;
     }
 
-    let compilerOutput = '';
     const command = this.getLinterExecutable();
     const argList = this.constructArgumentList(textDocument);
     const filePath = path.parse(textDocument.fileName).dir;
@@ -162,44 +162,33 @@ export class FortranLintingProvider {
       }
     }
     this.logger.info(`[lint] Compiler query command line: ${command} ${argList.join(' ')}`);
-    const childProcess = cp.spawn(command, argList, {
-      cwd: filePath,
-      env: env,
-    });
 
-    const fyppProcess = this.getFyppProcess(textDocument);
-    if (fyppProcess) {
-      fyppProcess.stdout.on('data', (data: Buffer) => {
-        childProcess.stdin.write(data.toString());
-        childProcess.stdin.end();
-      });
-    }
+    try {
+      const fypp = await this.getFyppProcess(textDocument);
 
-    if (childProcess.pid) {
-      childProcess.stdout.on('data', (data: Buffer) => {
-        compilerOutput += data;
-      });
-      childProcess.stderr.on('data', data => {
-        compilerOutput += data;
-      });
-      childProcess.stderr.on('end', () => {
-        this.logger.debug(`[lint] Compiler output:\n${compilerOutput}`);
-        let diagnostics = this.getLinterResults(compilerOutput);
+      try {
+        // The linter output is in the stderr channel
+        const [stdout, stderr] = await spawnAsPromise(
+          command,
+          argList,
+          { cwd: filePath, env: env },
+          fypp?.[0], // pass the stdout from fypp to the linter as stdin
+          true
+        );
+        const output: string = stdout + stderr;
+        this.logger.debug(`[lint] Compiler output:\n${output}`);
+        let diagnostics: vscode.Diagnostic[] = this.getLinterResults(output);
+        // Remove duplicates from the diagnostics array
         diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
         this.diagnosticCollection.set(textDocument.uri, diagnostics);
-      });
-      childProcess.on('error', err => {
+        return diagnostics;
+      } catch (err) {
         this.logger.error(`[lint] Compiler error:`, err);
-        console.log(`ERROR: ${err}`);
-      });
-    } else {
-      childProcess.on('error', (err: any) => {
-        if (err.code === 'ENOENT') {
-          vscode.window.showErrorMessage(
-            "Linter can't be found in $PATH. Update your settings with a proper path or disable the linter."
-          );
-        }
-      });
+        console.error(`ERROR: ${err}`);
+      }
+    } catch (fyppErr) {
+      this.logger.error(`[lint] fypp error:`, fyppErr);
+      console.error(`ERROR: fypp ${fyppErr}`);
     }
   }
 
@@ -621,9 +610,9 @@ export class FortranLintingProvider {
    * This procedure does implements all the settings interfaces with `fypp`
    * and checks the system for `fypp` prompting to install it if missing.
    * @param document File name to pass to `fypp`
-   * @returns Async spawned process containing `fypp` output
+   * @returns Async spawned Promise containing `fypp` Tuple [`stdout` `stderr`] or `undefined` if `fypp` is disabled
    */
-  private getFyppProcess(document: vscode.TextDocument): cp.ChildProcess | undefined {
+  private async getFyppProcess(document: vscode.TextDocument): Promise<[string, string]> {
     if (!this.settings.fyppEnabled) return undefined;
     let fypp: string = this.settings.fyppPath;
     fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
@@ -664,6 +653,6 @@ export class FortranLintingProvider {
     args.push(document.fileName);
 
     const filePath = path.parse(document.fileName).dir;
-    return cp.spawn(fypp, args, { cwd: filePath });
+    return await spawnAsPromise(fypp, args, { cwd: filePath }, undefined);
   }
 }
