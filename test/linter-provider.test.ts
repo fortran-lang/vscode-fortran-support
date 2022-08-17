@@ -149,7 +149,7 @@ Error: Missing actual argument for argument ‘a’ at (1)
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(3, 18), new Position(3, 18)),
@@ -216,7 +216,7 @@ f951: some warnings being treated as errors
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(1628, 24), new Position(1628, 24)),
@@ -262,7 +262,7 @@ gfortran: fatal error: cannot execute '/usr/lib/gcc/x86_64-linux-gnu/9/f951': ex
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(0, 1), new Position(0, 1)),
@@ -324,7 +324,7 @@ Error: Missing actual argument for argument 'a' at (1)
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(0, 1), new Position(0, 1)),
@@ -375,7 +375,7 @@ suite('Intel (ifort) lint single', () => {
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(101, 16), new Position(101, 16)),
@@ -479,7 +479,7 @@ compilation aborted for sample.f90 (code 1)
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(3, 8), new Position(3, 8)),
@@ -532,7 +532,7 @@ RADIANT_Matrix_Free_Subgrid_Scale.F90(1): #error: can't find include file: fdebu
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(0, 1), new Position(0, 1)),
@@ -609,7 +609,7 @@ C:\\Some\\random\\path\\sample.f90(4): error #6631: A non-optional actual argume
     });
   });
   test('Diagnostics Array', () => {
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(0, 1), new Position(0, 1)),
@@ -659,7 +659,7 @@ Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur he
     const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/err-mod.f90'));
     const doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
-    const matches = linter['getLinterResults'](msg);
+    const matches = linter['parseLinterOutput'](msg);
     const ref = [
       new Diagnostic(
         new Range(new Position(2, 0), new Position(2, 17)),

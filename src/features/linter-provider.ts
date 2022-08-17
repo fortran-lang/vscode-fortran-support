@@ -83,11 +83,11 @@ export class LinterSettings {
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {
     // Register the Linter provider
-    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('Fortran');
+    this.fortranDiagnostics = vscode.languages.createDiagnosticCollection('Fortran');
     this.settings = new LinterSettings(this.logger);
   }
 
-  private diagnosticCollection: vscode.DiagnosticCollection;
+  private fortranDiagnostics: vscode.DiagnosticCollection;
   private compiler: string;
   private compilerPath: string;
   private pathCache = new Map<string, GlobPaths>();
@@ -109,7 +109,7 @@ export class FortranLintingProvider {
     vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       textDocument => {
-        this.diagnosticCollection.delete(textDocument.uri);
+        this.fortranDiagnostics.delete(textDocument.uri);
       },
       null,
       subscriptions
@@ -127,8 +127,8 @@ export class FortranLintingProvider {
   }
 
   public dispose(): void {
-    this.diagnosticCollection.clear();
-    this.diagnosticCollection.dispose();
+    this.fortranDiagnostics.clear();
+    this.fortranDiagnostics.dispose();
   }
 
   private async doLint(textDocument: vscode.TextDocument) {
@@ -177,10 +177,10 @@ export class FortranLintingProvider {
         );
         const output: string = stdout + stderr;
         this.logger.debug(`[lint] Compiler output:\n${output}`);
-        let diagnostics: vscode.Diagnostic[] = this.getLinterResults(output);
+        let diagnostics: vscode.Diagnostic[] = this.parseLinterOutput(output);
         // Remove duplicates from the diagnostics array
         diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
-        this.diagnosticCollection.set(textDocument.uri, diagnostics);
+        this.fortranDiagnostics.set(textDocument.uri, diagnostics);
         return diagnostics;
       } catch (err) {
         this.logger.error(`[lint] Compiler error:`, err);
@@ -358,7 +358,7 @@ export class FortranLintingProvider {
    * @param msg The message string produced by the mock compilation
    * @returns Array of diagnostics for errors, warnings and infos
    */
-  private getLinterResults(msg: string): vscode.Diagnostic[] {
+  private parseLinterOutput(msg: string): vscode.Diagnostic[] {
     // Ideally these regexes should be defined inside the linterParser functions
     // however we would have to rewrite out linting unit tests
     const regex = this.getCompilerREGEX(this.compiler);
