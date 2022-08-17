@@ -133,19 +133,19 @@ Error: Missing actual argument for argument ‘a’ at (1)
     const matches = [...msg.matchAll(regex)];
     const g = matches[0].groups;
     test('REGEX: filename', () => {
-      strictEqual(g['fname'], 'C:\\Some\\random\\path\\sample.f90');
+      strictEqual(g?.['fname'], 'C:\\Some\\random\\path\\sample.f90');
     });
     test('REGEX: line number', () => {
-      strictEqual(g['ln'], '4');
+      strictEqual(g?.['ln'], '4');
     });
     test('REGEX: column number', () => {
-      strictEqual(g['cn'], '18');
+      strictEqual(g?.['cn'], '18');
     });
     test('REGEX: severity <sev1>', () => {
-      strictEqual(g['sev1'], 'Error');
+      strictEqual(g?.['sev1'], 'Error');
     });
     test('REGEX: message <msg1>', () => {
-      strictEqual(g['msg1'], 'Missing actual argument for argument ‘a’ at (1)');
+      strictEqual(g?.['msg1'], 'Missing actual argument for argument ‘a’ at (1)');
     });
   });
   test('Diagnostics Array', () => {
@@ -181,38 +181,38 @@ f951: some warnings being treated as errors
     const matches = [...msg.matchAll(regex)];
     const g1 = matches[0].groups;
     test('REGEX: match 1 - filename', () => {
-      strictEqual(g1['fname'], '/fetch/main/FETCH.F90');
+      strictEqual(g1?.['fname'], '/fetch/main/FETCH.F90');
     });
     test('REGEX: match 1 - line number', () => {
-      strictEqual(g1['ln'], '1629');
+      strictEqual(g1?.['ln'], '1629');
     });
     test('REGEX: match 1 - column number', () => {
-      strictEqual(g1['cn'], '24');
+      strictEqual(g1?.['cn'], '24');
     });
     test('REGEX: match 1 - severity <sev1>', () => {
-      strictEqual(g1['sev1'], 'Warning');
+      strictEqual(g1?.['sev1'], 'Warning');
     });
     test('REGEX: match 1 - message <msg1>', () => {
       strictEqual(
-        g1['msg1'],
+        g1?.['msg1'],
         'POINTER-valued function appears on right-hand side of assignment at (1) [-Wsurprising]'
       );
     });
     const g2 = matches[1].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g2['fname'], '/fetch/main/FETCH.F90');
+      strictEqual(g2?.['fname'], '/fetch/main/FETCH.F90');
     });
     test('REGEX: match 2 - line number', () => {
-      strictEqual(g2['ln'], '1634');
+      strictEqual(g2?.['ln'], '1634');
     });
     test('REGEX: match 2 - column number', () => {
-      strictEqual(g2['cn'], '44');
+      strictEqual(g2?.['cn'], '44');
     });
     test('REGEX: match 2 - severity <sev1>', () => {
-      strictEqual(g2['sev1'], 'Error');
+      strictEqual(g2?.['sev1'], 'Error');
     });
     test('REGEX: match 2 - message <msg1>', () => {
-      strictEqual(g2['msg1'], 'There is no specific subroutine for the generic ‘scale’ at (1)');
+      strictEqual(g2?.['msg1'], 'There is no specific subroutine for the generic ‘scale’ at (1)');
     });
   });
   test('Diagnostics Array', () => {
@@ -243,20 +243,20 @@ gfortran: fatal error: cannot execute '/usr/lib/gcc/x86_64-linux-gnu/9/f951': ex
     const matches = [...msg.matchAll(regex)];
     const g = matches[0].groups;
     test('REGEX: binary name <bin>', () => {
-      strictEqual(g['bin'], 'gfortran');
+      strictEqual(g?.['bin'], 'gfortran');
     });
     test('REGEX: line number', () => {
-      strictEqual(g['ln'], undefined);
+      strictEqual(g?.['ln'], undefined);
     });
     test('REGEX: column number', () => {
-      strictEqual(g['cn'], undefined);
+      strictEqual(g?.['cn'], undefined);
     });
     test('REGEX: severity <sev2>', () => {
-      strictEqual(g['sev2'], 'fatal error');
+      strictEqual(g?.['sev2'], 'fatal error');
     });
     test('REGEX: message <msg2>', () => {
       strictEqual(
-        g['msg2'],
+        g?.['msg2'],
         "cannot execute '/usr/lib/gcc/x86_64-linux-gnu/9/f951': execv: Argument list too long"
       );
     });
@@ -289,38 +289,38 @@ Error: Missing actual argument for argument 'a' at (1)
     const matches = [...msg.matchAll(regex)];
     const g1 = matches[0].groups;
     test('REGEX: match 1 - binary <bin>', () => {
-      strictEqual(g1['bin'], 'f951');
+      strictEqual(g1?.['bin'], 'f951');
     });
     test('REGEX: match 1 - line number', () => {
-      strictEqual(g1['ln'], undefined);
+      strictEqual(g1?.['ln'], undefined);
     });
     test('REGEX: match 1 - column number', () => {
-      strictEqual(g1['cn'], undefined);
+      strictEqual(g1?.['cn'], undefined);
     });
     test('REGEX: match 1 - severity <sev2>', () => {
-      strictEqual(g1['sev2'], 'Warning');
+      strictEqual(g1?.['sev2'], 'Warning');
     });
     test('REGEX: match 1 - message <msg2>', () => {
       strictEqual(
-        g1['msg2'],
+        g1?.['msg2'],
         "Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/fortran/include' [-Wmissing-include-dirs]"
       );
     });
     const g2 = matches[1].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g2['fname'], '/Code/TypeScript/vscode-fortran-support/test/fortran/sample.f90');
+      strictEqual(g2?.['fname'], '/Code/TypeScript/vscode-fortran-support/test/fortran/sample.f90');
     });
     test('REGEX: match 2 - line number', () => {
-      strictEqual(g2['ln'], '4');
+      strictEqual(g2?.['ln'], '4');
     });
     test('REGEX: match 2 - column number', () => {
-      strictEqual(g2['cn'], '18');
+      strictEqual(g2?.['cn'], '18');
     });
     test('REGEX: match 2 - severity <sev1>', () => {
-      strictEqual(g2['sev1'], 'Error');
+      strictEqual(g2?.['sev1'], 'Error');
     });
     test('REGEX: match 2 - message <msg1>', () => {
-      strictEqual(g2['msg1'], "Missing actual argument for argument 'a' at (1)");
+      strictEqual(g2?.['msg1'], "Missing actual argument for argument 'a' at (1)");
     });
   });
   test('Diagnostics Array', () => {
@@ -356,20 +356,20 @@ suite('Intel (ifort) lint single', () => {
     const matches = [...msg.matchAll(regex)];
     const g = matches[0].groups;
     test('REGEX: filename', () => {
-      strictEqual(g['fname'], '/fetch/radiant/RADIANT_Matrix_Free_Subgrid_Scale.F90');
+      strictEqual(g?.['fname'], '/fetch/radiant/RADIANT_Matrix_Free_Subgrid_Scale.F90');
     });
     test('REGEX: line number', () => {
-      strictEqual(g['ln'], '102');
+      strictEqual(g?.['ln'], '102');
     });
     test('REGEX: column number', () => {
-      strictEqual(g['cn'], '---------------^');
+      strictEqual(g?.['cn'], '---------------^');
     });
     test('REGEX: severity <sev1>', () => {
-      strictEqual(g['sev1'], 'error');
+      strictEqual(g?.['sev1'], 'error');
     });
     test('REGEX: message <msg1>', () => {
       strictEqual(
-        g['msg1'],
+        g?.['msg1'],
         "#5082: Syntax error, found '::' when expecting one of: ( : % [ . = =>"
       );
     });
@@ -409,73 +409,73 @@ compilation aborted for sample.f90 (code 1)
     const matches = [...msg.matchAll(regex)];
     const g1 = matches[0].groups;
     test('REGEX: match 1 - filename', () => {
-      strictEqual(g1['fname'], 'sample.f90');
+      strictEqual(g1?.['fname'], 'sample.f90');
     });
     test('REGEX: match 1 - line number', () => {
-      strictEqual(g1['ln'], '4');
+      strictEqual(g1?.['ln'], '4');
     });
     test('REGEX: match 1 - column number', () => {
-      strictEqual(g1['cn'], '-------^');
+      strictEqual(g1?.['cn'], '-------^');
     });
     test('REGEX: match 1 - severity <sev1>', () => {
-      strictEqual(g1['sev1'], 'error');
+      strictEqual(g1?.['sev1'], 'error');
     });
     test('REGEX: match 1 - message <msg1>', () => {
       strictEqual(
-        g1['msg1'],
+        g1?.['msg1'],
         '#6631: A non-optional actual argument must be present when invoking a procedure with an explicit interface.   [A]'
       );
     });
     const g2 = matches[1].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g2['fname'], 'sample.f90');
+      strictEqual(g2?.['fname'], 'sample.f90');
     });
     test('REGEX: match 2 - line number', () => {
-      strictEqual(g2['ln'], '4');
+      strictEqual(g2?.['ln'], '4');
     });
     test('REGEX: match 2 - column number', () => {
-      strictEqual(g2['cn'], '-------^');
+      strictEqual(g2?.['cn'], '-------^');
     });
     test('REGEX: match 2 - severity <sev1>', () => {
-      strictEqual(g2['sev1'], 'error');
+      strictEqual(g2?.['sev1'], 'error');
     });
     test('REGEX: match 2 - message <msg1>', () => {
       strictEqual(
-        g2['msg1'],
+        g2?.['msg1'],
         '#6631: A non-optional actual argument must be present when invoking a procedure with an explicit interface.   [B]'
       );
     });
     const g3 = matches[2].groups;
     test('REGEX: match 1 - filename', () => {
-      strictEqual(g3['fname'], 'sample.f90');
+      strictEqual(g3?.['fname'], 'sample.f90');
     });
     test('REGEX: match 1 - line number', () => {
-      strictEqual(g3['ln'], '8');
+      strictEqual(g3?.['ln'], '8');
     });
     test('REGEX: match 1 - column number', () => {
-      strictEqual(g3['cn'], '-----------------------^');
+      strictEqual(g3?.['cn'], '-----------------------^');
     });
     test('REGEX: match 1 - severity <sev1>', () => {
-      strictEqual(g3['sev1'], 'remark');
+      strictEqual(g3?.['sev1'], 'remark');
     });
     test('REGEX: match 1 - message <msg1>', () => {
-      strictEqual(g3['msg1'], '#7712: This variable has not been used.   [A]');
+      strictEqual(g3?.['msg1'], '#7712: This variable has not been used.   [A]');
     });
     const g4 = matches[3].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g4['fname'], 'sample.f90');
+      strictEqual(g4?.['fname'], 'sample.f90');
     });
     test('REGEX: match 2 - line number', () => {
-      strictEqual(g4['ln'], '8');
+      strictEqual(g4?.['ln'], '8');
     });
     test('REGEX: match 2 - column number', () => {
-      strictEqual(g4['cn'], '-------------------------^');
+      strictEqual(g4?.['cn'], '-------------------------^');
     });
     test('REGEX: match 2 - severity <sev1>', () => {
-      strictEqual(g4['sev1'], 'remark');
+      strictEqual(g4?.['sev1'], 'remark');
     });
     test('REGEX: match 2 - message <msg1>', () => {
-      strictEqual(g4['msg1'], '#7712: This variable has not been used.   [B]');
+      strictEqual(g4?.['msg1'], '#7712: This variable has not been used.   [B]');
     });
   });
   test('Diagnostics Array', () => {
@@ -516,19 +516,19 @@ RADIANT_Matrix_Free_Subgrid_Scale.F90(1): #error: can't find include file: fdebu
     const matches = [...msg.matchAll(regex)];
     const g = matches[0].groups;
     test('REGEX: filename', () => {
-      strictEqual(g['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
+      strictEqual(g?.['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
     });
     test('REGEX: line number', () => {
-      strictEqual(g['ln'], '1');
+      strictEqual(g?.['ln'], '1');
     });
     test('REGEX: column number', () => {
-      strictEqual(g['cn'], undefined);
+      strictEqual(g?.['cn'], undefined);
     });
     test('REGEX: severity <sev2>', () => {
-      strictEqual(g['sev2'], 'error');
+      strictEqual(g?.['sev2'], 'error');
     });
     test('REGEX: message <msg2>', () => {
-      strictEqual(g['msg2'], "can't find include file: fdebug.h");
+      strictEqual(g?.['msg2'], "can't find include file: fdebug.h");
     });
   });
   test('Diagnostics Array', () => {
@@ -558,52 +558,52 @@ C:\\Some\\random\\path\\sample.f90(4): error #6631: A non-optional actual argume
     const matches = [...msg.matchAll(regex)];
     const g1 = matches[0].groups;
     test('REGEX: match 1 - filename', () => {
-      strictEqual(g1['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
+      strictEqual(g1?.['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
     });
     test('REGEX: match 1 - line number', () => {
-      strictEqual(g1['ln'], '1');
+      strictEqual(g1?.['ln'], '1');
     });
     test('REGEX: match 1 - column number', () => {
-      strictEqual(g1['cn'], undefined);
+      strictEqual(g1?.['cn'], undefined);
     });
     test('REGEX: match 1 - severity <sev2>', () => {
-      strictEqual(g1['sev2'], 'error');
+      strictEqual(g1?.['sev2'], 'error');
     });
     test('REGEX: match 1 - message <msg2>', () => {
-      strictEqual(g1['msg2'], "can't find include file: fdebug.h");
+      strictEqual(g1?.['msg2'], "can't find include file: fdebug.h");
     });
     const g2 = matches[1].groups;
     test('REGEX: match 2 - filename', () => {
-      strictEqual(g2['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
+      strictEqual(g2?.['fname'], 'RADIANT_Matrix_Free_Subgrid_Scale.F90');
     });
     test('REGEX: match 2 - line number', () => {
-      strictEqual(g2['ln'], '52');
+      strictEqual(g2?.['ln'], '52');
     });
     test('REGEX: match 2 - column number', () => {
-      strictEqual(g2['cn'], undefined);
+      strictEqual(g2?.['cn'], undefined);
     });
     test('REGEX: match 2 - severity <sev2>', () => {
-      strictEqual(g2['sev2'], 'error');
+      strictEqual(g2?.['sev2'], 'error');
     });
     test('REGEX: match 2 - message <msg2>', () => {
-      strictEqual(g2['msg2'], "can't find include file: petsc_legacy.h");
+      strictEqual(g2?.['msg2'], "can't find include file: petsc_legacy.h");
     });
     const g3 = matches[2].groups;
     test('REGEX: match 3 - filename', () => {
-      strictEqual(g3['fname'], 'C:\\Some\\random\\path\\sample.f90');
+      strictEqual(g3?.['fname'], 'C:\\Some\\random\\path\\sample.f90');
     });
     test('REGEX: match 3 - line number', () => {
-      strictEqual(g3['ln'], '4');
+      strictEqual(g3?.['ln'], '4');
     });
     test('REGEX: match 3 - column number', () => {
-      strictEqual(g3['cn'], '-------^');
+      strictEqual(g3?.['cn'], '-------^');
     });
     test('REGEX: match 3 - severity <sev1>', () => {
-      strictEqual(g3['sev1'], 'error');
+      strictEqual(g3?.['sev1'], 'error');
     });
     test('REGEX: match 3 - message <msg1>', () => {
       strictEqual(
-        g3['msg1'],
+        g3?.['msg1'],
         '#6631: A non-optional actual argument must be present when invoking a procedure with an explicit interface.   [A]'
       );
     });
@@ -643,16 +643,16 @@ Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur he
     const matches = [...msg.matchAll(regex)];
     const g = matches[0].groups;
     test('REGEX: filename', () => {
-      strictEqual(g['fname'], 'lint/err-mod.f90');
+      strictEqual(g?.['fname'], 'lint/err-mod.f90');
     });
     test('REGEX: line number', () => {
-      strictEqual(g['ln'], '3');
+      strictEqual(g?.['ln'], '3');
     });
     test('REGEX: severity <sev1>', () => {
-      strictEqual(g['sev1'], 'Sequence Error');
+      strictEqual(g?.['sev1'], 'Sequence Error');
     });
     test('REGEX: message <msg1>', () => {
-      strictEqual(g['msg1'], 'The IMPLICIT statement cannot occur here');
+      strictEqual(g?.['msg1'], 'The IMPLICIT statement cannot occur here');
     });
   });
   test('Diagnostics Array', async () => {
