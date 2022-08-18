@@ -345,6 +345,131 @@ Error: Missing actual argument for argument 'a' at (1)
     deepStrictEqual(matches, ref);
   });
 });
+suite('GNU (gfortran v11+) lint single plain output', () => {
+  const linter = new FortranLintingProvider();
+  linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = true;
+  const msg = `err-mod.f90:3:17: Error: (1)`;
+  suite('REGEX matches', () => {
+    const regex = linter['getCompilerREGEX'](linter['compiler']);
+    const matches = [...msg.matchAll(regex)];
+    const g = matches[0].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g?.['fname'], 'err-mod.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g?.['ln'], '3');
+    });
+    test('REGEX: column number', () => {
+      strictEqual(g?.['cn'], '17');
+    });
+    test('REGEX: severity <sev>', () => {
+      strictEqual(g?.['sev'], 'Error');
+    });
+    test('REGEX: message <msg>', () => {
+      strictEqual(g?.['msg'], '(1)');
+    });
+  });
+  test('Diagnostics Array', () => {
+    const matches = linter['parseLinterOutput'](msg);
+    const ref = [
+      new Diagnostic(
+        new Range(new Position(2, 17), new Position(2, 17)),
+        '(1)',
+        DiagnosticSeverity.Error
+      ),
+    ];
+    deepStrictEqual(matches, ref);
+  });
+});
+suite('GNU (gfortran v11+) lint multiple plain output', () => {
+  const linter = new FortranLintingProvider();
+  linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = true;
+  const msg = `
+err-mod.f90:3:17: Error: (1)
+err-mod.f90:2:11: Error: IMPLICIT NONE statement at (1) cannot follow PRIVATE statement at (2)
+err-mod.f90:10:22: Error: Missing actual argument for argument ‘arg1’ at (1)`;
+  suite('REGEX matches', () => {
+    const regex = linter['getCompilerREGEX'](linter['compiler']);
+    const matches = [...msg.matchAll(regex)];
+    const g = matches[0].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g?.['fname'], 'err-mod.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g?.['ln'], '3');
+    });
+    test('REGEX: column number', () => {
+      strictEqual(g?.['cn'], '17');
+    });
+    test('REGEX: severity <sev>', () => {
+      strictEqual(g?.['sev'], 'Error');
+    });
+    test('REGEX: message <msg>', () => {
+      strictEqual(g?.['msg'], '(1)');
+    });
+
+    const g2 = matches[1].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g2?.['fname'], 'err-mod.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g2?.['ln'], '2');
+    });
+    test('REGEX: column number', () => {
+      strictEqual(g2?.['cn'], '11');
+    });
+    test('REGEX: severity <sev>', () => {
+      strictEqual(g2?.['sev'], 'Error');
+    });
+    test('REGEX: message <msg>', () => {
+      strictEqual(
+        g2?.['msg'],
+        'IMPLICIT NONE statement at (1) cannot follow PRIVATE statement at (2)'
+      );
+    });
+
+    const g3 = matches[2].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g3?.['fname'], 'err-mod.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g3?.['ln'], '10');
+    });
+    test('REGEX: column number', () => {
+      strictEqual(g3?.['cn'], '22');
+    });
+    test('REGEX: severity <sev>', () => {
+      strictEqual(g3?.['sev'], 'Error');
+    });
+    test('REGEX: message <msg>', () => {
+      strictEqual(g3?.['msg'], 'Missing actual argument for argument ‘arg1’ at (1)');
+    });
+  });
+
+  test('Diagnostics Array', () => {
+    const matches = linter['parseLinterOutput'](msg);
+    const ref = [
+      new Diagnostic(
+        new Range(new Position(2, 17), new Position(2, 17)),
+        '(1)',
+        DiagnosticSeverity.Error
+      ),
+      new Diagnostic(
+        new Range(new Position(1, 11), new Position(1, 11)),
+        'IMPLICIT NONE statement at (1) cannot follow PRIVATE statement at (2)',
+        DiagnosticSeverity.Error
+      ),
+      new Diagnostic(
+        new Range(new Position(9, 22), new Position(9, 22)),
+        'Missing actual argument for argument ‘arg1’ at (1)',
+        DiagnosticSeverity.Error
+      ),
+    ];
+    deepStrictEqual(matches, ref);
+  });
+});
 
 // -----------------------------------------------------------------------------
 
