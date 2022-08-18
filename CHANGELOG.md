@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added support for enhanced `gfotran` v11+ diagnostics using `-fdiagnostics-plain-output`
+  ([#523](https://github.com/fortran-lang/vscode-fortran-support/issues/523))
 - Added language icons for Free and Fixed form Fortran
   ([#612](https://github.com/fortran-lang/vscode-fortran-support/issues/612))
 - Added capability for linter options to update automatically when settings change
