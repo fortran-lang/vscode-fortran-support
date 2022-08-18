@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added capability for linter options to update automatically when settings change
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
+- Added unittests for `spawnAsPromise` to increase test coverage
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Added option to set the verbosity of the Output Channel
   ([#606](https://github.com/fortran-lang/vscode-fortran-support/pull/606))
 - Added increased logging messages in various parts of the extension
@@ -16,6 +20,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed the linter to be asynchronous, should imprpove performance
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
+- Changed native `SymbolProvider` to use non-deprecated constructor
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Changed how caching is performed in the linter; generalised code and improved
   performance of the cache
   ([#611](https://github.com/fortran-lang/vscode-fortran-support/pull/611))
@@ -30,8 +38,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed issues with linter unittests running asynchronously
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Fixed `npm run watch-dev` not syncing changes to spawned Extension Dev Host
   ([#602](https://github.com/fortran-lang/vscode-fortran-support/issues/602))
+
+### Removed
+
+- Removed unused tokenizer code
+  ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 
 ## [3.2.0]
 
