@@ -44,7 +44,7 @@ suite('Language Server integration tests', () => {
         codeActionProvider: true,
       },
     };
-    const res = server['client'].initializeResult;
+    const res = server['client']?.initializeResult;
     strictEqual(JSON.stringify(ref), JSON.stringify(res));
   });
 });

@@ -1,11 +1,4 @@
-import {
-  CancellationToken,
-  TextDocument,
-  Position,
-  Hover,
-  TextLine,
-  SymbolInformation,
-} from 'vscode';
+import { CancellationToken, TextDocument, TextLine, SymbolInformation } from 'vscode';
 
 import * as vscode from 'vscode';
 import {
@@ -16,7 +9,7 @@ import { parseVars as getDeclaredVar } from '../lib/variables';
 import { EXTENSION_ID } from '../lib/tools';
 
 type SymbolType = 'subroutine' | 'function' | 'variable';
-type ParserFunc = (line: TextLine) => SymbolInformation | undefined;
+type ParserFunc = (document: TextDocument, line: TextLine) => SymbolInformation | undefined;
 
 export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
   vars: Array<vscode.SymbolInformation>;
@@ -47,7 +40,7 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
       if (initialCharacter === '!' || initialCharacter === '#') continue;
       const symbolsInLine = symbolTypes
         .map(type => this.getSymbolsOfType(type))
-        .map(fn => fn(line))
+        .map(fn => fn(document, line))
         .filter(symb => symb !== undefined);
       if (symbolsInLine.length > 0) {
         symbols = symbols.concat(symbolsInLine);
@@ -62,7 +55,6 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
         return this.parseSubroutineDefinition;
       case 'function':
         return this.parseFunctionDefinition;
-
       case 'variable':
         return this.parseVariableDefinition;
       default:
@@ -70,31 +62,46 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
     }
   }
 
-  private parseSubroutineDefinition(line: TextLine) {
+  private parseSubroutineDefinition(document: TextDocument, line: TextLine) {
     try {
       const subroutine = getDeclaredSubroutine(line);
       if (subroutine) {
         const range = new vscode.Range(line.range.start, line.range.end);
-        return new vscode.SymbolInformation(subroutine.name, vscode.SymbolKind.Function, range);
+        return new vscode.SymbolInformation(
+          subroutine.name,
+          vscode.SymbolKind.Function,
+          document.fileName,
+          new vscode.Location(document.uri, range)
+        );
       }
     } catch (err) {
       console.log(err);
     }
   }
 
-  private parseFunctionDefinition(line: TextLine) {
+  private parseFunctionDefinition(document: TextDocument, line: TextLine) {
     const fun = getDeclaredFunction(line);
     if (fun) {
       const range = new vscode.Range(line.range.start, line.range.end);
-      return new vscode.SymbolInformation(fun.name, vscode.SymbolKind.Function, range);
+      return new vscode.SymbolInformation(
+        fun.name,
+        vscode.SymbolKind.Function,
+        document.fileName,
+        new vscode.Location(document.uri, range)
+      );
     }
   }
 
-  private parseVariableDefinition(line: TextLine) {
+  private parseVariableDefinition(document: TextDocument, line: TextLine) {
     const variable = getDeclaredVar(line);
     if (variable) {
       const range = new vscode.Range(line.range.start, line.range.end);
-      return new vscode.SymbolInformation(variable.name, vscode.SymbolKind.Variable, range);
+      return new vscode.SymbolInformation(
+        variable.name,
+        vscode.SymbolKind.Variable,
+        document.fileName,
+        new vscode.Location(document.uri, range)
+      );
     }
   }
 
