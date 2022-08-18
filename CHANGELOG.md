@@ -49,6 +49,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+- Dropped CI support for node.js 14.x
+  ([#626](https://github.com/fortran-lang/vscode-fortran-support/issues/626))
 - Removed unused tokenizer code
   ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 
