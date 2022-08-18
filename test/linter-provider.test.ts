@@ -78,7 +78,7 @@ suite('Linter integration', () => {
     await config.update('linter.includePaths', oldVals, false);
     // We have to reset the formatting of the files, for some reason updating
     // the config breaks any the formatting style.
-    cp.spawn('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
+    cp.spawnSync('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
   });
 });
 
@@ -113,7 +113,7 @@ suite('fypp Linter integration', () => {
     await config.update(`linter.fypp.enabled`, false, false);
     // We have to reset the formatting of the files, for some reason updating
     // the config breaks any the formatting style.
-    cp.spawn('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
+    cp.spawnSync('npm', ['run', 'format'], { cwd: path.resolve(root, '../../') });
   });
 });
 
