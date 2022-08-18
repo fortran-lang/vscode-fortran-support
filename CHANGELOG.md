@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added language icons for Free and Fixed form Fortran
+  ([#612](https://github.com/fortran-lang/vscode-fortran-support/issues/612))
 - Added capability for linter options to update automatically when settings change
   ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Added unittests for `spawnAsPromise` to increase test coverage
