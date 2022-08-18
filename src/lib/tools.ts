@@ -266,11 +266,21 @@ export function getWholeFileRange(document: vscode.TextDocument): vscode.Range {
   return new vscode.Range(0, 0, document.lineCount, 0);
 }
 
+/**
+ * Spawn a command as a `Promise`
+ * @param cmd command to execute
+ * @param args arguments to pass to the command
+ * @param options child_process.spawn options
+ * @param input any input to pass to stdin
+ * @param ignoreExitCode ignore the exit code of the process and `resolve` the promise
+ * @returns Tuple[string, string] `[stdout, stderr]`. By default will `reject` if exit code is non-zero.
+ */
 export async function spawnAsPromise(
   cmd: string,
   args: ReadonlyArray<string> | undefined,
-  options: cp.SpawnOptions | undefined,
-  input: string | undefined
+  options?: cp.SpawnOptions | undefined,
+  input?: string | undefined,
+  ignoreExitCode?: boolean
 ) {
   return new Promise<[string, string]>((resolve, reject) => {
     let stdout = '';
@@ -283,7 +293,11 @@ export async function spawnAsPromise(
       stderr += data;
     });
     child.on('close', code => {
-      code === 0 ? resolve([stdout, stderr]) : reject([stdout, stderr]);
+      if (ignoreExitCode || code === 0) {
+        resolve([stdout, stderr]);
+      } else {
+        reject([stdout, stderr]);
+      }
     });
     child.on('error', err => {
       reject(err.toString());
