@@ -71,8 +71,12 @@ export class LinterSettings {
       this.logger.error(`[lint] Could not spawn ${compiler} to check version.`);
       return;
     }
+    // State the variables explicitly bc the TypeScript compiler on the CI
+    // seemed to optimise away the stdout and regex would return null
     const regex = /^GNU Fortran \([\w.-]+\) (?<version>.*)$/gm;
-    const version = regex.exec(child.stdout.toString().trim()).groups['version'];
+    const output = child.stdout.toString();
+    const match = regex.exec(output);
+    const version = match ? match.groups.version : undefined;
     if (semver.valid(version)) {
       this.version = version;
       this.logger.info(`[lint] Found GNU Fortran version ${version}`);
