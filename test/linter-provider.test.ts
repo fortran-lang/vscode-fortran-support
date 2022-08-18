@@ -122,6 +122,7 @@ suite('fypp Linter integration', () => {
 suite('GNU (gfortran) lint single', () => {
   const linter = new FortranLintingProvider();
   linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = false;
   const msg = `
 C:\\Some\\random\\path\\sample.f90:4:18:
 
@@ -164,6 +165,7 @@ Error: Missing actual argument for argument ‘a’ at (1)
 suite('GNU (gfortran) lint multiple', () => {
   const linter = new FortranLintingProvider();
   linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = false;
   const msg = `
 /fetch/main/FETCH.F90:1629:24:
 
@@ -236,6 +238,7 @@ f951: some warnings being treated as errors
 suite('GNU (gfortran) lint preprocessor', () => {
   const linter = new FortranLintingProvider();
   linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = false;
   const msg = `
 gfortran: fatal error: cannot execute '/usr/lib/gcc/x86_64-linux-gnu/9/f951': execv: Argument list too long\ncompilation terminated.
 `;
@@ -277,6 +280,7 @@ gfortran: fatal error: cannot execute '/usr/lib/gcc/x86_64-linux-gnu/9/f951': ex
 suite('GNU (gfortran) lint preprocessor multiple', () => {
   const linter = new FortranLintingProvider();
   linter['compiler'] = 'gfortran';
+  linter['settings']['modernGNU'] = false;
   const msg = `
 f951: Warning: Nonexistent include directory '/Code/TypeScript/vscode-fortran-support/test/fortran/include' [-Wmissing-include-dirs]
 /Code/TypeScript/vscode-fortran-support/test/fortran/sample.f90:4:18:

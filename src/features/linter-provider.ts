@@ -3,8 +3,9 @@
 import * as path from 'path';
 import * as cp from 'child_process';
 import which from 'which';
-
+import * as semver from 'semver';
 import * as vscode from 'vscode';
+
 import { Logger } from '../services/logging';
 import {
   EXTENSION_ID,
@@ -19,10 +20,13 @@ import { RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
 export class LinterSettings {
+  private _modernGNU: boolean;
+  private _version: string;
   private config: vscode.WorkspaceConfiguration;
 
   constructor(private logger: Logger = new Logger()) {
     this.config = vscode.workspace.getConfiguration(EXTENSION_ID);
+    this.GNUVersion(this.compiler); // populates version & modernGNU
   }
   public update(event: vscode.ConfigurationChangeEvent) {
     console.log('update settings');
@@ -50,6 +54,49 @@ export class LinterSettings {
   public get modOutput(): string {
     return this.config.get<string>('linter.modOutput');
   }
+
+  // END OF API SETTINGS
+
+  /**
+   * Returns the version of the compiler and populates the internal variables
+   * `modernGNU` and `version`.
+   * @note Only supports `gfortran`
+   */
+  private GNUVersion(compiler: string): string | undefined {
+    // Only needed for gfortran's diagnostics flag
+    this.modernGNU = false;
+    if (compiler !== 'gfortran') return;
+    const child = cp.spawnSync(compiler, ['--version']);
+    if (child.error || child.status !== 0) {
+      this.logger.error(`[lint] Could not spawn ${compiler} to check version.`);
+      return;
+    }
+    const regex = /^GNU Fortran \([\w.-]+\) (?<version>.*)$/gm;
+    const version = regex.exec(child.stdout.toString().trim()).groups['version'];
+    if (semver.valid(version)) {
+      this.version = version;
+      this.logger.info(`[lint] Found GNU Fortran version ${version}`);
+      this.logger.debug(`[lint] Using Modern GNU Fortran diagnostics: ${this.modernGNU}`);
+      return version;
+    } else {
+      this.logger.error(`[lint] invalid compiler version: ${version}`);
+    }
+  }
+
+  public get version(): string {
+    return this._version;
+  }
+  private set version(version: string) {
+    this._version = version;
+    this.modernGNU = semver.gte(version, '11.0.0');
+  }
+  public get modernGNU(): boolean {
+    return this._modernGNU;
+  }
+  private set modernGNU(modernGNU: boolean) {
+    this._modernGNU = modernGNU;
+  }
+
   // FYPP options
 
   public get fyppEnabled(): boolean {
@@ -365,6 +412,7 @@ export class FortranLintingProvider {
     const matches = [...msg.matchAll(regex)];
     switch (this.compiler) {
       case 'gfortran':
+        if (this.settings.modernGNU) return this.linterParserGCCPlainText(matches);
         return this.linterParserGCC(matches);
 
       case 'ifx':
@@ -415,6 +463,42 @@ export class FortranLintingProvider {
 
       const d = new vscode.Diagnostic(range, msg, severity);
       diagnostics.push(d);
+    }
+    return diagnostics;
+  }
+
+  private linterParserGCCPlainText(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      // m[0] is the entire match and then the captured groups follow
+      const lineNo: number = parseInt(g['ln']);
+      const colNo: number = parseInt(g['cn']);
+      const msgSev: string = g['sev'];
+      const msg: string = g['msg'];
+
+      const range = new vscode.Range(
+        new vscode.Position(lineNo - 1, colNo),
+        new vscode.Position(lineNo - 1, colNo)
+      );
+
+      let severity: vscode.DiagnosticSeverity;
+      switch (msgSev.toLowerCase()) {
+        case 'error':
+        case 'fatal error':
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+        case 'warning':
+          severity = vscode.DiagnosticSeverity.Warning;
+          break;
+        case 'info': // gfortran does not produce info AFAIK
+          severity = vscode.DiagnosticSeverity.Information;
+          break;
+        default:
+          severity = vscode.DiagnosticSeverity.Error;
+          break;
+      }
+      diagnostics.push(new vscode.Diagnostic(range, msg, severity));
     }
     return diagnostics;
   }
@@ -529,6 +613,16 @@ export class FortranLintingProvider {
        -------------------------------------------------------------------------
        */
       case 'gfortran':
+        /**
+         -----------------------------------------------------------------------
+         COMPILER: MESSAGE ANATOMY:
+         file:line:column: Severity: msg
+         -----------------------------------------------------------------------
+         see https://regex101.com/r/73TZQn/1
+         */
+        if (this.settings.modernGNU) {
+          return /(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+): (?<sev>Error|Warning|Fatal Error): (?<msg>.*)/g;
+        }
         // see https://regex101.com/r/hZtk3f/1
         return /(?:^(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+):(?:\s+.*\s+.*?\s+)(?<sev1>Error|Warning|Fatal Error):\s(?<msg1>.*)$)|(?:^(?<bin>\w+):\s*(?<sev2>\w+\s*\w*):\s*(?<msg2>.*)$)/gm;
 
@@ -574,6 +668,9 @@ export class FortranLintingProvider {
     switch (compiler) {
       case 'flang':
       case 'gfortran':
+        if (this.settings.modernGNU) {
+          return ['-fsyntax-only', '-cpp', '-fdiagnostics-plain-output'];
+        }
         return ['-fsyntax-only', '-cpp', '-fdiagnostics-show-option'];
 
       // ifort theoretically supports fsyntax-only too but I had trouble
