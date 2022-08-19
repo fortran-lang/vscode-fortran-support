@@ -594,14 +594,14 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "clean": "npx rimraf dist out .vscode-test",
+    "clean": "npx rimraf dist out coverage .vscode-test",
     "compile": "webpack --mode production",
     "compile-dev": "webpack --mode development",
     "watch": "webpack --mode production --watch --progress",
     "watch-dev": "webpack --mode development --watch --progress",
     "webpack": "webpack --mode production",
     "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
-    "test": "node ./out/test/runTest.js",
+    "test": "node ./out/test/runTest.js; npm run format",
     "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json \"./test/fortran/syntax/**/*{.f90,F90}\"",
     "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json \"./test/fortran/syntax/**/*{.f,F}\"",
     "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
@@ -610,7 +610,8 @@
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --write 'src/**/*.{ts,json}' 'test/**/*.ts' 'syntaxes/**/*.json' 'snippets/**/*.json' './**/*.{md,json,yaml,yml}'",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "coverage": "c8 --clean npm run test"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
@@ -622,6 +623,7 @@
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@vscode/test-electron": "^2.1.5",
+    "c8": "^7.12.0",
     "eslint": "^8.22.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsdoc": "^39.3.6",
