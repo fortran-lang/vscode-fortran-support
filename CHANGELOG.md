@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added coverage reporting using `c8`
+  ([#613](https://github.com/fortran-lang/vscode-fortran-support/issues/613))
 - Added support for enhanced `gfotran` v11+ diagnostics using `-fdiagnostics-plain-output`
   ([#523](https://github.com/fortran-lang/vscode-fortran-support/issues/523))
 - Added language icons for Free and Fixed form Fortran
