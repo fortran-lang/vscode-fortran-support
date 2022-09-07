@@ -2,17 +2,37 @@ name: CI
 on: [push, pull_request]
 jobs:
   tests:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        os: [ubuntu-latest]
+        gcc_v: [11]
+        node-version: [18.x]
       fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      FC: gfortran-${{ matrix.gcc_v }}
+      CC: gcc-${{ matrix.gcc_v }}
+      CXX: g++-${{ matrix.gcc_v }}
+      GCC_V: ${{ matrix.gcc_v }}
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Install GCC compilers Linux
+        if: contains( matrix.os, 'ubuntu')
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+          sudo apt-get update
+          sudo apt-get install -y gcc-${GCC_V} g++-${GCC_V} gfortran-${GCC_V}
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
+          --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} \
+          --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_V} \
+          --slave /usr/bin/gcov gcov /usr/bin/gcov-${GCC_V}
+
       - name: Installing Extension
         run: npm ci
       - name: Compile
@@ -24,30 +44,12 @@ jobs:
       - name: Test Unittests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: npm test
-
-  coverage:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [18.x]
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Installing Extension
-        run: npm ci
-
+          run: npm run test
+      # This will not fail the job if tests fail so we have to npm test separately
       - name: Coverage report
         uses: GabrielBB/xvfb-action@v1
         with:
           run: npm run coverage
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
