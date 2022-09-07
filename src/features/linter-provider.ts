@@ -7,6 +7,7 @@ import * as semver from 'semver';
 import * as vscode from 'vscode';
 
 import { Logger } from '../services/logging';
+import { GNULinter, GNUModernLinter, IntelLinter, NAGLinter } from '../lib/linters';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
@@ -131,6 +132,11 @@ export class LinterSettings {
   }
 }
 
+const GNU = new GNULinter();
+const GNU_NEW = new GNUModernLinter();
+const INTEL = new IntelLinter();
+const NAG = new NAGLinter();
+
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {
     // Register the Linter provider
@@ -143,6 +149,7 @@ export class FortranLintingProvider {
   private compilerPath: string;
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
+  private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -193,6 +200,7 @@ export class FortranLintingProvider {
       return;
     }
 
+    this.linter = this.getLinter(this.settings.compiler);
     const command = this.getLinterExecutable();
     const argList = this.constructArgumentList(textDocument);
     const filePath = path.parse(textDocument.fileName).dir;
@@ -228,7 +236,7 @@ export class FortranLintingProvider {
         );
         const output: string = stdout + stderr;
         this.logger.debug(`[lint] Compiler output:\n${output}`);
-        let diagnostics: vscode.Diagnostic[] = this.parseLinterOutput(output);
+        let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
         // Remove duplicates from the diagnostics array
         diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
         this.fortranDiagnostics.set(textDocument.uri, diagnostics);
@@ -243,12 +251,23 @@ export class FortranLintingProvider {
     }
   }
 
+  private getLinter(compiler: string): GNULinter | GNUModernLinter | IntelLinter | NAGLinter {
+    switch (compiler) {
+      case 'gfortran':
+        if (this.settings.modernGNU) return GNU_NEW;
+        return GNU;
+      case 'ifx':
+      case 'ifort':
+        return INTEL;
+      case 'nagfor':
+        return NAG;
+      default:
+        return GNU;
+    }
+  }
+
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const args = [
-      ...this.getMandatoryLinterArgs(this.compiler),
-      ...this.getLinterExtraArgs(this.compiler),
-      ...this.getModOutputDir(this.compiler),
-    ];
+    const args = [...this.linter.args, ...this.getLinterExtraArgs(), ...this.getModOutputDir()];
     const opt = 'linter.includePaths';
     const includePaths = this.getGlobPathsFromSettings(opt);
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
@@ -271,30 +290,12 @@ export class FortranLintingProvider {
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private getModOutputDir(compiler: string): string[] {
+  private getModOutputDir(): string[] {
     let modout: string = this.settings.modOutput;
-    let modFlag = '';
+    // let modFlag = '';
     // Return if no mod output directory is specified
     if (modout === '') return [];
-    switch (compiler) {
-      case 'flang':
-      case 'gfortran':
-        modFlag = '-J';
-        break;
-
-      case 'ifx':
-      case 'ifort':
-        modFlag = '-module';
-        break;
-
-      case 'nagfor':
-        modFlag = '-mdir';
-        break;
-
-      default:
-        modFlag = '';
-        break;
-    }
+    const modFlag = this.linter.modFlag;
 
     modout = resolveVariables(modout);
     this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
@@ -357,37 +358,18 @@ export class FortranLintingProvider {
    * specified.
    * Attempts to match and resolve any internal variables, but no glob support.
    *
-   * @param compiler compiler name `gfortran`, `ifort`, `ifx`
    * @returns
    */
-  private getLinterExtraArgs(compiler: string): string[] {
+  private getLinterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-
-    // The default 'trigger all warnings' flag is different depending on the compiler
-    let args: string[];
-    switch (compiler) {
-      // fall-through
-      case 'flang':
-      case 'gfortran':
-        args = ['-Wall'];
-        break;
-
-      case 'ifx':
-      case 'ifort':
-        args = ['-warn', 'all'];
-        break;
-
-      default:
-        args = [];
-        break;
-    }
+    let args: string[] = this.linter.argsDefault;
     const user_args: string[] = this.settings.args;
     // If we have specified linter.extraArgs then replace default arguments
     if (user_args.length > 0) args = user_args.slice();
     // gfortran and flang have compiler flags for restricting the width of
     // the code.
     // You can always override by passing in the correct args as extraArgs
-    if (compiler === 'gfortran') {
+    if (this.linter.name === 'gfortran') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
@@ -401,295 +383,6 @@ export class FortranLintingProvider {
   private getIncludeParams = (paths: string[]) => {
     return paths.map(path => `-I${path}`);
   };
-
-  /**
-   * Extract using the appropriate compiler REGEX from the input `msg` the
-   * information required for vscode to report diagnostics.
-   *
-   * @param msg The message string produced by the mock compilation
-   * @returns Array of diagnostics for errors, warnings and infos
-   */
-  private parseLinterOutput(msg: string): vscode.Diagnostic[] {
-    // Ideally these regexes should be defined inside the linterParser functions
-    // however we would have to rewrite out linting unit tests
-    const regex = this.getCompilerREGEX(this.compiler);
-    const matches = [...msg.matchAll(regex)];
-    switch (this.compiler) {
-      case 'gfortran':
-        if (this.settings.modernGNU) return this.linterParserGCCPlainText(matches);
-        return this.linterParserGCC(matches);
-
-      case 'ifx':
-      case 'ifort':
-        return this.linterParserIntel(matches);
-
-      case 'nagfor':
-        return this.linterParserNagfor(matches);
-
-      default:
-        vscode.window.showErrorMessage(`${this.compiler} compiler is not supported yet.`);
-        break;
-    }
-  }
-
-  private linterParserGCC(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
-    const diagnostics: vscode.Diagnostic[] = [];
-    for (const m of matches) {
-      const g = m.groups;
-      // m[0] is the entire match and then the captured groups follow
-      const fname: string = g['fname'] !== undefined ? g['fname'] : g['bin'];
-      const lineNo: number = g['ln'] !== undefined ? parseInt(g['ln']) : 1;
-      const colNo: number = g['cn'] !== undefined ? parseInt(g['cn']) : 1;
-      const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
-      const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
-
-      const range = new vscode.Range(
-        new vscode.Position(lineNo - 1, colNo),
-        new vscode.Position(lineNo - 1, colNo)
-      );
-
-      let severity: vscode.DiagnosticSeverity;
-      switch (msg_type.toLowerCase()) {
-        case 'error':
-        case 'fatal error':
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-        case 'warning':
-          severity = vscode.DiagnosticSeverity.Warning;
-          break;
-        case 'info': // gfortran does not produce info AFAIK
-          severity = vscode.DiagnosticSeverity.Information;
-          break;
-        default:
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-      }
-
-      const d = new vscode.Diagnostic(range, msg, severity);
-      diagnostics.push(d);
-    }
-    return diagnostics;
-  }
-
-  private linterParserGCCPlainText(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
-    const diagnostics: vscode.Diagnostic[] = [];
-    for (const m of matches) {
-      const g = m.groups;
-      // m[0] is the entire match and then the captured groups follow
-      const lineNo: number = parseInt(g['ln']);
-      const colNo: number = parseInt(g['cn']);
-      const msgSev: string = g['sev'];
-      const msg: string = g['msg'];
-
-      const range = new vscode.Range(
-        new vscode.Position(lineNo - 1, colNo),
-        new vscode.Position(lineNo - 1, colNo)
-      );
-
-      let severity: vscode.DiagnosticSeverity;
-      switch (msgSev.toLowerCase()) {
-        case 'error':
-        case 'fatal error':
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-        case 'warning':
-          severity = vscode.DiagnosticSeverity.Warning;
-          break;
-        case 'info': // gfortran does not produce info AFAIK
-          severity = vscode.DiagnosticSeverity.Information;
-          break;
-        default:
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-      }
-      diagnostics.push(new vscode.Diagnostic(range, msg, severity));
-    }
-    return diagnostics;
-  }
-
-  private linterParserIntel(matches: RegExpMatchArray[]): vscode.Diagnostic[] {
-    const diagnostics: vscode.Diagnostic[] = [];
-    for (const m of matches) {
-      const g = m.groups;
-      // m[0] is the entire match and then the captured groups follow
-      const fname: string = g['fname'];
-      const lineNo: number = parseInt(g['ln']);
-      const msg_type: string = g['sev1'] !== undefined ? g['sev1'] : g['sev2'];
-      const msg: string = g['msg1'] !== undefined ? g['msg1'] : g['msg2'];
-      const colNo: number = g['cn'] !== undefined ? g['cn'].length : 1;
-
-      const range = new vscode.Range(
-        new vscode.Position(lineNo - 1, colNo),
-        new vscode.Position(lineNo - 1, colNo)
-      );
-
-      let severity: vscode.DiagnosticSeverity;
-      switch (msg_type.toLowerCase()) {
-        case 'error':
-        case 'fatal error':
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-        case 'warning':
-        case 'remark': // ifort's version of warning is remark
-          severity = vscode.DiagnosticSeverity.Warning;
-          break;
-        case 'info': // ifort does not produce info during compile-time AFAIK
-          severity = vscode.DiagnosticSeverity.Information;
-          break;
-        default:
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-      }
-
-      const d = new vscode.Diagnostic(range, msg, severity);
-      diagnostics.push(d);
-    }
-    return diagnostics;
-  }
-
-  private linterParserNagfor(matches: RegExpMatchArray[]) {
-    const diagnostics: vscode.Diagnostic[] = [];
-    for (const m of matches) {
-      const g = m.groups;
-      const fname: string = g['fname'];
-      const lineNo: number = parseInt(g['ln']);
-      const msg_type: string = g['sev1'];
-      const msg: string = g['msg1'];
-      // NAGFOR does not have a column number, so get the entire line
-      const range = vscode.window.activeTextEditor.document.lineAt(lineNo - 1).range;
-
-      let severity: vscode.DiagnosticSeverity;
-      switch (msg_type.toLowerCase()) {
-        case 'panic':
-        case 'fatal':
-        case 'error':
-          severity = vscode.DiagnosticSeverity.Error;
-          break;
-
-        case 'extension':
-        case 'questionable':
-        case 'deleted feature used':
-        case 'warning':
-          severity = vscode.DiagnosticSeverity.Warning;
-          break;
-
-        case 'remark':
-        case 'note':
-        case 'info':
-          severity = vscode.DiagnosticSeverity.Information;
-          break;
-
-        // fatal error, sequence error, etc.
-        default:
-          severity = vscode.DiagnosticSeverity.Error;
-          console.log('Using default Error Severity for: ' + msg_type);
-          break;
-      }
-
-      const d = new vscode.Diagnostic(range, msg, severity);
-      diagnostics.push(d);
-    }
-    return diagnostics;
-  }
-
-  /**
-   * Different compilers, display errors in different ways, hence we need
-   * different regular expressions to interpret their output.
-   * This function returns the appropriate regular expression.
-   *
-   * @param compiler Compiler name: gfortran, flang, ifort
-   * @returns `RegExp` for linter
-   */
-  private getCompilerREGEX(compiler: string): RegExp {
-    // `severity` can be: Warning, Error, Fatal Error
-    switch (compiler) {
-      /* 
-       -------------------------------------------------------------------------
-       COMPILER MESSAGE ANATOMY:
-       filename:line:column:
-      
-         line |  failing line of code
-              |
-       severity: message
-       -------------------------------------------------------------------------
-       ALTERNATIVE COMPILER MESSAGE ANATOMY: (for includes, failed args and C++)
-       compiler-bin: severity: message
-       -------------------------------------------------------------------------
-       */
-      case 'gfortran':
-        /**
-         -----------------------------------------------------------------------
-         COMPILER: MESSAGE ANATOMY:
-         file:line:column: Severity: msg
-         -----------------------------------------------------------------------
-         see https://regex101.com/r/73TZQn/1
-         */
-        if (this.settings.modernGNU) {
-          return /(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+): (?<sev>Error|Warning|Fatal Error): (?<msg>.*)/g;
-        }
-        // see https://regex101.com/r/hZtk3f/1
-        return /(?:^(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+):(?:\s+.*\s+.*?\s+)(?<sev1>Error|Warning|Fatal Error):\s(?<msg1>.*)$)|(?:^(?<bin>\w+):\s*(?<sev2>\w+\s*\w*):\s*(?<msg2>.*)$)/gm;
-
-      // TODO: write the regex
-      case 'flang':
-        return /^([a-zA-Z]:\\)*([^:]*):([0-9]+):([0-9]+):\s+(.*)\s+.*?\s+(Error|Warning|Fatal Error):\s(.*)$/gm;
-
-      /*
-       COMPILER MESSAGE ANATOMY:
-       filename(linenum): severity #error number: message
-                          failing line of code
-       ----------------------^
-       */
-      case 'ifx':
-      case 'ifort':
-        // see https://regex101.com/r/GZ0Lzz/2
-        return /^(?<fname>(?:\w:\\)?.*)\((?<ln>\d+)\):\s*(?:#(?:(?<sev2>\w*):\s*(?<msg2>.*$))|(?<sev1>\w*)\s*(?<msg1>.*$)(?:\s*.*\s*)(?<cn>-*\^))/gm;
-
-      /*
-       See Section 7 of the NAGFOR manual, although it is not accurate with regards
-       to all the possible messages.
-       severity: filename, line No.: message 
-       */
-      case 'nagfor':
-        return /^(?<sev1>Remark|Info|Note|Warning|Questionable|Extension|Obsolescent|Deleted feature used|(?:[\w]+ )?Error|Fatal|Panic)(\(\w+\))?: (?<fname>[\S ]+), line (?<ln>\d+): (?<msg1>.+)$/gm;
-
-      default:
-        vscode.window.showErrorMessage('Unsupported linter, change your linter.compiler option');
-    }
-  }
-
-  /**
-   * Every compiler has different flags to generate diagnostics, this functions
-   * ensures that the default arguments passed are valid.
-   *
-   * @note Check with the appropriate compiler documentation before altering
-   * any of these
-   *
-   * @param compiler Compiler name: gfortran, flang, ifort
-   * @returns Array of valid compiler arguments
-   */
-  private getMandatoryLinterArgs(compiler: string): string[] {
-    switch (compiler) {
-      case 'flang':
-      case 'gfortran':
-        if (this.settings.modernGNU) {
-          return ['-fsyntax-only', '-cpp', '-fdiagnostics-plain-output'];
-        }
-        return ['-fsyntax-only', '-cpp', '-fdiagnostics-show-option'];
-
-      // ifort theoretically supports fsyntax-only too but I had trouble
-      // getting it to work on my machine
-      case 'ifx':
-      case 'ifort':
-        return ['-syntax-only', '-fpp'];
-
-      case 'nagfor':
-        return ['-M', '-quiet'];
-
-      default:
-        break;
-    }
-  }
 
   /**
    * Regenerate the cache for the include files paths of the linter
