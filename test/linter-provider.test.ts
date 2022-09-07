@@ -74,6 +74,26 @@ suite('Linter integration', () => {
     deepStrictEqual(paths, refs);
   });
 
+  test('Linter user setting returns the right linter internally', () => {
+    const names = ['gfortran', 'ifort', 'ifx', 'nagfor', 'fake'];
+    for (const n of names) {
+      const compiler = linter['getLinter'](n);
+      if (n === 'gfortran') {
+        if (linter['settings'].modernGNU) {
+          strictEqual(compiler instanceof GNUModernLinter, true);
+        } else {
+          strictEqual(compiler instanceof GNULinter, true);
+        }
+      } else if (n === 'ifort' || n === 'ifx') {
+        strictEqual(compiler instanceof IntelLinter, true);
+      } else if (n === 'nagfor') {
+        strictEqual(compiler instanceof NAGLinter, true);
+      } else {
+        strictEqual(compiler instanceof GNULinter, true);
+      }
+    }
+  });
+
   suiteTeardown(async function (): Promise<void> {
     await config.update('linter.includePaths', oldVals, false);
   });
@@ -122,25 +142,25 @@ C:\\Some\\random\\path\\sample.f90:4:18:
   |                  1
 Error: Missing actual argument for argument ‘a’ at (1)
 `;
-  // suite('REGEX matches', () => {
-  //   const matches = [...msg.matchAll(linter.regex)];
-  //   const g = matches[0].groups;
-  //   test('REGEX: filename', () => {
-  //     strictEqual(g?.['fname'], 'C:\\Some\\random\\path\\sample.f90');
-  //   });
-  //   test('REGEX: line number', () => {
-  //     strictEqual(g?.['ln'], '4');
-  //   });
-  //   test('REGEX: column number', () => {
-  //     strictEqual(g?.['cn'], '18');
-  //   });
-  //   test('REGEX: severity <sev1>', () => {
-  //     strictEqual(g?.['sev1'], 'Error');
-  //   });
-  //   test('REGEX: message <msg1>', () => {
-  //     strictEqual(g?.['msg1'], 'Missing actual argument for argument ‘a’ at (1)');
-  //   });
-  // });
+  suite('REGEX matches', () => {
+    const matches = [...msg.matchAll(linter.regex)];
+    const g = matches[0].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g?.['fname'], 'C:\\Some\\random\\path\\sample.f90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g?.['ln'], '4');
+    });
+    test('REGEX: column number', () => {
+      strictEqual(g?.['cn'], '18');
+    });
+    test('REGEX: severity <sev1>', () => {
+      strictEqual(g?.['sev1'], 'Error');
+    });
+    test('REGEX: message <msg1>', () => {
+      strictEqual(g?.['msg1'], 'Missing actual argument for argument ‘a’ at (1)');
+    });
+  });
   test('Diagnostics Array', () => {
     console.log(linter.parse(msg));
     const diags = linter.parse(msg);

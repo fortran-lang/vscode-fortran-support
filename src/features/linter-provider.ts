@@ -200,7 +200,7 @@ export class FortranLintingProvider {
       return;
     }
 
-    this.linter = this.getLinter();
+    this.linter = this.getLinter(this.settings.compiler);
     const command = this.getLinterExecutable();
     const argList = this.constructArgumentList(textDocument);
     const filePath = path.parse(textDocument.fileName).dir;
@@ -251,8 +251,8 @@ export class FortranLintingProvider {
     }
   }
 
-  private getLinter(): GNULinter | GNUModernLinter | IntelLinter | NAGLinter {
-    switch (this.settings.compiler) {
+  private getLinter(compiler: string): GNULinter | GNUModernLinter | IntelLinter | NAGLinter {
+    switch (compiler) {
       case 'gfortran':
         if (this.settings.modernGNU) return GNU_NEW;
         return GNU;
