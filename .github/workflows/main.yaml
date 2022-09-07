@@ -2,11 +2,12 @@ name: CI
 on: [push, pull_request]
 jobs:
   tests:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        os: [ubuntu-latest]
+        node-version: [18.x]
       fail-fast: false
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -24,30 +25,12 @@ jobs:
       - name: Test Unittests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: npm test
-
-  coverage:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [18.x]
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Installing Extension
-        run: npm ci
-
+          run: npm run test
+      # This will not fail the job if tests fail so we have to npm test separately
       - name: Coverage report
         uses: GabrielBB/xvfb-action@v1
         with:
           run: npm run coverage
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
