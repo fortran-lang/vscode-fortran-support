@@ -3,7 +3,6 @@ import { FortranFormattingProvider } from '../src/features/formatting-provider';
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { Logger } from '../src/services/logging';
-import { spawnSync } from 'child_process';
 
 suite('Formatting tests', () => {
   let doc: vscode.TextDocument;
@@ -13,8 +12,6 @@ suite('Formatting tests', () => {
   );
 
   suiteSetup(async function (): Promise<void> {
-    spawnSync('pip', ['install', '--user', '--upgrade', 'findent']);
-    spawnSync('pip', ['install', '--user', '--upgrade', 'fprettify']);
     doc = await vscode.workspace.openTextDocument(fileUri);
     await vscode.window.showTextDocument(doc);
     console.log('Open file: ' + fileUri.toString());
