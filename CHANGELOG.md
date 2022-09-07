@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed how Python packages are installed for unittesting for performance
+  ([#652](https://github.com/fortran-lang/vscode-fortran-support/issues/652))
 - Changed the linter to be asynchronous, should imprpove performance
   ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Changed native `SymbolProvider` to use non-deprecated constructor

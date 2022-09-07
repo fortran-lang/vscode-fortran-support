@@ -1,9 +1,23 @@
 import * as path from 'path';
 
 import { runTests } from '@vscode/test-electron';
+import { spawnSync } from 'child_process';
 
 async function main() {
   try {
+    // Install PyPi dependencies
+    const results = spawnSync(`pip`, [
+      'install',
+      '-r',
+      path.resolve(__dirname, '../../test/requirements.txt'),
+      '--force',
+      '--upgrade',
+    ]);
+    if (results.status !== 0) {
+      console.error(results.stderr.toString());
+      process.exit(1);
+    }
+    console.log(results.stdout.toString().trim());
     // The folder containing the Extension Manifest package.json
     // Passed to `--extensionDevelopmentPath`
     const extensionDevelopmentPath = path.resolve(__dirname, '../../');
