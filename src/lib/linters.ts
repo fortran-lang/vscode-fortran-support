@@ -234,3 +234,50 @@ export class NAGLinter extends Linter {
     return diagnostics;
   }
 }
+
+export class LFortranLinter extends Linter {
+  constructor() {
+    super(
+      'lfortran',
+      /(?<fname>(?:\w:\\)?.*):(?<ls>\d+)-(?<le>\d+):(?<cs>\d+)-(?<ce>\d+): (?<sev>.+): (?<msg>.+)/g,
+      {
+        errors: [
+          'C preprocessor error',
+          'prescanner error',
+          'tokenizer error',
+          'syntax error',
+          'semantic error',
+          'ASR pass error',
+          'code generation error',
+        ],
+        warnings: ['warning'],
+        infos: ['note'],
+        hints: ['help', 'style suggestion'],
+      },
+      ['--error-format=short'],
+      [],
+      '-J'
+    );
+  }
+
+  /**
+   * <filename>:<line start>-<end>:<column start>-<end>: <severity>: <message>
+   * @param msg linter results
+   * @returns array of vscode.Diagnostic
+   */
+  public parse(msg: string): vscode.Diagnostic[] {
+    const matches = [...msg.matchAll(this.regex)];
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      const [_, name, ls, le, cs, ce, msg_type, msg] = m;
+      const range = new vscode.Range(
+        new vscode.Position(parseInt(ls) - 1, parseInt(cs) - 1),
+        new vscode.Position(parseInt(le) - 1, parseInt(ce))
+      );
+      const severity = this.getSeverityLevel(msg_type.toLowerCase());
+      diagnostics.push(new vscode.Diagnostic(range, msg, severity));
+    }
+    return diagnostics;
+  }
+}

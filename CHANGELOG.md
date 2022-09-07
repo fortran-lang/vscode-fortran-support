@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added linter support for [LFortran](https://lfortran.org/)
+  ([#589](https://github.com/fortran-lang/vscode-fortran-support/issues/589))
 - Added coverage reporting using `c8`
   ([#613](https://github.com/fortran-lang/vscode-fortran-support/issues/613))
 - Added support for enhanced `gfotran` v11+ diagnostics using `-fdiagnostics-plain-output`
