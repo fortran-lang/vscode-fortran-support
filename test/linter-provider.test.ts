@@ -13,7 +13,13 @@ import {
 import * as fg from 'fast-glob';
 
 import { FortranLintingProvider } from '../src/features/linter-provider';
-import { GNULinter, GNUModernLinter, IntelLinter, NAGLinter } from '../src/lib/linters';
+import {
+  GNULinter,
+  GNUModernLinter,
+  IntelLinter,
+  NAGLinter,
+  LFortranLinter,
+} from '../src/lib/linters';
 import { EXTENSION_ID, pipInstall } from '../src/lib/tools';
 
 suite('Linter integration', () => {
@@ -75,7 +81,7 @@ suite('Linter integration', () => {
   });
 
   test('Linter user setting returns the right linter internally', () => {
-    const names = ['gfortran', 'ifort', 'ifx', 'nagfor', 'fake'];
+    const names = ['gfortran', 'ifort', 'ifx', 'nagfor', 'lfortran', 'fake'];
     for (const n of names) {
       const compiler = linter['getLinter'](n);
       if (n === 'gfortran') {
@@ -88,6 +94,8 @@ suite('Linter integration', () => {
         strictEqual(compiler instanceof IntelLinter, true);
       } else if (n === 'nagfor') {
         strictEqual(compiler instanceof NAGLinter, true);
+      } else if (n == 'lfortran') {
+        strictEqual(compiler instanceof LFortranLinter, true);
       } else {
         strictEqual(compiler instanceof GNULinter, true);
       }
@@ -781,6 +789,51 @@ Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur he
       new Diagnostic(
         new Range(new Position(2, 0), new Position(2, 17)),
         'The IMPLICIT statement cannot occur here',
+        DiagnosticSeverity.Error
+      ),
+    ];
+    deepStrictEqual(diags, ref);
+  });
+});
+
+// -----------------------------------------------------------------------------
+
+suite('LFortran (lfortran) lint single', () => {
+  const linter = new LFortranLinter();
+  const msg = `
+lint/err-mod.f90:3-3:5-12: syntax error: Token 'implicit' is unexpected here
+`;
+  suite('REGEX matches', () => {
+    const matches = [...msg.matchAll(linter.regex)];
+    const g = matches[0].groups;
+    test('REGEX: filename', () => {
+      strictEqual(g?.['fname'], 'lint/err-mod.f90');
+    });
+    test('REGEX: line number start <ls>', () => {
+      strictEqual(g?.['ls'], '3');
+    });
+    test('REGEX: line number end <le>', () => {
+      strictEqual(g?.['le'], '3');
+    });
+    test('REGEX: column number start <cs>', () => {
+      strictEqual(g?.['cs'], '5');
+    });
+    test('REGEX: column number end <ce>', () => {
+      strictEqual(g?.['ce'], '12');
+    });
+    test('REGEX: severity <sev>', () => {
+      strictEqual(g?.['sev'], 'syntax error');
+    });
+    test('REGEX: message <msg>', () => {
+      strictEqual(g?.['msg'], `Token 'implicit' is unexpected here`);
+    });
+  });
+  test('Diagnostics Array', () => {
+    const diags = linter.parse(msg);
+    const ref = [
+      new Diagnostic(
+        new Range(new Position(2, 4), new Position(2, 12)),
+        `Token 'implicit' is unexpected here`,
         DiagnosticSeverity.Error
       ),
     ];

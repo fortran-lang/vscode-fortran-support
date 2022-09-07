@@ -7,7 +7,7 @@ import * as semver from 'semver';
 import * as vscode from 'vscode';
 
 import { Logger } from '../services/logging';
-import { GNULinter, GNUModernLinter, IntelLinter, NAGLinter } from '../lib/linters';
+import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from '../lib/linters';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
@@ -136,6 +136,7 @@ const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();
 const INTEL = new IntelLinter();
 const NAG = new NAGLinter();
+const LFORTRAN = new LFortranLinter();
 
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {
@@ -261,6 +262,8 @@ export class FortranLintingProvider {
         return INTEL;
       case 'nagfor':
         return NAG;
+      case 'lfortran':
+        return LFORTRAN;
       default:
         return GNU;
     }
