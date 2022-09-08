@@ -15,9 +15,10 @@ import {
   isFreeForm,
   spawnAsPromise,
   isFortran,
+  shellTask,
 } from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
-import { RescanLint } from './commands';
+import { BuildDebug, BuildRun, RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
 export class LinterSettings {
@@ -164,7 +165,24 @@ export class FortranLintingProvider {
   public async activate(subscriptions: vscode.Disposable[]) {
     // Register Linter commands
     subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
-
+    subscriptions.push(
+      vscode.commands.registerTextEditorCommand(
+        BuildRun,
+        async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
+          await this.buildAndRun(textEditor);
+        },
+        this
+      )
+    );
+    subscriptions.push(
+      vscode.commands.registerTextEditorCommand(
+        BuildDebug,
+        async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
+          await this.buildAndDebug(textEditor);
+        },
+        this
+      )
+    );
     vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       textDocument => {
@@ -244,6 +262,45 @@ export class FortranLintingProvider {
     } catch (fyppErr) {
       this.logger.error(`[lint] fypp error:`, fyppErr);
       console.error(`ERROR: fypp ${fyppErr}`);
+    }
+  }
+
+  private async buildAndRun(textEditor: vscode.TextEditor) {
+    return this.buildAndDebug(textEditor, false);
+  }
+
+  /**
+   * Compile and run the current file using the provided linter options.
+   * It has the ability to launch a Debug session or just run the executable.
+   * @param textEditor a text editor instance
+   * @param debug performing a debug build or not
+   */
+  private async buildAndDebug(textEditor: vscode.TextEditor, debug = true): Promise<void> {
+    const textDocument = textEditor.document;
+    this.linter = this.getLinter(this.settings.compiler);
+    const command = this.getLinterExecutable();
+    let argList = [...this.constructArgumentList(textDocument)];
+    // Remove mandatory linter args, used for mock compilation
+    argList = argList.filter(arg => !this.linter.args.includes(arg));
+    if (debug) argList.push('-g'); // add debug symbols flag, same for all compilers
+    try {
+      await shellTask(command, argList, 'Build Fortran file');
+      const folder: vscode.WorkspaceFolder = vscode.workspace.getWorkspaceFolder(
+        textEditor.document.uri
+      );
+      const selectedConfig: vscode.DebugConfiguration = {
+        name: `${debug ? 'Debug' : 'Run'} Fortran file`,
+        // This relies on the C/C++ debug adapters
+        type: process.platform === 'win32' ? 'cppvsdbg' : 'cppdbg',
+        request: 'launch',
+        program: `${textDocument.fileName}.o`,
+        cwd: folder.uri.fsPath,
+      };
+      await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: debug });
+      return;
+    } catch (err) {
+      this.logger.error(`[build] Compiling ${textDocument.fileName} failed:`, err);
+      console.error(`ERROR: ${err}`);
     }
   }
 
