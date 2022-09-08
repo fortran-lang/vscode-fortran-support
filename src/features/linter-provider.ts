@@ -271,8 +271,8 @@ export class FortranLintingProvider {
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
     this.logger.debug(`[lint] resolved paths:`, this.pathCache.get(opt).paths);
 
-    const extensionIndex = textDocument.fileName.lastIndexOf('.');
-    const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
+    // const extensionIndex = textDocument.fileName.lastIndexOf('.');
+    // const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
     const fortranSource: string[] = this.settings.fyppEnabled
       ? ['-xf95', isFreeForm(textDocument) ? '-ffree-form' : '-ffixed-form', '-']
       : [textDocument.fileName];
@@ -281,7 +281,7 @@ export class FortranLintingProvider {
       ...args,
       ...this.getIncludeParams(includePaths), // include paths
       '-o',
-      `${fileNameWithoutExtension}.mod`,
+      `${textDocument.fileName}.o`,
       ...fortranSource,
     ];
 
