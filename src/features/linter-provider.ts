@@ -10,11 +10,11 @@ import { Logger } from '../services/logging';
 import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from '../lib/linters';
 import {
   EXTENSION_ID,
-  FortranDocumentSelector,
   resolveVariables,
   promptForMissingTool,
   isFreeForm,
   spawnAsPromise,
+  isFortran,
 } from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
 import { RescanLint } from './commands';
@@ -194,12 +194,7 @@ export class FortranLintingProvider {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
-    if (
-      !FortranDocumentSelector().some(e => e.scheme === textDocument.uri.scheme) ||
-      !FortranDocumentSelector().some(e => e.language === textDocument.languageId)
-    ) {
-      return;
-    }
+    if (!isFortran(textDocument)) return;
 
     this.linter = this.getLinter(this.settings.compiler);
     const command = this.getLinterExecutable();
