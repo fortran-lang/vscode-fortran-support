@@ -21,10 +21,13 @@ import {
   LFortranLinter,
 } from '../src/lib/linters';
 import { EXTENSION_ID, pipInstall } from '../src/lib/tools';
+import { Logger, LogLevel } from '../src/services/logging';
+
+const logger = new Logger(window.createOutputChannel('Modern Fortran', 'log'), LogLevel.DEBUG);
 
 suite('Linter integration', () => {
   let doc: TextDocument;
-  const linter = new FortranLintingProvider();
+  const linter = new FortranLintingProvider(logger);
   const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/test1.f90'));
   const root = path.resolve(__dirname, '../../test/fortran/');
   const config = workspace.getConfiguration(EXTENSION_ID);
@@ -37,7 +40,7 @@ suite('Linter integration', () => {
   // different versions of gfortran report the error at a different column number
   // need to implement a the compiler versioning see #523
   test('GNU - API call to doLint produces correct diagnostics', async () => {
-    const diags = await new FortranLintingProvider()['doLint'](doc);
+    const diags = await new FortranLintingProvider(logger)['doLint'](doc);
     const ref: Diagnostic[] = [
       new Diagnostic(
         new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
@@ -123,7 +126,7 @@ suite('fypp Linter integration', () => {
     const doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
 
-    const diags = await new FortranLintingProvider()['doLint'](doc);
+    const diags = await new FortranLintingProvider(logger)['doLint'](doc);
     const refs: Diagnostic[] = [
       new Diagnostic(
         new Range(new Position(18, 35), new Position(18, 35)),

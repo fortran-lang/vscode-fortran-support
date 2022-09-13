@@ -1,13 +1,18 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { strictEqual } from 'assert';
-import { Logger } from '../src/services/logging';
 import { FortlsClient } from '../src/lsp/client';
 import { delay } from '../src/lib/helper';
+import { Logger, LogLevel } from '../src/services/logging';
+
+const logger = new Logger(
+  vscode.window.createOutputChannel('Modern Fortran', 'log'),
+  LogLevel.DEBUG
+);
 
 suite('Language Server integration tests', () => {
   let doc: vscode.TextDocument;
-  const server = new FortlsClient(new Logger());
+  const server = new FortlsClient(logger);
   const fileUri = vscode.Uri.file(
     path.resolve(__dirname, '../../test/fortran/function_subroutine_definitions.f90')
   );
