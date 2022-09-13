@@ -1,5 +1,5 @@
+/* c8 ignore start */
 import * as vscode from 'vscode';
-import { TextLine } from 'vscode';
 
 export interface Tag {
   name: string;
@@ -63,10 +63,10 @@ export const parseFunction = (line: vscode.TextLine) => {
   return _parse(line, MethodType.FortranFunction);
 };
 
-export const parseSubroutine = (line: TextLine) => {
+export const parseSubroutine = (line: vscode.TextLine) => {
   return _parse(line, MethodType.Subroutine);
 };
-export const _parse = (line: TextLine, type: MethodType) => {
+export const _parse = (line: vscode.TextLine, type: MethodType) => {
   const functionRegEx =
     /(?<=([a-zA-Z]+(\([\w.=]+\))*)*)\s*\bfunction\b\s*([a-zA-Z_][a-z0-9_]*)\s*\((\s*[a-z_][a-z0-9_,\s]*)*\s*(?:\)|&)\s*(result\([a-z_][\w]*(?:\)|&))*/i;
   const subroutineRegEx =
@@ -109,3 +109,4 @@ export const parseArgs = (argsstr: string) => {
 export const validVariableName = (name: string) => {
   return name.trim().match(/^[a-zA-Z_][a-zA-Z0-9_]*$/) !== null;
 };
+/* c8 ignore stop */

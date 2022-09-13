@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import { CancellationToken, TextDocument, TextLine, SymbolInformation } from 'vscode';
 
 import * as vscode from 'vscode';
@@ -112,3 +113,4 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
     return symbolTypes;
   }
 }
+/* c8 ignore stop */

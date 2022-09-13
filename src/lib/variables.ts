@@ -1,6 +1,6 @@
+/* c8 ignore start */
 import * as vscode from 'vscode';
 import { Variable } from './functions';
-import { TextLine } from 'vscode';
 
 const varibleDecRegEx =
   /([a-zA-Z]{1,}(\([a-zA-Z0-9]{1,}\))?)(\s*,\s*[a-zA-Z()])*\s*::\s*([a-zA-Z_][a-zA-Z0-9_]*)/g;
@@ -20,9 +20,10 @@ export function getDeclaredVars(document: vscode.TextDocument): Variable[] {
   return vars;
 }
 
-export const parseVars = (line: TextLine) => {
+export const parseVars = (line: vscode.TextLine) => {
   if (line.text.match(varibleDecRegEx)) {
     const [matchExp, type, kind, props, name] = varibleDecRegEx.exec(line.text);
     return { name: name, type: type };
   }
 };
+/* c8 ignore stop */
