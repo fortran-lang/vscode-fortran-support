@@ -45,7 +45,7 @@
 
 <p align="left">
   <a href="https://fortran-lang.org/learn/"><img src="assets/png/readme.tutorial.png"/></a>
-  <a href="https://github.com/fortran-lang/vscode-fortran-support/discussions"><img src="assets/png/readme.github.png"/></a>
+  <a href="https://fortran-lang.discourse.group/c/help/vscode/"><img src="assets/png/readme.github.png"/></a>
   <a href="https://fortran-lang.discourse.group/"><img src="assets/png/readme.discourse.png"/></a>
 </p>
 
