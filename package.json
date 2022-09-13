@@ -647,7 +647,7 @@
     ]
   },
   "dependencies": {
-    "fast-glob": "^3.2.11",
+    "fast-glob": "^3.2.12",
     "glob": "^8.0.3",
     "semver": "^7.3.7",
     "vscode-languageclient": "^8.0.2",
