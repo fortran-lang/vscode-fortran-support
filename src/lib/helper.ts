@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as vscode from 'vscode';
 
 export const FORTRAN_KEYWORDS = [
@@ -15,45 +14,6 @@ export const FORTRAN_KEYWORDS = [
   'IMPLICIT',
 ];
 
-export const _loadDocString = (keyword: string) => {
-  keyword = keyword.toUpperCase();
-
-  const docStringBuffer = fs.readFileSync(__dirname + '/../../../src/docs/' + keyword + '.html');
-  let docText = docStringBuffer.toString();
-  const codeRegex = /<code>(.+?)<\/code>\n?/g;
-  const varRegex = /<var>(.+?)<\/var>/g;
-  const spanRegex = /<samp><span class="command">(\w+)<\/span><\/samp>/g;
-  const tableRegex = /<table\s*.*>([\s\w<>/\W]+?)<\/table>/g;
-  const codeExampleRegex = /<code class="smallexample"[\s\W\w]*?>([\s\W\w<>]*?)<\/code>/g;
-  const headerRegex = /^ *<h(\d)>(.+?)<\/h\1>\n?/gm;
-  const defListRegex = /<dt>([\w\W]+?)<\/dt><dd>([\w\W]+?)(<br>)?<\/dd>/g;
-
-  docText = docText
-    .replace(varRegex, (match, code: string) => {
-      return '`' + code + '`';
-    })
-    .replace(spanRegex, (match, code) => `*${code}*`)
-    .replace(defListRegex, (match, entry, def) => `**${entry}** ${def}\n`)
-    .replace(codeExampleRegex, (match, code) => '```\n' + code + '\n\n```\n')
-    .replace(/<td\s*.*?>([\s\w<>/\W]+?)<\/td>/g, (match, code) => ' | ' + code)
-    .replace(/<tr\s*.*?>([\s\w<>/\W]+?)<\/tr>/g, (match, code) => code + '\n')
-    .replace(/<tbody\s*.*?>([\s\w<>/\W]+?)<\/tbody>/g, (match, code) => code)
-    .replace(tableRegex, (match, code) => code)
-    .replace(codeRegex, (match, code: string) => {
-      return '`' + code + '`';
-    })
-    .replace(/<p>\s*?/g, '\n')
-    .replace(/<\/p>\s*?/g, '\n')
-    .replace(headerRegex, (match, h: string, code: string) => {
-      const headerLevel: number = parseInt(h);
-      const header = '#'.repeat(headerLevel);
-      return `${header} ${code}\n`;
-    });
-  docText = docText.replace(/^ *<br>\n?/gm, '\n').replace(/<\?dl>/g, '');
-  console.log(docText);
-  return docText;
-};
-
 export function isPositionInString(
   document: vscode.TextDocument,
   position: vscode.Position
@@ -68,15 +28,6 @@ export function isPositionInString(
   doubleQuotesCnt -= escapedDoubleQuotesCnt;
   return doubleQuotesCnt % 2 === 1;
 }
-
-const saveKeywordToJson = keyword => {
-  const doc = _loadDocString(keyword);
-  const docObject = JSON.stringify({ keyword: keyword, docstr: doc });
-  fs.appendFile('src/docs/' + keyword + '.json', docObject, function (err) {
-    if (err) throw err;
-    console.log('Saved!');
-  });
-};
 
 export const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
