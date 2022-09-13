@@ -24,7 +24,7 @@
   },
   "icon": "assets/png/icon.png",
   "homepage": "https://github.com/fortran-lang/vscode-fortran-support#readme",
-  "qna": "https://github.com/fortran-lang/vscode-fortran-support/issues",
+  "qna": "https://fortran-lang.discourse.group/c/help/vscode/",
   "repository": {
     "type": "git",
     "url": "https://github.com/fortran-lang/vscode-fortran-support.git"
