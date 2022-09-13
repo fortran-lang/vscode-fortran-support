@@ -1,7 +1,10 @@
 contact_links:
+  - name: Q&A Support
+    url: https://fortran-lang.discourse.group/c/help/vscode/
+    about: Have a Question about the extension or need support? Ask a question in the Fortran Discourse.
   - name: Modern Fortran discussion board
     url: https://github.com/fortran-lang/vscode-fortran-support/discussions
-    about: Have a Question or an Idea about the extension? Start a discussion on the Modern Fortran Discussion Board.
+    about: Have an Idea about the extension or a General inquiry that is not about Support? Start a discussion on the Modern Fortran Discussion Board.
   - name: fortls Language Server discusion board
     url: https://github.com/gnikit/fortls/discussions
     about: Problems with the Language Server? Start a discussion on the fortls Language Server Discussion Board.
