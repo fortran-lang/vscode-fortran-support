@@ -628,7 +628,7 @@
           "command": "fortran.build.debug",
           "group": "navigation@1",
           "title": "Debug Fortran File",
-          "when": "resourceLangId == fortran && !isInDiffEditor && !virtualWorkspace && shellExecutionSupported"
+          "when": "resourceLangId =~ /Fortran/ && !isInDiffEditor && !virtualWorkspace && shellExecutionSupported"
         }
       ]
     }

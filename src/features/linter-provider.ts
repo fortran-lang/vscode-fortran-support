@@ -296,7 +296,7 @@ export class FortranLintingProvider {
         program: `${textDocument.fileName}.o`,
         cwd: folder.uri.fsPath,
       };
-      await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: debug });
+      await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: !debug });
       return;
     } catch (err) {
       this.logger.error(`[build] Compiling ${textDocument.fileName} failed:`, err);
@@ -417,7 +417,8 @@ export class FortranLintingProvider {
    */
   private getLinterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    let args: string[] = this.linter.argsDefault;
+    // Get the linter arguments from the settings via a deep copy
+    let args: string[] = [...this.linter.argsDefault];
     const user_args: string[] = this.settings.args;
     // If we have specified linter.extraArgs then replace default arguments
     if (user_args.length > 0) args = user_args.slice();
