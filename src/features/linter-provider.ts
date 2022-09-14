@@ -279,7 +279,7 @@ export class FortranLintingProvider {
     const textDocument = textEditor.document;
     this.linter = this.getLinter(this.settings.compiler);
     const command = this.getLinterExecutable();
-    let argList = this.constructArgumentList(textDocument);
+    let argList = [...this.constructArgumentList(textDocument)];
     // Remove mandatory linter args, used for mock compilation
     argList = argList.filter(arg => !this.linter.args.includes(arg));
     if (debug) argList.push('-g'); // add debug symbols flag, same for all compilers
@@ -417,7 +417,8 @@ export class FortranLintingProvider {
    */
   private getLinterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    let args: string[] = this.linter.argsDefault;
+    // Get the linter arguments from the settings via a deep copy
+    let args: string[] = [...this.linter.argsDefault];
     const user_args: string[] = this.settings.args;
     // If we have specified linter.extraArgs then replace default arguments
     if (user_args.length > 0) args = user_args.slice();
