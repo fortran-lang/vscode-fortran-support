@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added Run and Debug buttons for single Fortran files based on linter settings
+  ([#646](https://github.com/fortran-lang/vscode-fortran-support/issues/646))
 - Added linter support for [LFortran](https://lfortran.org/)
   ([#589](https://github.com/fortran-lang/vscode-fortran-support/issues/589))
 - Added coverage reporting using `c8`

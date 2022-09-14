@@ -568,6 +568,18 @@
         "category": "Fortran",
         "command": "fortran.analysis.showWhatsNew",
         "title": "What's New"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.build.run",
+        "icon": "$(play)",
+        "title": "Run Fortran File"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.build.debug",
+        "icon": "$(debug-alt)",
+        "title": "Debug Fortran File"
       }
     ],
     "menus": {
@@ -589,6 +601,34 @@
           "command": "fortran.analysis.showWhatsNew",
           "title": "What's New",
           "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.build.run",
+          "icon": "$(play)",
+          "title": "Run Fortran File",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.build.debug",
+          "icon": "$(debug-alt)",
+          "title": "Debug Fortran file",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        }
+      ],
+      "editor/title/run": [
+        {
+          "command": "fortran.build.run",
+          "group": "navigation@0",
+          "title": "Run Fortran File",
+          "when": "resourceLangId =~ /Fortran/ && !isInDiffEditor && !virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "command": "fortran.build.debug",
+          "group": "navigation@1",
+          "title": "Debug Fortran File",
+          "when": "resourceLangId == fortran && !isInDiffEditor && !virtualWorkspace && shellExecutionSupported"
         }
       ]
     }
