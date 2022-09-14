@@ -279,7 +279,7 @@ export class FortranLintingProvider {
     const textDocument = textEditor.document;
     this.linter = this.getLinter(this.settings.compiler);
     const command = this.getLinterExecutable();
-    let argList = [...this.constructArgumentList(textDocument)];
+    let argList = this.constructArgumentList(textDocument);
     // Remove mandatory linter args, used for mock compilation
     argList = argList.filter(arg => !this.linter.args.includes(arg));
     if (debug) argList.push('-g'); // add debug symbols flag, same for all compilers
@@ -296,7 +296,7 @@ export class FortranLintingProvider {
         program: `${textDocument.fileName}.o`,
         cwd: folder.uri.fsPath,
       };
-      await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: debug });
+      await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: !debug });
       return;
     } catch (err) {
       this.logger.error(`[build] Compiling ${textDocument.fileName} failed:`, err);
