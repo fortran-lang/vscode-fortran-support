@@ -14,28 +14,28 @@ abstract class Linter {
     /**
      * Linter name
      */
-    public name: string,
+    public readonly name: string,
     /**
      * Regular expression to match compiler messages
      */
-    public regex: RegExp,
+    public readonly regex: RegExp,
     /**
      * Keywords used to identify message severity
      */
-    public severity: LinterSeverityKeywords,
+    public readonly severity: LinterSeverityKeywords,
     /**
      * Mandatory linter arguments. These are always present
      */
-    public args: string[],
+    public readonly args: string[],
     /**
      * Command line arguments to pass to the linter, these get overwritten in
      * case the user has set arguments in the settings
      */
-    public argsDefault?: string[],
+    public readonly argsDefault?: string[],
     /**
      * Compiler flag used to change the directory output for modules
      */
-    public modFlag?: string
+    public readonly modFlag?: string
   ) {}
 
   public getSeverityLevel(msg_type: string): vscode.DiagnosticSeverity {
