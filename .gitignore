@@ -10,3 +10,9 @@ coverage
 *.o
 *.mod
 *.smod
+
+# Python files
+venv/
+*.egg-info/
+*.eggs/
+*.pyc
