@@ -12,6 +12,7 @@ import {
   isFortran,
   getOuterMostWorkspaceFolder,
   pipInstall,
+  resolveVariables,
 } from '../lib/tools';
 import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
@@ -82,7 +83,8 @@ export class FortlsClient {
     if (!isFortran(document)) return;
 
     const args: string[] = await this.fortlsArguments();
-    const executablePath = workspace.getConfiguration(EXTENSION_ID).get<string>('fortls.path');
+    const fortlsPath = workspace.getConfiguration(EXTENSION_ID).get<string>('fortls.path');
+    const executablePath = resolveVariables(fortlsPath);
 
     // Detect language server version and verify selected options
     this.version = this.getLSVersion(executablePath, args);
@@ -304,7 +306,7 @@ export class FortlsClient {
    */
   private async fortlsDownload(): Promise<boolean> {
     const config = workspace.getConfiguration(EXTENSION_ID);
-    const ls = config.get<string>('fortls.path');
+    const ls = resolveVariables(config.get<string>('fortls.path'));
 
     // Check for version, if this fails fortls provided is invalid
     const results = spawnSync(ls, ['--version']);
