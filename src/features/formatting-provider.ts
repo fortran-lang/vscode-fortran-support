@@ -13,6 +13,7 @@ import {
   promptForMissingTool,
   getWholeFileRange,
   spawnAsPromise,
+  pathRelToAbs,
 } from '../lib/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
@@ -53,7 +54,8 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     }
 
     const formatterName = process.platform !== 'win32' ? 'fprettify' : 'fprettify.exe';
-    const formatterPath: string = this.getFormatterPath();
+    const formatterPath: string =
+      this.formatterPath === '' ? '' : pathRelToAbs(this.formatterPath, document.uri);
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
@@ -78,7 +80,8 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    */
   private async doFormatFindent(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     const formatterName = process.platform !== 'win32' ? 'findent' : 'findent.exe';
-    const formatterPath: string = this.getFormatterPath();
+    const formatterPath: string =
+      this.formatterPath === '' ? '' : pathRelToAbs(this.formatterPath, document.uri);
     const formatter: string = path.join(formatterPath, formatterName);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
@@ -128,7 +131,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    *
    * @returns {string} path of formatter
    */
-  private getFormatterPath(): string {
+  private get formatterPath(): string {
     const formatterPath: string = this.workspace.get('formatting.path', '');
     if (formatterPath !== '') {
       this.logger.info(`[format] Formatter located in: ${formatterPath}`);

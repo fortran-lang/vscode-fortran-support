@@ -1,4 +1,5 @@
 import * as os from 'os';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import * as assert from 'assert';
 import * as cp from 'child_process';
@@ -260,6 +261,22 @@ export function resolveVariables(
 
   return ret;
   // return new Promise<string>((resolve) => { resolve(ret) });
+}
+
+/**
+ * Resolves a path relative to the workspace folder, an optional `uri`
+ * can be provided to help retrieve the correct workspace folder when working
+ * with multi-root workspaces, else the first workspace folder is used.
+ *
+ * @param relPath relative path to resolve against the workspace folder
+ * @param uri optional uri of a file/folder within the workspace folder
+ * usefull when using multiroot workspaces to pick the right workspace root
+ * @returns absolute path relative to the workspace root
+ */
+export function pathRelToAbs(relPath: string, uri: vscode.Uri): string | undefined {
+  const root = getOuterMostWorkspaceFolder(vscode.workspace.getWorkspaceFolder(uri));
+  if (root === undefined) return undefined;
+  return path.join(root.uri.fsPath, relPath);
 }
 
 export function getWholeFileRange(document: vscode.TextDocument): vscode.Range {

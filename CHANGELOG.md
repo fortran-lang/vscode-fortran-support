@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added local path resolution for `fortls`, `findent` and `fprettify` executables
+  ([#667](https://github.com/fortran-lang/vscode-fortran-support/issues/667))
 - Added support for variable resolution in `fortls`
   ([#664](https://github.com/fortran-lang/vscode-fortran-support/issues/664))
 - Added Run and Debug buttons for single Fortran files based on linter settings
