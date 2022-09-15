@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added support for variable resolution in `fortls`
+  ([#664](https://github.com/fortran-lang/vscode-fortran-support/issues/664))
 - Added Run and Debug buttons for single Fortran files based on linter settings
   ([#646](https://github.com/fortran-lang/vscode-fortran-support/issues/646))
 - Added linter support for [LFortran](https://lfortran.org/)
