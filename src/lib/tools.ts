@@ -77,8 +77,9 @@ export function sortedWorkspaceFolders(): string[] | undefined {
  * @returns outer most workspace folder
  */
 export function getOuterMostWorkspaceFolder(
-  folder: vscode.WorkspaceFolder
-): vscode.WorkspaceFolder {
+  folder: vscode.WorkspaceFolder | undefined
+): vscode.WorkspaceFolder | undefined {
+  if (folder === undefined) return undefined;
   const sorted = sortedWorkspaceFolders();
   for (const element of sorted) {
     let uri = folder.uri.toString();

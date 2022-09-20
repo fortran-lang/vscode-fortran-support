@@ -51,9 +51,11 @@ suite('Tools tests', () => {
     assert.strictEqual(stderr, 'Errors');
   });
 
-  test('Resolve local paths: default workspace', () => {
-    const absPath = pathRelToAbs('./sample.f90');
-    assert.strictEqual(absPath, path.resolve(__dirname, '../../test/fortran/sample.f90'));
+  test('Resolve local paths: undefined', () => {
+    const root = Uri.parse('/home/user/project');
+    const absPath = pathRelToAbs('./sample.f90', root);
+    console.log(absPath, root);
+    assert.strictEqual(absPath, undefined);
   });
 
   test('Resolve local paths: workspace selection', () => {
