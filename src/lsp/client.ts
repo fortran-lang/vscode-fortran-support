@@ -13,6 +13,7 @@ import {
   getOuterMostWorkspaceFolder,
   pipInstall,
   resolveVariables,
+  pathRelToAbs,
 } from '../lib/tools';
 import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
@@ -84,7 +85,8 @@ export class FortlsClient {
 
     const args: string[] = await this.fortlsArguments();
     const fortlsPath = workspace.getConfiguration(EXTENSION_ID).get<string>('fortls.path');
-    const executablePath = resolveVariables(fortlsPath);
+    let executablePath = resolveVariables(fortlsPath);
+    if (fortlsPath !== 'fortls') executablePath = pathRelToAbs(fortlsPath, document.uri);
 
     // Detect language server version and verify selected options
     this.version = this.getLSVersion(executablePath, args);
@@ -306,7 +308,14 @@ export class FortlsClient {
    */
   private async fortlsDownload(): Promise<boolean> {
     const config = workspace.getConfiguration(EXTENSION_ID);
-    const ls = resolveVariables(config.get<string>('fortls.path'));
+    let ls = resolveVariables(config.get<string>('fortls.path'));
+    // The path can be resolved as a relative path if it's part of a workspace
+    // AND it does not have the default value `fortls` or is an absolute path
+    if (workspace.workspaceFolders == undefined && ls !== 'fortls' && !path.isAbsolute(ls)) {
+      const root = workspace.workspaceFolders[0];
+      this.logger.debug(`[lsp.client] Assuming relative fortls path is to ${root.uri.fsPath}`);
+      ls = pathRelToAbs(ls, root.uri);
+    }
 
     // Check for version, if this fails fortls provided is invalid
     const results = spawnSync(ls, ['--version']);
