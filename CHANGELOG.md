@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added support for schema validation of `fpm.toml` files.
 - Added local path resolution for `fortls`, `findent` and `fprettify` executables
   ([#667](https://github.com/fortran-lang/vscode-fortran-support/issues/667))
 - Added support for variable resolution in `fortls`

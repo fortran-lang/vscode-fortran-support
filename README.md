@@ -256,6 +256,15 @@ If the formatter is not present in the `PATH` its location can be input with
 | 📝️ Note | `findent` can also be used to generate dependency files for a project. |
 | -------- | ---------------------------------------------------------------------- |
 
+## Fortran Package Manager
+
+### Validation of `fpm.toml`
+
+Autocompletion and options validation for `fpm.toml` files are provided by the
+**installing the [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml) Visual Studio Code extension**.
+
+![fpm-validation](assets/gif/fpm-toml-validation.gif)
+
 ## Snippets
 
 Snippets are included by both `fortls` Language Server and the Modern Fortran VS Code extension.

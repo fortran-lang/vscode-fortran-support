@@ -110,6 +110,12 @@
         }
       }
     ],
+    "tomlValidation": [
+      {
+        "fileMatch": "fpm.toml",
+        "url": "https://github.com/fortran-lang/fpm-metadata/releases/download/v0.2.1/fpm-metadata-0.2.1.json"
+      }
+    ],
     "grammars": [
       {
         "language": "FortranFreeForm",
