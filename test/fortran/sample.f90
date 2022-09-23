@@ -1,7 +1,6 @@
 program main
- ! execution
-  
-  call say_hello()
+
+  call say_hello(1, 2)
 
 contains
 
@@ -10,6 +9,5 @@ contains
 
     print *, "Hello, World!"
   end subroutine say_hello
-  
-  
+
 end program main
