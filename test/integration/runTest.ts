@@ -12,6 +12,7 @@ async function main() {
       path.resolve(__dirname, '../../../test/requirements.txt'),
       '--force',
       '--upgrade',
+      '--no-cache-dir',
     ]);
     if (results.status !== 0) {
       console.error(results.stderr.toString());
