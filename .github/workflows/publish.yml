@@ -26,6 +26,7 @@ jobs:
           fi
         env:
           pre_release: ${{ github.event.release.prerelease }}
+          VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
       # Commit the new version to the repository default branch and update the tag
       # This removes the signing of the commit, tag and release since it's
