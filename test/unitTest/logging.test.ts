@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert';
-import { Logger, LogLevel, getConfigLogLevel } from '../src/services/logging';
+import { Logger, LogLevel, getConfigLogLevel } from '../../src/services/logging';
 
 suite('Logging', () => {
   const logger = new Logger();

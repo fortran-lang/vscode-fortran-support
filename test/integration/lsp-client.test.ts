@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { strictEqual } from 'assert';
-import { FortlsClient } from '../src/lsp/client';
-import { delay } from '../src/lib/helper';
-import { Logger, LogLevel } from '../src/services/logging';
+import { FortlsClient } from '../../src/lsp/client';
+import { delay } from '../../src/lib/helper';
+import { Logger, LogLevel } from '../../src/services/logging';
 
 const logger = new Logger(
   vscode.window.createOutputChannel('Modern Fortran', 'log'),
@@ -11,20 +11,17 @@ const logger = new Logger(
 );
 
 suite('Language Server integration tests', () => {
-  let doc: vscode.TextDocument;
   const server = new FortlsClient(logger);
-  const fileUri = vscode.Uri.file(
-    path.resolve(__dirname, '../../test/fortran/function_subroutine_definitions.f90')
-  );
+  const fileUri = vscode.Uri.file(path.resolve(__dirname, '../../../test/fortran/sample.f90'));
 
-  suiteSetup(async function (): Promise<void> {
-    await server.activate();
+  suiteSetup(async () => {
+    const doc = await vscode.workspace.openTextDocument(fileUri);
+    await vscode.window.showTextDocument(doc);
   });
 
   test('Launch fortls & Check Initialization Response', async () => {
+    await server.activate();
     await delay(3000); // wait for server to initialize
-    doc = await vscode.workspace.openTextDocument(fileUri);
-    await vscode.window.showTextDocument(doc);
 
     const ref = {
       capabilities: {

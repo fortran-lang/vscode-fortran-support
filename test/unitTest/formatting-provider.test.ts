@@ -1,8 +1,8 @@
 import { strictEqual } from 'assert';
-import { FortranFormattingProvider } from '../src/features/formatting-provider';
+import { FortranFormattingProvider } from '../../src/features/formatting-provider';
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { Logger, LogLevel } from '../src/services/logging';
+import { Logger, LogLevel } from '../../src/services/logging';
 
 const logger = new Logger(
   vscode.window.createOutputChannel('Modern Fortran', 'log'),
@@ -13,13 +13,12 @@ suite('Formatting tests', () => {
   let doc: vscode.TextDocument;
   const fmt = new FortranFormattingProvider(logger);
   const fileUri = vscode.Uri.file(
-    path.resolve(__dirname, '../../test/fortran/format/formatting_test.f90')
+    path.resolve(__dirname, '../../../test/fortran/format/formatting_test.f90')
   );
 
   suiteSetup(async function (): Promise<void> {
     doc = await vscode.workspace.openTextDocument(fileUri);
     await vscode.window.showTextDocument(doc);
-    console.log('Open file: ' + fileUri.toString());
   });
 
   test('Using findent', async () => {
@@ -66,7 +65,7 @@ end program main
       vscode.Uri.file(
         path.resolve(
           __dirname,
-          '../../test/fortran/format/formatting_test_fprettify_long_lines.f90'
+          '../../../test/fortran/format/formatting_test_fprettify_long_lines.f90'
         )
       )
     );

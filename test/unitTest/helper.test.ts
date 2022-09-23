@@ -10,7 +10,7 @@ import {
   isArrayOfString,
   arraysEqual,
   isPositionInString,
-} from '../src/lib/helper';
+} from '../../src/lib/helper';
 import * as vscode from 'vscode';
 
 suite('helper functions isTypeVariable tests', () => {
