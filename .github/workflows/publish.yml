@@ -12,13 +12,41 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      # - name: Publish to Open VSX Registry
-      #   uses: HaaLeo/publish-vscode-extension@v1
-      #   with:
-      #     pat: ${{ secrets.OPEN_VSX_TOKEN }}
-      - name: Publish to Visual Studio Marketplace
-        uses: HaaLeo/publish-vscode-extension@v1
+
+      # Package and publish the extension to VS Code Marketplace
+      # Do not produce a git tag, only increment the version in package.json
+      - name: Publish Release ${{ github.ref_name }}
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          npm i -g vsce
+          if [ "$pre_release" = true ] ; then
+            vsce publish --no-git-tag-version --pre-release ${GITHUB_REF_NAME:1}
+          else
+            vsce publish --no-git-tag-version ${GITHUB_REF_NAME:1}
+          fi
+        env:
+          pre_release: ${{ github.event.release.prerelease }}
+
+      # Commit the new version to the repository default branch and update the tag
+      # This removes the signing of the commit, tag and release since it's
+      # created by the GitHub Actions bot
+      - name: Update package.json version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          git config user.name github-actions
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -c tmp
+          git add package.json
+          git commit -m "ci: update version to ${GITHUB_REF_NAME:1}"
+          git fetch
+          git switch main
+          git merge tmp
+          git tag -f $GITHUB_REF_NAME
+          git push origin -f $GITHUB_REF_NAME
+          git push origin -f main
+
+      # Upload the artifact as a release asset
+      - uses: softprops/action-gh-release@master
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
-          pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
-          registryUrl: https://marketplace.visualstudio.com
-          preRelease: ${{ github.event.release.prerelease }}
+          files: ./*.vsix
