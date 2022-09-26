@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added option to disable Release Notes from being displayed
+  ([#675](https://github.com/fortran-lang/vscode-fortran-support/issues/675))
 - Added support for schema validation of `fpm.toml` files.
 - Added local path resolution for `fortls`, `findent` and `fprettify` executables
   ([#667](https://github.com/fortran-lang/vscode-fortran-support/issues/667))

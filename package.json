@@ -514,6 +514,19 @@
         }
       },
       {
+        "id": "notifications",
+        "title": "Notifications",
+        "order": 100,
+        "properties": {
+          "fortran.notifications.releaseNotes": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Show release notes when a new version of the extension is installed.",
+            "order": 0
+          }
+        }
+      },
+      {
         "id": "deprecated",
         "title": "Deprecated Options",
         "order": 999,
