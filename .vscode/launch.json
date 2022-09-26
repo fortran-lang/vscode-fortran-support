@@ -3,6 +3,24 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "test",
+      "type": "pickString",
+      "description": "Pick the type of test for this session",
+      "default": "unitTest/",
+      "options": [
+        {
+          "label": "unitTest",
+          "value": "unitTest"
+        },
+        {
+          "label": "integration",
+          "value": "integration"
+        }
+      ]
+    }
+  ],
   "configurations": [
     {
       "name": "Launch Extension",
@@ -21,7 +39,7 @@
         "${workspaceFolder}/test/fortran",
         "--disable-extension=fortran-lang.linter-gfortran",
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/out/test"
+        "--extensionTestsPath=${workspaceFolder}/out/test/${input:test}"
       ],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "preLaunchTask": "npm: pretest"
