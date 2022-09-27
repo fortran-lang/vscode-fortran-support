@@ -4,7 +4,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
         gcc_v: [11]
         node-version: [18.x]
       fail-fast: false
@@ -33,24 +33,57 @@ jobs:
           --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_V} \
           --slave /usr/bin/gcov gcov /usr/bin/gcov-${GCC_V}
 
+      - name: Install GFortran macOS
+        if: contains(matrix.os, 'macos')
+        run: |
+          ln -s /usr/local/bin/gfortran-${GCC_V} /usr/local/bin/gfortran
+          which gfortran-${GCC_V}
+          which gfortran
+          gfortran --version
+
       - name: Installing Extension
         run: npm ci
+
       - name: Compile
         run: npm run compile
+
       - name: Linting
         run: npm run lint
+
       - name: Test Syntax Highlighting
         run: npm run test:grammar
-      - name: Test Unittests
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: npm run test
+
+      - name: Compile Tests
+        run: npm run pretest
+
+      - name: Run Unit Tests (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm run test:unit
+      - name: Run Unit Tests  (macOS)
+        if: runner.os != 'Linux'
+        run: npm run test:unit
+
+      - name: Run Integration Tests (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm run test:integration
+      # - name: Run Integration Tests (macOS)
+      #   if: runner.os != 'Linux'
+      #   run: npm run test:integration
+
+      - name: Run UI Tests (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm run test:ui
+      - name: Run UI Tests (macOS)
+        if: runner.os != 'Linux'
+        run: npm run test:ui
+        shell: bash
+
       # This will not fail the job if tests fail so we have to npm test separately
       - name: Coverage report
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: npm run coverage
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm run coverage
       - name: Upload coverage to Codecov
+        if: runner.os == 'Linux'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

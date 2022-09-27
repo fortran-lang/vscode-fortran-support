@@ -285,7 +285,7 @@ export class FortlsClient {
     if (results.status !== 0) {
       this.logger.error(`[lsp.client] Unable to verify input arguments with LS:`);
       const selected = window.showErrorMessage(
-        'Error launching fortls: Please check that all selected options are supported by your language server version.',
+        'Error launching fortls: Please check that all selected options are supported by your language server version and that the root directory where the language server is installed is in PYTHONPATH',
         'Settings',
         'Workspace settings'
       );

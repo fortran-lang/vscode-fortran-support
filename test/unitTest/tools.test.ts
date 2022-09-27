@@ -54,8 +54,13 @@ suite('Tools tests', () => {
   test('Resolve local paths: undefined', () => {
     const root = Uri.parse('/home/user/project');
     const absPath = pathRelToAbs('./sample.f90', root);
-    console.log(absPath, root);
     assert.strictEqual(absPath, undefined);
+  });
+
+  test('Resolve local paths: absolute', () => {
+    const root = Uri.parse('/home/user/project');
+    const absPath = pathRelToAbs(path.resolve(process.cwd()), root);
+    assert.strictEqual(absPath, path.resolve(process.cwd()));
   });
 
   test('Resolve local paths: workspace selection', () => {
