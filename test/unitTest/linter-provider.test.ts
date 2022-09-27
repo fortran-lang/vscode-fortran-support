@@ -12,24 +12,24 @@ import {
 } from 'vscode';
 import * as fg from 'fast-glob';
 
-import { FortranLintingProvider } from '../src/features/linter-provider';
+import { FortranLintingProvider } from '../../src/features/linter-provider';
 import {
   GNULinter,
   GNUModernLinter,
   IntelLinter,
   NAGLinter,
   LFortranLinter,
-} from '../src/lib/linters';
-import { EXTENSION_ID, pipInstall } from '../src/lib/tools';
-import { Logger, LogLevel } from '../src/services/logging';
+} from '../../src/lib/linters';
+import { EXTENSION_ID, pipInstall } from '../../src/lib/tools';
+import { Logger, LogLevel } from '../../src/services/logging';
 
 const logger = new Logger(window.createOutputChannel('Modern Fortran', 'log'), LogLevel.DEBUG);
 
 suite('Linter integration', () => {
   let doc: TextDocument;
   const linter = new FortranLintingProvider(logger);
-  const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/test1.f90'));
-  const root = path.resolve(__dirname, '../../test/fortran/');
+  const fileUri = Uri.file(path.resolve(__dirname, '../../../test/fortran/lint/test1.f90'));
+  const root = path.resolve(__dirname, '../../../test/fortran/');
   const config = workspace.getConfiguration(EXTENSION_ID);
   const oldVals = config.get<string[]>('linter.includePaths');
 
@@ -113,7 +113,7 @@ suite('Linter integration', () => {
 // -----------------------------------------------------------------------------
 
 suite('fypp Linter integration', () => {
-  const root = path.resolve(__dirname, '../../test/fortran/');
+  const root = path.resolve(__dirname, '../../../test/fortran/');
   const config = workspace.getConfiguration(EXTENSION_ID);
 
   suiteSetup(async () => {
@@ -122,7 +122,7 @@ suite('fypp Linter integration', () => {
   });
 
   test('GNU - API call to doLint produces correct diagnostics', async () => {
-    const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/fypp/demo.fypp'));
+    const fileUri = Uri.file(path.resolve(__dirname, '../../../test/fortran/fypp/demo.fypp'));
     const doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
 
@@ -784,7 +784,7 @@ Sequence Error: lint/err-mod.f90, line 3: The IMPLICIT statement cannot occur he
     });
   });
   test('Diagnostics Array', async () => {
-    const fileUri = Uri.file(path.resolve(__dirname, '../../test/fortran/lint/err-mod.f90'));
+    const fileUri = Uri.file(path.resolve(__dirname, '../../../test/fortran/lint/err-mod.f90'));
     const doc = await workspace.openTextDocument(fileUri);
     await window.showTextDocument(doc);
     const diags = linter.parse(msg);

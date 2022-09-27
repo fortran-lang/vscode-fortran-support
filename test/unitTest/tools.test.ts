@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as assert from 'assert';
 import { Uri } from 'vscode';
-import { shellTask, spawnAsPromise, pathRelToAbs } from '../src/lib/tools';
+import { shellTask, spawnAsPromise, pathRelToAbs } from '../../src/lib/tools';
 
 suite('Tools tests', () => {
   test('shellTask returns correct output', async () => {
@@ -59,8 +59,8 @@ suite('Tools tests', () => {
   });
 
   test('Resolve local paths: workspace selection', () => {
-    const root = Uri.parse(path.resolve(__dirname, '../../test/fortran'));
+    const root = Uri.parse(path.resolve(__dirname, '../../../test/fortran'));
     const absPath = pathRelToAbs('./sample.f90', root);
-    assert.strictEqual(absPath, path.resolve(__dirname, '../../test/fortran/sample.f90'));
+    assert.strictEqual(absPath, path.resolve(__dirname, '../../../test/fortran/sample.f90'));
   });
 });

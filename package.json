@@ -514,6 +514,19 @@
         }
       },
       {
+        "id": "notifications",
+        "title": "Notifications",
+        "order": 100,
+        "properties": {
+          "fortran.notifications.releaseNotes": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Show release notes when a new version of the extension is installed.",
+            "order": 0
+          }
+        }
+      },
+      {
         "id": "deprecated",
         "title": "Deprecated Options",
         "order": 999,
@@ -648,11 +661,15 @@
     "watch-dev": "webpack --mode development --watch --progress",
     "webpack": "webpack --mode production",
     "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
-    "test": "node ./out/test/runTest.js; npm run format",
+    "test": "npm run test:unit && npm run test:integration && npm run test:ui",
+    "test:ui": "extest setup-and-run -i out/test/ui/*.js -m test/ui/.mocharc.js",
+    "test:unit": "node ./out/test/unitTest/runTest.js",
+    "test:integration": "node ./out/test/integration/runTest.js",
     "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json \"./test/fortran/syntax/**/*{.f90,F90}\"",
     "test:grammar-fixed": "vscode-tmgrammar-snap -s source.fortran.fixed -g ./syntaxes/fortran_fixed-form.tmLanguage.json \"./test/fortran/syntax/**/*{.f,F}\"",
     "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
     "test:grammar-update": "npm run test:grammar-free -- -u && npm run test:grammar-fixed -- -u",
+    "posttest": "npm run format",
     "lint": "eslint . --ext .ts,.tsx",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --write 'src/**/*.{ts,json}' 'test/**/*.ts' 'syntaxes/**/*.json' 'snippets/**/*.json' './**/*.{md,json,yaml,yml}'",
@@ -681,6 +698,7 @@
     "prettier": "^2.7.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
+    "vscode-extension-tester": "^5.0.0",
     "vscode-tmgrammar-test": "^0.1.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"

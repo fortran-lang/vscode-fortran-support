@@ -19,3 +19,4 @@ vsc-extension-quickstart.md
 CONTRIBUTING.md
 coverconfig.json
 assets/{videos,tools,svg,README.md}
+test-resources/

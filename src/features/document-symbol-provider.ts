@@ -1,4 +1,3 @@
-/* c8 ignore start */
 import { CancellationToken, TextDocument, TextLine, SymbolInformation } from 'vscode';
 
 import * as vscode from 'vscode';
@@ -29,9 +28,9 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
     return Promise.race([this.parseDoc(document), cancel]);
   }
 
-  parseDoc = async (document: TextDocument) => {
+  private async parseDoc(document: TextDocument) {
     const lines = document.lineCount;
-    let symbols = [];
+    let symbols: SymbolInformation[] = [];
     const symbolTypes = this.getSymbolTypes();
 
     for (let i = 0; i < lines; i++) {
@@ -48,9 +47,9 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
       }
     }
     return symbols;
-  };
+  }
 
-  getSymbolsOfType(type: 'subroutine' | 'function' | 'variable'): ParserFunc {
+  private getSymbolsOfType(type: 'subroutine' | 'function' | 'variable'): ParserFunc {
     switch (type) {
       case 'subroutine':
         return this.parseSubroutineDefinition;
@@ -93,6 +92,7 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
     }
   }
 
+  /* c8 ignore start */
   private parseVariableDefinition(document: TextDocument, line: TextLine) {
     const variable = getDeclaredVar(line);
     if (variable) {
@@ -105,12 +105,10 @@ export class FortranDocumentSymbolProvider implements vscode.DocumentSymbolProvi
       );
     }
   }
+  /* c8 ignore stop */
 
-  getSymbolTypes() {
-    const config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    // It does not make much sense for this to be an input option
+  private getSymbolTypes() {
     const symbolTypes: SymbolType[] = ['subroutine', 'function'];
     return symbolTypes;
   }
 }
-/* c8 ignore stop */

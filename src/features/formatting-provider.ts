@@ -52,25 +52,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       );
       return undefined;
     }
-
-    const formatterName = process.platform !== 'win32' ? 'fprettify' : 'fprettify.exe';
-    const formatterPath: string =
-      this.formatterPath === '' ? '' : pathRelToAbs(this.formatterPath, document.uri);
-    const formatter: string = path.join(formatterPath, formatterName);
-    // If no formatter is detected try and install it
-    if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.warn(`[format] ${formatterName} not found. Attempting to install now.`);
-      const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
-    }
-
-    const args: string[] = ['--stdout', ...this.getFormatterArgs()];
-    this.logger.debug(`[format] fprettify args:`, args);
-    const edits: vscode.TextEdit[] = [];
-    const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
-    edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.error(`[format] fprettify error output: ${stderr}`);
-    return edits;
+    return this.spawnFormatBase(document, 'fprettify', ['--stdout']);
   }
 
   /**
@@ -79,23 +61,30 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    * @param document vscode.TextDocument document to operate on
    */
   private async doFormatFindent(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
-    const formatterName = process.platform !== 'win32' ? 'findent' : 'findent.exe';
+    return this.spawnFormatBase(document, 'findent');
+  }
+
+  private async spawnFormatBase(
+    document: vscode.TextDocument,
+    name: string,
+    defaultArgs?: string[]
+  ): Promise<vscode.TextEdit[]> {
     const formatterPath: string =
       this.formatterPath === '' ? '' : pathRelToAbs(this.formatterPath, document.uri);
-    const formatter: string = path.join(formatterPath, formatterName);
+    const formatter: string = path.join(formatterPath, name);
     // If no formatter is detected try and install it
     if (!which.sync(formatter, { nothrow: true })) {
-      this.logger.warn(`[format] ${formatterName} not found! Attempting to install now.`);
-      const msg = `Installing ${formatterName} through pip with --user option`;
-      promptForMissingTool(formatterName, msg, 'Python', ['Install']);
+      this.logger.warn(`[format] ${name} not found! Attempting to install now.`);
+      const msg = `Installing ${name} through pip with --user option`;
+      await promptForMissingTool(name, msg, 'Python', ['Install']);
     }
 
-    const args: string[] = this.getFormatterArgs();
-    this.logger.debug(`[format] findent args:`, args);
+    const args: string[] = [...(defaultArgs || []), ...this.getFormatterArgs()];
+    this.logger.debug(`[format] ${name} args:`, args);
     const edits: vscode.TextEdit[] = [];
     const [stdout, stderr] = await spawnAsPromise(formatter, args, undefined, document.getText());
     edits.push(new vscode.TextEdit(getWholeFileRange(document), stdout));
-    if (stderr) this.logger.error(`[format] findent error output: ${stderr}`);
+    if (stderr) this.logger.error(`[format] ${name} error output: ${stderr}`);
     return edits;
   }
 

@@ -107,10 +107,23 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(vscode.commands.registerCommand(WhatsNew, showWhatsNew));
   // Upon the very first initialisation create a file to indicate that the release
   // notes have been shown and not show them again.
-  if (!fs.existsSync(path.join(__dirname, 'displayReleaseNotes.txt'))) {
+  if (
+    !fs.existsSync(path.join(__dirname, 'displayReleaseNotes.txt')) &&
+    config.get<boolean>('notifications.releaseNotes')
+  ) {
     await showWhatsNew();
     fs.writeFileSync(path.join(__dirname, 'displayReleaseNotes.txt'), 'false');
   }
+  // const GoToHelp = 'Go to Help';
+  // vscode.window.showInformationMessage('Click for more Info', GoToHelp).then(selection => {
+  //   if (selection === GoToHelp) {
+  //     vscode.env.openExternal(
+  //       vscode.Uri.parse(
+  //         'https://github.com/fortran-lang/vscode-fortran-support/blob/main/updates/RELEASE_NOTES-v3.2.md'
+  //       )
+  //     );
+  //   }
+  // });
   return context;
 }
 
