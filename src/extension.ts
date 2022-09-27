@@ -114,6 +114,16 @@ export async function activate(context: vscode.ExtensionContext) {
     await showWhatsNew();
     fs.writeFileSync(path.join(__dirname, 'displayReleaseNotes.txt'), 'false');
   }
+  // const GoToHelp = 'Go to Help';
+  // vscode.window.showInformationMessage('Click for more Info', GoToHelp).then(selection => {
+  //   if (selection === GoToHelp) {
+  //     vscode.env.openExternal(
+  //       vscode.Uri.parse(
+  //         'https://github.com/fortran-lang/vscode-fortran-support/blob/main/updates/RELEASE_NOTES-v3.2.md'
+  //       )
+  //     );
+  //   }
+  // });
   return context;
 }
 
