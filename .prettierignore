@@ -1,5 +1,6 @@
 # .prettierignore
 
+test-resources
 node_modules
 .vscode-test
 coverage

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added User Interface tests for program installation
 - Added option to disable Release Notes from being displayed
   ([#675](https://github.com/fortran-lang/vscode-fortran-support/issues/675))
 - Added support for schema validation of `fpm.toml` files.

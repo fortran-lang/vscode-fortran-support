@@ -43,6 +43,21 @@
       ],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "preLaunchTask": "npm: pretest"
+    },
+    {
+      "name": "Debug UI Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/extest",
+      "args": [
+        "setup-and-run",
+        "${workspaceFolder}/out/test/ui/*.js",
+        "--mocha_config",
+        "${workspaceFolder}/test/ui/.mocharc.js"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "preLaunchTask": "npm: pretest"
     }
   ]
 }

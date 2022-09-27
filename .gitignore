@@ -16,3 +16,6 @@ venv/
 *.egg-info/
 *.eggs/
 *.pyc
+
+# UI tests
+test-resources/

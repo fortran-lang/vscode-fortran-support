@@ -661,7 +661,8 @@
     "watch-dev": "webpack --mode development --watch --progress",
     "webpack": "webpack --mode production",
     "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
-    "test": "npm run test:unit && npm run test:integration",
+    "test": "npm run test:unit && npm run test:integration && npm run test:ui",
+    "test:ui": "extest setup-and-run -i out/test/ui/*.js -m test/ui/.mocharc.js",
     "test:unit": "node ./out/test/unitTest/runTest.js",
     "test:integration": "node ./out/test/integration/runTest.js",
     "test:grammar-free": "vscode-tmgrammar-snap -s source.fortran.free -g ./syntaxes/fortran_free-form.tmLanguage.json \"./test/fortran/syntax/**/*{.f90,F90}\"",
@@ -697,6 +698,7 @@
     "prettier": "^2.7.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
+    "vscode-extension-tester": "^5.0.0",
     "vscode-tmgrammar-test": "^0.1.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
