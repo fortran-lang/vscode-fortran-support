@@ -1,6 +1,6 @@
 'use strict';
 
-import * as fg from 'fast-glob';
+// import * as fg from 'fast-glob';
 import { glob } from 'glob';
 
 import { resolveVariables } from './tools';
@@ -38,26 +38,26 @@ export class GlobPaths {
     // fast-glob cannot work with Windows paths
     globPaths = globPaths.map(e => e.replace('/\\/g', '/'));
     // This needs to be after the resolvevariables since {} are used in globs
+    // try {
+    //   const globIncPaths: string[] = fg.sync(globPathsVars, {
+    //     onlyDirectories: true,
+    //     suppressErrors: false,
+    //   });
+    //   return globIncPaths;
+    //   // Try to recover from fast-glob failing due to EACCES using slower more
+    //   // robust glob.
+    // } catch (eacces) {
     try {
-      const globIncPaths: string[] = fg.sync(globPathsVars, {
-        onlyDirectories: true,
-        suppressErrors: false,
-      });
-      return globIncPaths;
-      // Try to recover from fast-glob failing due to EACCES using slower more
-      // robust glob.
-    } catch (eacces) {
-      try {
-        const globIncPaths: string[] = [];
-        for (const i of globPathsVars) {
-          // use '/' to match only directories and not files
-          globIncPaths.push(...glob.sync(i + '/', { strict: false }));
-        }
-        return globIncPaths;
-        // if we failed again then our globs are somehow wrong. Abort
-      } catch (error) {
-        throw new TypeError(`Invalid glob syntax, error: ${error}`);
+      const globIncPaths: string[] = [];
+      for (const i of globPathsVars) {
+        // use '/' to match only directories and not files
+        globIncPaths.push(...glob.sync(i + '/', { strict: false }));
       }
+      return globIncPaths;
+      // if we failed again then our globs are somehow wrong. Abort
+    } catch (error) {
+      throw new TypeError(`Invalid glob syntax, error: ${error}`);
     }
+    // }
   }
 }

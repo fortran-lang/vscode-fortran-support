@@ -10,7 +10,8 @@ import {
   Uri,
   TextDocument,
 } from 'vscode';
-import * as fg from 'fast-glob';
+// import * as fg from 'fast-glob';
+import { glob } from 'glob';
 
 import { FortranLintingProvider } from '../../src/features/linter-provider';
 import {
@@ -59,21 +60,26 @@ suite('Linter integration', () => {
 
   test('Include path globs & internal variable resolution', async () => {
     const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
-    const refs: string[] = fg.sync(path.dirname(fileUri.path) + '/**', { onlyDirectories: true });
+    // const refs: string[] = fg.sync(path.dirname(fileUri.path) + '/**', { onlyDirectories: true });
+    const refs: string[] = glob.sync(path.dirname(fileUri.path) + '/**/');
     deepStrictEqual(paths, refs);
   });
 
   test('Path cache contains expected values', async () => {
     let refs: string[] = ['${workspaceFolder}/lint/**'];
     deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.globs, refs);
-    refs = fg.sync(path.join(root, 'lint') + '/**', { onlyDirectories: true });
+    // refs = fg.sync(path.join(root, 'lint') + '/**', { onlyDirectories: true });
+    refs = glob.sync(path.join(root, 'lint') + '/**/');
     deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.paths, refs);
   });
 
   test('Update paths using cache', async () => {
-    const refs: string[] = fg.sync([path.join(root, 'lint') + '/**', path.join(root, 'debug')], {
-      onlyDirectories: true,
-    });
+    // const refs: string[] = fg.sync([path.join(root, 'lint') + '/**', path.join(root, 'debug')], {
+    //   onlyDirectories: true,
+    // });
+    const refs: string[] = [path.join(root, 'lint') + '/**', path.join(root, 'debug')]
+      .map(d => glob.sync(d + '/'))
+      .flat();
     await config.update(
       'linter.includePaths',
       ['${workspaceFolder}/lint/**', path.join(root, 'debug')],
