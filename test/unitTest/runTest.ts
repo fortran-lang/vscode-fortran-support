@@ -6,7 +6,9 @@ import { spawnSync } from 'child_process';
 async function main() {
   try {
     // Install PyPi dependencies
-    const results = spawnSync(`pip`, [
+    const results = spawnSync(`python3`, [
+      '-m',
+      'pip',
       'install',
       '-r',
       path.resolve(__dirname, '../../../test/requirements.txt'),
