@@ -21,6 +21,12 @@ import { arraysEqual } from '../lib/helper';
 import { BuildDebug, BuildRun, RescanLint } from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
+const GNU = new GNULinter();
+const GNU_NEW = new GNUModernLinter();
+const INTEL = new IntelLinter();
+const NAG = new NAGLinter();
+const LFORTRAN = new LFortranLinter();
+
 export class LinterSettings {
   private _modernGNU: boolean;
   private _version: string;
@@ -131,13 +137,13 @@ export class LinterSettings {
   public get fyppExtraArgs(): string[] {
     return this.config.get<string[]>('linter.fypp.extraArgs');
   }
-}
 
-const GNU = new GNULinter();
-const GNU_NEW = new GNUModernLinter();
-const INTEL = new IntelLinter();
-const NAG = new NAGLinter();
-const LFORTRAN = new LFortranLinter();
+  // Functions for combining options
+
+  public get compilerExe(): string {
+    return which.sync(this.compilerPath ? this.compilerPath : this.compiler);
+  }
+}
 
 export class FortranLintingProvider {
   constructor(private logger: Logger = new Logger()) {
@@ -215,7 +221,7 @@ export class FortranLintingProvider {
     if (!isFortran(textDocument)) return;
 
     this.linter = this.getLinter(this.settings.compiler);
-    const command = this.getLinterExecutable();
+    const command = this.settings.compilerExe;
     const argList = this.constructArgumentList(textDocument);
     const filePath = path.parse(textDocument.fileName).dir;
 
@@ -234,6 +240,7 @@ export class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
+    this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${command}"`);
     this.logger.info(`[lint] Compiler query command line: ${command} ${argList.join(' ')}`);
 
     try {
@@ -278,7 +285,7 @@ export class FortranLintingProvider {
   private async buildAndDebug(textEditor: vscode.TextEditor, debug = true): Promise<void> {
     const textDocument = textEditor.document;
     this.linter = this.getLinter(this.settings.compiler);
-    const command = this.getLinterExecutable();
+    const command = this.settings.compilerExe;
     let argList = [...this.constructArgumentList(textDocument)];
     // Remove mandatory linter args, used for mock compilation
     argList = argList.filter(arg => !this.linter.args.includes(arg));
@@ -322,7 +329,7 @@ export class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const args = [...this.linter.args, ...this.getLinterExtraArgs(), ...this.getModOutputDir()];
+    const args = [...this.linter.args, ...this.linterExtraArgs, ...this.modOutputDir];
     const opt = 'linter.includePaths';
     const includePaths = this.getGlobPathsFromSettings(opt);
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
@@ -345,7 +352,7 @@ export class FortranLintingProvider {
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private getModOutputDir(): string[] {
+  private get modOutputDir(): string[] {
     let modout: string = this.settings.modOutput;
     // let modFlag = '';
     // Return if no mod output directory is specified
@@ -397,25 +404,13 @@ export class FortranLintingProvider {
   }
 
   /**
-   * Returns the linter executable i.e. this.compilerPath
-   * @returns String with linter
-   */
-  private getLinterExecutable(): string {
-    this.compiler = this.settings.compiler;
-    this.compilerPath = this.settings.compilerPath;
-    if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
-    this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${this.compilerPath}"`);
-    return this.compilerPath;
-  }
-
-  /**
    * Gets the additional linter arguments or sets the default ones if none are
    * specified.
    * Attempts to match and resolve any internal variables, but no glob support.
    *
    * @returns
    */
-  private getLinterExtraArgs(): string[] {
+  private get linterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
     // Get the linter arguments from the settings via a deep copy
     let args: string[] = [...this.linter.argsDefault];
