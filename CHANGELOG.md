@@ -38,6 +38,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed glob resolution module to `glob` from `fast-glob` due to bug #43
+  ([#681](https://github.com/fortran-lang/vscode-fortran-support/issues/681))
 - Changed how Python packages are installed for unittesting for performance
   ([#652](https://github.com/fortran-lang/vscode-fortran-support/issues/652))
 - Changed the linter to be asynchronous, should imprpove performance
