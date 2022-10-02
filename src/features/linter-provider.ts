@@ -473,7 +473,7 @@ export class FortranLintingProvider {
     if (!which.sync(fypp, { nothrow: true })) {
       this.logger.warn(`[lint] fypp not detected in your system. Attempting to install now.`);
       const msg = `Installing fypp through pip with --user option`;
-      promptForMissingTool('fypp', msg, 'Python', ['Install']);
+      await promptForMissingTool('fypp', msg, 'Python', ['Install']);
     }
     const args: string[] = ['--line-numbering'];
 
