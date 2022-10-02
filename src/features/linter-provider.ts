@@ -1,5 +1,6 @@
 'use strict';
 
+import * as fs from 'fs';
 import * as path from 'path';
 import * as cp from 'child_process';
 import which from 'which';
@@ -166,10 +167,12 @@ export class FortranLintingProvider {
     return;
   }
 
-  public async activate(subscriptions: vscode.Disposable[]) {
+  public async activate(context: vscode.ExtensionContext) {
     // Register Linter commands
-    subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
-    subscriptions.push(
+    context.subscriptions.push(
+      vscode.commands.registerCommand(RescanLint, this.rescanLinter, this)
+    );
+    context.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildRun,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -178,7 +181,7 @@ export class FortranLintingProvider {
         this
       )
     );
-    subscriptions.push(
+    context.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildDebug,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -187,14 +190,24 @@ export class FortranLintingProvider {
         this
       )
     );
-    vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
+
+    // Run the linter on every FreeForm and FixedForm Fortran file detected
+    // in the workspace. Run this before registering the linter as an
+    // Open event handler to prevent from Diagnostics being served for the whole
+    // workspace
+    await this.initialize();
+
+    vscode.workspace.onDidOpenTextDocument(this.doLint, this, context.subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       textDocument => {
         this.fortranDiagnostics.delete(textDocument.uri);
       },
       null,
-      subscriptions
+      context.subscriptions
     );
+
+    // This is where we should be storing the .mod files
+    // context.storageUri.fsPath;
 
     vscode.workspace.onDidSaveTextDocument(this.doLint, this);
 
@@ -226,6 +239,37 @@ export class FortranLintingProvider {
     diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
     this.fortranDiagnostics.set(document.uri, diagnostics);
     return diagnostics;
+  }
+
+  private async initialize() {
+    const files = await this.getFiles();
+    for (const file of files) {
+      await this.doBuild(await vscode.workspace.openTextDocument(file));
+    }
+  }
+
+  private async getFiles() {
+    const ignore = '**/*.{mod,smod,a,o,so}';
+    const files = await vscode.workspace.findFiles('**/*', ignore);
+    const deps: vscode.Uri[] = [];
+    for (const file of files) {
+      if (file.scheme !== 'file') continue;
+      try {
+        fs.accessSync(file.fsPath, fs.constants.R_OK);
+        try {
+          const doc = await vscode.workspace.openTextDocument(file);
+          if (!isFortran(doc)) continue;
+          deps.push(file);
+        } catch (e) {
+          // can't open document
+          continue;
+        }
+      } catch (e) {
+        // no read access
+        continue;
+      }
+    }
+    return deps;
   }
 
   private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {

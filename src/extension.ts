@@ -48,7 +48,7 @@ export async function activate(context: vscode.ExtensionContext) {
   );
   // Linter is always activated but will only lint if compiler !== Disabled
   const linter = new FortranLintingProvider(logger);
-  linter.activate(context.subscriptions);
+  linter.activate(context);
   vscode.languages.registerCodeActionsProvider(FortranDocumentSelector(), linter);
 
   if (formatterType !== 'Disabled') {
