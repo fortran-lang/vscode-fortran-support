@@ -153,8 +153,6 @@ export class FortranLintingProvider {
   }
 
   private fortranDiagnostics: vscode.DiagnosticCollection;
-  private compiler: string;
-  private compilerPath: string;
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
   private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
@@ -214,16 +212,27 @@ export class FortranLintingProvider {
     this.fortranDiagnostics.dispose();
   }
 
-  private async doLint(textDocument: vscode.TextDocument) {
+  private async doLint(document: vscode.TextDocument) {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
-    if (!isFortran(textDocument)) return;
+    if (!isFortran(document)) return;
 
+    const output = await this.doBuild(document);
+    if (!output) return;
+
+    let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+    // Remove duplicates from the diagnostics array
+    diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+    this.fortranDiagnostics.set(document.uri, diagnostics);
+    return diagnostics;
+  }
+
+  private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {
     this.linter = this.getLinter(this.settings.compiler);
     const command = this.settings.compilerExe;
-    const argList = this.constructArgumentList(textDocument);
-    const filePath = path.parse(textDocument.fileName).dir;
+    const argList = this.constructArgumentList(document);
+    const filePath = path.parse(document.fileName).dir;
 
     /*
      * reset localization settings to traditional C English behavior in case
@@ -240,11 +249,13 @@ export class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
-    this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${command}"`);
-    this.logger.info(`[lint] Compiler query command line: ${command} ${argList.join(' ')}`);
+    this.logger.debug(
+      `[build.single] compiler: "${this.settings.compiler}" located in: "${command}"`
+    );
+    this.logger.info(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
 
     try {
-      const fypp = await this.getFyppProcess(textDocument);
+      const fypp = await this.getFyppProcess(document);
 
       try {
         // The linter output is in the stderr channel
@@ -256,18 +267,14 @@ export class FortranLintingProvider {
           true
         );
         const output: string = stdout + stderr;
-        this.logger.debug(`[lint] Compiler output:\n${output}`);
-        let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
-        // Remove duplicates from the diagnostics array
-        diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
-        this.fortranDiagnostics.set(textDocument.uri, diagnostics);
-        return diagnostics;
+        this.logger.debug(`[build.single] Compiler output:\n${output}`);
+        return output;
       } catch (err) {
-        this.logger.error(`[lint] Compiler error:`, err);
+        this.logger.error(`[build.single] Compiler error:`, err);
         console.error(`ERROR: ${err}`);
       }
     } catch (fyppErr) {
-      this.logger.error(`[lint] fypp error:`, fyppErr);
+      this.logger.error(`[build.single] fypp error:`, fyppErr);
       console.error(`ERROR: fypp ${fyppErr}`);
     }
   }
