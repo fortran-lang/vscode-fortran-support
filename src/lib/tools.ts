@@ -275,6 +275,7 @@ export function resolveVariables(
  * @returns absolute path relative to the workspace root
  */
 export function pathRelToAbs(relPath: string, uri: vscode.Uri): string | undefined {
+  if (path.isAbsolute(relPath)) return relPath;
   const root = getOuterMostWorkspaceFolder(vscode.workspace.getWorkspaceFolder(uri));
   if (root === undefined) return undefined;
   return path.join(root.uri.fsPath, relPath);
