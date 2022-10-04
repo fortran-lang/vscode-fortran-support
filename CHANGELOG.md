@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added support for storing build artefacts in a separate cache directory
+  ([#614](https://github.com/fortran-lang/vscode-fortran-support/issues/614))
+- Added a naive initialization for Fortran source files present in the workspace.
+  The implementation cannot deduce build order so it can partially work
+  ([#680](https://github.com/fortran-lang/vscode-fortran-support/issues/680))
 - Added User Interface tests for program installation
 - Added option to disable Release Notes from being displayed
   ([#675](https://github.com/fortran-lang/vscode-fortran-support/issues/675))
