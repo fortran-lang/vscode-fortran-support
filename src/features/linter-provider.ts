@@ -7,6 +7,7 @@ import which from 'which';
 import * as semver from 'semver';
 import * as vscode from 'vscode';
 
+import * as pkg from '../../package.json';
 import { Logger } from '../services/logging';
 import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from '../lib/linters';
 import {
@@ -147,7 +148,7 @@ export class LinterSettings {
 }
 
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger()) {
+  constructor(private logger: Logger = new Logger(), private storageUI: string = '') {
     // Register the Linter provider
     this.fortranDiagnostics = vscode.languages.createDiagnosticCollection('Fortran');
     this.settings = new LinterSettings(this.logger);
@@ -206,9 +207,6 @@ export class FortranLintingProvider {
       context.subscriptions
     );
 
-    // This is where we should be storing the .mod files
-    // context.storageUri.fsPath;
-
     vscode.workspace.onDidSaveTextDocument(this.doLint, this);
 
     // Run gfortran in all open fortran files
@@ -243,29 +241,49 @@ export class FortranLintingProvider {
 
   private async initialize() {
     const files = await this.getFiles();
-    for (const file of files) {
-      await this.doBuild(await vscode.workspace.openTextDocument(file));
-    }
+    const opts = {
+      location: vscode.ProgressLocation.Window,
+      title: 'Initialization',
+      cancellable: true,
+    };
+    await vscode.window.withProgress(opts, async (progress, token) => {
+      token.onCancellationRequested(() => {
+        console.log('Canceled initialization');
+        return;
+      });
+      let i = 0;
+      for (const file of files) {
+        i++;
+        progress.report({
+          message: `file ${i}/${files.length}`,
+        });
+        try {
+          this.doBuild(await vscode.workspace.openTextDocument(file));
+        } catch (error) {
+          continue;
+        }
+      }
+    });
   }
 
   private async getFiles() {
     const ignore = '**/*.{mod,smod,a,o,so}';
-    const files = await vscode.workspace.findFiles('**/*', ignore);
+    // const regex = '**/*';
+    const regex = `**/*{${
+      // Free Form
+      pkg.contributes.languages[0].extensions.join(',') +
+      ',' +
+      // Fixed Form
+      pkg.contributes.languages[1].extensions.join(',')
+    }}`;
+    const files = await vscode.workspace.findFiles(regex, ignore);
     const deps: vscode.Uri[] = [];
     for (const file of files) {
       if (file.scheme !== 'file') continue;
       try {
-        fs.accessSync(file.fsPath, fs.constants.R_OK);
-        try {
-          const doc = await vscode.workspace.openTextDocument(file);
-          if (!isFortran(doc)) continue;
-          deps.push(file);
-        } catch (e) {
-          // can't open document
-          continue;
-        }
-      } catch (e) {
-        // no read access
+        await fs.promises.access(file.fsPath, fs.constants.R_OK);
+        deps.push(file);
+      } catch (error) {
         continue;
       }
     }
