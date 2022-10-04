@@ -52,7 +52,15 @@
   },
   "activationEvents": [
     "onLanguage:FortranFreeForm",
-    "onLanguage:FortranFixedForm"
+    "onLanguage:FortranFixedForm",
+    "onCommand:fortran.analysis.restartLanguageServer",
+    "onCommand:fortran.analysis.rescanLinter",
+    "onCommand:fortran.analysis.cleanLinterDiagnostics",
+    "onCommand:fortran.analysis.cleanLinterFiles",
+    "onCommand:fortran.analysis.initLinter",
+    "onCommand:fortran.analysis.showWhatsNew",
+    "onCommand:fortran.build.run",
+    "onCommand:fortran.build.debug"
   ],
   "main": "./dist/extension.js",
   "extensionDependencies": [
@@ -231,6 +239,12 @@
             "markdownDescription": "Compiler used for linting support.",
             "order": 0
           },
+          "fortran.linter.initialize": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Attempt to initialize the linter by mock-compiling all files in the workspace.",
+            "order": 5
+          },
           "fortran.linter.compilerPath": {
             "type": "string",
             "default": "",
@@ -257,7 +271,7 @@
           "fortran.linter.modOutput": {
             "type": "string",
             "default": "",
-            "markdownDescription": "Global output directory for .mod files generated due to linting `-J<linter.modOutput>`. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
+            "markdownDescription": "Output directory for .mod files generated due to linting `-J<linter.modOutput>`. By default this is an internal VS Code path unique to each workspace. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
             "order": 40
           },
           "fortran.linter.fypp.enabled": {
@@ -307,7 +321,7 @@
               "std",
               "gfortran5"
             ],
-            "markdownDescription": "ine numbering marker format,  currently std`, `cpp` and `gfortran5` are supported, where `std` emits `#line` pragmas similar to standard tools, 'cpp' produces line directives as emitted by GNU cpp, and `gfortran5` cpp line directives with a workaround for a bug introduced in GFortran 5. Default: `cpp`.",
+            "markdownDescription": "Line numbering marker format,  currently std`, `cpp` and `gfortran5` are supported, where `std` emits `#line` pragmas similar to standard tools, 'cpp' produces line directives as emitted by GNU cpp, and `gfortran5` cpp line directives with a workaround for a bug introduced in GFortran 5. Default: `cpp`.",
             "order": 120
           },
           "fortran.linter.fypp.extraArgs": {
@@ -527,6 +541,19 @@
         }
       },
       {
+        "id": "experimental",
+        "title": "Experimental",
+        "order": 500,
+        "properties": {
+          "fortran.experimental.keepInitDiagnostics": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Keep (and show) all diagnostics generated from the initialization of the Linter, not just from opened files.",
+            "order": 0
+          }
+        }
+      },
+      {
         "id": "deprecated",
         "title": "Deprecated Options",
         "order": 999,
@@ -581,7 +608,22 @@
       {
         "category": "Fortran",
         "command": "fortran.analysis.rescanLinter",
-        "title": "Rescan Linter paths"
+        "title": "Rescan Linter Include paths"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.initLinter",
+        "title": "Initialize Fortran Linter"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.cleanLinterFiles",
+        "title": "Clean Linter generated files"
+      },
+      {
+        "category": "Fortran",
+        "command": "fortran.analysis.cleanLinterDiagnostics",
+        "title": "Clean All Linter Diagnostics"
       },
       {
         "category": "Fortran",
@@ -613,6 +655,24 @@
           "category": "Fortran",
           "command": "fortran.analysis.rescanLinter",
           "title": "Rescan Linter paths",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.initLinter",
+          "title": "Initialize Fortran Linter",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.cleanLinterFiles",
+          "title": "Clean Linter generated files",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.analysis.cleanLinterDiagnostics",
+          "title": "Clean All Linter Diagnostics",
           "when": "!virtualWorkspace && shellExecutionSupported"
         },
         {

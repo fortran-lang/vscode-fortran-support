@@ -6,6 +6,7 @@ import * as cp from 'child_process';
 import which from 'which';
 import * as semver from 'semver';
 import * as vscode from 'vscode';
+import { glob } from 'glob';
 
 import * as pkg from '../../package.json';
 import { Logger } from '../services/logging';
@@ -20,7 +21,14 @@ import {
   shellTask,
 } from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
-import { BuildDebug, BuildRun, RescanLint } from './commands';
+import {
+  BuildDebug,
+  BuildRun,
+  InitLint,
+  CleanLintFiles,
+  RescanLint,
+  CleanLintDiagnostics,
+} from './commands';
 import { GlobPaths } from '../lib/glob-paths';
 
 const GNU = new GNULinter();
@@ -51,6 +59,12 @@ export class LinterSettings {
   public get compiler(): string {
     const compiler = this.config.get<string>('linter.compiler');
     return compiler;
+  }
+  public get initialize() {
+    return this.config.get<boolean>('linter.initialize');
+  }
+  public get keepInitDiagnostics() {
+    return this.config.get<boolean>('experimental.keepInitDiagnostics');
   }
   public get compilerPath(): string {
     return this.config.get<string>('linter.compilerPath');
@@ -148,7 +162,7 @@ export class LinterSettings {
 }
 
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger(), private storageUI: string = '') {
+  constructor(private logger: Logger = new Logger(), private storageUI: string = undefined) {
     // Register the Linter provider
     this.fortranDiagnostics = vscode.languages.createDiagnosticCollection('Fortran');
     this.settings = new LinterSettings(this.logger);
@@ -158,6 +172,7 @@ export class FortranLintingProvider {
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
   private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
+  private disposables: vscode.Disposable[];
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -172,6 +187,17 @@ export class FortranLintingProvider {
     // Register Linter commands
     context.subscriptions.push(
       vscode.commands.registerCommand(RescanLint, this.rescanLinter, this)
+    );
+    context.subscriptions.push(vscode.commands.registerCommand(InitLint, this.initialize, this));
+    context.subscriptions.push(vscode.commands.registerCommand(CleanLintFiles, this.clean, this));
+    context.subscriptions.push(
+      vscode.commands.registerCommand(
+        CleanLintDiagnostics,
+        () => {
+          this.fortranDiagnostics.clear();
+        },
+        this
+      )
     );
     context.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
@@ -192,38 +218,39 @@ export class FortranLintingProvider {
       )
     );
 
-    // Run the linter on every FreeForm and FixedForm Fortran file detected
-    // in the workspace. Run this before registering the linter as an
-    // Open event handler to prevent from Diagnostics being served for the whole
-    // workspace
-    await this.initialize();
-
-    vscode.workspace.onDidOpenTextDocument(this.doLint, this, context.subscriptions);
+    vscode.workspace.onDidOpenTextDocument(this.doLint, this, this.disposables);
     vscode.workspace.onDidCloseTextDocument(
-      textDocument => {
-        this.fortranDiagnostics.delete(textDocument.uri);
+      doc => {
+        this.fortranDiagnostics.delete(doc.uri);
       },
-      null,
-      context.subscriptions
+      this,
+      this.disposables
     );
 
-    vscode.workspace.onDidSaveTextDocument(this.doLint, this);
-
-    // Run gfortran in all open fortran files
+    vscode.workspace.onDidSaveTextDocument(this.doLint, this, this.disposables);
+    // Run the linter for all open documents i.e. docs loaded in memory
     vscode.workspace.textDocuments.forEach(this.doLint, this);
 
     // Update settings on Configuration change
     vscode.workspace.onDidChangeConfiguration(e => {
       this.settings.update(e);
-    });
+    }, this.disposables);
+
+    if (this.settings.initialize) this.initialize();
   }
 
   public dispose(): void {
     this.fortranDiagnostics.clear();
     this.fortranDiagnostics.dispose();
+    this.disposables.forEach(d => d.dispose());
   }
 
-  private async doLint(document: vscode.TextDocument) {
+  /**
+   * Lint a document using the specified linter options
+   * @param document TextDocument to lint
+   * @returns An array of vscode.Diagnostic[]
+   */
+  private async doLint(document: vscode.TextDocument): Promise<vscode.Diagnostic[]> | undefined {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
@@ -239,6 +266,9 @@ export class FortranLintingProvider {
     return diagnostics;
   }
 
+  /**
+   * Scan the workspace for Fortran files and lint them
+   */
   private async initialize() {
     const files = await this.getFiles();
     const opts = {
@@ -258,12 +288,16 @@ export class FortranLintingProvider {
           message: `file ${i}/${files.length}`,
         });
         try {
-          this.doBuild(await vscode.workspace.openTextDocument(file));
+          const doc = await vscode.workspace.openTextDocument(file);
+          this.doLint(doc);
         } catch (error) {
           continue;
         }
       }
     });
+    // Clear the diagnostics from the Problems console. FYI The textdocuments
+    // are still open in memory
+    if (!this.settings.keepInitDiagnostics) this.fortranDiagnostics.clear();
   }
 
   private async getFiles() {
@@ -288,6 +322,18 @@ export class FortranLintingProvider {
       }
     }
     return deps;
+  }
+
+  /**
+   * Clean any build artifacts produced by the linter e.g. .mod, .smod files
+   */
+  private async clean() {
+    if (!this.storageUI) return;
+    const cacheDir = this.storageUI;
+    const files = glob.sync(cacheDir + '/**/*.{mod,smod,o}');
+    files.forEach(file => {
+      fs.promises.rm(file);
+    });
   }
 
   private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {
