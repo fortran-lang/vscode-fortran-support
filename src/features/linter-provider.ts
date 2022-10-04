@@ -423,10 +423,9 @@ export class FortranLintingProvider {
 
   private get modOutputDir(): string[] {
     let modout: string = this.settings.modOutput;
-    // let modFlag = '';
-    // Return if no mod output directory is specified
-    if (modout === '') return [];
     const modFlag = this.linter.modFlag;
+    // Return the workspaces cache directory if the user has not set a custom path
+    if (modout === '') modout = this.storageUI;
 
     modout = resolveVariables(modout);
     this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
