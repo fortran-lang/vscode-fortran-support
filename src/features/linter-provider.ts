@@ -426,6 +426,7 @@ export class FortranLintingProvider {
     const modFlag = this.linter.modFlag;
     // Return the workspaces cache directory if the user has not set a custom path
     if (modout === '') modout = this.storageUI;
+    if (!modout) return [];
 
     modout = resolveVariables(modout);
     this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
