@@ -739,7 +739,7 @@
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
-    "@types/mocha": "^9.1.0",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^18.8.2",
     "@types/semver": "^7.3.12",
     "@types/vscode": "^1.63.0",
