@@ -756,7 +756,7 @@
     "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "prettier": "^2.7.1",
-    "ts-loader": "^9.3.1",
+    "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
     "vscode-extension-tester": "^5.0.0",
     "vscode-tmgrammar-test": "^0.1.1",
