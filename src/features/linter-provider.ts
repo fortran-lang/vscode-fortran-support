@@ -1,11 +1,14 @@
 'use strict';
 
+import * as fs from 'fs';
 import * as path from 'path';
 import * as cp from 'child_process';
 import which from 'which';
 import * as semver from 'semver';
 import * as vscode from 'vscode';
+import { glob } from 'glob';
 
+import * as pkg from '../../package.json';
 import { Logger } from '../services/logging';
 import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from '../lib/linters';
 import {
@@ -18,8 +21,21 @@ import {
   shellTask,
 } from '../lib/tools';
 import { arraysEqual } from '../lib/helper';
-import { BuildDebug, BuildRun, RescanLint } from './commands';
+import {
+  BuildDebug,
+  BuildRun,
+  InitLint,
+  CleanLintFiles,
+  RescanLint,
+  CleanLintDiagnostics,
+} from './commands';
 import { GlobPaths } from '../lib/glob-paths';
+
+const GNU = new GNULinter();
+const GNU_NEW = new GNUModernLinter();
+const INTEL = new IntelLinter();
+const NAG = new NAGLinter();
+const LFORTRAN = new LFortranLinter();
 
 export class LinterSettings {
   private _modernGNU: boolean;
@@ -43,6 +59,12 @@ export class LinterSettings {
   public get compiler(): string {
     const compiler = this.config.get<string>('linter.compiler');
     return compiler;
+  }
+  public get initialize() {
+    return this.config.get<boolean>('linter.initialize');
+  }
+  public get keepInitDiagnostics() {
+    return this.config.get<boolean>('experimental.keepInitDiagnostics');
   }
   public get compilerPath(): string {
     return this.config.get<string>('linter.compilerPath');
@@ -131,27 +153,26 @@ export class LinterSettings {
   public get fyppExtraArgs(): string[] {
     return this.config.get<string[]>('linter.fypp.extraArgs');
   }
+
+  // Functions for combining options
+
+  public get compilerExe(): string {
+    return which.sync(this.compilerPath ? this.compilerPath : this.compiler);
+  }
 }
 
-const GNU = new GNULinter();
-const GNU_NEW = new GNUModernLinter();
-const INTEL = new IntelLinter();
-const NAG = new NAGLinter();
-const LFORTRAN = new LFortranLinter();
-
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger()) {
+  constructor(private logger: Logger = new Logger(), private storageUI: string = undefined) {
     // Register the Linter provider
     this.fortranDiagnostics = vscode.languages.createDiagnosticCollection('Fortran');
     this.settings = new LinterSettings(this.logger);
   }
 
   private fortranDiagnostics: vscode.DiagnosticCollection;
-  private compiler: string;
-  private compilerPath: string;
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
   private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
+  private subscriptions: vscode.Disposable[] = [];
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -162,10 +183,21 @@ export class FortranLintingProvider {
     return;
   }
 
-  public async activate(subscriptions: vscode.Disposable[]) {
+  public async activate(): Promise<vscode.Disposable[]> {
     // Register Linter commands
-    subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
-    subscriptions.push(
+    this.subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
+    this.subscriptions.push(vscode.commands.registerCommand(InitLint, this.initialize, this));
+    this.subscriptions.push(vscode.commands.registerCommand(CleanLintFiles, this.clean, this));
+    this.subscriptions.push(
+      vscode.commands.registerCommand(
+        CleanLintDiagnostics,
+        () => {
+          this.fortranDiagnostics.clear();
+        },
+        this
+      )
+    );
+    this.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildRun,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -174,7 +206,7 @@ export class FortranLintingProvider {
         this
       )
     );
-    subscriptions.push(
+    this.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildDebug,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -183,41 +215,134 @@ export class FortranLintingProvider {
         this
       )
     );
-    vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
+
+    vscode.workspace.onDidOpenTextDocument(this.doLint, this, this.subscriptions);
     vscode.workspace.onDidCloseTextDocument(
-      textDocument => {
-        this.fortranDiagnostics.delete(textDocument.uri);
+      doc => {
+        this.fortranDiagnostics.delete(doc.uri);
       },
-      null,
-      subscriptions
+      this,
+      this.subscriptions
     );
 
-    vscode.workspace.onDidSaveTextDocument(this.doLint, this);
-
-    // Run gfortran in all open fortran files
+    vscode.workspace.onDidSaveTextDocument(this.doLint, this, this.subscriptions);
+    // Run the linter for all open documents i.e. docs loaded in memory
     vscode.workspace.textDocuments.forEach(this.doLint, this);
 
     // Update settings on Configuration change
     vscode.workspace.onDidChangeConfiguration(e => {
       this.settings.update(e);
-    });
+    }, this.subscriptions);
+
+    if (this.settings.initialize) this.initialize();
+
+    return this.subscriptions;
   }
 
   public dispose(): void {
     this.fortranDiagnostics.clear();
-    this.fortranDiagnostics.dispose();
+    // this.fortranDiagnostics.dispose();
+    this.subscriptions.forEach(d => d.dispose());
+    // Empty the array after each subscription has been disposed
+    this.subscriptions = [];
   }
 
-  private async doLint(textDocument: vscode.TextDocument) {
+  /**
+   * Scan the workspace for Fortran files and lint them
+   */
+  private async initialize() {
+    const files = await this.getFiles();
+    const opts = {
+      location: vscode.ProgressLocation.Window,
+      title: 'Initialization',
+      cancellable: true,
+    };
+    await vscode.window.withProgress(opts, async (progress, token) => {
+      token.onCancellationRequested(() => {
+        console.log('Canceled initialization');
+        return;
+      });
+      let i = 0;
+      for (const file of files) {
+        i++;
+        progress.report({
+          message: `file ${i}/${files.length}`,
+        });
+        try {
+          const doc = await vscode.workspace.openTextDocument(file);
+          this.doLint(doc);
+        } catch (error) {
+          continue;
+        }
+      }
+    });
+    // Clear the diagnostics from the Problems console. FYI The textdocuments
+    // are still open in memory
+    if (!this.settings.keepInitDiagnostics) this.fortranDiagnostics.clear();
+  }
+
+  private async getFiles() {
+    const ignore = '**/*.{mod,smod,a,o,so}';
+    // const regex = '**/*';
+    const regex = `**/*{${
+      // Free Form
+      pkg.contributes.languages[0].extensions.join(',') +
+      ',' +
+      // Fixed Form
+      pkg.contributes.languages[1].extensions.join(',')
+    }}`;
+    const files = await vscode.workspace.findFiles(regex, ignore);
+    const deps: vscode.Uri[] = [];
+    for (const file of files) {
+      if (file.scheme !== 'file') continue;
+      try {
+        await fs.promises.access(file.fsPath, fs.constants.R_OK);
+        deps.push(file);
+      } catch (error) {
+        continue;
+      }
+    }
+    return deps;
+  }
+
+  /**
+   * Clean any build artifacts produced by the linter e.g. .mod, .smod files
+   */
+  private async clean() {
+    if (!this.storageUI) return;
+    const cacheDir = this.storageUI;
+    const files = glob.sync(cacheDir + '/**/*.{mod,smod,o}');
+    files.forEach(file => {
+      fs.promises.rm(file);
+    });
+  }
+
+  /**
+   * Lint a document using the specified linter options
+   * @param document TextDocument to lint
+   * @returns An array of vscode.Diagnostic[]
+   */
+  private async doLint(document: vscode.TextDocument): Promise<vscode.Diagnostic[]> | undefined {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
-    if (!isFortran(textDocument)) return;
+    if (!isFortran(document)) return;
 
+    const output = await this.doBuild(document);
+    if (!output) return;
+
+    let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+    // Remove duplicates from the diagnostics array
+    diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+    this.fortranDiagnostics.set(document.uri, diagnostics);
+    return diagnostics;
+  }
+
+  private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {
     this.linter = this.getLinter(this.settings.compiler);
-    const command = this.getLinterExecutable();
-    const argList = this.constructArgumentList(textDocument);
-    const filePath = path.parse(textDocument.fileName).dir;
+    const command = this.settings.compilerExe;
+    const argList = this.constructArgumentList(document);
+    const filePath = path.parse(document.fileName).dir;
 
     /*
      * reset localization settings to traditional C English behavior in case
@@ -234,10 +359,13 @@ export class FortranLintingProvider {
         env.Path = `${path.dirname(command)}${path.delimiter}${env.Path}`;
       }
     }
-    this.logger.info(`[lint] Compiler query command line: ${command} ${argList.join(' ')}`);
+    this.logger.debug(
+      `[build.single] compiler: "${this.settings.compiler}" located in: "${command}"`
+    );
+    this.logger.info(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
 
     try {
-      const fypp = await this.getFyppProcess(textDocument);
+      const fypp = await this.getFyppProcess(document);
 
       try {
         // The linter output is in the stderr channel
@@ -249,18 +377,14 @@ export class FortranLintingProvider {
           true
         );
         const output: string = stdout + stderr;
-        this.logger.debug(`[lint] Compiler output:\n${output}`);
-        let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
-        // Remove duplicates from the diagnostics array
-        diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
-        this.fortranDiagnostics.set(textDocument.uri, diagnostics);
-        return diagnostics;
+        this.logger.debug(`[build.single] Compiler output:\n${output}`);
+        return output;
       } catch (err) {
-        this.logger.error(`[lint] Compiler error:`, err);
+        this.logger.error(`[build.single] Compiler error:`, err);
         console.error(`ERROR: ${err}`);
       }
     } catch (fyppErr) {
-      this.logger.error(`[lint] fypp error:`, fyppErr);
+      this.logger.error(`[build.single] fypp error:`, fyppErr);
       console.error(`ERROR: fypp ${fyppErr}`);
     }
   }
@@ -278,7 +402,7 @@ export class FortranLintingProvider {
   private async buildAndDebug(textEditor: vscode.TextEditor, debug = true): Promise<void> {
     const textDocument = textEditor.document;
     this.linter = this.getLinter(this.settings.compiler);
-    const command = this.getLinterExecutable();
+    const command = this.settings.compilerExe;
     let argList = [...this.constructArgumentList(textDocument)];
     // Remove mandatory linter args, used for mock compilation
     argList = argList.filter(arg => !this.linter.args.includes(arg));
@@ -322,7 +446,7 @@ export class FortranLintingProvider {
   }
 
   private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const args = [...this.linter.args, ...this.getLinterExtraArgs(), ...this.getModOutputDir()];
+    const args = [...this.linter.args, ...this.linterExtraArgs, ...this.modOutputDir];
     const opt = 'linter.includePaths';
     const includePaths = this.getGlobPathsFromSettings(opt);
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
@@ -345,12 +469,12 @@ export class FortranLintingProvider {
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private getModOutputDir(): string[] {
+  private get modOutputDir(): string[] {
     let modout: string = this.settings.modOutput;
-    // let modFlag = '';
-    // Return if no mod output directory is specified
-    if (modout === '') return [];
     const modFlag = this.linter.modFlag;
+    // Return the workspaces cache directory if the user has not set a custom path
+    if (modout === '') modout = this.storageUI;
+    if (!modout) return [];
 
     modout = resolveVariables(modout);
     this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
@@ -397,25 +521,13 @@ export class FortranLintingProvider {
   }
 
   /**
-   * Returns the linter executable i.e. this.compilerPath
-   * @returns String with linter
-   */
-  private getLinterExecutable(): string {
-    this.compiler = this.settings.compiler;
-    this.compilerPath = this.settings.compilerPath;
-    if (this.compilerPath === '') this.compilerPath = which.sync(this.compiler);
-    this.logger.debug(`[lint] binary: "${this.compiler}" located in: "${this.compilerPath}"`);
-    return this.compilerPath;
-  }
-
-  /**
    * Gets the additional linter arguments or sets the default ones if none are
    * specified.
    * Attempts to match and resolve any internal variables, but no glob support.
    *
    * @returns
    */
-  private getLinterExtraArgs(): string[] {
+  private get linterExtraArgs(): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
     // Get the linter arguments from the settings via a deep copy
     let args: string[] = [...this.linter.argsDefault];
@@ -471,7 +583,7 @@ export class FortranLintingProvider {
     if (!which.sync(fypp, { nothrow: true })) {
       this.logger.warn(`[lint] fypp not detected in your system. Attempting to install now.`);
       const msg = `Installing fypp through pip with --user option`;
-      promptForMissingTool('fypp', msg, 'Python', ['Install']);
+      await promptForMissingTool('fypp', msg, 'Python', ['Install']);
     }
     const args: string[] = ['--line-numbering'];
 

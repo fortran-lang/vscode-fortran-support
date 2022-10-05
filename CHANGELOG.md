@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added new settings for disabling Linter initialization and display of initialization Diagnostics
+  `fortran.linter.initialize` and `fortran.experimental.keepInitDiagnostics`
+- Added commands for Initializing, Cleaning build artefacts and Clearing the Diagnostics from the Linter
+- Added support for storing build artefacts in a separate cache directory
+  ([#614](https://github.com/fortran-lang/vscode-fortran-support/issues/614))
+- Added a naive initialization for Fortran source files present in the workspace.
+  The implementation cannot deduce build order so it can partially work
+  ([#680](https://github.com/fortran-lang/vscode-fortran-support/issues/680))
 - Added User Interface tests for program installation
 - Added option to disable Release Notes from being displayed
   ([#675](https://github.com/fortran-lang/vscode-fortran-support/issues/675))
@@ -38,6 +46,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed the activation events of the extension to include the `onCommand` for all register commands
 - Changed glob resolution module to `glob` from `fast-glob` due to bug #43
   ([#681](https://github.com/fortran-lang/vscode-fortran-support/issues/681))
 - Changed how Python packages are installed for unittesting for performance
