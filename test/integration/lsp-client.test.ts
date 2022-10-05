@@ -46,4 +46,32 @@ suite('Language Server integration tests', () => {
     const res = server['client']?.initializeResult;
     strictEqual(JSON.stringify(ref), JSON.stringify(res));
   });
+
+  test('Restart the Language Server', async () => {
+    await server['restartLS']();
+    await delay(3000); // wait for server to initialize
+
+    const ref = {
+      capabilities: {
+        completionProvider: {
+          resolveProvider: false,
+          triggerCharacters: ['%'],
+        },
+        definitionProvider: true,
+        documentSymbolProvider: true,
+        referencesProvider: true,
+        hoverProvider: true,
+        implementationProvider: true,
+        renameProvider: true,
+        workspaceSymbolProvider: true,
+        textDocumentSync: 2,
+        signatureHelpProvider: {
+          triggerCharacters: ['(', ','],
+        },
+        codeActionProvider: true,
+      },
+    };
+    const res = server['client']?.initializeResult;
+    strictEqual(JSON.stringify(ref), JSON.stringify(res));
+  });
 });
