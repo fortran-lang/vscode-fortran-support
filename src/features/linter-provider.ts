@@ -172,7 +172,7 @@ export class FortranLintingProvider {
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
   private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
-  private disposables: vscode.Disposable[];
+  private subscriptions: vscode.Disposable[] = [];
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -183,14 +183,12 @@ export class FortranLintingProvider {
     return;
   }
 
-  public async activate(context: vscode.ExtensionContext) {
+  public async activate(): Promise<vscode.Disposable[]> {
     // Register Linter commands
-    context.subscriptions.push(
-      vscode.commands.registerCommand(RescanLint, this.rescanLinter, this)
-    );
-    context.subscriptions.push(vscode.commands.registerCommand(InitLint, this.initialize, this));
-    context.subscriptions.push(vscode.commands.registerCommand(CleanLintFiles, this.clean, this));
-    context.subscriptions.push(
+    this.subscriptions.push(vscode.commands.registerCommand(RescanLint, this.rescanLinter, this));
+    this.subscriptions.push(vscode.commands.registerCommand(InitLint, this.initialize, this));
+    this.subscriptions.push(vscode.commands.registerCommand(CleanLintFiles, this.clean, this));
+    this.subscriptions.push(
       vscode.commands.registerCommand(
         CleanLintDiagnostics,
         () => {
@@ -199,7 +197,7 @@ export class FortranLintingProvider {
         this
       )
     );
-    context.subscriptions.push(
+    this.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildRun,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -208,7 +206,7 @@ export class FortranLintingProvider {
         this
       )
     );
-    context.subscriptions.push(
+    this.subscriptions.push(
       vscode.commands.registerTextEditorCommand(
         BuildDebug,
         async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]) => {
@@ -218,31 +216,33 @@ export class FortranLintingProvider {
       )
     );
 
-    vscode.workspace.onDidOpenTextDocument(this.doLint, this, this.disposables);
+    vscode.workspace.onDidOpenTextDocument(this.doLint, this, this.subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       doc => {
         this.fortranDiagnostics.delete(doc.uri);
       },
       this,
-      this.disposables
+      this.subscriptions
     );
 
-    vscode.workspace.onDidSaveTextDocument(this.doLint, this, this.disposables);
+    vscode.workspace.onDidSaveTextDocument(this.doLint, this, this.subscriptions);
     // Run the linter for all open documents i.e. docs loaded in memory
     vscode.workspace.textDocuments.forEach(this.doLint, this);
 
     // Update settings on Configuration change
     vscode.workspace.onDidChangeConfiguration(e => {
       this.settings.update(e);
-    }, this.disposables);
+    }, this.subscriptions);
 
     if (this.settings.initialize) this.initialize();
+
+    return this.subscriptions;
   }
 
   public dispose(): void {
     this.fortranDiagnostics.clear();
     this.fortranDiagnostics.dispose();
-    this.disposables.forEach(d => d.dispose());
+    this.subscriptions.forEach(d => d.dispose());
   }
 
   /**
