@@ -248,27 +248,6 @@ export class FortranLintingProvider {
   }
 
   /**
-   * Lint a document using the specified linter options
-   * @param document TextDocument to lint
-   * @returns An array of vscode.Diagnostic[]
-   */
-  private async doLint(document: vscode.TextDocument): Promise<vscode.Diagnostic[]> | undefined {
-    // Only lint if a compiler is specified
-    if (!this.settings.enabled) return;
-    // Only lint Fortran (free, fixed) format files
-    if (!isFortran(document)) return;
-
-    const output = await this.doBuild(document);
-    if (!output) return;
-
-    let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
-    // Remove duplicates from the diagnostics array
-    diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
-    this.fortranDiagnostics.set(document.uri, diagnostics);
-    return diagnostics;
-  }
-
-  /**
    * Scan the workspace for Fortran files and lint them
    */
   private async initialize() {
@@ -336,6 +315,27 @@ export class FortranLintingProvider {
     files.forEach(file => {
       fs.promises.rm(file);
     });
+  }
+
+  /**
+   * Lint a document using the specified linter options
+   * @param document TextDocument to lint
+   * @returns An array of vscode.Diagnostic[]
+   */
+  private async doLint(document: vscode.TextDocument): Promise<vscode.Diagnostic[]> | undefined {
+    // Only lint if a compiler is specified
+    if (!this.settings.enabled) return;
+    // Only lint Fortran (free, fixed) format files
+    if (!isFortran(document)) return;
+
+    const output = await this.doBuild(document);
+    if (!output) return;
+
+    let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+    // Remove duplicates from the diagnostics array
+    diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+    this.fortranDiagnostics.set(document.uri, diagnostics);
+    return diagnostics;
   }
 
   private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {
