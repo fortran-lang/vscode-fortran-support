@@ -241,8 +241,10 @@ export class FortranLintingProvider {
 
   public dispose(): void {
     this.fortranDiagnostics.clear();
-    this.fortranDiagnostics.dispose();
+    // this.fortranDiagnostics.dispose();
     this.subscriptions.forEach(d => d.dispose());
+    // Empty the array after each subscription has been disposed
+    this.subscriptions = [];
   }
 
   /**
