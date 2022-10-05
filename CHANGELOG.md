@@ -69,6 +69,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bugs in relative path resolution for `fortls`
+  ([#693](https://github.com/fortran-lang/vscode-fortran-support/issues/693))
 - Fixed issues with linter unittests running asynchronously
   ([#623](https://github.com/fortran-lang/vscode-fortran-support/pull/623))
 - Fixed `npm run watch-dev` not syncing changes to spawned Extension Dev Host

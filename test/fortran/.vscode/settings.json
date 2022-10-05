@@ -7,6 +7,7 @@
     "DEBUG": "1",
     "VAL": ""
   },
+  "fortran.fortls.path": "fortls",
   "fortran.fortls.disableAutoupdate": true,
   "fortran.fortls.preprocessor.definitions": {
     "HAVE_ZOLTAN": "",

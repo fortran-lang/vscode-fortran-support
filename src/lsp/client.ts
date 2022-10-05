@@ -1,5 +1,6 @@
 'use strict';
 
+import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { spawnSync } from 'child_process';
@@ -13,7 +14,6 @@ import {
   getOuterMostWorkspaceFolder,
   pipInstall,
   resolveVariables,
-  pathRelToAbs,
 } from '../lib/tools';
 import { Logger } from '../services/logging';
 import { RestartLS } from '../features/commands';
@@ -84,9 +84,7 @@ export class FortlsClient {
     if (!isFortran(document)) return;
 
     const args: string[] = await this.fortlsArguments();
-    const fortlsPath = workspace.getConfiguration(EXTENSION_ID).get<string>('fortls.path');
-    let executablePath = resolveVariables(fortlsPath);
-    if (fortlsPath !== 'fortls') executablePath = pathRelToAbs(fortlsPath, document.uri);
+    const executablePath: string = await this.fortlsPath(document);
 
     // Detect language server version and verify selected options
     this.version = this.getLSVersion(executablePath, args);
@@ -308,14 +306,7 @@ export class FortlsClient {
    */
   private async fortlsDownload(): Promise<boolean> {
     const config = workspace.getConfiguration(EXTENSION_ID);
-    let ls = resolveVariables(config.get<string>('fortls.path'));
-    // The path can be resolved as a relative path if it's part of a workspace
-    // AND it does not have the default value `fortls` or is an absolute path
-    if (workspace.workspaceFolders == undefined && ls !== 'fortls' && !path.isAbsolute(ls)) {
-      const root = workspace.workspaceFolders[0];
-      this.logger.debug(`[lsp.client] Assuming relative fortls path is to ${root.uri.fsPath}`);
-      ls = pathRelToAbs(ls, root.uri);
-    }
+    const ls = await this.fortlsPath();
 
     // Check for version, if this fails fortls provided is invalid
     const results = spawnSync(ls, ['--version']);
@@ -347,6 +338,50 @@ export class FortlsClient {
         resolve(false);
       }
     });
+  }
+
+  /**
+   * Try and find the path to the `fortls` executable.
+   * It will first try and fetch the top-most workspaceFolder from `document`.
+   * If that fails because the document is standalone and does not belong in a
+   * workspace it will assume that relative paths are wrt `os.homedir()`.
+   *
+   * If the `document` argument is missing, then it will try and find the
+   * first workspaceFolder and use that as the root. If that fails it will
+   * revert back to `os.homedir()`.
+   *
+   * @param document Optional textdocument
+   * @returns a promise with the path to the fortls executable
+   */
+  private async fortlsPath(document?: TextDocument): Promise<string> {
+    // Get the workspace folder that contains the document, this can be undefined
+    // which means that the document is standalone and not part of any workspace.
+    let folder: vscode.WorkspaceFolder | undefined;
+    if (document) {
+      folder = workspace.getWorkspaceFolder(document.uri);
+    }
+    // If the document argument is missing, such as in the case of the Client's
+    // activation, then try and fetch the first workspace folder to use as a root.
+    else {
+      folder = workspace.workspaceFolders[0] ? workspace.workspaceFolders[0] : undefined;
+    }
+
+    // Get the outer most workspace folder to resolve relative paths, but if
+    // the folder is undefined then use the home directory of the OS
+    const root = folder ? getOuterMostWorkspaceFolder(folder).uri : vscode.Uri.parse(os.homedir());
+
+    const config = workspace.getConfiguration(EXTENSION_ID);
+    let executablePath = resolveVariables(config.get<string>('fortls.path'));
+
+    // The path can be resolved as a relative path if:
+    // 1. it does not have the default value `fortls` AND
+    // 2. is not an absolute path
+    if (executablePath !== 'fortls' && !path.isAbsolute(executablePath)) {
+      this.logger.debug(`[lsp.client] Assuming relative fortls path is to ${root.fsPath}`);
+      executablePath = path.join(root.fsPath, executablePath);
+    }
+
+    return executablePath;
   }
 
   /**
