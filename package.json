@@ -772,7 +772,7 @@
   },
   "dependencies": {
     "glob": "^8.0.3",
-    "semver": "^7.3.7",
+    "semver": "^7.3.8",
     "vscode-languageclient": "^8.0.2",
     "which": "^2.0.2"
   }
