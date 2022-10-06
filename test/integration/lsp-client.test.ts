@@ -46,6 +46,17 @@ suite('Language Server integration tests', () => {
     const res = server['client']?.initializeResult;
     strictEqual(JSON.stringify(ref), JSON.stringify(res));
   });
+});
+
+suite('Language Server integration tests', () => {
+  const server = new FortlsClient(logger);
+  const fileUri = vscode.Uri.file(path.resolve(__dirname, '../../../test/fortran/sample.f90'));
+
+  suiteSetup(async () => {
+    const doc = await vscode.workspace.openTextDocument(fileUri);
+    await vscode.window.showTextDocument(doc);
+    await server.activate();
+  });
 
   test('Restart the Language Server', async () => {
     await server['restartLS']();
