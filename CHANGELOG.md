@@ -70,6 +70,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bug where the linter's internal cache directory would not always exist
+  ([#698](https://github.com/fortran-lang/vscode-fortran-support/issues/698))
 - Fixed bugs in relative path resolution for `fortls`
   ([#693](https://github.com/fortran-lang/vscode-fortran-support/issues/693))
 - Fixed issues with linter unittests running asynchronously
