@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added Nightly Release Channel for the extension that triggers every day at 00:00 UTC.
 - Added new settings for disabling Linter initialization and display of initialization Diagnostics
   `fortran.linter.initialize` and `fortran.experimental.keepInitDiagnostics`
 - Added commands for Initializing, Cleaning build artefacts and Clearing the Diagnostics from the Linter

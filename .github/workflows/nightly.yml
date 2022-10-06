@@ -1,0 +1,56 @@
+on:
+  # fire at 00:00 on every day from Monday through Friday
+  schedule:
+    - cron: '0 0 */1 * 1-5'
+  workflow_dispatch:
+
+name: Deploy Nightly Release
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Check if there are changes to deploy
+        id: deploy-nightly
+        run: |
+          echo "::set-output name=MAIN-SHA::$(git rev-list -n 1 main)"
+          echo "::set-output name=NIGHTLY-SHA::$(git rev-list -n 1 nightly)"
+
+      - name: Get version
+        id: version
+        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        run: |
+          datetime=$(date +%Y%m%d%H%M)
+          pkg_version=$(node -p "require('./package.json').version")
+          version=$( echo $pkg_version | sed -E "s/^([0-9]+\.[0-9]+\.)[0-9]+/\1$datetime/g")
+          echo "::set-output name=DATETIME::$datetime"
+          echo "::set-output name=PKG_VERSION::$pkg_version"
+          echo "::set-output name=VERSION::$version"
+
+      - name: Publish Nightly Release
+        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        run: |
+          echo "Publishing nightly release ${{ steps.version.outputs.VERSION }}"
+          npm ci
+          npm i -g vsce
+          vsce publish --pre-release --no-git-tag-version --no-update-package-json ${{ steps.version.outputs.VERSION }}
+        env:
+          VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
+
+      - name: Create Nightly tag
+        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        run: |
+          # git config user.name github-actions
+          # git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git tag --force 'nightly' ${{ github.sha }}
+          git tag --force 'v${{ steps.version.outputs.VERSION }}' ${{ github.sha }}
+          git push --tags --force
+
+      # # Upload the artifact as a release asset
+      # - uses: softprops/action-gh-release@master
+      #   with:
+      #     files: ./*.vsix
