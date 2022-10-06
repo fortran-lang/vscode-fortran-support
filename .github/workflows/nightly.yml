@@ -31,9 +31,10 @@ jobs:
           echo "::set-output name=PKG_VERSION::$pkg_version"
           echo "::set-output name=VERSION::$version"
 
-      - name: Publish Nightly Release ${{ steps.version.outputs.VERSION }}
+      - name: Publish Nightly Release
         if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
         run: |
+          echo "Publishing nightly release ${{ steps.version.outputs.VERSION }}"
           npm ci
           npm i -g vsce
           vsce publish --pre-release --no-git-tag-version --no-update-package-json ${{ steps.version.outputs.VERSION }}
