@@ -207,3 +207,6 @@ which is slower but does not suffer from this issue.
 The cache used by the linter should help mitigate any performance issues.
 
 ## 🐛 Bug Fixes 🐛
+
+- Fixed bug where the linter's internal cache directory would not always exist
+  ([#698](https://github.com/fortran-lang/vscode-fortran-support/issues/698))
