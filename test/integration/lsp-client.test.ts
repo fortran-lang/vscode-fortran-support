@@ -49,7 +49,7 @@ suite('Language Server integration tests', () => {
 
   test('Restart the Language Server', async () => {
     await server['restartLS']();
-    await delay(3000); // wait for server to initialize
+    await delay(6000); // wait for server to initialize
 
     const ref = {
       capabilities: {
