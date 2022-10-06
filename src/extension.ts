@@ -48,7 +48,7 @@ export async function activate(context: vscode.ExtensionContext) {
   );
   // Linter is always activated but will only lint if compiler !== Disabled
   const linterCache = path.join(context.storageUri.fsPath, 'include');
-  await vscode.workspace.fs.createDirectory(vscode.Uri.file(linterCache));
+  await vscode.workspace.fs.createDirectory(vscode.Uri.parse(linterCache));
   const linter = new FortranLintingProvider(logger, linterCache);
   context.subscriptions.push(...(await linter.activate()));
   vscode.languages.registerCodeActionsProvider(FortranDocumentSelector(), linter);
