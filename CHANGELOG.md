@@ -70,6 +70,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed activation bug on Windows causing the persistent cache to fail
+  ([#700](https://github.com/fortran-lang/vscode-fortran-support/issues/700))
 - Fixed bug where the linter's internal cache directory would not always exist
   ([#698](https://github.com/fortran-lang/vscode-fortran-support/issues/698))
 - Fixed bugs in relative path resolution for `fortls`
