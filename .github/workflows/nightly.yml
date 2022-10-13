@@ -22,7 +22,7 @@ jobs:
 
       - name: Get version
         id: version
-        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        if: 'steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA'
         run: |
           datetime=$(date +%Y%m%d%H)
           pkg_version=$(node -p "require('./package.json').version")
@@ -32,7 +32,7 @@ jobs:
           echo "::set-output name=VERSION::$version"
 
       - name: Publish Nightly Release
-        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        if: 'steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA'
         run: |
           echo "Publishing nightly release ${{ steps.version.outputs.VERSION }}"
           npm ci
@@ -42,7 +42,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
       - name: Create Nightly tag
-        if: ${{ steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA }}
+        if: 'steps.deploy-nightly.outputs.MAIN-SHA != steps.deploy-nightly.outputs.NIGHTLY-SHA'
         run: |
           # git config user.name github-actions
           # git config user.email 41898282+github-actions[bot]@users.noreply.github.com
