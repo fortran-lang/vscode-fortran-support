@@ -740,7 +740,7 @@
   "devDependencies": {
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.11.0",
     "@types/semver": "^7.3.12",
     "@types/vscode": "^1.63.0",
     "@types/which": "^2.0.1",
