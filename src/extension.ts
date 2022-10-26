@@ -113,19 +113,19 @@ export async function activate(context: vscode.ExtensionContext) {
     !fs.existsSync(path.join(__dirname, 'displayReleaseNotes.txt')) &&
     config.get<boolean>('notifications.releaseNotes')
   ) {
-    await showWhatsNew();
+    const whatsNew = `Show What's New`;
+    const notAgain = `Don't show again`;
+    vscode.window
+      .showInformationMessage('🎉 New Release: Modern Fortran 🎉', whatsNew, notAgain)
+      .then(selection => {
+        if (selection === whatsNew) {
+          showWhatsNew();
+        } else if (selection === notAgain) {
+          config.update('notifications.releaseNotes', false, true);
+        }
+      });
     fs.writeFileSync(path.join(__dirname, 'displayReleaseNotes.txt'), 'false');
   }
-  // const GoToHelp = 'Go to Help';
-  // vscode.window.showInformationMessage('Click for more Info', GoToHelp).then(selection => {
-  //   if (selection === GoToHelp) {
-  //     vscode.env.openExternal(
-  //       vscode.Uri.parse(
-  //         'https://github.com/fortran-lang/vscode-fortran-support/blob/main/updates/RELEASE_NOTES-v3.2.md'
-  //       )
-  //     );
-  //   }
-  // });
   return context;
 }
 
@@ -183,6 +183,7 @@ function detectDeprecatedOptions() {
 }
 
 async function showWhatsNew() {
-  const uri = vscode.Uri.file(path.join(__dirname, '../updates/RELEASE_NOTES-unreleased.md'));
-  vscode.commands.executeCommand('markdown.showPreview', uri);
+  vscode.env.openExternal(
+    vscode.Uri.parse('https://github.com/fortran-lang/vscode-fortran-support/wiki/Pre-Release')
+  );
 }

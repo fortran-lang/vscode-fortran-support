@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed the way extension Release Notes are displayed
+  ([#723](https://github.com/fortran-lang/vscode-fortran-support/issues/723))
 - Changed the activation events of the extension to include the `onCommand` for all register commands
 - Changed glob resolution module to `glob` from `fast-glob` due to bug #43
   ([#681](https://github.com/fortran-lang/vscode-fortran-support/issues/681))
