@@ -17,7 +17,7 @@ jobs:
       - name: Check if there are changes to deploy
         id: deploy-nightly
         run: |
-          git fetch
+          git fetch --tags
           MAIN_SHA=$(git rev-list -n 1 main)
           NIGHTLY_SHA=$(git rev-list -n 1 nightly)
           echo "main   : $MAIN_SHA"
