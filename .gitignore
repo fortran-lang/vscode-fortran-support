@@ -19,3 +19,6 @@ venv/
 
 # UI tests
 test-resources/
+
+# Location where local release notes are stored
+updates/
