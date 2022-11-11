@@ -118,6 +118,16 @@
         }
       }
     ],
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          ".fortlsrc",
+          ".fortls.json",
+          ".fortls"
+        ],
+        "url": "./schemas/fortls.schema.json"
+      }
+    ],
     "tomlValidation": [
       {
         "fileMatch": "fpm.toml",
