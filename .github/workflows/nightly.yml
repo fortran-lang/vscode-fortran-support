@@ -35,7 +35,7 @@ jobs:
 
       - name: Get version
         id: version
-        if: 'steps.deploy-nightly.outputs.DEPLOY == "true"'
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
         run: |
           datetime=$(date +%Y%m%d%H)
           pkg_version=$(node -p "require('./package.json').version")
@@ -45,7 +45,7 @@ jobs:
           echo "VERSION=$version" >> $GITHUB_ENV
 
       - name: Publish Nightly Release
-        if: 'steps.deploy-nightly.outputs.DEPLOY == "true"'
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
         run: |
           echo "Publishing nightly release ${{ env.VERSION }}"
           npm ci
@@ -55,7 +55,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
       - name: Create Nightly tag
-        if: 'steps.deploy-nightly.outputs.DEPLOY == "true"'
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
         run: |
           # git config user.name github-actions
           # git config user.email 41898282+github-actions[bot]@users.noreply.github.com
