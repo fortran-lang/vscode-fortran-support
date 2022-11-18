@@ -26,16 +26,16 @@ jobs:
           echo "NIGHTLY_SHA=$NIGHTLY_SHA" >> $GITHUB_ENV
 
           if [ "$MAIN_SHA" = "$NIGHTLY_SHA" ] ; then
-            echo "DEPLOY=false" >> $GITHUB_OUTPUT
+            echo "DEPLOY=${{ toJSON(false) }}" >> $GITHUB_OUTPUT
             echo "No changes to deploy"
           else
-            echo "DEPLOY=true" >> $GITHUB_OUTPUT
+            echo "DEPLOY=${{ toJSON(true) }}" >> $GITHUB_OUTPUT
             echo "Will deploy Nightly build"
           fi
 
       - name: Get version
         id: version
-        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY }}
         run: |
           datetime=$(date +%Y%m%d%H)
           pkg_version=$(node -p "require('./package.json').version")
@@ -45,7 +45,7 @@ jobs:
           echo "VERSION=$version" >> $GITHUB_ENV
 
       - name: Publish Nightly Release
-        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY }}
         run: |
           echo "Publishing nightly release ${{ env.VERSION }}"
           npm ci
@@ -55,7 +55,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
       - name: Create Nightly tag
-        if: ${{ steps.deploy-nightly.outputs.DEPLOY == "true" }}
+        if: ${{ steps.deploy-nightly.outputs.DEPLOY }}
         run: |
           # git config user.name github-actions
           # git config user.email 41898282+github-actions[bot]@users.noreply.github.com
