@@ -767,7 +767,7 @@
     "mocha": "^10.1.0",
     "prettier": "^2.7.1",
     "ts-loader": "^9.4.1",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.3",
     "vscode-extension-tester": "^5.1.0",
     "vscode-tmgrammar-test": "^0.1.1",
     "webpack": "^5.75.0",
