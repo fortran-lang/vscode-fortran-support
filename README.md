@@ -52,7 +52,7 @@
 ### Useful Tools
 
 <p align="left">
-  <a href="https://gnikit.github.io/fortls"><img src="assets/png/readme.fortls.png"/></a>
+  <a href="https://fortls.fortran-lang.org"><img src="assets/png/readme.fortls.png"/></a>
   <a href="https://fpm.fortran-lang.org"><img src="assets/png/readme.fpm.png"/></a>
   <a href="https://github.com/fortran-lang/stdlib"><img src="assets/png/readme.stdlib.png"/></a>
 </p>
@@ -74,7 +74,7 @@ to the `fortls` location by setting
 ```
 
 For more about the Language Server's capabilities please refer to the
-[documentation](https://gnikit.github.io/fortls/) of `fortls`.
+[documentation](https://fortls.fortran-lang.org/) of `fortls`.
 
 ## Linting
 
