@@ -329,8 +329,12 @@ export class FortranLintingProvider {
     if (!isFortran(document)) return;
 
     const output = await this.doBuild(document);
-    if (!output) return;
-
+    if (!output) {
+      // If the linter output is now empty, then there are no errors.
+      // Discard the previous diagnostic state for this document
+      if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
+      return;
+    }
     let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
     // Remove duplicates from the diagnostics array
     diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
