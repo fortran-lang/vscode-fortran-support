@@ -6,7 +6,7 @@ contact_links:
     url: https://github.com/fortran-lang/vscode-fortran-support/discussions
     about: Have an Idea about the extension or a General inquiry that is not about Support? Start a discussion on the Modern Fortran Discussion Board.
   - name: fortls Language Server discusion board
-    url: https://github.com/gnikit/fortls/discussions
+    url: https://github.com/fortran-lang/fortls/discussions
     about: Problems with the Language Server? Start a discussion on the fortls Language Server Discussion Board.
   - name: Fortran-lang discourse
     url: https://fortran-lang.discourse.group/

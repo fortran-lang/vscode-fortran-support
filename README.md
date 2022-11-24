@@ -35,7 +35,7 @@
 - Hover support, Signature help and Auto-completion
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
-- [Native Language Server integration](#language-server-integration) with [`fortls`](https://github.com/gnikit/fortls)
+- [Native Language Server integration](#language-server-integration) with [`fortls`](https://fortls.fortran-lang.org)
 - [Linting support](#linting): GNU's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`, NAG's [`nagfor`](https://www.nag.co.uk/nagfor/)
 - [Interactive Debugger with UI](#debugging)
 - [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
@@ -59,7 +59,7 @@
 
 ## Language Server integration
 
-The Fortran Language Server [`fortls`](https://github.com/gnikit/fortls) is responsible
+The Fortran Language Server [`fortls`](https://fortls.fortran-lang.org) is responsible
 for providing a lot of the higher level, IDE functionality. By default,
 `Modern Fortran` will attempt to use it for hover, autocompletion, symbols and Go to & Peeking into definitions.
 

@@ -311,7 +311,7 @@ export class FortlsClient {
     // Check for version, if this fails fortls provided is invalid
     const results = spawnSync(ls, ['--version']);
     const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
-      For a full list of features the language server adds see: https://github.com/gnikit/fortls`;
+      For a full list of features the language server adds see: https://fortls.fortran-lang.org`;
     return new Promise<boolean>(resolve => {
       if (results.error) {
         const selection = window.showInformationMessage(msg, 'Install', 'Disable');
