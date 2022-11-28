@@ -265,6 +265,7 @@ export class FortlsClient {
     const results = spawnSync(executablePath, args.concat(['--version']));
     if (results.error) {
       this.logger.error(`[lsp.client] Unable to launch LS to check version:`, results.error);
+      this.logger.show();
       const selected = window.showErrorMessage(
         'Modern Fortran Error starting fortls: Check that fortls is in your PATH or that "fortran.fortls.path" is pointing to a fortls binary.',
         'Settings',
@@ -282,6 +283,7 @@ export class FortlsClient {
     }
     if (results.status !== 0) {
       this.logger.error(`[lsp.client] Unable to verify input arguments with LS:`);
+      this.logger.show();
       const selected = window.showErrorMessage(
         'Error launching fortls: Please check that all selected options are supported by your language server version.',
         'Settings',

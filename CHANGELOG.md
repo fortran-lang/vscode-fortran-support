@@ -49,6 +49,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed logger to draw focus on certain error messages
+  ([#744](https://github.com/fortran-lang/vscode-fortran-support/issues/744))
 - Changed the way extension Release Notes are displayed
   ([#723](https://github.com/fortran-lang/vscode-fortran-support/issues/723))
 - Changed the activation events of the extension to include the `onCommand` for all register commands

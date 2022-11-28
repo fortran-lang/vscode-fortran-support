@@ -430,6 +430,7 @@ export class FortranLintingProvider {
       return;
     } catch (err) {
       this.logger.error(`[build] Compiling ${textDocument.fileName} failed:`, err);
+      this.logger.show(true); // Keep focus on editor
       console.error(`ERROR: ${err}`);
     }
   }
