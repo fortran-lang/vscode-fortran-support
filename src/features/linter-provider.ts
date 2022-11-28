@@ -97,7 +97,9 @@ export class LinterSettings {
     }
     // State the variables explicitly bc the TypeScript compiler on the CI
     // seemed to optimise away the stdout and regex would return null
-    const regex = /^GNU Fortran \([\w.-]+\) (?<version>.*)$/gm;
+    // The words between the parenthesis can have all sorts of special characters
+    // account for all of them just to be safe
+    const regex = /^GNU Fortran \([\S ]+\) (?<version>.*)$/gm;
     const output = child.stdout.toString();
     const match = regex.exec(output);
     const version = match ? match.groups.version : undefined;
@@ -107,7 +109,7 @@ export class LinterSettings {
       this.logger.debug(`[lint] Using Modern GNU Fortran diagnostics: ${this.modernGNU}`);
       return version;
     } else {
-      this.logger.error(`[lint] invalid compiler version: ${version}`);
+      this.logger.error(`[lint] invalid compiler version extracted ${version} from ${output}`);
     }
   }
 
