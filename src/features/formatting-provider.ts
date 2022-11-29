@@ -50,6 +50,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       this.logger.error(
         `[format] fprettify can only format FortranFreeForm, change to findent for FortranFixedForm formatting`
       );
+      this.logger.show(true); // Keep focus on editor
       return undefined;
     }
     return this.spawnFormatBase(document, 'fprettify', ['--stdout']);
@@ -101,6 +102,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
 
     if (!FORMATTERS.includes(this.formatter)) {
       this.logger.error(`[format] Unsupported formatter: ${this.formatter}`);
+      this.logger.show(true); // Keep focus on editor
     }
     return this.formatter;
   }

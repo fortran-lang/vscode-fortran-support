@@ -71,8 +71,8 @@ export class Logger {
     }
   }
 
-  public show() {
-    this.channel.show();
+  public show(preserveFocus?: boolean) {
+    this.channel.show(preserveFocus);
   }
 
   private logObject(data: unknown): void {
