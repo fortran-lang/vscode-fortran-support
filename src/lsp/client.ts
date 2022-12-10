@@ -49,6 +49,13 @@ export class FortlsClient {
       // Do not allow activating the LS functionality if no fortls is detected
       const fortlsFound = this.getLSPath();
 
+      const configuredPath = resolveVariables(config.get<string>('fortls.path'));
+      if (configuredPath) {
+        const msg = `Failed to run fortls from user configured path '` + configuredPath + `'`;
+        await window.showErrorMessage(msg);
+        return;
+      }
+
       if (!fortlsFound) {
         const msg = `Forlts wasn't found on your system.
         It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
@@ -304,7 +311,8 @@ export class FortlsClient {
     // if there's a user configured path to the executable, check if it's absolute
     if (configuredPath !== '') {
       if (!path.isAbsolute(configuredPath)) {
-        throw Error("The path to fortls (fortls.path) must be absolute.");
+        window.showErrorMessage("The path to fortls (fortran.fortls.path) must be absolute.");
+        return false;
       }
 
       pathsToCheck.push(configuredPath);
