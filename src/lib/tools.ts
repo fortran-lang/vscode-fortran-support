@@ -150,16 +150,16 @@ export async function pipInstall(pyPackage: string): Promise<string> {
 
 /**
  * Checks whether python can be called from the shell.
- * 
+ *
  * Tries `python` on Windows and `python3` on other platforms.
- * 
+ *
  * TODO: this could also check for python version, which has to be > 3.7 for fortls.
- * 
+ *
  * @returns name of the command to run python on the current platform
  */
 export async function checkPython(): Promise<string> {
-  let py = "";
-  if (os.platform() == "win32") {
+  let py = '';
+  if (os.platform() == 'win32') {
     py = 'python';
   } else {
     py = 'python3';
@@ -170,19 +170,20 @@ export async function checkPython(): Promise<string> {
     await shellTask(py, args, 'getting python version');
     return py;
   } catch (e) {
-    let errMsg = "";
-    if (os.platform() == "win32") {
-      errMsg = py + " isn't callable from the shell. " +
-        "Please make sure python is installed and added to the PATH.";
+    let errMsg = '';
+    if (os.platform() == 'win32') {
+      errMsg =
+        py +
+        " isn't callable from the shell. " +
+        'Please make sure python is installed and added to the PATH.';
     } else {
       errMsg = py + " isn't callable from the shell. Please make sure python is installed";
-    }  
+    }
 
     return await new Promise<string>((result, reject) => {
       reject(errMsg);
     });
   }
-
 }
 
 export async function shellTask(command: string, args: string[], name: string): Promise<string> {

@@ -73,7 +73,6 @@ export class FortlsClient {
               // restart this class
               this.deactivate();
               this.activate();
-
             } catch (error) {
               this.logger.error(`[lsp.client] Error installing ${LS_NAME}: ${error}`);
               window.showErrorMessage(error);
@@ -83,7 +82,6 @@ export class FortlsClient {
             this.logger.info(`[lsp.client] ${LS_NAME} disabled in settings`);
           }
         });
-
       } else {
         workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
         workspace.textDocuments.forEach(this.didOpenTextDocument, this);
@@ -100,7 +98,6 @@ export class FortlsClient {
     }
 
     return;
-
   }
 
   public async deactivate(): Promise<void> {
@@ -296,11 +293,11 @@ export class FortlsClient {
 
   /**
    * Tries to find fortls and saves its path to this.path.
-   * 
+   *
    * If a user path is configured, then only use this.
    * If not, try running fortls globally, or from python user scripts folder on Windows.
-   * 
-   * @returns true if fortls found, false if not 
+   *
+   * @returns true if fortls found, false if not
    */
   private getLSPath(): boolean {
     const config = workspace.getConfiguration(EXTENSION_ID);
@@ -311,29 +308,31 @@ export class FortlsClient {
     // if there's a user configured path to the executable, check if it's absolute
     if (configuredPath !== '') {
       if (!path.isAbsolute(configuredPath)) {
-        window.showErrorMessage("The path to fortls (fortran.fortls.path) must be absolute.");
+        window.showErrorMessage('The path to fortls (fortran.fortls.path) must be absolute.');
         return false;
       }
 
       pathsToCheck.push(configuredPath);
+    } else {
+      // no user configured path => perform standard search for fortls
 
-    } else { // no user configured path => perform standard search for fortls
-      
       pathsToCheck.push('fortls');
-      
+
       // On Windows, `pip install fortls --user` installs fortls to the userbase\PythonXY\Scripts path,
       // so we want to look for it in this path as well.
       if (os.platform() == 'win32') {
-        const result = spawnSync('python', ['-c', 'import site; print(site.getusersitepackages())']);
+        const result = spawnSync('python', [
+          '-c',
+          'import site; print(site.getusersitepackages())',
+        ]);
         const userSitePackagesStr = result.stdout.toString().trim();
-        
+
         // check if the call above returned something, in case the site module in python ever changes...
         if (userSitePackagesStr) {
           const userScriptsPath = path.resolve(userSitePackagesStr, '../Scripts/fortls');
           pathsToCheck.push(userScriptsPath);
         }
       }
-
     }
 
     // try to run `fortls --version` for all the given paths
@@ -399,7 +398,6 @@ export class FortlsClient {
     }
     return results.stdout.toString().trim();
   }
-
 
   /**
    * Restart the language server
