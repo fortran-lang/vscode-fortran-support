@@ -142,9 +142,47 @@ export async function promptForMissingTool(
  * @param pyPackage name of python package in PyPi
  */
 export async function pipInstall(pyPackage: string): Promise<string> {
-  const py = 'python3'; // Fetches the top-most python in the Shell
+  const py = await checkPython();
+
   const args = ['-m', 'pip', 'install', '--user', '--upgrade', pyPackage];
-  return await shellTask(py, args, `pip: ${pyPackage}`);
+  return await shellTask(py, args, `python3 -m pip install ${pyPackage}`);
+}
+
+/**
+ * Checks whether python can be called from the shell.
+ * 
+ * Tries `python` on Windows and `python3` on other platforms.
+ * 
+ * TODO: this could also check for python version, which has to be > 3.7 for fortls.
+ * 
+ * @returns name of the command to run python on the current platform
+ */
+export async function checkPython(): Promise<string> {
+  let py = "";
+  if (os.platform() == "win32") {
+    py = 'python';
+  } else {
+    py = 'python3';
+  }
+  const args = ['--version'];
+
+  try {
+    await shellTask(py, args, 'getting python version');
+    return py;
+  } catch (e) {
+    let errMsg = "";
+    if (os.platform() == "win32") {
+      errMsg = py + " isn't callable from the shell. " +
+        "Please make sure python is installed and added to the PATH.";
+    } else {
+      errMsg = py + " isn't callable from the shell. Please make sure python is installed";
+    }  
+
+    return await new Promise<string>((result, reject) => {
+      reject(errMsg);
+    });
+  }
+
 }
 
 export async function shellTask(command: string, args: string[], name: string): Promise<string> {
