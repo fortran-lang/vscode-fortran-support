@@ -37,27 +37,63 @@ export class FortlsClient {
   }
 
   private client: LanguageClient | undefined;
-  private version: string | undefined;
+  private path: string | undefined; // path to the forls binary
+  private version: string | undefined; // fortls version
   private readonly name: string = 'Fortran Language Server';
 
   public async activate() {
-    // Detect if fortls is present, download if missing or disable LS functionality
-    // Do not allow activating the LS functionality if no fortls is detected
-    await this.fortlsDownload().then(fortlsDisabled => {
-      if (fortlsDisabled) return;
-      workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
-      workspace.textDocuments.forEach(this.didOpenTextDocument, this);
-      workspace.onDidChangeWorkspaceFolders(event => {
-        for (const folder of event.removed) {
-          const client = clients.get(folder.uri.toString());
-          if (client) {
-            clients.delete(folder.uri.toString());
-            client.stop();
+    const config = workspace.getConfiguration(EXTENSION_ID);
+
+    if (!config.get['fortls.disabled']) {
+      // Detect if fortls is present, download if missing or disable LS functionality
+      // Do not allow activating the LS functionality if no fortls is detected
+      const fortlsFound = this.getLSPath();
+
+      if (!fortlsFound) {
+        const msg = `Forlts wasn't found on your system.
+        It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
+        For a full list of features the language server adds see: https://fortls.fortran-lang.org`;
+
+        const selection = window.showInformationMessage(msg, 'Install', 'Disable');
+        selection.then(async opt => {
+          if (opt === 'Install') {
+            try {
+              this.logger.info(`[lsp.client] Downloading ${LS_NAME}`);
+              const msg = await pipInstall(LS_NAME);
+              window.showInformationMessage(msg);
+              this.logger.info(`[lsp.client] ${LS_NAME} installed`);
+
+              // restart this class
+              this.deactivate();
+              this.activate();
+
+            } catch (error) {
+              this.logger.error(`[lsp.client] Error installing ${LS_NAME}: ${error}`);
+              window.showErrorMessage(error);
+            }
+          } else if (opt == 'Disable') {
+            config.update('fortls.disabled', true, vscode.ConfigurationTarget.Global);
+            this.logger.info(`[lsp.client] ${LS_NAME} disabled in settings`);
           }
-        }
-      });
-    });
+        });
+
+      } else {
+        workspace.onDidOpenTextDocument(this.didOpenTextDocument, this);
+        workspace.textDocuments.forEach(this.didOpenTextDocument, this);
+        workspace.onDidChangeWorkspaceFolders(event => {
+          for (const folder of event.removed) {
+            const client = clients.get(folder.uri.toString());
+            if (client) {
+              clients.delete(folder.uri.toString());
+              client.stop();
+            }
+          }
+        });
+      }
+    }
+
     return;
+
   }
 
   public async deactivate(): Promise<void> {
@@ -84,7 +120,7 @@ export class FortlsClient {
     if (!isFortran(document)) return;
 
     const args: string[] = await this.fortlsArguments();
-    const executablePath: string = await this.fortlsPath(document);
+    const executablePath: string = this.path;
 
     // Detect language server version and verify selected options
     this.version = this.getLSVersion(executablePath, args);
@@ -252,6 +288,63 @@ export class FortlsClient {
   }
 
   /**
+   * Tries to find fortls and saves its path to this.path.
+   * 
+   * If a user path is configured, then only use this.
+   * If not, try running fortls globally, or from python user scripts folder on Windows.
+   * 
+   * @returns true if fortls found, false if not 
+   */
+  private getLSPath(): boolean {
+    const config = workspace.getConfiguration(EXTENSION_ID);
+    const configuredPath = resolveVariables(config.get<string>('fortls.path'));
+
+    const pathsToCheck: string[] = [];
+
+    // if there's a user configured path to the executable, check if it's absolute
+    if (configuredPath !== '') {
+      if (!path.isAbsolute(configuredPath)) {
+        throw Error("The path to fortls (fortls.path) must be absolute.");
+      }
+
+      pathsToCheck.push(configuredPath);
+
+    } else { // no user configured path => perform standard search for fortls
+      
+      pathsToCheck.push('fortls');
+      
+      // On Windows, `pip install fortls --user` installs fortls to the userbase\PythonXY\Scripts path,
+      // so we want to look for it in this path as well.
+      if (os.platform() == 'win32') {
+        const result = spawnSync('python', ['-c', 'import site; print(site.getusersitepackages())']);
+        const userSitePackagesStr = result.stdout.toString().trim();
+        
+        // check if the call above returned something, in case the site module in python ever changes...
+        if (userSitePackagesStr) {
+          const userScriptsPath = path.resolve(userSitePackagesStr, '../Scripts/fortls');
+          pathsToCheck.push(userScriptsPath);
+        }
+      }
+
+    }
+
+    // try to run `fortls --version` for all the given paths
+    // if any succeed, save it to this.path and stop.
+    for (const pathToCheck of pathsToCheck) {
+      const result = spawnSync(pathToCheck, ['--version']);
+      if (result.status == 0) {
+        this.path = pathToCheck;
+        this.logger.info('Successfully spawned fortls with path ' + pathToCheck);
+        return true;
+      } else {
+        this.logger.info('Failed to spawn fortls with path ' + pathToCheck);
+      }
+    }
+
+    return false; // fortls not found
+  }
+
+  /**
    * Check if `fortls` is present and the arguments being passed are correct
    * The presence check has already been done in the extension activate call
    *
@@ -299,92 +392,6 @@ export class FortlsClient {
     return results.stdout.toString().trim();
   }
 
-  /**
-   * Check if fortls is present in the system, if not show prompt to install/disable.
-   * If disabling or erroring the function will return true.
-   * For all normal cases it should return false.
-   *
-   * @returns false if the fortls has been detected or installed successfully
-   */
-  private async fortlsDownload(): Promise<boolean> {
-    const config = workspace.getConfiguration(EXTENSION_ID);
-    const ls = await this.fortlsPath();
-
-    // Check for version, if this fails fortls provided is invalid
-    const results = spawnSync(ls, ['--version']);
-    const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
-      For a full list of features the language server adds see: https://fortls.fortran-lang.org`;
-    return new Promise<boolean>(resolve => {
-      if (results.error) {
-        const selection = window.showInformationMessage(msg, 'Install', 'Disable');
-        selection.then(async opt => {
-          if (opt === 'Install') {
-            try {
-              this.logger.info(`[lsp.client] Downloading ${LS_NAME}`);
-              const msg = await pipInstall(LS_NAME);
-              window.showInformationMessage(msg);
-              this.logger.info(`[lsp.client] ${LS_NAME} installed`);
-              resolve(false);
-            } catch (error) {
-              this.logger.error(`[lsp.client] Error installing ${LS_NAME}: ${error}`);
-              window.showErrorMessage(error);
-              resolve(true);
-            }
-          } else if (opt == 'Disable') {
-            config.update('fortls.disabled', true);
-            this.logger.info(`[lsp.client] ${LS_NAME} disabled in settings`);
-            resolve(true);
-          }
-        });
-      } else {
-        resolve(false);
-      }
-    });
-  }
-
-  /**
-   * Try and find the path to the `fortls` executable.
-   * It will first try and fetch the top-most workspaceFolder from `document`.
-   * If that fails because the document is standalone and does not belong in a
-   * workspace it will assume that relative paths are wrt `os.homedir()`.
-   *
-   * If the `document` argument is missing, then it will try and find the
-   * first workspaceFolder and use that as the root. If that fails it will
-   * revert back to `os.homedir()`.
-   *
-   * @param document Optional textdocument
-   * @returns a promise with the path to the fortls executable
-   */
-  private async fortlsPath(document?: TextDocument): Promise<string> {
-    // Get the workspace folder that contains the document, this can be undefined
-    // which means that the document is standalone and not part of any workspace.
-    let folder: vscode.WorkspaceFolder | undefined;
-    if (document) {
-      folder = workspace.getWorkspaceFolder(document.uri);
-    }
-    // If the document argument is missing, such as in the case of the Client's
-    // activation, then try and fetch the first workspace folder to use as a root.
-    else {
-      folder = workspace.workspaceFolders[0] ? workspace.workspaceFolders[0] : undefined;
-    }
-
-    // Get the outer most workspace folder to resolve relative paths, but if
-    // the folder is undefined then use the home directory of the OS
-    const root = folder ? getOuterMostWorkspaceFolder(folder).uri : vscode.Uri.parse(os.homedir());
-
-    const config = workspace.getConfiguration(EXTENSION_ID);
-    let executablePath = resolveVariables(config.get<string>('fortls.path'));
-
-    // The path can be resolved as a relative path if:
-    // 1. it does not have the default value `fortls` AND
-    // 2. is not an absolute path
-    if (executablePath !== 'fortls' && !path.isAbsolute(executablePath)) {
-      this.logger.debug(`[lsp.client] Assuming relative fortls path is to ${root.fsPath}`);
-      executablePath = path.join(root.fsPath, executablePath);
-    }
-
-    return executablePath;
-  }
 
   /**
    * Restart the language server
