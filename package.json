@@ -762,7 +762,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsdoc": "^39.6.2",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "lint-staged": "^13.0.3",
     "mocha": "^10.1.0",
     "prettier": "^2.8.3",
