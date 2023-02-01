@@ -49,6 +49,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed the `npm vsce` package to `@vscode/vsce` for publishing
+  ([#814](https://github.com/fortran-lang/vscode-fortran-support/issues/814))
 - Changed logger to draw focus on certain error messages
   ([#744](https://github.com/fortran-lang/vscode-fortran-support/issues/744))
 - Changed the way extension Release Notes are displayed

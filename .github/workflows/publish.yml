@@ -18,7 +18,7 @@ jobs:
       - name: Publish Release ${{ github.ref_name }}
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
-          npm i -g vsce
+          npm i -g @vscode/vsce
           if [ "$pre_release" = true ] ; then
             vsce publish --no-git-tag-version --pre-release ${GITHUB_REF_NAME:1}
           else
