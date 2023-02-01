@@ -4,11 +4,11 @@
 
 <div align="center">
 
-[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
-[![GitHub Actions](https://github.com/fortran-lang/vscode-fortran-support/actions/workflows/main.yaml/badge.svg)](https://github.com/fortran-lang/vscode-fortran-support/actions)
-[![VS Marketplace](https://vsmarketplacebadge.apphb.com/version-short/fortran-lang.linter-gfortran.svg)](https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/fortran-lang/vscode-fortran-support/master/LICENSE)
+![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/fortran-lang.linter-gfortran?style=flat-square)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/fortran-lang.linter-gfortran?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fortran-lang/vscode-fortran-support/main.yaml?label=CI&style=flat-square)
+![Visual Studio Marketplace Version (including pre-releases)](https://img.shields.io/visual-studio-marketplace/v/fortran-lang.linter-gfortran?color=brightgreen&include_prereleases&style=flat-square)
+![GitHub](https://img.shields.io/github/license/fortran-lang/vscode-fortran-support?color=brightgreen&style=flat-square)
 
 </div>
 

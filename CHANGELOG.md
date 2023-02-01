@@ -76,6 +76,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed broken badges and replaced them with shields.io
+  ([[#815](https://github.com/fortran-lang/vscode-fortran-support/issues/815)])
 - Fixed regular expression for parsing version of GFortran in linter
   ([#759](https://github.com/fortran-lang/vscode-fortran-support/issues/759))
 - Fixed bug where diagnostic messages would linger from the previous state
