@@ -49,7 +49,7 @@ jobs:
         run: |
           echo "Publishing nightly release ${{ env.VERSION }}"
           npm ci
-          npm i -g vsce
+          npm i -g @vscode/vsce
           vsce publish --pre-release --no-git-tag-version ${{ env.VERSION }}
         env:
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
