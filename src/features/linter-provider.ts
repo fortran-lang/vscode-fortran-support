@@ -99,7 +99,7 @@ export class LinterSettings {
     // seemed to optimise away the stdout and regex would return null
     // The words between the parenthesis can have all sorts of special characters
     // account for all of them just to be safe
-    const regex = /^GNU Fortran \([\S ]+\) (?<version>.*)$/gm;
+    const regex = /^GNU Fortran \([\S ]+\) (?<msg>(?<version>\d+\.\d+\.\d+).*)$/gm;
     const output = child.stdout.toString();
     const match = regex.exec(output);
     const version = match ? match.groups.version : undefined;
@@ -108,9 +108,9 @@ export class LinterSettings {
       this.logger.info(`[lint] Found GNU Fortran version ${version}`);
       this.logger.debug(`[lint] Using Modern GNU Fortran diagnostics: ${this.modernGNU}`);
       return version;
-    } else {
-      this.logger.error(`[lint] invalid compiler version extracted ${version} from ${output}`);
     }
+    this.logger.warn(`[lint] Unable to extract semver version ${match.groups.msg} from ${output}`);
+    this.logger.warn(`[lint] Using GFortran with fallback options`);
   }
 
   public get version(): string {

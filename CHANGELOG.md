@@ -78,6 +78,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed GFortran version regex to allow for semver + build metadata
+  ([#813](https://github.com/fortran-lang/vscode-fortran-support/issues/813))
 - Fixed broken badges and replaced them with shields.io
   ([[#815](https://github.com/fortran-lang/vscode-fortran-support/issues/815)])
 - Fixed regular expression for parsing version of GFortran in linter
