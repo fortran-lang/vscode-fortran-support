@@ -42,12 +42,12 @@ jobs:
       - name: Test Syntax Highlighting
         run: npm run test:grammar
       - name: Test Unittests
-        uses: GabrielBB/xvfb-action@v1
+        uses: GabrielBB/xvfb-action@v1.6
         with:
           run: npm run test
       # This will not fail the job if tests fail so we have to npm test separately
       - name: Coverage report
-        uses: GabrielBB/xvfb-action@v1
+        uses: GabrielBB/xvfb-action@v1.6
         with:
           run: npm run coverage
       - name: Upload coverage to Codecov
