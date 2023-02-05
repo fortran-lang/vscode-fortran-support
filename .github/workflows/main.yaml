@@ -33,6 +33,16 @@ jobs:
           --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_V} \
           --slave /usr/bin/gcov gcov /usr/bin/gcov-${GCC_V}
 
+      - name: Install GCC compilers Windows
+        if: contains(matrix.os, 'windows')
+        run: |
+          Invoke-WebRequest -Uri $Env:GCC_DOWNLOAD -OutFile mingw-w64.zip
+          Expand-Archive mingw-w64.zip
+          echo "$pwd\mingw-w64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        env:
+          GCC_DOWNLOAD: |
+            https://github.com/brechtsanders/winlibs_mingw/releases/download/13.0.1-snapshot20230122-10.0.0-msvcrt-r1/winlibs-i686-posix-dwarf-gcc-13.0.1-snapshot20230122-mingw-w64msvcrt-10.0.0-r1.zip
+
       - name: Installing Extension
         run: npm ci
       - name: Compile
