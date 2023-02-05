@@ -4,7 +4,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
         gcc_v: [11]
         node-version: [18.x]
       fail-fast: false
