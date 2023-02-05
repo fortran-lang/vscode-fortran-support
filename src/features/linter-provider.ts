@@ -335,11 +335,14 @@ export class FortranLintingProvider {
       // If the linter output is now empty, then there are no errors.
       // Discard the previous diagnostic state for this document
       if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
+      this.logger.debug('[lint] No linting diagnostics to show');
       return;
     }
     let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+    this.logger.debug('[lint] Parsing output to vscode.Diagnostics', diagnostics);
     // Remove duplicates from the diagnostics array
     diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+    this.logger.debug('[lint] Removing duplicates. vscode.Diagnostics are now:', diagnostics);
     this.fortranDiagnostics.set(document.uri, diagnostics);
     return diagnostics;
   }
