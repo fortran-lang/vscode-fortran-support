@@ -58,5 +58,7 @@
   // Fortran-Language-Server specific options
   "fortran.fortls.incrementalSync": true,
   // Other Fortran options
-  "fortran.preferredCase": "lowercase"
+  "fortran.preferredCase": "lowercase",
+  // Supress Git pop-up interfering with UI testing
+  "git.openRepositoryInParentFolders": "always"
 }

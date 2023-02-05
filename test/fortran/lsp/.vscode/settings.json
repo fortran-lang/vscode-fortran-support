@@ -1,3 +1,5 @@
 {
-  "fortran.notifications.releaseNotes": false
+  "fortran.notifications.releaseNotes": false,
+  // Supress Git pop-up interfering with UI testing
+  "git.openRepositoryInParentFolders": "always"
 }
