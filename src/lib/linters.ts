@@ -53,7 +53,7 @@ export class GNULinter extends Linter {
   constructor() {
     super(
       'gfortran',
-      /(?:^(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+):(?:\s+.*\s+.*?\s+)(?<sev1>Error|Warning|Fatal Error):\s(?<msg1>.*)$)|(?:^(?<bin>\w+):\s*(?<sev2>\w+\s*\w*):\s*(?<msg2>.*)$)/gm,
+      /(?:^(?<fname>(?:\w:\\)?.*):(?<ln>\d+):(?<cn>\d+)[:.](?:\s+.*\s+.*?\s+)(?<sev1>Error|Warning|Fatal Error):\s(?<msg1>.*)$)|(?:^(?<bin>\w+):\s*(?<sev2>\w+\s*\w*):\s*(?<msg2>.*)$)/gm,
       {
         errors: ['error', 'fatal error'],
         warnings: ['warning'],
