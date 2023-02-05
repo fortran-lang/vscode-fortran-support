@@ -1,0 +1,10 @@
+{
+  "fortran.fortls.preprocessor.definitions": {
+    "REALTYPEWIDTH": "64",
+    "IDXTYPEWIDTH": "64"
+  },
+  "fortran.linter.extraArgs": ["-DIDXTYPEWIDTH=64", "-DREALTYPEWIDTH=64"],
+  "fortran.logging.level": "Debug",
+  // Supress Git pop-up interfering with UI testing
+  "git.openRepositoryInParentFolders": "always"
+}

@@ -1,0 +1,5 @@
+{
+  "fortran.linter.fypp.enabled": true,
+  // Supress Git pop-up interfering with UI testing
+  "git.openRepositoryInParentFolders": "always"
+}

@@ -142,7 +142,10 @@ export async function promptForMissingTool(
  * @param pyPackage name of python package in PyPi
  */
 export async function pipInstall(pyPackage: string): Promise<string> {
-  const py = 'python3'; // Fetches the top-most python in the Shell
+  // Fetches the top-most python in the Shell
+  // For Windows, use py instead of python3, see:
+  // https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-pypi
+  const py = process.platform === 'win32' ? 'py' : 'python3';
   const args = ['-m', 'pip', 'install', '--user', '--upgrade', pyPackage];
   return await shellTask(py, args, `pip: ${pyPackage}`);
 }

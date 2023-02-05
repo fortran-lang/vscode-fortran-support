@@ -20,5 +20,7 @@
   "fortran.fortls.excludeSuffixes": [".snap"],
   "fortran.fortls.excludeDirectories": [".vscode/"],
   "fortran.fortls.notifyInit": true,
-  "fortran.linter.compiler": "gfortran"
+  "fortran.linter.compiler": "gfortran",
+  // Supress Git pop-up interfering with UI testing
+  "git.openRepositoryInParentFolders": "always"
 }

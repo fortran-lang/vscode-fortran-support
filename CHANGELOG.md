@@ -49,6 +49,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Changed the way Python is invoked in Windows machines uses `py` instead of `python`
 - Changed the `npm vsce` package to `@vscode/vsce` for publishing
   ([#814](https://github.com/fortran-lang/vscode-fortran-support/issues/814))
 - Changed logger to draw focus on certain error messages
