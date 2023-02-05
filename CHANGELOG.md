@@ -78,10 +78,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed linter REGEX for GFortran 4.x.x
+  ([#813](https://github.com/fortran-lang/vscode-fortran-support/issues/813))
 - Fixed GFortran version regex to allow for semver + build metadata
   ([#813](https://github.com/fortran-lang/vscode-fortran-support/issues/813))
 - Fixed broken badges and replaced them with shields.io
-  ([[#815](https://github.com/fortran-lang/vscode-fortran-support/issues/815)])
+  ([#815](https://github.com/fortran-lang/vscode-fortran-support/issues/815))
 - Fixed regular expression for parsing version of GFortran in linter
   ([#759](https://github.com/fortran-lang/vscode-fortran-support/issues/759))
 - Fixed bug where diagnostic messages would linger from the previous state

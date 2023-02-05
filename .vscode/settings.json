@@ -60,5 +60,6 @@
   // Other Fortran options
   "fortran.preferredCase": "lowercase",
   // Supress Git pop-up interfering with UI testing
-  "git.openRepositoryInParentFolders": "always"
+  "git.openRepositoryInParentFolders": "always",
+  "mesonbuild.configureOnOpen": false
 }
