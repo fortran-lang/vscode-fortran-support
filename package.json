@@ -753,7 +753,7 @@
     "@types/node": "^18.15.5",
     "@types/semver": "^7.3.13",
     "@types/vscode": "^1.63.0",
-    "@types/which": "^2.0.1",
+    "@types/which": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.54.1",
     "@vscode/test-electron": "^2.2.3",
