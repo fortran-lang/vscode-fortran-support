@@ -2877,11 +2877,11 @@
     },
     "sync-all-statement": {
       "comment": "Introduced in the Fortran 2018 standard.",
-      "name": "meta.statement.sync-all.fortran",
-      "begin": "(?i)\\b(sync all)(\\s*(?=\\())?",
+      "name": "meta.statement.sync-all-memory.fortran",
+      "begin": "(?i)\\b(sync all|sync memory)(\\s*(?=\\())?",
       "beginCaptures": {
         "1": {
-          "name": "keyword.control.sync-all.fortran"
+          "name": "keyword.control.sync-all-memory.fortran"
         },
         "2": {
           "name": "punctuation.parentheses.left.fortran"
@@ -2901,11 +2901,11 @@
     },
     "sync-statement": {
       "comment": "Introduced in the Fortran 2018 standard.",
-      "name": "meta.statement.sync.fortran",
-      "begin": "(?i)\\b(sync images|sync memory|sync team)\\s*(?=\\()",
+      "name": "meta.statement.sync-images-team.fortran",
+      "begin": "(?i)\\b(sync images|sync team)\\s*(?=\\()",
       "beginCaptures": {
         "1": {
-          "name": "keyword.control.sync.fortran"
+          "name": "keyword.control.sync-images-team.fortran"
         },
         "2": {
           "name": "punctuation.parentheses.left.fortran"
@@ -2974,8 +2974,8 @@
     "fail-image-statement": {
       "comment": "Introduced in the Fortran 2018 standard.",
       "name": "meta.statement.fail-image.fortran",
-      "begin": "(fail image)",
-      "beginCaptures": {
+      "match": "\\b(fail image)\\b",
+      "captures": {
         "1": {
           "name": "keyword.control.fail-image.fortran"
         }
