@@ -51,7 +51,7 @@ export class GlobPaths {
       const globIncPaths: string[] = [];
       for (const i of globPathsVars) {
         // use '/' to match only directories and not files
-        globIncPaths.push(...glob.sync(i + '/', { strict: false }));
+        globIncPaths.push(...glob.sync(i + '/'));
       }
       return globIncPaths;
       // if we failed again then our globs are somehow wrong. Abort
