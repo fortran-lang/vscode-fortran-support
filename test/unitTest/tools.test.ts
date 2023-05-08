@@ -16,7 +16,7 @@ suite('Tools tests', () => {
 
   test('shellTask returns rejected promise', async () => {
     const name = 'pip: fortls';
-    assert.rejects(shellTask('python3', ['-m', 'pip', 'install', 'fortls2'], name));
+    await assert.rejects(shellTask('python3', ['-m', 'pip', 'install', 'fortls2'], name));
   });
 
   test('spawnAsPromise correct stdout, stderr output exit code 0', async () => {
