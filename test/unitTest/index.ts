@@ -1,8 +1,8 @@
 import path from 'path';
 import Mocha from 'mocha';
-import glob from 'glob';
+import { glob } from 'glob';
 
-export function run(): Promise<void> {
+export async function run(): Promise<void> {
   // Create the mocha test
   const mocha = new Mocha({
     ui: 'tdd',
@@ -11,28 +11,30 @@ export function run(): Promise<void> {
 
   const testsRoot = __dirname;
 
-  return new Promise((c, e) => {
-    glob('**/**.test.js', { cwd: testsRoot }, (err, files) => {
-      if (err) {
-        return e(err);
-      }
+  // Use glob promise API to find files
+  const files = await glob('**/**.test.js', { cwd: testsRoot });
 
-      // Add files to the test suite
-      files.forEach(f => mocha.addFile(path.resolve(testsRoot, f)));
+  // Add files to the test suite
+  files.forEach((f: string) => {
+    mocha.addFile(path.join(testsRoot, f));
+  });
 
-      try {
-        // Run the mocha test
-        mocha.timeout(300000);
-        mocha.run(failures => {
-          if (failures > 0) {
-            e(new Error(`${failures} tests failed.`));
-          } else {
-            c();
-          }
-        });
-      } catch (err) {
-        e(err);
-      }
+  // Run the mocha test
+  mocha.timeout(300000);
+  const runner = mocha.run();
+
+  // Wait for the test runner to complete
+  const failures = await new Promise<number>((resolve, reject) => {
+    runner.on('end', () => {
+      resolve(runner.failures);
+    });
+    runner.on('fail', (test: Mocha.Test, err: Error) => {
+      reject(err);
     });
   });
+
+  // Throw an error if there were any test failures
+  if (failures > 0) {
+    throw new Error(`${failures} tests failed.`);
+  }
 }
