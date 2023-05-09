@@ -2001,6 +2001,9 @@
         },
         {
           "include": "#where-statement"
+        },
+        {
+          "include": "#image-control-statement"
         }
       ]
     },
@@ -2852,6 +2855,131 @@
           ]
         }
       ]
+    },
+    "image-control-statement": {
+      "patterns": [
+        {
+          "include": "#sync-all-statement"
+        },
+        {
+          "include": "#sync-statement"
+        },
+        {
+          "include": "#event-statement"
+        },
+        {
+          "include": "#form-team-statement"
+        },
+        {
+          "include": "#fail-image-statement"
+        }
+      ]
+    },
+    "sync-all-statement": {
+      "comment": "Introduced in the Fortran 2018 standard.",
+      "name": "meta.statement.sync-all-memory.fortran",
+      "begin": "(?i)\\b(sync all|sync memory)(\\s*(?=\\())?",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.sync-all-memory.fortran"
+        },
+        "2": {
+          "name": "punctuation.parentheses.left.fortran"
+        }
+      },
+      "end": "(?<!\\G)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.right.fortran"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#parentheses-dummy-variables"
+        }
+      ]
+    },
+    "sync-statement": {
+      "comment": "Introduced in the Fortran 2018 standard.",
+      "name": "meta.statement.sync-images-team.fortran",
+      "begin": "(?i)\\b(sync images|sync team)\\s*(?=\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.sync-images-team.fortran"
+        },
+        "2": {
+          "name": "punctuation.parentheses.left.fortran"
+        }
+      },
+      "end": "(?<!\\G)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.right.fortran"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#parentheses-dummy-variables"
+        }
+      ]
+    },
+    "event-statement": {
+      "comment": "Introduced in the Fortran 2018 standard.",
+      "name": "meta.statement.event.fortran",
+      "begin": "(?i)\\b(event post|event wait)\\s*(?=\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.event.fortran"
+        },
+        "2": {
+          "name": "punctuation.parentheses.left.fortran"
+        }
+      },
+      "end": "(?<!\\G)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.right.fortran"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#parentheses-dummy-variables"
+        }
+      ]
+    },
+    "form-team-statement": {
+      "comment": "Introduced in the Fortran 2018 standard.",
+      "name": "meta.statement.form-team.fortran",
+      "begin": "(?i)\\b(form team)\\s*(?=\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.form-team.fortran"
+        },
+        "2": {
+          "name": "punctuation.parentheses.left.fortran"
+        }
+      },
+      "end": "(?<!\\G)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.right.fortran"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#parentheses-dummy-variables"
+        }
+      ]
+    },
+    "fail-image-statement": {
+      "comment": "Introduced in the Fortran 2018 standard.",
+      "name": "meta.statement.fail-image.fortran",
+      "match": "\\b(fail image)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.control.fail-image.fortran"
+        }
+      }
     },
     "execution-statements": {
       "patterns": [

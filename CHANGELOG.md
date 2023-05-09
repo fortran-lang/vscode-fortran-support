@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added syntax highlighting support for `sync` and `event` image control statements
+  ([#874](https://github.com/fortran-lang/vscode-fortran-support/pull/874))
 - Added schema support for fortls configuration files with autocopmletions
   ([#745](https://github.com/fortran-lang/vscode-fortran-support/issues/745))
 - Added Nightly Release Channel for the extension that triggers every day at 00:00 UTC.
