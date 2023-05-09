@@ -1,0 +1,238 @@
+>program main
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>
+>  use iso_fortran_env, only: team_type, event_type
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran keyword.control.use.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran
+#      ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran entity.name.class.module.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran punctuation.comma.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran
+#                       ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran keyword.control.only.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran
+#                             ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran meta.parameter.fortran
+#                                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran
+#                                        ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.use.fortran meta.parameter.fortran
+>  implicit none
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran
+#           ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>
+>  type(team_type) :: team
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran storage.type.type.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran punctuation.parentheses.left.fortran
+#       ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran entity.name.type.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran punctuation.parentheses.right.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                     ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  type(event_type) :: event[*]
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran storage.type.type.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran punctuation.parentheses.left.fortran
+#       ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran entity.name.type.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.specification.type.derived.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran keyword.operator.power.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+>  integer :: image_index, team_index
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.integer.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#             ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                          ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  integer :: status
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.integer.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>
+>  image_index = this_image()
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran support.function.intrinsic.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.right.fortran
+>  team_index = merge(1, 2, mod(image_index, 2) == 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#               ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran support.function.intrinsic.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.left.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                           ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran support.function.intrinsic.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.left.fortran
+#                               ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#                                          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.right.fortran
+#                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.logical.fortran.modern
+#                                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.right.fortran
+>
+>  !> Test form team
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  form team (team_index, team)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran keyword.control.form-team.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran punctuation.parentheses.left.fortran
+#             ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran meta.parameter.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran
+#                         ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran meta.parameter.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.form-team.fortran punctuation.parentheses.right.fortran
+>
+>  ! Test fail image
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  if (team_index == 1) fail image
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.if.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#      ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.if.fortran
+#                       ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.if.fortran meta.statement.fail-image.fortran keyword.control.fail-image.fortran
+>
+>  !> Test sync all, sync memory
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  sync all
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.control.sync-all-memory.fortran
+>  sync all (stat=status)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.control.sync-all-memory.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.left.fortran
+#            ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran variable.parameter.dummy-variable.fortran.modern
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.operator.assignment.fortran
+#                 ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran meta.parameter.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.right.fortran
+>  sync memory
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.control.sync-all-memory.fortran
+>  sync memory (stat=status)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.control.sync-all-memory.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.left.fortran
+#               ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran variable.parameter.dummy-variable.fortran.modern
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran keyword.operator.assignment.fortran
+#                    ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran meta.parameter.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-all-memory.fortran punctuation.parentheses.right.fortran
+>
+>  !> Test sync team, sync images
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  sync team (team_index)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.control.sync-images-team.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.left.fortran
+#             ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.right.fortran
+>  sync team (team_index, stat=status)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.control.sync-images-team.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.left.fortran
+#             ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#                        ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran variable.parameter.dummy-variable.fortran.modern
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.operator.assignment.fortran
+#                              ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.right.fortran
+>  sync images (image_index)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.control.sync-images-team.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.left.fortran
+#               ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.right.fortran
+>  sync images (image_index, stat=status)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.control.sync-images-team.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.left.fortran
+#               ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran
+#                           ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran variable.parameter.dummy-variable.fortran.modern
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran keyword.operator.assignment.fortran
+#                                 ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran meta.parameter.fortran
+#                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.sync-images-team.fortran punctuation.parentheses.right.fortran
+>
+>  !> Test event post and event wait
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  event post (event[1])
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran keyword.control.event.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.left.fortran
+#              ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.right.fortran
+>  event post (event[2])
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran keyword.control.event.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.left.fortran
+#              ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran punctuation.bracket.left.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.right.fortran
+>  event wait (event, until_count=2)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran keyword.control.event.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.left.fortran
+#              ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran
+#                    ^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran variable.parameter.dummy-variable.fortran.modern
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran keyword.operator.assignment.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran constant.numeric.fortran
+#                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.event.fortran punctuation.parentheses.right.fortran
+>
+>end program main
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
