@@ -770,7 +770,7 @@
     "typescript": "^5.0.4",
     "vscode-extension-tester": "^5.3.0",
     "vscode-tmgrammar-test": "^0.1.1",
-    "webpack": "^5.76.2",
+    "webpack": "^5.82.1",
     "webpack-cli": "^5.0.1"
   },
   "lint-staged": {
