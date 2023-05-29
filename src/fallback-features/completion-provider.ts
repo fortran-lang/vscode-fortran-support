@@ -1,9 +1,9 @@
 import { CancellationToken, TextDocument, Position, Hover } from 'vscode';
 import * as fs from 'fs';
 import * as vscode from 'vscode';
-import { isPositionInString, FORTRAN_KEYWORDS } from '../lib/helper';
-import { getDeclaredFunctions } from '../lib/functions';
-import { EXTENSION_ID } from '../lib/tools';
+import { isPositionInString, FORTRAN_KEYWORDS } from '../util/helper';
+import { getDeclaredFunctions } from './functions';
+import { EXTENSION_ID } from '../util/tools';
 import { Logger } from '../services/logging';
 import intrinsics from './intrinsics.json';
 

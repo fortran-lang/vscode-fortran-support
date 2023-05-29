@@ -3,7 +3,7 @@ import * as path from 'path';
 import { strictEqual } from 'assert';
 import { FortlsClient } from '../../src/lsp/client';
 import { Logger, LogLevel } from '../../src/services/logging';
-import { EXTENSION_ID } from '../../src/lib/tools';
+import { EXTENSION_ID } from '../../src/util/tools';
 
 const logger = new Logger(
   vscode.window.createOutputChannel('Modern Fortran', 'log'),

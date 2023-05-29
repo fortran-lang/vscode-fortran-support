@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { strictEqual } from 'assert';
 import { FortlsClient } from '../../src/lsp/client';
-import { delay } from '../../src/lib/helper';
+import { delay } from '../../src/util/helper';
 import { Logger, LogLevel } from '../../src/services/logging';
 
 const logger = new Logger(

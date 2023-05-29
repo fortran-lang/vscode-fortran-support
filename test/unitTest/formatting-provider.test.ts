@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert';
-import { FortranFormattingProvider } from '../../src/features/formatting-provider';
+import { FortranFormattingProvider } from '../../src/format/formatting-provider';
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { Logger, LogLevel } from '../../src/services/logging';

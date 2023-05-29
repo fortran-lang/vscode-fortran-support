@@ -10,7 +10,7 @@ import { glob } from 'glob';
 
 import * as pkg from '../../package.json';
 import { Logger } from '../services/logging';
-import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from '../lib/linters';
+import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './linters';
 import {
   EXTENSION_ID,
   resolveVariables,
@@ -19,8 +19,9 @@ import {
   spawnAsPromise,
   isFortran,
   shellTask,
-} from '../lib/tools';
-import { arraysEqual } from '../lib/helper';
+} from '../util/tools';
+import { arraysEqual } from '../util/helper';
+import { GlobPaths } from '../util/glob-paths';
 import {
   BuildDebug,
   BuildRun,
@@ -28,8 +29,7 @@ import {
   CleanLintFiles,
   RescanLint,
   CleanLintDiagnostics,
-} from './commands';
-import { GlobPaths } from '../lib/glob-paths';
+} from '../commands/commands';
 
 const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();

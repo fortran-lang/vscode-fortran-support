@@ -5,15 +5,15 @@ import * as pkg from '../package.json';
 import * as path from 'path';
 import * as fs from 'fs';
 
-import { FortranCompletionProvider } from './features/completion-provider';
-import { FortranDocumentSymbolProvider } from './features/document-symbol-provider';
-import { FortranFormattingProvider } from './features/formatting-provider';
+import { FortranCompletionProvider } from './fallback-features/completion-provider';
+import { FortranDocumentSymbolProvider } from './fallback-features/document-symbol-provider';
+import { FortranFormattingProvider } from './format/formatting-provider';
 import { FortlsClient } from './lsp/client';
-import { FortranHoverProvider } from './features/hover-provider';
-import { FortranLintingProvider } from './features/linter-provider';
-import { EXTENSION_ID, FortranDocumentSelector } from './lib/tools';
+import { FortranHoverProvider } from './fallback-features/hover-provider';
+import { FortranLintingProvider } from './lint/linter-provider';
+import { EXTENSION_ID, FortranDocumentSelector } from './util/tools';
 import { getConfigLogLevel, Logger } from './services/logging';
-import { WhatsNew } from './features/commands';
+import { WhatsNew } from './commands/commands';
 
 // Make it global to catch errors when activation fails
 const logger = new Logger(

@@ -13,15 +13,15 @@ import {
 // import * as fg from 'fast-glob';
 import { glob } from 'glob';
 
-import { FortranLintingProvider } from '../../src/features/linter-provider';
+import { FortranLintingProvider } from '../../src/lint/linter-provider';
 import {
   GNULinter,
   GNUModernLinter,
   IntelLinter,
   NAGLinter,
   LFortranLinter,
-} from '../../src/lib/linters';
-import { EXTENSION_ID, pipInstall } from '../../src/lib/tools';
+} from '../../src/lint/linters';
+import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
 import { Logger, LogLevel } from '../../src/services/logging';
 
 const logger = new Logger(window.createOutputChannel('Modern Fortran', 'log'), LogLevel.DEBUG);

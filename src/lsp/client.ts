@@ -14,9 +14,9 @@ import {
   getOuterMostWorkspaceFolder,
   pipInstall,
   resolveVariables,
-} from '../lib/tools';
+} from '../util/tools';
 import { Logger } from '../services/logging';
-import { RestartLS } from '../features/commands';
+import { RestartLS } from '../commands/commands';
 
 // The clients are non member variables of the class because they need to be
 // shared for command registration. The command operates on the client and not
