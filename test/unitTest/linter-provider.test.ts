@@ -20,7 +20,7 @@ import {
   IntelLinter,
   NAGLinter,
   LFortranLinter,
-} from '../../src/lint/linters';
+} from '../../src/lint/compilers';
 import { FortranLintingProvider } from '../../src/lint/provider';
 import { Logger, LogLevel } from '../../src/services/logging';
 import { EXTENSION_ID, pipInstall } from '../../src/util/tools';

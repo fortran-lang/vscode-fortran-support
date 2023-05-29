@@ -31,7 +31,7 @@ import {
   shellTask,
 } from '../util/tools';
 
-import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './linters';
+import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './compilers';
 
 const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();
