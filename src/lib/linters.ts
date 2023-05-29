@@ -35,7 +35,15 @@ abstract class Linter {
     /**
      * Compiler flag used to change the directory output for modules
      */
-    public readonly modFlag?: string
+    public readonly modFlag?: string,
+    /**
+     * Compiler flag used to force free-form compilation
+     */
+    public readonly freeFlag?: string,
+    /**
+     * Compiler flag used to force fixed-form compilation
+     */
+    public readonly fixedFlag?: string
   ) {}
 
   public getSeverityLevel(msg_type: string): vscode.DiagnosticSeverity {
@@ -62,7 +70,9 @@ export class GNULinter extends Linter {
       },
       ['-fsyntax-only', '-cpp'],
       ['-Wall'],
-      '-J'
+      '-J',
+      '-ffree-form',
+      '-ffixed-form'
     );
   }
   /**
@@ -116,7 +126,9 @@ export class GNUModernLinter extends Linter {
       },
       ['-fsyntax-only', '-cpp', '-fdiagnostics-plain-output'],
       ['-Wall'],
-      '-J'
+      '-J',
+      '-ffree-form',
+      '-ffixed-form'
     );
   }
 
@@ -163,7 +175,9 @@ export class IntelLinter extends Linter {
       },
       ['-syntax-only', '-fpp'],
       ['-warn', 'all'],
-      '-module'
+      '-module',
+      '-free',
+      '-fixed'
     );
   }
   /**
@@ -206,7 +220,9 @@ export class NAGLinter extends Linter {
       },
       ['-M', '-quiet'],
       [],
-      '-mdir'
+      '-mdir',
+      '-free',
+      '-fixed'
     );
   }
 
@@ -256,7 +272,9 @@ export class LFortranLinter extends Linter {
       },
       ['--error-format=short'],
       [],
-      '-J'
+      '-J',
+      '',
+      '--fixed-form'
     );
   }
 

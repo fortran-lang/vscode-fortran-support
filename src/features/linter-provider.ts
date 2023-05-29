@@ -465,12 +465,15 @@ export class FortranLintingProvider {
     // const extensionIndex = textDocument.fileName.lastIndexOf('.');
     // const fileNameWithoutExtension = textDocument.fileName.substring(0, extensionIndex);
     const fortranSource: string[] = this.settings.fyppEnabled
-      ? ['-xf95', isFreeForm(textDocument) ? '-ffree-form' : '-ffixed-form', '-']
+      ? ['-xf95', '-']
       : [textDocument.fileName];
 
     const argList = [
       ...args,
       ...this.getIncludeParams(includePaths), // include paths
+      // Explicitly set the type for Fortran in case the user has associated
+      // fixed-form extensions to free-form, or vice versa
+      isFreeForm(textDocument) ? this.linter.freeFlag : this.linter.fixedFlag,
       '-o',
       `${textDocument.fileName}.o`,
       ...fortranSource,

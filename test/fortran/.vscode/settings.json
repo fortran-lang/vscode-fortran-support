@@ -1,4 +1,7 @@
 {
+  "files.associations": {
+    "*.f77": "FortranFreeForm"
+  },
   "fortran.logging.level": "Debug",
   "fortran.linter.includePaths": ["${workspaceFolder}/lint/**"],
   "fortran.linter.fypp.enabled": false,

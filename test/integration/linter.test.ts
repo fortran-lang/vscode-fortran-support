@@ -44,4 +44,14 @@ suite('Linter', async () => {
     linter.dispose();
     strictEqual(linter['subscriptions'].length, 0);
   });
+
+  test('Check file association overrides propagate to the linter', async () => {
+    const file = '../../../test/fortran/lint/fixed-as-free.f77';
+    const fileUri = vscode.Uri.file(path.resolve(__dirname, file));
+    doc = await vscode.workspace.openTextDocument(fileUri);
+    await vscode.window.showTextDocument(doc);
+    const res = await linter['doLint'](doc);
+    strictEqual(res !== undefined, true);
+    strictEqual(res?.length, 0);
+  });
 });
