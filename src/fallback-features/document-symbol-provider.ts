@@ -1,12 +1,11 @@
 import { CancellationToken, TextDocument, TextLine, SymbolInformation } from 'vscode';
-
 import * as vscode from 'vscode';
+
 import {
   parseFunction as getDeclaredFunction,
   parseSubroutine as getDeclaredSubroutine,
-} from '../lib/functions';
-import { parseVars as getDeclaredVar } from '../lib/variables';
-import { EXTENSION_ID } from '../lib/tools';
+} from './functions';
+import { parseVars as getDeclaredVar } from './variables';
 
 type SymbolType = 'subroutine' | 'function' | 'variable';
 type ParserFunc = (document: TextDocument, line: TextLine) => SymbolInformation | undefined;

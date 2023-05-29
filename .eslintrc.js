@@ -11,5 +11,14 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
+
+    'import/order': [
+      'error',
+      {
+        'alphabetize': { order: 'asc' },
+        'newlines-between': 'always',
+        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+      },
+    ],
   },
 };

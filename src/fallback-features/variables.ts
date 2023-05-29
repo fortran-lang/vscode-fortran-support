@@ -1,5 +1,6 @@
 /* c8 ignore start */
 import * as vscode from 'vscode';
+
 import { Variable } from './functions';
 
 const varibleDecRegEx =

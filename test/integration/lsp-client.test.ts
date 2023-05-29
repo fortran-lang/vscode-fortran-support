@@ -1,9 +1,11 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
 import { strictEqual } from 'assert';
+import * as path from 'path';
+
+import * as vscode from 'vscode';
+
 import { FortlsClient } from '../../src/lsp/client';
-import { delay } from '../../src/lib/helper';
 import { Logger, LogLevel } from '../../src/services/logging';
+import { delay } from '../../src/util/helper';
 
 const logger = new Logger(
   vscode.window.createOutputChannel('Modern Fortran', 'log'),

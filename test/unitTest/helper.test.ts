@@ -1,4 +1,7 @@
 import { strictEqual } from 'assert';
+
+import * as vscode from 'vscode';
+
 import {
   isUri,
   isString,
@@ -10,8 +13,7 @@ import {
   isArrayOfString,
   arraysEqual,
   isPositionInString,
-} from '../../src/lib/helper';
-import * as vscode from 'vscode';
+} from '../../src/util/helper';
 
 suite('helper functions isTypeVariable tests', () => {
   test('isUri', () => {

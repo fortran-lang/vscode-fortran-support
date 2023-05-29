@@ -1,3 +1,4 @@
+import { spawnSync } from 'child_process';
 import * as path from 'path';
 
 import {
@@ -5,7 +6,6 @@ import {
   downloadAndUnzipVSCode,
   resolveCliArgsFromVSCodeExecutablePath,
 } from '@vscode/test-electron';
-import { spawnSync } from 'child_process';
 
 async function main() {
   try {

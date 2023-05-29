@@ -1,11 +1,15 @@
 'use strict';
 
+import { spawnSync } from 'child_process';
 import * as os from 'os';
 import * as path from 'path';
+
 import * as vscode from 'vscode';
-import { spawnSync } from 'child_process';
 import { commands, window, workspace, TextDocument } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node';
+
+import { RestartLS } from '../commands/commands';
+import { Logger } from '../services/logging';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
@@ -14,9 +18,7 @@ import {
   getOuterMostWorkspaceFolder,
   pipInstall,
   resolveVariables,
-} from '../lib/tools';
-import { Logger } from '../services/logging';
-import { RestartLS } from '../features/commands';
+} from '../util/tools';
 
 // The clients are non member variables of the class because they need to be
 // shared for command registration. The command operates on the client and not

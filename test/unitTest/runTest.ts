@@ -1,7 +1,7 @@
+import { spawnSync } from 'child_process';
 import * as path from 'path';
 
 import { runTests } from '@vscode/test-electron';
-import { spawnSync } from 'child_process';
 
 async function main() {
   try {

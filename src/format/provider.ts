@@ -1,10 +1,9 @@
 'use strict';
 
-import * as fs from 'fs';
 import * as path from 'path';
-import * as which from 'which';
+
 import * as vscode from 'vscode';
-import * as cp from 'child_process';
+import which from 'which';
 
 import { Logger } from '../services/logging';
 import {
@@ -14,7 +13,7 @@ import {
   getWholeFileRange,
   spawnAsPromise,
   pathRelToAbs,
-} from '../lib/tools';
+} from '../util/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
   private readonly workspace = vscode.workspace.getConfiguration(EXTENSION_ID);

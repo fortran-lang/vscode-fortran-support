@@ -1,5 +1,6 @@
 import { OutputChannel, window, workspace, WorkspaceConfiguration } from 'vscode';
-import { EXTENSION_ID } from '../lib/tools';
+
+import { EXTENSION_ID } from '../util/tools';
 
 export enum LogLevel {
   DEBUG = 0,
