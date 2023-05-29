@@ -1,19 +1,21 @@
 'use strict';
 
-import * as vscode from 'vscode';
-import * as pkg from '../package.json';
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
 
+import * as vscode from 'vscode';
+
+import * as pkg from '../package.json';
+
+import { WhatsNew } from './commands/commands';
 import { FortranCompletionProvider } from './fallback-features/completion-provider';
 import { FortranDocumentSymbolProvider } from './fallback-features/document-symbol-provider';
-import { FortranFormattingProvider } from './format/formatting-provider';
-import { FortlsClient } from './lsp/client';
 import { FortranHoverProvider } from './fallback-features/hover-provider';
-import { FortranLintingProvider } from './lint/linter-provider';
-import { EXTENSION_ID, FortranDocumentSelector } from './util/tools';
+import { FortranFormattingProvider } from './format/provider';
+import { FortranLintingProvider } from './lint/provider';
+import { FortlsClient } from './lsp/client';
 import { getConfigLogLevel, Logger } from './services/logging';
-import { WhatsNew } from './commands/commands';
+import { EXTENSION_ID, FortranDocumentSelector } from './util/tools';
 
 // Make it global to catch errors when activation fails
 const logger = new Logger(

@@ -1,6 +1,6 @@
 import { CancellationToken, TextDocument, TextLine, SymbolInformation } from 'vscode';
-
 import * as vscode from 'vscode';
+
 import {
   parseFunction as getDeclaredFunction,
   parseSubroutine as getDeclaredSubroutine,

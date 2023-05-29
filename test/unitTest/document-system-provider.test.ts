@@ -1,6 +1,8 @@
-import * as path from 'path';
-import * as vscode from 'vscode';
 import { strictEqual } from 'assert';
+import * as path from 'path';
+
+import * as vscode from 'vscode';
+
 import { FortranDocumentSymbolProvider } from '../../src/fallback-features/document-symbol-provider';
 
 suite('Document Symbol Provider', () => {

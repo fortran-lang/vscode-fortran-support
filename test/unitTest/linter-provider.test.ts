@@ -1,5 +1,7 @@
-import * as path from 'path';
 import { strictEqual, deepStrictEqual } from 'assert';
+import * as path from 'path';
+
+import { glob } from 'glob';
 import {
   Diagnostic,
   DiagnosticSeverity,
@@ -11,9 +13,7 @@ import {
   TextDocument,
 } from 'vscode';
 // import * as fg from 'fast-glob';
-import { glob } from 'glob';
 
-import { FortranLintingProvider } from '../../src/lint/linter-provider';
 import {
   GNULinter,
   GNUModernLinter,
@@ -21,8 +21,9 @@ import {
   NAGLinter,
   LFortranLinter,
 } from '../../src/lint/linters';
-import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
+import { FortranLintingProvider } from '../../src/lint/provider';
 import { Logger, LogLevel } from '../../src/services/logging';
+import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
 
 const logger = new Logger(window.createOutputChannel('Modern Fortran', 'log'), LogLevel.DEBUG);
 

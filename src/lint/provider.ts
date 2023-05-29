@@ -1,16 +1,26 @@
 'use strict';
 
+import * as cp from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as cp from 'child_process';
-import which from 'which';
+
+import { glob } from 'glob';
 import * as semver from 'semver';
 import * as vscode from 'vscode';
-import { glob } from 'glob';
+import which from 'which';
 
 import * as pkg from '../../package.json';
+import {
+  BuildDebug,
+  BuildRun,
+  InitLint,
+  CleanLintFiles,
+  RescanLint,
+  CleanLintDiagnostics,
+} from '../commands/commands';
 import { Logger } from '../services/logging';
-import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './linters';
+import { GlobPaths } from '../util/glob-paths';
+import { arraysEqual } from '../util/helper';
 import {
   EXTENSION_ID,
   resolveVariables,
@@ -20,16 +30,8 @@ import {
   isFortran,
   shellTask,
 } from '../util/tools';
-import { arraysEqual } from '../util/helper';
-import { GlobPaths } from '../util/glob-paths';
-import {
-  BuildDebug,
-  BuildRun,
-  InitLint,
-  CleanLintFiles,
-  RescanLint,
-  CleanLintDiagnostics,
-} from '../commands/commands';
+
+import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './linters';
 
 const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();

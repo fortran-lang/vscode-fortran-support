@@ -1,8 +1,9 @@
 'use strict';
 
 import * as path from 'path';
-import which from 'which';
+
 import * as vscode from 'vscode';
+import which from 'which';
 
 import { Logger } from '../services/logging';
 import {

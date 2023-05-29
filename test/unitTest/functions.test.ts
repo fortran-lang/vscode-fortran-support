@@ -5,6 +5,7 @@
 
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert';
+
 import { validVariableName, parseFunction, parseArgs } from '../../src/fallback-features/functions';
 
 suite('function helper test', () => {

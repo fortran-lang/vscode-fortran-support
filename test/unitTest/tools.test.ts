@@ -1,6 +1,8 @@
-import * as path from 'path';
 import * as assert from 'assert';
+import * as path from 'path';
+
 import { Uri } from 'vscode';
+
 import { shellTask, spawnAsPromise, pathRelToAbs } from '../../src/util/tools';
 
 suite('Tools tests', () => {

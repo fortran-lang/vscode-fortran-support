@@ -1,6 +1,7 @@
-import * as path from 'path';
 import { strictEqual } from 'assert';
 import { spawnSync } from 'child_process';
+import * as path from 'path';
+
 import { VSBrowser, WebDriver, Workbench } from 'vscode-extension-tester';
 
 describe('Download dependencies', () => {

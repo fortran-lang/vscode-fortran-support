@@ -1,13 +1,15 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
 import { strictEqual } from 'assert';
-import { FortranLintingProvider } from '../../src/lint/linter-provider';
+import * as path from 'path';
+
+import * as vscode from 'vscode';
+
 import {
   CleanLintDiagnostics,
   CleanLintFiles,
   InitLint,
   RescanLint,
 } from '../../src/commands/commands';
+import { FortranLintingProvider } from '../../src/lint/provider';
 
 suite('Linter', async () => {
   let doc: vscode.TextDocument;
