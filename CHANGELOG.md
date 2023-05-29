@@ -80,6 +80,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bug where linter would not use the correct Fortran file association
+  if the extension was part of the default extensions of another Fortran lang ID
+  ([#904](https://github.com/fortran-lang/vscode-fortran-support/issues/904))
 - Fixed linter REGEX for GFortran 4.x.x
   ([#813](https://github.com/fortran-lang/vscode-fortran-support/issues/813))
 - Fixed GFortran version regex to allow for semver + build metadata
