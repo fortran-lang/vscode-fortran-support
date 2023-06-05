@@ -21,14 +21,13 @@ import {
 import { Logger } from '../services/logging';
 import { GlobPaths } from '../util/glob-paths';
 import { arraysEqual } from '../util/helper';
+import { spawnAsPromise, shellTask } from '../util/shell';
 import {
   EXTENSION_ID,
   resolveVariables,
   promptForMissingTool,
   isFreeForm,
-  spawnAsPromise,
   isFortran,
-  shellTask,
 } from '../util/tools';
 
 import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './compilers';
