@@ -80,6 +80,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bug where specifying `-ffree-line-length-X` and `-ffixed-line-length-X`
+  as `linter.extraArgs` would be overridden by the default behaviour of `fortls`
+  ([#925](https://github.com/fortran-lang/vscode-fortran-support/issues/925))
 - Fixed bug where linter would not use the correct Fortran file association
   if the extension was part of the default extensions of another Fortran lang ID
   ([#904](https://github.com/fortran-lang/vscode-fortran-support/issues/904))

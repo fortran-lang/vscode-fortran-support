@@ -555,7 +555,9 @@ export class FortranLintingProvider {
     if (this.linter.name === 'gfortran') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
-      args.push(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
+      // Prepend via `unshift` to make sure user defined flags overwrite
+      // the default ones we provide here.
+      args.unshift(`-ffree-line-length-${lnStr}`, `-ffixed-line-length-${lnStr}`);
     }
     if (args.length > 0) this.logger.debug(`[lint] arguments:`, args);
 
