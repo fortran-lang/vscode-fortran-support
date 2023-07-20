@@ -760,7 +760,7 @@
     "c8": "^7.13.0",
     "eslint": "^8.43.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "^44.2.4",
+    "eslint-plugin-jsdoc": "^46.4.4",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
