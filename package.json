@@ -742,7 +742,7 @@
     "posttest": "npm run format",
     "lint": "eslint . --ext .ts,.tsx",
     "lint-fix": "npm run lint -- --fix",
-    "format": "prettier --write 'src/**/*.{ts,json}' 'test/**/*.ts' 'syntaxes/**/*.json' 'snippets/**/*.json' './**/*.{md,json,yaml,yml}'",
+    "format": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.ts\" \"syntaxes/**/*.json\" \"snippets/**/*.json\" \"./**/*.{md,json,yaml,yml}\"",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "coverage": "c8 --clean npm run test"
