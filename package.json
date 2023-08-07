@@ -769,7 +769,7 @@
     "ts-loader": "^9.4.2",
     "typescript": "^5.1.6",
     "vscode-extension-tester": "^5.6.0",
-    "vscode-tmgrammar-test": "^0.1.1",
+    "vscode-tmgrammar-test": "^0.1.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
