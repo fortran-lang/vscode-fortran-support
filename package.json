@@ -394,7 +394,7 @@
         "properties": {
           "fortran.fortls.path": {
             "type": "string",
-            "default": "fortls",
+            "default": "",
             "markdownDescription": "Path to the Fortran language server (`fortls`).",
             "order": 10
           },

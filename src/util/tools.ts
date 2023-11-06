@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { isString, isArrayOfString } from './helper';
-import { pipInstall } from './python';
+import { Python } from './python';
 
 export const LS_NAME = 'fortls';
 export const EXTENSION_ID = 'fortran';
@@ -119,7 +119,8 @@ export async function promptForMissingTool(
     if (selected === 'Install') {
       if (toolType === 'Python') {
         try {
-          const inst_msg = await pipInstall(tool);
+          const python = new Python();
+          const inst_msg = await python.pipInstall(tool);
           vscode.window.showInformationMessage(inst_msg);
         } catch (error) {
           vscode.window.showErrorMessage(error);

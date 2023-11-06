@@ -10,7 +10,7 @@ import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-lan
 
 import { RestartLS } from '../commands/commands';
 import { Logger } from '../services/logging';
-import { pipInstall } from '../util/python';
+import { Python } from '../util/python';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
@@ -26,8 +26,13 @@ import {
 export const clients: Map<string, LanguageClient> = new Map();
 
 export class FortlsClient {
+  private readonly python: Python;
+  private readonly config: vscode.WorkspaceConfiguration;
+
   constructor(private logger: Logger, private context?: vscode.ExtensionContext) {
     this.logger.debug('[lsp.client] Fortran Language Server -- constructor');
+    this.python = new Python();
+    this.config = workspace.getConfiguration(EXTENSION_ID);
 
     // if context is present
     if (context !== undefined) {
@@ -313,6 +318,7 @@ export class FortlsClient {
     const ls = await this.fortlsPath();
 
     // Check for version, if this fails fortls provided is invalid
+    const pipBin: string = await this.python.getPipBinDir();
     const results = spawnSync(ls, ['--version']);
     const msg = `It is highly recommended to use the fortls to enable IDE features like hover, peeking, GoTos and many more. 
       For a full list of features the language server adds see: https://fortls.fortran-lang.org`;
@@ -323,7 +329,7 @@ export class FortlsClient {
           if (opt === 'Install') {
             try {
               this.logger.info(`[lsp.client] Downloading ${LS_NAME}`);
-              const msg = await pipInstall(LS_NAME);
+              const msg = await this.python.pipInstall(LS_NAME);
               window.showInformationMessage(msg);
               this.logger.info(`[lsp.client] ${LS_NAME} installed`);
               resolve(false);
@@ -375,17 +381,36 @@ export class FortlsClient {
     const root = folder ? getOuterMostWorkspaceFolder(folder).uri : vscode.Uri.parse(os.homedir());
 
     const config = workspace.getConfiguration(EXTENSION_ID);
-    let executablePath = resolveVariables(config.get<string>('fortls.path'));
+    // TODO: make the default value undefined, make windows use fortls.exe
+    // get the full path of the Python bin dir, check if file exists
+    // else we are running a script with  a relative path (verify this is the case)
+    let executablePath = config.get<string>('fortls.path');
+    if (!executablePath || this.isFortlsPathDefault(executablePath)) {
+      executablePath = 'fortls' + (os.platform() === 'win32' ? '.exe' : '');
+      executablePath = path.join(await this.python.getPipBinDir(), executablePath);
+    } else {
+      executablePath = resolveVariables(executablePath);
+    }
 
     // The path can be resolved as a relative path if:
     // 1. it does not have the default value `fortls` AND
     // 2. is not an absolute path
-    if (executablePath !== 'fortls' && !path.isAbsolute(executablePath)) {
+    if (!path.isAbsolute(executablePath)) {
       this.logger.debug(`[lsp.client] Assuming relative fortls path is to ${root.fsPath}`);
       executablePath = path.join(root.fsPath, executablePath);
     }
 
     return executablePath;
+  }
+
+  private async isFortlsPathDefault(path: string): Promise<boolean> {
+    if (path === 'fortls') {
+      return true;
+    }
+    if (os.platform() === 'win32' && path === 'fortls.exe') {
+      return true;
+    }
+    return false;
   }
 
   /**
