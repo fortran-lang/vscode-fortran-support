@@ -28,7 +28,10 @@ const config = {
   },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{ from: 'scripts/get_pip_bin_dir.py', to: 'scripts/get_pip_bin_dir.py' }],
+      patterns: [
+        { from: 'scripts/get_pip_bin_dir.py', to: 'scripts/get_pip_bin_dir.py' },
+        { from: 'scripts/mod_in_env.py', to: 'scripts/mod_in_env.py' },
+      ],
     }),
   ],
   module: {
