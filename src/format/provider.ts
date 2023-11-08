@@ -6,12 +6,12 @@ import * as vscode from 'vscode';
 import which from 'which';
 
 import { Logger } from '../services/logging';
+import { spawnAsPromise } from '../util/shell';
 import {
   FORMATTERS,
   EXTENSION_ID,
   promptForMissingTool,
   getWholeFileRange,
-  spawnAsPromise,
   pathRelToAbs,
 } from '../util/tools';
 

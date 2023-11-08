@@ -394,7 +394,7 @@
         "properties": {
           "fortran.fortls.path": {
             "type": "string",
-            "default": "fortls",
+            "default": "",
             "markdownDescription": "Path to the Fortran language server (`fortls`).",
             "order": 10
           },
@@ -758,6 +758,7 @@
     "@typescript-eslint/parser": "^5.62.0",
     "@vscode/test-electron": "^2.3.4",
     "c8": "^8.0.1",
+    "copy-webpack-plugin": "^11.0.0",
     "eslint": "^8.51.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jsdoc": "^46.8.2",
