@@ -10,6 +10,13 @@ body:
       options:
         - label: I have searched the existing issues
           required: true
+  - type: checkboxes
+    attributes:
+      label: I have tried the Pre-Release of the extension.
+      description: Please try and replicate the Issue in the latest Pre-Release version of the extension.
+      options:
+        - label: I have replicated the Issue in the latest Pre-Release
+          required: true
   - type: textarea
     id: description
     attributes:
