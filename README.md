@@ -105,7 +105,7 @@ Linting results can be improved by providing additional options to the compiler.
 You can control the include paths to be used by the linter with the `fortran.linter.includePaths` option.
 
 | ❗️ Important | For the best linting results `linter.includePaths` should match the included paths for your project's compilation. |
-| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| ------------ | ------------------------------------------------------------------------------------------------------------------ |
 
 ```json
 {
@@ -114,7 +114,7 @@ You can control the include paths to be used by the linter with the `fortran.lin
 ```
 
 | ❗️ Important | If a glob pattern is used only directories matching the pattern will be included |
-| ------------- | -------------------------------------------------------------------------------- |
+| ------------ | -------------------------------------------------------------------------------- |
 
 ### Additional linting options
 
