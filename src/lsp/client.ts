@@ -26,7 +26,10 @@ import {
 export const clients: Map<string, LanguageClient> = new Map();
 
 export class FortlsClient {
-  constructor(private logger: Logger, private context?: vscode.ExtensionContext) {
+  constructor(
+    private logger: Logger,
+    private context?: vscode.ExtensionContext
+  ) {
     this.logger.debug('[lsp.client] Fortran Language Server -- constructor');
 
     // if context is present

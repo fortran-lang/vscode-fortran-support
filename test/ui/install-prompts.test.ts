@@ -17,6 +17,11 @@ describe('Download dependencies', () => {
     await browser.openResources(`${path.resolve(root, 'main.f90')}`);
   });
 
+  afterEach(async () => {
+    const center = await new Workbench().openNotificationsCenter();
+    await center.clearAllNotifications();
+  });
+
   describe('Download fortls language server', () => {
     it('install via pip', async () => {
       const workbench = new Workbench();
@@ -26,9 +31,12 @@ describe('Download dependencies', () => {
         const message = await info.getMessage();
         const actions = await info.getActions();
         const title = await actions[0].getTitle();
-        console.log(message);
-        await info.takeAction(title);
-        strictEqual(title, 'Install');
+        const source = await info.getSource();
+        if (source.includes('Modern Fortran')) {
+          console.log(message);
+          await info.takeAction(title);
+          strictEqual(title, 'Install');
+        }
       }
     });
   });
@@ -43,9 +51,12 @@ describe('Download dependencies', () => {
         const message = await info.getMessage();
         const actions = await info.getActions();
         const title = await actions[0].getTitle();
-        console.log(`2nd lool: ${message}`);
-        await info.takeAction(title);
-        strictEqual(title, 'Install');
+        const source = await info.getSource();
+        if (source.includes('Modern Fortran')) {
+          console.log(message);
+          await info.takeAction(title);
+          strictEqual(title, 'Install');
+        }
       }
     });
   });

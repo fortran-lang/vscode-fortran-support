@@ -166,7 +166,10 @@ export class LinterSettings {
 }
 
 export class FortranLintingProvider {
-  constructor(private logger: Logger = new Logger(), private storageUI: string = undefined) {
+  constructor(
+    private logger: Logger = new Logger(),
+    private storageUI: string = undefined
+  ) {
     // Register the Linter provider
     this.fortranDiagnostics = vscode.languages.createDiagnosticCollection('Fortran');
     this.settings = new LinterSettings(this.logger);
