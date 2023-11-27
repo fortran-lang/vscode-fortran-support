@@ -17,6 +17,11 @@ describe('Download dependencies', () => {
     await browser.openResources(`${path.resolve(root, 'main.f90')}`);
   });
 
+  afterEach(async () => {
+    const center = await new Workbench().openNotificationsCenter();
+    await center.clearAllNotifications();
+  });
+
   describe('Download fortls language server', () => {
     it('install via pip', async () => {
       const workbench = new Workbench();
