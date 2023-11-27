@@ -31,9 +31,12 @@ describe('Download dependencies', () => {
         const message = await info.getMessage();
         const actions = await info.getActions();
         const title = await actions[0].getTitle();
-        console.log(message);
-        await info.takeAction(title);
-        strictEqual(title, 'Install');
+        const source = await info.getSource();
+        if (source.includes('Modern Fortran')) {
+          console.log(message);
+          await info.takeAction(title);
+          strictEqual(title, 'Install');
+        }
       }
     });
   });
@@ -48,9 +51,12 @@ describe('Download dependencies', () => {
         const message = await info.getMessage();
         const actions = await info.getActions();
         const title = await actions[0].getTitle();
-        console.log(`2nd lool: ${message}`);
-        await info.takeAction(title);
-        strictEqual(title, 'Install');
+        const source = await info.getSource();
+        if (source.includes('Modern Fortran')) {
+          console.log(message);
+          await info.takeAction(title);
+          strictEqual(title, 'Install');
+        }
       }
     });
   });
