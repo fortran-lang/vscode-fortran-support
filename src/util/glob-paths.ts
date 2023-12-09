@@ -34,9 +34,9 @@ export class GlobPaths {
   private globResolution(globPaths: string[]): string[] {
     if (globPaths.length === 0) return [];
     // Resolve internal variables and expand glob patterns
-    const globPathsVars = globPaths.map(e => resolveVariables(e));
+    globPaths = globPaths.map(e => resolveVariables(e));
     // fast-glob cannot work with Windows paths
-    globPaths = globPaths.map(e => e.replace('/\\/g', '/'));
+    globPaths = globPaths.map(e => e.replace(/\\/g, '/'));
     // This needs to be after the resolvevariables since {} are used in globs
     // try {
     //   const globIncPaths: string[] = fg.sync(globPathsVars, {
@@ -49,7 +49,7 @@ export class GlobPaths {
     // } catch (eacces) {
     try {
       const globIncPaths: string[] = [];
-      for (const i of globPathsVars) {
+      for (const i of globPaths) {
         // use '/' to match only directories and not files
         globIncPaths.push(...glob.sync(i + '/'));
       }
