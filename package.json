@@ -20,7 +20,7 @@
     }
   ],
   "engines": {
-    "vscode": "^1.63.0"
+    "vscode": "^1.67.0"
   },
   "icon": "assets/png/icon.png",
   "homepage": "https://github.com/fortran-lang/vscode-fortran-support#readme",
@@ -752,7 +752,7 @@
     "@types/mocha": "^10.0.0",
     "@types/node": "^20.4.5",
     "@types/semver": "^7.5.6",
-    "@types/vscode": "^1.63.0",
+    "@types/vscode": "^1.67.0",
     "@types/which": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.62.0",
