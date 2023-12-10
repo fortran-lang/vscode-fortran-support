@@ -731,7 +731,7 @@
     "watch-dev": "webpack --mode development --watch --progress",
     "webpack": "webpack --mode production",
     "pretest": "npm run compile-dev && tsc -p tsconfig.test.json",
-    "test": "npm run test:unit && npm run test:integration && npm run test:ui",
+    "test": "npm run test:unit && npm run test:integration",
     "test:ui": "extest setup-and-run -i out/test/ui/*.js -m test/ui/.mocharc.js -s .vscode-test/ui -e .vscode-test/ui/extensions",
     "test:unit": "node ./out/test/unitTest/runTest.js",
     "test:integration": "node ./out/test/integration/runTest.js",

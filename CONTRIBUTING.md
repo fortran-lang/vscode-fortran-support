@@ -22,7 +22,7 @@ Where `<YOUR-USERNAME>` should be your GitHub username.
 
 ### Dependencies
 
-To build this project you will need [NodeJS](https://nodejs.org/) `>= 16.13.1`.
+To build this project you will need [NodeJS](https://nodejs.org/) `>= 20.0.0`.
 Open a terminal and run for a quick dependency installation:
 
 ```sh
