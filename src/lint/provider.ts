@@ -495,6 +495,7 @@ export class FortranLintingProvider {
     if (!modout) return [];
 
     modout = resolveVariables(modout);
+    if (process.platform === 'win32') modout = modout.replace(/\//g, '\\');
     this.logger.debug(`[lint] moduleOutput: ${modFlag} ${modout}`);
     return [modFlag, modout];
   }
