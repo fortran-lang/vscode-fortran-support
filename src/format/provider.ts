@@ -16,9 +16,16 @@ import {
 } from '../util/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
-  private readonly workspace = vscode.workspace.getConfiguration(EXTENSION_ID);
+  private workspace = vscode.workspace.getConfiguration(EXTENSION_ID);
   private formatter: string | undefined;
-  constructor(private logger: Logger) {}
+  constructor(private logger: Logger) {
+    vscode.workspace.onDidChangeConfiguration(e => {
+      if (e.affectsConfiguration(`${EXTENSION_ID}.formatting`)) {
+        this.logger.debug('[format] Configuration changed, reloading formatter');
+        this.workspace = vscode.workspace.getConfiguration(EXTENSION_ID);
+      }
+    });
+  }
 
   public async provideDocumentFormattingEdits(
     document: vscode.TextDocument,
