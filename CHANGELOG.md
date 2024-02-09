@@ -80,6 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bug where formatting arguments would not be updated from settings.json
+  ([[#1007](https://github.com/fortran-lang/vscode-fortran-support/issues/1007)])
 - Fixed bug where specifying `-ffree-line-length-X` and `-ffixed-line-length-X`
   as `linter.extraArgs` would be overridden by the default behaviour of `fortls`
   ([#925](https://github.com/fortran-lang/vscode-fortran-support/issues/925))
