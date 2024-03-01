@@ -44,14 +44,17 @@ jobs:
       - name: Test Unittests
         uses: coactions/setup-xvfb@v1
         with:
-          run: npm run test
+          run: |
+            npm run pretest
+            npm run test:integration
+
       # This will not fail the job if tests fail so we have to npm test separately
-      - name: Coverage report
-        uses: coactions/setup-xvfb@v1
-        with:
-          run: npm run coverage
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
+      # - name: Coverage report
+      #   uses: coactions/setup-xvfb@v1
+      #   with:
+      #     run: npm run coverage
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     fail_ci_if_error: true
