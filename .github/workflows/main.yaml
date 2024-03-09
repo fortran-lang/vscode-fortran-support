@@ -5,15 +5,11 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        gcc_v: [11]
+        toolchain:
+          - { compiler: gcc, version: 11 }
         node-version: [20.x]
       fail-fast: false
     runs-on: ${{ matrix.os }}
-    env:
-      FC: gfortran-${{ matrix.gcc_v }}
-      CC: gcc-${{ matrix.gcc_v }}
-      CXX: g++-${{ matrix.gcc_v }}
-      GCC_V: ${{ matrix.gcc_v }}
 
     steps:
       - uses: actions/checkout@v4
@@ -21,17 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Install GCC compilers Linux
-        if: contains( matrix.os, 'ubuntu')
-        run: |
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-          sudo apt-get update
-          sudo apt-get install -y gcc-${GCC_V} g++-${GCC_V} gfortran-${GCC_V}
-          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
-          --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} \
-          --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_V} \
-          --slave /usr/bin/gcov gcov /usr/bin/gcov-${GCC_V}
+      - uses: fortran-lang/setup-fortran@v1
+        id: setup-fortran
+        with:
+          compiler: ${{ matrix.toolchain.compiler }}
+          version: ${{ matrix.toolchain.version }}
 
       - name: Installing Extension
         run: npm ci
