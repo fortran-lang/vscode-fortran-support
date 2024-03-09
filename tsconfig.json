@@ -8,8 +8,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": true,
-    "rootDir": "."
+    "rootDir": ".",
   },
   "include": ["src/**/*.ts", "src/**/*.json"],
-  "exclude": ["node_modules", ".vscode-test", "assets/videos"]
+  "exclude": ["node_modules", ".vscode-test", "assets/videos"],
 }

@@ -200,11 +200,11 @@ More details about how to set up the debugger can be found in Microsoft's websit
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
-    }
-  ]
+          "ignoreFailures": true,
+        },
+      ],
+    },
+  ],
 }
 ```
 
