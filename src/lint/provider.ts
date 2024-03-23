@@ -341,12 +341,15 @@ export class FortranLintingProvider {
       // Discard the previous diagnostic state for this document
       if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
       this.logger.debug('[lint] No linting diagnostics to show');
+      console.log('[lint] No linting diagnostics to show');
       return;
     }
     let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+    console.log('[lint] Parsing output to vscode.Diagnostics', diagnostics);
     this.logger.debug('[lint] Parsing output to vscode.Diagnostics', diagnostics);
     // Remove duplicates from the diagnostics array
     diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+    console.log('[lint] Removing duplicates. vscode.Diagnostics are now:', diagnostics);
     this.logger.debug('[lint] Removing duplicates. vscode.Diagnostics are now:', diagnostics);
     this.fortranDiagnostics.set(document.uri, diagnostics);
     return diagnostics;
@@ -377,6 +380,8 @@ export class FortranLintingProvider {
       `[build.single] compiler: "${this.settings.compiler}" located in: "${command}"`
     );
     this.logger.info(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
+    console.log(`[build.single] compiler: "${this.settings.compiler}" located in: "${command}"`);
+    console.log(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
 
     try {
       const fypp = await this.getFyppProcess(document);
@@ -392,6 +397,7 @@ export class FortranLintingProvider {
         );
         const output: string = stdout + stderr;
         this.logger.debug(`[build.single] Compiler output:\n${output}`);
+        console.log(`[build.single] Compiler output:\n${output}`);
         return output;
       } catch (err) {
         this.logger.error(`[build.single] Compiler error:`, err);
