@@ -29,7 +29,7 @@ import {
 } from '../../src/lint/compilers';
 import { FortranLintingProvider } from '../../src/lint/provider';
 import { LogLevel, Logger } from '../../src/services/logging';
-import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
+import { EXTENSION_ID, pipInstall, spawnAsPromise } from '../../src/util/tools';
 
 suite('Linter VS Code commands', async () => {
   let doc: TextDocument;
@@ -96,6 +96,11 @@ suite('Linter integration', async () => {
   // need to implement a the compiler versioning see #523
   test('GNU - API call to doLint produces correct diagnostics', async () => {
     const diags = await linter['doLint'](doc);
+    const command = 'find';
+    const args = [root, '-name', '*.mod'];
+
+    const [stdout, stderr] = await spawnAsPromise(command, args);
+    console.log(`FIND MODULE RESULTS: ${stdout}`);
     const ref: Diagnostic[] = [
       new Diagnostic(
         new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
