@@ -85,7 +85,7 @@ export class Logger {
     const title = new Date().toLocaleTimeString();
     const formattedMessage = `[${LogLevel[level]} - ${title}] ${message}`;
     this.channel.appendLine(formattedMessage);
-    console.debug(formattedMessage); // useful for CI debugging
+    console.log(formattedMessage); // useful for CI debugging
   }
 }
 
