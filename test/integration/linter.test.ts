@@ -95,7 +95,7 @@ suite('Linter integration', async () => {
   // different versions of gfortran report the error at a different column number
   // need to implement a the compiler versioning see #523
   test('GNU - API call to doLint produces correct diagnostics', async () => {
-    const diags = await new FortranLintingProvider(logger)['doLint'](doc);
+    const diags = await linter['doLint'](doc);
     const ref: Diagnostic[] = [
       new Diagnostic(
         new Range(new Position(21 - 1, 18 - 1), new Position(21 - 1, 18 - 1)),
