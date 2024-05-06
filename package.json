@@ -251,7 +251,7 @@
           },
           "fortran.linter.initialize": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "markdownDescription": "Attempt to initialize the linter by mock-compiling all files in the workspace.",
             "order": 5
           },
