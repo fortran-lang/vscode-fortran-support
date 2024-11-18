@@ -758,7 +758,7 @@
     "@typescript-eslint/parser": "^5.62.0",
     "@vscode/test-electron": "^2.4.1",
     "c8": "^9.1.0",
-    "eslint": "^8.56.0",
+    "eslint": "^9.15.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^50.2.2",
     "eslint-plugin-prettier": "^5.1.3",
