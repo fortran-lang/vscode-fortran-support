@@ -37,7 +37,7 @@ jobs:
       - name: Coverage report
         run: xvfb-run --auto-servernum npm run coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
