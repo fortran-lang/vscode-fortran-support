@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /**@type {import('webpack').Configuration}*/
 const config = {
@@ -25,6 +26,11 @@ const config = {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
     extensions: ['.ts', '.js'],
   },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'scripts/get_pip_bin_dir.py', to: 'scripts/get_pip_bin_dir.py' }],
+    }),
+  ],
   module: {
     rules: [
       {

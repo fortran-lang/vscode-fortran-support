@@ -9,7 +9,6 @@ interface IJupyterServerUri {
   baseUrl: string;
   token: string;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   authorizationHeader: any; // JSON object for authorization header.
   expiration?: Date; // Date/time when header expires and should be refreshed.
   displayName: string;
@@ -46,5 +45,4 @@ enum ColumnType {
   Bool = 'bool',
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type IRowsResponse = any[];

@@ -10,13 +10,13 @@ import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-lan
 
 import { RestartLS } from '../commands/commands';
 import { Logger } from '../services/logging';
+import { pipInstall } from '../util/python';
 import {
   EXTENSION_ID,
   FortranDocumentSelector,
   LS_NAME,
   isFortran,
   getOuterMostWorkspaceFolder,
-  pipInstall,
   resolveVariables,
 } from '../util/tools';
 
