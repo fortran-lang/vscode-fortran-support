@@ -9,7 +9,7 @@ src/**
 **/*.ts
 .gitignore
 **/tsconfig*.json
-**/.eslintrc.json
+**/eslint.config.mjs.mjs
 .husky/
 .github/
 .editorconfig
