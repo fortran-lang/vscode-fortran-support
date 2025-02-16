@@ -740,7 +740,7 @@
     "test:grammar": "npm run test:grammar-free && npm run test:grammar-fixed",
     "test:grammar-update": "npm run test:grammar-free -- -u && npm run test:grammar-fixed -- -u",
     "posttest": "npm run format",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.ts\" \"syntaxes/**/*.json\" \"snippets/**/*.json\" \"./**/*.{md,json,yaml,yml}\"",
     "prepare": "husky install",
@@ -748,6 +748,9 @@
     "coverage": "c8 --clean npm run test"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.6",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.20.0",
     "@types/glob": "^8.0.1",
     "@types/mocha": "^10.0.6",
     "@types/node": "^22.13.0",
