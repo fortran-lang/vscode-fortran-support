@@ -29,7 +29,8 @@ import {
 } from '../../src/lint/compilers';
 import { FortranLintingProvider } from '../../src/lint/provider';
 import { LogLevel, Logger } from '../../src/services/logging';
-import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
+import { pipInstall } from '../../src/util/python';
+import { EXTENSION_ID } from '../../src/util/tools';
 
 suite('Linter VS Code commands', async () => {
   let doc: TextDocument;
