@@ -7,12 +7,13 @@ import which from 'which';
 
 import { Logger } from '../services/logging';
 import {
-  FORMATTERS,
   EXTENSION_ID,
-  promptForMissingTool,
+  FORMATTERS,
   getWholeFileRange,
-  spawnAsPromise,
   pathRelToAbs,
+  promptForMissingTool,
+  resolveVariables,
+  spawnAsPromise,
 } from '../util/tools';
 
 export class FortranFormattingProvider implements vscode.DocumentFormattingEditProvider {
@@ -120,7 +121,8 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
    */
   private getFormatterArgs(): string[] {
     const args: string[] = this.workspace.get(`formatting.${this.formatter}Args`, []);
-    return args;
+    // Resolve internal variables
+    return args.map(arg => resolveVariables(arg));
   }
 
   /**
