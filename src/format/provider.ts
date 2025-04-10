@@ -6,6 +6,7 @@ import * as vscode from 'vscode';
 import which from 'which';
 
 import { Logger } from '../services/logging';
+import { spawnAsPromise } from '../util/shell';
 import {
   EXTENSION_ID,
   FORMATTERS,
