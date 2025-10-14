@@ -787,6 +787,6 @@
     "glob": "^11.0.1",
     "semver": "^7.6.2",
     "vscode-languageclient": "^8.1.0",
-    "which": "^4.0.0"
+    "which": "^5.0.0"
   }
 }
