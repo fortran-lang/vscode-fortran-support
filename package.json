@@ -743,7 +743,7 @@
     "lint": "eslint .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.ts\" \"syntaxes/**/*.json\" \"snippets/**/*.json\" \"./**/*.{md,json,yaml,yml}\"",
-    "prepare": "husky install",
+    "prepare": "husky",
     "pre-commit": "lint-staged",
     "coverage": "c8 --clean npm run test"
   },
