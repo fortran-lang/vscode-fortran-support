@@ -223,7 +223,8 @@ export class FortlsClient {
       args.push(`--max_comment_line_length=${maxCommentLineLength}`);
     }
     if (fortlsExtraArgs.length > 0) {
-      args.push(...fortlsExtraArgs);
+      const filteredfortlsExtraArgs = fortlsExtraArgs.filter(item => item.trim().length > 0);
+      args.push(...filteredfortlsExtraArgs);
     }
 
     // Fortran source file parsing
