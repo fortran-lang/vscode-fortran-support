@@ -763,7 +763,7 @@
     "c8": "^10.1.3",
     "eslint": "^9.39.2",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsdoc": "^50.2.2",
+    "eslint-plugin-jsdoc": "^61.5.0",
     "eslint-plugin-prettier": "^5.1.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.4",
