@@ -1,0 +1,48 @@
+>! Unicode in strings and comments
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  str = "Hello Χαίρετε 世界 мир Welt"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  comment_test = "Math: π ≈ 3.14, √2, ∑, ∫"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>
+>  ! Comment with unicode: Ñoño, café, naïve, Zürich
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! Symbols: ©, ™, €, £, ¥, °, µ
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  x = 42  ! Variable assignment με unicode σχόλια
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

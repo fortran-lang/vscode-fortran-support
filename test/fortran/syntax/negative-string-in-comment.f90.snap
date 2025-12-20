@@ -1,0 +1,24 @@
+>! Negative: quotes in comment don't start string
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  x = 5 ! comment with "quotes" and 'apostrophes'
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! full line "comment" with 'quotes'
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

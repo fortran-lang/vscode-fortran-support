@@ -1,0 +1,43 @@
+>! Multiline string continuation
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  str = "This is a &
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran keyword.operator.line-continuation.fortran
+>        &long string"
+#^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran keyword.operator.line-continuation.fortran
+#         ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  s2 = 'Another &
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#        ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran keyword.operator.line-continuation.fortran
+>       &continued &
+#^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran keyword.operator.line-continuation.fortran
+#        ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran keyword.operator.line-continuation.fortran
+>       &string'
+#^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran keyword.operator.line-continuation.fortran
+#        ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

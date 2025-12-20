@@ -1,0 +1,85 @@
+>! Associate and block constructs
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  associate (y => x%component, z => arr(i))
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.associate.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran keyword.other.point.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran keyword.other.selector.fortran
+#                    ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#                             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#                                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran keyword.other.point.fortran
+#                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#                                    ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran meta.parameter.fortran
+#                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran punctuation.parentheses.right.fortran
+>    y = z + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran constant.numeric.fortran
+>  end associate
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.associate.fortran
+#  ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.endassociate.fortran
+>
+>  block
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.associate.fortran
+>    integer :: local_var
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran
+#    ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.specification.type.fortran storage.type.integer.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.specification.type.fortran meta.name-list.fortran
+#               ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>    local_var = 5
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran
+#    ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran meta.parameter.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran keyword.operator.assignment.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran constant.numeric.fortran
+>  end block
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.block.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.endassociate.fortran
+>
+>  critical
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.associate.fortran
+>    shared_var = shared_var + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#    ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#                 ^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran meta.parameter.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran keyword.operator.addition.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran constant.numeric.fortran
+>  end critical
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.critical.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.endassociate.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

@@ -1,0 +1,68 @@
+>! String escaping and delimiters
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  x = "double quotes"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  y = 'single quotes'
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>  z = "quote's inside"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  a = 'quote"s inside'
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>  b = "escape "" double"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran constant.character.escape.quote.fortran
+#                ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  c = 'escape '' single'
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#       ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran constant.character.escape.apostrophe.fortran
+#                ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

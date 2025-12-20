@@ -1,0 +1,71 @@
+>! Character with kind
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>subroutine test(s2)
+#^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.subroutine.fortran
+#          ^ source.fortran.free meta.subroutine.fortran
+#           ^^^^ source.fortran.free meta.subroutine.fortran entity.name.function.subroutine.fortran
+#               ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                ^^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                  ^ source.fortran.free meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>  character(len=10) :: str
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.character.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
+#            ^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#               ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran constant.numeric.fortran
+#                  ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
+#                   ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                    ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                       ^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  character(kind=1, len=5) :: s1
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.character.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
+#            ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                 ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran constant.numeric.fortran
+#                  ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran
+#                   ^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#                       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                        ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran constant.numeric.fortran
+#                         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                           ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                             ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  character(len=*) :: s2
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.character.fortran
+#           ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
+#            ^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#               ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.power.fortran
+#                 ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                   ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                     ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  s1 = 1_"hello"
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#     ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#      ^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#         ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#          ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran
+#               ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>  s2 = "world"
+#^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
+#    ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#     ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran keyword.operator.assignment.fortran
+#      ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#       ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#        ^^^^^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran
+#             ^ source.fortran.free meta.subroutine.fortran meta.block.specification.subroutine.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>end subroutine
+#^^^^^^^^^^^^^^ source.fortran.free meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>

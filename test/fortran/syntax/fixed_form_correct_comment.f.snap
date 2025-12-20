@@ -1,0 +1,24 @@
+>      call foo(a,
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^ source.fortran.fixed meta.statement.control.call.fortran keyword.control.call.fortran
+#          ^ source.fortran.fixed meta.statement.control.call.fortran
+#           ^^^ source.fortran.fixed meta.statement.control.call.fortran entity.name.function.subroutine.fortran
+#              ^ source.fortran.fixed meta.statement.control.call.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.fixed meta.statement.control.call.fortran meta.parameter.fortran
+#                ^^ source.fortran.fixed meta.statement.control.call.fortran
+>      & b,
+#^^^^^^ source.fortran.fixed meta.statement.control.call.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.statement.control.call.fortran
+#        ^ source.fortran.fixed meta.statement.control.call.fortran meta.parameter.fortran
+#         ^^ source.fortran.fixed meta.statement.control.call.fortran
+>      c I don't like this comment
+#^^^^^^ source.fortran.fixed meta.statement.control.call.fortran constant.numeric.fortran
+#      ^ source.fortran.fixed meta.statement.control.call.fortran meta.parameter.fortran
+#       ^ source.fortran.fixed meta.statement.control.call.fortran
+#        ^ source.fortran.fixed meta.statement.control.call.fortran meta.parameter.fortran
+#         ^ source.fortran.fixed meta.statement.control.call.fortran
+#          ^^^ source.fortran.fixed meta.statement.control.call.fortran meta.parameter.fortran
+#             ^ source.fortran.fixed meta.statement.control.call.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#              ^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.statement.control.call.fortran string.quoted.single.fortran
+>           & d)
+#^^^^^^^^^^^^^^^^ source.fortran.fixed meta.statement.control.call.fortran string.quoted.single.fortran
