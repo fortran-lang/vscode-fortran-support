@@ -96,7 +96,7 @@ Using incorrect type and rank as function argument
 ![alt](assets/gif/lint-demo2.gif)
 
 | 📝️ Note | Save your file to generate linting results |
-| -------- | ------------------------------------------ |
+| ------- | ------------------------------------------ |
 
 Linting results can be improved by providing additional options to the compiler.
 
@@ -254,7 +254,7 @@ If the formatter is not present in the `PATH` its location can be input with
 ```
 
 | 📝️ Note | `findent` can also be used to generate dependency files for a project. |
-| -------- | ---------------------------------------------------------------------- |
+| ------- | ---------------------------------------------------------------------- |
 
 ## Fortran Package Manager
 
