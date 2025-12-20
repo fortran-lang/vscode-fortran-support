@@ -18,6 +18,7 @@ import {
   RescanLint,
   CleanLintDiagnostics,
 } from '../commands/commands';
+import { AdapterSpec, selectDebugAdapter, createDebugConfiguration } from '../debug/configuration';
 import { Logger } from '../services/logging';
 import { GlobPaths } from '../util/glob-paths';
 import { arraysEqual } from '../util/helper';
@@ -426,14 +427,24 @@ export class FortranLintingProvider {
       const folder: vscode.WorkspaceFolder = vscode.workspace.getWorkspaceFolder(
         textEditor.document.uri
       );
-      const selectedConfig: vscode.DebugConfiguration = {
+
+      let adapter: AdapterSpec;
+      try {
+        adapter = selectDebugAdapter();
+        this.logger.debug('[build] Selected debug adapter:', adapter.extensionId);
+      } catch (err) {
+        this.logger.error(`[build] ${(err as Error).message}`);
+        vscode.window.showErrorMessage((err as Error).message);
+        return;
+      }
+
+      const selectedConfig = createDebugConfiguration({
         name: `${debug ? 'Debug' : 'Run'} Fortran file`,
-        // This relies on the C/C++ debug adapters
-        type: process.platform === 'win32' ? 'cppvsdbg' : 'cppdbg',
-        request: 'launch',
+        adapter,
         program: `${textDocument.fileName}.o`,
         cwd: folder.uri.fsPath,
-      };
+      });
+
       await vscode.debug.startDebugging(folder, selectedConfig, { noDebug: !debug });
       return;
     } catch (err) {

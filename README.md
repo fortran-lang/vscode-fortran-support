@@ -96,7 +96,7 @@ Using incorrect type and rank as function argument
 ![alt](assets/gif/lint-demo2.gif)
 
 | 📝️ Note | Save your file to generate linting results |
-| -------- | ------------------------------------------ |
+| ------- | ------------------------------------------ |
 
 Linting results can be improved by providing additional options to the compiler.
 
@@ -158,18 +158,28 @@ you can point the extension to another linter with the `fortran.linter.compilerP
 
 ![alt](assets/gif/gdb_ani.gif)
 
-The extension uses the debugger from Microsoft's
-[C/C++ extension](https://github.com/Microsoft/vscode-cpptools)
-for Visual Studio Code. This allows this extension to use the full functionality
-of the C/C++ extension for debugging applications:
-(un)conditional breaking points, expression evaluation, multithreaded debugging,
-call stack, stepping, watch window.
+Modern Fortran works with multiple VS Code debuggers and supports the usual
+debugging tools: conditional and regular breakpoints, expression evaluation,
+multithreaded debugging, call stack view, step controls, and a watch window.
 
-A minimal `launch.json` script, responsible for controlling the debugger, is
-provided below. However, Visual Studio Code is also capable of autogenerating
-a `launch.json` file and the configurations inside the file.
+Supported debugger extensions:
 
-More details about how to set up the debugger can be found in Microsoft's website:
+- Microsoft's [C/C++ extension (ms-vscode.cpptools)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+- Eclipse's [CDT GDB extension (eclipse-cdt.cdt-gdb-vscode)](https://marketplace.visualstudio.com/items?itemName=eclipse-cdt.cdt-gdb-vscode)
+- CodeLLDB [LLDB extension (vadimcn.vscode-lldb)](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+
+| 📝️ Note | For **Single file Run/Debug**, we pick the first available extension from the list above (top to bottom). |
+| ------- | --------------------------------------------------------------------------------------------------------- |
+
+To set up debugging, add a `launch.json` under `.vscode` in your workspace. In
+VS Code, open the Debug view (Ctrl+Shift+D or Cmd+Shift+D), click the gear, and
+choose your debugger from the list.
+
+A minimal `launch.json` using Microsoft's
+[C/C++ extension (ms-vscode.cpptools)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+is shown below.
+
+More details on debugging are available on VS Code docs and each extension:
 
 - General information about debugging in VS Code: <https://code.visualstudio.com/docs/editor/debugging>
 - C/C++ extension debugger information: <https://code.visualstudio.com/docs/cpp/cpp-debug>
@@ -254,7 +264,7 @@ If the formatter is not present in the `PATH` its location can be input with
 ```
 
 | 📝️ Note | `findent` can also be used to generate dependency files for a project. |
-| -------- | ---------------------------------------------------------------------- |
+| ------- | ---------------------------------------------------------------------- |
 
 ## Fortran Package Manager
 
