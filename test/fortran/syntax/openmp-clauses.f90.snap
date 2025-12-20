@@ -1,0 +1,81 @@
+>program openmp_test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  integer :: i, n
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.integer.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  real :: sum
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.real.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#          ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  !$omp parallel do private(i) shared(n) reduction(+:sum) schedule(static,4)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive comment.directive.openmp
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#        ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                    ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.left.openmp
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive invalid.error.openmp
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.right.openmp
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                               ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                                     ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                                         ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.left.openmp
+#                                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive operator.colon.openmp
+#                                                     ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.right.openmp
+#                                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                                                          ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.left.openmp
+#                                                                   ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+#                                                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.comma.openmp
+#                                                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#                                                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive punctuation.parentheses.right.openmp
+>  do i = 1, n
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.control.do.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran meta.parameter.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran keyword.operator.assignment.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran meta.parameter.fortran
+>    sum = sum + i
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#    ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.parameter.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.operator.assignment.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#          ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.parameter.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.operator.addition.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.parameter.fortran
+>  end do
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#  ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.control.enddo.fortran
+>  !$omp end parallel do
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive comment.directive.openmp
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive
+#        ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran meta.openmp.directive string.regexp.openmp
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

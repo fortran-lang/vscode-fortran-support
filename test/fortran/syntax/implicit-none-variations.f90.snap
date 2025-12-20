@@ -1,0 +1,65 @@
+>module test_implicit
+#^^^^^^ source.fortran.free meta.module.fortran keyword.other.program.fortran
+#      ^ source.fortran.free meta.module.fortran
+#       ^^^^^^^^^^^^^ source.fortran.free meta.module.fortran entity.name.class.module.fortran
+>  implicit none (type, external)
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran
+#  ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran
+#           ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+#               ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran
+#                ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran punctuation.parentheses.left.fortran
+#                 ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran meta.parameter.fortran
+#                     ^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran
+#                       ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran meta.parameter.fortran
+#                               ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.statement.implicit.fortran punctuation.parentheses.right.fortran
+>contains
+#^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran keyword.control.contains.fortran
+>  subroutine sub1
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#  ^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#            ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran
+#             ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+>    implicit none
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#    ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#            ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.implicit.fortran
+#             ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>  end subroutine
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#  ^^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>  
+>  function func1() result(r)
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.attribute-list.function.fortran
+#  ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran keyword.other.function.fortran
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran
+#           ^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran entity.name.function.fortran
+#                ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                 ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+#                  ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran
+#                   ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran keyword.control.result.fortran
+#                         ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran variable.parameter.fortran
+#                           ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.function.first-line.fortran punctuation.parentheses.right.fortran
+>    implicit none (type)
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#            ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran
+#             ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+#                 ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran
+#                  ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran punctuation.parentheses.left.fortran
+#                   ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran meta.parameter.fortran
+#                       ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.statement.implicit.fortran punctuation.parentheses.right.fortran
+>    real :: r
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran
+#    ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran storage.type.real.fortran
+#        ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#         ^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#           ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran
+#            ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  end function
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran meta.block.specification.function.fortran
+#  ^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.block.contains.fortran meta.function.fortran keyword.other.endfunction.fortran
+>end module
+#^^^^^^^^^^ source.fortran.free meta.module.fortran keyword.other.endmodule.fortran
+>

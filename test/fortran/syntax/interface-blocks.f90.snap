@@ -1,0 +1,77 @@
+>module test
+#^^^^^^ source.fortran.free meta.module.fortran keyword.other.program.fortran
+#      ^ source.fortran.free meta.module.fortran
+#       ^^^^ source.fortran.free meta.module.fortran entity.name.class.module.fortran
+>  interface operator(+)
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran
+#  ^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.control.interface.fortran
+#           ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran
+#            ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.other.operator.fortran
+#                    ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran punctuation.parentheses.left.fortran
+#                     ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.operator.fortran
+#                      ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran punctuation.parentheses.right.fortran
+>    module procedure add_int
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran
+#    ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran storage.modifier.module.fortran
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran
+#           ^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran keyword.other.procedure.fortran
+#                    ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.name-list.fortran
+#                     ^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.name-list.fortran entity.name.function.procedure.fortran
+>  end interface
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran
+#  ^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.control.endinterface.fortran
+>
+>  interface assignment(=)
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran
+#  ^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.control.interface.fortran
+#           ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran
+#            ^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.other.assignment.fortran
+#                      ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran punctuation.parentheses.left.fortran
+#                       ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.operator.assignment.fortran
+#                        ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran punctuation.parentheses.right.fortran
+>    module procedure assign_custom
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran
+#    ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran storage.modifier.module.fortran
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.attribute-list.interface.fortran
+#           ^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran keyword.other.procedure.fortran
+#                    ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.name-list.fortran
+#                     ^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran meta.statement.procedure.fortran meta.name-list.fortran entity.name.function.procedure.fortran
+>  end interface
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran
+#  ^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.generic.fortran keyword.control.endinterface.fortran
+>
+>  abstract interface
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran
+#  ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran keyword.other.attribute.fortran.modern
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran
+#           ^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran keyword.control.interface.fortran
+>    subroutine callback(x)
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.attribute-list.subroutine.fortran
+#    ^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran keyword.other.subroutine.fortran
+#              ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran
+#               ^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran entity.name.function.subroutine.fortran
+#                       ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.begin.fortran
+#                        ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
+#                         ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
+>      real, intent(in) :: x
+#^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#      ^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran storage.type.real.fortran
+#          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.comma.fortran
+#           ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#            ^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.fortran
+#                  ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                   ^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran storage.modifier.intent.in.fortran
+#                     ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                       ^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                         ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran
+#                          ^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>    end subroutine
+#^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran meta.block.specification.subroutine.fortran
+#    ^^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran meta.subroutine.fortran keyword.other.endsubroutine.fortran
+>  end interface
+#^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran
+#  ^^^^^^^^^^^^^ source.fortran.free meta.module.fortran meta.block.specification.module.fortran meta.interface.abstract.fortran keyword.control.endinterface.fortran.modern
+>end module
+#^^^^^^^^^^ source.fortran.free meta.module.fortran keyword.other.endmodule.fortran
+>

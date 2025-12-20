@@ -1,0 +1,122 @@
+>! Very long line near max length
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>program test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  x = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                    ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#                                                                                                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.addition.fortran
+#                                                                                                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#                                                                                                                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+>  str = "This is a very long string literal that approaches the maximum line length limit to test how the grammar handles extremely long lines without continuation characters"
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran
+#                                                                                                                                                                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+>end program
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>

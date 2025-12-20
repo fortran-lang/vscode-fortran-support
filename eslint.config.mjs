@@ -26,6 +26,16 @@ export default [
   includeIgnoreFile(gitignorePath),
   ...compat.extends('eslint:recommended', 'plugin:@typescript-eslint/recommended'),
   {
+    files: ['scripts/**/*.mjs'],
+
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+      },
+    },
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'],
 
     plugins: {

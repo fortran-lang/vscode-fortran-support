@@ -1,0 +1,92 @@
+>! Mixed case keywords (Fortran is case-insensitive)
+#^ source.fortran.free comment.line.fortran
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free comment.line.fortran
+>PrOgRaM test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  InTeGeR :: x
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.integer.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  ReAl :: y
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.real.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>  ChArAcTeR(len=5) :: str
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.character.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.left.fortran
+#            ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.type-spec.fortran variable.parameter.dummy-variable.fortran.modern
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.type-spec.fortran keyword.operator.assignment.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.type-spec.fortran constant.numeric.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.type-spec.fortran punctuation.parentheses.right.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+>
+>  If (x > 0) ThEn
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.if.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#             ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.then.fortran
+>    PrInT *, 'positive'
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#    ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.control.print.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.operator.power.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#              ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>  ElSe
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.control.else.fortran
+>    PrInT *, 'negative'
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#    ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.control.print.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran keyword.operator.power.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#              ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+>  EnD iF
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.if.fortran
+#  ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.endif.fortran
+>
+>  Do i = 1, 10
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.control.do.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran meta.parameter.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran keyword.operator.assignment.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+#          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran
+#            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.loop-control.fortran constant.numeric.fortran
+>    CyCle
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.fortran
+#    ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran meta.statement.control.fortran keyword.control.cycle.fortran
+>  EnD dO
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran
+#  ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.do.unlabeled.fortran keyword.control.enddo.fortran
+>EnD pRoGrAm
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+>
