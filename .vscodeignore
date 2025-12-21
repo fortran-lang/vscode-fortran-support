@@ -9,9 +9,10 @@ src/**
 **/*.ts
 .gitignore
 **/tsconfig*.json
-**/eslint.config.mjs.mjs
+**/eslint.config.mjs
 .husky/
 .github/
+.nycrc
 .editorconfig
 .prettierrc
 .prettierignore
@@ -20,3 +21,5 @@ CONTRIBUTING.md
 coverconfig.json
 assets/{videos,tools,svg,README.md}
 test-resources/
+scripts/
+.pytest_cache/
