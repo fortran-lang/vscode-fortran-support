@@ -1,122 +1,124 @@
-name: Deploy Nightly Release (VS Code Marketplace)
+name: Deploy Nightly Release
 
 on:
   # fire at 00:00 on every day from Monday through Friday
   schedule:
-    - cron: "0 0 */1 * 1-5"
+    - cron: '0 0 */1 * 1-5'
   workflow_dispatch:
 
 jobs:
+  prepare:
+    name: Prepare Nightly Release
+    runs-on: ubuntu-latest
+    outputs:
+      DEPLOY: ${{ steps.deploy-nightly.outputs.DEPLOY }}
+      VERSION: ${{ steps.version.outputs.VERSION }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+
+      - name: Check if there are changes to deploy
+        id: deploy-nightly
+        run: |
+          git fetch --tags
+          MAIN_SHA=$(git rev-list -n 1 main)
+          NIGHTLY_SHA=$(git rev-list -n 1 nightly)
+          echo "main   : $MAIN_SHA"
+          echo "nightly: $NIGHTLY_SHA"
+
+          if [ "$MAIN_SHA" = "$NIGHTLY_SHA" ] ; then
+            echo "DEPLOY=false" >> $GITHUB_OUTPUT
+            echo "No changes to deploy"
+          else
+            echo "DEPLOY=true" >> $GITHUB_OUTPUT
+            echo "Will deploy Nightly build"
+          fi
+
+      - name: Compute nightly version
+        id: version
+        if: fromJSON(steps.deploy-nightly.outputs.DEPLOY)
+        run: |
+          datetime=$(date +%Y%m%d%H)
+          pkg_version=$(node -p "require('./package.json').version")
+          version=$( echo $pkg_version | sed -E "s/^([0-9]+\.[0-9]+\.)[0-9]+/\1$datetime/g")
+          echo "VERSION=$version" >> $GITHUB_OUTPUT
+
   deploy-nightly-vscode:
+    name: Publish Nightly (VS Code Marketplace)
+    needs: prepare
+    if: fromJSON(needs.prepare.outputs.DEPLOY)
     runs-on: ubuntu-latest
     environment: nightly-vscode
     concurrency: nightly-vscode
+    env:
+      VERSION: ${{ needs.prepare.outputs.VERSION }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22.x
 
-      - name: Check if there are changes to deploy
-        id: deploy-nightly
-        run: |
-          git fetch --tags
-          MAIN_SHA=$(git rev-list -n 1 main)
-          NIGHTLY_SHA=$(git rev-list -n 1 nightly)
-          echo "main   : $MAIN_SHA"
-          echo "nightly: $NIGHTLY_SHA"
-          echo "MAIN_SHA=$MAIN_SHA" >> $GITHUB_ENV
-          echo "NIGHTLY_SHA=$NIGHTLY_SHA" >> $GITHUB_ENV
-
-          if [ "$MAIN_SHA" = "$NIGHTLY_SHA" ] ; then
-            echo "DEPLOY=0" >> $GITHUB_OUTPUT
-            echo "No changes to deploy"
-          else
-            echo "DEPLOY=1" >> $GITHUB_OUTPUT
-            echo "Will deploy Nightly build"
-          fi
-
-      - name: Get version
-        id: version
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
-        run: |
-          datetime=$(date +%Y%m%d%H)
-          pkg_version=$(node -p "require('./package.json').version")
-          version=$( echo $pkg_version | sed -E "s/^([0-9]+\.[0-9]+\.)[0-9]+/\1$datetime/g")
-          echo "DATETIME=$datetime" >> $GITHUB_ENV
-          echo "PKG_VERSION=$pkg_version" >> $GITHUB_ENV
-          echo "VERSION=$version" >> $GITHUB_ENV
-
       - name: Publish Nightly Release
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
         run: |
-          echo "Publishing nightly release ${{ env.VERSION }}"
+          echo "Publishing nightly release ${VERSION}"
           npm ci
           npm i -g @vscode/vsce
-          vsce publish --pre-release --no-git-tag-version ${{ env.VERSION }}
+          vsce publish --pre-release --no-git-tag-version "${VERSION}"
         env:
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
-      - name: Create Nightly tag
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
-        run: |
-          git tag --force 'v${{ env.VERSION }}' ${{ github.sha }}
-          git tag --force 'nightly' ${{ github.sha }}
-          git push --tags --force
-
   deploy-nightly-openvsx:
+    name: Publish Nightly (OpenVSX)
+    needs: prepare
+    if: fromJSON(needs.prepare.outputs.DEPLOY)
     runs-on: ubuntu-latest
     environment: nightly-openvsx
     concurrency: nightly-openvsx
+    env:
+      VERSION: ${{ needs.prepare.outputs.VERSION }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22.x
 
-      - name: Check if there are changes to deploy
-        id: deploy-nightly
-        run: |
-          git fetch --tags
-          MAIN_SHA=$(git rev-list -n 1 main)
-          NIGHTLY_SHA=$(git rev-list -n 1 nightly)
-          echo "main   : $MAIN_SHA"
-          echo "nightly: $NIGHTLY_SHA"
-          echo "MAIN_SHA=$MAIN_SHA" >> $GITHUB_ENV
-          echo "NIGHTLY_SHA=$NIGHTLY_SHA" >> $GITHUB_ENV
-
-          if [ "$MAIN_SHA" = "$NIGHTLY_SHA" ] ; then
-            echo "DEPLOY=0" >> $GITHUB_OUTPUT
-            echo "No changes to deploy"
-          else
-            echo "DEPLOY=1" >> $GITHUB_OUTPUT
-            echo "Will deploy Nightly build"
-          fi
-
-      - name: Get version
-        id: version
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
-        run: |
-          datetime=$(date +%Y%m%d%H)
-          pkg_version=$(node -p "require('./package.json').version")
-          version=$( echo $pkg_version | sed -E "s/^([0-9]+\.[0-9]+\.)[0-9]+/\1$datetime/g")
-          echo "DATETIME=$datetime" >> $GITHUB_ENV
-          echo "PKG_VERSION=$pkg_version" >> $GITHUB_ENV
-          echo "VERSION=$version" >> $GITHUB_ENV
-
       - name: Apply OpenVSX Patch
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
         run: |
           node ./scripts/patch-openvsx.mjs
 
+      # Manually package the extension with vsce so that the files, manifest,
+      # package.json, etc. have the correct version in them. Needed, since ovsx
+      # does not offer the same CLI options as vsce.
+      # Also, --pre-release is ignored by ovsx when a .vsix file is provided.
       - name: Publish Nightly Release
-        if: steps.deploy-nightly.outputs.DEPLOY != 0
         run: |
-          echo "Publishing nightly release ${{ env.VERSION }}"
+          echo "Publishing nightly release ${VERSION}"
           npm ci
-          npm i -g @vscode/vsce
-          npm i -g ovsx
-          vsce package --pre-release --no-git-tag-version ${{ env.VERSION }}
+          npm i -g @vscode/vsce ovsx
+          vsce package --pre-release --no-git-tag-version "${VERSION}"
           ovsx publish *.vsix --skip-duplicate
         env:
           OVSX_PAT: ${{ secrets.OPENVSX_MARKETPLACE_TOKEN }}
+
+  # Tags should only be updated on the successful deployment to both marketplaces
+  push-nightly-tags:
+    name: Create and push nightly tags
+    needs:
+      - prepare
+      - deploy-nightly-vscode
+      - deploy-nightly-openvsx
+    if: fromJSON(needs.prepare.outputs.DEPLOY)
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.prepare.outputs.VERSION }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Create and push nightly tags
+        run: |
+          git tag --force "nightly-v${VERSION}" "${{ github.sha }}"
+          git tag --force nightly "${{ github.sha }}"
+          git push --tags --force
