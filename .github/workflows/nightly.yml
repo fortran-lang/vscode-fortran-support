@@ -57,6 +57,6 @@ jobs:
       - name: Create Nightly tag
         if: steps.deploy-nightly.outputs.DEPLOY != 0
         run: |
-          git tag --force 'nightly' ${{ github.sha }}
           git tag --force 'v${{ env.VERSION }}' ${{ github.sha }}
+          git tag --force 'nightly' ${{ github.sha }}
           git push --tags --force
