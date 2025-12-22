@@ -31,6 +31,8 @@ import { FortranLintingProvider } from '../../src/lint/provider';
 import { LogLevel, Logger } from '../../src/services/logging';
 import { EXTENSION_ID, pipInstall } from '../../src/util/tools';
 
+declare const __dirname: string;
+
 suite('Linter VS Code commands', async () => {
   let doc: TextDocument;
   const fileUri = Uri.file(path.resolve(__dirname, '../../../test/fortran/sample.f90'));
@@ -124,7 +126,9 @@ suite('Linter integration', async () => {
     deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.globs, refs);
     // refs = fg.sync(path.join(root, 'lint') + '/**', { onlyDirectories: true });
     refs = glob.sync(path.join(root, 'lint') + '/**/');
-    deepStrictEqual(linter['pathCache'].get('linter.includePaths')?.paths, refs);
+    const gotPaths: string[] = linter['pathCache'].get('linter.includePaths')?.paths || [];
+    const normalize = (arr: string[]) => arr.map(p => path.resolve(p));
+    deepStrictEqual(normalize(gotPaths), normalize(refs));
   });
 
   test('Update paths using cache', async () => {
@@ -140,7 +144,8 @@ suite('Linter integration', async () => {
       false
     );
     const paths = linter['getGlobPathsFromSettings']('linter.includePaths');
-    deepStrictEqual(paths, refs);
+    const normalize = (arr: string[]) => arr.map(p => path.resolve(p));
+    deepStrictEqual(normalize(paths), normalize(refs));
   });
 
   test('Linter user setting returns the right linter internally', () => {
