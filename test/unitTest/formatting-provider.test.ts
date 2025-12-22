@@ -11,6 +11,12 @@ const logger = new Logger(
   LogLevel.DEBUG
 );
 
+function normalizeEOL(s: string): string {
+  return s.replace(/\r\n/g, '\n');
+}
+
+declare const __dirname: string;
+
 suite('Formatting tests', () => {
   let doc: vscode.TextDocument;
   const fmt = new FortranFormattingProvider(logger);
@@ -27,9 +33,7 @@ suite('Formatting tests', () => {
     const fmt = new FortranFormattingProvider(logger);
     fmt['formatter'] = 'findent';
     const edits = await fmt['doFormatFindent'](doc);
-    strictEqual(
-      edits[0].newText.toString(),
-      `program main
+    const ref = `program main
    implicit none
    integer :: i, j
    do i = 1, 5
@@ -40,8 +44,8 @@ suite('Formatting tests', () => {
       end do
    end do
 end program main
-`
-    );
+`;
+    strictEqual(normalizeEOL(edits[0].newText.toString()), ref);
   });
 
   test('Using fprettify', async () => {
@@ -59,7 +63,7 @@ end program main
    end do
 end program main
 `;
-    strictEqual(edits[0].newText.toString(), ref);
+    strictEqual(normalizeEOL(edits[0].newText.toString()), ref);
   });
 
   test(`Using fprettify with stderr`, async () => {
@@ -78,6 +82,6 @@ end program main
 
 end program
 `;
-    strictEqual(edits[0].newText.toString(), ref);
+    strictEqual(normalizeEOL(edits[0].newText.toString()), ref);
   });
 });
