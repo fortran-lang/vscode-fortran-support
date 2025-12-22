@@ -80,6 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed syntax highlighting bug for labelled `if` and `where` constructs
+  ([#1241](https://github.com/fortran-lang/vscode-fortran-support/pull/1241))
 - Fixed bug where formatting arguments would not be updated from settings.json
   ([[#1007](https://github.com/fortran-lang/vscode-fortran-support/issues/1007)])
 - Fixed bug where specifying `-ffree-line-length-X` and `-ffixed-line-length-X`
