@@ -23,10 +23,10 @@ else label2
 end if label2
 
 ! labelled if-else-if-else
-label3: if (1 > 2) then
-else if (2 < 1) then label3
-else label3
-end if label3
+label3: if (1 > 2) then  ! comment1
+else if (2 < 1) then label3 ! comment2
+else label3  ! comment3
+end if label3  ! comment4
 
 ! labelled if with whitespace after end label
 label4: if (1 > 2) then
