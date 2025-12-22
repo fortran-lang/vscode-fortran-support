@@ -144,9 +144,28 @@ export async function promptForMissingTool(
  * @param pyPackage name of python package in PyPi
  */
 export async function pipInstall(pyPackage: string): Promise<string> {
-  const py = 'python3'; // Fetches the top-most python in the Shell
+  const py = (await findAnyPython()) || 'python3';
   const args = ['-m', 'pip', 'install', '--user', '--upgrade', pyPackage];
   return await shellTask(py, args, `pip: ${pyPackage}`);
+}
+
+/**
+ * Attempts to find any available python interpreter command by trying:
+ * `python3`, `py`, and `python` in that order.
+ *
+ * @returns The command name if found, otherwise `undefined`
+ */
+export async function findAnyPython(): Promise<string | undefined> {
+  const candidates = ['python3', 'py', 'python'];
+  for (const cmd of candidates) {
+    try {
+      await shellTask(cmd, ['--version'], `check:${cmd}`);
+      return cmd;
+    } catch {
+      // not available — try next
+    }
+  }
+  return undefined;
 }
 
 export async function shellTask(command: string, args: string[], name: string): Promise<string> {

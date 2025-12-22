@@ -80,6 +80,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed brittle installation process of Python packages on Windows
+  ([#1121](https://github.com/fortran-lang/vscode-fortran-support/issues/1121))
+  ([#957](https://github.com/fortran-lang/vscode-fortran-support/issues/957))
+  ([#773](https://github.com/fortran-lang/vscode-fortran-support/issues/773))
+  ([#771](https://github.com/fortran-lang/vscode-fortran-support/issues/771))
 - Fixed syntax highlighting bug for labelled `if` and `where` constructs
   ([#1241](https://github.com/fortran-lang/vscode-fortran-support/pull/1241))
 - Fixed bug where formatting arguments would not be updated from settings.json
