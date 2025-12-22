@@ -1,0 +1,630 @@
+>program where_test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  implicit none
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.implicit.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran
+#           ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.implicit.fortran keyword.other.none.fortran
+>  real :: a(10), b(10)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.real.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.attribute-list.type-specification-statements.fortran
+#       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran keyword.operator.double-colon.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>
+>  ! where statement
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0) a = a + 1
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran meta.parameter.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran keyword.operator.assignment.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran meta.parameter.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran keyword.operator.addition.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.control.where.fortran constant.numeric.fortran
+>
+>  ! where construct
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! where with elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! where with elsewhere mask
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere (a < -1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.logical.fortran.modern
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.right.fortran
+>    a = a - 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.subtraction.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! labelled where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  label1: where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#          ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern keyword.control.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran meta.parameter.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  end where label1
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.endwhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#            ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.label.end.name.fortran
+>
+>  ! labelled where with elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  label2: where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#          ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern keyword.control.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran meta.parameter.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  elsewhere label2
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.label.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  end where label2
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.endwhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#            ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.label.end.name.fortran
+>
+>  ! labelled where with elsewhere mask
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  label3: where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#          ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern keyword.control.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran meta.parameter.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  elsewhere (a < -1) label3
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.logical.fortran.modern
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran punctuation.parentheses.right.fortran
+#                    ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.label.elsewhere.fortran
+>    a = a - 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.subtraction.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  elsewhere label3
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.label.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  end where label3
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.endwhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#            ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.label.end.name.fortran
+>
+>  ! nested where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    where (b > 0)
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.where.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>      a = a + 1
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran meta.parameter.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran meta.parameter.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran constant.numeric.fortran
+>    end where
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran
+#    ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! where with continuation
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > &
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.operator.line-continuation.fortran
+>        0)
+#^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! multiple elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere (a == 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.logical.fortran.modern
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.right.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  else  where (a < 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.logical.fortran.modern
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran punctuation.parentheses.right.fortran
+>    a = a - 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.subtraction.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! where with comments
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0) ! comment
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran comment.line.fortran
+#                 ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran comment.line.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  elsewhere ! comment
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran comment.line.fortran
+#             ^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran comment.line.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>  ! labelled where with whitespace
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  label4: where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#          ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern keyword.control.where.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran meta.parameter.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    a = a + 1
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.addition.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>  end where  label4
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.endwhere.fortran
+#           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.named-construct.fortran.modern
+#             ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.label.end.name.fortran
+>
+>  ! nested labels
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  where (a > 0)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran keyword.control.where.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran meta.parameter.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>    label5: where (b > 0)
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern
+#            ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern keyword.control.where.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran meta.parameter.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran keyword.logical.fortran.modern
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran constant.numeric.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.expression.control.logical.fortran punctuation.parentheses.right.fortran
+>      a = a + 1
+#^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.assignment.fortran
+#         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran meta.parameter.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.operator.addition.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran constant.numeric.fortran
+>    end where label5
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran
+#    ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern meta.block.where.fortran keyword.control.endwhere.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.named-construct.fortran.modern
+#              ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.label.end.name.fortran
+>  elsewhere
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.elsewhere.fortran
+>    a = 0
+#^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran meta.parameter.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.operator.assignment.fortran
+#       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran constant.numeric.fortran
+>  end where
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran
+#  ^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.block.where.fortran keyword.control.endwhere.fortran
+>
+>end program where_test
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>
