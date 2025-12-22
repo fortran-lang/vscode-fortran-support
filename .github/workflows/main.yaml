@@ -4,7 +4,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
         toolchain:
           - { compiler: gcc, version: 11 }
         node-version: [22.x]
@@ -32,10 +32,18 @@ jobs:
       - name: Test Syntax Highlighting
         run: npm run test:grammar
       - name: Test Unittests
+        if: runner.os == 'Linux'
         run: xvfb-run --auto-servernum npm run test
+      - name: Test Unittests on Windows
+        if: runner.os == 'Windows'
+        run: npm run test
       # This will not fail the job if tests fail so we have to npm test separately
       - name: Coverage report
+        if: runner.os == 'Linux'
         run: xvfb-run --auto-servernum npm run coverage
+      - name: Coverage report on Windows
+        if: runner.os == 'Windows'
+        run: npm run coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
