@@ -11,15 +11,23 @@ const commonConfig = {
   mocha: mochaConfig,
 };
 
-export default defineConfig([
-  {
-    label: 'unit',
-    files: 'out/test/unitTest/**/*.test.js',
-    ...commonConfig,
+export default defineConfig({
+  tests: [
+    {
+      label: 'unit',
+      files: 'out/test/unitTest/**/*.test.js',
+      ...commonConfig,
+    },
+    {
+      label: 'integration',
+      files: 'out/test/integration/**/*.test.js',
+      ...commonConfig,
+    },
+  ],
+  coverage: {
+    includeAll: true,
+    include: ['out/**/*.js'],
+    exclude: ['**/node_modules/**', 'out/test/**'],
+    reporter: ['html', 'text', 'lcov'],
   },
-  {
-    label: 'integration',
-    files: 'out/test/integration/**/*.test.js',
-    ...commonConfig,
-  },
-]);
+});
