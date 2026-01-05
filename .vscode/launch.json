@@ -8,7 +8,7 @@
       "id": "test",
       "type": "pickString",
       "description": "Pick the type of test for this session",
-      "default": "unitTest/",
+      "default": "unitTest",
       "options": [
         {
           "label": "unitTest",
@@ -39,8 +39,11 @@
         "${workspaceFolder}/test/fortran",
         "--disable-extension=fortran-lang.linter-gfortran",
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/out/test/${input:test}"
+        "--extensionTestsPath=${workspaceFolder}/out/test/runner"
       ],
+      "env": {
+        "TEST_TYPE": "${input:test}"
+      },
       "outFiles": ["${workspaceFolder}/dist/**/*.js", "${workspaceFolder}/out/test/**/*.js"],
       "preLaunchTask": "npm: pretest"
     },
