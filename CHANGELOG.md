@@ -80,6 +80,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed bug with `fypp` and Windows where preprocessor paths were not properly
+  resolved
+  ([#1274](https://github.com/fortran-lang/vscode-fortran-support/pull/1274))
 - Fixed brittle installation process of Python packages on Windows
   ([#1121](https://github.com/fortran-lang/vscode-fortran-support/issues/1121))
   ([#957](https://github.com/fortran-lang/vscode-fortran-support/issues/957))

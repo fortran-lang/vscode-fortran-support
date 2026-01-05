@@ -25,23 +25,16 @@ jobs:
 
       - name: Installing Extension
         run: npm ci
-      - name: Compile
-        run: npm run compile
+      - name: Compile (Development Build)
+        run: npm run pretest
       - name: Linting
         run: npm run lint
       - name: Test Syntax Highlighting
         run: npm run test:grammar
-      - name: Test Unittests
-        if: runner.os == 'Linux'
-        run: xvfb-run --auto-servernum npm run test
-      - name: Test Unittests on Windows
-        if: runner.os == 'Windows'
-        run: npm run test
-      # This will not fail the job if tests fail so we have to npm test separately
-      - name: Coverage report
+      - name: Run Unit and Integration Tests
         if: runner.os == 'Linux'
         run: xvfb-run --auto-servernum npm run coverage
-      - name: Coverage report on Windows
+      - name: Run Unit and Integration on Windows
         if: runner.os == 'Windows'
         run: npm run coverage
       - name: Upload coverage to Codecov

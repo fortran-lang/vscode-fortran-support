@@ -8,7 +8,7 @@
       "id": "test",
       "type": "pickString",
       "description": "Pick the type of test for this session",
-      "default": "unitTest/",
+      "default": "unitTest",
       "options": [
         {
           "label": "unitTest",
@@ -39,8 +39,11 @@
         "${workspaceFolder}/test/fortran",
         "--disable-extension=fortran-lang.linter-gfortran",
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/out/test/${input:test}"
+        "--extensionTestsPath=${workspaceFolder}/out/test/runner"
       ],
+      "env": {
+        "TEST_TYPE": "${input:test}"
+      },
       "outFiles": ["${workspaceFolder}/dist/**/*.js", "${workspaceFolder}/out/test/**/*.js"],
       "preLaunchTask": "npm: pretest"
     },
@@ -48,14 +51,16 @@
       "name": "Debug UI Tests",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/extest",
+      "program": "${workspaceFolder}/node_modules/vscode-extension-tester/out/cli.js",
       "args": [
         "setup-and-run",
         "${workspaceFolder}/out/test/ui/*.js",
         "--mocha_config",
         "${workspaceFolder}/test/ui/.mocharc.js"
       ],
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "console": "integratedTerminal",
+      "runtimeExecutable": "node",
       "internalConsoleOptions": "neverOpen",
       "preLaunchTask": "npm: pretest"
     }

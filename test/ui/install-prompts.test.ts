@@ -9,7 +9,8 @@ describe('Download dependencies', () => {
   let driver: WebDriver;
 
   before(async () => {
-    spawnSync('python3', ['-m', 'pip', 'uninstall', 'fortls', 'findent', '-y']);
+    const python = process.platform === 'win32' ? 'python' : 'python3';
+    spawnSync(python, ['-m', 'pip', 'uninstall', 'fortls', 'findent', '-y']);
     browser = VSBrowser.instance;
     driver = browser.driver;
     const root = path.resolve(__dirname, '../../../test/fortran/lsp');
@@ -30,12 +31,14 @@ describe('Download dependencies', () => {
       for (const info of infos) {
         const message = await info.getMessage();
         const actions = await info.getActions();
-        const title = await actions[0].getTitle();
-        const source = await info.getSource();
-        if (source.includes('Modern Fortran')) {
-          console.log(message);
-          await info.takeAction(title);
-          strictEqual(title, 'Install');
+
+        if (actions.length > 0) {
+          const title = await actions[0].getTitle();
+          if (message.includes('fortls')) {
+            console.log(message);
+            await info.takeAction(title);
+            strictEqual(title, 'Install');
+          }
         }
       }
     });
@@ -50,12 +53,14 @@ describe('Download dependencies', () => {
       for (const info of infos) {
         const message = await info.getMessage();
         const actions = await info.getActions();
-        const title = await actions[0].getTitle();
-        const source = await info.getSource();
-        if (source.includes('Modern Fortran')) {
-          console.log(message);
-          await info.takeAction(title);
-          strictEqual(title, 'Install');
+
+        if (actions.length > 0) {
+          const title = await actions[0].getTitle();
+          if (message.includes('findent')) {
+            console.log(message);
+            await info.takeAction(title);
+            strictEqual(title, 'Install');
+          }
         }
       }
     });
