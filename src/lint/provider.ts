@@ -30,6 +30,7 @@ import {
   spawnAsPromise,
   isFortran,
   shellTask,
+  toSafePreprocessorFilename,
 } from '../util/tools';
 
 import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './compilers';
@@ -644,7 +645,7 @@ export class FortranLintingProvider {
     args.push(...`${this.settings.fyppExtraArgs}`);
 
     // The file to be preprocessed
-    args.push(document.fileName);
+    args.push(toSafePreprocessorFilename(document.fileName));
 
     const filePath = path.parse(document.fileName).dir;
     return await spawnAsPromise(fypp, args, { cwd: filePath }, undefined);

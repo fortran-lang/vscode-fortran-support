@@ -285,6 +285,16 @@ export function resolveVariables(
   // return new Promise<string>((resolve) => { resolve(ret) });
 }
 
+export function toSafePreprocessorFilename(filename: string): string {
+  if (process.platform != 'win32') return filename;
+  // On Windows, replace backslashes with forward slashes for compatibility.
+  // URIs and paths for instance use "correct" Windows separators however
+  // when converted to strings the escaped backslashes confuse preprocessors.
+  // e.g. "c:\\something\\new" becomes "c:\something\new" where \s \n are
+  // treated as escape sequences.
+  return filename.replace(/\\/g, '/');
+}
+
 /**
  * Resolves a path relative to the workspace folder, an optional `uri`
  * can be provided to help retrieve the correct workspace folder when working
