@@ -1,5 +1,7 @@
 import { defineConfig } from '@vscode/test-cli';
 import { createRequire } from 'module';
+import * as path from 'path';
+import process from 'process';
 
 const require = createRequire(import.meta.url);
 const mochaConfig = require('./test/mochaConfig.json');
@@ -26,8 +28,8 @@ export default defineConfig({
   ],
   coverage: {
     includeAll: true,
-    include: ['out/**/*.js'],
-    exclude: ['**/node_modules/**', 'out/test/**'],
+    include: [path.join(process.cwd(), 'out/**/*.js')],
+    exclude: ['**/node_modules/**', path.join(process.cwd(), 'out/test/**')],
     reporter: ['html', 'text', 'lcov'],
   },
 });
