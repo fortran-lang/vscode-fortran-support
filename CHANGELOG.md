@@ -80,6 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed various bugs with syntax highlighting and `FORMAT` statements
+  ([#1130](https://github.com/fortran-lang/vscode-fortran-support/issues/1130))
 - Fixed bug with `fypp` and Windows where preprocessor paths were not properly
   resolved
   ([#1274](https://github.com/fortran-lang/vscode-fortran-support/pull/1274))

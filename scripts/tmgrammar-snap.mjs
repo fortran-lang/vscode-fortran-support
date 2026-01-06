@@ -32,6 +32,8 @@ import { Command } from 'commander';
 import { globSync } from 'glob';
 import textmate from 'vscode-textmate';
 import oniguruma from 'vscode-oniguruma';
+import * as Diff from 'diff';
+import colors from 'ansi-colors';
 
 const { Registry, parseRawGrammar } = textmate;
 const { loadWASM, OnigScanner, OnigString } = oniguruma;
@@ -176,6 +178,23 @@ function generateSnapshotForFile(text, grammar) {
 }
 
 /**
+ * Colorizes a unified diff patch string.
+ * @param {string} patch
+ * @returns {string}
+ */
+function colorizeDiff(patch) {
+  return patch
+    .split('\n')
+    .map(line => {
+      if (line.startsWith('+')) return colors.green(line);
+      if (line.startsWith('-')) return colors.red(line);
+      if (line.startsWith('@')) return colors.cyan(line);
+      return line;
+    })
+    .join('\n');
+}
+
+/**
  * Resolve the installed oniguruma WASM path.
  * @returns {string}
  */
@@ -276,6 +295,15 @@ async function main() {
     }
     if (expected !== snapshot) {
       console.error(`Snapshot mismatch: ${path.relative(projectRoot, filePath)}`);
+      const patch = Diff.createTwoFilesPatch(
+        path.basename(snapPath),
+        path.basename(snapPath),
+        expected,
+        snapshot,
+        'Expected',
+        'Actual'
+      );
+      console.error(colorizeDiff(patch));
       mismatches++;
     }
   }
