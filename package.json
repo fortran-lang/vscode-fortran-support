@@ -749,7 +749,7 @@
     "coverage": "vscode-test --coverage"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.6",
+    "@eslint/compat": "^2.0.0",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.39.2",
     "@types/glob": "^8.0.1",
