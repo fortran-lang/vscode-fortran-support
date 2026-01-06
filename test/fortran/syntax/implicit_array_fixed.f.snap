@@ -1,12 +1,9 @@
 >C     This file demonstrates the syntax of "implicit arrays" (Implied-DO)
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >C     in Fixed Form Fortran.
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >C     Covers: DATA statements, I/O lists, and Array Constructors.
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >
 >      program implicit_arrays_fixed
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
@@ -55,14 +52,11 @@
 #                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
 >
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     1. DATA Statements (Implied-DO)
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >
 >      data (a(i), i=1, 5) /1, 2, 3, 4, 5/
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
@@ -94,8 +88,7 @@
 #                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
 >
 >C     Continuation in DATA implied-do
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      data (a(i),
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.data.fortran
@@ -129,14 +122,11 @@
 #                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
 >
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     2. I/O Lists
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >
 >      print *, (a(i), i=1, 10)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
@@ -159,8 +149,7 @@
 #                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.right.fortran
 >
 >C     Nested implied-do in I/O
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      write(*,*) ((b(i,j), i=1, 3), j=1, 3)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.write.fortran
@@ -194,8 +183,7 @@
 #                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
 >
 >C     Complex continuation in I/O list
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      print *, (a(i),
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
@@ -255,8 +243,7 @@
 #                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
 >
 >C     With expressions in bounds
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran comment.line.fortran
 >      print *, (a(i), i=1, 2*5)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran keyword.control.print.fortran
@@ -280,18 +267,14 @@
 #                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran punctuation.parentheses.right.fortran
 >
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     3. Array Constructors (Supported in F90 fixed form)
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >
 >C     Old style (/ /)
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      a = (/ (i, i=1, 10) /)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
@@ -313,8 +296,7 @@
 #                          ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.contructor.array punctuation.bracket.left.fortran
 >
 >C     Split across lines
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      a = (/ (i,
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
@@ -339,8 +321,7 @@
 #                       ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.contructor.array punctuation.bracket.left.fortran
 >
 >C     Nested
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >      a = (/ ((i+j, i=1, 2), j=1, 2), 0, 0, 0, 0, 0, 0 /)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
 #      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.parameter.fortran
@@ -384,14 +365,11 @@
 #                                                       ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.contructor.array punctuation.bracket.left.fortran
 >
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     4. Whitespace stress test
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >C     ==========================================
-#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
 >
 >      a = (/ (  i  ,  i  =  1  ,  10  ) /)
 #^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran

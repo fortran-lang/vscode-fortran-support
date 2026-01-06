@@ -1,0 +1,10 @@
+{
+  "scopeName": "comment.line.fixed.injection",
+  "injectionSelector": "L:source.fortran.fixed",
+  "patterns": [
+    {
+      "match": "^[cC*].*$\\n?",
+      "name": "comment.line.fortran"
+    }
+  ]
+}

@@ -158,6 +158,13 @@
         "language": "FortranFixedForm",
         "scopeName": "source.fortran.fixed",
         "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
+      },
+      {
+        "scopeName": "comment.line.fixed.injection",
+        "path": "./syntaxes/fortran_fixed-form-comments.injection.json",
+        "injectTo": [
+          "source.fortran.fixed"
+        ]
       }
     ],
     "snippets": [

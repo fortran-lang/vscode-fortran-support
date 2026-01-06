@@ -1,6 +1,5 @@
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      real Function sqrEdge(xy1, xy2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
@@ -15,14 +14,11 @@
 #                                 ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C Routine computes sqruare distance between two points
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         real xy1(2), xy2(2)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -92,8 +88,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      real Function calEdge(xy1, xy2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
@@ -108,14 +103,11 @@
 #                                 ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C Routine computes distance between two points
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         real xy1(2), xy2(2)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -191,8 +183,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      real Function calNorm(xy1)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
@@ -204,14 +195,11 @@
 #                            ^^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C Routine calculates norm of vector xy1
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         real xy1(2)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -262,8 +250,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Subroutine extNormal(xy1, xy2, xy3, xyn)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
@@ -282,17 +269,13 @@
 #                                          ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                             ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C Routines compute external normal vector to the edge {xy1, xy2}
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C of triangle {xy1, xy2, xy3}
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         real xy1(2), xy2(2), xy3(2), xyn(2)
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
@@ -422,8 +405,7 @@
 #                       ^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran meta.parameter.fortran
 >
 >c ... orientation
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         x = xy3(1) - xy1(1)
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
@@ -533,8 +515,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Subroutine calNormal(xy1, xy2, xyn)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
@@ -550,14 +531,11 @@
 #                                     ^^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                        ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C Routines compute a normal vector to the edge {xy1, xy2}
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         real xy1(2), xy2(2), xyn(2)
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
@@ -692,8 +670,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      real Function DotMul(a, b)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
@@ -708,14 +685,11 @@
 #                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C Routine computes scalar product of two vectors
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         real a(2), b(2)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -774,8 +748,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      real Function VecMul(a, b)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.real.fortran
@@ -790,14 +763,11 @@
 #                              ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                               ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C Routine computes vector product a x b which is a number in 2D.
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         real a(2), b(2)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -856,8 +826,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Logical Function check1j(i1, j)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
@@ -872,14 +841,11 @@
 #                                   ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                    ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C check1j = TRUE if i1 belongs to the set j(3).
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         Integer j(3)
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -966,8 +932,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Logical Function check12(i1, j1, j2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
@@ -985,14 +950,11 @@
 #                                       ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                         ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C check12 = TRUE if i1 belongs to the set {j1, j2}.
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         check12 = .TRUE.
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -1046,8 +1008,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Logical Function check22(i1, i2, j1, j2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^ source.fortran.fixed meta.function.fortran meta.attribute-list.function.fortran storage.type.character.fortran
@@ -1068,14 +1029,11 @@
 #                                           ^^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                             ^ source.fortran.fixed meta.function.fortran meta.function.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C check22 = TRUE if pair {i1, i2} coinsides with {j1, j2}.
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran comment.line.fortran
 >         check22 = .FALSE.
 #^^^^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.function.fortran meta.block.specification.function.fortran
@@ -1139,8 +1097,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Subroutine swapii(i1, i2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
@@ -1153,14 +1110,11 @@
 #                            ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C Routine swaps two integers
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         i  = i1
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
@@ -1197,8 +1151,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Subroutine swapdd(d1, d2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
@@ -1211,14 +1164,11 @@
 #                            ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                              ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C Routine swaps two real numbers
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         real d, d1, d2
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran
@@ -1264,8 +1214,7 @@
 >
 >
 >C ================================================================
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >      Subroutine paramInclude(d1, d2)
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
 #      ^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran keyword.other.subroutine.fortran
@@ -1278,14 +1227,11 @@
 #                                  ^^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list variable.parameter.fortran
 #                                    ^ source.fortran.fixed meta.subroutine.fortran meta.first-line.fortran meta.dummy-variable-list punctuation.definition.parameters.end.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C Dummy function to test includes on hover
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >C ================================================================
-#^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran comment.line.fortran
 >         include "parameters.prm"
 #^^^^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran constant.numeric.fortran
 #      ^^^ source.fortran.fixed meta.subroutine.fortran meta.block.specification.subroutine.fortran

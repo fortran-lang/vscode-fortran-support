@@ -80,6 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed inconsistent syntax highlighting of comments in Fixed Form
+  ([#923](https://github.com/fortran-lang/vscode-fortran-support/issues/923))
 - Fixed various bugs with syntax highlighting and `FORMAT` statements
   ([#1130](https://github.com/fortran-lang/vscode-fortran-support/issues/1130))
 - Fixed bug with `fypp` and Windows where preprocessor paths were not properly
