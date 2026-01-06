@@ -1,9 +1,7 @@
 >*     euclid.f (FORTRAN 77)
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >*     Find greatest common divisor using the Euclidean algorithm
-#^ source.fortran.fixed comment.line.fortran
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.fixed comment.line.fortran
 >
 >      PROGRAM EUCLID
 #^^^^^^ source.fortran.fixed constant.numeric.fortran
