@@ -3057,9 +3057,31 @@
     "IO-statements": {
       "patterns": [
         {
+          "comment": "Format statement Introduced in the Fortran 1977 standard.",
+          "name": "meta.statement.IO.fortran",
+          "begin": "(?ix)\\b(format)(?=\\s*(?:\\(|&|!))",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.format.fortran"
+            }
+          },
+          "end": "(?=[;!\\n])",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#line-continuation-operator"
+            },
+            {
+              "include": "#format-parentheses"
+            }
+          ]
+        },
+        {
           "comment": "Introduced in the Fortran 1977 standard.",
           "name": "meta.statement.IO.fortran",
-          "begin": "(?ix)\\b(?:(backspace)|(close)|(endfile)|(format)|(inquire)|(open)|(read)|(rewind)|(write))\\s*(?=\\()",
+          "begin": "(?ix)\\b(?:(backspace)|(close)|(endfile)|(inquire)|(open)|(read)|(rewind)|(write))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.backspace.fortran"
@@ -3071,24 +3093,21 @@
               "name": "keyword.control.endfile.fortran"
             },
             "4": {
-              "name": "keyword.control.format.fortran"
-            },
-            "5": {
               "name": "keyword.control.inquire.fortran"
             },
-            "6": {
+            "5": {
               "name": "keyword.control.open.fortran"
             },
-            "7": {
+            "6": {
               "name": "keyword.control.read.fortran"
             },
-            "8": {
+            "7": {
               "name": "keyword.control.rewind.fortran"
             },
-            "9": {
+            "8": {
               "name": "keyword.control.write.fortran"
             },
-            "10": {
+            "9": {
               "name": "punctuation.parentheses.left.fortran"
             }
           },
@@ -5365,9 +5384,29 @@
         }
       ]
     },
+    "format-descriptor": {
+      "comment": "FORMAT descriptor content for FORMAT statements (avoids array constructor scoping)",
+      "contentName": "meta.format-descriptor.fortran",
+      "begin": "\\(\\/",
+      "beginCaptures": {
+        "0": { "name": "punctuation.bracket.left.fortran" }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": { "name": "punctuation.bracket.right.fortran" }
+      },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#constants" },
+        { "include": "#operators" },
+        { "include": "#parentheses" },
+        { "include": "#intrinsic-functions" },
+        { "include": "#variable" }
+      ]
+    },
     "array-constructor": {
       "name": "meta.contructor.array",
-      "begin": "(?=\\s*(\\[|\\(\\/))",
+      "begin": "(?<!\\n)(?=\\s*(\\[|\\(\\/))",
       "end": "(?<!\\G)",
       "patterns": [
         {
@@ -5661,7 +5700,55 @@
         }
       ]
     },
-    "parentheses": {
+    "format-descriptors": {
+      "patterns": [
+        {
+          "comment": "Format descriptors.",
+          "match": "(?i)(?:\\b|(?<=\\d)|(?<=P))(EN|ES|EX|DT|DC|DP|RC|RD|RN|RP|RU|RZ|BN|BZ|SP|SS|TL|TR|I|F|E|D|G|L|A|B|O|Z|T|X|Q|S|P)(?=$|[^A-Za-z_]|[EFDG](?i))",
+          "captures": {
+            "1": { "name": "keyword.other.format-descriptor.fortran" }
+          }
+        },
+        {
+          "match": "\\/",
+          "name": "keyword.operator.format.newline.fortran"
+        },
+        {
+          "match": ":",
+          "name": "keyword.operator.format.separator.fortran"
+        },
+        {
+          "comment": "Non-standard newline suppression",
+          "match": "\\$|\\\\",
+          "name": "keyword.other.format-descriptor.nonstandard.fortran"
+        },
+        {
+          "comment": "Legacy Hollerith constant (e.g. 4HText)",
+          "match": "(?i)(?:\\b|(?<=\\d))\\d+H",
+          "name": "keyword.other.format-descriptor.legacy.fortran"
+        }
+      ]
+    },
+    "parentheses-common": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#constants"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#intrinsic-functions"
+        },
+        {
+          "include": "#variable"
+        }
+      ]
+    },
+    "format-parentheses": {
       "begin": "\\s*(\\()",
       "beginCaptures": {
         "1": {
@@ -5679,11 +5766,37 @@
           "include": "#comments"
         },
         {
-          "include": "#constants"
+          "include": "#line-continuation-operator"
         },
         {
-          "include": "#operators"
+          "match": "(?:\\b|\\+|-)\\d+(?=[A-Za-z])",
+          "name": "constant.numeric.fortran"
         },
+        {
+          "include": "#format-descriptors"
+        },
+        {
+          "include": "#format-parentheses"
+        },
+        {
+          "include": "#parentheses-common"
+        }
+      ]
+    },
+    "parentheses": {
+      "begin": "\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.left.fortran"
+        }
+      },
+      "end": "(\\))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.parentheses.right.fortran"
+        }
+      },
+      "patterns": [
         {
           "include": "#array-constructor"
         },
@@ -5691,10 +5804,7 @@
           "include": "#parentheses"
         },
         {
-          "include": "#intrinsic-functions"
-        },
-        {
-          "include": "#variable"
+          "include": "#parentheses-common"
         }
       ]
     },
@@ -5716,25 +5826,13 @@
           "include": "#procedure-call-dummy-variable"
         },
         {
-          "include": "#comments"
-        },
-        {
-          "include": "#constants"
-        },
-        {
-          "include": "#operators"
-        },
-        {
           "include": "#array-constructor"
         },
         {
           "include": "#parentheses"
         },
         {
-          "include": "#intrinsic-functions"
-        },
-        {
-          "include": "#variable"
+          "include": "#parentheses-common"
         }
       ]
     },

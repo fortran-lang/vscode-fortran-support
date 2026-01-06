@@ -105,7 +105,8 @@
 #   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
 #    ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
 #          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
-#           ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
 #              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
 #                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
 >

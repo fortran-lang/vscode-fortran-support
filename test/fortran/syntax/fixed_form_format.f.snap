@@ -1,0 +1,555 @@
+>      program mwe
+#^^^^^^ source.fortran.fixed constant.numeric.fortran
+#      ^^^^^^^ source.fortran.fixed meta.program.fortran keyword.control.program.fortran
+#             ^ source.fortran.fixed meta.program.fortran
+#              ^^^ source.fortran.fixed meta.program.fortran entity.name.program.fortran
+> 1002 format
+#^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+# ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#      ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+>     +  (/,'At iterate',i5,4x,'f= ',1p,d12.5,4x,'|proj g|= ',1p,d12.5)
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.line-continuation-operator.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#            ^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                         ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                               ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                        ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                          ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                                 ^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                                                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>        INTEGER I, J, A(2,5), B(2)
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran storage.type.integer.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                    ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                            ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran constant.numeric.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.specification.type.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+>        OPEN (unit=2, access='sequential', file='FOR002.DAT')
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.open.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                              ^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                          ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                                 ^^^^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>        READ (2,100) (B(I), (A(I,J), J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.read.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+> 
+>  100   FORMAT (2 (I3, X, 5(I4,X), /) ) 
+#^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                    ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                        ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                       ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+> 
+>        WRITE (6,999) B, ((A(I,J),J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.write.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+>
+>  999   FORMAT (' B is ', 2(I3, X), ';  A is', /
+#^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                 ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                        ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                  ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                                     ^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                                             ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+>     1       (' ', 5 (I4, X)) )
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.line-continuation-operator.fortran
+#      ^^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                       ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>        READ (2,200) (B(I), (A(I,J), J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.read.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>
+>  200   FORMAT (2 (I3, X, 5(I4,X), :/) )
+#^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                    ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                        ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                 ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.separator.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>        WRITE (6,999) B, ((A(I,J),J=1,5),I=1,2)  
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.write.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                               ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+>
+>        READ (2,300) (B(I), (A(I,J), J=1,5),I=1,2)  
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.read.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                                  ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>
+>  300   FORMAT ( (I3, X, 5(I4,X)) )
+#^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                   ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                       ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                            ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>        WRITE (6,999) B, ((A(I,J),J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.write.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+>
+>        READ (2,400) (B(I), (A(I,J), J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.read.fortran
+#            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran meta.parameter.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                   ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran variable.parameter.dummy-variable.fortran.modern
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.assignment.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>
+>  400   FORMAT ( I3, X, 5(I4,X) )
+#^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#     ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#        ^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                  ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                           ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>        WRITE (6,999) B, ((A(I,J),J=1,5),I=1,2) 
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran
+#        ^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.write.fortran
+#             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.left.fortran
+#                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.left.fortran
+#                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran meta.parameter.fortran
+#                                ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran punctuation.parentheses.right.fortran
+#                                 ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                  ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                   ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                    ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                     ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                      ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                       ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                        ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                         ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran meta.parameter.fortran
+#                                          ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran keyword.operator.assignment.fortran
+#                                           ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                            ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+#                                             ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran constant.numeric.fortran
+#                                              ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran punctuation.parentheses.right.fortran
+#                                               ^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.name-list.fortran
+>
+>      end program mwe
+#^^^^^^ source.fortran.fixed meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#      ^^^^^^^^^^^ source.fortran.fixed meta.program.fortran keyword.control.endprogram.fortran
+#                 ^ source.fortran.fixed meta.program.fortran
+#                  ^^^ source.fortran.fixed meta.program.fortran entity.name.program.fortran
+>

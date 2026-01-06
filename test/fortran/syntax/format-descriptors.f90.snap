@@ -1,0 +1,402 @@
+>program format_descriptors_test
+#^^^^^^^ source.fortran.free meta.program.fortran keyword.control.program.fortran
+#       ^ source.fortran.free meta.program.fortran
+#        ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>  ! 1. Integers (I, B, O, Z)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  100 format(I5, I10.5, B32.32, O20, Z16.16)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                 ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                        ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  
+>  ! 2. Reals (F, E, EN, ES, D, G)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! Note: EX is F2018. If your compiler supports it:
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! 103 format(EX10.3) 
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  101 format(F10.2, E12.4, EN12.4, ES12.4E3)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                       ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  102 format(D14.7, G15.5, G0, G0.8)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                            ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>  ! 3. Logicals & Characters (L, A)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  104 format(L1, 2L5, A, A20)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                   ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>  ! 4. Positioning & Control (T, TL, TR, X)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  105 format(T15, TL5, TR2, 1X, 4X)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                    ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                         ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  
+>  ! 5. Scale Factors (P)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! P can stand alone or precede a descriptor
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  106 format(1P, -1P, 2P, 0P) 
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                    ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>  107 format(1PE12.4, -2PF10.5, 3PG15.5)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                    ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  ! Test Adjacency: Scale + Repeat + Descriptor
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  108 format(1P2E12.4)     ! 1P (Scale) 2 (Repeat) E12.4 (Desc)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                      ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>
+>  ! 6. Sign, Blank, Rounding, Decimal Control
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  109 format(S, SP, SS, BN, BZ)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                        ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                          ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  110 format(RU, RD, RZ, RN, RC, RP)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                   ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                     ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                       ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  111 format(DC, DP)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>  ! 7. Derived Types (DT)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  112 format(DT, DT'type', DT"string"(10,5))
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                    ^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.double.fortran punctuation.definition.string.begin.fortran
+#                              ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.double.fortran
+#                                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.double.fortran punctuation.definition.string.end.fortran
+#                                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#                                      ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                                          ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>  ! 8. Separators & Terminators
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  113 format(:, /, //)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.separator.fortran
+#              ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#                 ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                   ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.operator.format.newline.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  ! Extensions: $ (Suppress Newline)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  114 format($) 
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.nonstandard.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>
+>  ! 9. Legacy / Edge Cases
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! ---------------------------------
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! Hollerith Constants (Legacy)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! " HELLO WORLD" is 12 chars
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  201 format(12H HELLO WORLD, 1H1)
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                 ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                       ^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran meta.parameter.fortran
+#                            ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                               ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>  
+>  ! False Positives / Ambiguity Strings
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  ! These should highlight as strings, NOT descriptors
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  203 format('EXP', 'END', 'Q') 
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#              ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                 ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                     ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                         ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                           ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.begin.fortran
+#                            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran string.quoted.single.fortran punctuation.definition.string.end.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+#                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+>  
+>  ! Spacing robustness
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+#   ^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran comment.line.fortran
+>  206 format( I 10, 1 P E 12. 4 )
+#^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#  ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran constant.numeric.fortran
+#     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran
+#      ^^^^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.control.format.fortran
+#            ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.left.fortran
+#             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                  ^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                    ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                     ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                      ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                       ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                        ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran keyword.other.format-descriptor.fortran
+#                         ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                          ^^^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                             ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                              ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran constant.numeric.fortran
+#                               ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran
+#                                ^ source.fortran.free meta.program.fortran meta.block.specification.program.fortran meta.statement.IO.fortran punctuation.parentheses.right.fortran
+>
+>end program format_descriptors_test
+#^^^^^^^^^^^ source.fortran.free meta.program.fortran keyword.control.endprogram.fortran
+#           ^ source.fortran.free meta.program.fortran
+#            ^^^^^^^^^^^^^^^^^^^^^^^ source.fortran.free meta.program.fortran entity.name.program.fortran
+>
