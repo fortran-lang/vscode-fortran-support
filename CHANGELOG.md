@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.0.0]
+
 ### Added
 
 - Added syntax highlighting support for `sync` and `event` image control statements
@@ -599,7 +601,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial release
 
-[unreleased]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.0....HEAD
+[unreleased]: https://github.com/fortran-lang/vscode-fortran-support/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.2.0...v4.0.0
 [3.2.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/fortran-lang/vscode-fortran-support/compare/v2.6.2...v3.0.0
