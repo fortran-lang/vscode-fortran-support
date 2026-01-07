@@ -186,6 +186,6 @@ function detectDeprecatedOptions() {
 
 async function showWhatsNew() {
   vscode.env.openExternal(
-    vscode.Uri.parse('https://github.com/fortran-lang/vscode-fortran-support/wiki/Pre-Release')
+    vscode.Uri.parse('https://github.com/fortran-lang/vscode-fortran-support/wiki/v4.0.0')
   );
 }
