@@ -135,11 +135,12 @@ export class LinterSettings {
 
   public get fyppEnabled(): boolean {
     // FIXME: fypp currently works only with gfortran
-    if (this.compiler !== 'gfortran') {
+    const isEnabled = this.config.get<boolean>('linter.fypp.enabled');
+    if (this.compiler !== 'gfortran' && isEnabled) {
       this.logger.warn(`[lint] fypp currently only supports gfortran.`);
       return false;
     }
-    return this.config.get<boolean>('linter.fypp.enabled');
+    return isEnabled;
   }
   public get fyppPath(): string {
     return this.config.get<string>('linter.fypp.path');
