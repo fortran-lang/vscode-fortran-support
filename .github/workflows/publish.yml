@@ -1,11 +1,44 @@
+name: Deploy Release
+
 on:
   release:
     types: [published]
 
-name: Deploy Extension
 jobs:
-  deploy:
+  prepare:
+    name: Prepare Release
     runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.version.outputs.VERSION }}
+      PRE_RELEASE: ${{ steps.pre.outputs.PRE_RELEASE }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+
+      - name: Capture prerelease flag
+        id: pre
+        run: echo "PRE_RELEASE=${{ github.event.release.prerelease }}" >> $GITHUB_OUTPUT
+
+      - name: Derive version from tag
+        id: version
+        run: |
+          ref="${GITHUB_REF_NAME}"
+          version="${ref#v}"
+          echo "VERSION=$version" >> $GITHUB_OUTPUT
+
+  deploy-vscode:
+    name: Publish Release (VS Code Marketplace)
+    needs: prepare
+    runs-on: ubuntu-latest
+    environment: publish-vscode
+    concurrency: publish-vscode
+    env:
+      VERSION: ${{ needs.prepare.outputs.VERSION }}
+      PRE_RELEASE: ${{ needs.prepare.outputs.PRE_RELEASE }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -13,41 +46,50 @@ jobs:
           node-version: 22.x
       - run: npm ci
 
-      # Package and publish the extension to VS Code Marketplace
-      # Do not produce a git tag, only increment the version in package.json
-      - name: Publish Release ${{ github.ref_name }}
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Package and publish to VS Code Marketplace
         run: |
           npm i -g @vscode/vsce
-          if [ "$pre_release" = true ] ; then
-            vsce publish --no-git-tag-version --pre-release ${GITHUB_REF_NAME:1}
+          if [ "${PRE_RELEASE}" = "true" ]; then
+            vsce publish --no-git-tag-version --pre-release "${VERSION}"
           else
-            vsce publish --no-git-tag-version ${GITHUB_REF_NAME:1}
+            vsce publish --no-git-tag-version "${VERSION}"
           fi
         env:
-          pre_release: ${{ github.event.release.prerelease }}
           VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
-      # Commit the new version to the repository default branch and update the tag
-      # This removes the signing of the commit, tag and release since it's
-      # created by the GitHub Actions bot
-      # - name: Update package.json version
-      #   if: startsWith(github.ref, 'refs/tags/v')
-      #   run: |
-      #     git config user.name github-actions
-      #     git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      #     git switch -c tmp
-      #     git add package.json
-      #     git commit -m "ci: update version to ${GITHUB_REF_NAME:1}"
-      #     git fetch
-      #     git switch main
-      #     git merge tmp
-      #     git tag -f $GITHUB_REF_NAME
-      #     git push origin -f $GITHUB_REF_NAME
-      #     git push origin -f main
-
-      # Upload the artifact as a release asset
-      - uses: softprops/action-gh-release@master
+      - name: Upload VSIX to release assets
+        uses: softprops/action-gh-release@master
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: ./*.vsix
+
+  deploy-openvsx:
+    name: Publish Release (OpenVSX)
+    needs: prepare
+    runs-on: ubuntu-latest
+    environment: publish-openvsx
+    concurrency: publish-openvsx
+    env:
+      VERSION: ${{ needs.prepare.outputs.VERSION }}
+      PRE_RELEASE: ${{ needs.prepare.outputs.PRE_RELEASE }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+      - run: npm ci
+
+      - name: Apply OpenVSX patch
+        run: node ./scripts/patch-openvsx.mjs
+
+      - name: Publish to OpenVSX
+        run: |
+          npm i -g @vscode/vsce ovsx
+          if [ "${PRE_RELEASE}" = "true" ]; then
+            vsce package --no-git-tag-version --pre-release "${VERSION}"
+          else
+            vsce package --no-git-tag-version "${VERSION}"
+          fi
+          ovsx publish ./*.vsix --skip-duplicate
+        env:
+          OVSX_PAT: ${{ secrets.OPENVSX_MARKETPLACE_TOKEN }}
