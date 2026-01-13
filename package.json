@@ -766,7 +766,7 @@
     "@types/vscode": "^1.67.0",
     "@types/which": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
-    "@typescript-eslint/parser": "^8.29.1",
+    "@typescript-eslint/parser": "^8.53.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.4.1",
     "ansi-colors": "^4.1.3",
