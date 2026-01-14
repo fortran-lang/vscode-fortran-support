@@ -782,7 +782,7 @@
     "prettier": "^3.7.4",
     "ts-loader": "^9.5.1",
     "typescript": "^5.9.3",
-    "vscode-extension-tester": "^8.19.0",
+    "vscode-extension-tester": "^8.21.0",
     "vscode-oniguruma": "^1.5.1",
     "vscode-textmate": "^7.0.1",
     "webpack": "^5.94.0",
