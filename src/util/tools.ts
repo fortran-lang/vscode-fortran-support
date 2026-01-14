@@ -141,6 +141,7 @@ export async function promptForMissingTool(
  * A wrapper around a call to `pip` for installing external tools.
  * Does not explicitly check if `pip` is installed.
  *
+ * @deprecated Use `installPythonPackage` from python-installer.ts for better virtual environment support
  * @param pyPackage name of python package in PyPi
  */
 export async function pipInstall(pyPackage: string): Promise<string> {
