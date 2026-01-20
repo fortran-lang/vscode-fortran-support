@@ -20,7 +20,7 @@
     }
   ],
   "engines": {
-    "vscode": "^1.67.0"
+    "vscode": "^1.78.0"
   },
   "icon": "assets/png/icon.png",
   "homepage": "https://github.com/fortran-lang/vscode-fortran-support#readme",
@@ -763,7 +763,7 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^22.13.0",
     "@types/semver": "^7.7.1",
-    "@types/vscode": "^1.67.0",
+    "@types/vscode": "^1.78.0",
     "@types/which": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.29.1",
@@ -796,6 +796,7 @@
     ]
   },
   "dependencies": {
+    "@vscode/python-extension": "1.0.5",
     "glob": "^11.1.0",
     "semver": "^7.7.3",
     "vscode-languageclient": "^8.1.0",
