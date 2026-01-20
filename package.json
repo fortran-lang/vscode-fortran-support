@@ -338,7 +338,7 @@
               "std",
               "gfortran5"
             ],
-            "markdownDescription": "Line numbering marker format,  currently std`, `cpp` and `gfortran5` are supported, where `std` emits `#line` pragmas similar to standard tools, 'cpp' produces line directives as emitted by GNU cpp, and `gfortran5` cpp line directives with a workaround for a bug introduced in GFortran 5. Default: `cpp`.",
+            "markdownDescription": "Line numbering marker format,  currently `std`, `cpp` and `gfortran5` are supported, where `std` emits `#line` pragmas similar to standard tools, `cpp` produces line directives as emitted by GNU cpp, and `gfortran5` cpp line directives with a workaround for a bug introduced in GFortran 5. Default: `cpp`.",
             "order": 120
           },
           "fortran.linter.fypp.extraArgs": {
