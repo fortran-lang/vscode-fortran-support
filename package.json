@@ -53,6 +53,7 @@
   "activationEvents": [
     "onLanguage:FortranFreeForm",
     "onLanguage:FortranFixedForm",
+    "onLanguage:FortranNamelist",
     "onCommand:fortran.analysis.restartLanguageServer",
     "onCommand:fortran.analysis.rescanLinter",
     "onCommand:fortran.analysis.cleanLinterDiagnostics",
@@ -116,6 +117,22 @@
           "light": "./assets/png/icon.png",
           "dark": "./assets/png/icon.png"
         }
+      },
+      {
+        "id": "FortranNamelist",
+        "aliases": [
+          "Fortran Namelist",
+          "fortran-namelist"
+        ],
+        "extensions": [
+          ".nml",
+          ".namelist"
+        ],
+        "configuration": "./language-configuration.namelist.json",
+        "icon": {
+          "light": "./assets/png/icon.png",
+          "dark": "./assets/png/icon.png"
+        }
       }
     ],
     "jsonValidation": [
@@ -158,6 +175,11 @@
         "language": "FortranFixedForm",
         "scopeName": "source.fortran.fixed",
         "path": "./syntaxes/fortran_fixed-form.tmLanguage.json"
+      },
+      {
+        "language": "FortranNamelist",
+        "scopeName": "source.fortran-namelist",
+        "path": "./syntaxes/fortran_namelist.tmLanguage.json"
       },
       {
         "scopeName": "comment.line.fixed.injection",
