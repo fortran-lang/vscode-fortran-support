@@ -32,6 +32,7 @@
 ## Key Features
 
 - Syntax highlighting (Free and Fixed forms)
+- Namelist syntax highlighting, folding, and outline support (`.nml`, `.namelist`) (highlighting/folding based on NicoJG/VSCode-Fortran-Namelist by NicoJG; outline added here)
 - Hover support, Signature help and Auto-completion
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
