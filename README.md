@@ -76,6 +76,45 @@ to the `fortls` location by setting
 For more about the Language Server's capabilities please refer to the
 [documentation](https://fortls.fortran-lang.org/) of `fortls`.
 
+## Working with External Libraries (MPI, PETSc, HDF5, etc.)
+
+When using external libraries you may see warnings about unknown modules. The extension provides several ways to handle these:
+
+Option 1: Auto-detect Libraries
+1. Open Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
+2. Run `Fortran: Configure External Libraries`
+3. Select "Auto-detect libraries"
+4. Choose which detected libraries to configure
+
+Option 2: Manual Configuration
+Add to your workspace `.vscode/settings.json`:
+
+```json
+{
+  "fortran.fortls.externalModules": ["mpi", "mpi_f08", "petsc", "hdf5"],
+  "fortran.fortls.ignoreExternalDiagnostics": true
+}
+```
+
+Option 3: Disable Specific Diagnostics
+
+```json
+{
+  "fortran.fortls.disableSpecificDiagnostics": ["unknownModule"]
+}
+```
+
+Option 4: Provide Module Paths
+
+```json
+{
+  "fortran.fortls.externalModulePaths": [
+    "/usr/lib/x86_64-linux-gnu/openmpi/include",
+    "/usr/include"
+  ]
+}
+```
+
 ## Linting
 
 Linting allows for compiler error and warning detection while coding

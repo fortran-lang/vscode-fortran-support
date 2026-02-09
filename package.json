@@ -53,6 +53,7 @@
   "activationEvents": [
     "onLanguage:FortranFreeForm",
     "onLanguage:FortranFixedForm",
+    "onCommand:fortran.configureExternalLibraries",
     "onCommand:fortran.analysis.restartLanguageServer",
     "onCommand:fortran.analysis.rescanLinter",
     "onCommand:fortran.analysis.cleanLinterDiagnostics",
@@ -542,6 +543,49 @@
             "markdownDescription": "Disable the Language Server. If true, it will limit the extension's functionality substantially. **Should be avoided!**",
             "order": 1300
           }
+      ,
+      "fortran.fortls.disableSpecificDiagnostics": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "unknownModule",
+            "unknownType",
+            "multipleDefinition",
+            "variableMasking",
+            "missingArgument",
+            "unclosedBlock",
+            "invalidNesting"
+          ]
+        },
+        "default": [],
+        "markdownDescription": "Disable specific diagnostic types from fortls. Useful when working with external libraries. Options:\n- `unknownModule`: Unknown modules in USE statements\n- `unknownType`: Unknown user-defined types\n- `multipleDefinition`: Multiple definitions with same name\n- `variableMasking`: Variable masks parent scope\n- `missingArgument`: Missing subroutine/function arguments\n- `unclosedBlock`: Unclosed blocks/scopes\n- `invalidNesting`: Invalid scope nesting",
+        "order": 1301
+      },
+      "fortran.fortls.externalModules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [],
+        "markdownDescription": "List of external module names to treat as valid (e.g., [\"mpi\", \"petsc\", \"hdf5\"]). Suppresses 'unknown module' warnings for these modules. Case-insensitive.",
+        "order": 1302
+      },
+      "fortran.fortls.externalModulePaths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [],
+        "markdownDescription": "Paths to directories containing external library .mod files. Supports glob patterns and variables like ${workspaceFolder}. Example: /usr/lib/x86_64-linux-gnu/openmpi/include",
+        "order": 1303
+      },
+      "fortran.fortls.ignoreExternalDiagnostics": {
+        "type": "boolean",
+        "default": false,
+        "markdownDescription": "Suppress all diagnostics for modules/types that cannot be found in the project. Useful when working with external libraries like MPI, PETSc, etc.",
+        "order": 1304
+      }
         }
       },
       {
@@ -659,6 +703,12 @@
         "icon": "$(debug-alt)",
         "title": "Debug Fortran File"
       }
+      ,
+      {
+        "category": "Fortran",
+        "command": "fortran.configureExternalLibraries",
+        "title": "Configure External Libraries"
+      }
     ],
     "menus": {
       "commandPalette": [
@@ -672,6 +722,12 @@
           "category": "Fortran",
           "command": "fortran.analysis.rescanLinter",
           "title": "Rescan Linter paths",
+          "when": "!virtualWorkspace && shellExecutionSupported"
+        },
+        {
+          "category": "Fortran",
+          "command": "fortran.configureExternalLibraries",
+          "title": "Configure External Libraries",
           "when": "!virtualWorkspace && shellExecutionSupported"
         },
         {

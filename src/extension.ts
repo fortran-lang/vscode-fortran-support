@@ -11,6 +11,7 @@ import { WhatsNew } from './commands/commands';
 import { FortranCompletionProvider } from './fallback-features/completion-provider';
 import { FortranDocumentSymbolProvider } from './fallback-features/document-symbol-provider';
 import { FortranHoverProvider } from './fallback-features/hover-provider';
+import { configureLibrarySupport } from './features/libraryConfig';
 import { FortranFormattingProvider } from './format/provider';
 import { FortranLintingProvider } from './lint/provider';
 import { FortlsClient } from './lsp/client';
@@ -109,6 +110,12 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(vscode.commands.registerCommand(WhatsNew, showWhatsNew));
+  // Register external libraries configuration command
+  const libraryConfigCommand = vscode.commands.registerCommand(
+    'fortran.configureExternalLibraries',
+    configureLibrarySupport
+  );
+  context.subscriptions.push(libraryConfigCommand);
   // Upon the very first initialisation create a file to indicate that the release
   // notes have been shown and not show them again.
   if (

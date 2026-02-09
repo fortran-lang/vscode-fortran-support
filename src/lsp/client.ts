@@ -123,6 +123,16 @@ export class FortlsClient {
       );
       this.logger.info(`[lsp.client] Language Server arguments: ${args.join(' ')}`);
       // Options to control the language client
+      const conf = workspace.getConfiguration(EXTENSION_ID);
+      const initializationOptions = {
+        disable_specific_diagnostics: conf.get<string[]>('fortls.disableSpecificDiagnostics', []),
+        external_modules: (conf.get<string[]>('fortls.externalModules', []) || []).map(m =>
+          m.toLowerCase()
+        ),
+        external_module_paths: conf.get<string[]>('fortls.externalModulePaths', []),
+        ignore_external_diagnostics: conf.get<boolean>('fortls.ignoreExternalDiagnostics', false),
+      };
+
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(fileRoot),
         outputChannel: this.logger.getOutputChannel(),
@@ -132,6 +142,7 @@ export class FortlsClient {
           // Notify the server about file changes to '.fortls files contained in the workspace
           // fileEvents: workspace.createFileSystemWatcher('**/.fortls'),
         },
+        initializationOptions,
       };
       this.client = new LanguageClient(LS_NAME, this.name, serverOptions, clientOptions);
       this.client.start();
@@ -147,6 +158,16 @@ export class FortlsClient {
       );
       this.logger.info(`[lsp.client] Language Server arguments: ${args.join(' ')}`);
       // Options to control the language client
+      const conf = workspace.getConfiguration(EXTENSION_ID);
+      const initializationOptions = {
+        disable_specific_diagnostics: conf.get<string[]>('fortls.disableSpecificDiagnostics', []),
+        external_modules: (conf.get<string[]>('fortls.externalModules', []) || []).map(m =>
+          m.toLowerCase()
+        ),
+        external_module_paths: conf.get<string[]>('fortls.externalModulePaths', []),
+        ignore_external_diagnostics: conf.get<boolean>('fortls.ignoreExternalDiagnostics', false),
+      };
+
       const clientOptions: LanguageClientOptions = {
         documentSelector: FortranDocumentSelector(folder.uri.fsPath),
         workspaceFolder: folder,
@@ -157,6 +178,7 @@ export class FortlsClient {
           // Notify the server about file changes to '.fortls files contained in the workspace
           // fileEvents: workspace.createFileSystemWatcher('**/.fortls'),
         },
+        initializationOptions,
       };
       this.client = new LanguageClient(LS_NAME, this.name, serverOptions, clientOptions);
       this.client.start();
