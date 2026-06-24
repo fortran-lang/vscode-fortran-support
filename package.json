@@ -234,6 +234,12 @@
             ],
             "markdownDescription": "The log level for the extension.",
             "order": 70
+          },
+          "fortran.preprocessor.dimInactiveRegions": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Dim inactive preprocessor regions using the macro definitions configured for `fortls`. Supports `#ifdef`, `#ifndef`, `#if`, and `#elif` when the condition is an integer literal, a bare macro name, or `defined(MACRO)`.",
+            "order": 80
           }
         }
       },

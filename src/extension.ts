@@ -11,6 +11,7 @@ import { WhatsNew } from './commands/commands';
 import { FortranCompletionProvider } from './fallback-features/completion-provider';
 import { FortranDocumentSymbolProvider } from './fallback-features/document-symbol-provider';
 import { FortranHoverProvider } from './fallback-features/hover-provider';
+import { InactivePreprocessorProvider } from './fallback-features/inactive-preprocessor-provider';
 import { FortranFormattingProvider } from './format/provider';
 import { FortranLintingProvider } from './lint/provider';
 import { FortlsClient } from './lsp/client';
@@ -77,6 +78,9 @@ export async function activate(context: vscode.ExtensionContext) {
     const symbolProvider = new FortranDocumentSymbolProvider();
     vscode.languages.registerDocumentSymbolProvider(FortranDocumentSelector(), symbolProvider);
   }
+
+  const inactivePreprocessorProvider = new InactivePreprocessorProvider(logger);
+  context.subscriptions.push(...inactivePreprocessorProvider.activate());
 
   if (!config.get<boolean>('fortls.disabled')) {
     new FortlsClient(logger, context).activate();
