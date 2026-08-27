@@ -38,7 +38,7 @@
 - [Native Language Server integration](#language-server-integration) with [`fortls`](https://fortls.fortran-lang.org)
 - [Linting support](#linting): GNU's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`, NAG's [`nagfor`](https://www.nag.co.uk/nagfor/)
 - [Interactive Debugger with UI](#debugging)
-- [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
+- [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi), [fprettify](https://github.com/pseewald/fprettify), or [forformat](https://github.com/cmbant/forformat)
 - [Code snippets](#snippets) (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
 
 ## Get Started & Seek Support
@@ -222,9 +222,10 @@ More details on debugging are available on VS Code docs and each extension:
 
 ## Formatting
 
-Two formatters are supported [`findent`](https://github.com/gnikit/findent-pypi)
-and [`fprettify`](https://github.com/pseewald/fprettify). Both of them can be
-installed with `pip` automatically through the extension.
+Three formatters are supported: [`findent`](https://github.com/gnikit/findent-pypi),
+[`fprettify`](https://github.com/pseewald/fprettify), and
+[`forformat`](https://github.com/cmbant/forformat). All three can be installed
+with `pip` automatically through the extension.
 
 <details>
   <summary><b>Demo: formatters in action</b></summary>
@@ -239,7 +240,7 @@ The formatter is controlled by the user option
 
 ```jsonc
 {
-  "fortran.formatting.formatter": "findent" | "fprettify" | "Disabled"
+  "fortran.formatting.formatter": "findent" | "fprettify" | "forformat" | "Disabled"
 }
 ```
 
@@ -248,12 +249,13 @@ Additional arguments to the formatter can be input using
 ```json
 {
   "fortran.formatting.findentArgs": ["-Cn", "-Rr"],
-  "fortran.formatting.fprettifyArgs": ["--whitespace-comma", "--enable-decl"]
+  "fortran.formatting.fprettifyArgs": ["--whitespace-comma", "--enable-decl"],
+  "fortran.formatting.forformatArgs": ["--line-length=100"]
 }
 ```
 
-To check all available arguments to formatters try `findent -h` or `fprettify -h`
-in a terminal.
+To check all available arguments to formatters try `findent -h`, `fprettify -h`,
+or `forformat --help` in a terminal.
 
 If the formatter is not present in the `PATH` its location can be input with
 

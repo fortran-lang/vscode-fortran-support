@@ -363,9 +363,10 @@
             "enum": [
               "findent",
               "fprettify",
+              "forformat",
               "Disabled"
             ],
-            "markdownDescription": "Fortran formatter, currently supports `findent` and `fprettify`",
+            "markdownDescription": "Fortran formatter, currently supports `findent`, `fprettify`, and `forformat`",
             "order": 10
           },
           "fortran.formatting.findentArgs": {
@@ -386,11 +387,20 @@
             "markdownDescription": "Additional arguments for the `fprettify` formatter",
             "order": 30
           },
+          "fortran.formatting.forformatArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Additional arguments for the `forformat` formatter",
+            "order": 40
+          },
           "fortran.formatting.path": {
             "type": "string",
             "default": "",
             "markdownDescription": "If the formatter is not in the `$PATH` specify the full path to its location.",
-            "order": 40
+            "order": 50
           }
         }
       },

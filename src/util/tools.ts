@@ -10,7 +10,7 @@ import { isString, isArrayOfString } from './helper';
 export const LS_NAME = 'fortls';
 export const EXTENSION_ID = 'fortran';
 export const EXTENSION_VSSTORE_ID = 'fortran-lang.linter-gfortran';
-export const FORMATTERS = ['Disabled', 'findent', 'fprettify'];
+export const FORMATTERS = ['Disabled', 'findent', 'fprettify', 'forformat'];
 
 // Platform-specific environment variable delimiter
 export const envDelimiter: string = process.platform === 'win32' ? ';' : ':';

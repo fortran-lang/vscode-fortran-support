@@ -39,6 +39,8 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
       return this.doFormatFprettify(document);
     } else if (formatterName === 'findent') {
       return this.doFormatFindent(document);
+    } else if (formatterName === 'forformat') {
+      return this.doFormatForformat(document);
     } else {
       this.logger.error('[format] Cannot format document with formatter set to Disabled');
     }
@@ -72,6 +74,26 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
     return this.spawnFormatBase(document, 'findent');
   }
 
+  /**
+   * Use `forformat` to format a free-form Fortran file.
+   *
+   * @param document vscode.TextDocument document to operate on
+   */
+  private async doFormatForformat(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
+    if (document.languageId !== 'FortranFreeForm') {
+      this.logger.error(
+        `[format] forformat can only format FortranFreeForm, change to findent for FortranFixedForm formatting`
+      );
+      this.logger.show(true); // Keep focus on editor
+      return undefined;
+    }
+
+    return this.spawnFormatBase(document, 'forformat', [
+      `--stdin-filename=${document.uri.fsPath}`,
+      '-ifree',
+    ]);
+  }
+
   private async spawnFormatBase(
     document: vscode.TextDocument,
     name: string,
@@ -98,7 +120,7 @@ export class FortranFormattingProvider implements vscode.DocumentFormattingEditP
 
   /**
    * Get the formatter type
-   * Currently supporting: `findent` and `fprettify`
+   * Currently supporting: `findent`, `fprettify`, and `forformat`
    *
    * Formatters are defined in FORMATTERS (./lib/tools.ts)
    *
