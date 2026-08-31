@@ -9,6 +9,7 @@ import {
   IntelLinter,
   NAGLinter,
   LFortranLinter,
+  NvidiaLinter,
 } from '../../src/lint/compilers';
 
 // -----------------------------------------------------------------------------
@@ -710,5 +711,73 @@ lint/err-mod.f90:3-3:5-12: syntax error: Token 'implicit' is unexpected here
       ),
     ];
     deepStrictEqual(diags, ref);
+  });
+});
+
+// -----------------------------------------------------------------------------
+
+suite('NVIDIA (nvfortran) lint', () => {
+  const linter = new NvidiaLinter();
+  // Real nvfortran output. Sources:
+  //  - NVIDIA Developer Forums, "NVFORTRAN-S-0034-Syntax error at or near %"
+  //  - NVIDIA Developer Forums, "import problem in nvfortran 25.9",
+  //    reached via fortran-lang/test-drive#54
+  const msg = `NVFORTRAN-S-0034-Syntax error at or near % (test2.F90: 15)
+  0 inform,   0 warnings,   1 severes, 0 fatal for c_data`;
+
+  suite('REGEX matches', () => {
+    const matches = [...msg.matchAll(linter.regex)];
+    const g = matches[0].groups;
+    test('REGEX: single match only, summary line ignored', () => {
+      strictEqual(matches.length, 1);
+    });
+    test('REGEX: filename', () => {
+      strictEqual(g?.['fname'], 'test2.F90');
+    });
+    test('REGEX: line number', () => {
+      strictEqual(g?.['ln'], '15');
+    });
+    test('REGEX: severity <sev1>', () => {
+      strictEqual(g?.['sev1'], 'S');
+    });
+    test('REGEX: message code', () => {
+      strictEqual(g?.['code'], '0034');
+    });
+    test('REGEX: message <msg1>', () => {
+      strictEqual(g?.['msg1'].trim(), 'Syntax error at or near %');
+    });
+  });
+
+  suite('REGEX: diagnostic without a line number', () => {
+    // nvfortran omits the line when it cannot attribute the diagnostic
+    const noLine = `NVFORTRAN-S-1257-Interface test_interface must be declared. (mre.f90)`;
+    const g = [...noLine.matchAll(linter.regex)][0].groups;
+    test('filename still parses', () => {
+      strictEqual(g?.['fname'], 'mre.f90');
+    });
+    test('line number is absent', () => {
+      strictEqual(g?.['ln'], undefined);
+    });
+    test('message parses', () => {
+      strictEqual(g?.['msg1'].trim(), 'Interface test_interface must be declared.');
+    });
+  });
+
+  suite('Severity mapping', () => {
+    test('S is an error', () => {
+      strictEqual(linter.getSeverityLevel('s'), DiagnosticSeverity.Error);
+    });
+    test('F is an error', () => {
+      strictEqual(linter.getSeverityLevel('f'), DiagnosticSeverity.Error);
+    });
+    test('W is a warning', () => {
+      strictEqual(linter.getSeverityLevel('w'), DiagnosticSeverity.Warning);
+    });
+    test('I is information', () => {
+      strictEqual(linter.getSeverityLevel('i'), DiagnosticSeverity.Information);
+    });
+    test('V is a hint', () => {
+      strictEqual(linter.getSeverityLevel('v'), DiagnosticSeverity.Hint);
+    });
   });
 });

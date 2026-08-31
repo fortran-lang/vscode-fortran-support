@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added linting support for the NVIDIA HPC Fortran compiler, `nvfortran`
+  ([#1028](https://github.com/fortran-lang/vscode-fortran-support/issues/1028))
+
 ## [4.0.0]
 
 ### Added

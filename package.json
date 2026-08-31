@@ -251,6 +251,7 @@
               "ifx",
               "nagfor",
               "lfortran",
+              "nvfortran",
               "Disabled"
             ],
             "markdownDescription": "Compiler used for linting support.",

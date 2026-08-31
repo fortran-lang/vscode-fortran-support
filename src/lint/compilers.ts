@@ -251,6 +251,66 @@ export class NAGLinter extends Linter {
   }
 }
 
+export class NvidiaLinter extends Linter {
+  constructor() {
+    super(
+      'nvfortran',
+      /^NVFORTRAN-(?<sev1>[IWSFV])-(?<code>\d+)-(?<msg1>.*)\((?<fname>(?:\w:\\)?[^()]*?)(?::\s*(?<ln>\d+))?\)\s*$/gm,
+      {
+        // nvfortran encodes severity as a single letter:
+        // I informational, W warning, S severe, F fatal, V verbose
+        errors: ['s', 'f'],
+        warnings: ['w'],
+        infos: ['i'],
+        hints: ['v'],
+      },
+      ['-Msyntax-only'],
+      [],
+      '-module',
+      '-Mfree',
+      '-Mfixed'
+    );
+  }
+
+  /**
+   * ---------------------------------------------------------------------------
+   * COMPILER MESSAGE ANATOMY:
+   * NVFORTRAN-<severity>-<code>-<message> (<filename>[: <line>])
+   *
+   * Real examples:
+   *   NVFORTRAN-S-0034-Syntax error at or near % (test2.F90: 15)
+   *   NVFORTRAN-S-1257-Interface test_interface must be declared. (mre.f90)
+   *
+   * The line number is optional — nvfortran omits it for diagnostics it cannot
+   * attribute to a specific line, so `ln` must be treated as possibly absent.
+   * The trailing summary line ("0 inform, 0 warnings, 1 severes, 0 fatal")
+   * deliberately does not match.
+   * ---------------------------------------------------------------------------
+   * @param msg linter results
+   * @returns array of vscode.Diagnostic
+   */
+  public parse(msg: string): vscode.Diagnostic[] {
+    const matches = [...msg.matchAll(this.regex)];
+    const diagnostics: vscode.Diagnostic[] = [];
+    for (const m of matches) {
+      const g = m.groups;
+      const msg_type: string = g['sev1'];
+      const text: string = g['msg1'].trim();
+      // nvfortran reports no column, so highlight the whole line. When it does
+      // not report a line either, fall back to the first line of the document.
+      const lineNo: number = g['ln'] ? parseInt(g['ln']) - 1 : 0;
+      const doc = vscode.window.activeTextEditor?.document;
+      const range =
+        doc && lineNo < doc.lineCount
+          ? doc.lineAt(lineNo).range
+          : new vscode.Range(new vscode.Position(lineNo, 0), new vscode.Position(lineNo, 0));
+      const severity = this.getSeverityLevel(msg_type.toLowerCase());
+      diagnostics.push(new vscode.Diagnostic(range, text, severity));
+    }
+    return diagnostics;
+  }
+}
+
 export class LFortranLinter extends Linter {
   constructor() {
     super(
