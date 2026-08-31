@@ -33,13 +33,21 @@ import {
   toSafePreprocessorFilename,
 } from '../util/tools';
 
-import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './compilers';
+import {
+  GNULinter,
+  GNUModernLinter,
+  IntelLinter,
+  LFortranLinter,
+  NAGLinter,
+  NvidiaLinter,
+} from './compilers';
 
 const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();
 const INTEL = new IntelLinter();
 const NAG = new NAGLinter();
 const LFORTRAN = new LFortranLinter();
+const NVIDIA = new NvidiaLinter();
 
 export class LinterSettings {
   private _modernGNU: boolean;
@@ -181,7 +189,7 @@ export class FortranLintingProvider {
   private fortranDiagnostics: vscode.DiagnosticCollection;
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
-  private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
+  private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter | NvidiaLinter;
   private subscriptions: vscode.Disposable[] = [];
 
   public provideCodeActions(
@@ -456,7 +464,9 @@ export class FortranLintingProvider {
     }
   }
 
-  private getLinter(compiler: string): GNULinter | GNUModernLinter | IntelLinter | NAGLinter {
+  private getLinter(
+    compiler: string
+  ): GNULinter | GNUModernLinter | IntelLinter | NAGLinter | NvidiaLinter {
     switch (compiler) {
       case 'gfortran':
         if (this.settings.modernGNU) return GNU_NEW;
@@ -468,6 +478,8 @@ export class FortranLintingProvider {
         return NAG;
       case 'lfortran':
         return LFORTRAN;
+      case 'nvfortran':
+        return NVIDIA;
       default:
         return GNU;
     }

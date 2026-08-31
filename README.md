@@ -36,7 +36,7 @@
 - GoTo/Peek implementation and Find/Peek references
 - Project-wide and Document symbol detection and Renaming
 - [Native Language Server integration](#language-server-integration) with [`fortls`](https://fortls.fortran-lang.org)
-- [Linting support](#linting): GNU's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`, NAG's [`nagfor`](https://www.nag.co.uk/nagfor/)
+- [Linting support](#linting): GNU's [`gfortran`](https://gcc.gnu.org/wiki/GFortran), Intel's [`ifort`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html), `ifx`, NAG's [`nagfor`](https://www.nag.co.uk/nagfor/), NVIDIA's [`nvfortran`](https://developer.nvidia.com/hpc-sdk)
 - [Interactive Debugger with UI](#debugging)
 - [Formatting](#formatting) with [findent](https://github.com/gnikit/findent-pypi) or [fprettify](https://github.com/pseewald/fprettify)
 - [Code snippets](#snippets) (more can be defined by the user [see](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets))
@@ -86,6 +86,7 @@ without the user having to compile.
 | [GNU](https://gcc.gnu.org/wiki/GFortran)                                                      | `gfortran`     |
 | [Intel](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html) | `ifort`, `ifx` |
 | [NAG](https://www.nag.com/)                                                                   | `nagfor`       |
+| [NVIDIA](https://developer.nvidia.com/hpc-sdk)                                                | `nvfortran`    |
 
 Using an invalid if expression
 
