@@ -291,6 +291,13 @@
             "markdownDescription": "Output directory for .mod files generated due to linting `-J<linter.modOutput>`. By default this is an internal VS Code path unique to each workspace. Can resolve internal variables with `~`, `${workspaceFolder}`, `${env}`, `${config}`, `${file}`, `${fileDirname}`, `${fileBasenameNoExtension}`.",
             "order": 40
           },
+          "fortran.linter.timeout": {
+            "type": "number",
+            "default": 60,
+            "minimum": 0,
+            "markdownDescription": "Maximum time in **seconds** to wait for the linter compiler before its whole process tree is killed (this also kills compiler front-end child processes, e.g. Intel's `xfortcom`). Useful when a compiler hangs or keeps consuming memory, which can happen when linting large fixed-form files. Use `0` to disable the timeout.",
+            "order": 45
+          },
           "fortran.linter.fypp.enabled": {
             "type": "boolean",
             "default": false,

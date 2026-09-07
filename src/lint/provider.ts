@@ -73,6 +73,13 @@ export class LinterSettings {
   public get compilerPath(): string {
     return this.config.get<string>('linter.compilerPath');
   }
+  /**
+   * Maximum time in seconds to wait for the compiler to finish before killing
+   * the whole compiler process tree. `0` disables the timeout.
+   */
+  public get timeout(): number {
+    return this.config.get<number>('linter.timeout') ?? 0;
+  }
   public get include(): string[] {
     return this.config.get<string[]>('linter.includePaths');
   }
@@ -183,6 +190,12 @@ export class FortranLintingProvider {
   private settings: LinterSettings;
   private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
   private subscriptions: vscode.Disposable[] = [];
+  /**
+   * In-flight lint jobs keyed by document URI. Keeping track of them allows
+   * us to kill superseded compiler processes (and their children, e.g.
+   * Intel's `xfortcom`) instead of letting them pile up in the background.
+   */
+  private inFlightLints = new Map<string, AbortController>();
 
   public provideCodeActions(
     document: vscode.TextDocument,
@@ -229,6 +242,9 @@ export class FortranLintingProvider {
     vscode.workspace.onDidOpenTextDocument(this.doLint, this, this.subscriptions);
     vscode.workspace.onDidCloseTextDocument(
       doc => {
+        // Stop any compiler still running for this document, otherwise it
+        // would keep running (and consuming memory) for nothing
+        this.cancelLint(doc.uri.toString());
         this.fortranDiagnostics.delete(doc.uri);
       },
       this,
@@ -237,7 +253,9 @@ export class FortranLintingProvider {
 
     vscode.workspace.onDidSaveTextDocument(this.doLint, this, this.subscriptions);
     // Run the linter for all open documents i.e. docs loaded in memory
-    vscode.workspace.textDocuments.forEach(this.doLint, this);
+    // NOTE: wrap in a lambda, `forEach` would pass the array index as a
+    // second argument to `doLint`
+    vscode.workspace.textDocuments.forEach(doc => this.doLint(doc), this);
 
     // Update settings on Configuration change
     vscode.workspace.onDidChangeConfiguration(e => {
@@ -250,6 +268,9 @@ export class FortranLintingProvider {
   }
 
   public dispose(): void {
+    // Kill any compiler process still running, including its children
+    for (const ctrl of this.inFlightLints.values()) ctrl.abort();
+    this.inFlightLints.clear();
     this.fortranDiagnostics.clear();
     // this.fortranDiagnostics.dispose();
     this.subscriptions.forEach(d => d.dispose());
@@ -268,19 +289,23 @@ export class FortranLintingProvider {
       cancellable: true,
     };
     await vscode.window.withProgress(opts, async (progress, token) => {
-      token.onCancellationRequested(() => {
-        console.log('Canceled initialization');
-        return;
-      });
+      // Abort controller wired to the progress cancellation, it kills the
+      // compiler process currently being waited on
+      const initCtrl = new AbortController();
+      token.onCancellationRequested(() => initCtrl.abort());
       let i = 0;
       for (const file of files) {
+        if (initCtrl.signal.aborted) {
+          console.log('Canceled initialization');
+          return;
+        }
         i++;
         progress.report({
           message: `file ${i}/${files.length}`,
         });
         try {
           const doc = await vscode.workspace.openTextDocument(file);
-          this.doLint(doc);
+          await this.doLint(doc, initCtrl.signal);
         } catch (error) {
           continue;
         }
@@ -330,32 +355,96 @@ export class FortranLintingProvider {
   /**
    * Lint a document using the specified linter options
    * @param document TextDocument to lint
+   * @param externalSignal optional signal to abort this lint from the outside
+   * (e.g. when the workspace initialization is cancelled)
    * @returns An array of vscode.Diagnostic[]
    */
-  private async doLint(document: vscode.TextDocument): Promise<vscode.Diagnostic[]> | undefined {
+  private async doLint(
+    document: vscode.TextDocument,
+    externalSignal?: AbortSignal
+  ): Promise<vscode.Diagnostic[]> | undefined {
     // Only lint if a compiler is specified
     if (!this.settings.enabled) return;
     // Only lint Fortran (free, fixed) format files
     if (!isFortran(document)) return;
 
-    const output = await this.doBuild(document);
-    if (!output) {
-      // If the linter output is now empty, then there are no errors.
-      // Discard the previous diagnostic state for this document
-      if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
-      this.logger.debug('[lint] No linting diagnostics to show');
-      return;
+    const uriKey = document.uri.toString();
+    // If a lint is already running for this document, kill its compiler
+    // process tree and replace it with this invocation. Without this, every
+    // save/open of a slow or hanging document (e.g. Intel's `xfortcom`
+    // blowing up on fixed-form files) would leave another compiler process
+    // running in the background, consuming memory until VS Code restarts
+    this.cancelLint(uriKey);
+
+    const ctrl = new AbortController();
+    this.inFlightLints.set(uriKey, ctrl);
+    const onExternalAbort = () => ctrl.abort();
+    if (externalSignal) {
+      if (externalSignal.aborted) ctrl.abort();
+      else externalSignal.addEventListener('abort', onExternalAbort, { once: true });
     }
-    let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
-    this.logger.debug('[lint] Parsing output to vscode.Diagnostics', diagnostics);
-    // Remove duplicates from the diagnostics array
-    diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
-    this.logger.debug('[lint] Removing duplicates. vscode.Diagnostics are now:', diagnostics);
-    this.fortranDiagnostics.set(document.uri, diagnostics);
-    return diagnostics;
+    // Kill the compiler if it runs for too long. Runaway compiler front-ends
+    // (e.g. `xfortcom` on some fixed-form sources) would otherwise keep
+    // growing and spinning until VS Code is restarted
+    const timeoutSecs = this.settings.timeout;
+    const timer =
+      timeoutSecs > 0
+        ? setTimeout(() => {
+            this.logger.warn(
+              `[lint] ${document.fileName}: compiler exceeded the ${timeoutSecs}s lint timeout, killing its process tree`
+            );
+            ctrl.abort();
+          }, timeoutSecs * 1000)
+        : undefined;
+    timer?.unref?.();
+
+    try {
+      const output = await this.doBuild(document, ctrl.signal);
+      // If this lint was aborted (superseded, timed out, cancelled) keep the
+      // existing diagnostics untouched
+      if (ctrl.signal.aborted) {
+        this.logger.debug(`[lint] Linting of ${document.fileName} was cancelled`);
+        return;
+      }
+      if (!output) {
+        // If the linter output is now empty, then there are no errors.
+        // Discard the previous diagnostic state for this document
+        if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
+        this.logger.debug('[lint] No linting diagnostics to show');
+        return;
+      }
+      let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+      this.logger.debug('[lint] Parsing output to vscode.Diagnostics', diagnostics);
+      // Remove duplicates from the diagnostics array
+      diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
+      this.logger.debug('[lint] Removing duplicates. vscode.Diagnostics are now:', diagnostics);
+      this.fortranDiagnostics.set(document.uri, diagnostics);
+      return diagnostics;
+    } finally {
+      if (timer) clearTimeout(timer);
+      if (externalSignal) externalSignal.removeEventListener('abort', onExternalAbort);
+      // Only clear our entry if it is still ours, a newer lint may have
+      // replaced it already
+      if (this.inFlightLints.get(uriKey) === ctrl) this.inFlightLints.delete(uriKey);
+    }
   }
 
-  private async doBuild(document: vscode.TextDocument): Promise<string> | undefined {
+  /**
+   * Abort the in-flight lint of a document, if any, killing the whole
+   * compiler process tree associated with it
+   */
+  private cancelLint(uriKey: string): void {
+    const ctrl = this.inFlightLints.get(uriKey);
+    if (ctrl) {
+      this.inFlightLints.delete(uriKey);
+      ctrl.abort();
+    }
+  }
+
+  private async doBuild(
+    document: vscode.TextDocument,
+    signal?: AbortSignal
+  ): Promise<string> | undefined {
     this.linter = this.getLinter(this.settings.compiler);
     const command = this.settings.compilerExe;
     const argList = this.constructArgumentList(document);
@@ -382,7 +471,7 @@ export class FortranLintingProvider {
     this.logger.info(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
 
     try {
-      const fypp = await this.getFyppProcess(document);
+      const fypp = await this.getFyppProcess(document, signal);
 
       try {
         // The linter output is in the stderr channel
@@ -391,18 +480,27 @@ export class FortranLintingProvider {
           argList,
           { cwd: filePath, env: env },
           fypp?.[0], // pass the stdout from fypp to the linter as stdin
-          true
+          true,
+          signal
         );
         const output: string = stdout + stderr;
         this.logger.debug(`[build.single] Compiler output:\n${output}`);
         return output;
       } catch (err) {
-        this.logger.error(`[build.single] Compiler error:`, err);
-        console.error(`ERROR: ${err}`);
+        if (signal?.aborted) {
+          this.logger.debug(`[build.single] Compiler run for ${document.fileName} was cancelled`);
+        } else {
+          this.logger.error(`[build.single] Compiler error:`, err);
+          console.error(`ERROR: ${err}`);
+        }
       }
     } catch (fyppErr) {
-      this.logger.error(`[build.single] fypp error:`, fyppErr);
-      console.error(`ERROR: fypp ${fyppErr}`);
+      if (signal?.aborted) {
+        this.logger.debug(`[build.single] fypp run for ${document.fileName} was cancelled`);
+      } else {
+        this.logger.error(`[build.single] fypp error:`, fyppErr);
+        console.error(`ERROR: fypp ${fyppErr}`);
+      }
     }
   }
 
@@ -606,9 +704,13 @@ export class FortranLintingProvider {
    * This procedure does implements all the settings interfaces with `fypp`
    * and checks the system for `fypp` prompting to install it if missing.
    * @param document File name to pass to `fypp`
+   * @param signal optional `AbortSignal` used to kill the `fypp` process
    * @returns Async spawned Promise containing `fypp` Tuple [`stdout` `stderr`] or `undefined` if `fypp` is disabled
    */
-  private async getFyppProcess(document: vscode.TextDocument): Promise<[string, string]> {
+  private async getFyppProcess(
+    document: vscode.TextDocument,
+    signal?: AbortSignal
+  ): Promise<[string, string]> {
     if (!this.settings.fyppEnabled) return undefined;
     let fypp: string = this.settings.fyppPath;
     fypp = process.platform !== 'win32' ? fypp : `${fypp}.exe`;
@@ -649,6 +751,6 @@ export class FortranLintingProvider {
     args.push(toSafePreprocessorFilename(document.fileName));
 
     const filePath = path.parse(document.fileName).dir;
-    return await spawnAsPromise(fypp, args, { cwd: filePath }, undefined);
+    return await spawnAsPromise(fypp, args, { cwd: filePath }, undefined, undefined, signal);
   }
 }
