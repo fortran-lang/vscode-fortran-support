@@ -317,12 +317,64 @@ export function getWholeFileRange(document: vscode.TextDocument): vscode.Range {
 }
 
 /**
+ * Grace period before escalating from `SIGTERM` to `SIGKILL` when killing a
+ * process tree. Some compilers ignore the polite signal while they are busy.
+ */
+export const TREE_KILL_GRACE_MS = 2000;
+
+/**
+ * Kill a spawned process along with all of its children.
+ *
+ * Compilers such as Intel's `ifx`/`ifort` run their front-end (`xfortcom`) as
+ * a *child* process. Killing only the direct child driver would orphan the
+ * front-end, leaving it running, spinning and consuming memory until VS Code
+ * is restarted. Therefore we signal the whole process group on POSIX (the
+ * child must have been spawned with `detached: true`) and use `taskkill /T`
+ * on Windows.
+ *
+ * @param child the child process to kill
+ * @param killSignal signal used for the initial kill attempt
+ */
+export function killProcessTree(
+  child: cp.ChildProcess,
+  killSignal: NodeJS.Signals = 'SIGTERM'
+): void {
+  const pid = child.pid;
+  if (pid === undefined) return;
+  // Already dead, nothing to do
+  if (child.exitCode !== null || child.signalCode !== null) return;
+  try {
+    if (process.platform === 'win32') {
+      // /T kills the whole tree, /F forces termination
+      cp.spawn('taskkill', ['/pid', String(pid), '/T', '/F'], {
+        stdio: 'ignore',
+        windowsHide: true,
+      });
+    } else {
+      try {
+        // Negative PID signals the entire process group, which includes the
+        // compiler front-ends spawned by the driver
+        process.kill(-pid, killSignal);
+      } catch (err) {
+        // The group may be gone already, fall back to the direct child
+        child.kill(killSignal);
+      }
+    }
+  } catch (err) {
+    // The process exited between our checks and the kill, nothing to do
+  }
+}
+
+/**
  * Spawn a command as a `Promise`
  * @param cmd command to execute
  * @param args arguments to pass to the command
  * @param options child_process.spawn options
  * @param input any input to pass to stdin
  * @param ignoreExitCode ignore the exit code of the process and `resolve` the promise
+ * @param signal optional `AbortSignal`, aborting it kills the whole process
+ * tree (including compiler front-ends such as Intel's `xfortcom`) and rejects
+ * the promise once the process has exited
  * @returns Tuple[string, string] `[stdout, stderr]`. By default will `reject` if exit code is non-zero.
  */
 export async function spawnAsPromise(
@@ -330,32 +382,98 @@ export async function spawnAsPromise(
   args: ReadonlyArray<string> | undefined,
   options?: cp.SpawnOptions | undefined,
   input?: string | undefined,
-  ignoreExitCode?: boolean
+  ignoreExitCode?: boolean,
+  signal?: AbortSignal
 ) {
   return new Promise<[string, string]>((resolve, reject) => {
-    let stdout = '';
-    let stderr = '';
-    const child = cp.spawn(cmd, args, options);
-    child.stdout.on('data', data => {
-      stdout += data;
+    let settled = false;
+    // Buffer the chunks and join them at the end. Compilers with verbose
+    // diagnostics (e.g. `-warn all`) can emit very large outputs and
+    // repeated string concatenation would be quadratic
+    const stdoutChunks: Buffer[] = [];
+    const stderrChunks: Buffer[] = [];
+
+    const child = cp.spawn(cmd, args, {
+      ...options,
+      // Make the child a process group leader on POSIX so that we can signal
+      // the whole compiler process tree, not just the driver
+      detached: options?.detached ?? process.platform !== 'win32',
     });
-    child.stderr.on('data', data => {
-      stderr += data;
-    });
+
+    let escalateTimer: NodeJS.Timeout | undefined;
+    let forceTimer: NodeJS.Timeout | undefined;
+    const clearTimers = () => {
+      if (escalateTimer) clearTimeout(escalateTimer);
+      if (forceTimer) clearTimeout(forceTimer);
+    };
+    const settle = (fn: () => void) => {
+      if (settled) return;
+      settled = true;
+      clearTimers();
+      fn();
+    };
+    const join = (chunks: Buffer[]) => Buffer.concat(chunks).toString();
+    const finishResolve = () => settle(() => resolve([join(stdoutChunks), join(stderrChunks)]));
+    const finishReject = (err: unknown) => settle(() => reject(err));
+
+    const killTree = (killSignal: NodeJS.Signals = 'SIGTERM') => {
+      killProcessTree(child, killSignal);
+      // Escalate to SIGKILL if the tree ignores the polite signal
+      if (!escalateTimer) {
+        escalateTimer = setTimeout(() => killProcessTree(child, 'SIGKILL'), TREE_KILL_GRACE_MS);
+        escalateTimer.unref?.();
+      }
+    };
+
+    // On abort kill the whole process tree and wait for the process to
+    // actually exit, so that we never run two compilers for the same
+    // document at the same time
+    const onAbort = () => {
+      if (settled || child.exitCode !== null || child.signalCode !== null) return;
+      killTree('SIGTERM');
+      // Safety net: never wait forever for an unkillable process
+      if (!forceTimer) {
+        forceTimer = setTimeout(() => {
+          finishReject(new Error(`[spawn] ${cmd} did not exit after being killed`));
+        }, TREE_KILL_GRACE_MS * 3);
+        forceTimer.unref?.();
+      }
+    };
+    if (signal) {
+      if (signal.aborted) onAbort();
+      else signal.addEventListener('abort', onAbort, { once: true });
+    }
+
+    child.stdout?.on('data', (data: Buffer) => stdoutChunks.push(data));
+    child.stderr?.on('data', (data: Buffer) => stderrChunks.push(data));
+    // Do not let stdio errors (e.g. EPIPE when a child exits before
+    // consuming all of its stdin) crash the extension host
+    child.stdin?.on('error', () => {});
+    child.stdout?.on('error', () => {});
+    child.stderr?.on('error', () => {});
+
     child.on('close', code => {
-      if (ignoreExitCode || code === 0) {
-        resolve([stdout, stderr]);
+      const stdout = join(stdoutChunks);
+      const stderr = join(stderrChunks);
+      if (signal?.aborted) {
+        finishReject(new Error(`[spawn] ${cmd} was cancelled`));
+      } else if (ignoreExitCode || code === 0) {
+        finishResolve();
       } else {
-        reject([stdout, stderr]);
+        finishReject([stdout, stderr]);
       }
     });
     child.on('error', err => {
-      reject(err.toString());
+      finishReject(err);
     });
 
     if (input) {
-      child.stdin.write(input);
-      child.stdin.end();
+      try {
+        child.stdin?.write(input);
+        child.stdin?.end();
+      } catch (err) {
+        // The close/error handlers above will settle the promise
+      }
     }
   });
 }

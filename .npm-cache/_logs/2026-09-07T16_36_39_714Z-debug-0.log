@@ -1,0 +1,24 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@11.19.0
+2 info using node@v24.20.0
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/wxd/modernfortran/vscode-fortran-support-main/.npmrc
+5 silly config load:file:/home/wxd/.npmrc
+6 silly config load:file:/usr/etc/npmrc
+7 verbose title npm run compile
+8 verbose argv "run" "compile"
+9 verbose logfile logs-max:10 dir:/home/wxd/modernfortran/vscode-fortran-support-main/.npm-cache/_logs/2026-09-07T16_36_39_714Z-
+10 verbose logfile /home/wxd/modernfortran/vscode-fortran-support-main/.npm-cache/_logs/2026-09-07T16_36_39_714Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 486ms
+13 verbose cwd /home/wxd/modernfortran/vscode-fortran-support-main
+14 verbose os Linux 6.18.33.2-microsoft-standard-WSL2
+15 verbose node v24.20.0
+16 verbose npm  v11.19.0
+17 notice
+17 notice New major version of npm available! 11.19.0 -> 12.0.2
+17 notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+17 notice To update run: npm install -g npm@12.0.2
+17 notice  { force: true, Symbol(proc-log.meta): true }
+18 verbose exit 0
+19 info ok

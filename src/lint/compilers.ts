@@ -299,3 +299,28 @@ export class LFortranLinter extends Linter {
     return diagnostics;
   }
 }
+
+/**
+ * Select the compiler used to lint a document.
+ *
+ * Fixed-form (Fortran 77 style) sources can be linted with a dedicated
+ * compiler via `linter.compilerFixedForm`, e.g. to keep `ifx` for modern
+ * free-form sources while using `gfortran` (or `Disabled`) for legacy
+ * fixed-form files. When the override is not set (empty string) the
+ * default compiler is used for every file.
+ *
+ * @param isFixedForm whether the document is fixed-form source
+ * @param defaultCompiler value of `linter.compiler`
+ * @param fixedFormCompiler value of `linter.compilerFixedForm`
+ * @returns the compiler name to lint the document with
+ */
+export function selectCompiler(
+  isFixedForm: boolean,
+  defaultCompiler: string,
+  fixedFormCompiler: string
+): string {
+  if (isFixedForm && fixedFormCompiler && fixedFormCompiler.length > 0) {
+    return fixedFormCompiler;
+  }
+  return defaultCompiler;
+}

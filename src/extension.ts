@@ -26,6 +26,7 @@ const logger = new Logger(
 export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration(EXTENSION_ID);
   const linterType = config.get<string>('linter.compiler');
+  const linterFixedFormType = config.get<string>('linter.compilerFixedForm');
   const formatterType = config.get<string>('formatting.formatter');
   const autocompleteType = config.get<string>('provide.autocomplete');
   const hoverType = config.get<string>('provide.hover');
@@ -35,6 +36,9 @@ export async function activate(context: vscode.ExtensionContext) {
   logger.info(`Extension Name: ${pkg.displayName}`);
   logger.info(`Extension Version: ${pkg.version}`);
   logger.info(`Linter set to: "${linterType}"`);
+  if (linterFixedFormType) {
+    logger.info(`Fixed-form linter set to: "${linterFixedFormType}"`);
+  }
   logger.info(`Formatter set to: "${formatterType}"`);
   logger.info(`Autocomplete set to: "${autocompleteType}"`);
   logger.info(`Hover set to: "${hoverType}"`);
