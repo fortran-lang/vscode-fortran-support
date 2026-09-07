@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added the `fortran.linter.compilerFixedForm` option to lint fixed-form
+  (Fortran 77 style) sources with a different compiler than modern free-form
+  sources, including `"Disabled"` to skip linting of fixed-form files entirely
+
+### Fixed
+
+- Lint compiler processes that hang or run longer than `fortran.linter.timeout`
+  seconds are now killed together with their whole process tree (e.g. Intel's
+  `xfortcom` front-end), instead of running until VS Code is restarted
+- Concurrent lints of the same document no longer pile up compiler processes;
+  a new lint request supersedes the previous one
+
 ## [4.0.0]
 
 ### Added

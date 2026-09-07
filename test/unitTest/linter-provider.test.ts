@@ -7,11 +7,30 @@ import {
   GNULinter,
   GNUModernLinter,
   IntelLinter,
-  NAGLinter,
   LFortranLinter,
+  NAGLinter,
+  selectCompiler,
 } from '../../src/lint/compilers';
 
 // -----------------------------------------------------------------------------
+
+suite('Fixed-form linter compiler selection', () => {
+  test('unset override inherits the default compiler', () => {
+    strictEqual(selectCompiler(true, 'ifx', ''), 'ifx');
+    strictEqual(selectCompiler(true, 'gfortran', ''), 'gfortran');
+  });
+  test('free-form files always use the default compiler', () => {
+    strictEqual(selectCompiler(false, 'ifx', 'gfortran'), 'ifx');
+    strictEqual(selectCompiler(false, 'gfortran', 'Disabled'), 'gfortran');
+  });
+  test('fixed-form files honour the override', () => {
+    strictEqual(selectCompiler(true, 'ifx', 'gfortran'), 'gfortran');
+    strictEqual(selectCompiler(true, 'gfortran', 'ifx'), 'ifx');
+  });
+  test('fixed-form files can opt out of linting', () => {
+    strictEqual(selectCompiler(true, 'ifx', 'Disabled'), 'Disabled');
+  });
+});
 
 suite('GNU (gfortran) lint single', () => {
   const linter = new GNULinter();

@@ -33,7 +33,14 @@ import {
   toSafePreprocessorFilename,
 } from '../util/tools';
 
-import { GNULinter, GNUModernLinter, IntelLinter, LFortranLinter, NAGLinter } from './compilers';
+import {
+  GNULinter,
+  GNUModernLinter,
+  IntelLinter,
+  LFortranLinter,
+  NAGLinter,
+  selectCompiler,
+} from './compilers';
 
 const GNU = new GNULinter();
 const GNU_NEW = new GNUModernLinter();
@@ -41,14 +48,28 @@ const INTEL = new IntelLinter();
 const NAG = new NAGLinter();
 const LFORTRAN = new LFortranLinter();
 
+/** All the supported linter back-ends */
+type FortranLinter = GNULinter | GNUModernLinter | IntelLinter | NAGLinter | LFortranLinter;
+
+/**
+ * A completed compiler (lint) run: the combined stdout/stderr output and
+ * the linter back-end that produced it, so that output is always parsed
+ * by the exact compiler that generated it even when several documents
+ * with different linters are linted concurrently.
+ */
+interface LinterBuildResult {
+  output: string;
+  linter: FortranLinter;
+}
+
 export class LinterSettings {
-  private _modernGNU: boolean;
-  private _version: string;
   private config: vscode.WorkspaceConfiguration;
+  /** Cached `gfortran --version` results, keyed by compiler name */
+  private gnuVersionCache: Map<string, string | undefined> = new Map();
 
   constructor(private logger: Logger = new Logger()) {
     this.config = vscode.workspace.getConfiguration(EXTENSION_ID);
-    this.GNUVersion(this.compiler); // populates version & modernGNU
+    this.GNUVersion(this.compiler); // pre-warms the version cache & logs it
   }
   public update(event: vscode.ConfigurationChangeEvent) {
     console.log('update settings');
@@ -58,7 +79,34 @@ export class LinterSettings {
   }
 
   public get enabled(): boolean {
-    return this.config.get<string>('linter.compiler') !== 'Disabled';
+    return this.compiler !== 'Disabled';
+  }
+  /**
+   * Whether the given document should be linted. Fixed-form documents can
+   * opt out of linting by setting `linter.compilerFixedForm` to `Disabled`.
+   */
+  public isEnabled(document: vscode.TextDocument): boolean {
+    return this.compilerFor(document) !== 'Disabled';
+  }
+  /** Raw value of the fixed-form compiler override, `''` when unset */
+  public get fixedFormCompiler(): string {
+    return this.config.get<string>('linter.compilerFixedForm') ?? '';
+  }
+  /**
+   * The compiler used to lint `document`. Fixed-form (Fortran 77 style)
+   * documents honour the `linter.compilerFixedForm` override, everything
+   * else (modern free-form sources) uses `linter.compiler`.
+   */
+  public compilerFor(document: vscode.TextDocument): string {
+    return selectCompiler(!isFreeForm(document), this.compiler, this.fixedFormCompiler);
+  }
+  /** Whether the given compiler came from the fixed-form override setting */
+  public isFixedFormOverride(compiler: string): boolean {
+    return (
+      this.fixedFormCompiler.length > 0 &&
+      this.fixedFormCompiler !== this.compiler &&
+      compiler === this.fixedFormCompiler
+    );
   }
   public get compiler(): string {
     const compiler = this.config.get<string>('linter.compiler');
@@ -93,49 +141,57 @@ export class LinterSettings {
   // END OF API SETTINGS
 
   /**
-   * Returns the version of the compiler and populates the internal variables
-   * `modernGNU` and `version`.
+   * Returns the version of the given GNU Fortran compiler or `undefined` if
+   * it could not be determined. Results are cached per compiler name, so
+   * different gfortran executables (e.g. one for free-form and one for
+   * fixed-form linting) are probed independently and only once.
    * @note Only supports `gfortran`
    */
   private GNUVersion(compiler: string): string | undefined {
     // Only needed for gfortran's diagnostics flag
-    this.modernGNU = false;
-    if (compiler !== 'gfortran') return;
+    if (compiler !== 'gfortran') return undefined;
+    if (this.gnuVersionCache.has(compiler)) return this.gnuVersionCache.get(compiler);
     const child = cp.spawnSync(compiler, ['--version']);
+    let version: string | undefined;
     if (child.error || child.status !== 0) {
       this.logger.error(`[lint] Could not spawn ${compiler} to check version.`);
-      return;
+    } else {
+      // State the variables explicitly bc the TypeScript compiler on the CI
+      // seemed to optimise away the stdout and regex would return null
+      // The words between the parenthesis can have all sorts of special characters
+      // account for all of them just to be safe
+      const regex = /^GNU Fortran \([\S ]+\) (?<msg>(?<version>\d+\.\d+\.\d+).*)$/gm;
+      const output = child.stdout.toString();
+      const match = regex.exec(output);
+      version = match ? match.groups.version : undefined;
+      if (semver.valid(version)) {
+        this.logger.info(`[lint] Found GNU Fortran version ${version}`);
+      } else {
+        this.logger.warn(
+          `[lint] Unable to extract semver version ${match?.groups?.msg} from ${output}`
+        );
+        this.logger.warn(`[lint] Using GFortran with fallback options`);
+        version = undefined;
+      }
     }
-    // State the variables explicitly bc the TypeScript compiler on the CI
-    // seemed to optimise away the stdout and regex would return null
-    // The words between the parenthesis can have all sorts of special characters
-    // account for all of them just to be safe
-    const regex = /^GNU Fortran \([\S ]+\) (?<msg>(?<version>\d+\.\d+\.\d+).*)$/gm;
-    const output = child.stdout.toString();
-    const match = regex.exec(output);
-    const version = match ? match.groups.version : undefined;
-    if (semver.valid(version)) {
-      this.version = version;
-      this.logger.info(`[lint] Found GNU Fortran version ${version}`);
-      this.logger.debug(`[lint] Using Modern GNU Fortran diagnostics: ${this.modernGNU}`);
-      return version;
-    }
-    this.logger.warn(`[lint] Unable to extract semver version ${match.groups.msg} from ${output}`);
-    this.logger.warn(`[lint] Using GFortran with fallback options`);
+    this.gnuVersionCache.set(compiler, version);
+    return version;
   }
 
-  public get version(): string {
-    return this._version;
+  public get version(): string | undefined {
+    return this.GNUVersion(this.compiler);
   }
-  private set version(version: string) {
-    this._version = version;
-    this.modernGNU = semver.gte(version, '11.0.0');
+  /**
+   * Whether the given compiler reports diagnostics in the modern gfortran
+   * format (GNU Fortran >= 11), probed and cached per compiler name.
+   */
+  public isModernGNU(compiler: string): boolean {
+    if (compiler !== 'gfortran') return false;
+    const version = this.GNUVersion(compiler);
+    return version !== undefined && semver.gte(version, '11.0.0');
   }
   public get modernGNU(): boolean {
-    return this._modernGNU;
-  }
-  private set modernGNU(modernGNU: boolean) {
-    this._modernGNU = modernGNU;
+    return this.isModernGNU(this.compiler);
   }
 
   // FYPP options
@@ -170,8 +226,15 @@ export class LinterSettings {
 
   // Functions for combining options
 
-  public get compilerExe(): string {
-    return which.sync(this.compilerPath ? this.compilerPath : this.compiler);
+  /**
+   * Resolve the executable for the given linter compiler. The
+   * `linter.compilerPath` setting only applies to the default compiler
+   * (`linter.compiler`); form-specific overrides are resolved from the
+   * `PATH` (absolute paths in the setting also work).
+   */
+  public compilerExe(compiler: string = this.compiler): string {
+    const target = compiler === this.compiler && this.compilerPath ? this.compilerPath : compiler;
+    return which.sync(target);
   }
 }
 
@@ -188,7 +251,7 @@ export class FortranLintingProvider {
   private fortranDiagnostics: vscode.DiagnosticCollection;
   private pathCache = new Map<string, GlobPaths>();
   private settings: LinterSettings;
-  private linter: GNULinter | GNUModernLinter | IntelLinter | NAGLinter;
+  private linter: FortranLinter;
   private subscriptions: vscode.Disposable[] = [];
   /**
    * In-flight lint jobs keyed by document URI. Keeping track of them allows
@@ -363,8 +426,8 @@ export class FortranLintingProvider {
     document: vscode.TextDocument,
     externalSignal?: AbortSignal
   ): Promise<vscode.Diagnostic[]> | undefined {
-    // Only lint if a compiler is specified
-    if (!this.settings.enabled) return;
+    // Only lint if a compiler is specified for this document's source form
+    if (!this.settings.isEnabled(document)) return;
     // Only lint Fortran (free, fixed) format files
     if (!isFortran(document)) return;
 
@@ -399,21 +462,21 @@ export class FortranLintingProvider {
     timer?.unref?.();
 
     try {
-      const output = await this.doBuild(document, ctrl.signal);
+      const result = await this.doBuild(document, ctrl.signal);
       // If this lint was aborted (superseded, timed out, cancelled) keep the
       // existing diagnostics untouched
       if (ctrl.signal.aborted) {
         this.logger.debug(`[lint] Linting of ${document.fileName} was cancelled`);
         return;
       }
-      if (!output) {
+      if (!result) {
         // If the linter output is now empty, then there are no errors.
         // Discard the previous diagnostic state for this document
         if (this.fortranDiagnostics.has(document.uri)) this.fortranDiagnostics.delete(document.uri);
         this.logger.debug('[lint] No linting diagnostics to show');
         return;
       }
-      let diagnostics: vscode.Diagnostic[] = this.linter.parse(output);
+      let diagnostics: vscode.Diagnostic[] = result.linter.parse(result.output);
       this.logger.debug('[lint] Parsing output to vscode.Diagnostics', diagnostics);
       // Remove duplicates from the diagnostics array
       diagnostics = [...new Map(diagnostics.map(v => [JSON.stringify(v), v])).values()];
@@ -441,13 +504,22 @@ export class FortranLintingProvider {
     }
   }
 
+  /**
+   * A completed compiler (lint) run: the combined stdout/stderr output and
+   * the linter back-end that produced it, so that output is always parsed
+   * by the exact compiler that generated it even when several documents
+   * with different linters are linted concurrently.
+   */
   private async doBuild(
     document: vscode.TextDocument,
     signal?: AbortSignal
-  ): Promise<string> | undefined {
-    this.linter = this.getLinter(this.settings.compiler);
-    const command = this.settings.compilerExe;
-    const argList = this.constructArgumentList(document);
+  ): Promise<LinterBuildResult | undefined> {
+    // Fixed-form (Fortran 77 style) documents can use a dedicated compiler,
+    // see `linter.compilerFixedForm`
+    const compiler = this.settings.compilerFor(document);
+    const linter = this.getLinter(compiler);
+    const command = this.settings.compilerExe(compiler);
+    const argList = this.constructArgumentList(document, linter);
     const filePath = path.parse(document.fileName).dir;
 
     /*
@@ -466,7 +538,9 @@ export class FortranLintingProvider {
       }
     }
     this.logger.debug(
-      `[build.single] compiler: "${this.settings.compiler}" located in: "${command}"`
+      `[build.single] compiler: "${compiler}" located in: "${command}"${
+        this.settings.isFixedFormOverride(compiler) ? ' (fixed-form override)' : ''
+      }`
     );
     this.logger.info(`[build.single] Compiler query command line: ${command} ${argList.join(' ')}`);
 
@@ -485,7 +559,7 @@ export class FortranLintingProvider {
         );
         const output: string = stdout + stderr;
         this.logger.debug(`[build.single] Compiler output:\n${output}`);
-        return output;
+        return { output, linter };
       } catch (err) {
         if (signal?.aborted) {
           this.logger.debug(`[build.single] Compiler run for ${document.fileName} was cancelled`);
@@ -516,9 +590,12 @@ export class FortranLintingProvider {
    */
   private async buildAndDebug(textEditor: vscode.TextEditor, debug = true): Promise<void> {
     const textDocument = textEditor.document;
-    this.linter = this.getLinter(this.settings.compiler);
-    const command = this.settings.compilerExe;
-    let argList = [...this.constructArgumentList(textDocument)];
+    // Use the same per-form compiler selection as the linter, so a
+    // fixed-form file is built with its configured compiler as well
+    const compiler = this.settings.compilerFor(textDocument);
+    this.linter = this.getLinter(compiler);
+    const command = this.settings.compilerExe(compiler);
+    let argList = [...this.constructArgumentList(textDocument, this.linter)];
     // Remove mandatory linter args, used for mock compilation
     argList = argList.filter(arg => !this.linter.args.includes(arg));
     if (debug) argList.push('-g'); // add debug symbols flag, same for all compilers
@@ -554,10 +631,10 @@ export class FortranLintingProvider {
     }
   }
 
-  private getLinter(compiler: string): GNULinter | GNUModernLinter | IntelLinter | NAGLinter {
+  private getLinter(compiler: string): FortranLinter {
     switch (compiler) {
       case 'gfortran':
-        if (this.settings.modernGNU) return GNU_NEW;
+        if (this.settings.isModernGNU(compiler)) return GNU_NEW;
         return GNU;
       case 'ifx':
       case 'ifort':
@@ -571,8 +648,11 @@ export class FortranLintingProvider {
     }
   }
 
-  private constructArgumentList(textDocument: vscode.TextDocument): string[] {
-    const args = [...this.linter.args, ...this.linterExtraArgs, ...this.modOutputDir];
+  private constructArgumentList(
+    textDocument: vscode.TextDocument,
+    linter: FortranLinter
+  ): string[] {
+    const args = [...linter.args, ...this.linterExtraArgs(linter), ...this.modOutputDir(linter)];
     const opt = 'linter.includePaths';
     const includePaths = this.getGlobPathsFromSettings(opt);
     this.logger.debug(`[lint] glob paths:`, this.pathCache.get(opt).globs);
@@ -589,7 +669,7 @@ export class FortranLintingProvider {
       ...this.getIncludeParams(includePaths), // include paths
       // Explicitly set the type for Fortran in case the user has associated
       // fixed-form extensions to free-form, or vice versa
-      isFreeForm(textDocument) ? this.linter.freeFlag : this.linter.fixedFlag,
+      isFreeForm(textDocument) ? linter.freeFlag : linter.fixedFlag,
       '-o',
       `${textDocument.fileName}.o`,
       ...fortranSource,
@@ -598,9 +678,9 @@ export class FortranLintingProvider {
     return argList.map(arg => arg.trim()).filter(arg => arg !== '');
   }
 
-  private get modOutputDir(): string[] {
+  private modOutputDir(linter: FortranLinter): string[] {
     let modout: string = this.settings.modOutput;
-    const modFlag = this.linter.modFlag;
+    const modFlag = linter.modFlag;
     // Return the workspaces cache directory if the user has not set a custom path
     if (modout === '') modout = this.storageUI;
     if (!modout) return [];
@@ -657,17 +737,17 @@ export class FortranLintingProvider {
    *
    * @returns
    */
-  private get linterExtraArgs(): string[] {
+  private linterExtraArgs(linter: FortranLinter): string[] {
     const config = vscode.workspace.getConfiguration(EXTENSION_ID);
     // Get the linter arguments from the settings via a deep copy
-    let args: string[] = [...this.linter.argsDefault];
+    let args: string[] = [...linter.argsDefault];
     const user_args: string[] = this.settings.args;
     // If we have specified linter.extraArgs then replace default arguments
     if (user_args.length > 0) args = user_args.slice();
     // gfortran and flang have compiler flags for restricting the width of
     // the code.
     // You can always override by passing in the correct args as extraArgs
-    if (this.linter.name === 'gfortran') {
+    if (linter.name === 'gfortran') {
       const ln: number = config.get('fortls.maxLineLength');
       const lnStr: string = ln === -1 ? 'none' : ln.toString();
       // Prepend via `unshift` to make sure user defined flags overwrite

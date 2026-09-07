@@ -256,6 +256,30 @@
             "markdownDescription": "Compiler used for linting support.",
             "order": 0
           },
+          "fortran.linter.compilerFixedForm": {
+            "type": "string",
+            "default": "",
+            "enum": [
+              "",
+              "gfortran",
+              "ifort",
+              "ifx",
+              "nagfor",
+              "lfortran",
+              "Disabled"
+            ],
+            "markdownEnumDescriptions": [
+              "Use the value of `#fortran.linter.compiler#` for all files.",
+              "Lint fixed-form files with `gfortran`.",
+              "Lint fixed-form files with `ifort`.",
+              "Lint fixed-form files with `ifx`.",
+              "Lint fixed-form files with `nagfor`.",
+              "Lint fixed-form files with `lfortran`.",
+              "Do not lint fixed-form files."
+            ],
+            "markdownDescription": "Compiler used to lint **fixed-form** (Fortran 77 style) sources, e.g. `.f`, `.for`, `.f77`. Set it to use a different linter for legacy fixed-form code than for modern free-form sources, e.g. `gfortran` for `.f90` while using `ifx` for `.f`. When left empty the value of `#fortran.linter.compiler#` is used for all files. Note that `#fortran.linter.compilerPath#` only applies to the default compiler.",
+            "order": 1
+          },
           "fortran.linter.initialize": {
             "type": "boolean",
             "default": false,

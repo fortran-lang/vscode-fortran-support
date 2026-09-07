@@ -154,6 +154,27 @@ you can point the extension to another linter with the `fortran.linter.compilerP
 }
 ```
 
+#### Different compilers for free-form and fixed-form sources
+
+Legacy fixed-form (Fortran 77 style) sources, e.g. `.f`, `.for`, `.f77`, can be
+linted with a different compiler than modern free-form sources via the
+`fortran.linter.compilerFixedForm` option. When left empty (the default) the
+`fortran.linter.compiler` value is used for all files. For example, to lint
+`.f90` files with `gfortran` while using `ifx` for `.f` files:
+
+```jsonc
+{
+  "fortran.linter.compiler": "gfortran",
+  "fortran.linter.compilerFixedForm": "ifx",
+}
+```
+
+Set `fortran.linter.compilerFixedForm` to `"Disabled"` to skip linting of
+fixed-form files altogether, e.g. when the fixed-form compiler of your choice
+struggles with very large legacy files. Note that `fortran.linter.compilerPath`
+only applies to the default compiler; the fixed-form compiler is resolved from
+the `PATH`.
+
 ## Debugging
 
 ![alt](assets/gif/gdb_ani.gif)
